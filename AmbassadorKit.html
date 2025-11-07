@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intel® SFI — Ambassador Amplification Kit</title>
+<style>
+  :root{
+    --brand:#1061FE;         /* Intel blue-ish */
+    --brand-dark:#0a43b2;
+    --ink:#0f172a;
+    --muted:#475569;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --accent:#e6efff;
+    --start:#12a150;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1100px;margin:40px auto;padding:0 20px;}
+  header{
+    background:linear-gradient(135deg,var(--brand) 0%, #4e8bff 100%);
+    color:#fff;border-radius:18px;padding:28px 24px;margin-bottom:22px;
+    box-shadow:0 8px 24px rgba(16,97,254,0.25);
+  }
+  header h1{margin:0 0 6px;font-size:28px;letter-spacing:.2px}
+  header p{margin:6px 0 0;opacity:.95}
+  .legend{display:flex;gap:12px;align-items:center;margin-top:12px;font-size:14px}
+  .badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;letter-spacing:.2px;}
+  .badge.start{background:rgba(18,161,80,.12); color:var(--start); border:1px solid rgba(18,161,80,.35)}
+  .badge.new{background:rgba(16,97,254,.12); color:#0b56f0; border:1px solid rgba(16,97,254,.35)}
+
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 22px}
+  .btn{
+    background:#fff;border:1px solid #dbe3ff;color:var(--brand);
+    border-radius:10px;padding:8px 12px;font-weight:600;cursor:pointer;
+    box-shadow:0 2px 8px rgba(16,97,254,.08);
+  }
+  .btn:hover{background:var(--accent)}
+  .section{background:var(--card);border:1px solid #e6e9f5;border-radius:16px;margin-bottom:14px;overflow:hidden}
+  .section summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+    padding:16px 18px; background:#fff; border-bottom:1px solid #eef2ff;
+    font-weight:750; font-size:17px; color:var(--brand-dark);
+  }
+  .section summary::-webkit-details-marker{display:none}
+  .chev{transition:transform .2s ease}
+  details[open] .chev{transform:rotate(90deg)}
+  .content{padding:14px 20px 20px}
+  .desc{color:var(--muted); margin:6px 0 14px}
+  .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+  .col-12{grid-column:span 12}
+  .col-6{grid-column:span 12}
+  @media (min-width:880px){ .col-6{grid-column:span 6} }
+  .card{
+    background:linear-gradient(180deg,#fff, #fbfcff);
+    border:1px solid #ebeffa; border-radius:14px; padding:14px 14px 12px;
+  }
+  .card h4{margin:0 0 6px; font-size:16px}
+  .card p{margin:6px 0 0; color:#3b475a; font-size:14.5px; line-height:1.35}
+  ul.clean{margin:8px 0 0; padding-left:18px}
+  ul.clean li{margin:6px 0}
+  .start-now{font-weight:800}
+  .start-tag{margin-left:8px}
+  footer{color:#64748b;font-size:13px;margin:18px 0 40px;text-align:center}
+  .hr{height:1px;background:#e9eefc;margin:14px 0}
+  .pill{display:inline-block;background:#f1f5ff;color:#2643a2;border:1px solid #dfe7ff;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:8px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Intel® Skills for Innovation — Ambassador Amplification Kit</h1>
+      <p>Empower Ambassadors (especially Silver & Gold) to share, spark, and scale future-ready learning across classrooms, schools, and the wider community.</p>
+      <div class="legend">
+        <span class="badge start">🚀 Start now</span>
+        <span class="badge new">ⓘ Click a category to expand</span>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="expandAll">Expand all</button>
+        <button class="btn" id="collapseAll">Collapse all</button>
+        <button class="btn" id="showStart">Show only “Start now” items</button>
+        <button class="btn" id="showAll">Show all items</button>
+      </div>
+    </header>
+
+    <!-- 1. Core Story & Quick Reference -->
+    <details class="section" open>
+      <summary><span class="chev">▶</span> 1) Core Story & Quick Reference</summary>
+      <div class="content">
+        <p class="desc">Clear, consistent messaging for introducing SFI and aligning it with local goals.</p>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card start">
+              <h4 class="start-now">“What is SFI?” One-Pager <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>Concise overview of why SFI matters, what it includes, and how it benefits educators and learners.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Ambassador Talk-Track Cards <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>Audience-specific talking points for teachers, leaders, parents, and partners.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Core Framework Slides <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>3–5 branded slides: SFI Framework, design pillars, and Certified School pathway.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Quick Pitch Video + Script <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>30-second explainer with a short script Ambassadors can personalize.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2. Share-Out & Presentation Toolkit -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 2) Share-Out & Presentation Toolkit</summary>
+      <div class="content">
+        <p class="desc">Short, high-impact share-outs for internal and external audiences.</p>
+
+        <div class="card">
+          <h4>🏫 A. Inside the School or District</h4>
+          <ul class="clean">
+            <li><strong class="start-now">Mini Presentation Deck (10 min)</strong> <span class="badge start start-tag">🚀 Start now</span> — Introduce SFI at staff meetings or PD.</li>
+            <li><strong class="start-now">Teacher-to-Teacher Handout (1-page)</strong> <span class="badge start start-tag">🚀 Start now</span> — Subject-aligned “If you teach ___, try this.”</li>
+            <li class="more">StarterPack Sampler Guides — Low-setup demos for PD/classroom visits.</li>
+            <li class="more">Staffroom Spark Cards — Quick prompts and QR reflections.</li>
+            <li class="more">Innovation Display Templates — Posters or digital slides.</li>
+          </ul>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="card">
+          <h4>🌍 B. At Conferences or External Events</h4>
+          <ul class="clean">
+            <li><strong class="start-now">Short Presentation Deck (10–20 min)</strong> <span class="badge start start-tag">🚀 Start now</span> — Lightning talk slides w/notes.</li>
+            <li><strong class="start-now">Poster / “Story in a Slide” Template</strong> <span class="badge start start-tag">🚀 Start now</span> — One-slide impact story for booths/talks.</li>
+            <li class="more">Conference Abstract Samples — Ready-to-submit 100- & 250-word blurbs.</li>
+            <li class="more">Presentation Tips Guide — Tailor to audience; weave classroom stories.</li>
+            <li class="more">Poster & Table-Display Kit — Visuals + QR codes.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3. Show & Tell Sampler Templates -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 3) “Show & Tell” Sampler Templates</summary>
+      <div class="content">
+        <p class="desc">Reusable mini-demo format you can drop onto any StarterPack or theme.</p>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Sampler Template (Blank) <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>1-page structure: Overview, 5-min demo, “What this shows,” fit, reflection, optional extension.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Example Sampler (Filled) <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>A complete sample showing tone, depth, and timing for a true 5-minute hands-on demo.</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <h4>Optional Additions <span class="pill">expand later</span></h4>
+              <ul class="clean">
+                <li>Subject/grade “fit” matrices</li>
+                <li>Extension libraries and classroom artifacts gallery</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4. Sharing & Social Amplification -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 4) Sharing & Social Amplification</summary>
+      <div class="content">
+        <p class="desc">Make it easy to celebrate wins and amplify impact.</p>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Social Media Toolkit (Lite) <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>3 sample posts, approved hashtags (#IntelSFI, #FutureReadyLearning), 2 Canva templates.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">“Showcase Your Story” Guide <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>Short steps for posting responsibly, tagging Intel SFI, and linking resources.</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <h4>Optional Additions <span class="pill">expand later</span></h4>
+              <ul class="clean">
+                <li>One-Slide Impact template</li>
+                <li>Quarterly Amplify themes & Micro-video script cards</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 5. Engagement & Inspiration Inside the School -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 5) Engagement & Inspiration Inside the School</summary>
+      <div class="content">
+        <p class="desc">Keep innovation visible and teacher-led inside the building.</p>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Innovation Week Mini Guide <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>2-page playbook to host a 3–5 day “Innovation Spotlight” (students or staff).</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">SFI Challenge Card Set <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>6 quick try-it challenges to encourage practice and share-outs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 6. Sharing Beyond the School -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 6) Sharing Beyond the School</summary>
+      <div class="content">
+        <p class="desc">Extend SFI to regional sessions, conferences, and community meet-ups.</p>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">How to Run a Local Meet-Up (Lite) <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>Short, visual walkthrough for planning, hosting, and following up.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Feedback & Story Capture Form <span class="badge start start-tag">🚀 Start now</span></h4>
+              <p>Simple form to gather quotes, photos, artifacts—ready to share back with SFI.</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <h4>Optional Additions <span class="pill">expand later</span></h4>
+              <ul class="clean">
+                <li>Community Engagement deck</li>
+                <li>30/60/90-minute session templates</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 7. Ways to Amplify Checklist -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 7) “Ways to Amplify” Checklist</summary>
+      <div class="content">
+        <p class="desc">A clear menu of actions to grow SFI’s reach.</p>
+        <div class="card">
+          <h4 class="start-now">Ambassador Amplify Checklist (1-page) <span class="badge start start-tag">🚀 Start now</span></h4>
+          <ul class="clean">
+            <li>In your classroom — document a lesson, share student projects, record a 60-sec reflection.</li>
+            <li>In your school — run a 10-min demo at a staff meeting; create a hallway display.</li>
+            <li>In your district — present to leaders; mentor a new Ambassador.</li>
+            <li>Beyond the school — present at a conference; host a meet-up; share your story online.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <!-- 8. How-To Quick Guides & Videos -->
+    <details class="section">
+      <summary><span class="chev">▶</span> 8) How-To Quick Guides & Videos</summary>
+      <div class="content">
+        <p class="desc">Remove friction with simple 1-pagers and micro-videos.</p>
+        <div class="grid">
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Quick Guide Series (3 PDFs) <span class="badge start start-tag">🚀 Start now</span></h4>
+              <ul class="clean">
+                <li>Register for Intel® SFI</li>
+                <li>Access & Use a StarterPack</li>
+                <li>Apply for Silver Ambassador</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h4 class="start-now">Short Video Tutorials (3 × 1–2 min) <span class="badge start start-tag">🚀 Start now</span></h4>
+              <ul class="clean">
+                <li>Log into the SFI Hub</li>
+                <li>Download StarterPack Resources</li>
+                <li>Submit an Impact Story</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <h4>Optional Additions <span class="pill">expand later</span></h4>
+              <ul class="clean">
+                <li>FAQ & Troubleshooting sheet</li>
+                <li>Visual workflow maps (Educator → Silver → Gold → Certified School)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <footer>
+      © Intel® Skills for Innovation — Ambassador Amplification Kit • Interactive outline for planning and production.
+    </footer>
+  </div>
+
+<script>
+  // Expand/Collapse all
+  const sections = Array.from(document.querySelectorAll("details.section"));
+  document.getElementById("expandAll").addEventListener("click",()=>sections.forEach(s=>s.open=true));
+  document.getElementById("collapseAll").addEventListener("click",()=>sections.forEach(s=>s.open=false));
+
+  // Filter: Show only Start-now items (hides list items/cards that are not marked start-now)
+  const showStartBtn = document.getElementById("showStart");
+  const showAllBtn = document.getElementById("showAll");
+
+  function toggleOnlyStart(showOnlyStart){
+    // hide any .more items and any card without start-now
+    document.querySelectorAll(".card, li").forEach(el=>{
+      const hasStart = el.querySelector(".badge.start, .start-now");
+      const isHeader = el.closest("summary");
+      if (isHeader) return;
+
+      if(showOnlyStart){
+        // Show elements that either ARE start-now containers, or contain start-now text
+        if(hasStart){ el.style.display=""; }
+        else{
+          // But keep container cards that wrap lists, and selectively hide their non-start items
+          if(el.tagName.toLowerCase()==="li"){
+            el.style.display="none";
+          }else{
+            // For cards without start-now but that wrap lists, keep visible if their list has start items
+            const childStart = el.querySelector("li .badge.start, li .start-now, h4.start-now");
+            el.style.display = childStart ? "" : "none";
+          }
+        }
+      }else{
+        el.style.display="";
+      }
+    });
+  }
+
+  showStartBtn.addEventListener("click",()=>toggleOnlyStart(true));
+  showAllBtn.addEventListener("click",()=>toggleOnlyStart(false));
+</script>
+</body>
+</html>

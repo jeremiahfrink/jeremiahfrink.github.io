@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Remix Cycle: Transforming Learning Through Design</title>
+<style>
+  :root{
+    --ink:#0f172a; --muted:#475569; --bg:#ffffff;
+    --brand:#2563eb; --accent:#0ea5e9; --soft:#eef2ff; --card:#f8fafc;
+    --ring: rgba(37, 99, 235, .25);
+  }
+  body{font-family: Inter, Segoe UI, Roboto, system-ui, -apple-system, sans-serif; color:var(--ink); background:var(--bg); margin:0; line-height:1.55}
+  .wrap{max-width: 1100px; margin: 0 auto; padding: 28px 20px 64px}
+  h1,h2,h3{line-height:1.2; margin: 0 0 12px}
+  h1{font-size: clamp(28px, 2.6vw, 40px)}
+  h2{font-size: clamp(22px, 2.2vw, 28px); margin-top: 28px}
+  h3{font-size: clamp(18px, 2vw, 22px); margin-top: 20px}
+  p{margin: 10px 0}
+  .sub{color:var(--muted)}
+  .hero{background: linear-gradient(180deg, #eff6ff 0, #ffffff 80%); padding: 24px; border-radius: 16px; box-shadow: 0 1px 0 #e5e7eb inset}
+  .tag{display:inline-block; font-size: 12px; letter-spacing:.04em; text-transform:uppercase; color:#1d4ed8; background:#e0e7ff; padding:6px 10px; border-radius:999px; margin-bottom:10px}
+  .grid{display:grid; gap:16px}
+  @media (min-width: 860px){ .grid.cols-3{grid-template-columns: repeat(3, 1fr)} .grid.cols-2{grid-template-columns: repeat(2, 1fr)} }
+  .card{background:var(--card); border:1px solid #e2e8f0; border-radius:16px; padding:18px}
+  .soft{background:var(--soft); border:1px solid #e0e7ff}
+  .table{width:100%; border-collapse: collapse; background:#fff; border:1px solid #e2e8f0; border-radius:12px; overflow:hidden}
+  .table th, .table td{padding:12px 10px; border-bottom:1px solid #e5e7eb; vertical-align: top; text-align:left}
+  .table th{background:#f1f5f9; font-weight:600}
+  details{background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:14px 16px; transition:.2s; margin-top:8px}
+  details[open]{box-shadow: 0 0 0 3px var(--ring)}
+  details summary{list-style:none; cursor:pointer; font-weight:700; color:var(--brand)}
+  details summary::-webkit-details-marker{display:none}
+  .pill{display:inline-block; padding:4px 10px; background:#e2e8f0; border-radius:999px; font-size:12px; margin-right:6px}
+  .prompt-box{background:#0b1220; color:#e5e7eb; padding:14px; border-radius:12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; margin-top:8px}
+  .small{font-size: 13px; color:var(--muted)}
+  .notice{border-left:4px solid var(--brand); padding:10px 14px; background:#f8fafc; border-radius:8px}
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <span class="tag">The Remix Cycle</span>
+      <h1>Transforming Learning Through Design</h1>
+      <p class="sub">Remix isn’t starting from scratch—it’s transforming what already exists into richer, more creative, student-centered experiences. The Remix Cycle blends the <strong>Transformational Learning Principles (TLPs)</strong> with the <strong>ISTE Standards for Students</strong> to help you reframe and redesign learning—using technology and AI as thoughtful amplifiers.</p>
+      <div class="grid cols-4" style="margin-top:14px; grid-template-columns: repeat(4, 1fr); gap:10px">
+        <div class="card soft"><strong>Reveal</strong><br/><span class="small">What is the task now?</span></div>
+        <div class="card soft"><strong>Reframe</strong><br/><span class="small">See it through new lenses.</span></div>
+        <div class="card soft"><strong>Redesign</strong><br/><span class="small">Prototype the new version.</span></div>
+        <div class="card soft"><strong>Reflect + Ready</strong><br/><span class="small">Prepare to test & learn.</span></div>
+      </div>
+      <p class="small" style="margin-top:8px">Primary alignments: ISTE <strong>Innovative Designer</strong> (1.4), <strong>Creative Communicator</strong> (1.6), <strong>Empowered Learner</strong> (1.1), <strong>Knowledge Constructor</strong> (1.3).</p>
+    </section>
+
+    <!-- Remix Framework -->
+    <section>
+      <h2>The Remix Cycle Framework</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Phase</th><th>Purpose</th><th>Key Questions</th><th>Connections</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Reveal</strong></td>
+            <td>Identify what exists now.</td>
+            <td>What is the goal? What are students doing? What evidence shows learning?</td>
+            <td><span class="pill">TLP: Reflection</span><span class="pill">ISTE 1.3</span></td>
+          </tr>
+          <tr>
+            <td><strong>Reframe</strong></td>
+            <td>View it through new lenses.</td>
+            <td>Where could agency, authenticity, iteration, or creativity be deepened?</td>
+            <td><span class="pill">TLP: Agency</span><span class="pill">ISTE 1.4</span></td>
+          </tr>
+          <tr>
+            <td><strong>Redesign</strong></td>
+            <td>Build a purposeful version.</td>
+            <td>What will students now create, decide, or connect? Where can tech/AI amplify?</td>
+            <td><span class="pill">TLP: Iteration</span><span class="pill">ISTE 1.6</span></td>
+          </tr>
+          <tr>
+            <td><strong>Reflect + Ready</strong></td>
+            <td>Prepare to test and learn.</td>
+            <td>What changed? What’s next to pilot?</td>
+            <td><span class="pill">TLP: Reflection</span><span class="pill">ISTE 1.1</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Reframe + Redesign Scaffolds -->
+    <section>
+      <h2>Reframe + Redesign Scaffolds</h2>
+      <p class="notice"><strong>Think first, design second.</strong> Use these short guides to shift perspective and spark transformation—before diving into the classroom remix lenses.</p>
+
+      <details>
+        <summary>🧠 Reframe Lenses (click to expand)</summary>
+        <p>Choose one or two lenses to view your lesson through. Each connects to the TLPs and ISTE Standards.</p>
+        <ul>
+          <li><strong>Learner Agency:</strong> Where do students choose pace, path, or product? → Use digital choice boards or AI brainstorm assistants.</li>
+          <li><strong>Authentic Connection:</strong> How could this link to a real audience or issue? → Have AI role-play stakeholders or simulate audiences.</li>
+          <li><strong>Iteration & Reflection:</strong> Where can drafts and feedback cycles happen? → Use versioned docs or AI “next step” prompts.</li>
+          <li><strong>Collaboration:</strong> Who can students collaborate with? → Use shared spaces or AI to synthesize group ideas.</li>
+          <li><strong>Creativity & Communication:</strong> What new medium could students use? → Add multimedia, AR/VR, or design tools.</li>
+          <li><strong>Equity & Access:</strong> Who’s missing or unheard? → Integrate translation, captions, or adaptive tools.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🧩 Thinking Routine: Reframe Before You Redesign</summary>
+        <ol>
+          <li><strong>Goal:</strong> What should learners understand or do?</li>
+          <li><strong>Sacred:</strong> What must stay to meet outcomes?</li>
+          <li><strong>Flexible:</strong> What can change (format, audience, tools)?</li>
+          <li><strong>Missing:</strong> Which lens might deepen learning?</li>
+          <li><strong>Amplify:</strong> Where could tech/AI extend thinking?</li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>🔧 Redesign Pathways (click to expand)</summary>
+        <ul>
+          <li><strong>Add Authenticity:</strong> Connect to real-world issues or audiences.</li>
+          <li><strong>Shift the Medium:</strong> Change how students express understanding (essay → podcast).</li>
+          <li><strong>Change the Role:</strong> Let students teach, design, or curate.</li>
+          <li><strong>Invite Iteration:</strong> Encourage drafts and feedback cycles.</li>
+          <li><strong>Integrate Tech Intentionally:</strong> Use tools only when they extend thinking or creativity.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🤖 AI Prompt Starters (click to expand)</summary>
+        <div class="prompt-box">
+          Reframe → “Help me look at my lesson on [TOPIC] through the [TLP LENS]. Suggest 3 shifts that make it more student-driven and meaningful, aligned to ISTE Innovative Designer.”
+        </div>
+        <div class="prompt-box">
+          Redesign → “Propose 3 redesigned versions of my [PROJECT/TASK], each including student design actions, authentic purpose, and where technology or AI enhances learning.”
+        </div>
+        <div class="prompt-box">
+          Tech-as-Amplifier → “Suggest a meaningful way to use technology or AI within this activity that supports agency and creativity for [GRADE], without replacing critical thinking.”
+        </div>
+      </details>
+    </section>
+
+    <!-- Three Lenses -->
+    <section>
+      <h2>Remixing in Practice — Three Lenses</h2>
+      <p class="sub">Use the Remix Cycle across scales of classroom design.</p>
+
+      <details>
+        <summary>🧭 Macro Remix — Projects & Assessments</summary>
+        <p><strong>Purpose:</strong> Transform large learning experiences to be authentic, creative, and student-driven.</p>
+        <ul>
+          <li>Report → Podcast or campaign</li>
+          <li>Poster → Interactive infographic</li>
+          <li>Science fair → Community challenge</li>
+        </ul>
+        <div class="prompt-box">
+          “Remix my project on [TOPIC/SKILL] for [GRADE/CONTEXT] to build student agency and align with ISTE Innovative Designer. Suggest an authentic audience and alternative medium referencing TLPs (Authenticity, Iteration).”
+        </div>
+      </details>
+
+      <details>
+        <summary>🧩 Meso Remix — Ongoing Routines & Structures</summary>
+        <p><strong>Purpose:</strong> Embed creative thinking and iteration in daily learning routines.</p>
+        <ul>
+          <li>Choice-infused tasks and reflections</li>
+          <li>Remix rounds for warm-ups or exit tickets</li>
+          <li>Peer feedback loops using collaborative tools</li>
+        </ul>
+        <div class="prompt-box">
+          “Redesign my [ROUTINE: warm-up/exit ticket/reflection] to include student choice and collaboration. Provide a short version aligned to ISTE Creative Communicator and TLP Agency/Iteration.”
+        </div>
+      </details>
+
+      <details>
+        <summary>🌱 Micro Remix — Early Grades & Foundational Skills</summary>
+        <p><strong>Purpose:</strong> Build creative confidence and curiosity in younger learners.</p>
+        <ul>
+          <li>K–2: “Same but Different” story centers</li>
+          <li>3–5: Visual remix notebooks; “change one thing” design challenges</li>
+        </ul>
+        <div class="prompt-box">
+          “For [GRADE/AGE], remix a simple task like [RETELL/OBSERVE/COUNT] to nurture creativity and curiosity, aligned to ISTE Empowered Learner and TLP Reflection/Agency. Include a no-login tech option.”
+        </div>
+      </details>
+    </section>
+
+    <section>
+      <p class="small">⚡ Tip: Keep technology as a <em>coach</em>, <em>mirror</em>, or <em>creative partner</em>—never a replacement for student thinking.</p>
+    </section>
+  </main>
+</body>
+</html>
