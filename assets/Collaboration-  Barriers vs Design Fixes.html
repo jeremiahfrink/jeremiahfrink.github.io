@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Collaboration Foundations Guide — Barriers vs. Design Fixes</title>
+<style>
+  :root{
+    --ink:#1f2937;
+    --ink-muted:#4b5563;
+    --bg:#ffffff;
+    --paper:#ffffff;
+    --accent:#2e3b8e;      /* edu-blue */
+    --accent-2:#4f46e5;    /* focus ring */
+    --line:#e5e7eb;
+    --chip:#eef2ff;
+    --soft:#f8fafc;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial}
+  .wrap{max-width:1024px;margin:40px auto;padding:0 20px 60px}
+  header{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+  h1{font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.2;margin:0;color:var(--accent);font-weight:800}
+  h2{font-size:1.25rem;margin:1.5rem 0 .75rem;color:var(--ink)}
+  h3{font-size:1.05rem;margin:1rem 0 .5rem;color:var(--ink)}
+  p{margin:.5rem 0;color:var(--ink)}
+  .lead{color:var(--ink-muted)}
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.03);
+    margin:16px 0;
+  }
+  .badge{
+    display:inline-block;
+    padding:.15rem .5rem;
+    border-radius:999px;
+    background:var(--chip);
+    color:var(--accent);
+    font-weight:700;
+    font-size:.8rem;
+    letter-spacing:.2px;
+  }
+  .hint{color:var(--ink-muted);font-size:.95rem}
+  .grid{display:grid;gap:16px}
+  @media (min-width:880px){ .grid.two{grid-template-columns:1fr 1fr} .grid.three{grid-template-columns:1fr 1fr 1fr} }
+
+  /* Tables */
+  table{width:100%; border-collapse:separate; border-spacing:0; margin-top:.5rem}
+  thead th{
+    text-align:left; font-weight:800; color:var(--ink); padding:.7rem .75rem;
+    background:var(--soft); border-top-left-radius:10px; border-top-right-radius:10px; border:1px solid var(--line); border-bottom:none;
+  }
+  tbody td, tbody th{
+    padding:.6rem .75rem; vertical-align:top; border-left:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  tbody tr:last-child td, tbody tr:last-child th{ border-bottom-left-radius:10px; border-bottom-right-radius:10px; }
+  tbody th{ font-weight:700; width:220px }
+  ul.tight{margin:.25rem 0 .25rem 1.1rem; padding:0}
+  ul.tight li{margin:.15rem 0}
+  .notes{width:100%; min-height:44px; border:1px solid var(--line); border-radius:10px; padding:.5rem; resize:vertical; font:inherit}
+  .btnbar{display:flex; gap:.5rem; margin-top:.5rem}
+  .btn{
+    padding:.55rem .9rem; border-radius:10px; border:1px solid var(--accent);
+    color:#fff; background:var(--accent); cursor:pointer; font-weight:700;
+  }
+  .btn.secondary{ background:#fff; color:var(--accent); }
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:.9rem; background:#f3f4f6; padding:.1rem .35rem; border-radius:6px; border:1px solid var(--line)}
+  .callout{
+    background:#f9fafb; border:1px dashed var(--line); border-radius:12px; padding:12px; color:var(--ink)
+  }
+  @media print{
+    .btnbar{display:none!important}
+    body{background:#fff}
+    .wrap{margin:0;padding:0}
+    a{color:inherit;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Collaboration Foundations Guide — Barriers vs. Design Fixes</h1>
+      <p class="lead">Practical structures, routines, and templates to turn “group work” into true collaboration — for both people skills and project management.</p>
+      <div class="btnbar">
+        <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <span class="badge">How to Use This Guide</span>
+      <ol>
+        <li>Open your <em>How Are My Students Working Together?</em> needs-assessment and highlight 1–2 priority gaps.</li>
+        <li>Find matching <strong>Barriers</strong> below and choose one or more <strong>Design Fixes</strong>.</li>
+        <li>Copy a ready-to-use <strong>Mini-Lesson</strong> or <strong>Template</strong> to teach the micro-skill.</li>
+        <li>Decide what <strong>evidence</strong> you’ll gather (exit ticket, checklist, quick scan).</li>
+        <li>Run it, then tweak: use the reflection prompts at the end to iterate.</li>
+      </ol>
+    </section>
+
+    <!-- Big Barrier vs Fix Table -->
+    <section class="card">
+      <h2>Barriers → Design Fixes (with Micro-Moves)</h2>
+      <p class="hint">Pick the row(s) that match your needs. Each fix lists concrete routines, tools, and micro-skills you can teach tomorrow.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Barrier</th>
+            <th>Design Fixes & Micro-Moves</th>
+            <th>Quick Tools / Artifacts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>“One student does everything” / uneven participation</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Structured roles + rotation:</strong> Facilitator, Recorder, Materials Manager, Timekeeper, Presenter. Rotate weekly; attach <em>role success criteria</em>.</li>
+                <li><strong>Airtime cards:</strong> Each student gets 2–3 talk chips; spend a chip to contribute, earn one back for paraphrasing a peer.</li>
+                <li><strong>Visible contribution tracker:</strong> Shared doc with initials next to tasks; color-code completed items.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Role cards (printable)</li>
+                <li>Talk chips (paper/emoji)</li>
+                <li>Contribution grid (Google Doc/Sheet)</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>“Divide and disappear” (no joint thinking)</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Joint product checkpoints:</strong> Mid-task “merge & explain” pause; each member explains a different part.</li>
+                <li><strong>Think-build-share:</strong> Solo sketch → pair merge → team synthesize on one canvas.</li>
+                <li><strong>Single artifact rule:</strong> One final product with layered attribution (initials in margins).</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Merge-checkpoint prompt card</li>
+                <li>Shared whiteboard/Jamboard</li>
+                <li>Template with initials placeholders</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Unclear goals; students busy but not learning</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Outcome first:</strong> Post “By the end, we will be able to…” in student language.</li>
+                <li><strong>Success criteria mini-rubric:</strong> 3 bullets: Accuracy • Evidence • Explanation.</li>
+                <li><strong>Exemplar & non-example:</strong> 1 strong model + 1 weak model; ask students to spot differences.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Goal card template</li>
+                <li>3-bullet mini-rubric</li>
+                <li>Model/anti-model slides</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Frequent conflict; quiet voices disappear</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Norms you can hear:</strong> “I hear…”, “I wonder…”, “Can you say more?” Practice with quick role-plays.</li>
+                <li><strong>Round-robin turn taking:</strong> 30–45s per person before open discussion.</li>
+                <li><strong>Devil’s advocate role (rotating):</strong> One student must surface alternatives respectfully.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Sentence stem bookmark</li>
+                <li>Turn timer (on slide)</li>
+                <li>Role badge: “Challenger”</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Poor time use; groups don’t finish</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Micro-plan (3-step map):</strong> Step, Owner, Minutes. Revisit at halfway mark.</li>
+                <li><strong>Visible timer + milestones:</strong> “By minute 8, have outline; by minute 15, draft.”</li>
+                <li><strong>Early-finish / stuck paths:</strong> Extension card vs. “unstick” hints to avoid idle time.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>3-step planning slip</li>
+                <li>Milestone slide</li>
+                <li>Extension & hint cards</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Low-level station tasks (busywork)</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Raise cognitive demand:</strong> Add compare/justify/explain prompts; require evidence.</li>
+                <li><strong>Multiple modalities:</strong> Read • View • Do • Explain to peer.</li>
+                <li><strong>Teacher-led station = thinking:</strong> Use probing questions; capture misconceptions.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>“Make it Deeper” prompt bank</li>
+                <li>Station checklist with verbs</li>
+                <li>Question stems card</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Confusing directions; repeated “What do we do?”</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Record micro-directions:</strong> 60–90s video; attach QR code at station.</li>
+                <li><strong>Three-box instruction card:</strong> Do • Show • Time. Big, visible, parallel across stations.</li>
+                <li><strong>Demo it once:</strong> Model first 60s; then release.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>QR instruction card template</li>
+                <li>Do/Show/Time placard</li>
+                <li>Example video script</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>No accountability; can’t see who did what</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Exit ticket at every station:</strong> 1–2 prompts; include “what tripped us up.”</li>
+                <li><strong>Role-tagged edits:</strong> Initials on doc lines or sticky colors per role.</li>
+                <li><strong>Group contract + check-in:</strong> 1-minute mid-task self rating (1–3) on roles.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Exit ticket bank (below)</li>
+                <li>Color-key legend</li>
+                <li>Quick check slider (1–3)</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Grouping feels random or inequitable</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Purpose-first grouping:</strong> Skill focus → homogeneous; rich discussion → heterogeneous; community → random.</li>
+                <li><strong>Group profiles:</strong> Interests, strengths, role prefs; rebalance monthly.</li>
+                <li><strong>Rotate “power” roles:</strong> Prevent fixed hierarchies.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Grouping flowchart</li>
+                <li>Group profile card</li>
+                <li>Role rotation tracker</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Transitions are noisy/chaotic</th>
+            <td>
+              <ul class="tight">
+                <li><strong>One cue system:</strong> Music sting or visual countdown; same every time.</li>
+                <li><strong>Posted rotation map:</strong> Arrows + group colors; no verbal directing.</li>
+                <li><strong>Station captain reset:</strong> Last 60s: tidy, restock, check placard.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>Rotation map slide</li>
+                <li>Playlist cue</li>
+                <li>Reset checklist</li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Tech or AI distracts / replaces thinking</th>
+            <td>
+              <ul class="tight">
+                <li><strong>Tool-to-purpose match:</strong> Post “We’re using X to do Y.”</li>
+                <li><strong>AI as coach, not author:</strong> Prompts that ask for hints, criteria checks, or feedback on clarity.</li>
+                <li><strong>De-identify data:</strong> Strip names before AI summaries of reflections.</li>
+              </ul>
+            </td>
+            <td>
+              <ul class="tight">
+                <li>“Tool → Purpose” header strip</li>
+                <li>AI prompt cards (coach/checker)</li>
+                <li>De-ID reminder checklist</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Mini-lessons & Templates -->
+    <section class="grid two">
+      <div class="card">
+        <h2>Mini-Lesson: People Skills — Feedback That Moves Work</h2>
+        <ol>
+          <li><strong>Model (2 min):</strong> Show a weak vs strong peer comment. Ask, “Which one helps you improve?”</li>
+          <li><strong>Teach stems (2 min):</strong> <span class="kbd">I noticed…</span>, <span class="kbd">I’m confused by…</span>, <span class="kbd">Could you add…</span>, <span class="kbd">Because…</span></li>
+          <li><strong>Practice (5 min):</strong> Pairs swap a sentence/step; give one “grow” + one “glow.”</li>
+          <li><strong>Apply (10+ min):</strong> Use stems during group task; Recorder logs best feedback line.</li>
+          <li><strong>Reflect (2 min):</strong> Exit ticket: “One piece of feedback that changed our work was…”</li>
+        </ol>
+        <div class="callout"><strong>Artifact:</strong> Feedback stems bookmark (print) + a one-cell “best feedback” capture in the group doc.</div>
+      </div>
+
+      <div class="card">
+        <h2>Mini-Lesson: Project Management — 3-Step Micro-Plan</h2>
+        <ol>
+          <li><strong>Teach (2 min):</strong> “Every project has Steps • Owners • Minutes.”</li>
+          <li><strong>Template (projected):</strong> Step → Owner → Minutes. Fill live with one group as demo.</li>
+          <li><strong>Build (5 min):</strong> All groups make a 3-step plan; Timekeeper sets timers.</li>
+          <li><strong>Mid-check (1 min):</strong> “Are we on step 2? If not, adjust minutes or split tasks.”</li>
+          <li><strong>Close (2 min):</strong> Circle the step that unlocked progress; note for next time.</li>
+        </ol>
+        <div class="callout"><strong>Artifact:</strong> 3-step plan slip (print) or tiny shared table in a doc.</div>
+      </div>
+    </section>
+
+    <!-- Ready-to-Copy Templates -->
+    <section class="card">
+      <h2>Ready-to-Copy Templates</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Role Cards (rotate weekly)</h3>
+          <ul class="tight">
+            <li><strong>Facilitator:</strong> Keeps goal visible; invites voices; uses stems.</li>
+            <li><strong>Recorder:</strong> Captures decisions/evidence; initials who said what.</li>
+            <li><strong>Timekeeper:</strong> Sets timers; announces milestones.</li>
+            <li><strong>Materials Manager:</strong> Gathers/returns items; resets station.</li>
+            <li><strong>Presenter:</strong> Shares product; credits team contributions.</li>
+          </ul>
+          <textarea class="notes" placeholder="Paste into cards or LMS page…"></textarea>
+        </div>
+
+        <div class="card">
+          <h3>Do • Show • Time — Station Placard</h3>
+          <ul class="tight">
+            <li><strong>DO:</strong> What are we doing?</li>
+            <li><strong>SHOW:</strong> What proves we did it?</li>
+            <li><strong>TIME:</strong> How many minutes? Mid-check when?</li>
+          </ul>
+          <p class="hint">Add QR to a 60–90s instruction video. Keep wording parallel across stations.</p>
+        </div>
+
+        <div class="card">
+          <h3>Group Contract (Quick)</h3>
+          <ul class="tight">
+            <li>Our goal in one sentence:</li>
+            <li>Our roles this round:</li>
+            <li>How we’ll handle disagreement:</li>
+            <li>Mid-task check at minute:</li>
+            <li>Done looks like:</li>
+          </ul>
+          <textarea class="notes" placeholder="Use as a half-sheet students complete in 2 minutes."></textarea>
+        </div>
+
+        <div class="card">
+          <h3>Rotation Map (3-Station Example)</h3>
+          <ul class="tight">
+            <li>Group A → 1 → 2 → 3</li>
+            <li>Group B → 2 → 3 → 1</li>
+            <li>Group C → 3 → 1 → 2</li>
+          </ul>
+          <p class="hint">Project this; keep the same order daily to reduce cognitive load.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Elementary / Secondary Patterns -->
+    <section class="grid two">
+      <div class="card">
+        <h2>Elementary Example — Literacy Stations</h2>
+        <ul class="tight">
+          <li><strong>Teacher-Led:</strong> Guided reading with question stems; Recorder notes one “aha.”</li>
+          <li><strong>Collaborative:</strong> Sequence story strips; use turn-taking timer; Presenter explains choices.</li>
+          <li><strong>Independent:</strong> Fluency practice; student scans QR to hear model; exit ticket: “Tricky word + strategy.”</li>
+        </ul>
+        <p class="hint">Design fixes used: Do/Show/Time, role rotation, exit tickets, micro-directions via QR.</p>
+      </div>
+
+      <div class="card">
+        <h2>Secondary Example — Science Inquiry</h2>
+        <ul class="tight">
+          <li><strong>Teacher-Led:</strong> Probe prior conceptions; mini-whiteboard reasoning checks.</li>
+          <li><strong>Collaborative:</strong> Plan variables & controls; 3-step micro-plan; devil’s advocate asks “what if?”.</li>
+          <li><strong>Independent:</strong> Data viz; AI as “coach” to suggest additional trials; exit ticket: “What would improve validity?”</li>
+        </ul>
+        <p class="hint">Design fixes used: project management mini-lesson, AI as coach, success criteria.</p>
+      </div>
+    </section>
+
+    <!-- AI Prompt Bank -->
+    <section class="card">
+      <h2>AI Prompt Snippets (Teacher & Student Safe Uses)</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>For Planning (Teacher)</h3>
+          <ul class="tight">
+            <li>“Suggest three station tasks at <em>emerging / developing / fluent</em> levels for the goal: <em>[goal]</em>.”</li>
+            <li>“Draft a 3-bullet success criteria for <em>[task]</em> emphasizing accuracy, evidence, explanation.”</li>
+            <li>“Create a 60-second script to record directions for this station: <em>[outline]</em>.”</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>For Learning (Students, De-identified)</h3>
+          <ul class="tight">
+            <li>“We’re stuck because…. Give us two <em>hints</em> (not answers) to move forward.”</li>
+            <li>“Check our explanation for clarity against these criteria: <em>[paste]</em>.”</li>
+            <li>“Summarize our group’s three takeaways in one sentence each.”</li>
+          </ul>
+          <p class="hint">Remind students: no personal data; AI is a coach/checker, not the author.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exit Ticket Bank -->
+    <section class="card">
+      <h2>Exit Ticket Bank (Pick 1–2 per Station)</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Learning Focus</h3>
+          <ul class="tight">
+            <li>Today I learned…</li>
+            <li>One piece of evidence for our answer is…</li>
+            <li>I’m still unsure about…</li>
+            <li>Our next step should be…</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Collaboration & Process</h3>
+          <ul class="tight">
+            <li>My role today and one thing I did to help…</li>
+            <li>We got stuck when… We got unstuck by…</li>
+            <li>Everyone contributed by…</li>
+            <li>One change we’ll make next round…</li>
+          </ul>
+        </div>
+      </div>
+      <p class="hint">Optional: De-identify and summarize tickets with AI to spot trends (e.g., “Station 2 instructions unclear”).</p>
+    </section>
+
+    <!-- Reflection & Iterate -->
+    <section class="card">
+      <h2>Reflect & Iterate</h2>
+      <ul class="tight">
+        <li>Which design fix had the biggest impact on thinking, not just behavior?</li>
+        <li>What micro-skill should you teach next (people vs project)?</li>
+        <li>Which station needs a clearer <em>Do • Show • Time</em> card or better exemplar?</li>
+        <li>What will you change about grouping or roles next cycle?</li>
+      </ul>
+      <textarea class="notes" placeholder="My next tweak…"></textarea>
+    </section>
+
+    <footer class="hint" style="margin-top:16px">
+      © 2025 • Small Groups, Big Learning — Collaboration Foundations Guide
+    </footer>
+  </div>
+</body>
+</html>

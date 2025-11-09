@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inquiry‑to‑Impact Student Guide</title>
+  <style>
+    :root{
+      --bg:#0b1220;       /* deep navy for chrome */
+      --paper:#ffffff;    /* card background */
+      --ink:#1b2330;      /* primary text */
+      --ink-soft:#4b5a6b; /* secondary text */
+      --accent:#3b82f6;   /* blue */
+      --accent-2:#10b981; /* green */
+      --accent-3:#f59e0b; /* amber */
+      --muted:#eef2f7;    /* light gray */
+      --ring: 0 0 0 3px rgba(59,130,246,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    .wrap{max-width:1050px;margin:clamp(16px,3vw,40px) auto;padding:clamp(12px,2vw,20px)}
+    .hero{background:linear-gradient(145deg, #eaf2ff, #f8fffb);border-radius:18px;padding:28px 28px 22px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .kicker{letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#335cdd;font-size:.78rem}
+    h1{margin:.3rem 0 0;font-size:clamp(1.6rem,2.8vw,2.4rem);line-height:1.2}
+    .tagline{color:var(--ink-soft);margin:.5rem 0 0}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .badge{background:#e9f0ff;color:#234aa9;padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid #d6e4ff}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:22px}
+    .card{grid-column: span 12;background:var(--paper);border-radius:16px;padding:18px;border:1px solid #e8edf4;box-shadow:0 6px 18px rgba(16,24,40,.06)}
+    @media (min-width:860px){.card--half{grid-column: span 6}}
+
+    .phase{position:relative;padding:18px;border:1px solid #e8edf4;border-radius:14px;background:#fff}
+    .phase+.phase{margin-top:18px}
+    .phase h2{margin:0 0 .25rem;font-size:1.15rem}
+    .phase .meta{display:flex;gap:12px;flex-wrap:wrap;margin:.25rem 0 .5rem}
+    .pill{font-size:.78rem;font-weight:700;border-radius:999px;padding:4px 10px;border:1px solid #eaeef5;color:#38517e;background:#f6f9ff}
+    .pill.green{color:#0f6b4d;background:#edfbf6;border-color:#c8f0e1}
+    .pill.amber{color:#7a4a00;background:#fff8e6;border-color:#ffe6ad}
+
+    .goal{margin:.35rem 0 .75rem;color:var(--ink-soft)}
+    details{border:1px dashed #e5ecf6;border-radius:12px;padding:10px 12px;background:#fbfdff}
+    summary{cursor:pointer;font-weight:700}
+
+    .q-list{margin:.4rem 0 .4rem 0;padding:0;list-style:none}
+    .q-list li{padding-left:30px;position:relative;margin:.4rem 0}
+    .q-list li::before{content:"?";position:absolute;left:8px;top:0;background:var(--muted);color:#334155;font-weight:800;width:18px;height:18px;display:inline-grid;place-items:center;border-radius:6px;font-size:.75rem}
+
+    .actions{margin:.75rem 0 0;border:1px solid #e8edf4;border-radius:12px;padding:12px;background:#f9fbff}
+    .check{display:flex;align-items:flex-start;gap:10px;margin:.35rem 0}
+    .check input{accent-color:var(--accent)}
+
+    .notes{margin-top:.6rem}
+    textarea{width:100%;min-height:90px;border:1px solid #dfe7f1;border-radius:10px;padding:10px;font:inherit;resize:vertical}
+    textarea:focus{outline:none;box-shadow:var(--ring)}
+
+    .footer{color:#c5d0e0;text-align:center;font-size:.9rem;margin:14px 0 0}
+    .tip{font-size:.9rem;color:#526480;margin-top:6px}
+
+    .progress{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .step{flex:1 1 120px;background:#f2f6ff;border:1px solid #e1e9ff;color:#234aa9;font-weight:700;padding:10px 12px;border-radius:12px;display:flex;align-items:center;gap:10px}
+    .step span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:#234aa9;color:#fff;font-size:.85rem}
+
+    /* Print */
+    @media print{ body{background:#fff} .hero{box-shadow:none} .card{box-shadow:none} textarea{min-height:60px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero" role="region" aria-labelledby="title">
+      <div class="kicker">Student Guide</div>
+      <h1 id="title">Inquiry‑to‑Impact</h1>
+      <p class="tagline">Explore a real‑world issue, build understanding from reliable sources, and create something that helps others learn — while using the internet responsibly.</p>
+      <div class="badges" aria-label="ISTE alignment">
+        <div class="badge" title="ISTE 3">ISTE Student – 3: Knowledge Constructor</div>
+        <div class="badge" title="ISTE 2">ISTE Student – 2: Digital Citizen</div>
+      </div>
+      <div class="progress" aria-label="Steps">
+        <div class="step"><span>1</span>Find What Matters</div>
+        <div class="step"><span>2</span>Ask a Big Question</div>
+        <div class="step"><span>3</span>Dig for Clues</div>
+        <div class="step"><span>4</span>Make Sense of It</div>
+        <div class="step"><span>5</span>Create to Help Others</div>
+        <div class="step"><span>6</span>Share, Credit & Reflect</div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Guide content">
+      <article class="card">
+        <div class="phase" id="phase1">
+          <h2>Phase 1 — Find What Matters</h2>
+          <div class="meta">
+            <div class="pill">KC: real‑world issues</div>
+            <div class="pill green">DC: responsible participation</div>
+          </div>
+          <p class="goal"><strong>What this phase is about:</strong> Choosing a real‑world topic or problem that connects to your life, community, or the world. No question yet — just the topic.</p>
+
+          <details>
+            <summary>Questions to ask yourself</summary>
+            <ul class="q-list">
+              <li>What’s happening around me that I care about or want to understand?</li>
+              <li>Why does this issue or idea matter? Who is affected, and how?</li>
+              <li>What do I already know? What do I hope could change or improve?</li>
+            </ul>
+          </details>
+
+          <div class="actions" aria-label="Action steps">
+            <div class="check"><input type="checkbox" id="p1-a1" /><label for="p1-a1">Write a short statement naming your topic or idea.</label></div>
+            <div class="check"><input type="checkbox" id="p1-a2" /><label for="p1-a2">Add one sentence about why it matters.</label></div>
+          </div>
+
+          <div class="notes">
+            <label for="n1" class="tip">My topic & why it matters:</label>
+            <textarea id="n1" aria-label="Notes for Phase 1"></textarea>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="phase" id="phase2">
+          <h2>Phase 2 — Ask a Big Question</h2>
+          <div class="meta">
+            <div class="pill">KC: plan research with questions</div>
+          </div>
+          <p class="goal"><strong>What this phase is about:</strong> Turning your topic into one strong, open‑ended question that will guide your research.</p>
+
+          <details>
+            <summary>Questions to ask yourself</summary>
+            <ul class="q-list">
+              <li>What do I really want to figure out or explain to others?</li>
+              <li>Can my question start with <em>how</em>, <em>why</em>, or <em>what happens when</em>?</li>
+              <li>Is my question specific enough to research, but big enough to explore?</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <div class="check"><input type="checkbox" id="p2-a1" /><label for="p2-a1">Write your <strong>Big Question</strong> and keep it visible.</label></div>
+          </div>
+
+          <div class="notes">
+            <label for="n2" class="tip">My Big Question:</label>
+            <textarea id="n2" aria-label="Notes for Phase 2"></textarea>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="phase" id="phase3">
+          <h2>Phase 3 — Dig for Clues</h2>
+          <div class="meta">
+            <div class="pill">KC: evaluate & curate sources</div>
+            <div class="pill green">DC: credibility, attribution</div>
+          </div>
+          <p class="goal"><strong>What this phase is about:</strong> Gathering trustworthy information to help answer your Big Question — and keeping track of where it came from.</p>
+
+          <details>
+            <summary>Questions to ask yourself</summary>
+            <ul class="q-list">
+              <li>Who created this source, and why?</li>
+              <li>Is the information recent, accurate, and backed by evidence?</li>
+              <li>What bias or missing voice could affect this?</li>
+              <li>Where else can I check to confirm what I found?</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <div class="check"><input type="checkbox" id="p3-a1" /><label for="p3-a1">Collect 3–5 reliable sources (articles, videos, interviews, data).</label></div>
+            <div class="check"><input type="checkbox" id="p3-a2" /><label for="p3-a2">Create a sources list (links, authors, dates) and notes.</label></div>
+          </div>
+
+          <div class="notes">
+            <label for="n3" class="tip">Key facts & source checks:</label>
+            <textarea id="n3" aria-label="Notes for Phase 3"></textarea>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="phase" id="phase4">
+          <h2>Phase 4 — Make Sense of It</h2>
+          <div class="meta">
+            <div class="pill">KC: build knowledge</div>
+            <div class="pill amber">Apply learning</div>
+          </div>
+          <p class="goal"><strong>What this phase is about:</strong> Organizing what you found, spotting patterns, and forming your own understanding.</p>
+
+          <details>
+            <summary>Questions to ask yourself</summary>
+            <ul class="q-list">
+              <li>What ideas or facts show up again and again?</li>
+              <li>How do different sources agree or disagree?</li>
+              <li>What seems most important or surprising?</li>
+              <li>What do I now understand that I didn’t before?</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <div class="check"><input type="checkbox" id="p4-a1" /><label for="p4-a1">Write your 3 biggest takeaways in your own words.</label></div>
+            <div class="check"><input type="checkbox" id="p4-a2" /><label for="p4-a2">List 1 new question you still have.</label></div>
+          </div>
+
+          <div class="notes">
+            <label for="n4" class="tip">My takeaways:</label>
+            <textarea id="n4" aria-label="Notes for Phase 4"></textarea>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="phase" id="phase5">
+          <h2>Phase 5 — Create Something That Helps Others</h2>
+          <div class="meta">
+            <div class="pill">KC: communicate understanding</div>
+            <div class="pill amber">Product & evidence</div>
+          </div>
+          <p class="goal"><strong>What this phase is about:</strong> Using what you learned to teach, inform, or improve something for others.</p>
+
+          <details>
+            <summary>Questions to ask yourself</summary>
+            <ul class="q-list">
+              <li>What product will best share my learning (poster, video, slides, infographic, article, PSA)?</li>
+              <li>What evidence or examples will I include?</li>
+              <li>How can I make it clear, interesting, and accurate?</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <div class="check"><input type="checkbox" id="p5-a1" /><label for="p5-a1">Draft an outline or storyboard for your product.</label></div>
+            <div class="check"><input type="checkbox" id="p5-a2" /><label for="p5-a2">Create your final product to teach others.</label></div>
+          </div>
+
+          <div class="notes">
+            <label for="n5" class="tip">My product plan:</label>
+            <textarea id="n5" aria-label="Notes for Phase 5"></textarea>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="phase" id="phase6">
+          <h2>Phase 6 — Share, Credit & Reflect</h2>
+          <div class="meta">
+            <div class="pill green">DC: ethical sharing & credit</div>
+          </div>
+          <p class="goal"><strong>What this phase is about:</strong> Sharing your work responsibly and looking back on your learning.</p>
+
+          <details>
+            <summary>Questions to ask yourself</summary>
+            <ul class="q-list">
+              <li>Who should see my work (classmates, families, community)?</li>
+              <li>Did I give credit for all images, facts, and quotes I used?</li>
+              <li>Did I represent other people’s ideas fairly?</li>
+              <li>What was most interesting or challenging? How did my thinking change?</li>
+              <li>What will I explore next?</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <div class="check"><input type="checkbox" id="p6-a1" /><label for="p6-a1">Add a “Credits / Sources” section.</label></div>
+            <div class="check"><input type="checkbox" id="p6-a2" /><label for="p6-a2">Share your work with your chosen audience (with permission).</label></div>
+            <div class="check"><input type="checkbox" id="p6-a3" /><label for="p6-a3">Write or record a short reflection.</label></div>
+          </div>
+
+          <div class="notes">
+            <label for="n6" class="tip">Reflection notes:</label>
+            <textarea id="n6" aria-label="Notes for Phase 6"></textarea>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--half" aria-labelledby="tips-title">
+        <h2 id="tips-title">Quick Tips</h2>
+        <ul>
+          <li><strong>Cross‑check facts</strong> with at least two sources.</li>
+          <li><strong>Save the link</strong> the moment you find something useful.</li>
+          <li><strong>Use your own words</strong> when explaining ideas.</li>
+          <li><strong>Give credit</strong> for images, quotes, and ideas you did not create.</li>
+        </ul>
+      </article>
+
+      <article class="card card--half" aria-labelledby="export-title">
+        <h2 id="export-title">Export & Share</h2>
+        <p class="tip">To save or turn this into a PDF, use your browser’s <em>Print</em> option and choose <em>Save as PDF</em>.</p>
+        <p class="tip">You can copy any section into your class document, slide, or portfolio.</p>
+      </article>
+    </section>
+
+    <p class="footer">Find what matters → Ask a big question → Dig for clues → Make sense of it → Create to help others → Share, credit & reflect.</p>
+  </div>
+</body>
+</html>

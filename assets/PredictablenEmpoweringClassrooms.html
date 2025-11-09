@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Power of Predictable, Empowering Classroom Structures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- 
+        Infographic Narrative Plan:
+        Section 1: The Untapped Potential - Introduction to the value of structured classrooms.
+        Section 2: The Science of Flow - Neurological and psychological benefits of routines.
+        Section 3: Maximizing Moments - Quantifiable gains in time and academic performance.
+        Section 4: From Following to Leading - How routines foster student agency and ownership.
+        Section 5: The Blueprint for Empowerment - Practical strategies for designing effective routines.
+        Section 6: Strategic Analysis (SWOT) - "Predictable, Not Rigid" approach.
+        Section 7: The Ripple Effect - Long-term impact and conclusion.
+
+        Visualization Choices Summary:
+        - S1: Big Number (Text), Pyramid (HTML/CSS) - Goal: Inform, Organize. NO SVG/Mermaid.
+        - S2: Donut Charts (Chart.js), Styled List/Cards (HTML/CSS) - Goal: Compare, Organize. NO SVG/Mermaid.
+        - S3: Big Number (Text), Grouped Bar Chart (Chart.js) - Goal: Inform, Compare. NO SVG/Mermaid.
+        - S4: Icon-based List/Grid (HTML/CSS), Balance Scale (HTML/CSS) - Goal: Organize. NO SVG/Mermaid.
+        - S5: Numbered Flow/List (HTML/CSS), Icon List (HTML/CSS) - Goal: Organize, Inform. NO SVG/Mermaid.
+        - S6: Four Quadrant Layout (HTML/CSS Grid) - Goal: Organize. NO SVG/Mermaid.
+        - S7: Emphasized Text (HTML/CSS) - Goal: Inform. NO SVG/Mermaid.
+        
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All charts use Chart.js (Canvas rendering), and diagrams are HTML/CSS.
+        Chosen Color Palette: Energetic & Playful (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C)
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* bg-slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 512px; /* max-w-lg */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px;
+        }
+        @media (min-width: 640px) { /* sm */
+            .chart-container {
+                height: 320px;
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .chart-container {
+                height: 350px;
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .chart-container {
+                max-width: 576px; /* max-w-xl */
+                height: 400px;
+            }
+        }
+        .stat-icon {
+            font-size: 2.5rem; /* Tailwind text-4xl */
+            line-height: 1;
+        }
+        .swot-card {
+            border-left-width: 4px;
+        }
+        .pyramid-base, .pyramid-middle, .pyramid-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.5rem;
+            margin: 0 auto;
+            color: white;
+        }
+        .pyramid-base { background-color: #118AB2; width: 80%; height: 50px; border-radius: 0.25rem; }
+        .pyramid-middle { background-color: #06D6A0; width: 60%; height: 45px; margin-top: -5px; border-radius: 0.25rem; position: relative; }
+        .pyramid-top { background-color: #FFD166; color: #073B4C; width: 40%; height: 40px; margin-top: -5px; border-radius: 0.25rem; position: relative; }
+
+        .balance-beam { width: 80%; height: 10px; background-color: #073B4C; margin: 0 auto; border-radius: 5px; }
+        .balance-fulcrum { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 30px solid #073B4C; margin: 0 auto; }
+        .balance-pan { width: 80px; height: 40px; border: 2px solid #073B4C; border-radius: 5px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4px; font-size: 0.8rem; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#073B4C] text-white py-8 px-4 text-center">
+        <h1 class="text-4xl font-bold mb-2">The Predictable Advantage</h1>
+        <p class="text-xl text-[#FFD166]">How Structured, Flexible Environments Maximize Student Potential: An Industry Analysis</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="s1_potential" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-[#118AB2] mb-4 text-center">1. The Untapped Potential: Why Classroom Structures Are a Game-Changer</h2>
+                <p class="text-lg mb-6 text-gray-700">In today's dynamic educational landscape, optimizing every moment for learning is paramount. Our research reveals that well-designed classroom routines and transitions aren't just about order; they are powerful catalysts for unlocking significant gains in instructional time and fostering student empowerment. This initial analysis highlights the foundational importance of structures that are predictable yet flexible.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center p-6 bg-slate-100 rounded-lg">
+                        <div class="stat-icon text-[#FF6B6B] mb-3">⏳</div>
+                        <p class="text-5xl font-bold text-[#FF6B6B]">45+</p>
+                        <p class="text-xl text-gray-700 mt-1">Extra Instructional Hours Annually</p>
+                        <p class="text-sm text-gray-600 mt-2">Achievable through streamlined routines and transitions, reclaiming valuable learning time. (Source: Snippet [3,4])</p>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-[#118AB2] mb-3 text-center">The Hierarchy of Empowerment</h3>
+                        <div class="pyramid-container space-y-0">
+                            <div class="pyramid-top">Empowerment & Deep Learning</div>
+                            <div class="pyramid-middle">Calm, Focus & Reduced Cognitive Load</div>
+                            <div class="pyramid-base">Predictable Routines & Secure Environment</div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4 text-center">Predictable structures form the base, enabling focus and ultimately empowering students to engage deeply with their learning. This foundation is crucial for higher-order thinking and student agency.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-gray-700">The data indicates a clear opportunity: by establishing clear, consistent, yet adaptable frameworks, educational environments can significantly reduce downtime and create the psychological safety necessary for students to thrive. This isn't about rigid control, but about providing a reliable "roadmap" that frees students to explore and learn with confidence.</p>
+            </div>
+        </section>
+
+        <section id="s2_science" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-[#06D6A0] mb-4 text-center">2. The Science of Flow: How Predictability Shapes Young Minds</h2>
+                <p class="text-lg mb-6 text-gray-700">The effectiveness of predictable classroom routines is deeply rooted in fundamental psychological and neurological principles. The human brain naturally seeks patterns for security. When the learning environment is predictable, it reduces anxiety and frees up cognitive resources, allowing students to allocate more mental energy to learning rather than navigating uncertainty. This section explores how routines support brain development and emotional well-being.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center text-[#118AB2] mb-2">Brain Energy Allocation: The Routine Advantage</h3>
+                        <div class="chart-container">
+                            <canvas id="cognitiveLoadChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2 text-center">Routines significantly reduce the cognitive load associated with procedural tasks, freeing mental capacity for academic engagement and higher-order thinking. (Source: Snippet [1, 9, 10])</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center text-[#118AB2] mb-2">Key Supporting Theories</h3>
+                         <ul class="space-y-3 mt-4">
+                            <li class="p-4 bg-slate-50 rounded-md border-l-4 border-[#FFD166]">
+                                <h4 class="font-semibold text-[#073B4C]">Cognitive Load Theory</h4>
+                                <p class="text-sm text-gray-600">Automating routine tasks frees working memory for complex learning. Routines make procedures automatic, enhancing focus. (Source: Snippet [1, 9, 10])</p>
+                            </li>
+                            <li class="p-4 bg-slate-50 rounded-md border-l-4 border-[#FF6B6B]">
+                                <h4 class="font-semibold text-[#073B4C]">Emotional Regulation Theory</h4>
+                                <p class="text-sm text-gray-600">Predictability fosters a sense of control, aiding emotional stability and resilience. Routines provide this consistent framework. (Source: Snippet [1, 11, 12])</p>
+                            </li>
+                             <li class="p-4 bg-slate-50 rounded-md border-l-4 border-[#06D6A0]">
+                                <h4 class="font-semibold text-[#073B4C]">Brain's Need for Patterns</h4>
+                                <p class="text-sm text-gray-600">The brain thrives on predictability for security. Routines create safety, allowing focus on academics. (Source: Snippet [1, 9])</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-6 text-gray-700">By understanding these foundational principles, educators can design routines that not only manage the classroom but also actively support students' cognitive development and emotional health, creating an optimal state for learning—a state of "flow."</p>
+            </div>
+        </section>
+
+        <section id="s3_maximizing" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-[#FF6B6B] mb-4 text-center">3. Maximizing Moments: Turning Wasted Time into Learning Gains</h2>
+                <p class="text-lg mb-6 text-gray-700">The practical "market benefits" of well-implemented routines are striking. Beyond time savings, structured environments directly correlate with enhanced student engagement, improved behavior, and significant academic progress. This section quantifies some of these crucial outcomes.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                    <div class="text-center p-6 bg-slate-100 rounded-lg">
+                        <div class="stat-icon text-[#06D6A0] mb-3">📈</div>
+                        <p class="text-5xl font-bold text-[#06D6A0]">11%</p>
+                        <p class="text-xl text-gray-700 mt-1">Academic Performance Uplift</p>
+                        <p class="text-sm text-gray-600 mt-2">Observed in students participating in Social-Emotional Learning (SEL) programs, often facilitated by classroom routines. (Source: Snippet [14])</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center text-[#118AB2] mb-2">Impact of Predictable Routines on Student Outcomes</h3>
+                        <div class="chart-container">
+                            <canvas id="outcomesChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2 text-center">Routines positively influence academic achievements, behavioral improvements, and emotional stability. (Synthesized from Table 2)</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-gray-700">These figures underscore that routines are not merely about classroom management; they are high-leverage strategies. The "Return on Investment" includes more focused students, a calmer learning atmosphere, and ultimately, better educational outcomes. The "product" – student learning and development – is significantly enhanced.</p>
+            </div>
+        </section>
+
+        <section id="s4_ownership" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-[#FFD166] mb-4 text-center">4. From Following to Leading: Cultivating "Consumer" (Student) Ownership</h2>
+                 <p class="text-lg mb-6 text-gray-700">Effective structures empower students, transforming them from passive recipients to active owners of their learning journey. This section explores how "predictable, not rigid" routines foster agency, responsibility, and self-management – key "consumer" demands in modern education.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#118AB2] mb-3 text-center">Key Strategies for Fostering Agency</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#118AB2]">🎨</span>
+                                <div>
+                                    <h4 class="font-semibold">Choice Boards & Varied Assessments</h4>
+                                    <p class="text-sm text-gray-600">Offers diverse ways to learn and demonstrate understanding, boosting motivation. (Source: Snippet [13, 17, 18])</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#06D6A0]">🪑</span>
+                                <div>
+                                    <h4 class="font-semibold">Flexible Seating</h4>
+                                    <p class="text-sm text-gray-600">Gives students control over their physical environment, fostering autonomy. (Source: Snippet [18])</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#FF6B6B]">🤝</span>
+                                <div>
+                                    <h4 class="font-semibold">Collaborative Rule-Making</h4>
+                                    <p class="text-sm text-gray-600">Involving students in creating norms fosters buy-in and shared responsibility. (Source: Snippet [7, 16, 17])</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#FFD166]">📊</span>
+                                <div>
+                                    <h4 class="font-semibold">Self-Assessment & Goal Setting</h4>
+                                    <p class="text-sm text-gray-600">Builds metacognition, accountability, and a growth mindset. (Source: Snippet [18])</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 md:mt-0">
+                        <h3 class="text-xl font-semibold text-[#118AB2] mb-3 text-center">The "Predictable, Not Rigid" Balance</h3>
+                        <div class="flex flex-col items-center space-y-2 mt-6">
+                            <div class="flex justify-between w-full max-w-xs">
+                                <div class="balance-pan bg-[#FFD166] text-[#073B4C]">Predictability & Structure</div>
+                                <div class="balance-pan bg-[#06D6A0] text-white">Flexibility & Agency</div>
+                            </div>
+                            <div class="balance-beam"></div>
+                            <div class="balance-fulcrum"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4 text-center">The sweet spot: Routines provide a stable foundation, liberating students to make choices, innovate, and take ownership within a secure framework. Structure enables agency. (Source: Snippet [2, 6, 7])</p>
+                    </div>
+                </div>
+                <p class="mt-8 text-gray-700">When students understand classroom procedures and expectations, their cognitive energy shifts from navigating ambiguity to engaging in higher-level decision-making and creative problem-solving. This is the essence of true student empowerment.</p>
+            </div>
+        </section>
+
+        <section id="s5_blueprint" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-[#118AB2] mb-4 text-center">5. The Blueprint: Designing & Implementing Effective Routines</h2>
+                <p class="text-lg mb-6 text-gray-700">Translating theory into practice requires a systematic approach. This section outlines key "product development" stages and "features" for successful routine integration, ensuring they are both effective and student-centered.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#073B4C] mb-3">The Implementation Cycle:</h3>
+                        <ol class="space-y-3">
+                            <li class="flex items-center p-3 bg-slate-50 rounded-md border-l-4 border-[#FF6B6B]">
+                                <span class="text-xl font-bold text-[#FF6B6B] mr-3">1.</span>
+                                <div><strong>Teach Explicitly:</strong> Clearly explain and demonstrate routines. (Source: Snippet [2, 5])</div>
+                            </li>
+                            <li class="flex items-center p-3 bg-slate-50 rounded-md border-l-4 border-[#FFD166]">
+                                <span class="text-xl font-bold text-[#FFD166] mr-3">2.</span>
+                                <div><strong>Model Thoroughly:</strong> Show, don't just tell. Interactive modeling is key. (Source: Snippet [5, 20])</div>
+                            </li>
+                            <li class="flex items-center p-3 bg-slate-50 rounded-md border-l-4 border-[#06D6A0]">
+                                <span class="text-xl font-bold text-[#06D6A0] mr-3">3.</span>
+                                <div><strong>Practice Consistently:</strong> Provide ample opportunities for rehearsal and "do-overs". (Source: Snippet [2, 3, 19])</div>
+                            </li>
+                            <li class="flex items-center p-3 bg-slate-50 rounded-md border-l-4 border-[#118AB2]">
+                                <span class="text-xl font-bold text-[#118AB2] mr-3">4.</span>
+                                <div><strong>Refine Collaboratively:</strong> Revisit and adapt routines with student input. (Source: Snippet [2, 5, 16])</div>
+                            </li>
+                        </ol>
+                         <p class="text-sm text-gray-600 mt-3">Remember: "Slow is smooth, smooth is fast." Upfront investment in teaching routines yields long-term efficiency. (Source: Snippet [3])</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#073B4C] mb-3">Essential "Signal" Features:</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#118AB2]">👁️</span>
+                                <div>
+                                    <h4 class="font-semibold">Visual Cues</h4>
+                                    <p class="text-sm text-gray-600">Anchor charts, timers, hand signals, clear layout. (Source: Snippet [2, 5, 15])</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#06D6A0]">👂</span>
+                                <div>
+                                    <h4 class="font-semibold">Auditory Signals</h4>
+                                    <p class="text-sm text-gray-600">Chimes, music, call-and-response. (Source: Snippet [2, 4, 21])</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#FFD166]">👍</span>
+                                <div>
+                                    <h4 class="font-semibold">Positive Reinforcement</h4>
+                                    <p class="text-sm text-gray-600">Praise, incentives for adherence. (Source: Snippet [10, 13, 22])</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start p-3 bg-slate-50 rounded-md">
+                                <span class="text-2xl mr-3 text-[#FF6B6B]">🤸</span>
+                                <div>
+                                    <h4 class="font-semibold">Movement & Mindfulness</h4>
+                                    <p class="text-sm text-gray-600">Brain breaks, flexible options to reset focus. (Source: Snippet [6, 18])</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-8 text-gray-700">By systematically designing routines with clear signals and involving students in the process, educators can build a classroom environment that functions smoothly and supports all learners effectively.</p>
+            </div>
+        </section>
+        
+        <section id="s6_swot" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-semibold text-[#073B4C] mb-6 text-center">6. Strategic Analysis: The "Predictable, Not Rigid" Approach</h2>
+                <p class="text-lg mb-6 text-gray-700">Any impactful strategy requires a clear understanding of its positioning. A SWOT analysis of the "Predictable, Not Rigid" approach to classroom routines reveals its core advantages and areas for mindful implementation.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="swot-card border-[#06D6A0] bg-green-50 p-4 rounded-md">
+                        <h3 class="text-xl font-semibold text-green-700 mb-2">Strengths 💪</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                            <li>Reduces student anxiety and stress.</li>
+                            <li>Increases instructional time significantly.</li>
+                            <li>Fosters student independence and ownership.</li>
+                            <li>Improves academic outcomes and focus.</li>
+                            <li>Enhances emotional regulation and social skills.</li>
+                            <li>Provides clear expectations, reducing misbehavior.</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card border-[#FF6B6B] bg-red-50 p-4 rounded-md">
+                        <h3 class="text-xl font-semibold text-red-700 mb-2">Weaknesses 🚧</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                            <li>Risk of becoming overly rigid if not balanced with flexibility.</li>
+                            <li>Initial time investment required to teach and practice routines effectively.</li>
+                            <li>Requires ongoing monitoring and adaptation to student needs.</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card border-[#118AB2] bg-blue-50 p-4 rounded-md">
+                        <h3 class="text-xl font-semibold text-blue-700 mb-2">Opportunities 🚀</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                            <li>Greater student agency and deeper engagement in learning.</li>
+                            <li>Development of critical life skills (self-management, responsibility).</li>
+                            <li>Cultivation of a more positive and calm classroom culture.</li>
+                            <li>Increased capacity for differentiated instruction and personalization.</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card border-[#FFD166] bg-yellow-50 p-4 rounded-md">
+                        <h3 class="text-xl font-semibold text-yellow-700 mb-2">Threats ⚠️</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                            <li>Misunderstanding the balance (becoming too lax or overly controlling).</li>
+                            <li>Lack of consistent implementation across classrooms or school.</li>
+                            <li>Resistance to change from established habits.</li>
+                            <li>Insufficient professional development or support for educators.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <p class="mt-8 text-gray-700">This analysis highlights that while the benefits are substantial, successful adoption hinges on mindful implementation, emphasizing flexibility, student involvement, and continuous refinement. The "market" clearly favors adaptable, empowering structures.</p>
+            </div>
+        </section>
+
+        <section id="s7_conclusion" class="mb-8">
+             <div class="bg-gradient-to-r from-[#118AB2] to-[#06D6A0] text-white rounded-lg shadow-xl p-6 md:p-10 text-center">
+                <h2 class="text-3xl font-semibold mb-4">7. The Ripple Effect: Building a Foundation for Lasting Success</h2>
+                <p class="text-lg mb-6 leading-relaxed">The impact of "predictable, not rigid" routines extends far beyond immediate academic gains or improved classroom management. These structures cultivate essential life skills—self-regulation, adaptability, problem-solving, and a strong sense of agency—that are critical for navigating future academic, personal, and professional landscapes. By fostering environments where students feel secure, valued, and empowered, we are not just managing classrooms; we are architecting futures.</p>
+                <p class="text-xl font-semibold text-[#FFD166]">"Investing in routines that empower is investing in lifelong learners and resilient individuals prepared to thrive in a complex world."</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#073B4C] text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Educational Insights & Market Trends. Infographic based on the report "Predictable, Not Rigid: Routines and Transitions That Empower Students."</p>
+        <p class="text-xs mt-1">Data synthesized for illustrative purposes from the provided research material.</p>
+    </footer>
+
+    <script>
+        const processLabel = (label, maxLength = 16) => {
+            if (label.length > maxLength) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    } else {
+                        currentLine += word + ' ';
+                    }
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: '#073B4C' 
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#073B4C' },
+                    grid: { color: '#e2e8f0' }
+                },
+                x: {
+                    ticks: { color: '#073B4C' },
+                    grid: { color: '#e2e8f0' }
+                }
+            }
+        };
+        
+        // Chart 1: Cognitive Load
+        const ctxCognitiveLoad = document.getElementById('cognitiveLoadChart').getContext('2d');
+        new Chart(ctxCognitiveLoad, {
+            type: 'doughnut',
+            data: {
+                labels: [processLabel('Energy on Navigating Environment'), processLabel('Energy on Learning & Higher Thinking')],
+                datasets: [{
+                    label: 'Without Routines',
+                    data: [65, 35], // Illustrative data
+                    backgroundColor: ['#FF6B6B', '#FFD166'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                },
+                {
+                    label: 'With Routines',
+                    data: [20, 80], // Illustrative data
+                    backgroundColor: ['#118AB2', '#06D6A0'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                             label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#073B4C' }
+                    },
+                    title: {
+                        display: false,
+                        text: 'Brain Energy Allocation (Illustrative)',
+                        color: '#073B4C'
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Outcomes
+        const ctxOutcomes = document.getElementById('outcomesChart').getContext('2d');
+        new Chart(ctxOutcomes, {
+            type: 'bar',
+            data: {
+                labels: [processLabel('Academic Gains'), processLabel('Behavioral Improvements'), processLabel('Emotional Stability')],
+                datasets: [{
+                    label: 'Impact Score (Illustrative)',
+                    data: [75, 85, 80], // Illustrative data representing positive impact
+                    backgroundColor: ['#06D6A0', '#FFD166', '#118AB2'],
+                    borderColor: ['#05A984', '#EBAF45', '#0D739C'],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonChartOptions, plugins: {...commonChartOptions.plugins, legend: { display: false } } }
+        });
+    </script>
+
+</body>
+</html>

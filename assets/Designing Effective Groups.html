@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Designing Effective Groups — Small Groups, Big Learning</title>
+<style>
+  :root{
+    --ink:#1f2937;
+    --ink-muted:#4b5563;
+    --bg:#ffffff;
+    --paper:#ffffff;
+    --accent:#2e3b8e;      /* edu-blue */
+    --accent-2:#4f46e5;    /* focus ring */
+    --line:#e5e7eb;
+    --soft:#f8fafc;
+    --chip:#eef2ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial}
+  .wrap{max-width:1024px;margin:40px auto;padding:0 20px 60px}
+  header{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+  h1{font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.2;margin:0;color:var(--accent);font-weight:800}
+  h2{font-size:1.25rem;margin:1.5rem 0 .75rem;color:var(--ink)}
+  h3{font-size:1.05rem;margin:1rem 0 .5rem;color:var(--ink)}
+  p{margin:.5rem 0;color:var(--ink)}
+  .lead{color:var(--ink-muted)}
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.03);
+    margin:16px 0;
+  }
+  .badge{
+    display:inline-block;
+    padding:.15rem .5rem;
+    border-radius:999px;
+    background:var(--chip);
+    color:var(--accent);
+    font-weight:700;
+    font-size:.8rem;
+    letter-spacing:.2px;
+  }
+  .hint{color:var(--ink-muted);font-size:.95rem}
+  .grid{display:grid;gap:16px}
+  @media (min-width:880px){ .grid.two{grid-template-columns:1fr 1fr} .grid.three{grid-template-columns:1fr 1fr 1fr} }
+
+  /* Tables */
+  table{width:100%; border-collapse:separate; border-spacing:0; margin-top:.5rem}
+  thead th{
+    text-align:left; font-weight:800; color:var(--ink); padding:.7rem .75rem;
+    background:var(--soft); border-top-left-radius:10px; border-top-right-radius:10px; border:1px solid var(--line); border-bottom:none;
+  }
+  tbody td, tbody th{
+    padding:.6rem .75rem; vertical-align:top; border-left:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  tbody tr:last-child td, tbody tr:last-child th{ border-bottom-left-radius:10px; border-bottom-right-radius:10px; }
+  tbody th{ font-weight:700; width:240px }
+  ul.tight{margin:.25rem 0 .25rem 1.1rem; padding:0}
+  ul.tight li{margin:.15rem 0}
+  .notes{width:100%; min-height:48px; border:1px solid var(--line); border-radius:10px; padding:.5rem; resize:vertical; font:inherit}
+  .btnbar{display:flex; gap:.5rem; margin-top:.5rem}
+  .btn{
+    padding:.55rem .9rem; border-radius:10px; border:1px solid var(--accent);
+    color:#fff; background:var(--accent); cursor:pointer; font-weight:700;
+  }
+  .btn.secondary{ background:#fff; color:var(--accent); }
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; font-size:.9rem; background:#f3f4f6; padding:.1rem .35rem; border-radius:6px; border:1px solid var(--line)}
+  @media print{
+    .btnbar{display:none!important}
+    body{background:#fff}
+    .wrap{margin:0;padding:0}
+    a{color:inherit;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Designing Effective Groups</h1>
+      <p class="lead">Purposeful grouping strategies that turn “working together” into true collaboration — with roles, norms, accountability, and reflection.</p>
+      <div class="btnbar">
+        <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <span class="badge">Purpose</span>
+      <p>The right mix of students, structure, and expectations can transform group time. Use this guide to choose the <strong>group type that fits your learning purpose</strong>, plan size/duration, set roles &amp; norms, and build accountability and reflection into every task.</p>
+    </section>
+
+    <!-- Step-by-step process -->
+    <section class="card">
+      <h2>1) Step-by-Step Group Design Process</h2>
+      <ol>
+        <li><strong>Clarify the learning purpose.</strong> Practice, discuss, create, or teach? How interdependent should the task be?</li>
+        <li><strong>Choose the group type.</strong> Homogeneous readiness • Heterogeneous mix • Interest-based • Random/quick pairs • Jigsaw • Role-based.</li>
+        <li><strong>Decide size &amp; duration.</strong> Pairs for precision; triads/quads for balanced talk; keep groups stable long enough to build trust, flexible enough to refresh.</li>
+        <li><strong>Plan roles &amp; norms.</strong> 3–5 clear roles with success criteria; rotate. Co-create 3–5 “audible” norms (e.g., “We paraphrase before disagreeing”).</li>
+        <li><strong>Build accountability &amp; reflection.</strong> Require a joint product that shows <em>shared thinking</em>, plus a brief exit ticket or reflection.</li>
+      </ol>
+    </section>
+
+    <!-- Choosing the right group -->
+    <section class="card">
+      <h2>2) Choose the Right Group for the Task</h2>
+      <p class="hint">Match the goal to a grouping type. Then add roles and an accountability artifact.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>If the goal is…</th>
+            <th>Try this grouping type</th>
+            <th>Example task (Elem / Middle / High)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Targeted skill or remediation</th>
+            <td>Homogeneous by readiness</td>
+            <td>
+              <ul class="tight">
+                <li>Elem: Phonics pattern practice with decodables</li>
+                <li>Middle: Re-teach prerequisite concept in small group</li>
+                <li>High: Calculus refresher workshop for a subskill</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Rich discussion or diverse thinking</th>
+            <td>Heterogeneous (mixed strengths)</td>
+            <td>
+              <ul class="tight">
+                <li>Elem: STEM design teams with mixed roles</li>
+                <li>Middle: Literature circle with varied reading strengths</li>
+                <li>High: Case study analysis blending writers/researchers/facilitators</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Motivation and ownership</th>
+            <td>Interest-based / choice</td>
+            <td>
+              <ul class="tight">
+                <li>Elem: Animal inquiry (shared sources, individual product)</li>
+                <li>Middle: Passion projects with checkpoints</li>
+                <li>High: Thematic inquiry (e.g., climate ethics, design problem)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Quick review or community building</th>
+            <td>Random / quick pair</td>
+            <td>
+              <ul class="tight">
+                <li>Elem: Turn-and-talk summary</li>
+                <li>Middle: Quick problem set in pairs</li>
+                <li>High: Peer review carousel with random partners</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Content coverage + interdependence</th>
+            <td>Jigsaw / expert–home</td>
+            <td>
+              <ul class="tight">
+                <li>Elem: Habitats jigsaw</li>
+                <li>Middle: Reconstruction era plans jigsaw</li>
+                <li>High: Protein synthesis stages jigsaw</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Structured workflow / project phases</th>
+            <td>Role-based or Phase-of-project</td>
+            <td>
+              <ul class="tight">
+                <li>Elem: Nonfiction text-features hunt (recorder/presenter)</li>
+                <li>Middle: Lab teams (PM, materials, data, safety)</li>
+                <li>High: Research → prototype → critique with regrouping each phase</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Planning tips and tools -->
+    <section class="grid two">
+      <div class="card">
+        <h2>3) Planning Tips &amp; Tools</h2>
+        <h3>A) Group Size &amp; Balance</h3>
+        <ul class="tight">
+          <li>Triads/quads are the sweet spot for participation.</li>
+          <li>Pairs for precision feedback; 5+ only when roles are distinct.</li>
+          <li>Balance participation styles (talkative + reflective).</li>
+        </ul>
+        <h3>B) Use Data &amp; Observation</h3>
+        <ul class="tight">
+          <li>Leverage exit tickets, quick checks, or collaboration scans.</li>
+          <li>Regroup every few weeks; avoid fixed labels.</li>
+        </ul>
+        <h3>C) Group Profiles</h3>
+        <ul class="tight">
+          <li>One-minute survey: strengths, help-needed, preferred roles, interests.</li>
+          <li>Keep a simple profile card per group; update monthly.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Roles, Norms, Monitoring</h2>
+        <h3>D) Roles &amp; Rotation (with success criteria)</h3>
+        <ul class="tight">
+          <li><strong>Facilitator:</strong> Keeps goal visible; invites all voices.</li>
+          <li><strong>Recorder:</strong> Captures decisions/evidence; marks initials.</li>
+          <li><strong>Timekeeper:</strong> Announces milestones; calls “Halfway Huddle.”</li>
+          <li><strong>Materials:</strong> Sets up/cleans up; checks <em>Do • Show • Time</em>.</li>
+          <li><strong>Presenter:</strong> Shares product with evidence; credits team.</li>
+        </ul>
+        <h3>E) Monitoring &amp; Feedback</h3>
+        <ul class="tight">
+          <li>Use a quick scan sheet (communication, roles, reflection micro-skills).</li>
+          <li>Offer 1 warm + 1 cool feedback to each group.</li>
+        </ul>
+        <h3>F) Transitions &amp; Materials</h3>
+        <ul class="tight">
+          <li>Post group lists on screen; labeled bins for materials.</li>
+          <li>Consistent cues (music sting, slide timer) for movement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Accountability & reflection -->
+    <section class="card">
+      <h2>4) Accountability &amp; Reflection</h2>
+      <p class="hint">Every group produces visible evidence of <em>shared thinking</em> and ends with a quick reflection.</p>
+      <ul class="tight">
+        <li><strong>Joint product:</strong> Shared doc/canvas with initials or color codes; “merge &amp; explain” mid-task checkpoint.</li>
+        <li><strong>Exit ticket ideas:</strong> “Today we learned…”, “Evidence for our answer…”, “Next time we will…”.</li>
+        <li><strong>Regrouping signals:</strong> Imbalanced airtime, repeated confusion at one step, or achieved goals.</li>
+      </ul>
+      <textarea class="notes" placeholder="How will we show joint thinking? Which reflection prompt will we use?"></textarea>
+    </section>
+
+    <!-- Sample scenarios -->
+    <section class="card">
+      <h2>5) Sample Grouping Scenarios</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Grade band</th>
+            <th>Scenario</th>
+            <th>Grouping type</th>
+            <th>Why it works</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Elementary</th>
+            <td>“Build a Bridge” STEM challenge</td>
+            <td>Heterogeneous + role-based</td>
+            <td>Mixed abilities fuel creative and practical ideas; roles keep all engaged and accountable.</td>
+          </tr>
+          <tr>
+            <th>Middle</th>
+            <td>Book club theme analysis</td>
+            <td>Interest-based groups</td>
+            <td>Choice drives motivation; each group tracks evidence toward a shared rubric.</td>
+          </tr>
+          <tr>
+            <th>High</th>
+            <td>Energy policy simulation</td>
+            <td>Phase-based regrouping</td>
+            <td>Regrouping by phase matches emerging skills (research → debate → policy drafting).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Quick-start template -->
+    <section class="card">
+      <h2>6) Quick-Start Planning Template</h2>
+      <table>
+        <tbody>
+          <tr><th>Learning purpose</th><td><textarea class="notes" placeholder="What kind of thinking should students do?"></textarea></td></tr>
+          <tr><th>Group type &amp; size</th><td><textarea class="notes" placeholder="Pairs / triads / quads; homogeneous / heterogeneous / interest / random / jigsaw / role-based"></textarea></td></tr>
+          <tr><th>Grouping method</th><td><textarea class="notes" placeholder="Data, student choice, quick randomizer, profiles…"></textarea></td></tr>
+          <tr><th>Roles &amp; norms</th><td><textarea class="notes" placeholder="Which 3–5 roles? What norms will we hear?"></textarea></td></tr>
+          <tr><th>Accountability artifact</th><td><textarea class="notes" placeholder="Shared doc/canvas, checklist, rubric, merge checkpoint…"></textarea></td></tr>
+          <tr><th>Reflection method</th><td><textarea class="notes" placeholder="Exit ticket prompts, peer feedback, self-assessment…"></textarea></td></tr>
+          <tr><th>Regroup date</th><td><textarea class="notes" placeholder="When will you check data and reshuffle groups?"></textarea></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Tech & AI helpers -->
+    <section class="grid two">
+      <div class="card">
+        <h2>7) Optional Tech Helpers</h2>
+        <ul class="tight">
+          <li><strong>Group creation:</strong> Google Sheets with filters; interest survey via Forms.</li>
+          <li><strong>Collaboration spaces:</strong> Slides/Docs, Jamboard/Miro/Canva.</li>
+          <li><strong>Tracking &amp; flow:</strong> Trello/Kanban boards; shared checklists.</li>
+          <li><strong>Directions:</strong> 60–90s micro-videos + QR on task cards.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>AI as Coach (Not Author)</h2>
+        <p class="hint">Use de-identified inputs. AI should support hints, checks, and planning—not write student work.</p>
+        <ul class="tight">
+          <li><span class="kbd">Plan:</span> “Create balanced 4-person groups from these anonymized profiles.”</li>
+          <li><span class="kbd">Support:</span> “Give two <em>hints</em> to move forward on this task.”</li>
+          <li><span class="kbd">Reflect:</span> “Summarize themes across these exit tickets; flag time-management issues.”</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="hint" style="margin-top:16px">
+      © 2025 • Small Groups, Big Learning — Designing Effective Groups
+    </footer>
+  </div>
+</body>
+</html>

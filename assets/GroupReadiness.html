@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How Are My Students Working Together? — Needs-Assessment & Observation Guide</title>
+<style>
+  :root{
+    --ink:#1f2937;
+    --ink-muted:#4b5563;
+    --bg:#ffffff;
+    --paper:#ffffff;
+    --accent:#2e3b8e;    /* subtle edu-blue */
+    --accent-2:#4f46e5;  /* secondary accent for focus ring */
+    --line:#e5e7eb;
+    --chip:#eef2ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial}
+  .wrap{max-width:980px;margin:40px auto;padding:0 20px 60px}
+  header{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+  h1{font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.2;margin:0;color:var(--accent);font-weight:800}
+  h2{font-size:1.25rem;margin:1.5rem 0 .75rem;color:var(--ink)}
+  h3{font-size:1.05rem;margin:1rem 0 .5rem;color:var(--ink)}
+  p{margin:.5rem 0;color:var(--ink)}
+  .lead{color:var(--ink-muted)}
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.03);
+    margin:16px 0;
+  }
+  .badge{
+    display:inline-block;
+    padding:.15rem .5rem;
+    border-radius:999px;
+    background:var(--chip);
+    color:var(--accent);
+    font-weight:600;
+    font-size:.8rem;
+    letter-spacing:.2px;
+  }
+  .hint{color:var(--ink-muted);font-size:.95rem}
+  .grid{display:grid;gap:16px}
+  @media (min-width:820px){ .grid.two{grid-template-columns:1fr 1fr} }
+
+  /* Table styles */
+  table{width:100%; border-collapse:separate; border-spacing:0; margin-top:.5rem}
+  thead th{
+    text-align:left; font-weight:700; color:var(--ink); padding:.75rem .75rem;
+    background: #f8fafc; border-top-left-radius:10px; border-top-right-radius:10px; border:1px solid var(--line); border-bottom:none;
+  }
+  tbody td, tbody th{
+    padding:.6rem .75rem; vertical-align:top; border-left:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  tbody tr:last-child td, tbody tr:last-child th{ border-bottom-left-radius:10px; border-bottom-right-radius:10px; }
+  tbody th{ font-weight:700; width:220px }
+  ul.tight{margin:.2rem 0 .2rem 1.1rem; padding:0}
+  ul.tight li{margin:.15rem 0}
+  .notes{width:100%; min-height:44px; border:1px solid var(--line); border-radius:10px; padding:.5rem; resize:vertical; font:inherit}
+  input[type="text"]{width:100%; border:1px solid var(--line); border-radius:10px; padding:.5rem; font:inherit}
+  select{border:1px solid var(--line); border-radius:10px; padding:.4rem .6rem; background:#fff; font:inherit}
+  /* Likert table */
+  .likert thead th{text-align:center}
+  .likert thead th:first-child{ text-align:left }
+  .likert td:first-child{font-weight:600}
+  .likert td{ text-align:center }
+  .likert input[type="radio"]{ width:1.05rem; height:1.05rem; accent-color: var(--accent) }
+  /* Buttons */
+  .toolbar{display:flex; gap:.5rem; margin: .5rem 0 0}
+  .btn{
+    padding:.55rem .9rem; border-radius:10px; border:1px solid var(--accent);
+    color:#fff; background:var(--accent); cursor:pointer; font-weight:600;
+  }
+  .btn.secondary{ background:#fff; color:var(--accent); }
+  .btn:focus{ outline:3px solid var(--accent-2); outline-offset:2px }
+
+  /* Print tweaks */
+  @media print{
+    .btn, .toolbar{ display:none !important }
+    body{ background:#fff }
+    .wrap{ margin:0; padding:0 }
+    a{ color:inherit; text-decoration:none }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>How Are My Students Working Together?</h1>
+      <p class="lead">A quick needs-assessment and observation guide for classroom collaboration</p>
+      <div class="toolbar">
+        <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <span class="badge">Purpose</span>
+      <p>Before you redesign group structures or stations, take a snapshot of how students currently work together. Use this tool to surface strengths, locate gaps, and decide which collaboration skills to teach next.</p>
+    </section>
+
+    <!-- 1. Quick Self-Check (Likert) -->
+    <section class="card">
+      <h2>1) Quick Self-Check</h2>
+      <p class="hint">Rate each statement from <strong>1 (Never)</strong> to <strong>5 (Consistently)</strong>. Circle/mark on paper or click radios before printing.</p>
+
+      <table class="likert">
+        <thead>
+          <tr>
+            <th>Statement</th>
+            <th>1<br><span class="hint">Never</span></th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5<br><span class="hint">Consistently</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Repeat pattern: name="qN" groups radios per row -->
+          <tr>
+            <td>Students understand the learning goal behind their group task.</td>
+            <td><input type="radio" name="q1"></td><td><input type="radio" name="q1"></td><td><input type="radio" name="q1"></td><td><input type="radio" name="q1"></td><td><input type="radio" name="q1"></td>
+          </tr>
+          <tr>
+            <td>I form groups intentionally (purpose, readiness, or interests).</td>
+            <td><input type="radio" name="q2"></td><td><input type="radio" name="q2"></td><td><input type="radio" name="q2"></td><td><input type="radio" name="q2"></td><td><input type="radio" name="q2"></td>
+          </tr>
+          <tr>
+            <td>Students know their roles and responsibilities.</td>
+            <td><input type="radio" name="q3"></td><td><input type="radio" name="q3"></td><td><input type="radio" name="q3"></td><td><input type="radio" name="q3"></td><td><input type="radio" name="q3"></td>
+          </tr>
+          <tr>
+            <td>Students share responsibility rather than “dividing and disappearing.”</td>
+            <td><input type="radio" name="q4"></td><td><input type="radio" name="q4"></td><td><input type="radio" name="q4"></td><td><input type="radio" name="q4"></td><td><input type="radio" name="q4"></td>
+          </tr>
+          <tr>
+            <td>Groups complete tasks efficiently without constant teacher direction.</td>
+            <td><input type="radio" name="q5"></td><td><input type="radio" name="q5"></td><td><input type="radio" name="q5"></td><td><input type="radio" name="q5"></td><td><input type="radio" name="q5"></td>
+          </tr>
+          <tr>
+            <td>Students talk about ideas and reasoning, not just answers.</td>
+            <td><input type="radio" name="q6"></td><td><input type="radio" name="q6"></td><td><input type="radio" name="q6"></td><td><input type="radio" name="q6"></td><td><input type="radio" name="q6"></td>
+          </tr>
+          <tr>
+            <td>Students resolve small disagreements respectfully.</td>
+            <td><input type="radio" name="q7"></td><td><input type="radio" name="q7"></td><td><input type="radio" name="q7"></td><td><input type="radio" name="q7"></td><td><input type="radio" name="q7"></td>
+          </tr>
+          <tr>
+            <td>Each group produces evidence of <em>joint thinking</em> (not just combined pieces).</td>
+            <td><input type="radio" name="q8"></td><td><input type="radio" name="q8"></td><td><input type="radio" name="q8"></td><td><input type="radio" name="q8"></td><td><input type="radio" name="q8"></td>
+          </tr>
+          <tr>
+            <td>I observe and record patterns during group work.</td>
+            <td><input type="radio" name="q9"></td><td><input type="radio" name="q9"></td><td><input type="radio" name="q9"></td><td><input type="radio" name="q9"></td><td><input type="radio" name="q9"></td>
+          </tr>
+          <tr>
+            <td>I use observation/reflection data to regroup students or adjust tasks.</td>
+            <td><input type="radio" name="q10"></td><td><input type="radio" name="q10"></td><td><input type="radio" name="q10"></td><td><input type="radio" name="q10"></td><td><input type="radio" name="q10"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 2. Micro-Skills Observation Matrix -->
+    <section class="card">
+      <h2>2) Collaboration Micro-Skills Observation Matrix</h2>
+      <p class="hint">Skim a few groups for 5–10 minutes. For each category, scan the micro-skills, select a frequency, and jot a quick note or evidence.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Micro-skills / What to Look For</th>
+            <th>Frequency</th>
+            <th>Notes / Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Communication &amp; Listening</th>
+            <td>
+              <ul class="tight">
+                <li>Active listening (eye contact, nods)</li>
+                <li>Paraphrasing or restating ideas</li>
+                <li>Asking clarifying questions</li>
+                <li>Building on peer comments</li>
+                <li>Inclusive language (“we”, “our plan”)</li>
+              </ul>
+            </td>
+            <td>
+              <select>
+                <option value="">—</option>
+                <option>Frequently</option>
+                <option>Sometimes</option>
+                <option>Rarely</option>
+              </select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: S2 rephrased S4’s idea; group asked ‘why’ twice."></textarea></td>
+          </tr>
+
+          <tr>
+            <th>Roles &amp; Participation</th>
+            <td>
+              <ul class="tight">
+                <li>Roles clear/visible and rotated</li>
+                <li>Shared handling of materials/tasks</li>
+                <li>Peer accountability (not just teacher)</li>
+                <li>Balanced airtime &amp; contributions</li>
+              </ul>
+            </td>
+            <td>
+              <select><option value="">—</option><option>Frequently</option><option>Sometimes</option><option>Rarely</option></select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: One student dominated; no timekeeper identified."></textarea></td>
+          </tr>
+
+          <tr>
+            <th>Collaboration Processes<br><span class="hint">(People Skills)</span></th>
+            <td>
+              <ul class="tight">
+                <li>Shared decision-making; consensus seeking</li>
+                <li>Respectful conflict language (“I see it differently…”)</li>
+                <li>Inviting quieter voices</li>
+                <li>Recognizing group progress (micro-celebrations)</li>
+              </ul>
+            </td>
+            <td>
+              <select><option value="">—</option><option>Frequently</option><option>Sometimes</option><option>Rarely</option></select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: Healthy debate; S3 prompted S1 to share."></textarea></td>
+          </tr>
+
+          <tr>
+            <th>Project Management<br><span class="hint">(Task Skills)</span></th>
+            <td>
+              <ul class="tight">
+                <li>Task broken into steps / checklist made</li>
+                <li>Timeline visible; timekeeper active</li>
+                <li>Responsibility chart (who does what)</li>
+                <li>Mid-task progress checks; plan adjusted if needed</li>
+              </ul>
+            </td>
+            <td>
+              <select><option value="">—</option><option>Frequently</option><option>Sometimes</option><option>Rarely</option></select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: Created quick 3-step plan; moved on after 5 min."></textarea></td>
+          </tr>
+
+          <tr>
+            <th>Problem-Solving &amp; Reasoning</th>
+            <td>
+              <ul class="tight">
+                <li>“Why/what if” questions; considering alternatives</li>
+                <li>Using evidence/examples to justify choices</li>
+                <li>Documenting reasoning (sketch, notes, doc)</li>
+              </ul>
+            </td>
+            <td>
+              <select><option value="">—</option><option>Frequently</option><option>Sometimes</option><option>Rarely</option></select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: Compared two approaches; chose A for clarity."></textarea></td>
+          </tr>
+
+          <tr>
+            <th>Reflection &amp; Metacognition</th>
+            <td>
+              <ul class="tight">
+                <li>Quick recap of what was learned</li>
+                <li>Exit ticket or summary card completed</li>
+                <li>Identify next step or question</li>
+              </ul>
+            </td>
+            <td>
+              <select><option value="">—</option><option>Frequently</option><option>Sometimes</option><option>Rarely</option></select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: Wrote 1-sentence takeaway; flagged vocab gap."></textarea></td>
+          </tr>
+
+          <tr>
+            <th>Use of Tools &amp; Technology</th>
+            <td>
+              <ul class="tight">
+                <li>Shared doc/whiteboard to make thinking visible</li>
+                <li>Students replay directions (video/QR/LMS) independently</li>
+                <li>Tech/AI supports—not replaces—thinking</li>
+              </ul>
+            </td>
+            <td>
+              <select><option value="">—</option><option>Frequently</option><option>Sometimes</option><option>Rarely</option></select>
+            </td>
+            <td><textarea class="notes" placeholder="Ex: Used posted video; asked AI to suggest next step."></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3. Quick Observation Activity -->
+    <section class="grid two">
+      <div class="card">
+        <h2>3) Quick Observation Activity — Elementary</h2>
+        <h3>Try:</h3>
+        <p><strong>Build the Tallest Paper Tower</strong> or <strong>Sequence the Story Cards</strong> (10 minutes).</p>
+        <h3>Look for:</h3>
+        <ul class="tight">
+          <li>Who reads or restates the directions?</li>
+          <li>Who takes initiative first? Who invites others in?</li>
+          <li>How are materials and turns shared?</li>
+          <li>How do they decide when the task is “done”?</li>
+        </ul>
+        <h3>Quick note:</h3>
+        <textarea class="notes" placeholder="What did I notice about communication, planning, and time use?"></textarea>
+      </div>
+
+      <div class="card">
+        <h2>3) Quick Observation Activity — Secondary</h2>
+        <h3>Try:</h3>
+        <p><strong>Analyze a historical source</strong> or <strong>solve a multi-step math problem in pairs/groups</strong> (10–12 minutes).</p>
+        <h3>Look for:</h3>
+        <ul class="tight">
+          <li>Are roles clear or improvised?</li>
+          <li>How are disagreements handled?</li>
+          <li>Do students explain reasoning or only share answers?</li>
+          <li>Who tracks time and progress?</li>
+        </ul>
+        <h3>Quick note:</h3>
+        <textarea class="notes" placeholder="Which behaviors kept the group on task? Which slowed them down?"></textarea>
+      </div>
+    </section>
+
+    <!-- 4. Reflection & Next Steps -->
+    <section class="card">
+      <h2>4) Reflection &amp; Next Steps</h2>
+      <p class="hint">Use your notes to choose the next one or two skills to teach explicitly.</p>
+      <ul class="tight">
+        <li>Which micro-skills seem strongest across groups?</li>
+        <li>Which are missing or inconsistent?</li>
+        <li>Are students stronger in <em>people skills</em> or <em>project management skills</em>?</li>
+        <li>What small routine or mini-lesson could build the next skill?</li>
+      </ul>
+      <textarea class="notes" placeholder="My two priority skills to target next..."></textarea>
+    </section>
+
+    <!-- 5. Next Resource -->
+    <section class="card">
+      <h2>Next Resource</h2>
+      <p>Open the <strong>Collaboration Foundations Guide — Barriers vs. Design Fixes</strong> to match your priority needs with practical structures, routines, and examples. It also includes activity-level design tweaks and templates you can copy.</p>
+    </section>
+
+    <footer class="hint" style="margin-top:16px">
+      © 2025 • Small Groups, Big Learning — Classroom Collaboration Toolkit
+    </footer>
+  </div>
+</body>
+</html>

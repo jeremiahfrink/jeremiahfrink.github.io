@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISTE Standard 4: Innovative Designer — Progression Explorer (Layered 4b)</title>
+<style>
+  :root{
+    --bg:#0f172a;
+    --card:#111827;
+    --panel:#0b1223;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --accent:#60a5fa;
+    --chip:#1f2937;
+    --border:#27324a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;line-height:1.45}
+  a{color:var(--accent)}
+  header{padding:28px 20px 8px;max-width:1100px;margin:0 auto}
+  header h1{margin:0 0 6px;font-size:clamp(20px,3.8vw,34px)}
+  header p{margin:0;color:var(--muted)}
+  .indicator-nav{position:sticky;top:0;background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(15,23,42,.92));backdrop-filter:blur(6px);padding:10px 20px;border-bottom:1px solid var(--border);z-index:10}
+  .indicator-nav .wrap{max-width:1100px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{background:var(--chip);border:1px solid var(--border);padding:8px 12px;border-radius:999px;color:var(--text);text-decoration:none;font-weight:600}
+  .pill:hover{border-color:var(--accent)}
+  main{max-width:1100px;margin:0 auto;padding:20px}
+  section.indicator, .sub-indicator{border:1px solid var(--border);background:linear-gradient(180deg,var(--card),var(--panel));border-radius:14px;margin:18px 0;overflow:hidden}
+  .summary-btn{all:unset;display:flex;gap:14px;align-items:center;width:100%;padding:18px;cursor:pointer}
+  .summary-btn h2,.summary-btn h3{margin:0}
+  .summary-btn p{margin:2px 0 0;color:var(--muted)}
+  .accordion{display:none;border-top:1px solid var(--border);padding:14px 18px}
+  .open .accordion{display:block}
+  .band-chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+  .chip{border:1px solid var(--border);background:var(--chip);padding:6px 10px;border-radius:999px;cursor:pointer}
+  .chip[aria-pressed="true"]{outline:2px solid var(--accent);outline-offset:1px}
+  .helpers{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 12px}
+  .helpers button{border:1px solid var(--border);background:transparent;color:var(--text);padding:6px 10px;border-radius:8px;cursor:pointer}
+  aside.considerations{border:1px dashed var(--border);background:#0a1a33;padding:10px 12px;border-radius:10px;margin:10px 0}
+  table{width:100%;border-collapse:collapse;margin:10px 0}
+  th,td{border-bottom:1px solid var(--border);padding:10px 8px;vertical-align:top}
+  th{color:#c7d2fe;text-align:left}
+  tr[hidden]{display:none}
+  @media print{
+    .indicator-nav,.helpers{display:none}
+    body{background:#fff;color:#000}
+    section.indicator,.sub-indicator{break-inside:avoid;border-color:#ddd;background:#fff}
+    aside.considerations{background:#f7f7f7;border-color:#ddd}
+    th,td{border-color:#ddd}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>ISTE Standard 4: Innovative Designer — Progression Explorer</h1>
+    <p>Click an indicator to explore big ideas, grade-band progressions (K–2, 3–5, 6–8, 9–12), and design considerations. Use the band chips to filter or compare.</p>
+  </header>
+
+  <div class="indicator-nav">
+    <div class="wrap">
+      <a class="pill" href="#ind-4a">4a · Deliberate Design Process</a>
+      <a class="pill" href="#ind-4b">4b · Tools, Planning & Risk</a>
+      <a class="pill" href="#ind-4c">4c · Prototyping & Iteration</a>
+      <a class="pill" href="#ind-4d">4d · Open-Ended Problem Framing</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 4a -->
+    <section id="ind-4a" class="indicator" aria-labelledby="label-4a">
+      <button class="summary-btn" data-target="panel-4a" aria-expanded="false" id="label-4a">
+        <div style="font-size:22px">🧭</div>
+        <div>
+          <h2>4a — Deliberate Design Process</h2>
+          <p class="big-idea">Use a deliberate design process to generate ideas, test, and improve.</p>
+        </div>
+      </button>
+      <div class="accordion" id="panel-4a">
+        <div class="band-chips" data-panel="panel-4a">
+          <button class="chip" data-band="K-2">K–2</button>
+          <button class="chip" data-band="3-5">3–5</button>
+          <button class="chip" data-band="6-8">6–8</button>
+          <button class="chip" data-band="9-12">9–12</button>
+        </div>
+        <div class="helpers">
+          <button data-action="compare" data-panel="panel-4a">Compare bands</button>
+          <button data-action="clear" data-panel="panel-4a">Show all</button>
+        </div>
+        <aside class="considerations">
+          <h3>Considerations as learners progress</h3>
+          <ul>
+            <li>Shift from guided steps to independent cycles.</li>
+            <li>Move from one idea to generating and selecting among multiple ideas.</li>
+            <li>Use evidence and feedback to justify design decisions.</li>
+          </ul>
+        </aside>
+        <table aria-label="4a progression">
+          <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples of Practice</th></tr></thead>
+          <tbody>
+            <tr data-band="K-2"><td><strong>K–2</strong></td><td>Introduction to design thinking: try → test → improve.</td><td>Follow simple steps (“Plan → Make → Test → Share”); draw/build solutions; describe what changed.</td></tr>
+            <tr data-band="3-5"><td><strong>3–5</strong></td><td>Apply a structured process with multiple ideas.</td><td>Use “Ask→Imagine→Plan→Create→Improve”; compare options; document process with pictures/reflections.</td></tr>
+            <tr data-band="6-8"><td><strong>6–8</strong></td><td>Purposeful, iterative design for real or simulated problems.</td><td>Define problems; prototype and test versions; collaborate in shared spaces; reflect using data/feedback.</td></tr>
+            <tr data-band="9-12"><td><strong>9–12</strong></td><td>Independent, strategic design thinking for authentic challenges.</td><td>Conduct stakeholder research; use formal frameworks; justify decisions with evidence and reflection.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4b parent -->
+    <section id="ind-4b" class="indicator" aria-labelledby="label-4b">
+      <button class="summary-btn" data-target="panel-4b" aria-expanded="false" id="label-4b">
+        <div style="font-size:22px">🧰</div>
+        <div>
+          <h2>4b — Tools, Planning & Risk</h2>
+          <p class="big-idea">Plan and manage design with the right tools, constraints, and thoughtful risk.</p>
+        </div>
+      </button>
+      <div class="accordion" id="panel-4b">
+        <aside class="considerations">
+          <h3>How to read 4b</h3>
+          <ul>
+            <li>4b includes four distinct subdomains. Expand one to focus, or expand all as needed.</li>
+            <li>Introduce subdomains progressively across the year.</li>
+          </ul>
+        </aside>
+
+        <!-- Subdomain 1 -->
+        <section class="sub-indicator" aria-labelledby="label-4b-1">
+          <button class="summary-btn" data-target="panel-4b-1" aria-expanded="false" id="label-4b-1">
+            <div style="font-size:20px">🛠️</div>
+            <div>
+              <h3>4b.1 — Digital Tool Selection</h3>
+              <p class="big-idea">Choose tools that fit the goal, accessibility needs, and workflow.</p>
+            </div>
+          </button>
+          <div class="accordion" id="panel-4b-1">
+            <aside class="considerations">
+              <h3>Considerations</h3>
+              <ul><li>From “try a tool” → “justify the right tool for the job.”</li>
+                  <li>Value accessibility, privacy, and workflow fit more over time.</li></ul>
+            </aside>
+            <div class="band-chips" data-panel="panel-4b-1">
+              <button class="chip" data-band="K-2">K–2</button>
+              <button class="chip" data-band="3-5">3–5</button>
+              <button class="chip" data-band="6-8">6–8</button>
+              <button class="chip" data-band="9-12">9–12</button>
+            </div>
+            <div class="helpers">
+              <button data-action="clear" data-panel="panel-4b-1">Show all</button>
+            </div>
+            <table aria-label="4b.1 progression">
+              <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr data-band="K-2"><td><strong>K–2</strong></td><td>Explore simple tools.</td><td>Try drawing apps, camera, block coding; choose with teacher guidance.</td></tr>
+                <tr data-band="3-5"><td><strong>3–5</strong></td><td>Select purposeful tools.</td><td>Pick tools for goals; explain why; combine 2+ tools with support.</td></tr>
+                <tr data-band="6-8"><td><strong>6–8</strong></td><td>Evaluate & integrate tools.</td><td>Compare options; connect tools into workflow; reflect on strengths/limits.</td></tr>
+                <tr data-band="9-12"><td><strong>9–12</strong></td><td>Strategic selection & innovation.</td><td>Justify choices (function, privacy, access); use advanced/emerging tools; adapt workflows.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Subdomain 2 -->
+        <section class="sub-indicator" aria-labelledby="label-4b-2">
+          <button class="summary-btn" data-target="panel-4b-2" aria-expanded="false" id="label-4b-2">
+            <div style="font-size:20px">📋</div>
+            <div>
+              <h3>4b.2 — Managing the Design/Project Process</h3>
+              <p class="big-idea">Plan, monitor, and report progress—from simple steps to scaled projects.</p>
+            </div>
+          </button>
+          <div class="accordion" id="panel-4b-2">
+            <aside class="considerations">
+              <h3>Considerations</h3>
+              <ul><li>From following steps → planning, monitoring, and reporting progress.</li>
+                  <li>Introduce shared tools before complex group projects.</li></ul>
+            </aside>
+            <div class="band-chips" data-panel="panel-4b-2">
+              <button class="chip" data-band="K-2">K–2</button>
+              <button class="chip" data-band="3-5">3–5</button>
+              <button class="chip" data-band="6-8">6–8</button>
+              <button class="chip" data-band="9-12">9–12</button>
+            </div>
+            <div class="helpers">
+              <button data-action="clear" data-panel="panel-4b-2">Show all</button>
+            </div>
+            <table aria-label="4b.2 progression">
+              <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr data-band="K-2"><td><strong>K–2</strong></td><td>Sequence with support.</td><td>Use class visual plan; name “what comes next.”</td></tr>
+                <tr data-band="3-5"><td><strong>3–5</strong></td><td>Plan & track basics.</td><td>Create step plans; use simple checklists/slides; revise when needed.</td></tr>
+                <tr data-band="6-8"><td><strong>6–8</strong></td><td>Collaborative management.</td><td>Use shared tools (Sheets/Trello/Miro); assign roles; track milestones.</td></tr>
+                <tr data-band="9-12"><td><strong>9–12</strong></td><td>Independent & scalable.</td><td>Use Gantt/dashboards; manage dependencies; report to stakeholders.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Subdomain 3 -->
+        <section class="sub-indicator" aria-labelledby="label-4b-3">
+          <button class="summary-btn" data-target="panel-4b-3" aria-expanded="false" id="label-4b-3">
+            <div style="font-size:20px">🎯</div>
+            <div>
+              <h3>4b.3 — Designing Within Constraints</h3>
+              <p class="big-idea">Work within time, material, and contextual limits—then turn limits into creative prompts.</p>
+            </div>
+          </button>
+          <div class="accordion" id="panel-4b-3">
+            <aside class="considerations">
+              <h3>Considerations</h3>
+              <ul><li>Teach constraints as creative prompts, not just limits.</li>
+                  <li>Progress from recognizing → applying → balancing → negotiating constraints.</li></ul>
+            </aside>
+            <div class="band-chips" data-panel="panel-4b-3">
+              <button class="chip" data-band="K-2">K–2</button>
+              <button class="chip" data-band="3-5">3–5</button>
+              <button class="chip" data-band="6-8">6–8</button>
+              <button class="chip" data-band="9-12">9–12</button>
+            </div>
+            <div class="helpers">
+              <button data-action="clear" data-panel="panel-4b-3">Show all</button>
+            </div>
+            <table aria-label="4b.3 progression">
+              <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr data-band="K-2"><td><strong>K–2</strong></td><td>Recognize constraints.</td><td>Limited time/materials; “you can only use paper & tape.”</td></tr>
+                <tr data-band="3-5"><td><strong>3–5</strong></td><td>Work within limits.</td><td>Identify given constraints; propose small workarounds.</td></tr>
+                <tr data-band="6-8"><td><strong>6–8</strong></td><td>Apply constraints strategically.</td><td>Analyze impact; balance time/cost/performance; use constraints to spark ideas.</td></tr>
+                <tr data-band="9-12"><td><strong>9–12</strong></td><td>Negotiate & redefine constraints.</td><td>Evaluate budget/ethics/environment; justify trade-offs; document constraints in design brief.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Subdomain 4 -->
+        <section class="sub-indicator" aria-labelledby="label-4b-4">
+          <button class="summary-btn" data-target="panel-4b-4" aria-expanded="false" id="label-4b-4">
+            <div style="font-size:20px">⚖️</div>
+            <div>
+              <h3>4b.4 — Taking Calculated Risks</h3>
+              <p class="big-idea">Take informed, thoughtful risks that advance innovation and learning.</p>
+            </div>
+          </button>
+          <div class="accordion" id="panel-4b-4">
+            <aside class="considerations">
+              <h3>Considerations</h3>
+              <ul><li>Move from trying something new → predicting outcomes → evaluating trade-offs → strategic innovation.</li>
+                  <li>Model reflective risk reviews after each project.</li></ul>
+            </aside>
+            <div class="band-chips" data-panel="panel-4b-4">
+              <button class="chip" data-band="K-2">K–2</button>
+              <button class="chip" data-band="3-5">3–5</button>
+              <button class="chip" data-band="6-8">6–8</button>
+              <button class="chip" data-band="9-12">9–12</button>
+            </div>
+            <div class="helpers">
+              <button data-action="clear" data-panel="panel-4b-4">Show all</button>
+            </div>
+            <table aria-label="4b.4 progression">
+              <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples</th></tr></thead>
+              <tbody>
+                <tr data-band="K-2"><td><strong>K–2</strong></td><td>Try new ideas safely.</td><td>Experiment with materials/steps; celebrate “try again.”</td></tr>
+                <tr data-band="3-5"><td><strong>3–5</strong></td><td>Make small, thoughtful risks.</td><td>Predict outcomes; accept small failures; try alternates.</td></tr>
+                <tr data-band="6-8"><td><strong>6–8</strong></td><td>Evaluate risks & decide.</td><td>Weigh pros/cons; choose paths with reason; log lessons.</td></tr>
+                <tr data-band="9-12"><td><strong>9–12</strong></td><td>Strategic risk-taking.</td><td>Plan for technical/ethical risks; take creative leaps; conduct post-mortems.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- 4c -->
+    <section id="ind-4c" class="indicator" aria-labelledby="label-4c">
+      <button class="summary-btn" data-target="panel-4c" aria-expanded="false" id="label-4c">
+        <div style="font-size:22px">🧪</div>
+        <div>
+          <h2>4c — Prototyping & Iteration</h2>
+          <p class="big-idea">Develop, test, and refine prototypes as part of a cyclical design process.</p>
+        </div>
+      </button>
+      <div class="accordion" id="panel-4c">
+        <div class="band-chips" data-panel="panel-4c">
+          <button class="chip" data-band="K-2">K–2</button>
+          <button class="chip" data-band="3-5">3–5</button>
+          <button class="chip" data-band="6-8">6–8</button>
+          <button class="chip" data-band="9-12">9–12</button>
+        </div>
+        <div class="helpers">
+          <button data-action="compare" data-panel="panel-4c">Compare bands</button>
+          <button data-action="clear" data-panel="panel-4c">Show all</button>
+        </div>
+        <aside class="considerations">
+          <h3>Considerations as learners progress</h3>
+          <ul>
+            <li>Normalize iteration: versions 1.0 → 2.0 → 3.0.</li>
+            <li>Move from observation to data-informed refinement.</li>
+            <li>Balance aesthetics, function, and feasibility over time.</li>
+          </ul>
+        </aside>
+        <table aria-label="4c progression">
+          <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples of Practice</th></tr></thead>
+          <tbody>
+            <tr data-band="K-2"><td><strong>K–2</strong></td><td>Exploring & trying again.</td><td>Build simple creations; test; explain what changed.</td></tr>
+            <tr data-band="3-5"><td><strong>3–5</strong></td><td>Intentional revision.</td><td>Create prototypes; gather feedback; show before/after improvements.</td></tr>
+            <tr data-band="6-8"><td><strong>6–8</strong></td><td>Data-driven iteration.</td><td>Run multiple tests; collect data/peer input; evaluate with criteria.</td></tr>
+            <tr data-band="9-12"><td><strong>9–12</strong></td><td>Refined prototyping & evaluation.</td><td>User testing; analyze data; justify refinements and trade-offs; present version history.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4d -->
+    <section id="ind-4d" class="indicator" aria-labelledby="label-4d">
+      <button class="summary-btn" data-target="panel-4d" aria-expanded="false" id="label-4d">
+        <div style="font-size:22px">🧩</div>
+        <div>
+          <h2>4d — Open-Ended Problem Framing</h2>
+          <p class="big-idea">Frame and re-frame open-ended problems — structure the unknown to make progress.</p>
+        </div>
+      </button>
+      <div class="accordion" id="panel-4d">
+        <div class="band-chips" data-panel="panel-4d">
+          <button class="chip" data-band="K-2">K–2</button>
+          <button class="chip" data-band="3-5">3–5</button>
+          <button class="chip" data-band="6-8">6–8</button>
+          <button class="chip" data-band="9-12">9–12</button>
+        </div>
+        <div class="helpers">
+          <button data-action="compare" data-panel="panel-4d">Compare bands</button>
+          <button data-action="clear" data-panel="panel-4d">Show all</button>
+        </div>
+        <aside class="considerations">
+          <h3>Considerations as learners progress</h3>
+          <ul>
+            <li>From multiple possibilities → clear problem statements.</li>
+            <li>Identify knowns/unknowns, stakeholders, and constraints.</li>
+            <li>Revisit and refine framing as understanding grows.</li>
+          </ul>
+        </aside>
+        <table aria-label="4d progression">
+          <thead><tr><th>Grade Band</th><th>Developmental Focus</th><th>Examples of Practice</th></tr></thead>
+          <tbody>
+            <tr data-band="K-2"><td><strong>K–2</strong></td><td>Exploring multiple possibilities.</td><td>Suggest many ways to address a classroom need; ask simple clarifying questions; say what “working” means.</td></tr>
+            <tr data-band="3-5"><td><strong>3–5</strong></td><td>Clarify and plan within open-ended challenges.</td><td>Restate problems; set simple success criteria; list knowns/unknowns; choose parts to try first.</td></tr>
+            <tr data-band="6-8"><td><strong>6–8</strong></td><td>Frame and refine complex problems.</td><td>State assumptions; research gaps; break into sub-problems; draft & revise problem statements with purpose, users, constraints.</td></tr>
+            <tr data-band="9-12"><td><strong>9–12</strong></td><td>Scope, reframe, and manage real-world ambiguity.</td><td>Analyze stakeholders & systems; write/refine design briefs; balance feasibility & ambition; document rationale for reframing.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="footer" style="color:#9ca3af;font-size:12px;padding:10px 0 30px;text-align:center">© 2025 — Innovative Designer Progression Explorer</div>
+  </main>
+
+<script>
+// Simple accordion behavior
+document.querySelectorAll('.summary-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const panelId = btn.dataset.target;
+    const section = btn.closest('section') || btn.closest('.sub-indicator');
+    const isOpen = section.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true':'false');
+  });
+});
+
+// Band filtering & compare for each panel
+const state = { compare:false, selected:{} };
+
+function updatePanel(panelId){
+  const panel = document.getElementById(panelId);
+  if(!panel) return;
+  const selected = state.selected[panelId] || [];
+  const rows = panel.querySelectorAll('tbody tr');
+  if(!state.compare && selected.length===0){
+    rows.forEach(r=>r.hidden=false);
+    panel.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+    return;
+  }
+  rows.forEach(r=>{
+    const band = r.dataset.band;
+    r.hidden = state.compare
+      ? (selected.length>0 && !selected.includes(band))
+      : (selected.length>0 && band!==selected[0]);
+  });
+  panel.querySelectorAll('.chip').forEach(c=>{
+    const band = c.dataset.band;
+    c.setAttribute('aria-pressed', selected.includes(band) ? 'true':'false');
+  });
+}
+
+function attachPanelControls(panelId){
+  const panel = document.getElementById(panelId);
+  if(!panel) return;
+  panel.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const band = chip.dataset.band;
+      state.selected[panelId] = state.selected[panelId] || [];
+      if(state.compare){
+        const arr = state.selected[panelId];
+        const i = arr.indexOf(band);
+        if(i>-1){ arr.splice(i,1); } else {
+          if(arr.length<2) arr.push(band); else { arr.shift(); arr.push(band); }
+        }
+      } else {
+        state.selected[panelId] = [band];
+      }
+      updatePanel(panelId);
+    });
+  });
+  panel.querySelectorAll('[data-action="clear"]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      state.selected[panelId]=[]; updatePanel(panelId);
+    });
+  });
+  panel.querySelectorAll('[data-action="compare"]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      state.compare = !state.compare;
+      btn.textContent = state.compare ? 'Compare mode: ON' : 'Compare bands';
+      state.selected[panelId] = [];
+      updatePanel(panelId);
+    });
+  });
+}
+
+['panel-4a','panel-4b-1','panel-4b-2','panel-4b-3','panel-4b-4','panel-4c','panel-4d'].forEach(attachPanelControls);
+
+// Open 4a by default
+document.querySelector('#ind-4a').classList.add('open');
+document.querySelector('#label-4a').setAttribute('aria-expanded','true');
+</script>
+</body>
+</html>

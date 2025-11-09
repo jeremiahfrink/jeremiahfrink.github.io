@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic School AI - 80+ Teacher Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            color: #666;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .category-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .category-card h2 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-card h2 .icon {
+            font-size: 1.5em;
+        }
+        
+        .category-card h2 .count {
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            margin-left: auto;
+        }
+        
+        .tool-list {
+            list-style: none;
+        }
+        
+        .tool-list li {
+            padding: 10px 0;
+            color: #4a5568;
+            font-size: 0.95em;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            transition: color 0.2s ease;
+        }
+        
+        .tool-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tool-list li:hover {
+            color: #667eea;
+            padding-left: 5px;
+        }
+        
+        .tool-list li::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .communication { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        .content { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .differentiation { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); }
+        .lesson { background: linear-gradient(135deg, #f5f7fa 0%, #b8c6db 100%); }
+        .assessment { background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); }
+        .support { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        
+        .summary {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .summary h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .summary p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🪄 Magic School AI</h1>
+            <p>Complete Teacher Tools Overview</p>
+        </div>
+        
+        <div class="tools-grid">
+            <div class="category-card communication">
+                <h2>
+                    <span class="icon">💬</span>
+                    Communication
+                    <span class="count">25</span>
+                </h2>
+                <ul class="tool-list">
+                    <li>Social Media Post</li>
+                    <li>Survey Creator</li>
+                    <li>Teacher Observations</li>
+                    <li>Restorative Reflection</li>
+                    <li>PD Planner</li>
+                    <li>Letter of Recommendation</li>
+                    <li>Class Newsletter</li>
+                    <li>E-mail Family</li>
+                    <li>E-mail Responder</li>
+                    <li>Professional Email</li>
+                    <li>Report Card Comments</li>
+                    <li>Teacher Jokes</li>
+                    <li>Team Builder/Ice Breaker</li>
+                    <li>Text Proofreader</li>
+                    <li>Text Translator</li>
+                    <li>Thank You Note</li>
+                    <li>YouTube Video Summarizer</li>
+                    <li>Coach's Sports Practice</li>
+                    <li>Custom Chatbot</li>
+                    <li>Gift Suggestion</li>
+                    <li>Quote of the Day</li>
+                    <li>SAT ELA Practice Test</li>
+                    <li>Song Generator</li>
+                    <li>Support Goals Creator</li>
+                    <li>Tongue Twisters</li>
+                </ul>
+            </div>
+            
+            <div class="category-card content">
+                <h2>
+                    <span class="icon">📝</span>
+                    Content Creation
+                    <span class="count">10</span>
+                </h2>
+                <ul class="tool-list">
+                    <li>Academic Content</li>
+                    <li>Choice Board (UDL)</li>
+                    <li>Decodable Texts</li>
+                    <li>Informational Texts</li>
+                    <li>Math Spiral Review</li>
+                    <li>Math Story Word Problems</li>
+                    <li>Rubric Generator</li>
+                    <li>Text Scaffolder</li>
+                    <li>Vocabulary Based Texts</li>
+                    <li>Vocabulary List Generator</li>
+                </ul>
+            </div>
+            
+            <div class="category-card differentiation">
+                <h2>
+                    <span class="icon">🎯</span>
+                    Differentiation
+                    <span class="count">14</span>
+                </h2>
+                <ul class="tool-list">
+                    <li>AI-Resistant Assignments</li>
+                    <li>Chat with Docs</li>
+                    <li>Clear Directions</li>
+                    <li>Common Misconceptions</li>
+                    <li>Conceptual Understanding</li>
+                    <li>Make it Relevant</li>
+                    <li>Multiple Explanations</li>
+                    <li>Prompt Assistant</li>
+                    <li>Sentence Starters</li>
+                    <li>Standards Unpacker</li>
+                    <li>Text Rewriter</li>
+                    <li>Text Summarizer</li>
+                    <li>Tool Recommendations</li>
+                    <li>Writing Feedback</li>
+                </ul>
+            </div>
+            
+            <div class="category-card lesson">
+                <h2>
+                    <span class="icon">📚</span>
+                    Lesson Planning
+                    <span class="count">16</span>
+                </h2>
+                <ul class="tool-list">
+                    <li>5E Model Lesson Plan</li>
+                    <li>Exemplar & Non Exemplar</li>
+                    <li>Group Work Generator</li>
+                    <li>Image Generator</li>
+                    <li>Jeopardy Review Game</li>
+                    <li>Lesson Plan</li>
+                    <li>Lesson Hook</li>
+                    <li>MagicSchool for Student Ideas</li>
+                    <li>Multi-Step Assignment</li>
+                    <li>Presentation Generator</li>
+                    <li>Project Based Learning (PBL)</li>
+                    <li>Real World Connections</li>
+                    <li>Science Labs</li>
+                    <li>SEL Lesson Plan</li>
+                    <li>Syllabus Generator</li>
+                    <li>Unit Plan Generator</li>
+                </ul>
+            </div>
+            
+            <div class="category-card assessment">
+                <h2>
+                    <span class="icon">✏️</span>
+                    Assessment
+                    <span class="count">11</span>
+                </h2>
+                <ul class="tool-list">
+                    <li>Classroom Management</li>
+                    <li>Data Table Analysis</li>
+                    <li>DOK Questions</li>
+                    <li>Multiple Choice Quiz/Assessment</li>
+                    <li>SAT Math Practice</li>
+                    <li>SAT ELA Custom Practice</li>
+                    <li>Text Analysis Assignment</li>
+                    <li>Text Dependent Questions</li>
+                    <li>3D Science Assessments</li>
+                    <li>Worksheet Generator</li>
+                    <li>YouTube Video Questions</li>
+                </ul>
+            </div>
+            
+            <div class="category-card support">
+                <h2>
+                    <span class="icon">🤝</span>
+                    Student Support
+                    <span class="count">9</span>
+                </h2>
+                <ul class="tool-list">
+                    <li>504 Plan Generator</li>
+                    <li>Accommodation Suggestions</li>
+                    <li>Advanced Learning Plan (ALP)</li>
+                    <li>Assignment Scaffolder</li>
+                    <li>Behavior Intervention Suggestions</li>
+                    <li>BIP Generator</li>
+                    <li>IEP Generator</li>
+                    <li>Social Stories</li>
+                    <li>Text Leveler</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <h3>🎓 Complete Teaching Suite</h3>
+            <p>85 Total Teacher Tools | 50+ Student Tools Available</p>
+        </div>
+    </div>
+</body>
+</html>

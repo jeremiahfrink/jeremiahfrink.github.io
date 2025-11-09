@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Integrated Power of Routines in Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+    Infographic Narrative & Structure Plan:
+    1. Hero: Introduction to the vital role of routines in education.
+    2. Understanding Routines: Defines routines, core benefits (predictability, cognitive load reduction - CLT, student agency).
+    3. Classroom Management Routines: Purpose, common examples (arrival, transitions), benefits (order, safety, emotional well-being), analogy.
+    4. Instructional Routines: Purpose, diverse examples (collaborative, written, text-based, vocab, GRR models), benefits (engagement, critical thinking, agency), cognitive scaffolding, GRR evolution.
+    5. The Synergy: Explicit differentiation (table), how management routines enable instructional ones, how instructional routines reinforce order (virtuous cycle).
+    6. Effective Implementation: General principles (teach, model, practice, visuals, consistency, feedback), tailoring for diversity, adaptation.
+    7. Impact & Conclusion: Holistic development, life skills fostered (visualized with a chart), routines as cultural architecture, future readiness.
+    -->
+    <!--
+    Visualization Choices (All NO SVG, NO MERMAID JS):
+    - Section 1 (Understanding Routines):
+        - Cognitive Load/Agency: HTML/CSS text callouts with Unicode icons. Goal: Inform. Justification: Simple, direct.
+    - Section 2 (Classroom Management Routines):
+        - Examples: HTML/CSS grid of cards with Unicode icons. Goal: Organize. Justification: Clear categorized list.
+        - Benefits: HTML/CSS lists with Unicode icons. Goal: Compare/Inform. Justification: Suitable for qualitative benefits.
+    - Section 3 (Instructional Routines):
+        - Examples Categorized: HTML/CSS accordion/tabs with lists. Goal: Organize. Justification: Structures diverse examples.
+        - GRR Model Comparison: HTML/CSS 2-column diagram with text/arrows. Goal: Compare/Organize (Process). Justification: Shows contrast and flow.
+    - Section 4 (The Synergy):
+        - Differentiation Table: HTML Table. Goal: Compare/Organize. Justification: Direct from report, ideal for comparison.
+        - Management enables Instruction Flow: HTML/CSS boxes & arrows diagram. Goal: Organize (Process). Justification: Shows dependency.
+        - Virtuous Cycle Flow: HTML/CSS circular flow diagram. Goal: Organize (Process). Justification: Shows cyclical relationship.
+    - Section 5 (Effective Implementation):
+        - Principles: HTML Ordered List or icon-driven cards. Goal: Organize (Process). Justification: Step-by-step clarity.
+    - Section 6 (Impact & Conclusion):
+        - Life Skills Gained: Chart.js Bar Chart (Canvas). Goal: Compare (impact). Justification: Visually represents impact on skills. (Illustrative data: 90,85,80,95,75)
+    - General: Single Big Number style for key stats/takeaways (HTML/CSS). Goal: Inform. Justification: Highlights key data.
+    - Confirmation: NEITHER Mermaid JS NOR SVG were used. All charts are Chart.js (Canvas), diagrams are HTML/CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Matches Tailwind's default sans-serif */
+            background-color: #F1F5F9; /* slate-100 */
+            color: #1E293B; /* slate-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Adjusted for better fit in columns */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .card {
+            background-color: #FFFFFF; /* white */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #6366F1; /* indigo-500 */
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+         .sub-section-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #0EA5E9; /* sky-500 */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .emphasis-text {
+            color: #FBBF24; /* amber-400 */
+            font-weight: 600;
+        }
+        .icon-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #475569; /* slate-600 */
+        }
+        .icon-list li span:first-child {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+            color: #10B981; /* emerald-500 */
+        }
+        .flow-step {
+            background-color: #E0E7FF; /* indigo-100 */
+            border: 2px solid #6366F1; /* indigo-500 */
+            color: #3730A3; /* indigo-800 */
+            padding: 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            text-align: center;
+            flex-grow: 1;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #6366F1; /* indigo-500 */
+            margin: 0 0.5rem;
+            align-self: center;
+        }
+        .grr-box {
+            border: 2px solid #0EA5E9; /* sky-500 */
+            padding: 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            margin-bottom: 0.5rem;
+            background-color: #F0F9FF; /* sky-50 */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-indigo-500 text-white p-6 shadow-lg">
+        <h1 class="text-3xl md:text-4xl font-bold text-center">The Integrated Power of Routines: Catalyzing Learning & Development</h1>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="mb-12">
+            <div class="card text-center">
+                <p class="text-xl md:text-2xl text-slate-700 leading-relaxed">
+                    Effective educational environments hinge on <span class="emphasis-text">routines</span>—structured practices that underpin successful teaching and robust learning. This exploration delves into classroom management and instructional routines, highlighting their collective power to transform learning experiences.
+                </p>
+            </div>
+        </section>
+
+        <section id="understanding-routines" class="mb-12">
+            <h2 class="section-title">Understanding Routines</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card">
+                    <h3 class="sub-section-title">What are Routines?</h3>
+                    <p class="text-slate-600">Routines are sequences of actions regularly followed, providing structure to time and interactions. They are the established habits and expectations that bring <span class="font-semibold text-emerald-600">order and efficiency</span> to the classroom, fostering predictability crucial for academic and social thriving.</p>
+                </div>
+                <div class="card">
+                    <h3 class="sub-section-title">Core Benefits</h3>
+                    <ul class="icon-list">
+                        <li><span>🧠</span> Reduces <span class="font-semibold">Extraneous Cognitive Load</span> by automating logistical "how-tos", freeing working memory for learning content (aligns with Cognitive Load Theory).</li>
+                        <li><span>🛡️</span> Creates <span class="font-semibold">Psychological Safety</span> through predictability, enabling students to confidently exercise agency in their learning.</li>
+                        <li><span>👍</span> Allows focus on complex tasks, fostering <span class="font-semibold">Deeper Engagement</span> and personal ownership.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="management-routines" class="mb-12">
+            <h2 class="section-title">Classroom Management Routines</h2>
+            <div class="card">
+                <p class="text-slate-600 mb-4">These routines systematically guide student behavior and actions, concerning "how things are done." Their goal is a <span class="font-semibold text-emerald-600">predictable, structured learning environment</span> that minimizes disruptions and maximizes instructional time.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="sub-section-title">Common Examples</h3>
+                        <ul class="icon-list list-disc list-inside text-slate-600 space-y-2">
+                            <li><span>🚪</span> Arrival & Morning Work</li>
+                            <li><span>🔄</span> Transitions & Exiting Class</li>
+                            <li><span>✏️</span> Using School Supplies</li>
+                            <li><span>📱</span> Phone Use Guidelines</li>
+                            <li><span>🧘</span> After Recess Re-engagement</li>
+                            <li><span>🧹</span> End-of-Day Dismissal & Cleanup</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="sub-section-title">Key Benefits</h3>
+                        <p class="font-semibold text-sky-600">For Students:</p>
+                        <ul class="icon-list">
+                            <li><span>😊</span> Enhanced engagement & improved behavior</li>
+                            <li><span>🧘</span> Reduced stress & anxiety; increased safety</li>
+                            <li><span>💪</span> Fosters independence & self-regulation</li>
+                        </ul>
+                        <p class="font-semibold text-sky-600 mt-4">For Teachers:</p>
+                        <ul class="icon-list">
+                            <li><span>⏱️</span> Minimized disruptions & saved instructional time</li>
+                            <li><span>🎯</span> Allows focus on teaching & individual support</li>
+                            <li><span>➕</span> Creates a positive, productive environment</li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote class="mt-6 p-4 bg-rose-50 border-l-4 border-rose-500 text-rose-700 italic">
+                    "You don't notice it when it is good, but without it, the lack of it is readily apparent." – This highlights that seamless management routines allow learning to take center stage.
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="instructional-routines" class="mb-12">
+            <h2 class="section-title">Instructional Routines</h2>
+            <div class="card">
+                <p class="text-slate-600 mb-4">These are specific, repeatable <span class="font-semibold text-emerald-600">designs for learning</span> that structure teacher-student interaction around academic content. They aim to foster critical thinking, promote agency, and manage cognitive load for deeper processing.</p>
+                
+                <h3 class="sub-section-title">Diverse Examples of Instructional Practices</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-lg text-indigo-600">Collaborative Conversation:</h4>
+                        <p class="text-sm text-slate-500">Think-Pair-Share, Fishbowl, Praise-Question-Suggestion.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg text-indigo-600">Written Response:</h4>
+                        <p class="text-sm text-slate-500">Gallery Walk, Quick Write, Give One-Get One.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg text-indigo-600">Text-Based Engagement:</h4>
+                        <p class="text-sm text-slate-500">Jigsaw, Choral Reading, Sustained Silent Reading.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg text-indigo-600">Vocabulary Learning:</h4>
+                        <p class="text-sm text-slate-500">Link Up, Logical Analogies, Outside-In.</p>
+                    </div>
+                </div>
+
+                <h3 class="sub-section-title">Gradual Release of Responsibility (GRR) Models</h3>
+                <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    <div class="grr-box">
+                        <h4 class="font-semibold text-sky-700">Traditional: "I do — We do — You do"</h4>
+                        <p class="text-sm text-slate-600">Teacher demonstrates, guided practice, then independent work. Focus can be on mimicry.</p>
+                        <div class="flex justify-around mt-2 text-sm">
+                            <span>I Do (Teacher)</span> <span class="flow-arrow">→</span> <span>We Do (Guided)</span> <span class="flow-arrow">→</span> <span>You Do (Student)</span>
+                        </div>
+                    </div>
+                    <div class="grr-box">
+                        <h4 class="font-semibold text-sky-700">Adapted: "You do — We do — I do"</h4>
+                        <p class="text-sm text-slate-600">Students attempt first, collaborate, then teacher synthesizes. Promotes deeper understanding.</p>
+                         <div class="flex justify-around mt-2 text-sm">
+                            <span>You Do (Student)</span> <span class="flow-arrow">→</span> <span>We Do (Peers)</span> <span class="flow-arrow">→</span> <span>I Do (Teacher Synthesis)</span>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-slate-600 mt-4">Instructional routines are <span class="font-semibold text-emerald-600">powerful cognitive scaffolds</span>, teaching students *how to think*, not just *what to think*, democratizing access to higher-order skills.</p>
+            </div>
+        </section>
+
+        <section id="synergy" class="mb-12">
+            <h2 class="section-title">The Synergy of Routines</h2>
+            <div class="card">
+                <h3 class="sub-section-title">Management vs. Instructional: Key Differences</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full divide-y divide-slate-200 border border-slate-300">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Characteristic</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Classroom Management Routines</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Instructional Routines</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-slate-200 text-sm text-slate-600">
+                            <tr>
+                                <td class="px-4 py-2 font-semibold">Primary Focus</td>
+                                <td class="px-4 py-2">Logistics, behavior, classroom operations</td>
+                                <td class="px-4 py-2">Cognitive engagement, learning processes</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 font-semibold">Key Purpose</td>
+                                <td class="px-4 py-2">Orderly, predictable, safe environment; minimize disruptions</td>
+                                <td class="px-4 py-2">Foster thinking habits; deep student engagement; academic understanding</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 font-semibold">Impact on Cognitive Load</td>
+                                <td class="px-4 py-2">Reduces extraneous load (automating "how-to")</td>
+                                <td class="px-4 py-2">Optimizes germane load (structuring thinking)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-section-title">Management Enables Instruction</h3>
+                <p class="text-slate-600 mb-4">Effective classroom management is foundational. It frees working memory by automating logistics, creating the stability for students to engage in complex instructional tasks.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-2 mb-6">
+                    <div class="flow-step">Strong Management Routines</div>
+                    <div class="flow-arrow">➔</div>
+                    <div class="flow-step">Reduced Cognitive Load & Distractions</div>
+                    <div class="flow-arrow">➔</div>
+                    <div class="flow-step">Successful Instructional Routine Engagement</div>
+                </div>
+                
+                <h3 class="sub-section-title">Instruction Reinforces Order: The Virtuous Cycle</h3>
+                <p class="text-slate-600 mb-4">Engaging instructional routines inherently contribute to classroom order. Predictable structures and collaborative tasks minimize misbehavior and reinforce positive social skills.</p>
+                <div class="flex flex-col items-center p-4 border-2 border-dashed border-emerald-500 rounded-lg">
+                    <div class="flow-step bg-emerald-100 border-emerald-500 text-emerald-800 w-full md:w-3/4">Effective Management Routines</div>
+                    <div class="text-4xl my-2 text-emerald-500 transform md:rotate-90">↓</div>
+                    <div class="flow-step bg-emerald-100 border-emerald-500 text-emerald-800 w-full md:w-3/4">Enables Engaging Instruction</div>
+                     <div class="text-4xl my-2 text-emerald-500 transform md:rotate-90">↓</div>
+                    <div class="flow-step bg-emerald-100 border-emerald-500 text-emerald-800 w-full md:w-3/4">Reduces Disruptions, Increases Focus</div>
+                     <div class="text-4xl my-2 text-emerald-500 transform md:rotate-90">↓ (Back to Top)</div>
+                     <p class="text-sm text-emerald-600 mt-2">(Cycle Repeats & Strengthens)</p>
+                </div>
+                 <p class="text-slate-600 mt-4 text-center">This dynamic creates a self-optimizing ecosystem where student focus, positive behavior, and deep learning are cultivated.</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="mb-12">
+            <h2 class="section-title">Effective Implementation Strategies</h2>
+            <div class="card">
+                <h3 class="sub-section-title">General Principles</h3>
+                <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                    <li><span class="font-semibold text-rose-600">Reflect & Identify:</span> Define desired skills, habits, and smooth transitions.</li>
+                    <li><span class="font-semibold text-rose-600">Explicitly Teach & Model:</span> Explain the "why" and demonstrate steps (positive/negative examples).</li>
+                    <li><span class="font-semibold text-rose-600">Guided & Independent Practice:</span> Allow ample time for students to internalize.</li>
+                    <li><span class="font-semibold text-rose-600">Visual Aids & Reminders:</span> Display concise, positive rules and routine steps.</li>
+                    <li><span class="font-semibold text-rose-600">Consistency & Reinforcement:</span> Practice diligently; use behavior-specific praise and gentle redirection.</li>
+                    <li><span class="font-semibold text-rose-600">Student Involvement & Feedback:</span> Empower students in development and modification for buy-in.</li>
+                </ol>
+                <p class="mt-4 text-slate-600"><span class="font-semibold">Key Insight:</span> Explaining the <span class="emphasis-text">rationale ("why")</span> is crucial for intrinsic motivation and deeper understanding, moving beyond surface-level compliance.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h4 class="sub-section-title text-sky-600">🌍 Tailoring for Diverse Learners</h4>
+                        <p class="text-slate-600">Predictability benefits all, especially diverse learners. Differentiate by offering choice in engagement (written, verbal, artistic). Ensure routines are universally inclusive.</p>
+                    </div>
+                    <div>
+                        <h4 class="sub-section-title text-sky-600">🔄 Monitoring & Adapting Over Time</h4>
+                        <p class="text-slate-600">Routines are not static. Monitor effectiveness, revise or reteach as needed. Fine-tune annually based on student dynamics and feedback.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="mb-12">
+            <h2 class="section-title">Impact: Catalysts for Comprehensive Development</h2>
+            <div class="card">
+                <p class="text-slate-600 mb-4">Classroom management and instructional routines are intertwined, creating a dynamic, supportive, and academically rich learning environment. Management routines provide stability for deep learning, while instructional routines structure cognitive processes and foster agency.</p>
+                
+                <h3 class="sub-section-title">Life Skills Fostered by Routines</h3>
+                <p class="text-slate-600 mb-4">Consistent implementation of routines instills invaluable life skills. The chart below illustrates the significant impact on key student competencies.</p>
+                <div class="chart-container bg-white p-4 rounded-lg shadow">
+                    <canvas id="lifeSkillsChart"></canvas>
+                </div>
+                <p class="text-sm text-slate-500 text-center mt-2">(Illustrative data representing high impact)</p>
+
+                <div class="mt-8 grid md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <h4 class="font-semibold text-lg text-indigo-700 mb-2">🏛️ Routines as Cultural Architects</h4>
+                        <p class="text-slate-600">The deliberate application of routines shapes the classroom ethos—what learning looks like, feels like, and how it's valued. Teachers become cultural architects, influencing students' identity as learners.</p>
+                    </div>
+                    <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
+                        <h4 class="font-semibold text-lg text-emerald-700 mb-2">🚀 Preparing for Future Readiness</h4>
+                        <p class="text-slate-600">Skills like self-management, critical thinking, and adaptability, honed through routines, extend far beyond the classroom, preparing students for academic, professional, and lifelong success.</p>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-center text-xl text-slate-700 font-semibold">
+                    Ultimately, routines transcend mere classroom management; they are fundamental to cultivating environments where students achieve academically and develop holistically into <span class="emphasis-text">independent, self-directed learners</span>.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-slate-800 text-slate-300 text-sm">
+        Infographic based on the report: "The Integrated Power of Routines: Catalyzing Learning and Development in Educational Environments."
+    </footer>
+
+    <script>
+        function wrapText(text, maxWidth) {
+            if (typeof text !== 'string') return text; // Return as is if not a string (e.g., already an array)
+            if (text.length <= maxWidth) return text;
+
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 <= maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: '#475569' // slate-600
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#E2E8F0' /* slate-200 */ },
+                    ticks: { color: '#475569' /* slate-600 */ }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { 
+                        color: '#475569', /* slate-600 */
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return wrapText(label, 16); // Apply wrapping for x-axis labels
+                        }
+                    }
+                }
+            }
+        };
+
+        // Life Skills Chart (Bar Chart)
+        const lifeSkillsCtx = document.getElementById('lifeSkillsChart').getContext('2d');
+        const lifeSkillsData = {
+            labels: ['Responsibility', 'Independence', 'Time Management', 'Self-Regulation', 'Teamwork', 'Problem Solving'],
+            datasets: [{
+                label: 'Impact on Student Skills (Illustrative)',
+                data: [90, 85, 80, 95, 75, 88], // Added Problem Solving
+                backgroundColor: [
+                    '#FBBF24', // amber-400
+                    '#0EA5E9', // sky-500
+                    '#10B981', // emerald-500
+                    '#F43F5E', // rose-500
+                    '#6366F1', // indigo-500
+                    '#A78BFA', // violet-400 (new color for 6th item)
+                ],
+                borderColor: [
+                    '#F59E0B', // amber-500
+                    '#0284C7', // sky-600
+                    '#059669', // emerald-600
+                    '#E11D48', // rose-600
+                    '#4F46E5', // indigo-600
+                    '#8B5CF6', // violet-500
+                ],
+                borderWidth: 1
+            }]
+        };
+        new Chart(lifeSkillsCtx, {
+            type: 'bar',
+            data: lifeSkillsData,
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y', // Make it a horizontal bar chart for better label readability
+                 scales: { // Override for horizontal bar chart
+                    x: { 
+                        beginAtZero: true,
+                        max: 100, // Assuming percentage or score out of 100
+                        grid: { color: '#E2E8F0' },
+                        ticks: { color: '#475569' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { 
+                            color: '#475569',
+                            callback: function(value, index, values) {
+                                const label = this.getLabelForValue(value);
+                                return wrapText(label, 16); 
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

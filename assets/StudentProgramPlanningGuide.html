@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Implementing Innovation: District Planning Guide for Student Opportunities</title>
+  <style>
+    :root{
+      --ink:#0f172a; /* slate-900 */
+      --muted:#475569; /* slate-600 */
+      --bg:#f8fafc; /* slate-50 */
+      --card:#ffffff; /* white */
+      --border:#e2e8f0; /* slate-200 */
+      --accent:#2563eb; /* blue-600 */
+      --ring:#93c5fd; /* blue-300 */
+      --warn:#ca8a04; /* amber-600 */
+      --success:#16a34a; /* green-600 */
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans"}
+    .wrap{max-width:1100px;margin:0 auto;padding:clamp(16px,2vw,28px)}
+    header{background:linear-gradient(180deg,#eef2ff,#fff);border-bottom:1px solid var(--border);padding:24px 0;margin:0 0 1rem}
+    h1{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:.2rem 0}
+    .sub{color:var(--muted)}
+    .kicker{color:var(--accent);text-transform:uppercase;font-weight:700;font-size:.78rem;letter-spacing:.08em}
+    h2{font-size:clamp(1.25rem,2.1vw,1.6rem);margin:.35rem 0 .5rem}
+    h3{font-size:1.06rem;margin:1rem 0 .25rem}
+    p{line-height:1.6}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin:.75rem 0;box-shadow:0 1px 0 rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.04)}
+    details{background:#fff;border:1px solid var(--border);border-radius:14px;padding:.85rem 1rem;margin:.7rem 0}
+    details[open]{box-shadow:0 0 0 3px var(--ring)}
+    summary{list-style:none;cursor:pointer;font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    .tag{font-weight:600;font-size:.78rem;color:#fff;background:var(--accent);padding:.1rem .45rem;border-radius:6px;margin-left:.5rem}
+    .meta{color:var(--muted);font-size:.92rem;margin:.3rem 0 .7rem}
+    .help{border-left:4px solid var(--accent);padding-left:.75rem;margin:.5rem 0}
+    .notice{background:#fefce8;border:1px solid #fde68a;color:#713f12;padding:.75rem .9rem;border-radius:12px;margin:.5rem 0 1rem}
+    .toc{display:flex;flex-wrap:wrap;gap:10px;margin:.75rem 0 1rem}
+    .chip{display:inline-flex;align-items:center;border:1px solid var(--border);background:#fff;padding:.5rem .7rem;border-radius:999px;text-decoration:none;color:var(--ink);font-size:.93rem}
+    .chip:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+    table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:.5rem 0}
+    th,td{padding:.6rem .7rem;border-bottom:1px solid var(--border);vertical-align:top}
+    th{background:#f1f5f9;text-align:left}
+    tr:last-child td{border-bottom:none}
+    .pill{display:inline-block;border:1px dashed var(--border);padding:.15rem .5rem;border-radius:8px;font-size:.8rem;color:var(--muted)}
+    .edit{background:#f8fafc;border:1px dashed var(--border);border-radius:10px;padding:.6rem;min-height:44px}
+    .footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:1.25rem;padding-top:1rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Implementing Innovation: District Planning Guide for Student Opportunities</h1>
+      <p class="sub">Use this guide to plan student‑centered innovation with a dual lens: <strong>leadership strategy</strong> and <strong>program design</strong>. Built to accompany the Implementing Innovation session.</p>
+      <nav class="toc" aria-label="Quick navigation">
+        <a class="chip" href="#s1">1. Purpose & Alignment</a>
+        <a class="chip" href="#s2">2. Build from Strengths</a>
+        <a class="chip" href="#s3">3. Progression of Support</a>
+        <a class="chip" href="#s4">4. Conditions</a>
+        <a class="chip" href="#s5">5. Change Management</a>
+        <a class="chip" href="#s6">6. Planning to Action</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- SECTION 1 -->
+    <section id="s1" class="card">
+      <div class="kicker">Section 1</div>
+      <h2>Start with Purpose and Alignment</h2>
+      <p class="meta">Frame student programs as aligned vehicles for your broader learning vision—not as add‑ons.</p>
+      <h3>Leadership Lens</h3>
+      <ul>
+        <li>How does this connect to the district vision or graduate profile?</li>
+        <li>Which outcomes will show readiness, creativity, or social impact?</li>
+        <li>How will we message this alignment to staff, students, and community?</li>
+      </ul>
+      <h3>Programmatic Lens</h3>
+      <ul>
+        <li>Which initiatives (digital citizenship, PBL, STEM) can we link or amplify?</li>
+        <li>Which frameworks (ISTE Standards, Intel® Skills for Innovation) will ground design?</li>
+      </ul>
+      <h3>Student Voice</h3>
+      <ul>
+        <li>How might students help define what “innovation” means in their context?</li>
+        <li>Can student representatives co‑craft goals or lead communication?</li>
+      </ul>
+      <details>
+        <summary>💡 Example Programs / Connections</summary>
+        <ul>
+          <li><strong>AI Innovator Studio + Challenge</strong> → problem‑solving, ethical reasoning, collaboration.</li>
+          <li><strong>Data Dunkers</strong> → data literacy, teamwork, authentic application through sport analytics.</li>
+          <li><strong>Student Help Desk</strong> → digital citizenship and leadership via visible service learning.</li>
+          <li><strong>Girls Who Game</strong> → inclusive STEM confidence aligned to SFI collaboration & creativity.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="s2" class="card">
+      <div class="kicker">Section 2</div>
+      <h2>Build from Strengths, Not Gaps</h2>
+      <p class="meta">Map what’s already working, then evolve small groups into broader innovation pathways.</p>
+      <h3>Leadership Lens</h3>
+      <ul>
+        <li>Which experiences already demonstrate creativity, collaboration, or tech fluency?</li>
+        <li>Which teacher/coach groups (robotics, STEM, coding, esports) are natural hubs?</li>
+        <li>What friction can we remove and how do we give these efforts visibility?</li>
+      </ul>
+      <h3>Programmatic Lens</h3>
+      <ul>
+        <li>Create an <em>asset map</em> of classes (coding/robotics), clubs (STEM, Girls Who Game, Esports), and events (STEM Night).</li>
+        <li>Identify shared skills (problem‑solving, teamwork, ethical tech) and needed scaffolds.</li>
+      </ul>
+      <h3>Student Voice</h3>
+      <ul>
+        <li>Invite students from these groups to share what enabled success.</li>
+        <li>Ask: “What would help more students join and persist?”</li>
+      </ul>
+      <details>
+        <summary>💡 Example Programs / Extensions</summary>
+        <ul>
+          <li><strong>Hack‑a‑thon / Innovation Sprint</strong> → weekend challenge bringing robotics, coding, and design clubs together to prototype community solutions.</li>
+          <li><strong>Girls Who Game</strong> → game‑based design for equity; connects to STEM concepts.</li>
+          <li><strong>Esports Analytics Team</strong> → students apply data & strategy while building collaboration and communication.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="s3" class="card">
+      <div class="kicker">Section 3</div>
+      <h2>Create a Progression of Support</h2>
+      <p class="meta">Design a system where <strong>skills & strategies</strong> and <strong>opportunities</strong> progress together over time. Use your <em>Spectrum of Opportunities</em> (Lesson → Routine → Event → Project → Program).</p>
+
+      <h3>Step 1 — Map the Skills & Strategies (Horizontal: K–12 Progression)</h3>
+      <p>List the key competencies to develop by grade band, then note where they currently appear.</p>
+      <table>
+        <thead>
+          <tr><th>Competency</th><th>Elementary</th><th>Middle</th><th>High</th><th>Notes</th></tr>
+        </thead>
+        <tbody contenteditable="true" class="edit">
+          <tr><td>Computational → Data → AI Literacy</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Collaboration → Leadership → Coaching</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Design Thinking → Innovation → Entrepreneurship</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Digital Citizenship → Ethical Reasoning → Social Impact</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="notice"><strong>Note:</strong> Intel® <em>Skills for Innovation Starter Packs</em> can serve as the <u>entry content</u> or first‑round experiences at <strong>every tier</strong> below (Lesson → Program), ensuring a coherent starting point.</div>
+
+      <h3>Step 2 — Map the Continuum of Opportunities (Vertical)</h3>
+      <table>
+        <thead>
+          <tr><th>Opportunity Tier</th><th>Description</th><th>Example Entry Points</th><th>Leader Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lesson</strong></td>
+            <td>Short, structured classroom experience introducing innovation skills.</td>
+            <td>Digital citizenship or AI ethics mini‑lesson using an <em>SFI Starter Pack</em>.</td>
+            <td>Provide a lesson library and coaching for teachers.</td>
+          </tr>
+          <tr>
+            <td><strong>Routine</strong></td>
+            <td>Ongoing weekly practice or reflection that reinforces habits.</td>
+            <td>“Innovation Moment” Friday; student blog using <em>SFI</em> reflection prompts.</td>
+            <td>Protect time in schedules for repetition and reflection.</td>
+          </tr>
+          <tr>
+            <td><strong>Event</strong></td>
+            <td>One‑day or multi‑day shared experience.</td>
+            <td>Hack‑a‑thon; Family STEM Night with <em>SFI Starter Pack</em> activities.</td>
+            <td>Supply space, resources, and community partners.</td>
+          </tr>
+          <tr>
+            <td><strong>Project</strong></td>
+            <td>Multi‑week student‑driven application.</td>
+            <td>AI Innovator Studio mini‑challenge; Girls Who Game sprint grounded in <em>SFI</em>.</td>
+            <td>Provide mentor checkpoints and clear rubrics.</td>
+          </tr>
+          <tr>
+            <td><strong>Program</strong></td>
+            <td>Sustained system‑wide or capstone experience.</td>
+            <td>Data Dunkers; Esports League; Innovation Academy leveraging <em>SFI</em> as foundation.</td>
+            <td>Align policy, budget, and communication plans.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Step 3 — Align Skills & Opportunities</h3>
+      <p>Plot your current experiences on a two‑axis map (K–12 skills progression × Opportunity spectrum). Identify gaps and next placements.</p>
+      <div class="help"><strong>Facilitator Prompt:</strong> “How can we design continuity so students experience increasing autonomy and complexity as they move through the system?”</div>
+      <p><strong>Outcome:</strong> A district‑wide <em>Innovation Map</em> showing how skills, opportunities, and <em>SFI Starter Packs</em> interconnect to provide equitable, progressive access.</p>
+      <details>
+        <summary>💡 Example Mapping Exercise Output</summary>
+        <ul>
+          <li><strong>Elementary:</strong> SFI lesson on digital footprints (Lesson) + Maker Morning (Event)</li>
+          <li><strong>Middle:</strong> Coding Club (Routine) + Hack‑a‑thon (Event) + Interest‑Driven Innovation Class (Project)</li>
+          <li><strong>High:</strong> AI Innovator Challenge (Project/Program) + Data Dunkers (Program) + Student Help Desk (Routine/Leadership)</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="s4" class="card">
+      <div class="kicker">Section 4</div>
+      <h2>Focus on Conditions, Not Just Content</h2>
+      <p class="meta">Innovation thrives when conditions support risk‑taking, time, and recognition.</p>
+      <h3>Leadership Lens</h3>
+      <ul>
+        <li>Create permission to experiment and iterate.</li>
+        <li>Recognize creativity and persistence—not just final products.</li>
+      </ul>
+      <h3>Programmatic Lens</h3>
+      <ul>
+        <li>Adjust time, tools, and space for collaboration.</li>
+        <li>Use cross‑disciplinary teams or advisory periods for innovation.</li>
+      </ul>
+      <h3>Student Voice</h3>
+      <ul>
+        <li>Co‑define success metrics and “impact” with students.</li>
+      </ul>
+      <details>
+        <summary>💡 Example System Moves</summary>
+        <ul>
+          <li>Innovation Days or flex Fridays.</li>
+          <li>Micro‑grants for student projects.</li>
+          <li>District‑wide storytelling via student‑produced media.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section id="s5" class="card">
+      <div class="kicker">Section 5</div>
+      <h2>Embed Change Management Practices</h2>
+      <p class="meta">Treat implementation as an adaptive process, not a one‑time rollout.</p>
+      <h3>Leadership Lens</h3>
+      <ul>
+        <li>Identify champions at multiple levels (teacher, student, admin).</li>
+        <li>Build storytelling into change—celebrate small wins early and often.</li>
+      </ul>
+      <h3>Programmatic Lens</h3>
+      <ul>
+        <li>Run short pilot cycles (6–8 weeks) with reflection checkpoints.</li>
+        <li>Collect quick data on engagement and impact to iterate.</li>
+      </ul>
+      <h3>Student Voice</h3>
+      <ul>
+        <li>Use student reflection artifacts—60‑second videos, blogs, or innovation journals.</li>
+      </ul>
+      <details>
+        <summary>💡 Example Tools</summary>
+        <ul>
+          <li><strong>Innovation Dashboard</strong> to track participation & reflections.</li>
+          <li><strong>Feedback Loops</strong> with exit tickets or AI‑assisted summaries.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section id="s6" class="card">
+      <div class="kicker">Section 6</div>
+      <h2>From Planning to Action</h2>
+      <p class="meta">Move ideas into first‑steps planning.</p>
+      <table>
+        <thead>
+          <tr><th>Step</th><th>Leadership Actions</th><th>Program Actions</th><th>Student Role</th><th>Metrics / Artifacts</th></tr>
+        </thead>
+        <tbody contenteditable="true" class="edit">
+          <tr><td>Define Vision</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Map Strengths</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Choose Pilot(s)</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Build Conditions</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Reflect & Share</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="help"><strong>90‑Day Prompt:</strong> “What is one student‑centered innovation opportunity we can launch in the next 90 days—and what conditions will make it thrive?”</div>
+      <p class="pill">Tip: Pair each pilot with a simple recognition step (badge, certificate, or gallery share).</p>
+    </section>
+
+    <p class="footer">© Your District • Implementing Innovation Series • Shareable planning guide for live facilitation and follow‑up.</p>
+  </main>
+</body>
+</html>
