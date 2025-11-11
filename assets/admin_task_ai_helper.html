@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Task AI Helper</title>
+  <style>
+    :root{
+      --bg:#f7f8fb;--card:#ffffff;--ink:#1f2937;--muted:#6b7280;--accent:#3b82f6;--accent-2:#0ea5e9;--good:#16a34a;--warn:#f59e0b;--danger:#ef4444;--shadow:0 10px 25px rgba(0,0,0,.06);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--ink);background:var(--bg)}
+    header{position:sticky;top:0;background:linear-gradient(180deg,#ffffff 0%,#ffffffcc 60%,#ffffff00);backdrop-filter:saturate(1.2) blur(6px);z-index:10;border-bottom:1px solid #eef0f5}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    .title{display:flex;gap:16px;align-items:center}
+    .title h1{margin:0;font-size:24px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#eef4ff;color:#2c4cff;font-size:12px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    h2{margin:0 0 10px;font-size:18px}
+    h3{margin:14px 0 6px;font-size:15px;color:var(--muted)}
+    p{margin:8px 0;color:var(--ink)}
+    small, .hint{color:var(--muted)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    button, .btn{appearance:none;border:0;border-radius:12px;padding:10px 12px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;box-shadow:0 3px 10px rgba(59,130,246,.25)}
+    button.secondary{background:#eef0f5;color:#0f172a;box-shadow:none}
+    button.ghost{background:#ffffff;border:1px solid #e5e7eb;color:#111827}
+    button.link{background:transparent;color:var(--accent);padding:0}
+    input, select, textarea{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff}
+    textarea{min-height:110px;resize:vertical}
+    .cols{display:grid;gap:10px}
+    @media(min-width:720px){.cols.two{grid-template-columns:1fr 1fr}.cols.three{grid-template-columns:repeat(3,1fr)}}
+    .badge{background:#f1f5f9;color:#475569;border-radius:999px;font-size:12px;padding:4px 10px}
+    .kicker{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .steps{display:flex;gap:8px;flex-wrap:wrap}
+    .step{background:#eef0f5;border-radius:12px;padding:8px 10px;font-size:12px}
+    .step.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
+    .list{display:grid;gap:8px}
+    .row{display:grid;gap:8px;grid-template-columns:1fr 180px}
+    .row .bucket{width:100%}
+    .bucketTag{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#f1f5f9;color:#334155;font-size:12px}
+    .copy{display:inline-flex;gap:8px;align-items:center}
+    .card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:12px}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .inline{display:flex;align-items:center;gap:8px}
+    .success{color:var(--good)}
+    .warning{color:var(--warn)}
+    .danger{color:var(--danger)}
+    .footer-note{font-size:12px;color:var(--muted)}
+    .checkbox{display:flex;gap:10px;align-items:flex-start}
+    .hr{height:1px;background:#eef0f5;margin:12px 0}
+    .save-list{display:flex;flex-direction:column;gap:8px}
+    .item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px;border:1px solid #e5e7eb;border-radius:10px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="title">
+        <div class="pill" title="Interactive Guide">Admin Task AI Helper</div>
+        <h1>Use AI to Improve Everyday Administrative Work</h1>
+      </div>
+      <div class="kicker">
+        <div class="steps">
+          <div class="step active" id="sbadge1">1. Identify Tasks</div>
+          <div class="step" id="sbadge2">2. Frame</div>
+          <div class="step" id="sbadge3">3. Start</div>
+          <div class="step" id="sbadge4">4. Refine</div>
+          <div class="step" id="sbadge5">5. Test</div>
+          <div class="step" id="sbadge6">6. Save & Share</div>
+        </div>
+        <span class="footer-note">Avoid pasting sensitive data. Use summaries or sample data.</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap grid cols-2" style="margin-top:12px">
+
+    <!-- STEP 1: Identify Tasks -->
+    <section id="step1">
+      <h2>Step 1 — Identify Your Work Tasks</h2>
+      <p>List your recurring administrative tasks, then sort each into a helpful bucket. Keep it job‑focused (no sensitive data).</p>
+      <div class="cols two">
+        <div>
+          <h3>Add a task</h3>
+          <div class="row">
+            <input id="taskInput" placeholder="e.g., Send tour confirmations; Clean up inquiry spreadsheet; Build monthly newsletter" />
+            <select id="taskBucket" class="bucket">
+              <option value="Automate-ish">Automate‑ish</option>
+              <option value="Draft & Review">Draft & Review</option>
+              <option value="Research & Compare">Research & Compare</option>
+              <option value="Data & Tracking">Data & Tracking</option>
+            </select>
+          </div>
+          <div class="toolbar" style="margin-top:8px">
+            <button id="addTask">Add task</button>
+            <button class="secondary" id="exportTasks">Copy task table</button>
+          </div>
+          <p class="hint">Tip: Start with 8–10 tasks you do weekly or seasonally.</p>
+        </div>
+        <div>
+          <h3>Your task list</h3>
+          <div id="taskList" class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: Frame the Conversation -->
+    <section id="step2">
+      <h2>Step 2 — Frame the Conversation (before you prompt)</h2>
+      <p>Clarify the context, define a reusable partner “frame,” and specify the output you want.</p>
+      <div class="cols two">
+        <div>
+          <h3>Context (paste or write)</h3>
+          <textarea id="context" placeholder="Describe your situation without PII. Example: We handle 40–60 admissions inquiries weekly. We send confirmations, track tours, and follow up with families. We use Excel for the web and Forms."></textarea>
+          <div class="toolbar" style="margin-top:8px">
+            <button class="secondary" id="copyContext">Copy context</button>
+            <button class="ghost" id="saveContext">Save as reusable context</button>
+          </div>
+          <h3 style="margin-top:14px">Thought‑partner frame</h3>
+          <textarea id="persona" placeholder="Define how AI should collaborate. Example: For this chat, act as an experienced school office operations partner. Offer practical options, call out risks, and ask clarifying questions. Keep answers concise and step‑wise."></textarea>
+          <div class="toolbar" style="margin-top:8px">
+            <button class="secondary" id="copyPersona">Copy frame</button>
+            <button class="ghost" id="savePersona">Save as reusable frame</button>
+          </div>
+        </div>
+        <div>
+          <h3>Output focus</h3>
+          <div class="cols two">
+            <div>
+              <label class="hint">Action type</label>
+              <select id="actionType">
+                <option>Analyze</option>
+                <option>Evaluate</option>
+                <option>Create</option>
+                <option>Summarize</option>
+                <option>Compare</option>
+                <option>Plan</option>
+                <option>Predict</option>
+                <option>Explain formula</option>
+              </select>
+            </div>
+            <div>
+              <label class="hint">Deliverable</label>
+              <select id="deliverable">
+                <option>Email draft</option>
+                <option>Checklist</option>
+                <option>Procedure/SOP</option>
+                <option>Spreadsheet formula tips</option>
+                <option>Policy summary</option>
+                <option>Step‑by‑step plan</option>
+                <option>Comparison table</option>
+              </select>
+            </div>
+          </div>
+          <h3 style="margin-top:12px">Build your starter prompt</h3>
+          <textarea id="prompt" placeholder="Your starter prompt will appear here…"></textarea>
+          <div class="toolbar" style="margin-top:8px">
+            <button id="generatePrompt">Generate prompt</button>
+            <button class="secondary" id="copyPrompt">Copy prompt</button>
+          </div>
+          <p class="hint">Note: Open your preferred AI tool manually in a new tab and paste the prompt there.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: Start the Conversation (no embeds) -->
+    <section id="step3">
+      <h2>Step 3 — Start the Conversation</h2>
+      <p>Open your AI chat tool in a separate tab. Paste your <strong>context</strong> and <strong>thought‑partner frame</strong> first, then your starter prompt. Use sample data only.</p>
+      <div class="card">
+        <div class="actions">
+          <button class="secondary" id="copyAll">Copy: context + frame + prompt</button>
+          <span class="hint">You’ll paste this block into your AI chat.</span>
+        </div>
+        <div class="hr"></div>
+        <h3>Reflection notes</h3>
+        <textarea id="notes" placeholder="What worked? What needs improvement? What did the AI miss?"></textarea>
+      </div>
+    </section>
+
+    <!-- STEP 4: Refine & Reflect -->
+    <section id="step4">
+      <h2>Step 4 — Refine & Reflect</h2>
+      <p>Iterate by appending targeted follow‑ups. Select to append below, copy, then paste back into your chat.</p>
+      <div class="actions" style="margin-bottom:10px">
+        <button class="ghost" data-add="Revise for clarity and concision. Keep it under 150 words.">Revise for clarity</button>
+        <button class="ghost" data-add="Expand with 3 concrete examples relevant to school administrative workflows.">Expand with examples</button>
+        <button class="ghost" data-add="Identify potential risks, data privacy concerns, and failure modes in this approach.">Add risks</button>
+        <button class="ghost" data-add="Provide spreadsheet formulas for Excel for the web. Explain where each formula goes.">Add Excel formulas</button>
+        <button class="ghost" data-add="Convert this into a step‑by‑step checklist with checkboxes.">Make a checklist</button>
+      </div>
+      <textarea id="refined" placeholder="Your refined follow‑up prompt will appear here…"></textarea>
+      <div class="toolbar" style="margin-top:8px">
+        <button class="secondary" id="copyRefined">Copy refined prompt</button>
+      </div>
+    </section>
+
+    <!-- STEP 5: Test Perspectives -->
+    <section id="step5">
+      <h2>Step 5 — Test Your Solution</h2>
+      <p>Probe from other perspectives to catch blind spots. (Examples: different stakeholder viewpoints, policy/records compliance, accessibility.)</p>
+      <div class="cols two">
+        <div>
+          <label class="hint">Add a perspective</label>
+          <input id="perspectiveInput" placeholder="e.g., Accessibility and language support; Records retention; Family viewpoint" />
+          <div class="toolbar" style="margin-top:8px">
+            <button id="addPerspective">Add perspective</button>
+            <button class="secondary" id="clearPerspectives">Clear</button>
+          </div>
+          <div id="perspectiveList" class="list" style="margin-top:8px"></div>
+        </div>
+        <div>
+          <h3>Perspective prompt</h3>
+          <textarea id="perspectivePrompt" placeholder="Combined perspective prompt will appear here…"></textarea>
+          <div class="toolbar" style="margin-top:8px">
+            <button class="secondary" id="copyPerspective">Copy perspective prompt</button>
+          </div>
+          <h3 style="margin-top:10px">Insights from testing</h3>
+          <textarea id="perspectiveNotes" placeholder="Note what changed after testing from different perspectives."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6: Save & Share -->
+    <section id="step6">
+      <h2>Step 6 — Save & Share</h2>
+      <p>Export your work or save reusable blocks for next time.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Export session</h3>
+          <p class="hint">Creates a .txt file with your tasks, context, frame, prompts, and notes.</p>
+          <button id="downloadAll">Download .txt</button>
+        </div>
+        <div class="card">
+          <h3>Reusable Contexts</h3>
+          <div class="save-list" id="contextList"></div>
+        </div>
+        <div class="card">
+          <h3>Reusable Frames</h3>
+          <div class="save-list" id="personaList"></div>
+        </div>
+      </div>
+      <p class="footer-note" style="margin-top:12px">Quality & Safety: Verify all outputs, avoid PII, and add an attribution footer to documents (e.g., “Drafted with AI and reviewed by ____ on ____”).</p>
+    </section>
+
+  </main>
+
+  <script>
+    // Utility helpers
+    const $ = (q)=>document.querySelector(q);
+    const $$ = (q)=>document.querySelectorAll(q);
+    const copy = async (text)=>{ try{ await navigator.clipboard.writeText(text); alert('Copied to clipboard'); }catch(e){ console.log(e); } };
+    const sanitize = (s)=> (s||'').trim();
+
+    // Step badges active state
+    function setActive(step){ for(let i=1;i<=6;i++){ const el = $('#sbadge'+i); if(!el) continue; el.classList.toggle('active', i===step); } }
+
+    // TASKS
+    const taskListEl = $('#taskList');
+    const tasks = [];
+    function renderTasks(){
+      taskListEl.innerHTML = '';
+      if(tasks.length===0){ taskListEl.innerHTML = '<div class="hint">No tasks yet. Add a few above.</div>'; return; }
+      tasks.forEach((t,idx)=>{
+        const row = document.createElement('div');
+        row.className='row';
+        const left = document.createElement('div');
+        left.innerHTML = `<div><strong>${t.name}</strong></div>`;
+        const right = document.createElement('div');
+        const select = document.createElement('select');
+        ['Automate-ish','Draft & Review','Research & Compare','Data & Tracking'].forEach(b=>{
+          const opt = document.createElement('option');
+          opt.value=b; opt.textContent=b; if(b===t.bucket) opt.selected=true; select.appendChild(opt);
+        });
+        select.className='bucket';
+        select.addEventListener('change',()=>{ t.bucket = select.value; });
+        right.appendChild(select);
+        row.appendChild(left); row.appendChild(right);
+        taskListEl.appendChild(row);
+      });
+    }
+    $('#addTask').addEventListener('click',()=>{
+      const name = sanitize($('#taskInput').value);
+      const bucket = $('#taskBucket').value;
+      if(!name) return;
+      tasks.push({name, bucket});
+      $('#taskInput').value='';
+      renderTasks(); setActive(2);
+      document.getElementById('step2').scrollIntoView({behavior:'smooth'});
+    });
+    $('#exportTasks').addEventListener('click',()=>{
+      if(tasks.length===0) return;
+      const header = 'Task\tBucket';
+      const rows = tasks.map(t=>`${t.name}\t${t.bucket}`).join('\n');
+      copy(header+'\n'+rows);
+    });
+
+    // FRAME BUILDING
+    function buildPrompt(){
+      const ctx = sanitize($('#context').value);
+      const frame = sanitize($('#persona').value);
+      const action = $('#actionType').value;
+      const del = $('#deliverable').value;
+      let starter = '';
+      if(frame) starter += frame + '\n\n';
+      if(ctx) starter += 'Context: '+ctx + '\n\n';
+      starter += `Goal: ${action} and produce a ${del}. Ask 3 clarifying questions first if needed. Provide step-by-step output. Avoid sensitive data.`;
+      $('#prompt').value = starter;
+    }
+    $('#generatePrompt').addEventListener('click',()=>{ buildPrompt(); setActive(3); document.getElementById('step3').scrollIntoView({behavior:'smooth'}); });
+    $('#copyPrompt').addEventListener('click',()=> copy($('#prompt').value));
+    $('#copyContext').addEventListener('click',()=> copy($('#context').value));
+    $('#copyPersona').addEventListener('click',()=> copy($('#persona').value));
+
+    // Start conversation: copy all
+    $('#copyAll').addEventListener('click',()=>{
+      const block = [sanitize($('#context').value), sanitize($('#persona').value), sanitize($('#prompt').value)]
+        .filter(Boolean).join('\n\n');
+      copy(block);
+    });
+
+    // Refine buttons
+    const refined = $('#refined');
+    $$('#step4 .ghost').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const add = btn.getAttribute('data-add');
+        const base = sanitize($('#prompt').value);
+        refined.value = (base ? base + '\n\n' : '') + add;
+        setActive(4);
+      });
+    });
+    $('#copyRefined').addEventListener('click',()=> copy(refined.value));
+
+    // Perspectives
+    const perspectives = [];
+    function renderPerspectives(){
+      const list = $('#perspectiveList');
+      list.innerHTML = perspectives.length? '' : '<div class="hint">No perspectives added yet.</div>';
+      perspectives.forEach((p,i)=>{
+        const div = document.createElement('div');
+        div.className='item';
+        div.innerHTML = `<div>${p}</div>`;
+        const rm = document.createElement('button');
+        rm.className='secondary'; rm.textContent='Remove';
+        rm.addEventListener('click',()=>{ perspectives.splice(i,1); renderPerspectives(); buildPerspectivePrompt(); });
+        div.appendChild(rm); list.appendChild(div);
+      });
+    }
+    function buildPerspectivePrompt(){
+      const base = sanitize($('#prompt').value);
+      if(perspectives.length===0){ $('#perspectivePrompt').value = base; return; }
+      const add = 'Evaluate the above solution from these perspectives: '+ perspectives.map(p=>`[${p}]`).join(', ') + '. Identify gaps, risks, and concrete improvements.';
+      $('#perspectivePrompt').value = (base? base + '\n\n' : '') + add;
+    }
+    $('#addPerspective').addEventListener('click',()=>{
+      const v = sanitize($('#perspectiveInput').value);
+      if(!v) return; perspectives.push(v); $('#perspectiveInput').value=''; renderPerspectives(); buildPerspectivePrompt(); setActive(5);
+    });
+    $('#clearPerspectives').addEventListener('click',()=>{ perspectives.splice(0,perspectives.length); renderPerspectives(); buildPerspectivePrompt(); });
+    $('#copyPerspective').addEventListener('click',()=> copy($('#perspectivePrompt').value));
+
+    // Reusable snippets via localStorage
+    function loadSaved(key){ try{ return JSON.parse(localStorage.getItem(key)||'[]'); }catch(e){ return []; } }
+    function saveSaved(key, arr){ localStorage.setItem(key, JSON.stringify(arr)); }
+
+    function renderSaved(listEl, key, copyLabel){
+      const data = loadSaved(key);
+      listEl.innerHTML = data.length? '' : '<div class="hint">No saved items yet.</div>';
+      data.forEach((it,idx)=>{
+        const row = document.createElement('div'); row.className='item';
+        const left = document.createElement('div'); left.innerHTML = `<strong>${it.name || '(unnamed)'}</strong><div class="hint">${(it.text||'').slice(0,80)}${(it.text||'').length>80?'…':''}</div>`;
+        const right = document.createElement('div'); right.className='actions';
+        const btnUse = document.createElement('button'); btnUse.className='secondary'; btnUse.textContent=copyLabel; btnUse.addEventListener('click',()=> copy(it.text));
+        const btnLoad = document.createElement('button'); btnLoad.className='ghost'; btnLoad.textContent='Load here'; btnLoad.addEventListener('click',()=>{
+          if(key==='contexts'){ $('#context').value=it.text; } else { $('#persona').value=it.text; }
+          alert('Loaded into editor above');
+        });
+        const btnDelete = document.createElement('button'); btnDelete.className='secondary'; btnDelete.textContent='Delete'; btnDelete.addEventListener('click',()=>{
+          const arr = loadSaved(key); arr.splice(idx,1); saveSaved(key,arr); renderSaved(listEl,key,copyLabel);
+        });
+        right.appendChild(btnUse); right.appendChild(btnLoad); right.appendChild(btnDelete);
+        row.appendChild(left); row.appendChild(right); listEl.appendChild(row);
+      });
+    }
+
+    function addSaved(key, text){
+      const name = prompt('Name this reusable item:');
+      const arr = loadSaved(key); arr.unshift({name:name||'', text}); saveSaved(key,arr);
+    }
+
+    const contextList = $('#contextList');
+    const personaList = $('#personaList');
+    function refreshSaved(){ renderSaved(contextList,'contexts','Copy context'); renderSaved(personaList,'personas','Copy frame'); }
+    refreshSaved();
+
+    $('#saveContext').addEventListener('click',()=>{
+      const text = sanitize($('#context').value); if(!text) return alert('Nothing to save');
+      addSaved('contexts', text); refreshSaved();
+    });
+    $('#savePersona').addEventListener('click',()=>{
+      const text = sanitize($('#persona').value); if(!text) return alert('Nothing to save');
+      addSaved('personas', text); refreshSaved();
+    });
+
+    // Download all as txt
+    function download(filename, text){
+      const a = document.createElement('a');
+      a.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text));
+      a.setAttribute('download', filename);
+      a.style.display='none'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+    $('#downloadAll').addEventListener('click',()=>{
+      const lines = [];
+      lines.push('# Admin Task AI Helper Export');
+      lines.push('');
+      lines.push('## Tasks');
+      tasks.forEach(t=>lines.push(`- ${t.name} [${t.bucket}]`));
+      lines.push('');
+      lines.push('## Context');
+      lines.push($('#context').value||'');
+      lines.push('');
+      lines.push('## Thought‑partner frame');
+      lines.push($('#persona').value||'');
+      lines.push('');
+      lines.push('## Starter prompt');
+      lines.push($('#prompt').value||'');
+      lines.push('');
+      lines.push('## Refined prompt');
+      lines.push($('#refined').value||'');
+      lines.push('');
+      lines.push('## Perspectives');
+      perspectives.forEach(p=>lines.push('- '+p));
+      lines.push('');
+      lines.push('## Perspective prompt');
+      lines.push($('#perspectivePrompt').value||'');
+      lines.push('');
+      lines.push('## Notes');
+      lines.push($('#notes').value||'');
+      const txt = lines.join('\n');
+      download('admin-task-ai-helper.txt', txt);
+    });
+
+    // Improve step highlighting on scroll (simple)
+    const stepEls=[['step1',1],['step2',2],['step3',3],['step4',4],['step5',5],['step6',6]];
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ const found=stepEls.find(s=>s[0]===e.target.id); if(found) setActive(found[1]); } });
+    },{threshold:.3});
+    stepEls.forEach(([id])=>{ const el=document.getElementById(id); if(el) io.observe(el); })
+  </script>
+</body>
+</html>
