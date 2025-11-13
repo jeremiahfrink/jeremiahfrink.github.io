@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Remix Lab — Ms. Alvarez Story</title>
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --ink:#1d2433;
+      --muted:#5a6473;
+      --accent:#2e3b8e; /* friendly to your palette */
+      --accent-soft:#e7ebff;
+      --ring:#d9defa;
+      --radius:14px;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.6}
+    .wrap{max-width:1000px;margin:40px auto;padding:0 18px 48px}
+    .header{
+      background:linear-gradient(180deg,#f3f5ff,transparent);
+      padding:28px 22px;
+      border-radius:var(--radius);
+      border:1px solid var(--ring);
+    }
+    h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px);letter-spacing:.2px}
+    .subtitle{color:var(--muted);margin:2px 0 10px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .tag{font-size:12px;color:var(--accent);background:var(--accent-soft);padding:6px 10px;border-radius:999px;border:1px solid var(--ring)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px}
+    .btn{
+      appearance:none;border:1px solid var(--ring);background:var(--card);color:var(--ink);
+      padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600
+    }
+    .btn:hover{border-color:#cfd5fb}
+    .section{
+      background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);
+      padding:4px 10px;margin-top:16px
+    }
+    details{border-radius:12px}
+    details + details{margin-top:10px}
+    summary{
+      list-style:none;cursor:pointer;padding:16px 14px;border-radius:12px;display:flex;align-items:flex-start;gap:10px
+    }
+    summary::-webkit-details-marker{display:none}
+    .dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px;background:var(--accent)}
+    .title{font-weight:750}
+    .slide{font-size:12px;color:var(--muted);margin-left:6px}
+    .content{padding:0 14px 16px 24px;color:var(--ink)}
+    .context{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
+    .note{color:var(--muted);font-size:14px}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .footer{margin-top:22px;color:var(--muted);font-size:14px}
+    /* nice readable paragraphs */
+    p{margin:10px 0}
+    .callout{
+      background:#fff9e8;border:1px solid #ffe1a6;border-radius:12px;padding:10px 12px;color:#7a5a00;margin:12px 0
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <h1>The Remix Lab — A Show-&-Tell Story</h1>
+      <div class="subtitle">Ms. Alvarez remixes her 7th-grade science project using the Remix Cycle (Reveal → Reframe → Redesign → Reflect + Ready).</div>
+      <div class="tags">
+        <span class="tag">Innovative Designer</span>
+        <span class="tag">Creative Communicator</span>
+        <span class="tag">Transformational Learning Principles</span>
+      </div>
+      <div class="controls">
+        <button class="btn" id="expandAll">Expand all</button>
+        <button class="btn" id="collapseAll">Collapse all</button>
+      </div>
+     
+    </header>
+
+    <!-- Context -->
+    <section class="context" id="context">
+      <strong>Context about Ms. Alvarez (Slides 1–2)</strong>
+      <p>Ms. Alvarez is a seventh-grade science teacher in her 12th year. She’s proud of her annual “Ecosystems Poster Project,” where students pick a biome and present climate, organisms, and food webs on tri-folds. The products look polished—but conversations at the science fair feel shallow. Students recite facts more than they explain interactions or relevance.</p>
+      <p>She wants student voice, real-world connection, and clearer reasoning without adding more time. That’s the moment she decides to try a remix.</p>
+    </section>
+
+    <!-- Reveal -->
+    <section class="section">
+      <details>
+        <summary>
+          <span class="dot"></span>
+    
+            <div class="title">Step 1 — Reveal: What is it really?</div>
+   
+        </summary>
+        <div class="content">
+          <p>Ms. Alvarez pulls out a stack of last year’s posters and studies them with fresh eyes. She asks, “What are students actually learning here?” The standards are present—food chains, climate data, species interactions—but the work is largely collection and display. The sentence she reads most is, “The desert is hot and dry.”</p>
+          <p>During presentations, English learners and quieter students contribute minimally. The project seems to reward tidy visual presentation more than scientific reasoning. When she maps the task against her goals, she sees missed chances for students to reason about cause-and-effect, connect to local issues, and own the way they communicate science.</p>
+          <div class="callout"><strong>Her reflection:</strong> Admitting that her favorite project wasn’t producing the depth she wanted was emotionally hard. Letting go of nostalgia became the first act of redesign.</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Reframe -->
+    <section class="section">
+      <details>
+        <summary>
+          <span class="dot"></span>
+ 
+            <div class="title">Step 2 — Reframe: What could it be?</div>
+
+        </summary>
+        <div class="content">
+          <p>She spreads the Transformational Learning Principles on her desk: <em>agency &amp; choice, authenticity, collaboration, iteration, reflection.</em> New questions emerge: “Where do students truly have agency? How could this connect to something real? What could they create that would matter to anyone beyond me?”</p>
+          <p>A recent community brief about flooding in the local creek surfaces. She wonders: what if students applied ecosystem understanding to a local stormwater problem and tried to <em>persuade</em> families to change a habit?</p>
+          <p>She reframes the goal: instead of <em>demonstrate knowledge of an ecosystem</em>, students will <em>use scientific reasoning to influence community habits that affect local ecosystems</em>. Same content, different purpose and audience.</p>
+          <div class="callout"><strong>Her reflection:</strong> She worried about losing structure: “If I open this up, will progress get messy? Will the science get diluted?” Naming that fear helped her plan guardrails instead of narrowing choice.</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Redesign -->
+    <section class="section">
+      <details>
+        <summary>
+          <span class="dot"></span>
+ 
+            <div class="title">Step 3 — Redesign: Bring it to life</div>
+  
+        </summary>
+        <div class="content">
+          <p>She renames the project: <strong>“Protect Our Creek: A 90-Second Public Message.”</strong> Students may choose a podcast PSA, vertical video, or one-page infographic that persuades families to adopt a stormwater-smart habit, backed by accurate reasoning.</p>
+          <p>To keep the two-week window, she structures a mini-sprint: curated readings and note-catching; team decision on a single habit; script or storyboard; peer feedback; production; revision with captions/alt text; and a class premiere with QR codes for families.</p>
+          <p>She introduces AI as an amplifier—drafting hooks, simplifying technical language for a family audience, suggesting storyboard beats—then models how to critique and correct it. Choice stays central; science stays non-negotiable.</p>
+          <div class="callout"><strong>Her reflection:</strong> The room got louder and progress looked different across groups. She fought the urge to impose a single format. Building simple supports (example snippets, sentence frames, a feedback checklist) balanced freedom with rigor.</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Reflect + Ready -->
+    <section class="section">
+      <details>
+        <summary>
+          <span class="dot"></span>
+
+            <div class="title">Step 4 — Reflect + Ready: Why it matters & how we’ll know</div>
+
+        </summary>
+        <div class="content">
+          <p>At the “Community Premiere,” families scan QR codes and listen. One team’s audio fades from running water to silence as they explain how nutrient runoff drives algae blooms that reduce dissolved oxygen. Parents nod; questions follow.</p>
+          <p>In class reflection, a student says, “Before, ecosystems were something we learned about. Now it feels like something we live in.” Ms. Alvarez updates her rubric to include: <em>uses science reasoning to influence real-world action</em>, and she keeps captions/alt text as an accessibility expectation.</p>
+          <p>She also adds a simple impact check: a QR survey for families about one new habit they learned. Responses roll in—evidence that the message traveled beyond the classroom.</p>
+          <div class="callout"><strong>Her reflection:</strong> Assessing creative work felt complex. Anchoring assessment to accuracy, audience-fit, clarity of reasoning, and evidence of iteration made grading transparent and fair.</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Recap / Cycle -->
+    <section class="section">
+      <details>
+        <summary>
+          <span class="dot"></span>
+ 
+            <div class="title">Quick Recap — The Remix Cycle in Action</div>
+
+        </summary>
+        <div class="content">
+          <p><strong>Reveal:</strong> Beautiful posters, thin reasoning. <br>
+             <strong>Reframe:</strong> Purpose &amp; audience shift via TLPs—agency, authenticity, collaboration, iteration. <br>
+             <strong>Redesign:</strong> 90-second public message with medium choice, feedback loop, accessibility. <br>
+             <strong>Reflect + Ready:</strong> Updated rubric, family premiere, simple impact check.</p>
+          <p><em>Remix = hold the standards; transform the purpose, audience, and process.</em></p>
+        </div>
+      </details>
+    </section>
+
+    <div class="footer">
+      Now identify your own “poster project,” then run it through these same four steps with light guardrails (choice menu + feedback checklist).
+    </div>
+  </div>
+
+  <script>
+    // Expand/Collapse all
+    const expandBtn = document.getElementById('expandAll');
+    const collapseBtn = document.getElementById('collapseAll');
+    const allDetails = () => Array.from(document.querySelectorAll('details'));
+
+    expandBtn.addEventListener('click', () => {
+      allDetails().forEach(d => d.open = true);
+    });
+
+    collapseBtn.addEventListener('click', () => {
+      allDetails().forEach(d => d.open = false);
+      // optional: keep Context visible
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
