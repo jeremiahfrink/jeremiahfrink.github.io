@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Bottleneck Puzzle – Problem-Solver Routine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card-bg: #ffffff;
+      --accent: #274b8a;
+      --accent-soft: #dfe6f7;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border-radius: 10px;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.25rem;
+      color: var(--accent);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    p {
+      line-height: 1.5;
+      margin: 0.25rem 0 0.5rem;
+    }
+
+    .tagline {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    .scenario-select {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 16px 18px;
+      margin: 12px 0 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    }
+
+    .scenario-options {
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.95rem;
+    }
+
+    .scenario-options label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .scenario-options input[type="radio"] {
+      margin: 0;
+    }
+
+    .scenario-custom {
+      margin-top: 6px;
+      padding-left: 22px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 8px 9px;
+      border-radius: 6px;
+      border: 1px solid #ccd3e3;
+      resize: vertical;
+      min-height: 40px;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .steps {
+      margin-top: 10px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .step-header {
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: #edf1fb;
+    }
+
+    .step-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .step-header span.step-number {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+    }
+
+    .step-toggle {
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .step-body {
+      padding: 10px 14px 14px;
+      display: none;
+    }
+
+    .step-card.open .step-body {
+      display: block;
+    }
+
+    .step-card.open .step-toggle {
+      transform: rotate(90deg);
+    }
+
+    .prompt-list {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0 0 0.5rem 0;
+      padding-left: 1.1rem;
+    }
+
+    .prompt-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .field-group {
+      margin-top: 0.5rem;
+    }
+
+    .field-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent-soft);
+    }
+
+    .copy-status {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>System Bottleneck Puzzle</h1>
+    <p class="tagline">
+      A routine for breaking apart real-world systems, using evidence to define the problem, and preparing for redesign.
+    </p>
+
+    <div>
+      <span class="pill">Problem-Solver</span>
+      <span class="pill">Computational Thinker (1.5a, 1.5c)</span>
+    </div>
+
+    <section class="scenario-select">
+      <h2>Step 0 – Choose Your Puzzle</h2>
+      <p class="hint">
+        Pick a system bottleneck at your school or in your classroom that behaves like a puzzle. You’ll use it for the rest of the steps.
+      </p>
+      <div class="scenario-options">
+        <label>
+          <input type="radio" name="scenario" value="Morning drop-off line">
+          Morning drop-off line is always slow and backed up
+        </label>
+        <label>
+          <input type="radio" name="scenario" value="Cafeteria lunch flow">
+          Cafeteria lunch line bottlenecks and students lose eating time
+        </label>
+        <label>
+          <input type="radio" name="scenario" value="Device checkout">
+          Device or Chromebook cart checkout causes delays at the start of class
+        </label>
+        <label>
+          <input type="radio" name="scenario" value="Printer queue">
+          Shared printer always has a long queue and jobs get stuck
+        </label>
+        <label>
+          <input type="radio" name="scenario" value="Custom">
+          <strong>Choose your own puzzle</strong>
+        </label>
+        <div class="scenario-custom">
+          <input type="text" id="customScenario" placeholder="Describe your bottleneck (e.g., dismissal routine, hallway transitions, etc.)">
+        </div>
+      </div>
+      <p class="hint">
+        Tip: This same routine can be used with students. As you work, notice which prompts or steps you might adapt for your grade level.
+      </p>
+    </section>
+
+    <section class="steps" id="steps">
+      <!-- PHASE 2A -->
+      <div class="step-card open">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 1</span>
+            Identify System Components
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Decompose the structure of your system. List all the pieces involved, without worrying about order (yet).
+          </p>
+          <ul class="prompt-list">
+            <li>Who are the actors or participants?</li>
+            <li>What <strong>physical or digital elements</strong> are involved?</li>
+            <li>What rules or constraints shape the system?</li>
+            <li>What resources flow through it (time, people, materials, information)?</li>
+            <li>What environmental or contextual factors affect it?</li>
+            <li>What human behaviors play a role?</li>
+          </ul>
+          <div class="field-group">
+            <div class="field-label">Components of this system</div>
+            <textarea id="components" placeholder="List each component or element here (you can use bullets, short phrases, or separate lines)."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 2B -->
+      <div class="step-card">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 2</span>
+            Map the Process &amp; Dependencies
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Turn the system into a rough flow or mini-algorithm. What usually happens, and in what order?
+          </p>
+          <ul class="prompt-list">
+            <li>What typically happens first?</li>
+            <li>What happens next?</li>
+            <li>Where are the decision points?</li>
+            <li>Which steps can happen in parallel, and which are strictly one-after-another?</li>
+            <li>What <strong>dependencies</strong> exist &mdash; which steps <strong>must</strong> come before or after others?</li>
+            <li>Where do rules or constraints interrupt or redirect the flow?</li>
+          </ul>
+          <div class="field-group">
+            <div class="field-label">Process / Flow of this system</div>
+            <textarea id="process" placeholder="Describe the sequence, branches, and key decision points. You can number steps or draw out the logic in words."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="step-card">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 3</span>
+            Find the Bottleneck or Failure Point
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Where does the system slow, jam, or break? This is your first clue to the real problem.
+          </p>
+          <ul class="prompt-list">
+            <li>Where does the flow become inefficient or frustrating?</li>
+            <li>Where do things pile up or get stuck?</li>
+            <li>Which step seems to cause delays or problems downstream?</li>
+            <li>Where do rules, constraints, or behaviors create friction?</li>
+          </ul>
+          <div class="field-group">
+            <div class="field-label">Bottleneck / failure point</div>
+            <textarea id="bottleneck" placeholder="Describe the key moment or location where things start to go wrong."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3.5 -->
+      <div class="step-card">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 4</span>
+            Create a Loose Problem Definition
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Based on what you see so far, create a <strong>working</strong> (hypothesis-level) problem statement. This will be revised later.
+          </p>
+          <ul class="prompt-list">
+            <li>How would you describe the problem in one sentence?</li>
+            <li>What do you think is causing the bottleneck?</li>
+            <li>What assumptions are built into this first definition?</li>
+          </ul>
+<p class="hint"><strong>Example of a loose problem definition:</strong><br>
+“In our morning drop-off system, the line backs up because cars all funnel into a single lane too early. 
+This appears to slow down the entire process, but we need more information to know if that’s the main cause.”</p>
+
+          <div class="field-group">
+            <div class="field-label">Loose / working problem definition</div>
+            <textarea id="looseProblem" placeholder="Write a simple 1–2 sentence description of the problem, even if it’s imperfect."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="step-card">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 5</span>
+            Identify Data to Confirm &amp; Clarify
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Move from hunches to evidence. Think in two parts: data you already have, and data you could collect to better understand what’s really going on.
+          </p>
+          <div class="two-column">
+            <div class="field-group">
+              <div class="field-label">1) Data we already have</div>
+              <p class="hint">
+                What existing evidence shows where and how the bottleneck happens?
+              </p>
+              <textarea id="dataExisting" placeholder="Examples: timing, counts, logs, observations, patterns you've noticed, reports, screenshots, etc."></textarea>
+            </div>
+            <div class="field-group">
+              <div class="field-label">2) Data we could collect</div>
+              <p class="hint">
+                What additional data would help you better understand the issue and start seeing possible solutions?
+              </p>
+              <textarea id="dataNew" placeholder="Examples: frequencies, flow rates, time per step, comparisons across days, student feedback, behavior patterns, etc."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 5 -->
+      <div class="step-card">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 6</span>
+            Refine the Problem Definition
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Rewrite your original problem definition using what you’ve learned from the system map and data thinking.
+          </p>
+          <ul class="prompt-list">
+            <li>How did your understanding change once you considered the data?</li>
+            <li>What is the real, evidence-informed problem?</li>
+            <li>What is no longer part of the problem?</li>
+          </ul>
+          <div class="field-group">
+            <div class="field-label">Refined, evidence-informed problem definition</div>
+            <textarea id="refinedProblem" placeholder="Write a clearer, more precise statement of the problem, grounded in how the system behaves and what the data suggests."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 6 (handoff) -->
+      <div class="step-card">
+        <div class="step-header">
+          <h3>
+            <span class="step-number">Step 7</span>
+            Ready for Innovative Designer
+          </h3>
+          <div class="step-toggle">▶</div>
+        </div>
+        <div class="step-body">
+          <p class="hint">
+            Focus: Pause before solution mode. You’ve prepared the ground for redesign by using puzzle-thinking and evidence.
+          </p>
+          <p>
+            Next step (for a future session or classroom activity): use your refined problem definition as the launchpad for the
+            <strong>Innovative Designer</strong> process: brainstorming, prototyping, testing, and iterating on new system designs.
+          </p>
+          <div class="field-group">
+            <div class="field-label">Notes for future redesign ideas (optional)</div>
+            <textarea id="futureNotes" placeholder="Capture any ideas you want to remember for a future redesign session, without solving the puzzle yet."></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-actions">
+      <button class="btn-primary" id="copyAllBtn">Copy all responses</button>
+      <span class="copy-status" id="copyStatus"></span>
+    </div>
+  </div>
+
+  <script>
+    // Toggle step cards open/closed
+    document.querySelectorAll('.step-card .step-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var card = header.parentElement;
+        card.classList.toggle('open');
+      });
+    });
+
+    // Default scenario text if a preset radio is chosen
+    const scenarioRadios = document.querySelectorAll('input[name="scenario"]');
+    const customScenarioInput = document.getElementById('customScenario');
+
+    scenarioRadios.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        if (this.value !== 'Custom') {
+          customScenarioInput.value = this.value;
+        } else {
+          customScenarioInput.focus();
+        }
+      });
+    });
+
+    // Copy all responses into clipboard as text
+    document.getElementById('copyAllBtn').addEventListener('click', function() {
+      const scenario = document.getElementById('customScenario').value.trim();
+      const components = document.getElementById('components').value.trim();
+      const process = document.getElementById('process').value.trim();
+      const bottleneck = document.getElementById('bottleneck').value.trim();
+      const looseProblem = document.getElementById('looseProblem').value.trim();
+      const dataExisting = document.getElementById('dataExisting').value.trim();
+      const dataNew = document.getElementById('dataNew').value.trim();
+      const refinedProblem = document.getElementById('refinedProblem').value.trim();
+      const futureNotes = document.getElementById('futureNotes').value.trim();
+
+      let text = "System Bottleneck Puzzle Responses\n\n";
+
+      if (scenario) {
+        text += "Chosen Puzzle / Scenario:\n" + scenario + "\n\n";
+      }
+
+      text += "Step 1 – System Components:\n" + (components || "[No entry]") + "\n\n";
+      text += "Step 2 – Process & Dependencies:\n" + (process || "[No entry]") + "\n\n";
+      text += "Step 3 – Bottleneck / Failure Point:\n" + (bottleneck || "[No entry]") + "\n\n";
+      text += "Step 4 – Loose Problem Definition:\n" + (looseProblem || "[No entry]") + "\n\n";
+      text += "Step 5 – Data We Already Have:\n" + (dataExisting || "[No entry]") + "\n\n";
+      text += "Step 5 – Data We Could Collect:\n" + (dataNew || "[No entry]") + "\n\n";
+      text += "Step 6 – Refined Problem Definition:\n" + (refinedProblem || "[No entry]") + "\n\n";
+      text += "Step 7 – Notes for Future Redesign (Innovative Designer):\n" + (futureNotes || "[No entry]") + "\n\n";
+
+      navigator.clipboard.writeText(text).then(function() {
+        const status = document.getElementById('copyStatus');
+        status.textContent = "All responses copied to clipboard.";
+        setTimeout(function() {
+          status.textContent = "";
+        }, 2500);
+      }).catch(function() {
+        const status = document.getElementById('copyStatus');
+        status.textContent = "Unable to copy. You can select and copy manually.";
+        setTimeout(function() {
+          status.textContent = "";
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>
