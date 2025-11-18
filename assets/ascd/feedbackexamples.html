@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subject-Specific Feedback Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --card-bg: #ffffff;
+      --accent: #304ffe;
+      --accent-soft: #e3e7ff;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border: #dddddd;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eef1ff, #f8f8fb);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      color: var(--text-muted);
+      max-width: 760px;
+      font-size: 0.98rem;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline span {
+      font-size: 1.1rem;
+    }
+
+    details {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-soft);
+      padding: 0.85rem 1rem;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .subject-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .subject-title {
+      font-weight: 650;
+      font-size: 1rem;
+    }
+
+    .subject-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: #f9f9ff;
+      transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    details[open] .chevron {
+      transform: rotate(90deg);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .subject-body {
+      margin-top: 0.75rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .subject-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .example-block {
+      margin-bottom: 0.7rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-md);
+      background: #f8f8ff;
+    }
+
+    .example-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .example-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-top: 0.2rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .example-text {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    @media (min-width: 720px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="tagline">
+        <span>●</span>
+        Rethinking Assessment in a Modern Age
+      </div>
+      <h1>Subject-Specific Feedback Moves</h1>
+      <p>
+        This page offers examples of how different subject areas can strengthen feedback practice in 
+        <strong>Section 2: Feedback in Today’s Classroom.</strong>
+        Each subject shows a key feedback move and one concrete way to build it into daily assessment.
+      </p>
+    </header>
+
+    <!-- Math -->
+    <details open>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Mathematics</div>
+          <div class="subject-subtitle">Respond to student strategies, not just answers.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In math, high-quality feedback highlights how students are thinking—what strategies they use, where their reasoning is strong,
+          and where a small shift could unlock understanding.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Focus feedback on strategy and reasoning</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Instead of: <em>“Wrong, check your work.”</em><br>
+            Use: <em>“I notice you used repeated addition here. How might a number line or array help you see the groups more clearly?”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use micro-feedback during work time</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            During math workshop, leave quick sticky-note comments like:
+            <em>“Try drawing a picture before you choose an operation.”</em> or 
+            <em>“You’ve got the right operation—now estimate first to see if your answer makes sense.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Build student-led error analysis</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            After a quiz, project one or two anonymous “favorite mistakes” and ask:
+            <em>“What do you think this student was trying to do? Where did the math go off track?”</em> 
+            Have students write one sentence of feedback to the “student.”
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- ELA -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">English Language Arts</div>
+          <div class="subject-subtitle">Guide stronger thinking, not just cleaner writing.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In ELA, feedback can help students strengthen claims, evidence, reasoning, and voice. It works best when it’s specific and 
+          tied to criteria they understand.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Target claims, evidence, and explanation</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Comment on an essay with: 
+            <em>“Your claim is clear. Now choose one quote that best supports it and add 2–3 sentences explaining why this quote matters.”</em>
+            Instead of just “Add more detail.”
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use a quick draft–feedback–revise cycle</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Have students submit only their thesis and one body paragraph. Give focused feedback on those pieces, then have students 
+            revise them before completing the full essay.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Anchor feedback with exemplars</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Share two sample paragraphs (one emerging, one strong) and ask:
+            <em>“Which is closer to your current writing? What’s one move from the strong example you could try in your next draft?”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Science -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Science</div>
+          <div class="subject-subtitle">Address misconceptions and strengthen explanations.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In science, feedback should surface and correct misconceptions, focus on how students connect evidence to ideas,
+          and encourage revision of models and explanations.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Name and nudge misconceptions</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Instead of: <em>“This is wrong.”</em><br>
+            Use: <em>“It sounds like you’re thinking heat is a substance that ‘moves into’ objects. How might we describe it instead using particle motion?”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use guiding questions tied to phenomena</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            On an explanation of a phenomenon, respond with:
+            <em>“What evidence from your investigation supports this idea?”</em> or 
+            <em>“How does your model show what happens to particles as temperature changes?”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Encourage model and explanation revision</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            After initial models, ask students to revise with a prompt:
+            <em>“Update your model to show what you learned from the lab. Write 1–2 sentences explaining what you changed and why.”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Social Studies -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Social Studies</div>
+          <div class="subject-subtitle">Push deeper sourcing and reasoning.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In social studies, feedback can strengthen how students use sources, build arguments, recognize bias, and 
+          connect past and present.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Focus feedback on sourcing and evidence</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            On a paragraph citing a source, write:
+            <em>“You used this source for your claim. Why is this a good source for this question? What makes it reliable or relevant?”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Prompt deeper reasoning about claims</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            When a student makes a claim, respond with:
+            <em>“You’ve stated your opinion. Add one piece of historical evidence that supports it and explain how they connect.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Invite perspective-taking in feedback</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            On a student’s interpretation of an event, ask:
+            <em>“How might someone from a different group at the time have viewed this event? Add one sentence from that perspective.”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- World Languages -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">World Languages</div>
+          <div class="subject-subtitle">Support communication clarity and confidence.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In world languages, feedback works best when it focuses on helping students communicate more clearly and confidently,
+          rather than simply correcting every error.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Prioritize meaning over perfection</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            On a spoken response, say:
+            <em>“Your meaning is clear and your pace is good. Let’s work on this one sound/structure next time: …”</em>
+            instead of correcting every small mistake.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use audio/video feedback for pronunciation</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Record a short response back to the student modeling correct pronunciation of a few tricky words they used, 
+            and invite them to repeat and re-record.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Offer sentence starters and rephrasing prompts</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            On a written task, instead of “Add more detail,” give 1–2 sentence stems in the target language that students can use 
+            to extend their ideas.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Specials -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Specials (Art, Music, PE, Tech, STEM, etc.)</div>
+          <div class="subject-subtitle">Give immediate, actionable, and growth-oriented feedback.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In specials, feedback is often most powerful when it is timely, specific, and focused on helping students refine their technique,
+          creativity, and performance over time.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Give immediate, bite-sized feedback during practice</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In music, while students rehearse, use quick comments like:
+            <em>“Try that phrase again, but focus only on your articulation.”</em> 
+            or 
+            <em>“Your rhythm is strong—now listen for your tone on the longer notes.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Highlight growth over time</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In art, respond to a portfolio with:
+            <em>“Compare your first and most recent piece. What’s one technique that has clearly improved? I notice…”</em> 
+            and add a specific observation.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use simple rubrics that balance skill and creativity</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In a tech/STEM project, give feedback on two dimensions: 
+            <em>“Functionality (Does it work?)”</em> and 
+            <em>“Design/Creativity (How user-friendly or original is it?)”</em>, 
+            and name one strength and one next step in each.
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</body>
+</html>

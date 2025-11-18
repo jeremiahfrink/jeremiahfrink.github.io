@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rethinking Assessment in a Modern Age – Interactive Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --card-bg: #ffffff;
+      --accent: #304ffe;
+      --accent-soft: #e3e7ff;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border: #dddddd;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eef1ff, #f8f8fb);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      letter-spacing: -0.03em;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      color: var(--text-muted);
+      max-width: 720px;
+      font-size: 0.98rem;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline span {
+      font-size: 1.1rem;
+    }
+
+    .intro-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.25rem 1rem;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 1.75rem;
+    }
+
+    .intro-card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-card p {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.75rem 0 0.25rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pill-list li {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: #f9f9ff;
+      color: var(--text-muted);
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    details {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      margin-bottom: 0.9rem;
+      box-shadow: var(--shadow-soft);
+      padding: 0.85rem 1rem;
+    }
+
+    details[open] {
+      background: #ffffff;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary .title {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    summary .subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: #f9f9ff;
+    }
+
+    details[open] .chevron {
+      transform: rotate(90deg);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .section-body {
+      margin-top: 0.65rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+    }
+
+    .prompt-block {
+      margin-top: 0.4rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-md);
+      background: #f8f8ff;
+    }
+
+    .prompt-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .prompt-block ul {
+      margin: 0.25rem 0 0.25rem 1.1rem;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .prompt-block li {
+      margin-bottom: 0.25rem;
+    }
+
+    .micro-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.15rem;
+    }
+
+    .section-tag span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    @media (min-width: 720px) {
+      header h1 {
+        font-size: 2.1rem;
+      }
+      .intro-card {
+        padding: 1.4rem 1.5rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="tagline">
+        <span>●</span>
+        Rethinking Assessment in a Modern Age
+      </div>
+      <h1>Interactive Assessment Redesign Guide</h1>
+      <p>
+        Use this page to walk through your own assessment task, step by step. Each section includes a short framing and reflective questions. 
+        Work with the <strong>same task</strong> all the way through to see how it evolves.
+      </p>
+    </header>
+
+    <section class="intro-card">
+      <h2>Step 0: Choose Your Assessment Task</h2>
+      <p>
+        Before you begin, pick <strong>one existing assessment or learning task</strong> you already use (quiz, project, writing prompt, lab, performance task, etc.). 
+        You will revisit this same task in every section.
+      </p>
+      <ul class="pill-list">
+        <li>Core classroom task</li>
+        <li>Real students, real context</li>
+        <li>Use it all the way through</li>
+      </ul>
+      <p class="note">
+        Tip: Pick something you’d actually be willing to adjust in the next few weeks.
+      </p>
+    </section>
+
+    <!-- Section 1 -->
+    <details open>
+      <summary>
+        <div>
+          <div class="section-tag"><span></span> Section 1</div>
+          <div class="title">What Makes This a Good Assessment?</div>
+          <div class="subtitle">Clarify purpose, type, and quality of your current task.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="section-body">
+        <p>
+          Start by naming what your task is really trying to measure and how well it does that job. 
+          This gives you a baseline before you add feedback, technology, or AI.
+        </p>
+
+        <div class="prompt-block">
+          <div class="prompt-label">Questions to ask yourself</div>
+          <ul>
+            <li>What is this task <strong>trying to assess</strong>? Write the learning goal in one clear sentence.</li>
+            <li>Is this primarily assessment <strong>for</strong> learning, <strong>as</strong> learning, or <strong>of</strong> learning?</li>
+            <li>What <strong>type</strong> of assessment is it (quick check, quiz, project, performance task, portfolio entry, etc.)?</li>
+            <li>What <strong>evidence of student thinking</strong> does this task actually give you?</li>
+            <li>Does the task allow for <strong>different ways</strong> students could show understanding, or is it very narrow?</li>
+            <li>Is the task <strong>equitable and accessible</strong> for the range of learners in your classroom?</li>
+          </ul>
+          <p class="micro-note">
+            Try to be descriptive, not judgmental. You’re just surfacing what the assessment currently is and does.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Section 2 -->
+    <details>
+      <summary>
+        <div>
+          <div class="section-tag"><span></span> Section 2</div>
+          <div class="title">Feedback: How Are You Responding to Student Learning?</div>
+          <div class="subtitle">Examine the feedback patterns around this task.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="section-body">
+        <p>
+          Feedback is where assessment turns into growth. Look at how, when, and why students currently receive feedback on this task.
+        </p>
+
+        <div class="prompt-block">
+          <div class="prompt-label">Questions to ask yourself</div>
+          <ul>
+            <li>How do students <strong>currently receive feedback</strong> on this task (comments, scores, conferences, rubrics, etc.)?</li>
+            <li>When does that feedback typically arrive—<strong>during</strong> the work, <strong>after</strong> submission, or both?</li>
+            <li>Would a student be able to tell, from your feedback, <strong>where they are now</strong> and <strong>what to do next</strong>?</li>
+            <li>How often is your feedback <strong>specific and actionable</strong> versus general (“good job,” “needs work,” etc.)?</li>
+            <li>Do students have a chance to <strong>revise or respond</strong> to your feedback, or is it one-and-done?</li>
+            <li>How do you help students <strong>interpret and use</strong> feedback (not just receive it)?</li>
+          </ul>
+          <p class="micro-note">
+            Optional: Imagine one student response to this task and draft one sentence of feedback on a strength and one on a next step.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Section 3 -->
+    <details>
+      <summary>
+        <div>
+          <div class="section-tag"><span></span> Section 3</div>
+          <div class="title">Technology-Supported Evidence & Feedback</div>
+          <div class="subtitle">Expand how students show learning and how you respond.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="section-body">
+        <p>
+          Consider how technology could broaden the types of evidence you collect and make feedback cycles more manageable and student-centered.
+        </p>
+
+        <div class="prompt-block">
+          <div class="prompt-label">Questions to ask yourself</div>
+          <ul>
+            <li>For this same task, what is <strong>one additional way</strong> students could demonstrate understanding (video, audio, screencast, image, simulation, etc.)?</li>
+            <li>What is <strong>one tool</strong> that could help you capture that kind of evidence?</li>
+            <li>How might technology help you give <strong>timelier or more specific feedback</strong> (e.g., audio comments, comment banks, rubric tools)?</li>
+            <li>Could students use a tool (portfolios, reflection forms, goal trackers) to <strong>own and organize</strong> their evidence over time?</li>
+            <li>What’s <strong>one barrier</strong> (time, access, complexity) that technology might actually reduce for you or your students?</li>
+            <li>Where do you need to keep things intentionally <strong>low-tech</strong> to focus on thinking and relationships?</li>
+          </ul>
+          <p class="micro-note">
+            You don’t need to adopt every tool—identify one or two high-leverage tweaks that make the task more meaningful and manageable.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Section 4 -->
+    <details>
+      <summary>
+        <div>
+          <div class="section-tag"><span></span> Section 4</div>
+          <div class="title">AI & Modern Tools: Stress-Testing Your Task</div>
+          <div class="subtitle">Ask, “What happens if AI does this assignment?”</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="section-body">
+        <p>
+          Imagine (or actually test) how an AI tool might complete your task. Use that insight to see where your assessment still reveals student thinking—and where it needs redesign.
+        </p>
+
+        <div class="prompt-block">
+          <div class="prompt-label">Questions to ask yourself</div>
+          <ul>
+            <li>If you asked an AI tool to complete this task, which parts would it handle <strong>easily</strong>?</li>
+            <li>Which aspects of the task would still require <strong>student-specific thinking</strong> (personal experience, context, reasoning, making choices)?</li>
+            <li>Does the task currently capture the student’s <strong>process</strong>, or only the final product?</li>
+            <li>What new evidence could you collect (think-alouds, drafts, reflections, process logs) to make <strong>student thinking visible</strong>?</li>
+            <li>What <strong>validity questions</strong> does AI raise for this task (Who did this? How do I know? Is this aligned with our goals?)?</li>
+            <li>How might you explicitly invite or constrain AI use so that it <strong>supports learning</strong> instead of replacing it?</li>
+          </ul>
+          <p class="micro-note">
+            The goal isn’t to “catch” AI use; it’s to design tasks where using AI still requires—and highlights—student understanding.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Section 5 -->
+    <details>
+      <summary>
+        <div>
+          <div class="section-tag"><span></span> Section 5</div>
+          <div class="title">AI as Your Co-Designer (and Feedback Assistant)</div>
+          <div class="subtitle">Use AI to support your work, not define it.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="section-body">
+        <p>
+          Now, think about where AI could help you design or refine this assessment and its feedback loops, while you still provide the professional judgment and conceptual guidance.
+        </p>
+
+        <div class="prompt-block">
+          <div class="prompt-label">Questions to ask yourself</div>
+          <ul>
+            <li>For this task, where could AI help you <strong>draft</strong> something (rubric, success criteria, exemplars, modified versions, feedback comments)?</li>
+            <li>What would you need to <strong>edit or adjust</strong> in AI-generated suggestions to make them fit your students and context?</li>
+            <li>Could AI suggest <strong>scaffolds</strong> or extension options for different readiness levels in your class?</li>
+            <li>Where might AI help you <strong>summarize student work or patterns</strong> so you can focus your time on deeper feedback?</li>
+            <li>How can you keep yourself as the one responsible for <strong>conceptual accuracy and fairness</strong>, even when using AI?</li>
+            <li>What expectations will you set with students about <strong>when and how</strong> they can use AI on this task?</li>
+          </ul>
+          <p class="micro-note">
+            Think of AI as a drafting partner and assistant—not as the assessor. You decide what to keep, adapt, or ignore.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Section 6 -->
+    <details>
+      <summary>
+        <div>
+          <div class="section-tag"><span></span> Section 6</div>
+          <div class="title">Bringing It Together: Quick Redesign</div>
+          <div class="subtitle">Make one meaningful change you could try soon.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="section-body">
+        <p>
+          Synthesize your thinking by making a small but concrete adjustment to this task. Focus on what will make assessment more meaningful, responsive, and manageable.
+        </p>
+
+        <div class="prompt-block">
+          <div class="prompt-label">Questions to ask yourself</div>
+          <ul>
+            <li>Looking back at your answers, what is <strong>one part</strong> of this task you want to redesign first?</li>
+            <li>Will you change the <strong>task itself</strong>, the <strong>evidence you collect</strong>, the <strong>feedback process</strong>, the <strong>use of technology</strong>, or how you <strong>acknowledge AI use</strong>?</li>
+            <li>How would you describe your change in <strong>1–2 clear sentences</strong> to a colleague?</li>
+            <li>What will students notice is different about this assessment and how it’s used?</li>
+            <li>What is a realistic <strong>next step</strong> and timeline for trying this change?</li>
+            <li>How will you know if the redesign made assessment more <strong>meaningful</strong> for students and more <strong>informative</strong> for you?</li>
+          </ul>
+          <p class="micro-note">
+            Capture your final idea as a brief “assessment redesign statement” you can bring back to your team or try in your next unit.
+          </p>
+        </div>
+      </div>
+    </details>
+
+
+    <section class="intro-card" style="margin-top:2rem;">
+      <h2>Printable Summary</h2>
+      <p>
+        A quick reference you can print or share with your team. This captures the core reflective questions from each section.
+      </p>
+
+      <div style="font-size:0.92rem; line-height:1.5; background:#ffffff; padding:1rem 1.2rem; border-radius:12px; border:1px solid #e0e0e0;">
+        
+        <h3 style="margin-top:0;">1. What Makes a Good Assessment?</h3>
+        <ul>
+          <li>What is this task assessing?</li>
+          <li>What type of assessment is it?</li>
+          <li>What evidence of thinking does it give?</li>
+          <li>Is it equitable and accessible?</li>
+        </ul>
+
+        <h3>2. Feedback</h3>
+        <ul>
+          <li>How do students receive feedback?</li>
+          <li>Is it timely, specific, and actionable?</li>
+          <li>Do students revise based on feedback?</li>
+        </ul>
+
+        <h3>3. Technology-Supported Evidence & Feedback</h3>
+        <ul>
+          <li>How else could students show understanding?</li>
+          <li>What tools could simplify evidence gathering?</li>
+          <li>What tools support faster or richer feedback?</li>
+        </ul>
+
+        <h3>4. AI Stress Test</h3>
+        <ul>
+          <li>What would AI do well on this task?</li>
+          <li>What reveals student thinking?</li>
+          <li>What new evidence could make thinking visible?</li>
+        </ul>
+
+        <h3>5. AI as Co-Designer</h3>
+        <ul>
+          <li>Where could AI help you draft (rubric, criteria, etc.)?</li>
+          <li>What requires your expertise to edit?</li>
+          <li>Where can AI summarize or scaffold?</li>
+        </ul>
+
+        <h3>6. Redesign Summary</h3>
+        <ul>
+          <li>What one part will you redesign?</li>
+          <li>How will the change improve meaning & manageability?</li>
+          <li>What is your next step and timeline?</li>
+        </ul>
+
+      </div>
+    </section>
+
+
+  </div>
+</body>
+</html>

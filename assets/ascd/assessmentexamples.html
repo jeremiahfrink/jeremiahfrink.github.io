@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subject-Specific Assessment Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --card-bg: #ffffff;
+      --accent: #304ffe;
+      --accent-soft: #e3e7ff;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border: #dddddd;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eef1ff, #f8f8fb);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      color: var(--text-muted);
+      max-width: 760px;
+      font-size: 0.98rem;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline span {
+      font-size: 1.1rem;
+    }
+
+    details {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-soft);
+      padding: 0.85rem 1rem;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .subject-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .subject-title {
+      font-weight: 650;
+      font-size: 1rem;
+    }
+
+    .subject-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: #f9f9ff;
+      transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    details[open] .chevron {
+      transform: rotate(90deg);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .subject-body {
+      margin-top: 0.75rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .subject-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .example-block {
+      margin-bottom: 0.7rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-md);
+      background: #f8f8ff;
+    }
+
+    .example-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .example-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-top: 0.2rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .example-text {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0.4rem 0 0.1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chips li {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: #f9f9ff;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 720px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="tagline">
+        <span>●</span>
+        Rethinking Assessment in a Modern Age
+      </div>
+      <h1>Subject-Specific Assessment Moves</h1>
+      <p>
+        This page offers examples of how different subject areas can strengthen assessment design in 
+        <strong>Section 1: What Makes a Good Assessment?</strong> 
+        Each subject shows a key consideration and one concrete way to build it into classroom practice.
+      </p>
+    </header>
+
+    <!-- Math -->
+    <details open>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Mathematics</div>
+          <div class="subject-subtitle">Highlight reasoning, not just right answers.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In math, strong assessment tasks make student thinking visible. They go beyond “Can you get the answer?”
+          to “Can you explain, justify, and choose a strategy?”
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Assess reasoning, not just procedure</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Instead of giving 10 fraction problems to solve, ask:
+            <em>“Solve two of these problems and explain why your approach works. Then describe a common mistake someone might make.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use math talks or explanation-based tasks</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Have students record a 1–2 minute audio or video explaining how they solved a problem and why they chose that strategy.
+            Assess both correctness and clarity of reasoning.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Provide multiple representations</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Let students show their thinking using a number line, array model, table, or equation. The assessment prompt might say:
+            <em>“Show and explain your solution using at least one model of your choice.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Move beyond single-answer formats</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Turn a traditional question into a “many correct answers” task:
+            <em>“Create two different sets of numbers that both have a mean of 12. Explain how you know the mean is 12 each time.”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- ELA -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">English Language Arts</div>
+          <div class="subject-subtitle">Value process, voice, and interpretation.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In ELA, good assessment captures how students interpret, support ideas with evidence, and develop their voice—
+          not just whether they can produce a polished final piece.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Balance product with process</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            When assessing a literary essay, include a planning sheet or annotated passage as part of the submission. 
+            Grade both the final essay and the evidence of how they built it.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Assess interpretation and evidence, not summary</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Replace “Describe the theme of the story” with:
+            <em>“Choose one quote that best represents the theme and explain why it matters for the character or plot.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Avoid overly generic, AI-friendly prompts</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Instead of: <em>“Analyze how the main character changes.”</em><br>
+            Use: <em>“Where in the book did you first notice the character beginning to change? What made you notice it?”</em>
+            This roots the response in specific reading moments.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Include reflection and personal connection</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            After an essay, add a short reflection prompt:
+            <em>“What did you personally connect with in this character’s experience, and how did that shape your interpretation?”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Science -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Science</div>
+          <div class="subject-subtitle">Emphasize explanation, modeling, and phenomena.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In science, effective assessment goes beyond recall. It asks students to explain, model, and reason about phenomena
+          using scientific ideas and evidence.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Assess concepts, not just facts</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Rather than “Label the parts of the cell,” ask:
+            <em>“What would happen if the mitochondria stopped working? Explain your reasoning.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use modeling and explanations</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Ask students to create a simple model (drawing or digital) of a phenomenon like sound traveling through air,
+            then record or write an explanation of how their model shows what is happening.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Highlight inquiry decisions, not just lab results</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Add a question to lab reports:
+            <em>“What was the most important decision you made while designing or running your investigation, and why?”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Connect to real-world phenomena</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Use prompts such as:
+            <em>“You see condensation forming on a cold drink outside. Explain why this happens using the water cycle.”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Social Studies -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Social Studies</div>
+          <div class="subject-subtitle">Center sourcing, argument, and perspective.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In social studies, good assessment focuses on how students work with sources, construct arguments, and understand
+          perspectives—not just how many facts they can recall.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Assess argumentation and sourcing</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Include a sourcing task such as:
+            <em>“Which of these two sources is more reliable for understanding this event, and why?”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Blend primary and secondary sources</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Ask students to choose one primary and one secondary source and explain how each adds to their understanding of a historical question.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Elicit stance and reasoning, not just summary</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Change “Explain the causes of the American Revolution” to:
+            <em>“Which cause of the American Revolution do you think had the biggest impact, and why? Support your view with evidence.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Connect history to present-day issues</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Use prompts like:
+            <em>“Choose a present-day issue and explain one way it connects to a historical pattern we studied this unit.”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- World Languages -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">World Languages</div>
+          <div class="subject-subtitle">Prioritize authentic communication.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In world languages, meaningful assessment focuses on real communication—speaking, listening, reading, and writing
+          in ways that approximate authentic use of the language.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Assess speaking and listening, not just written work</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Have students record a 1-minute spoken response to a prompt, and assess pronunciation, fluency, and clarity of meaning.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use real-life communicative tasks</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Assessment task:
+            <em>“You’re at a café. Record yourself ordering and asking 3 questions (about ingredients, price, or recommendations), then respond naturally.”</em>
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Reveal comprehension, not just translation skills</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Play a short audio clip, then ask students to identify the main idea and one supporting detail, either in the target language or in English.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Include spontaneous speaking</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            Show a picture (e.g., a messy room or busy street) and have students describe what they see in the target language in a quick, 10–20 second recording.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <!-- Specials -->
+    <details>
+      <summary>
+        <div class="subject-header">
+          <div class="subject-title">Specials (Art, Music, PE, Tech, STEM, etc.)</div>
+          <div class="subject-subtitle">Value process, practice, and creative choices.</div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="subject-body">
+        <p>
+          In specials, assessment can spotlight growth, creativity, and skill development over time. The goal is to capture
+          how students practice, revise, and make choices—not just the final performance or product.
+        </p>
+
+        <div class="example-block">
+          <div class="example-title">Assess process along with product</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In art, ask students to submit two drafts of a piece plus a short note describing what changed based on feedback or new ideas.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Use multiple forms of evidence</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In PE, have students record a quick video of a skill (like a jump shot or overhand throw) and label what they did well and what they want to improve.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Highlight practice and improvement</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In music, ask students to record the same short passage twice a week apart and write two sentences about how their tone or rhythm improved.
+          </p>
+        </div>
+
+        <div class="example-block">
+          <div class="example-title">Include self-assessment and reflection</div>
+          <div class="example-label">Example</div>
+          <p class="example-text">
+            In any creative subject, add:
+            <em>“Circle the part of your project where you made your strongest artistic or design choice, and explain why.”</em>
+          </p>
+        </div>
+      </div>
+    </details>
+  </div>
+</body>
+</html>
