@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collaboration Café – Entry Points for Global Collaborator</title>
+  <style>
+    :root {
+      --primary: #0D9488;
+      --primary-light: #99F6E4;
+      --primary-dark: #0F766E;
+      --accent: #FB923C;
+      --accent-light: #FED7AA;
+      --text-main: #1F2937;
+      --text-muted: #6B7280;
+      --bg-page: #F9FAFB;
+      --bg-card: #FFFFFF;
+      --border-light: #E5E7EB;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom right, #F0FDFA 0%, #ECFEFF 50%, #FAF5FF 100%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem 1.5rem;
+    }
+
+    /* Header Section */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 2rem 1.5rem;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      border-top: 5px solid var(--primary);
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin: 0.5rem 0 1.5rem 0;
+      font-weight: 500;
+    }
+
+    .pill-note {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      color: var(--primary-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Intro Card */
+    .intro-card {
+      background: var(--bg-card);
+      padding: 1.75rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+      border-left: 5px solid var(--accent);
+      font-size: 1rem;
+    }
+
+    .intro-card strong {
+      color: var(--primary-dark);
+    }
+
+    /* Jump Navigation */
+    .jump-nav {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      margin: 2rem 0;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--primary-light);
+    }
+
+    .jump-nav-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .jump-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .jump-nav a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      background: var(--primary-light);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .jump-nav a:hover,
+    .jump-nav a:focus {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .jump-nav a:focus {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 2.5rem 0 1rem 0;
+      color: var(--primary-dark);
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2::before {
+      content: "●";
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.75rem 0;
+      color: var(--text-main);
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1rem 0 0.5rem 0;
+      color: var(--primary-dark);
+    }
+
+    p {
+      margin: 0.5rem 0 1rem 0;
+      color: var(--text-main);
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 5px solid var(--accent);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .callout strong {
+      color: #92400E;
+      font-weight: 700;
+    }
+
+    /* Details/Accordion */
+    details {
+      margin: 0.75rem 0;
+      border-radius: 10px;
+      background: var(--bg-card);
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    details:hover {
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow-md);
+    }
+
+    details[open] {
+      background: var(--bg-card);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary-dark);
+      list-style: none;
+      padding: 0.25rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    summary:hover {
+      color: var(--primary);
+    }
+
+    summary:focus {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::before {
+      content: "▶";
+      font-size: 0.8rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    details > *:not(summary) {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    /* Lists */
+    ul {
+      padding-left: 1.5rem;
+      margin: 0.75rem 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    /* Grade Bands */
+    .grade-band {
+      margin: 2rem 0;
+      padding: 0;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      border: 3px solid var(--border-light);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .grade-band:hover {
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .grade-band-header {
+      padding: 1.5rem 1.75rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .grade-label {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 0 0.25rem 0;
+      color: white;
+    }
+
+    .subtle-label {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--primary-light);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .grade-band-content {
+      padding: 1.5rem 1.75rem;
+    }
+
+    /* Different colors for each grade band */
+    #grade-k2 .grade-band-header {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+    }
+
+    #grade-35 .grade-band-header {
+      background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+    }
+
+    #grade-68 .grade-band-header {
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    }
+
+    #grade-912 .grade-band-header {
+      background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+    }
+
+    .skills-list {
+      background: #F0FDFA;
+      padding: 1rem 1rem 1rem 2.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+      margin-top: 0.75rem;
+    }
+
+    .skills-list li {
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    /* Pathway Cards */
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .pathway-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      border-top: 4px solid var(--primary);
+      transition: all 0.2s ease;
+    }
+
+    .pathway-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pathway-card h4 {
+      margin-top: 0;
+      color: var(--primary-dark);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+
+      .page {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      .jump-nav {
+        position: relative;
+        top: 0;
+      }
+
+      .jump-nav-links {
+        flex-direction: column;
+      }
+
+      .jump-nav a {
+        text-align: center;
+      }
+
+      .pathway-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Accessibility */
+    *:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (prefers-contrast: high) {
+      details {
+        border-width: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <div class="header">
+      <span class="pill-note">Global Collaborator · Teacher Guide</span>
+      <h1>Finding Projects Is Hard. Entry Points Are Everywhere.</h1>
+      <p class="tagline">
+        You don't need a perfect international partner to build Global Collaborator skills. This guide helps you
+        start from wherever you are – with your classroom, your school, your community, or curated voices – and
+        grow toward positive global connections.
+      </p>
+    </div>
+
+    <!-- Intro Card -->
+    <div class="intro-card">
+      <p>
+        Many educators say, <strong>"I'd love to do global collaboration, but I can't find the right project or partner."</strong>
+        That's a real barrier – time zones, logistics, and safety all matter.
+      </p>
+      <p>
+        The good news is: <strong>students can build the same Global Collaborator skills long before an international project happens.</strong>
+        They can do that by collaborating:
+      </p>
+      <ul>
+        <li>within your classroom and school,</li>
+        <li>across your district or region,</li>
+        <li>with community voices and cultural perspectives, and</li>
+        <li>through simulations and curated global stories.</li>
+      </ul>
+      <p>
+        This page offers <strong>multiple entry points</strong> and <strong>grade-banded examples</strong> that grow toward
+        students operating in positive, authentic global connections.
+      </p>
+    </div>
+
+    <!-- Jump Navigation -->
+    <nav class="jump-nav" role="navigation" aria-label="Page navigation">
+      <div class="jump-nav-title">Jump to:</div>
+      <div class="jump-nav-links">
+        <a href="#entry-pathways">Entry Pathways</a>
+        <a href="#grade-bands">Grade Band Ideas</a>
+        <a href="#skills-progression">Skills Progression</a>
+      </div>
+    </nav>
+
+    <!-- Six Ways to Start Section -->
+    <section id="entry-pathways">
+      <h2>Six Ways to Start (Even Without a "Global Project")</h2>
+      <p class="muted">
+        Use any of these pathways as an entry point. Each one builds the habits and mindsets of a Global Collaborator,
+        even if the collaboration is not yet international.
+      </p>
+
+      <details open>
+        <summary>1. Collaborate inside your classroom</summary>
+        <p>
+          Students collaborate with classmates using intentional roles, shared digital tools, and reflection. This is the
+          easiest and most immediate starting point.
+        </p>
+        <ul>
+          <li>Use team roles for group tasks (facilitator, recorder, communicator).</li>
+          <li>Co-create shared artifacts (slides, posters, videos).</li>
+          <li>Practice giving and receiving feedback respectfully.</li>
+        </ul>
+        <p>
+          <strong>Global Collaborator connection:</strong> builds shared responsibility, communication skills, and digital
+          citizenship – core foundations before students work with partners beyond the room.
+        </p>
+      </details>
+
+      <details>
+        <summary>2. Collaborate across grade levels or across the school</summary>
+        <p>
+          Students work with other classes in the same building. These cross-class or cross-grade experiences often feel
+          fresh and meaningful, especially for younger learners.
+        </p>
+        <ul>
+          <li>Older students co-create stories or videos with younger buddies.</li>
+          <li>Two classes share "day in the life" artifacts and respond to each other.</li>
+          <li>Classes in different wings of the school compare routines or traditions.</li>
+        </ul>
+        <p>
+          <strong>Global Collaborator connection:</strong> builds audience awareness, empathy, and the ability to adjust
+          communication for different ages and perspectives.
+        </p>
+      </details>
+
+      <details>
+        <summary>3. Collaborate across the district or region</summary>
+        <p>
+          Students connect with another school in the same district, neighboring district, or region. Logistics are
+          simpler than international work, but students still experience different contexts.
+        </p>
+        <ul>
+          <li>Compare weather or environmental data between two towns.</li>
+          <li>Exchange book recommendations or shared reading reflections.</li>
+          <li>Co-author a district-wide anthology, podcast, or digital gallery.</li>
+        </ul>
+        <p>
+          <strong>Global Collaborator connection:</strong> develops asynchronous collaboration habits and broadens
+          students' sense of "we" beyond one classroom.
+        </p>
+      </details>
+
+      <details>
+        <summary>4. Collaborate with community voices</summary>
+        <p>
+          Students collaborate with people and perspectives in the local community – elders, multilingual families,
+          local organizations, Indigenous communities, or civic partners.
+        </p>
+        <ul>
+          <li>Conduct interviews and share stories with another class.</li>
+          <li>Partner with a community group on a small awareness project.</li>
+          <li>Work with a cultural organization to co-create digital artifacts.</li>
+        </ul>
+        <p>
+          <strong>Global Collaborator connection:</strong> builds empathy, cultural awareness, and real-world
+          communication – exactly the skills global work requires.
+        </p>
+      </details>
+
+      <details>
+        <summary>5. Collaborate across cultures without live partners</summary>
+        <p>
+          Students engage with curated global stories, videos, interviews, or artifacts as "proxy voices," then collaborate
+          locally to make sense of them.
+        </p>
+        <ul>
+          <li>Analyze multiple perspectives on a global issue using videos or articles.</li>
+          <li>Create response pieces or digital displays based on lived experiences from other places.</li>
+          <li>Role-play different stakeholders informed by real stories.</li>
+        </ul>
+        <p>
+          <strong>Global Collaborator connection:</strong> deeply strengthens 1.7.b (Multiple Viewpoints) and prepares
+          students to engage thoughtfully with real partners later.
+        </p>
+      </details>
+
+      <details>
+        <summary>6. Collaborate on global issues in simulated formats</summary>
+        <p>
+          Students simulate global collaboration by taking on roles, perspectives, or community positions connected to
+          real-world issues.
+        </p>
+        <ul>
+          <li>Run a mock UN or council meeting about climate, migration, or water access.</li>
+          <li>Have teams represent different regions or communities in a design challenge.</li>
+          <li>Use data and stories from multiple places to propose solutions.</li>
+        </ul>
+        <p>
+          <strong>Global Collaborator connection:</strong> lets students practice negotiation, perspective-taking, and
+          solution-building in a safe, teacher-controlled environment.
+        </p>
+      </details>
+
+      <div class="callout">
+        <strong>Key mindset for teachers:</strong> Any of these pathways "count" as Global Collaborator skill-building.
+        An international partner is a powerful opportunity, not a prerequisite.
+      </div>
+    </section>
+
+    <!-- Grade Bands Section -->
+    <section id="grade-bands">
+      <h2>Grade-Banded Ideas: From Local to Global-Ready</h2>
+      <p class="muted">
+        Use the examples below to find a starting point that fits your students. Each grade band includes low-lift ideas
+        and "next level" options that continue to build toward positive global connections.
+      </p>
+
+      <!-- K-2 -->
+      <div class="grade-band" id="grade-k2">
+        <div class="grade-band-header">
+          <div class="grade-label">Grades K–2</div>
+          <div class="subtle-label">Start small, build curiosity and empathy</div>
+        </div>
+        <div class="grade-band-content">
+          <details open>
+            <summary>Start here (low lift)</summary>
+            <p>
+              Focus on simple, joyful collaboration that helps young students notice others and share about themselves.
+            </p>
+            <ul>
+              <li>Buddy up with another K–2 class for shared read-aloud reflections or drawings.</li>
+              <li>Create "This Is Our Classroom" or "This Is Our Community" slides or posters to share with a nearby class.</li>
+              <li>Use simple roles (helper, recorder, presenter) during group activities.</li>
+              <li>Compare classroom routines or favorite playground games with another class in the school.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Next level (medium lift)</summary>
+            <p>
+              Add light asynchronous sharing and data collection to deepen comparison and awareness of others.
+            </p>
+            <ul>
+              <li>Exchange a "question of the week" with another class (e.g., "What do you like to do after school?").</li>
+              <li>Collaboratively create a class story: one class starts it, the other adds the next part, and so on.</li>
+              <li>Collect simple nature or weather data and compare with another school in your district.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>How this builds toward global collaboration</summary>
+            <ul class="skills-list">
+              <li>Helps students practice taking turns and listening to others.</li>
+              <li>Builds comfort sharing their voice with audiences beyond their immediate desk group.</li>
+              <li>Introduces basic digital citizenship (what we share, how we talk online).</li>
+              <li>Begins noticing similarities and differences between groups of children.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <!-- 3-5 -->
+      <div class="grade-band" id="grade-35">
+        <div class="grade-band-header">
+          <div class="grade-label">Grades 3–5</div>
+          <div class="subtle-label">Broaden perspectives and co-create</div>
+        </div>
+        <div class="grade-band-content">
+          <details open>
+            <summary>Start here (low lift)</summary>
+            <p>
+              Emphasize perspective-taking and shared digital products with peers in school or district.
+            </p>
+            <ul>
+              <li>Co-create a shared Google Slides deck with another class about "Our Community," "Our Favorites," or "What We're Learning."</li>
+              <li>Use a multiple-viewpoints organizer to compare reactions to the same story or issue.</li>
+              <li>Exchange book recommendations in a shared document or Flip topic.</li>
+              <li>Use structured peer feedback sentence starters ("I noticed…", "I wonder…", "Have you thought about…?").</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Next level (medium lift)</summary>
+            <p>
+              Add longer-term or more meaningful exchanges that involve community voices or local issues.
+            </p>
+            <ul>
+              <li>Conduct a simple interview project (families, elders, staff) and share highlights with another class.</li>
+              <li>Collaboratively build a "mini-museum" of 10 objects that represent your community and share with a partner class.</li>
+              <li>Use Flip for asynchronous Q&amp;A between two classes on a shared topic (e.g., local history, ecosystems).</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>How this builds toward global collaboration</summary>
+            <ul class="skills-list">
+              <li>Develops deeper perspective-taking by comparing experiences across groups and communities.</li>
+              <li>Strengthens clear, audience-aware communication in digital formats.</li>
+              <li>Introduces co-authoring and asynchronous collaboration in shared tools.</li>
+              <li>Builds confidence and curiosity about people and places beyond students' immediate circle.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <!-- 6-8 -->
+      <div class="grade-band" id="grade-68">
+        <div class="grade-band-header">
+          <div class="grade-label">Grades 6–8</div>
+          <div class="subtle-label">Analyze issues, manage more complex collaboration</div>
+        </div>
+        <div class="grade-band-content">
+          <details open>
+            <summary>Start here (low lift)</summary>
+            <p>
+              Focus on comparing data, media, and viewpoints with another class, and on building accountable team structures.
+            </p>
+            <ul>
+              <li>Compare local data (weather, traffic, device use) with another class in the district or region.</li>
+              <li>Analyze news or media about the same topic from different regions and discuss how perspective shapes coverage.</li>
+              <li>Create collaborative infographics explaining a local issue or concept for another class.</li>
+              <li>Use defined team roles and shared project boards (checklists, Kanban) for group work.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Next level (medium lift)</summary>
+            <p>
+              Connect local issues to broader contexts and invite students to take on more sustained collaborative work.
+            </p>
+            <ul>
+              <li>Explore a community issue (water, transportation, wellness) and share findings with another school.</li>
+              <li>Run a simulated global problem-solving activity, where groups represent different communities or countries.</li>
+              <li>Co-create a short podcast or video series with another class, each contributing episodes or segments.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>How this builds toward global collaboration</summary>
+            <ul class="skills-list">
+              <li>Builds cultural and contextual awareness through examining how issues look in different places.</li>
+              <li>Teaches students to communicate in multimodal formats for external audiences.</li>
+              <li>Strengthens management of longer, multi-step collaborative tasks and shared digital spaces.</li>
+              <li>Develops habits of respectful discussion, negotiation, and revision rooted in evidence.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <!-- 9-12 -->
+      <div class="grade-band" id="grade-912">
+        <div class="grade-band-header">
+          <div class="grade-label">Grades 9–12</div>
+          <div class="subtle-label">Collaborate as emerging global citizens</div>
+        </div>
+        <div class="grade-band-content">
+          <details open>
+            <summary>Start here (low lift)</summary>
+            <p>
+              Emphasize professional communication, critical comparison, and structured collaboration with peers.
+            </p>
+            <ul>
+              <li>Exchange peer feedback on writing or projects with another class in the same course or district.</li>
+              <li>Compare primary sources or case studies from different countries or cultures.</li>
+              <li>Use structured roles (project manager, researcher, designer, communications lead) in group work.</li>
+              <li>Map diverse perspectives around a current event using digital tools (whiteboards, mind maps).</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>Next level (medium lift)</summary>
+            <p>
+              Move into collaborative inquiry or action projects that mirror the complexity of real global work.
+            </p>
+            <ul>
+              <li>Conduct joint action research with a partner class, sharing findings and recommendations.</li>
+              <li>Analyze a global issue (e.g., sustainability, migration, digital rights) through local and international case comparisons.</li>
+              <li>Design and present collaborative solutions via video pitches or shared reports to authentic audiences.</li>
+              <li>Co-author digital portfolios, reports, or exhibitions that highlight multiple communities' perspectives.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary>How this builds toward global collaboration</summary>
+            <ul class="skills-list">
+              <li>Prepares students for the communication norms of postsecondary study and the global workforce.</li>
+              <li>Deepens critical awareness of global systems, inequities, and interdependence.</li>
+              <li>Strengthens students' ability to manage distributed teams and complex, shared projects.</li>
+              <li>Reinforces ethical, responsible digital participation and leadership in collaborative settings.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Progression Section -->
+    <section id="skills-progression">
+      <h2>What All These Paths Have in Common</h2>
+      <p>
+        No matter where you begin – within your classroom, across your school, or beyond – students are building the
+        core skills they need to become positive Global Collaborators.
+      </p>
+      <h3>Across all grade bands, students are learning to:</h3>
+      <ul>
+        <li><strong>Communicate clearly</strong> with audiences they may not see in person.</li>
+        <li><strong>Take perspective</strong> and ask, "What is it like for someone else?"</li>
+        <li><strong>Show empathy and cultural awareness</strong> in how they speak, listen, and respond.</li>
+        <li><strong>Share responsibility</strong> for group work and manage their roles in a team.</li>
+        <li><strong>Practice digital citizenship</strong> through safe, ethical, and respectful online interaction.</li>
+        <li><strong>Collaborate asynchronously</strong> using shared digital tools and spaces.</li>
+        <li><strong>Build confidence</strong> that their voice matters beyond the walls of the classroom.</li>
+      </ul>
+      <p>
+        When a global opportunity does arise – a partner school, an international project, or cross-border collaboration – 
+        students will already have the mindset and skillset they need to participate positively and meaningfully.
+      </p>
+      <div class="callout">
+        <strong>Bottom line for teachers:</strong> You do not have to wait for the "perfect global project" to start
+        implementing the Global Collaborator standard. Start where you are. Choose one pathway. Try one small idea.
+        Every step helps students grow into thoughtful, connected global citizens.
+      </div>
+    </section>
+  </div>
+</body>
+</html>
