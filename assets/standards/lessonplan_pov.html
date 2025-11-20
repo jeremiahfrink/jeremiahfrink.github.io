@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening to Multiple Viewpoints - Lesson Plan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+        
+        .lesson-number {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.95;
+            font-style: italic;
+        }
+        
+        .duration {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 2.5rem;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #5a67d8;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecf5 100%);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .info-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .info-card h4 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        .studio-phase {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+        
+        .studio-phase h2 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            margin: -2rem -2rem 1.5rem -2rem;
+            border-radius: 10px 10px 0 0;
+            border-bottom: none;
+        }
+        
+        .checkpoint {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .checkpoint::before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .optional-tag {
+            display: inline-block;
+            background: #ffd93d;
+            color: #744210;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .standards-list {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .standards-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .table-comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .table-comparison th,
+        .table-comparison td {
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .table-comparison th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .table-comparison tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        .extensions-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .extensions-box h2 {
+            color: #744210;
+            border-bottom: 3px solid #744210;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .studio-phase,
+            .info-card {
+                page-break-inside: avoid;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="lesson-number">Lesson 5 (Middle School Version)</div>
+            <h1>Listening to Multiple Viewpoints</h1>
+            <div class="subtitle">A Studio Experience in Empathy, Perspective-Taking, and Responsible AI Support</div>
+            <div class="duration">⏱ 2 hours — split over 2–3 shorter sessions</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Lesson Overview</h2>
+                
+                <div class="highlight-box">
+                    <h3>Focus</h3>
+                    <p>Students learn how to listen to, compare, and understand <strong>multiple viewpoints</strong> on the same situation. They explore how human interpretation includes nuance, emotion, and lived experience—while AI-generated summaries may be helpful but also incomplete. Students use AI only as a <strong>thought partner</strong> to compare interpretations and identify missing or flattened voices.</p>
+                </div>
+                
+                <h3>Why This Matters for Middle School</h3>
+                <p>Middle schoolers regularly navigate conflicting opinions, misunderstandings, and issues of fairness. This lesson gives them structured, safe ways to:</p>
+                <ul>
+                    <li>listen deeply</li>
+                    <li>notice perspective differences</li>
+                    <li>identify whose voice is missing</li>
+                    <li>think critically about AI summaries</li>
+                    <li>develop empathy for a range of lived experiences</li>
+                </ul>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>ISTE / Ohio Standards Alignment</h4>
+                        <p><strong>Primary:</strong></p>
+                        <ul>
+                            <li><strong>1.7.b Multiple Viewpoints</strong> — Students consider diverse perspectives and compare interpretations of the same issue or interview.</li>
+                        </ul>
+                        <p><strong>Secondary:</strong></p>
+                        <ul>
+                            <li>1.1 Empowered Learner</li>
+                            <li>1.3 Knowledge Constructor</li>
+                            <li>1.6 Creative Communicator</li>
+                            <li>1.2 Digital Citizen</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>Learning Goals</h4>
+                        <p>Students will be able to:</p>
+                        <ul>
+                            <li>Conduct or analyze short interviews to surface lived experiences</li>
+                            <li>Compare how different people experience the same event or issue</li>
+                            <li>Use AI to generate summaries and identify where it misses nuance</li>
+                            <li>Explain how listening to multiple perspectives improves understanding</li>
+                            <li>Reflect on how AI can help but cannot replace human empathy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Studio Flow</h2>
+                
+                <div class="studio-phase">
+                    <h2>SPARK</h2>
+                    
+                    <h3>Purpose</h3>
+                    <p>Students discover how misunderstandings and assumptions arise when we only hear <strong>one version</strong> of a story.</p>
+                    
+                    <h3>Activity</h3>
+                    <ol>
+                        <li><strong>Starter Prompt:</strong> "What's something people often misunderstand about your opinion or experience?"</li>
+                        
+                        <li><strong>Mini-Case Video or Scenario (5 min):</strong> Choose a short video with <strong>two different perspectives</strong> on the same small issue (ex: cafeteria problem, hallway congestion, playground conflict, homework expectations).
+                            <p><strong>Ask:</strong></p>
+                            <ul>
+                                <li>Who talked in this video?</li>
+                                <li>Whose voice did we not hear?</li>
+                                <li>How might someone else see this differently?</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Missing Voices Quick Chart:</strong> Students list:
+                            <ul>
+                                <li>Who spoke</li>
+                                <li>Who didn't</li>
+                                <li>Whose viewpoint might drastically change the story</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Pairs Brainstorm:</strong> Students develop 3–4 <strong>perspective-seeking questions</strong>, such as:
+                            <ul>
+                                <li>What's something important that others miss?</li>
+                                <li>How does this situation affect you?</li>
+                                <li>What happened from your point of view?</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h4>Optional AI Use <span class="optional-tag">OPTIONAL</span></h4>
+                    <p>Ask AI: "Give us 5 questions that help us understand multiple viewpoints on an issue." Students highlight which feel useful and which feel generic.</p>
+                    
+                    <div class="checkpoint">Checkpoint: Students have 2–3 strong viewpoint-seeking questions and can identify missing voices.</div>
+                </div>
+                
+                <div class="studio-phase">
+                    <h2>EXPLORE</h2>
+                    
+                    <h3>Purpose</h3>
+                    <p>Students gather <strong>real human viewpoints</strong> on the same small, everyday issue. Depending on time, they can either conduct short interviews or work with pre-written student voice excerpts.</p>
+                    
+                    <h3>Activity</h3>
+                    <ol>
+                        <li><strong>Triad Roles:</strong>
+                            <ul>
+                                <li>Interviewer</li>
+                                <li>Interviewee</li>
+                                <li>Observer</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Interview Topic Options</strong> (student choice):
+                            <ul>
+                                <li>A time something felt unfair</li>
+                                <li>A challenge at school (noise, transitions, homework)</li>
+                                <li>Working with partners</li>
+                                <li>A rule or expectation</li>
+                                <li>Technology use or social media pressure</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Students conduct 1–2 short interviews</strong> using their perspective questions.</li>
+                        
+                        <li><strong>Observer identifies:</strong>
+                            <ul>
+                                <li>Where the interviewee felt heard</li>
+                                <li>Where the interviewer showed curiosity</li>
+                                <li>Where another viewpoint might change the picture</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Group Synthesis:</strong> Students collect:
+                            <ul>
+                                <li>3–5 quotes or paraphrases</li>
+                                <li>1 surprising viewpoint</li>
+                                <li>1 viewpoint that is still missing</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="checkpoint">Checkpoint: Each group has human-generated notes representing <strong>multiple viewpoints</strong> on one issue.</div>
+                </div>
+                
+                <div class="studio-phase">
+                    <h2>EXPERIMENT</h2>
+                    
+                    <h3>Purpose</h3>
+                    <p>Students compare <strong>human interpretations</strong> to <strong>AI summaries</strong> to notice patterns, missing voices, and flattened nuance.</p>
+                    
+                    <h3>Activity</h3>
+                    <ol>
+                        <li><strong>Human First:</strong> Students cluster their quotes into themes:
+                            <ul>
+                                <li>Feelings or needs</li>
+                                <li>Challenges</li>
+                                <li>What they wish others understood</li>
+                                <li>What viewpoints differ</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>AI Baseline:</strong> Students anonymize notes and ask AI: "Summarize the top 2–3 viewpoints in these notes."</li>
+                        
+                        <li><strong>AI With Guidance:</strong> Students try: "Summarize the viewpoints. Notice differences between people. Include nuance and uncertainty."</li>
+                        
+                        <li><strong>Three-Column Comparison:</strong> Students fill in a chart:
+                            <table class="table-comparison">
+                                <tr>
+                                    <th>Human Viewpoints</th>
+                                    <th>AI Summary</th>
+                                    <th>AI Summary With "Multiple Viewpoints" Prompt</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align: center; color: #718096; font-style: italic;">Students fill this in during the activity</td>
+                                </tr>
+                            </table>
+                            <p>Students mark with:</p>
+                            <ul>
+                                <li>Circles: alignment</li>
+                                <li>Stars: what humans noticed that AI missed</li>
+                                <li>Underlines: moments AI flattened viewpoints into generalizations</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Annotate the Gaps:</strong> Students answer:
+                            <ul>
+                                <li>Which human voices did AI miss?</li>
+                                <li>Where did AI combine different viewpoints?</li>
+                                <li>What subtle emotions or contradictions didn't appear?</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="checkpoint">Checkpoint: Students can explain how AI summaries differ from human interpretation and why multiple viewpoints matter.</div>
+                </div>
+                
+                <div class="studio-phase">
+                    <h2>CREATE</h2>
+                    
+                    <h3>Purpose</h3>
+                    <p>Students create a <strong>Multiple Viewpoints Insight Map</strong>—a simple, shareable artifact that highlights viewpoint differences and why they matter.</p>
+                    
+                    <h3>Components (students build all four):</h3>
+                    <ol>
+                        <li><strong>The Issue Statement:</strong> "One issue we explored was... from the perspective of..."</li>
+                        
+                        <li><strong>3–4 Key Viewpoints</strong> (each with a quote or phrase):
+                            <ul>
+                                <li>Viewpoint A (why this matters to them)</li>
+                                <li>Viewpoint B (how their experience differs)</li>
+                                <li>Viewpoint C (what nuance was surprising)</li>
+                                <li>Missing Viewpoint (whose voice is still not represented)</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>AI Gap Notes:</strong>
+                            <ul>
+                                <li>One thing AI got right</li>
+                                <li>One thing AI oversimplified</li>
+                                <li>One thing AI completely missed</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Why Multiple Viewpoints Matter:</strong>
+                            <ul>
+                                <li>How hearing diverse viewpoints changes understanding</li>
+                                <li>How it could prevent misunderstandings</li>
+                                <li>How it can support better decisions or fairness</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h4>Optional Digital Tooling <span class="optional-tag">OPTIONAL</span></h4>
+                    <p>Students may build their maps using a slide, Jamboard, Canva, or notebook page.</p>
+                    
+                    <div class="checkpoint">Checkpoint: Students produce a clear, accessible artifact showing comparison of multiple viewpoints and AI's limitations.</div>
+                </div>
+                
+                <div class="studio-phase">
+                    <h2>SHARE</h2>
+                    
+                    <h3>Purpose</h3>
+                    <p>Students present their Multiple Viewpoints Insight Maps and learn how others interpreted the same issue differently.</p>
+                    
+                    <h3>Structure</h3>
+                    <ol>
+                        <li><strong>Gallery Walk or Pair Shares:</strong> Feedback prompts:
+                            <ul>
+                                <li>"I learned a viewpoint I hadn't considered..."</li>
+                                <li>"AI missed something important when..."</li>
+                                <li>"If we only heard one viewpoint, we might have believed..."</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Small-Group Discussion:</strong>
+                            <ul>
+                                <li>"How do misunderstandings happen when only one viewpoint is heard?"</li>
+                                <li>"How would a teacher, parent, or principal see this differently?"</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Whole-Class Synthesis:</strong> What categories of viewpoints showed up? Where did students disagree?</li>
+                    </ol>
+                    
+                    <div class="checkpoint">Checkpoint: Students articulate the value of holding multiple viewpoints.</div>
+                </div>
+                
+                <div class="studio-phase">
+                    <h2>REFLECT</h2>
+                    
+                    <h3>Purpose</h3>
+                    <p>Students reflect on listening, interpreting, and using AI responsibly.</p>
+                    
+                    <h3>Prompts (Choose 2–3):</h3>
+                    <ul>
+                        <li>What new viewpoint surprised you today?</li>
+                        <li>How did comparing viewpoints change your understanding of the issue?</li>
+                        <li>Where did AI help?</li>
+                        <li>Where did AI flatten or combine viewpoints unfairly?</li>
+                        <li>Why is perspective-taking important for fairness and community?</li>
+                        <li>How will you listen differently next time?</li>
+                    </ul>
+                    
+                    <h4>Option: Quick-Write or Audio Note <span class="optional-tag">OPTIONAL</span></h4>
+                    
+                    <div class="checkpoint">Checkpoint: Students show understanding of both empathy and the importance of multiple viewpoints in decision-making.</div>
+                </div>
+            </div>
+            
+            <div class="extensions-box">
+                <h2>Optional Middle School Extensions</h2>
+                <ul>
+                    <li>Use a <strong>global partner class</strong> to gather two contrasting viewpoints on the same prompt.</li>
+                    <li>Analyze two conflicting news articles and identify differing perspectives.</li>
+                    <li>Use AI to rewrite a viewpoint in different tones and evaluate its accuracy.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
