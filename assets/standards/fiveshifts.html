@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Five High-Leverage Shifts</title>
+  <style>
+    /* ISTE Color Palette:
+       Navy Blue: #002D5C (primary)
+       Cyan/Teal: #00A9CE (secondary)
+       Orange: #F5A623 (accent)
+       Supporting colors for accessibility
+    */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem 1.5rem;
+      background: #f8f9fa;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: #002D5C;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .intro {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 45, 92, 0.08);
+      border-left: 5px solid #F5A623;
+    }
+
+    .intro p {
+      margin: 0.75rem 0;
+      color: #333333;
+      font-size: 1rem;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* PILL NAVIGATION */
+    .pill-nav-wrapper {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 45, 92, 0.08);
+      border-top: 4px solid #002D5C;
+    }
+
+    .pill-nav-label {
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #002D5C;
+      font-size: 1.1rem;
+    }
+
+    .pill-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .pill {
+      padding: 0.75rem 1.25rem;
+      background: #ffffff;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #002D5C;
+      box-shadow: 0 2px 4px rgba(0, 45, 92, 0.15);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+      border: 2px solid #e0e6ed;
+      font-size: 0.95rem;
+    }
+
+    .pill:hover {
+      background: #f0f8fb;
+      border-color: #00A9CE;
+      box-shadow: 0 4px 8px rgba(0, 169, 206, 0.2);
+    }
+
+    .pill:focus {
+      outline: 3px solid #00A9CE;
+      outline-offset: 2px;
+    }
+
+    .pill.active {
+      background: #002D5C;
+      color: #ffffff;
+      border-color: #002D5C;
+      box-shadow: 0 4px 12px rgba(0, 45, 92, 0.3);
+    }
+
+    /* SHIFT SECTIONS - Each with unique accent color from ISTE palette */
+    .shift {
+      margin-bottom: 2rem;
+      padding: 1.75rem;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 45, 92, 0.08);
+      border-left: 6px solid #00A9CE;
+      transition: box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .shift:hover {
+      box-shadow: 0 4px 16px rgba(0, 45, 92, 0.12);
+    }
+
+    /* Unique colors for each shift using ISTE and complementary colors */
+    #shift1 {
+      border-left-color: #002D5C;
+    }
+
+    #shift2 {
+      border-left-color: #00A9CE;
+    }
+
+    #shift3 {
+      border-left-color: #F5A623;
+    }
+
+    #shift4 {
+      border-left-color: #0077A3;
+    }
+
+    #shift5 {
+      border-left-color: #D97706;
+    }
+
+    .shift-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: #002D5C;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .shift-title::before {
+      content: "●";
+      font-size: 1.2rem;
+    }
+
+    #shift1 .shift-title::before { color: #002D5C; }
+    #shift2 .shift-title::before { color: #00A9CE; }
+    #shift3 .shift-title::before { color: #F5A623; }
+    #shift4 .shift-title::before { color: #0077A3; }
+    #shift5 .shift-title::before { color: #D97706; }
+
+    .big-idea-label {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #002D5C;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .big-idea {
+      margin: 0.25rem 0 1.25rem;
+      font-size: 1.05rem;
+      color: #333333;
+      font-style: italic;
+      padding: 1rem;
+      background: #f0f8fb;
+      border-radius: 6px;
+      border-left: 4px solid #00A9CE;
+    }
+
+    details {
+      margin: 1rem 0;
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 0.75rem;
+      border: 1px solid #e0e6ed;
+      transition: all 0.2s ease;
+    }
+
+    details:hover {
+      background: #f0f4f8;
+      border-color: #cbd5e0;
+    }
+
+    details[open] {
+      background: #ffffff;
+      border-color: #00A9CE;
+      box-shadow: 0 2px 6px rgba(0, 169, 206, 0.1);
+    }
+
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: #002D5C;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    summary:hover {
+      background: #e6f3f7;
+    }
+
+    summary:focus {
+      outline: 3px solid #00A9CE;
+      outline-offset: 2px;
+    }
+
+    summary::before {
+      content: "▶";
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      color: #00A9CE;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details ul, details ol {
+      margin-top: 0.75rem;
+      padding-left: 1.5rem;
+      color: #333333;
+    }
+
+    details li {
+      margin: 0.5rem 0;
+      line-height: 1.7;
+    }
+
+    details p {
+      color: #333333;
+      margin: 0.75rem 0;
+      line-height: 1.7;
+    }
+
+    details strong {
+      color: #002D5C;
+    }
+
+    .why-standards {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #e0e6ed;
+      font-size: 0.95rem;
+    }
+
+    .why-standards p {
+      margin: 0.5rem 0;
+      color: #333333;
+      line-height: 1.7;
+    }
+
+    .why-standards strong {
+      color: #002D5C;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+      }
+
+      .pill-nav {
+        flex-direction: column;
+      }
+
+      .pill {
+        text-align: left;
+      }
+
+      .shift {
+        padding: 1.25rem;
+      }
+
+      .shift-title {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Accessibility: Ensure focus states are visible */
+    *:focus-visible {
+      outline: 3px solid #00A9CE;
+      outline-offset: 2px;
+    }
+
+    /* Accessibility: High contrast mode support */
+    @media (prefers-contrast: high) {
+      .pill {
+        border-width: 3px;
+      }
+      
+      details {
+        border-width: 2px;
+      }
+    }
+
+    /* Accessibility: Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="page-title">Five High-Leverage Shifts for Ohio's Digital Learning Standards</h1>
+
+    <div class="intro">
+      <p>
+        These five shifts bring the Ohio Digital Learning Standards (aligned with ISTE) to life in everyday classroom practice.
+        Each shift includes simple moves you can embed tomorrow, repeatable routines, and ideas for larger projects or global
+        collaborations.
+      </p>
+      <p>
+        By default, all five shifts appear below. Use the pills to focus on one shift at a time, or click "Show All" to see everything again.
+      </p>
+    </div>
+
+    <!-- PILL NAVIGATION WITH FILTERING -->
+    <div class="pill-nav-wrapper">
+      <div class="pill-nav-label">View shifts:</div>
+      <div class="pill-nav">
+        <button class="pill active" data-target="all">Show All</button>
+        <button class="pill" data-target="shift1">1 — Inquiry to Impact</button>
+        <button class="pill" data-target="shift2">2 — Think It Through</button>
+        <button class="pill" data-target="shift3">3 — Work Like a Team</button>
+        <button class="pill" data-target="shift4">4 — Own Learning, Tools, Processes</button>
+        <button class="pill" data-target="shift5">5 — Digital Rules of the Road</button>
+      </div>
+    </div>
+
+    <!-- SHIFT 1 -->
+    <section id="shift1" class="shift">
+      <div class="shift-title">Shift 1 – Inquiry to Impact</div>
+      <div class="big-idea-label">Big Idea:</div>
+      <p class="big-idea">
+        Students engage in meaningful inquiry that incorporates multiple perspectives and leads to products or actions that matter to real audiences.
+      </p>
+
+      <details open>
+        <summary>Small / Embedded Moves</summary>
+        <ul>
+          <li>Ask: "What's the real question here?"</li>
+          <li>Ask: "Whose voice or perspective is missing?"</li>
+          <li>Ask: "Who needs this information and why?"</li>
+          <li>
+            Use a quick "perspective pulse":
+            <ul>
+              <li>Represented voice</li>
+              <li>Missing voice</li>
+              <li>Impacted voice</li>
+            </ul>
+          </li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Classroom Routines</summary>
+        <p><strong>Inquiry → Impact Mini-Cycle</strong></p>
+        <ol>
+          <li><strong>Wonder:</strong> Generate deeper questions.</li>
+          <li><strong>Find Out:</strong> Curate sources, data, and viewpoints.</li>
+          <li><strong>Perspective Check:</strong> Identify missing voices and biases.</li>
+          <li><strong>Create for Someone:</strong> Make something useful, informative, or influential.</li>
+          <li><strong>Share → Reflect:</strong> Consider audience response and next steps.</li>
+        </ol>
+        <p><strong>Inquiry Walls / Wonder Boards</strong>: Students continuously post questions, hypotheses, or interesting patterns.</p>
+        <p><strong>Mini "Source Set" Reviews</strong>: Students evaluate whose perspectives appear and whose are erased.</p>
+      </details>
+
+      <details>
+        <summary>Expanded / Extended Approaches</summary>
+        <ul>
+          <li><strong>Cross-class investigations:</strong> Two classes explore the same issue from different contexts and co-construct a shared understanding.</li>
+          <li>
+            <strong>Real audience projects:</strong>
+            <ul>
+              <li>Infographics for the school board</li>
+              <li>Local issue explainers for families</li>
+              <li>"Two viewpoints" videos for a partner class in another state</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Global Café–style collaboration:</strong>
+            <ul>
+              <li>Synchronous kick-off</li>
+              <li>Asynchronous joint research</li>
+              <li>Final synchronous share</li>
+            </ul>
+          </li>
+        </ul>
+      </details>
+
+      <div class="why-standards">
+        <p><strong>Why it matters:</strong> Students learn that inquiry isn't about answering questions on a worksheet — it's about understanding the world and contributing to communities.</p>
+        <p><strong>Standards activated:</strong> Knowledge Constructor, Global Collaborator, Creative Communicator, Empowered Learner, Digital Citizen.</p>
+      </div>
+    </section>
+
+    <!-- SHIFT 2 -->
+    <section id="shift2" class="shift">
+      <div class="shift-title">Shift 2 – Think It Through, Test It, Improve It</div>
+      <div class="big-idea-label">Big Idea:</div>
+      <p class="big-idea">
+        Students externalize their thinking, apply computational habits of mind, and refine their ideas, explanations, or solutions through iteration.
+      </p>
+
+      <details>
+        <summary>Small / Embedded Moves</summary>
+        <ul>
+          <li>Ask: "How did you arrive at that answer/idea?"</li>
+          <li>Ask: "What would happen if you tested that?"</li>
+          <li>Ask: "What changed or improved when you tried again?"</li>
+          <li>Model thinking-aloud, diagrams, sketches, or written drafts.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Classroom Routines</summary>
+        <p><strong>Draft → Feedback → Revise Loops</strong></p>
+        <ul>
+          <li>Students post rough drafts (text, video, code).</li>
+          <li>Peer or teacher feedback via structured protocol ("One strength, one question, one suggestion").</li>
+          <li>Revision reflection: What did I change and why?</li>
+        </ul>
+
+        <p><strong>Computational Thinking Routines</strong></p>
+        <ul>
+          <li>Decompose the problem: "Break it into smaller pieces."</li>
+          <li>Pattern recognition: "Where have I seen this before?"</li>
+          <li>Algorithm design: "Step-by-step, what must happen?"</li>
+          <li>Debugging: "Where's the error? How can I test?"</li>
+        </ul>
+
+        <p><strong>"Show Your Work" Protocols</strong></p>
+        <ul>
+          <li>Visual journals: diagrams, flowcharts, sketches.</li>
+          <li>Explain-back routines.</li>
+          <li>"Thinking log" – brief reflections on problem-solving steps.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Expanded / Extended Approaches</summary>
+        <ul>
+          <li>
+            <strong>Design Thinking Projects:</strong>
+            <ul>
+              <li>Empathy → Define → Ideate → Prototype → Test cycles.</li>
+              <li>Students repeat the cycle to refine solutions.</li>
+            </ul>
+          </li>
+          <li><strong>Coding &amp; Game Design Units:</strong> Computational thinking emerges naturally through debugging, playtesting, and iterating.</li>
+          <li><strong>Argument/Essay Iteration:</strong> Students externalize reasoning through claims, evidence, and drafts, then revise based on feedback.</li>
+        </ul>
+      </details>
+
+      <div class="why-standards">
+        <p><strong>Why it matters:</strong> Students develop systematic approaches to problem-solving and learn resilience through iteration — essential for STEM and beyond.</p>
+        <p><strong>Standards activated:</strong> Computational Thinker, Innovative Designer, Empowered Learner, Creative Communicator, Knowledge Constructor.</p>
+      </div>
+    </section>
+
+    <!-- SHIFT 3 -->
+    <section id="shift3" class="shift">
+      <div class="shift-title">Shift 3 – Work Like a Team (Even When Apart)</div>
+      <div class="big-idea-label">Big Idea:</div>
+      <p class="big-idea">
+        Students experience and reflect on real collaboration—both synchronous and asynchronous, local and global—and they learn the skills and mindsets that power team-based work.
+      </p>
+
+      <details>
+        <summary>Small / Embedded Moves</summary>
+        <ul>
+          <li>Ask: "What does each person on your team need to know?"</li>
+          <li>Ask: "How will you coordinate?"</li>
+          <li>
+            Quick stand-up style check-ins:
+            <ul>
+              <li>"Who is doing what?"</li>
+              <li>"What's one thing we need to clarify?"</li>
+            </ul>
+          </li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Classroom Routines</summary>
+        <p><strong>Collaborative Roles</strong></p>
+        <ul>
+          <li>Facilitator</li>
+          <li>Recorder</li>
+          <li>Evidence Finder</li>
+          <li>Summarizer</li>
+          <li>Connector (team-to-team or class-to-class liaison)</li>
+        </ul>
+
+        <p><strong>Collaboration Check Reflection</strong></p>
+        <ul>
+          <li>What helped us work well?</li>
+          <li>Where did we get stuck?</li>
+          <li>What will we change next time?</li>
+        </ul>
+
+        <p><strong>Asynchronous Workflows</strong></p>
+        <ul>
+          <li>Shared Google Slides/Docs</li>
+          <li>Flip video updates</li>
+          <li>Padlet or Miro boards</li>
+          <li>Commenting protocol ("TAG" – Tell something you like, Ask a question, Give a suggestion)</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Expanded / Extended Approaches</summary>
+        <ul>
+          <li>
+            <strong>Distributed Team Projects:</strong>
+            <ul>
+              <li>Kick-off meeting (synchronous).</li>
+              <li>Shared workspace (asynchronous).</li>
+              <li>Midpoint feedback videos.</li>
+              <li>Final live presentation or expo.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Global Collaboration Projects:</strong>
+            <ul>
+              <li>Partner with classes in other towns, states, or countries.</li>
+              <li>Exchange community stories, data sets, or designs.</li>
+              <li>Compare perspectives and revise jointly.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Global Café Model:</strong>
+            <ul>
+              <li>Clear structure: synchronous → asynchronous → synchronous.</li>
+              <li>Students co-produce artifacts to share.</li>
+            </ul>
+          </li>
+        </ul>
+      </details>
+
+      <div class="why-standards">
+        <p><strong>Why it matters:</strong> Students learn how to function as collaborators in modern, distributed, team-based environments — the reality of the workplace and civic life.</p>
+        <p><strong>Standards activated:</strong> Global Collaborator, Creative Communicator, Empowered Learner, Digital Citizen.</p>
+      </div>
+    </section>
+
+    <!-- SHIFT 4 -->
+    <section id="shift4" class="shift">
+      <div class="shift-title">Shift 4 – Own Your Learning, Your Tools, and Your Processes</div>
+      <div class="big-idea-label">Big Idea:</div>
+      <p class="big-idea">
+        Students become reflective, empowered thinkers who understand how they learn, why they choose tools, and which processes (inquiry, research, design, collaboration) best support them.
+      </p>
+
+      <details>
+        <summary>Small / Embedded Moves</summary>
+        <ul>
+          <li><strong>Learning:</strong> "What did you learn about yourself today?"</li>
+          <li><strong>Tools:</strong> "Why this tool?" "What do you need to learn about it?"</li>
+          <li><strong>Processes:</strong> "Which step helped you most — research, drafting, revising, collaborating?"</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Classroom Routines</summary>
+        <p><strong>Purpose → Process → Tool → Reflection Cycle</strong></p>
+        <ol>
+          <li><strong>Purpose:</strong> What are we trying to do?</li>
+          <li><strong>Process:</strong> Which strategy/steps best support that?</li>
+          <li><strong>Tool Choice:</strong> Which tool fits the task and audience?</li>
+          <li><strong>Reflection:</strong> What worked? What didn't? What do I change next time?</li>
+        </ol>
+
+        <p><strong>Tool/Process Swim Lanes</strong></p>
+        <ul>
+          <li>Students categorize tools and processes by purpose: inquiry, research, collaboration, design, communication, reflection.</li>
+        </ul>
+
+        <p><strong>Mini Skill-Building Moments</strong></p>
+        <ul>
+          <li>Students learn how to learn new tools: watching tutorials, collaborating to teach each other, using help menus, etc.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Expanded / Extended Approaches</summary>
+        <ul>
+          <li>
+            <strong>Student Tool &amp; Process Playbooks:</strong>
+            <ul>
+              <li>"How we research."</li>
+              <li>"How we revise."</li>
+              <li>"How we collaborate."</li>
+              <li>"How we choose tools."</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Learning Journals:</strong>
+            <ul>
+              <li>Students track what tool or process choices they made and why.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Cross-Class Process Comparisons:</strong>
+            <ul>
+              <li>Partner classes share how they use tools differently, or how they structure research or revision.</li>
+            </ul>
+          </li>
+        </ul>
+      </details>
+
+      <div class="why-standards">
+        <p><strong>Why it matters:</strong> Students become self-directed learners who can navigate changing tools, workflows, and expectations — essential for future learning and work.</p>
+        <p><strong>Standards activated:</strong> Empowered Learner, Knowledge Constructor, Digital Citizen, Innovative Designer, Creative Communicator, Global Collaborator.</p>
+      </div>
+    </section>
+
+    <!-- SHIFT 5 -->
+    <section id="shift5" class="shift">
+      <div class="shift-title">Shift 5 – Live the Digital Rules of the Road</div>
+      <div class="big-idea-label">Big Idea:</div>
+      <p class="big-idea">
+        Digital citizenship becomes the everyday operating system for communication, collaboration, and creation — not a stand-alone lesson.
+      </p>
+
+      <details>
+        <summary>Small / Embedded Moves</summary>
+        <ul>
+          <li><strong>Digital Pulse Check:</strong> Safe? Fair? Kind? Clear? Accurate?</li>
+          <li>Quick reminders about tone, privacy, or crediting sources.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Classroom Routines</summary>
+        <p><strong>Posting/Sharing Protocols</strong></p>
+        <ul>
+          <li>Reference sources</li>
+          <li>Respectful disagreement</li>
+          <li>Audience-appropriate tone</li>
+          <li>"Pause before posting" moments</li>
+        </ul>
+
+        <p><strong>Tool &amp; Platform Norms</strong></p>
+        <ul>
+          <li>What's appropriate?</li>
+          <li>What never gets shared?</li>
+          <li>How do we credit?</li>
+        </ul>
+
+        <p><strong>Audience Awareness Moments</strong></p>
+        <ul>
+          <li>"How would you phrase this for a partner class?"</li>
+          <li>"How does this change when addressing a community audience?"</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Expanded / Extended Approaches</summary>
+        <ul>
+          <li><strong>Co-created norms with partner classes:</strong> Students negotiate shared expectations for communication and collaboration.</li>
+          <li><strong>Student moderation of shared spaces:</strong> Students practice managing discussion boards, shared documents, or comment threads.</li>
+          <li><strong>Digital Portfolio Projects:</strong> Students curate responsible and well-communicated work for authentic audiences.</li>
+        </ul>
+      </details>
+
+      <div class="why-standards">
+        <p><strong>Why it matters:</strong> Students learn to behave ethically and responsibly in digital spaces — essential for global collaboration and civic life.</p>
+        <p><strong>Standards activated:</strong> Digital Citizen, Global Collaborator, Creative Communicator, Empowered Learner.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Simple filter logic for pill nav
+    const pills = document.querySelectorAll('.pill');
+    const shifts = document.querySelectorAll('.shift');
+
+    function showAllShifts() {
+      shifts.forEach(section => {
+        section.style.display = '';
+      });
+    }
+
+    function showOnlyShift(id) {
+      shifts.forEach(section => {
+        section.style.display = (section.id === id) ? '' : 'none';
+      });
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = pill.getAttribute('data-target');
+
+        // update active pill styling
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        if (target === 'all') {
+          showAllShifts();
+        } else {
+          showOnlyShift(target);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
