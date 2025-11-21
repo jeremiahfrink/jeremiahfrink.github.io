@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constraint-Based Design Card Drawer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #003da5 0%, #00a0c8 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #003da5;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            border-left: 5px solid #003da5;
+        }
+        
+        .intro h2 {
+            color: #00a0c8;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .intro p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.05em;
+        }
+        
+        .draw-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        #drawButton {
+            background: linear-gradient(135deg, #003da5 0%, #00a0c8 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 61, 165, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        #drawButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 61, 165, 0.6);
+        }
+        
+        #drawButton:active {
+            transform: translateY(-1px);
+        }
+        
+        .results {
+            display: none;
+            margin-top: 50px;
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        .results.show {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #003da5;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h3 {
+            color: #00a0c8;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-icon {
+            font-size: 1.5em;
+        }
+        
+        .card-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.6;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 2px dashed #003da5;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .results.show {
+                grid-template-columns: 1fr;
+            }
+            
+            #drawButton {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎴 Constraint-Based Design Challenge</h1>
+        </header>
+        
+        <div class="intro">
+            <h2>What is Constraint-Based Design?</h2>
+            <p>
+                Constraint-based design is an approach where limitations become the catalyst for creativity. 
+                Instead of having unlimited resources and options, you work within specific boundaries—whether 
+                that's technology, environment, or user needs. These constraints force you to think creatively, 
+                prioritize what truly matters, and design solutions that are more focused and innovative. 
+                By embracing limitations, you often discover approaches you wouldn't have considered otherwise!
+            </p>
+        </div>
+        
+        <div class="draw-section">
+            <button id="drawButton" onclick="drawCards()">🎲 Draw Your Constraint Cards</button>
+        </div>
+        
+        <div id="results" class="results">
+            <div class="card">
+                <h3><span class="card-icon">🤖</span> AI Building Block</h3>
+                <div class="card-content" id="card1">Click the button above to draw your cards!</div>
+            </div>
+            
+            <div class="card">
+                <h3><span class="card-icon">🌍</span> Real-World Problem</h3>
+                <div class="card-content" id="card2">Click the button above to draw your cards!</div>
+            </div>
+            
+            <div class="card">
+                <h3><span class="card-icon">⚡</span> User Context / Constraint</h3>
+                <div class="card-content" id="card3">Click the button above to draw your cards!</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const aiBlocks = [
+            "On-Device Translator – Simple phrase translation; no cloud needed.",
+            "Tiny Image Classifier – Can recognize a few objects (e.g., plants, shapes, classroom items).",
+            "Keyword Detector – Listens for simple trigger phrases.",
+            "Gesture or Motion Detector – Detects basic movement using a small sensor or camera.",
+            "Offline Text Helper – Suggests clearer wording or summarizes short passages locally.",
+            "Local Pattern Spotter – Finds basic trends in sensor data (temperature, noise levels, movement).",
+            "Routing or Scheduling Mini-Model – Plans simple routes using stored maps; no internet.",
+            "Edge Vision Counter – Counts people, objects, or events using offline image snapshots.",
+            "Local Recommendation Engine – Suggests items/steps based only on what's stored locally.",
+            "AI Alert System – Detects a specific condition (noise spike, temperature change, motion)."
+        ];
+        
+        const realWorldProblems = [
+            "Students need translation support in a multilingual classroom.",
+            "After-school programs need tools that work without Wi-Fi.",
+            "A library wants a local 'resource finder' during internet outages.",
+            "School hallways or buses need a way to track crowd flow safely.",
+            "A rural bus route needs better offline planning tools.",
+            "Students want a quiet-space monitor to support neurodiverse classmates.",
+            "The community needs a low-tech emergency alert system.",
+            "Garden or greenhouse teams must track plant health with few sensors.",
+            "Waste or recycling sorting is inconsistent and needs guidance.",
+            "Students need help organizing work on shared devices.",
+            "A village needs water-usage tracking without cloud services.",
+            "Farmers need local weather predictions for planting decisions.",
+            "A community wants to preserve oral stories across languages.",
+            "Local wildlife monitoring must avoid cloud storage for privacy.",
+            "Disaster relief teams need simple damage-classification tools offline."
+        ];
+        
+        const userConstraints = [
+            "No Wi-Fi available",
+            "Intermittent connectivity only",
+            "Shared devices with limited storage",
+            "Only one device per group",
+            "Mobile-only access",
+            "Rural or remote location",
+            "Unstable power supply",
+            "Outdoor-only environment (heat, dust, weather)",
+            "Low-light or noisy conditions",
+            "High-traffic spaces (hallways, events)",
+            "Users speak multiple languages",
+            "Users include younger learners",
+            "Users include elders with accessibility needs",
+            "Users have limited digital literacy",
+            "Cultural practices shape how tech can be used",
+            "Data must stay local (privacy)",
+            "Energy use must remain extremely low",
+            "AI must not replace a human role",
+            "Limited sensors or materials available",
+            "Must operate safely without collecting personal data"
+        ];
+        
+        function getRandomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+        
+        function drawCards() {
+            const card1 = getRandomItem(aiBlocks);
+            const card2 = getRandomItem(realWorldProblems);
+            const card3 = getRandomItem(userConstraints);
+            
+            document.getElementById('card1').textContent = card1;
+            document.getElementById('card2').textContent = card2;
+            document.getElementById('card3').textContent = card3;
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.add('show');
+            
+            // Smooth scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
