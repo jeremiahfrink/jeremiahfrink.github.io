@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Collaboration Tech Activity Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #003B5C 0%, #2BB3D0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #003B5C;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        nav {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            color: #003B5C;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #003B5C;
+            padding-bottom: 8px;
+        }
+
+        .nav-section {
+            margin-bottom: 20px;
+        }
+
+        .nav-section h3 {
+            color: #2BB3D0;
+            font-size: 1em;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 12px;
+            color: #555;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            margin-bottom: 4px;
+        }
+
+        .nav-link:hover {
+            background: #f0f0f0;
+            color: #003B5C;
+            padding-left: 20px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .filter-btn {
+            padding: 6px 12px;
+            border: 2px solid #003B5C;
+            background: white;
+            color: #003B5C;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #003B5C;
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: #003B5C;
+            color: white;
+        }
+
+        main {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .grade-band {
+            margin-bottom: 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .grade-header {
+            background: linear-gradient(135deg, #003B5C 0%, #2BB3D0 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .grade-header:hover {
+            background: linear-gradient(135deg, #2BB3D0 0%, #003B5C 100%);
+        }
+
+        .grade-header h2 {
+            font-size: 1.6em;
+            margin: 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .grade-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .grade-content {
+            padding: 25px;
+            display: block;
+        }
+
+        .grade-content.collapsed {
+            display: none;
+        }
+
+        .micro-skill {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #003B5C;
+            border-radius: 8px;
+        }
+
+        .micro-skill h3 {
+            color: #2BB3D0;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .micro-skill ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .micro-skill li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .micro-skill li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2BB3D0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .color-k2 { border-left-color: #FF9966; }
+        .color-35 { border-left-color: #2BB3D0; }
+        .color-68 { border-left-color: #003B5C; }
+        .color-912 { border-left-color: #00547A; }
+
+        footer {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #003B5C;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 12px rgba(0, 59, 92, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #2BB3D0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(43, 179, 208, 0.6);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                display: block;
+            }
+            nav, .print-btn, .filter-buttons {
+                display: none;
+            }
+            .grade-content {
+                display: block !important;
+            }
+            .grade-band {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #FF9966;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9em;
+            box-shadow: 0 4px 12px rgba(255, 153, 102, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #003B5C;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Global Collaboration Tech Activity Guide</h1>
+            <p class="subtitle">Developmentally Appropriate, Tech-Forward Activities for Global Collaborator Competencies</p>
+        </header>
+
+        <nav>
+            <h2>Navigation</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn" onclick="filterBySkill('all')">All Skills</button>
+                <button class="filter-btn" onclick="filterBySkill('communication')">Communication</button>
+                <button class="filter-btn" onclick="filterBySkill('roles')">Roles</button>
+                <button class="filter-btn" onclick="filterBySkill('people')">People Skills</button>
+                <button class="filter-btn" onclick="filterBySkill('project')">Project Mgmt</button>
+                <button class="filter-btn" onclick="filterBySkill('problem')">Problem-Solving</button>
+                <button class="filter-btn" onclick="filterBySkill('reflection')">Reflection</button>
+                <button class="filter-btn" onclick="filterBySkill('tools')">Tools & Tech</button>
+            </div>
+
+            <div class="nav-section">
+                <h3>Grade Bands</h3>
+                <a href="#k2" class="nav-link">K–2</a>
+                <a href="#grades35" class="nav-link">Grades 3–5</a>
+                <a href="#grades68" class="nav-link">Grades 6–8</a>
+                <a href="#grades912" class="nav-link">Grades 9–12</a>
+            </div>
+
+            <div class="nav-section">
+                <h3>Micro-Skills</h3>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('communication')">Communication & Listening</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('roles')">Roles & Participation</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('people')">People Skills</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('project')">Project Management</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('problem')">Problem-Solving</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('reflection')">Reflection</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="scrollToSkill('tools')">Tools & Technology</a>
+            </div>
+        </nav>
+
+        <main>
+            <!-- K-2 Section -->
+            <div class="grade-band" id="k2">
+                <div class="grade-header" onclick="toggleSection(this)">
+                    <h2>K–2 Global Tech-Enhanced Collaboration Activities</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="grade-content">
+                    <div class="micro-skill color-k2" data-skill="communication">
+                        <h3>Communication & Listening</h3>
+                        <ul>
+                            <li>Record short Flip videos responding to a partner class's "Question of the Week."</li>
+                            <li>Use picture-supported Padlet walls to react to classmates' and partner classes' posts with emojis or simple sentences.</li>
+                            <li>Practice paraphrasing by using voice typing to repeat what a partner said and checking it together.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-k2" data-skill="roles">
+                        <h3>Roles & Participation</h3>
+                        <ul>
+                            <li>Use color-coded digital whiteboards (Jamboard alternatives, FigJam) where each student adds one item in turn.</li>
+                            <li>Assign simple digital roles like "Sticker Adder," "Idea Recorder," or "Photo Taker" during joint activities.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-k2" data-skill="people">
+                        <h3>People Skills (Perspective-Taking, Repair, Empathy)</h3>
+                        <ul>
+                            <li>Students send simple "kind replies" on Seesaw to a partner class's artwork or stories.</li>
+                            <li>Use AI to generate a friendly "How might someone else feel?" prompt after students describe a disagreement.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-k2" data-skill="project">
+                        <h3>Project Management</h3>
+                        <ul>
+                            <li>Create simple shared checklists (Google Keep with images) for joint projects like plant growth observations.</li>
+                            <li>Use a classroom timer to help groups take turns adding photos or labels to a shared digital poster.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-k2" data-skill="problem">
+                        <h3>Problem-Solving & Reasoning</h3>
+                        <ul>
+                            <li>Use digital story sequencing tools with a partner class, each group placing a card and explaining why.</li>
+                            <li>Ask AI: "Give us 2 different ways kids in another place might solve this puzzle."</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-k2" data-skill="reflection">
+                        <h3>Reflection & Metacognition</h3>
+                        <ul>
+                            <li>Record 10-second reflection clips on Flip to share what their group did well.</li>
+                            <li>Use QR-linked reflection forms with picture choices for how teamwork felt.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-k2" data-skill="tools">
+                        <h3>Tools & Technology</h3>
+                        <ul>
+                            <li>Create a shared digital museum of class moments using teacher-managed Padlet, with contributions from another K–2 class.</li>
+                            <li>Practice replaying directions via QR codes and teaching the step to another grade level.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades 3-5 Section -->
+            <div class="grade-band" id="grades35">
+                <div class="grade-header" onclick="toggleSection(this)">
+                    <h2>Grades 3–5 Global Tech-Enhanced Collaboration Activities</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="grade-content">
+                    <div class="micro-skill color-35" data-skill="communication">
+                        <h3>Communication & Listening</h3>
+                        <ul>
+                            <li>Participate in cross-class Flip discussions where students must respond with a paraphrase and one clarifying question.</li>
+                            <li>Use AI to translate simple messages between classes in different languages and compare phrasing to check understanding.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-35" data-skill="roles">
+                        <h3>Roles & Participation</h3>
+                        <ul>
+                            <li>Assign digital roles (Researcher, Recorder, Slide Designer) with rotation tracked in a shared Google Doc.</li>
+                            <li>Use FigJam or Miro boards where each student contributes one sticky note per round to ensure balanced airtime.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-35" data-skill="people">
+                        <h3>People Skills (Perspective-Taking, Repair, Empathy)</h3>
+                        <ul>
+                            <li>Exchange "community snapshots" with another school via Padlet and ask empathy-oriented questions about similarities and differences.</li>
+                            <li>Use a chat simulation to practice conflict repair phrases like "Let's reset" or "Go ahead — I think I interrupted."</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-35" data-skill="project">
+                        <h3>Project Management</h3>
+                        <ul>
+                            <li>Use a joint Trello board with another class where each site manages its own column but reviews the other's progress.</li>
+                            <li>Share timelines in Google Sheets and hold asynchronous check-ins through comments.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-35" data-skill="problem">
+                        <h3>Problem-Solving & Reasoning</h3>
+                        <ul>
+                            <li>Exchange local data (weather, plant growth, school lunch waste) with another school and compare patterns using Sheets or Excel.</li>
+                            <li>Use AI to generate "What if this problem happened in a different community?" prompts.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-35" data-skill="reflection">
+                        <h3>Reflection & Metacognition</h3>
+                        <ul>
+                            <li>Build a co-authored Book Creator reflection journal with a partner class.</li>
+                            <li>Use Flip to record progress updates and tag them with "what we improved" labels.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-35" data-skill="tools">
+                        <h3>Tools & Technology</h3>
+                        <ul>
+                            <li>Create a joint Google Site where both classes curate resources or document a project.</li>
+                            <li>Students create video directions for a math or science activity and send them to another classroom to test.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades 6-8 Section -->
+            <div class="grade-band" id="grades68">
+                <div class="grade-header" onclick="toggleSection(this)">
+                    <h2>Grades 6–8 Global Tech-Enhanced Collaboration Activities</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="grade-content">
+                    <div class="micro-skill color-68" data-skill="communication">
+                        <h3>Communication & Listening</h3>
+                        <ul>
+                            <li>Hold asynchronous debates with another school using Padlet, Flip, or Teams; students must paraphrase the argument before responding.</li>
+                            <li>Use AI to check tone and clarity before posting to a shared collaboration space.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-68" data-skill="roles">
+                        <h3>Roles & Participation</h3>
+                        <ul>
+                            <li>Split cross-school teams into functional roles (design, research, communication) and manage roles with Notion or Trello.</li>
+                            <li>Conduct "whiteboard relays" where groups in two schools take turns adding layers to a FigJam design.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-68" data-skill="people">
+                        <h3>People Skills (Perspective-Taking, Repair, Empathy)</h3>
+                        <ul>
+                            <li>Partner with another school to exchange "community challenges" and brainstorm empathetic solutions.</li>
+                            <li>Use AI for perspective-swap practice: "Explain the issue from the viewpoint of the other group."</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-68" data-skill="project">
+                        <h3>Project Management</h3>
+                        <ul>
+                            <li>Conduct a multi-school design sprint with shared Kanban boards and time-boxed tasks.</li>
+                            <li>Share draft artifacts via Google Drive and use comment-only mode for structured peer feedback.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-68" data-skill="problem">
+                        <h3>Problem-Solving & Reasoning</h3>
+                        <ul>
+                            <li>Collaborate on an international data comparison project (air quality, biodiversity, noise levels) via shared spreadsheets.</li>
+                            <li>Use Scratch or Tinkercad to prototype a joint invention, with each class owning alternating development phases.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-68" data-skill="reflection">
+                        <h3>Reflection & Metacognition</h3>
+                        <ul>
+                            <li>Students contribute to a shared Notion or Book Creator "Collaboration Log" highlighting process insights.</li>
+                            <li>AI-coded reflection summaries combine responses from both schools to identify themes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-68" data-skill="tools">
+                        <h3>Tools & Technology</h3>
+                        <ul>
+                            <li>Maintain a joint digital portfolio of project work across classrooms and revise based on shared feedback.</li>
+                            <li>Use QR directions created by one class and tested by another to evaluate clarity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades 9-12 Section -->
+            <div class="grade-band" id="grades912">
+                <div class="grade-header" onclick="toggleSection(this)">
+                    <h2>Grades 9–12 Global Tech-Enhanced Collaboration Activities</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="grade-content">
+                    <div class="micro-skill color-912" data-skill="communication">
+                        <h3>Communication & Listening</h3>
+                        <ul>
+                            <li>Participate in global discussion forums with partner schools where students respond to complex prompts using evidence and paraphrase.</li>
+                            <li>Use AI tools to analyze communication logs for patterns of collaboration, tone, or misunderstanding.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-912" data-skill="roles">
+                        <h3>Roles & Participation</h3>
+                        <ul>
+                            <li>Form cross-school project teams using shared workspace platforms (Teams, Slack EDU, Notion) with clearly defined responsibilities.</li>
+                            <li>Students lead virtual meetings using collaborative agendas and live note-taking tools.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-912" data-skill="people">
+                        <h3>People Skills (Perspective-Taking, Repair, Empathy)</h3>
+                        <ul>
+                            <li>Conduct digital cultural interviews with international peers and use structured protocols to interpret multiple viewpoints.</li>
+                            <li>Practice conflict repair by role-playing real miscommunication scenarios in chat tools.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-912" data-skill="project">
+                        <h3>Project Management</h3>
+                        <ul>
+                            <li>Run multi-week design or research projects with Trello or Monday.com EDU, coordinating timelines across schools or community partners.</li>
+                            <li>Use shared Gantt charts to synchronize milestones and distribute responsibilities.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-912" data-skill="problem">
+                        <h3>Problem-Solving & Reasoning</h3>
+                        <ul>
+                            <li>Collaborate on solving authentic community issues (transportation, environmental monitoring) using shared datasets and AI modeling.</li>
+                            <li>Co-design digital prototypes (Figma, Canva, Tinkercad) with students from another region or country.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-912" data-skill="reflection">
+                        <h3>Reflection & Metacognition</h3>
+                        <ul>
+                            <li>Build a combined digital publication (Google Sites, Sway) that documents the collaboration process across all partner schools.</li>
+                            <li>Use AI-coded analysis of reflections from multiple classrooms to identify recurring insights and challenges.</li>
+                        </ul>
+                    </div>
+
+                    <div class="micro-skill color-912" data-skill="tools">
+                        <h3>Tools & Technology</h3>
+                        <ul>
+                            <li>Produce a joint digital showcase for community or global audiences, using multimedia contributions from each school.</li>
+                            <li>Develop clear, accessible digital instruction sets for another school to pilot and critique.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p><strong>Global Collaboration Tech Activity Guide</strong> | Aligned with Global Collaborator Competencies & Micro-Skill Categories</p>
+            <p>Designed for K–12 educators implementing tech-enhanced global collaboration</p>
+        </footer>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">🖨️ Print Guide</button>
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑ Top</button>
+
+    <script>
+        // Toggle section collapse/expand
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('collapsed');
+            header.classList.toggle('collapsed');
+        }
+
+        // Scroll to first occurrence of a skill
+        function scrollToSkill(skill) {
+            const firstSkillSection = document.querySelector(`[data-skill="${skill}"]`);
+            if (firstSkillSection) {
+                // Make sure the parent section is expanded
+                const gradeContent = firstSkillSection.closest('.grade-content');
+                const gradeHeader = gradeContent.previousElementSibling;
+                if (gradeContent.classList.contains('collapsed')) {
+                    gradeContent.classList.remove('collapsed');
+                    gradeHeader.classList.remove('collapsed');
+                }
+                // Scroll to the skill section
+                firstSkillSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Filter by skill
+        function filterBySkill(skill) {
+            const allSkills = document.querySelectorAll('.micro-skill');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (skill === 'all') {
+                allSkills.forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                allSkills.forEach(section => {
+                    if (section.dataset.skill === skill) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Back to top button visibility
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Expand all sections by default on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // All sections are expanded by default in the HTML
+        });
+    </script>
+</body>
+</html>
