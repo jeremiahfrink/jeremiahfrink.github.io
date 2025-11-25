@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STEM Learning Progressions</title>
+  <style>
+    :root{
+      --ink:#1b1f2a;
+      --muted:#5b6472;
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --brand:#2e3b8e;
+      --border:#d9deea;
+
+      /* skill-type accents */
+      --cog:#2b6cb0;      /* Cognitive/Thinking */
+      --se:#c05621;       /* Social-Emotional */
+      --meta:#805ad5;     /* Metacognitive */
+      --tech:#2f855a;     /* Digital/Tech */
+      --collab:#b83280;   /* Collaboration/Communication */
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      padding:0;
+      font-family: Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+
+    a{ color: inherit; }
+
+    header{
+      background: linear-gradient(135deg, var(--brand), #1f2a6b);
+      color:white;
+      padding:28px 20px 18px;
+    }
+    header .wrap{
+      max-width: 1200px;
+      margin:0 auto;
+    }
+    header h1{
+      margin:0 0 6px;
+      font-size: 1.7rem;
+      letter-spacing: .2px;
+    }
+    header p{
+      margin:0;
+      opacity:.9;
+      line-height: 1.4;
+    }
+
+    .page{
+      max-width: 1200px;
+      margin: 16px auto 56px;
+      padding: 0 20px;
+    }
+
+    .toolbar{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 6px 18px rgba(27,31,42,.06);
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+    }
+
+    .toolbar-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .nav-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .pill{
+      border: 1px solid rgba(46,59,142,.35);
+      background: rgba(46,59,142,.06);
+      color: var(--brand);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor:pointer;
+      font-size: .95rem;
+      transition: transform .05s ease, background .15s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .pill:hover{ background: rgba(46,59,142,.10); }
+    .pill:active{ transform: translateY(1px); }
+
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .control{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fbfcff;
+    }
+    .control label{
+      font-size: .9rem;
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .control input[type="search"]{
+      border:none;
+      outline:none;
+      background:transparent;
+      min-width: 210px;
+      font-size: .95rem;
+    }
+    .control select{
+      border:none;
+      outline:none;
+      background:transparent;
+      font-size: .95rem;
+    }
+
+    .btn{
+      border:none;
+      background: var(--brand);
+      color:white;
+      border-radius: 12px;
+      padding: 8px 12px;
+      cursor:pointer;
+      font-size: .95rem;
+      white-space:nowrap;
+    }
+    .btn.secondary{
+      background: #eef1ff;
+      color: var(--brand);
+      border: 1px solid rgba(46,59,142,.25);
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+      border-top: 1px dashed var(--border);
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor:pointer;
+      user-select:none;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:#999;
+    }
+    .tag input{ margin:0; }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 6px 18px rgba(27,31,42,.06);
+      margin-top: 14px;
+    }
+
+    details{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px 8px;
+      box-shadow: 0 6px 18px rgba(27,31,42,.06);
+      margin-top: 14px;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      user-select:none;
+    }
+    summary::-webkit-details-marker { display:none; }
+    .summary-inner{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+    .summary-title{
+      font-size: 1.15rem;
+      color: var(--brand);
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.25;
+    }
+    .summary-sub{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.35;
+    }
+    .chev{
+      font-size: 1.25rem;
+      color: var(--muted);
+      padding: 2px 8px;
+    }
+    details[open] .chev{ transform: rotate(180deg); }
+
+    .section-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin: 10px 0 6px;
+    }
+
+    .section-actions .btn{
+      padding: 7px 10px;
+      font-size: .9rem;
+    }
+
+    .principle-text{
+      margin: 10px 0 10px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .principle-text strong{ color: var(--brand); }
+
+    .table-wrap{
+      overflow:auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin: 10px 0 16px;
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px; /* helps keep columns readable; container scrolls on small screens */
+      background: white;
+    }
+    th, td{
+      border-bottom: 1px solid #e7ebf4;
+      padding: 10px 10px;
+      vertical-align: top;
+      text-align: left;
+      font-size: .95rem;
+      line-height: 1.35;
+    }
+    th{
+      position: sticky;
+      top: 0;
+      background: #eef1ff;
+      color: #1f2a6b;
+      z-index: 2;
+    }
+    td.skill{
+      font-weight: 700;
+      min-width: 220px;
+    }
+
+    /* skill type accent */
+    tr[data-skilltype] td.skill{
+      border-left: 6px solid transparent;
+      padding-left: 12px;
+    }
+    tr.st-cognitive td.skill{ border-left-color: var(--cog); }
+    tr.st-social td.skill{ border-left-color: var(--se); }
+    tr.st-metacognitive td.skill{ border-left-color: var(--meta); }
+    tr.st-tech td.skill{ border-left-color: var(--tech); }
+    tr.st-collab td.skill{ border-left-color: var(--collab); }
+
+    /* Column visibility */
+    .col-hidden{ display:none !important; }
+
+    .hint{
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    footer{
+      padding: 18px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align:center;
+    }
+
+    /* Print/PDF styles */
+    @media print{
+      body{ background:white; }
+      header{ background: var(--brand) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .toolbar, nav, .section-actions{ display:none !important; }
+      details{ box-shadow:none; }
+      details{ break-inside: avoid; }
+      details[open] summary{ margin-bottom: 6px; }
+      .table-wrap{ overflow: visible; }
+      table{ min-width: 100% !important; }
+      th{ position: static; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>STEM Learning Progressions</h1>
+      <p>Skill development across grade bands aligned to the STEM Learning Design Framework</p>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="toolbar" aria-label="Navigation and filters">
+      <div class="toolbar-row">
+        <div class="nav-pills" aria-label="Jump to sections">
+          <span class="pill" data-jump="framework">Framework</span>
+          <span class="pill" data-jump="p1">1) Inquiry & Iteration</span>
+          <span class="pill" data-jump="p2">2) Real-World Problem Solving</span>
+          <span class="pill" data-jump="p3">3) Tech & Thinking</span>
+          <span class="pill" data-jump="p4">4) Equity & Relationships</span>
+          <span class="pill" data-jump="p5">5) Competence Through Doing</span>
+        </div>
+
+        <div class="controls">
+          <div class="control" title="Search across skill names and descriptions">
+            <label for="search">Search</label>
+            <input id="search" type="search" placeholder="e.g., resilience, modeling, empathy" />
+          </div>
+
+          <div class="control" title="Show all grade bands or focus on one band across all tables">
+            <label for="gradeFilter">Grade band</label>
+            <select id="gradeFilter">
+              <option value="all" selected>All (K–12)</option>
+              <option value="k2">K–2</option>
+              <option value="35">3–5</option>
+              <option value="68">6–8</option>
+              <option value="912">9–12</option>
+            </select>
+          </div>
+
+          <button class="btn secondary" id="toggleAll">Expand all</button>
+          <button class="btn" id="printBtn">Print / Save as PDF</button>
+        </div>
+      </div>
+
+      <div class="legend" aria-label="Filter by skill type">
+        <span class="hint" style="margin-right:6px;">Filter by skill type:</span>
+
+        <label class="tag" title="Cognitive/Thinking skills">
+          <input type="checkbox" class="typeFilter" value="cognitive" checked>
+          <span class="dot" style="background:var(--cog)"></span>
+          Cognitive/Thinking
+        </label>
+
+        <label class="tag" title="Social-Emotional skills">
+          <input type="checkbox" class="typeFilter" value="social" checked>
+          <span class="dot" style="background:var(--se)"></span>
+          Social-Emotional
+        </label>
+
+        <label class="tag" title="Metacognitive skills">
+          <input type="checkbox" class="typeFilter" value="metacognitive" checked>
+          <span class="dot" style="background:var(--meta)"></span>
+          Metacognitive
+        </label>
+
+        <label class="tag" title="Digital/Technology-related skills">
+          <input type="checkbox" class="typeFilter" value="tech" checked>
+          <span class="dot" style="background:var(--tech)"></span>
+          Digital/Tech
+        </label>
+
+        <label class="tag" title="Collaboration/Communication skills">
+          <input type="checkbox" class="typeFilter" value="collab" checked>
+          <span class="dot" style="background:var(--collab)"></span>
+          Collaboration/Communication
+        </label>
+
+        <span class="hint" style="margin-left:auto;">Tip: Use your browser’s Print dialog to “Save as PDF.”</span>
+      </div>
+    </section>
+
+    <details id="framework" open>
+      <summary>
+        <div class="summary-inner">
+          <div>
+            <p class="summary-title">Framework for STEM Learning Design</p>
+            <p class="summary-sub">Background and design principles (as provided)</p>
+          </div>
+          <div class="chev">▾</div>
+        </div>
+      </summary>
+
+      <div class="principle-text">
+        STEM in classrooms is more than science, technology, engineering, and math—it’s a way of learning. It invites students to explore, ask questions, and make sense of the world through play and problem solving. Rather than teaching subjects in isolation, STEM learning supports the whole child by connecting ideas, nurturing curiosity, and grounding learning in real-life experiences.
+        <br><br>
+        The STEM learning design approach centers on five key principles: real-world, interdisciplinary problem solving; student-driven inquiry and iteration; purposeful use of technology to extend thinking and relationships; equity-centered, relational learning environments; and the intentional design of experiences that foster creativity, collaboration, critical thinking, and other essential 21st-century skills.
+        <br><br>
+
+        <strong>1. Interdisciplinary, Real-World Problem Solving</strong><br>
+        <strong>What it means:</strong> STEM learning connects disciplines meaningfully to help children engage with relevant, authentic challenges in their world. It's not about squeezing subjects together—it’s about helping students make sense of their environment through multiple lenses, including spatial reasoning, systems thinking, and pattern recognition.
+        <br><br>
+
+        <strong>2. Student-Driven Inquiry and Iterative Learning</strong><br>
+        <strong>What it means:</strong> Children lead with curiosity—asking questions, exploring ideas, and trying things out. STEM approaches support iterative cycles of creation and reflection, where trying, failing, and trying again are core to the process. It's not just about finding the right answer—it's about nurturing confidence, persistence, and flexibility in thinking.
+        <br><br>
+
+        <strong>3. Extending Thinking and Relationships with Technology</strong><br>
+        <strong>What it means:</strong> In STEM, technology is not the focus—thinking is. Technology becomes a tool for observing, documenting, modeling, and making. For young learners, it's also a way to share ideas, connect with others, and make their thinking visible. Educators guide children in using tech intentionally, relationally, and developmentally appropriately.
+        <br><br>
+
+        <strong>4. Equity-Centered, Relational Learning Environments</strong><br>
+        <strong>What it means:</strong> STEM learning honors every learner’s identity, voice, and capacity. It happens in environments that are active, inclusive, and culturally responsive—where learning is co-constructed, agency is respected, and children are seen as capable. Relationships—with peers, teachers, tools, and ideas—are foundational.
+        <br><br>
+
+        <strong>5. Developing Competences through Doing</strong><br>
+        <strong>What it means:</strong> STEM educators intentionally design flexible, student-centered experiences that support curiosity, play, resilience, and cultural relevance. Through careful choices in tools, routines, and learning contexts, they cultivate environments where learners can develop critical thinking, creativity, collaboration, and communication—essential skills for thriving in today’s world.
+      </div>
+    </details>
+
+    <!-- Principle 2 (your numbering): Student-Driven Inquiry and Iterative Learning -->
+    <details id="p1" open>
+      <summary>
+        <div class="summary-inner">
+          <div>
+            <p class="summary-title">Student-Driven Inquiry and Iterative Learning</p>
+            <p class="summary-sub">Learning progression (K–2 → 9–12) across key skills</p>
+          </div>
+          <div class="chev">▾</div>
+        </div>
+      </summary>
+
+      <div class="section-actions">
+        <button class="btn secondary" data-print-section="p1">Print this section</button>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Student-Driven Inquiry and Iterative Learning progression table" tabindex="0">
+        <table class="progression-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th class="col-k2">K–2</th>
+              <th class="col-35">3–5</th>
+              <th class="col-68">6–8</th>
+              <th class="col-912">9–12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Curiosity &amp; Questioning</td>
+              <td class="col-k2">Asks 'why' and 'what if' questions during play and exploration; begins to wonder aloud.</td>
+              <td class="col-35">Poses deeper questions; begins planning investigations based on curiosity.</td>
+              <td class="col-68">Generates investigable questions and refines them through research or peer input.</td>
+              <td class="col-912">Designs self-directed investigations based on authentic or interdisciplinary questions.</td>
+            </tr>
+            <tr class="st-social" data-skilltype="social">
+              <td class="skill">Persistence &amp; Resilience</td>
+              <td class="col-k2">Keeps trying simple tasks even after setbacks with encouragement.</td>
+              <td class="col-35">Shows independence in retrying tasks; uses classroom strategies to keep going.</td>
+              <td class="col-68">Perseveres through multi-step challenges; uses peer or AI support strategically.</td>
+              <td class="col-912">Demonstrates sustained effort over long-term projects; reflects on persistence as a strength.</td>
+            </tr>
+            <tr class="st-metacognitive" data-skilltype="metacognitive">
+              <td class="skill">Reflective Thinking</td>
+              <td class="col-k2">With support, talks about what they liked or didn’t like about an activity.</td>
+              <td class="col-35">Describes what worked and what they’d change next time using teacher prompts.</td>
+              <td class="col-68">Maintains a design or learning journal to track decisions, iterations, and insights.</td>
+              <td class="col-912">Uses reflection tools independently to evaluate outcomes, thinking, and group processes.</td>
+            </tr>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Comfort with Ambiguity</td>
+              <td class="col-k2">Tolerates small changes in routines; begins to explore open-ended tasks with guidance.</td>
+              <td class="col-35">Engages with multi-solution problems and can discuss uncertainty.</td>
+              <td class="col-68">Seeks out new methods when solutions are unclear or incomplete.</td>
+              <td class="col-912">Thrives in open-ended projects; proposes innovative paths forward amid complexity.</td>
+            </tr>
+            <tr class="st-social" data-skilltype="social">
+              <td class="skill">Growth Mindset</td>
+              <td class="col-k2">Begins to understand that mistakes are part of learning with adult modeling.</td>
+              <td class="col-35">Accepts feedback and explains how effort connects to success in familiar tasks.</td>
+              <td class="col-68">Recognizes and explains their growth over time; mentors peers in bouncing back from failure.</td>
+              <td class="col-912">Champions a culture of growth; provides and seeks out critical feedback for improvement.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Principle 1: Interdisciplinary, Real-World Problem Solving -->
+    <details id="p2">
+      <summary>
+        <div class="summary-inner">
+          <div>
+            <p class="summary-title">Interdisciplinary, Real-World Problem Solving</p>
+            <p class="summary-sub">Learning progression (K–2 → 9–12) across key skills</p>
+          </div>
+          <div class="chev">▾</div>
+        </div>
+      </summary>
+
+      <div class="section-actions">
+        <button class="btn secondary" data-print-section="p2">Print this section</button>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Interdisciplinary, Real-World Problem Solving progression table" tabindex="0">
+        <table class="progression-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th class="col-k2">K–2</th>
+              <th class="col-35">3–5</th>
+              <th class="col-68">6–8</th>
+              <th class="col-912">9–12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Systems Thinking</td>
+              <td class="col-k2">Begins to recognize simple cause-effect relationships (e.g., push/pull).</td>
+              <td class="col-35">Explains how changes in one part of a system affect another (e.g., weather, plant life).</td>
+              <td class="col-68">Analyzes how multiple variables or components interact in a system.</td>
+              <td class="col-912">Designs and models solutions based on full-system analysis and interdependencies.</td>
+            </tr>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Pattern Recognition &amp; Spatial Reasoning</td>
+              <td class="col-k2">Identifies visual patterns and sequences; uses blocks and drawings to represent space.</td>
+              <td class="col-35">Creates simple maps, patterns, or graphs to describe relationships or structures.</td>
+              <td class="col-68">Identifies, creates, and interprets complex spatial patterns and visual models.</td>
+              <td class="col-912">Uses advanced pattern and data analysis to inform decisions or design solutions.</td>
+            </tr>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Flexible Thinking Across Domains</td>
+              <td class="col-k2">Connects ideas across play experiences (e.g., using counting in building).</td>
+              <td class="col-35">Applies math or science concepts during design tasks (e.g., measuring, testing).</td>
+              <td class="col-68">Explains how and why to combine knowledge from different fields (e.g., math + science).</td>
+              <td class="col-912">Seamlessly integrates cross-disciplinary knowledge to propose innovative solutions.</td>
+            </tr>
+            <tr class="st-social" data-skilltype="social">
+              <td class="skill">Empathy for Real-World Contexts</td>
+              <td class="col-k2">Understands that problems affect people; identifies basic needs (e.g., shelter, food).</td>
+              <td class="col-35">Considers how others might feel or be affected by a problem (e.g., community helpers).</td>
+              <td class="col-68">Interviews or researches stakeholders to design with empathy and real-world input.</td>
+              <td class="col-912">Leads design processes that center user perspectives, ethics, and cultural relevance.</td>
+            </tr>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Contextual Transfer</td>
+              <td class="col-k2">Uses prior experiences to solve familiar problems in new play situations.</td>
+              <td class="col-35">Adapts strategies from one subject or setting to another with teacher support.</td>
+              <td class="col-68">Applies familiar concepts to unfamiliar problems with increasing independence.</td>
+              <td class="col-912">Transfers learning flexibly across disciplines and applies to novel, real-world contexts.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Principle 3: Extending Thinking and Relationships with Technology -->
+    <details id="p3">
+      <summary>
+        <div class="summary-inner">
+          <div>
+            <p class="summary-title">Extending Thinking and Relationships with Technology</p>
+            <p class="summary-sub">Learning progression (K–2 → 9–12) across key skills</p>
+          </div>
+          <div class="chev">▾</div>
+        </div>
+      </summary>
+
+      <div class="section-actions">
+        <button class="btn secondary" data-print-section="p3">Print this section</button>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Extending Thinking and Relationships with Technology progression table" tabindex="0">
+        <table class="progression-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th class="col-k2">K–2</th>
+              <th class="col-35">3–5</th>
+              <th class="col-68">6–8</th>
+              <th class="col-912">9–12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="st-tech" data-skilltype="tech">
+              <td class="skill">Digital Expression</td>
+              <td class="col-k2">Uses simple tools to capture or show ideas (e.g., drawing apps, taking photos).</td>
+              <td class="col-35">Creates short media projects to explain thinking (e.g., slide shows, voice recordings).</td>
+              <td class="col-68">Explains thinking through digital creation (e.g., screencasts, coding, infographics).</td>
+              <td class="col-912">Designs and publishes media-rich projects to influence or inform others.</td>
+            </tr>
+            <tr class="st-tech" data-skilltype="tech">
+              <td class="skill">Modeling &amp; Visualization</td>
+              <td class="col-k2">Builds and manipulates basic digital objects (e.g., using drag-and-drop tools).</td>
+              <td class="col-35">Uses tools to represent processes or data (e.g., diagrams, basic simulations).</td>
+              <td class="col-68">Builds models and visualizations to test or demonstrate understanding.</td>
+              <td class="col-912">Uses simulations, models, or data dashboards to analyze complex systems.</td>
+            </tr>
+            <tr class="st-tech" data-skilltype="tech">
+              <td class="skill">Tool Selection</td>
+              <td class="col-k2">Explores a limited set of tools with guidance; chooses tools based on fun or ease.</td>
+              <td class="col-35">Selects tools for a specific purpose with teacher support.</td>
+              <td class="col-68">Chooses and justifies tool choices based on task and audience.</td>
+              <td class="col-912">Makes strategic, ethical choices about tech tools for real-world impact.</td>
+            </tr>
+            <tr class="st-collab" data-skilltype="collab">
+              <td class="skill">Collaborative Technology Use</td>
+              <td class="col-k2">Shares a screen or uses digital voice to tell others about their ideas.</td>
+              <td class="col-35">Uses shared documents or tools to collaborate with classmates.</td>
+              <td class="col-68">Uses tech to give and receive peer feedback or build on shared ideas.</td>
+              <td class="col-912">Leads or facilitates collaborative tech work within or beyond the classroom.</td>
+            </tr>
+            <tr class="st-tech" data-skilltype="tech">
+              <td class="skill">Tech Responsibility</td>
+              <td class="col-k2">Learns basic rules for safe and kind tech use (e.g., asking before taking photos).</td>
+              <td class="col-35">Follows tech rules independently; begins discussing why they matter.</td>
+              <td class="col-68">Understands concepts like privacy, consent, and data use; applies digital etiquette.</td>
+              <td class="col-912">Applies digital responsibility frameworks and mentors others in responsible use.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Principle 4: Equity-Centered, Relational Learning Environments -->
+    <details id="p4">
+      <summary>
+        <div class="summary-inner">
+          <div>
+            <p class="summary-title">Equity-Centered, Relational Learning Environments</p>
+            <p class="summary-sub">Learning progression (K–2 → 9–12) across key skills</p>
+          </div>
+          <div class="chev">▾</div>
+        </div>
+      </summary>
+
+      <div class="section-actions">
+        <button class="btn secondary" data-print-section="p4">Print this section</button>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Equity-Centered, Relational Learning Environments progression table" tabindex="0">
+        <table class="progression-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th class="col-k2">K–2</th>
+              <th class="col-35">3–5</th>
+              <th class="col-68">6–8</th>
+              <th class="col-912">9–12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="st-social" data-skilltype="social">
+              <td class="skill">Self-Awareness &amp; Identity Expression</td>
+              <td class="col-k2">Describes their likes, dislikes, and family/cultural traditions with support.</td>
+              <td class="col-35">Explores how their background influences how they learn or create.</td>
+              <td class="col-68">Expresses identity through projects or perspectives; reflects on its impact on learning.</td>
+              <td class="col-912">Critically reflects on identity, bias, and positionality in problem-solving contexts.</td>
+            </tr>
+            <tr class="st-social" data-skilltype="social">
+              <td class="skill">Cultural Awareness &amp; Empathy</td>
+              <td class="col-k2">Listens to peers’ stories and notices similarities and differences.</td>
+              <td class="col-35">Recognizes and respects others' experiences and contributions.</td>
+              <td class="col-68">Shows empathy by adapting designs or actions to be more inclusive.</td>
+              <td class="col-912">Designs solutions that consider equity, inclusion, and cultural relevance.</td>
+            </tr>
+            <tr class="st-collab" data-skilltype="collab">
+              <td class="skill">Agency &amp; Voice</td>
+              <td class="col-k2">Makes choices in activities and shares preferences when asked.</td>
+              <td class="col-35">Chooses tools or roles; suggests ideas and defends their thinking respectfully.</td>
+              <td class="col-68">Advocates for self or others during group tasks or classroom decisions.</td>
+              <td class="col-912">Leads group processes with respect for diverse voices and perspectives.</td>
+            </tr>
+            <tr class="st-collab" data-skilltype="collab">
+              <td class="skill">Peer Collaboration Skills</td>
+              <td class="col-k2">Takes turns and begins sharing ideas during group play or activities.</td>
+              <td class="col-35">Participates in group norms (e.g., listening, turn-taking, encouraging others).</td>
+              <td class="col-68">Engages in shared leadership roles and resolves simple conflicts constructively.</td>
+              <td class="col-912">Navigates complex group dynamics with emotional intelligence and conflict resolution.</td>
+            </tr>
+            <tr class="st-collab" data-skilltype="collab">
+              <td class="skill">Co-Construction of Ideas</td>
+              <td class="col-k2">Adds onto another's idea with modeling; participates in guided group tasks.</td>
+              <td class="col-35">Builds on group input to improve a shared product or solution with teacher facilitation.</td>
+              <td class="col-68">Facilitates peer collaboration; invites others’ input in co-creating ideas.</td>
+              <td class="col-912">Initiates and sustains collaborative idea development with distributed leadership.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Principle 5: Developing Competence through Doing -->
+    <details id="p5">
+      <summary>
+        <div class="summary-inner">
+          <div>
+            <p class="summary-title">Developing Competence through Doing</p>
+            <p class="summary-sub">Learning progression (K–2 → 9–12) across key skills</p>
+          </div>
+          <div class="chev">▾</div>
+        </div>
+      </summary>
+
+      <div class="section-actions">
+        <button class="btn secondary" data-print-section="p5">Print this section</button>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Developing Competence through Doing progression table" tabindex="0">
+        <table class="progression-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th class="col-k2">K–2</th>
+              <th class="col-35">3–5</th>
+              <th class="col-68">6–8</th>
+              <th class="col-912">9–12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Hands-On Creativity</td>
+              <td class="col-k2">Explores materials and combines them in new ways through guided play.</td>
+              <td class="col-35">Designs and builds simple creations that meet a need or solve a problem.</td>
+              <td class="col-68">Creates functioning designs that reflect planning, iteration, and testing.</td>
+              <td class="col-912">Engineers purposeful solutions, prototypes, or products that meet complex needs.</td>
+            </tr>
+            <tr class="st-cognitive" data-skilltype="cognitive">
+              <td class="skill">Real-Time Problem Solving</td>
+              <td class="col-k2">Changes approach when something doesn’t work with adult prompting.</td>
+              <td class="col-35">Explains how they fixed a mistake or changed direction during a task.</td>
+              <td class="col-68">Uses problem-solving strategies independently or with peers during challenges.</td>
+              <td class="col-912">Solves novel problems using logic, iteration, and collaboration under real conditions.</td>
+            </tr>
+            <tr class="st-collab" data-skilltype="collab">
+              <td class="skill">Teamwork &amp; Collaboration</td>
+              <td class="col-k2">Works alongside peers; shares materials and helps when asked.</td>
+              <td class="col-35">Divides roles in a team; participates actively and encourages others.</td>
+              <td class="col-68">Negotiates roles, offers help, and resolves minor group challenges.</td>
+              <td class="col-912">Demonstrates leadership in team roles, and adapts collaboration strategies as needed.</td>
+            </tr>
+            <tr class="st-metacognitive" data-skilltype="metacognitive">
+              <td class="skill">Metacognition</td>
+              <td class="col-k2">Names what they’re doing or trying when prompted.</td>
+              <td class="col-35">Describes their thinking and decision-making during and after a task.</td>
+              <td class="col-68">Uses tools like journals, diagrams, or checklists to think about learning.</td>
+              <td class="col-912">Self-monitors learning with clear strategies; adjusts based on progress and feedback.</td>
+            </tr>
+            <tr class="st-metacognitive" data-skilltype="metacognitive">
+              <td class="skill">Skill Reflection</td>
+              <td class="col-k2">Celebrates success and names what they’re proud of with teacher guidance.</td>
+              <td class="col-35">Reflects on what skill they practiced or improved with teacher support.</td>
+              <td class="col-68">Identifies which skills improved and sets goals for future growth.</td>
+              <td class="col-912">Tracks growth across time; reflects critically on skills gained through doing.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <footer>
+      Built as a navigable reference: expandable sections, grade-band column filter, skill-type filtering, and full-text progressions.
+    </footer>
+  </main>
+
+  <script>
+    // Smooth jump
+    document.querySelectorAll('[data-jump]').forEach(el => {
+      el.addEventListener('click', () => {
+        const targetId = el.getAttribute('data-jump');
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Open the details if it's a <details>
+        if (target.tagName.toLowerCase() === 'details') target.open = true;
+      });
+    });
+
+    // Expand / collapse all
+    const toggleAllBtn = document.getElementById('toggleAll');
+    function allDetails(){ return Array.from(document.querySelectorAll('details')).filter(d => d.id !== 'framework' ? true : true); }
+    function setAll(open){
+      document.querySelectorAll('details').forEach(d => d.open = open);
+      toggleAllBtn.textContent = open ? 'Collapse all' : 'Expand all';
+      toggleAllBtn.dataset.state = open ? 'open' : 'closed';
+    }
+    toggleAllBtn.addEventListener('click', () => {
+      const isOpen = toggleAllBtn.dataset.state === 'open';
+      setAll(!isOpen);
+    });
+    // initialize button state (framework + p1 open by default)
+    toggleAllBtn.dataset.state = 'open';
+    toggleAllBtn.textContent = 'Collapse all';
+
+    // Print whole page
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+    // Print a single section: temporarily open only that section and print
+    const originalOpenStates = new Map();
+    function snapshotOpenStates(){
+      originalOpenStates.clear();
+      document.querySelectorAll('details').forEach(d => originalOpenStates.set(d.id, d.open));
+    }
+    function restoreOpenStates(){
+      document.querySelectorAll('details').forEach(d => {
+        if (originalOpenStates.has(d.id)) d.open = originalOpenStates.get(d.id);
+      });
+    }
+    document.querySelectorAll('[data-print-section]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-print-section');
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        snapshotOpenStates();
+        document.querySelectorAll('details').forEach(d => d.open = false);
+        target.open = true;
+
+        setTimeout(() => {
+          window.print();
+          setTimeout(() => restoreOpenStates(), 250);
+        }, 50);
+      });
+    });
+
+    // Grade band column filter
+    const gradeFilter = document.getElementById('gradeFilter');
+    function applyGradeFilter(value){
+      const show = {k2: false, '35': false, '68': false, '912': false};
+      if (value === 'all'){
+        show.k2 = show['35'] = show['68'] = show['912'] = true;
+      } else {
+        show[value] = true;
+      }
+      const classes = ['col-k2','col-35','col-68','col-912'];
+      classes.forEach(cls => {
+        const shouldShow =
+          (cls === 'col-k2' && show.k2) ||
+          (cls === 'col-35' && show['35']) ||
+          (cls === 'col-68' && show['68']) ||
+          (cls === 'col-912' && show['912']);
+
+        document.querySelectorAll('.' + cls).forEach(cell => {
+          cell.classList.toggle('col-hidden', !shouldShow);
+        });
+      });
+    }
+    gradeFilter.addEventListener('change', e => applyGradeFilter(e.target.value));
+    applyGradeFilter('all');
+
+    // Skill type filters + search
+    const searchEl = document.getElementById('search');
+    const typeEls = Array.from(document.querySelectorAll('.typeFilter'));
+
+    function getAllowedTypes(){
+      const allowed = new Set();
+      typeEls.forEach(cb => { if (cb.checked) allowed.add(cb.value); });
+      return allowed;
+    }
+
+    function rowMatchesSearch(row, q){
+      if (!q) return true;
+      const text = row.innerText.toLowerCase();
+      return text.includes(q);
+    }
+
+    function applyFilters(){
+      const q = (searchEl.value || '').trim().toLowerCase();
+      const allowed = getAllowedTypes();
+
+      document.querySelectorAll('table.progression-table tbody tr').forEach(row => {
+        const type = row.getAttribute('data-skilltype');
+        const typeOk = allowed.has(type);
+        const searchOk = rowMatchesSearch(row, q);
+        row.style.display = (typeOk && searchOk) ? '' : 'none';
+      });
+    }
+
+    searchEl.addEventListener('input', applyFilters);
+    typeEls.forEach(cb => cb.addEventListener('change', applyFilters));
+    applyFilters();
+  </script>
+</body>
+</html>
