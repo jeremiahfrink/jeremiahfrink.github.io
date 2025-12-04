@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Starter Guide: Connecting Class Projects with Industry</title>
+  <meta name="description" content="A practical, low-lift playbook for teachers to connect classroom projects with industry partners—for elementary and secondary." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b31;
+      --card:#101f3a;
+      --muted:#9fb1d6;
+      --text:#e9f0ff;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --ok:#34d399;
+      --warn:#fbbf24;
+      --danger:#fb7185;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:22px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 420px at 12% 10%, rgba(125,211,252,.18), transparent 60%),
+        radial-gradient(820px 420px at 88% 12%, rgba(167,139,250,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 110%, rgba(52,211,153,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1080px; margin:0 auto; padding:28px 18px 56px}
+    header{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding:22px 20px;
+      box-shadow: var(--shadow);
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:.9rem; color:var(--muted);
+      letter-spacing:.2px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(125,211,252,.12);
+      border:1px solid rgba(125,211,252,.25);
+      color: #dff5ff;
+      font-weight:600;
+    }
+    h1{margin:10px 0 8px; font-size:1.75rem; line-height:1.2}
+    .sub{margin:0; color:var(--muted); max-width:78ch}
+    .toolbar{
+      margin-top:16px;
+      display:flex; flex-wrap:wrap; gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .toolbar .left, .toolbar .right{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:650;
+      transition: transform .06s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .btn:hover{background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18)}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      border-color: rgba(125,211,252,.45);
+      background: rgba(125,211,252,.14);
+    }
+    .btn.primary:hover{background: rgba(125,211,252,.18)}
+    .search{
+      display:flex; align-items:center; gap:10px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding:10px 12px;
+      border-radius:999px;
+      min-width: min(520px, 100%);
+    }
+    .search input{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      outline:none;
+      font-size:.98rem;
+    }
+    .search .hint{color:var(--muted); font-size:.85rem; white-space:nowrap}
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    details.section{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow: 0 10px 40px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:16px 16px 14px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .num{
+      flex:0 0 auto;
+      width:34px; height:34px;
+      display:grid; place-items:center;
+      border-radius:12px;
+      background: rgba(167,139,250,.16);
+      border:1px solid rgba(167,139,250,.28);
+      color:#efeaff;
+      font-weight:800;
+    }
+    .stitle{margin:0; font-size:1.06rem}
+    .sdesc{margin:4px 0 0; color:var(--muted); font-size:.95rem}
+    .chev{
+      margin-left:auto;
+      opacity:.85;
+      transform-origin:center;
+      transition: transform .15s ease;
+      padding-top:3px;
+    }
+    details[open] .chev{transform: rotate(180deg)}
+    .content{
+      padding:0 16px 16px;
+    }
+    .content-inner{
+      background: rgba(16,31,58,.55);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding:14px;
+    }
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 860px){
+      .two-col{grid-template-columns: 1fr 1fr;}
+      h1{font-size:2rem}
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding:12px;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:1rem;
+      display:flex; align-items:center; gap:10px;
+    }
+    .tag{
+      font-size:.78rem;
+      padding:4px 9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      font-weight:700;
+    }
+    .tag.el{border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.10); color:#d9fff0}
+    .tag.sec{border-color: rgba(125,211,252,.40); background: rgba(125,211,252,.10); color:#e7f8ff}
+    .tag.time{border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.10); color:#fff3d4}
+    ul{margin:8px 0 0; padding-left:18px; color:var(--text)}
+    li{margin:6px 0}
+    .muted{color:var(--muted)}
+    .callouts{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (min-width: 860px){
+      .callouts{grid-template-columns: repeat(3, 1fr);}
+    }
+    .callout{
+      border-radius: 16px;
+      padding:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .callout .label{
+      display:inline-flex; gap:8px; align-items:center;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:999px; background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(125,211,252,.12);
+    }
+    .dot.ok{background: var(--ok); box-shadow: 0 0 0 5px rgba(52,211,153,.12)}
+    .dot.warn{background: var(--warn); box-shadow: 0 0 0 5px rgba(251,191,36,.12)}
+    code.inline{
+      background: rgba(0,0,0,.25);
+      padding:2px 6px;
+      border-radius: 8px;
+      border:1px solid rgba(255,255,255,.10);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.92em;
+    }
+    .mini{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .mini .badge{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      padding:8px 10px;
+      color: var(--muted);
+      font-weight:700;
+      font-size:.9rem;
+    }
+    .footer{
+      margin-top:18px;
+      color: var(--muted);
+      font-size:.92rem;
+      padding:14px 2px 0;
+    }
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">
+        <span class="pill">Starter Guide</span>
+        <span class="muted">Industry connections for classroom project work</span>
+      </div>
+      <h1>Connecting Projects with Industry (Elementary + Secondary)</h1>
+      <p class="sub">
+        A practical, low-lift playbook: multiple entry points, clear partner roles, easy ways to involve busy professionals,
+        and project ideas that naturally fit—plus examples for <strong>both</strong> elementary and secondary.
+      </p>
+
+      <div class="toolbar" role="region" aria-label="Guide controls">
+        <div class="left">
+          <button class="btn primary" id="expandAll" type="button">Expand all</button>
+          <button class="btn" id="collapseAll" type="button">Collapse all</button>
+        </div>
+        <div class="right" style="flex: 1; justify-content:flex-end;">
+          <div class="search" role="search">
+            <span aria-hidden="true">🔎</span>
+            <label class="sr-only" for="q">Search the guide</label>
+            <input id="q" type="search" placeholder="Search sections + examples (e.g., ‘rubric’, ‘data’, ‘client’, ‘grade 3’, ‘biology’)…" />
+            <span class="hint">Type to filter</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid" id="sections">
+
+      <!-- 1 -->
+      <details class="section" open data-title="Why connect with industry purpose outcomes real-world">
+        <summary>
+          <div class="num">1</div>
+          <div>
+            <p class="stitle"><strong>Start with your “Why”</strong> (keep it simple)</p>
+            <p class="sdesc">The three most useful outcomes: relevance, expertise, and authentic audience.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="callouts">
+              <div class="callout">
+                <div class="label"><span class="dot"></span>Make it real</div>
+                <div class="muted">Students see how classroom work connects to real people, needs, and constraints.</div>
+              </div>
+              <div class="callout">
+                <div class="label"><span class="dot ok"></span>Add expertise</div>
+                <div class="muted">Partners bring tools, processes, and “how it’s done” in a field.</div>
+              </div>
+              <div class="callout">
+                <div class="label"><span class="dot warn"></span>Provide an audience</div>
+                <div class="muted">Students create for someone beyond the teacher, so quality and clarity matter.</div>
+              </div>
+            </div>
+
+            <div class="mini">
+              <span class="badge">Helpful framing: you’re adding <strong>reality + feedback</strong>, not “extra teaching.”</span>
+              <span class="badge">Best first goal: <strong>one small win</strong> you can repeat.</span>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 2 -->
+      <details class="section" data-title="Entry points on-ramps easiest moderate deep planning time">
+        <summary>
+          <div class="num">2</div>
+          <div>
+            <p class="stitle"><strong>Teacher entry points</strong> (choose your on-ramp)</p>
+            <p class="sdesc">Start where you are—then scale the relationship over time.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>Option A: Easiest <span class="tag time">10–45 min partner time</span></h3>
+                <ul>
+                  <li><strong>One Q&amp;A</strong> (virtual is great) focused on student questions.</li>
+                  <li><strong>One “real-world artifact” share</strong> (template, screenshot, example report).</li>
+                  <li><strong>Quick feedback</strong> using a simple form (2 stars + a wish).</li>
+                </ul>
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>Grade 3 “Community Helpers as Problem-Solvers”: a city planner answers 5 student questions about safe sidewalks.</li>
+                      <li>Students revise a “safe routes” map based on the planner’s 2 key constraints.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>HS Biology genetics project: a lab technician does a 20-minute Q&amp;A about how labs avoid errors.</li>
+                      <li>Students add a “quality check” step to their lab write-ups.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Option B: Moderate <span class="tag time">2–3 touchpoints</span></h3>
+                <ul>
+                  <li>Partner provides a <strong>prompt</strong> or <strong>design brief</strong>.</li>
+                  <li>Partner joins a <strong>midpoint check-in</strong> + final showcase.</li>
+                  <li>Students iterate based on feedback.</li>
+                </ul>
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>Grade 5 ELA: a local journalist gives a “what makes writing clear” mini-brief.</li>
+                      <li>Students draft an explainer, get 3 comments, revise, publish to a class newsletter.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>HS Social Studies: a nonprofit staff member provides a “community need” brief.</li>
+                      <li>Students create policy one-pagers, get feedback, then present to a small panel.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Option C: Deeper partnership <span class="tag time">Ongoing / semester</span></h3>
+                <ul>
+                  <li>Co-designed challenge with milestones.</li>
+                  <li>Small-group mentorship circles.</li>
+                  <li>A realistic deliverable (pitch, prototype, campaign, analysis).</li>
+                </ul>
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>Grade 4 STEM: a facilities team shares a “reduce classroom waste” challenge.</li>
+                      <li>Students test 2–3 interventions, collect data weekly, and pitch the best plan.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>HS CTE/Engineering: a manufacturing partner shares a quality issue scenario.</li>
+                      <li>Students run root-cause analysis, prototype a fix, and present to the partner.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Quick rule of thumb</h3>
+                <ul>
+                  <li>If you’re new: pick <code class="inline">one partner + one role + one moment</code>.</li>
+                  <li>If you’re ready to grow: add <code class="inline">a midpoint feedback loop</code>.</li>
+                  <li>If you want depth: make the partner a <code class="inline">client</code> with constraints and a real audience.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 3 -->
+      <details class="section" data-title="Partner roles guest expert client feedback coach data provider judge panelist mentor connector workplace tour skill trainer">
+        <summary>
+          <div class="num">3</div>
+          <div>
+            <p class="stitle"><strong>Partner roles</strong> (so your ask is clear)</p>
+            <p class="sdesc">Give partners a “job title” with a simple definition of success.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>Roles you can offer</h3>
+                <ul>
+                  <li><strong>Guest Expert:</strong> introduces the field + answers curated student questions.</li>
+                  <li><strong>Client:</strong> provides a need, constraint, or design brief.</li>
+                  <li><strong>Feedback Coach:</strong> gives structured critique on drafts/prototypes.</li>
+                  <li><strong>Data Provider:</strong> shares safe/clean datasets, sample artifacts, or scenarios.</li>
+                  <li><strong>Judge / Panelist:</strong> joins a showcase and asks high-quality questions.</li>
+                  <li><strong>Mentor:</strong> meets a small group a few times to guide decisions.</li>
+                  <li><strong>Connector:</strong> helps find additional experts/resources.</li>
+                  <li><strong>Workplace Host:</strong> virtual tour + “day in the life.”</li>
+                  <li><strong>Micro Skill Trainer:</strong> 15–20 minutes on one tool/process.</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3>Examples by level</h3>
+                <div class="two-col">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary examples</span></h3>
+                    <ul>
+                      <li><strong>Client:</strong> librarian asks students to design “reading nooks” for different readers.</li>
+                      <li><strong>Feedback Coach:</strong> graphic designer gives feedback on student infographics (clarity + layout).</li>
+                      <li><strong>Micro Skill:</strong> chef explains “mise en place” as a planning strategy for any project.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary examples</span></h3>
+                    <ul>
+                      <li><strong>Data Provider:</strong> a sports analyst shares a simplified dataset for trend analysis.</li>
+                      <li><strong>Mentor:</strong> software tester meets twice to teach how to test assumptions.</li>
+                      <li><strong>Judge/Panelist:</strong> local entrepreneurs provide pitch feedback with a rubric.</li>
+                    </ul>
+                  </div>
+                </div>
+                <p class="muted" style="margin:10px 0 0">
+                  Tip: start with “Guest Expert” or “Feedback Coach” before asking for mentorship.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 4 -->
+      <details class="section" data-title="Low lift involvement busy partners asynchronous video comments feedback forms">
+        <summary>
+          <div class="num">4</div>
+          <div>
+            <p class="stitle"><strong>Low-lift involvement</strong> (high impact, minimal time)</p>
+            <p class="sdesc">Make it easy by offering “choose A or B” options and clear prompts.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>10–20 minutes</h3>
+                <ul>
+                  <li>Record a short video: “<strong>3 things beginners get wrong</strong> in this work.”</li>
+                  <li>Share one real artifact: a template, screenshot, checklist.</li>
+                  <li>Answer 3 student questions asynchronously (teacher-curated).</li>
+                </ul>
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>A veterinarian records: “How to observe carefully + ask good questions.” Students use it in a mini research project.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>A marketing manager shares a campaign brief template. Students use it to plan a PSA.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>30–45 minutes</h3>
+                <ul>
+                  <li>Live Q&amp;A guided by student questions (collected in advance).</li>
+                  <li>Mini demo: “how we test, design, diagnose, plan, communicate.”</li>
+                </ul>
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>A civil engineer quickly shows how bridges are checked for safety; students apply the idea to “test” their own models.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>A cybersecurity professional runs a 30-minute “spot the risk” activity tied to digital citizenship and privacy.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>60 minutes</h3>
+                <ul>
+                  <li>Draft review using a short rubric (<em>clarity, evidence, feasibility, audience</em>).</li>
+                  <li>Final showcase audience: 2 questions per team, 1 warm feedback, 1 next step.</li>
+                </ul>
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>A local gardener gives feedback on student “native plant” proposals: asks “What will this attract? How will you measure success?”</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>A city sustainability office reviews student energy-saving proposals using a 4-criteria scoring sheet.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Asynchronous feedback (best for busy partners)</h3>
+                <ul>
+                  <li>Partners comment on 3–5 student pitches in a shared doc.</li>
+                  <li>Partners vote on project proposals (with one sentence of reasoning).</li>
+                  <li>Partners answer “Yes / Not yet / Why” on key decisions.</li>
+                </ul>
+                <p class="muted" style="margin-top:10px">
+                  Make it easy: provide <code class="inline">sentence starters</code> + <code class="inline">time limit</code> + <code class="inline">exact prompt</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 5 -->
+      <details class="section" data-title="Project types that fit design solution data storytelling analysis communication PSA prototype process improvement entrepreneurship">
+        <summary>
+          <div class="num">5</div>
+          <div>
+            <p class="stitle"><strong>Project types that fit industry connections</strong></p>
+            <p class="sdesc">Formats that naturally benefit from real constraints, expertise, and audience.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>High-fit project formats</h3>
+                <ul>
+                  <li><strong>Design a solution</strong> to a local problem (with constraints).</li>
+                  <li><strong>Data storytelling</strong> (analyze → interpret → communicate).</li>
+                  <li><strong>Public communication</strong> (PSA, infographic, podcast, explainer).</li>
+                  <li><strong>Process improvement</strong> (reduce waste, improve flow, save time).</li>
+                  <li><strong>User-centered design</strong> (interviews, iteration, testing).</li>
+                  <li><strong>Entrepreneurship / social impact</strong> (pitch + budget + stakeholders).</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3>Examples by level</h3>
+                <div class="two-col">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary examples</span></h3>
+                    <ul>
+                      <li><strong>Grade 2–3:</strong> “Design a kinder cafeteria line” → partner: school nutrition staff as the client.</li>
+                      <li><strong>Grade 4–5:</strong> “Water use at home” data story → partner: local utility shares 3 key facts and constraints.</li>
+                      <li><strong>Grade 5:</strong> “Community PSA” → partner: public health nurse gives 2 feedback rounds.</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary examples</span></h3>
+                    <ul>
+                      <li><strong>MS:</strong> “Design safer bike routes” → partner: city planning as client; students present route proposals.</li>
+                      <li><strong>HS:</strong> “Sports analytics story” → partner: analyst provides dataset; students defend claims.</li>
+                      <li><strong>HS:</strong> “Process improvement” in school operations → partner: building operations gives constraints + feedback.</li>
+                    </ul>
+                  </div>
+                </div>
+                <p class="muted" style="margin:10px 0 0">
+                  Best-fit projects include: <strong>authentic audience</strong>, <strong>iteration</strong>, and a <strong>tangible artifact</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 6 -->
+      <details class="section" data-title="Connection blueprint 5 steps plan ask schedule touchpoints midpoint showcase">
+        <summary>
+          <div class="num">6</div>
+          <div>
+            <p class="stitle"><strong>A reusable “Connection Blueprint”</strong> (5 steps)</p>
+            <p class="sdesc">A simple workflow you can repeat for any unit.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="card">
+              <h3>Blueprint</h3>
+              <ul>
+                <li><strong>1) Pick the unit + real-world hook:</strong> What’s the topic and the authentic context?</li>
+                <li><strong>2) Choose partner role(s):</strong> Start with 1 role (Guest Expert OR Feedback Coach).</li>
+                <li><strong>3) Define the student artifact:</strong> What will students create that the partner can react to?</li>
+                <li><strong>4) Plan 2 touchpoints:</strong> early insight + midpoint/final feedback.</li>
+                <li><strong>5) Make the ask:</strong> clear time, clear job, two scheduling options.</li>
+              </ul>
+            </div>
+
+            <div class="two-col" style="margin-top:12px;">
+              <div class="card">
+                <h3><span class="tag el">Elementary “blueprint” example</span></h3>
+                <ul>
+                  <li><strong>Unit:</strong> Grade 4 ecosystems</li>
+                  <li><strong>Hook:</strong> “How do we protect pollinators in our community?”</li>
+                  <li><strong>Partner role:</strong> Master gardener (Guest Expert + Feedback Coach)</li>
+                  <li><strong>Artifact:</strong> student “pollinator garden plan” (map + 5-sentence explanation)</li>
+                  <li><strong>Touchpoints:</strong> 20-min Q&amp;A + async feedback on final plans</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3><span class="tag sec">Secondary “blueprint” example</span></h3>
+                <ul>
+                  <li><strong>Unit:</strong> HS Algebra / statistics</li>
+                  <li><strong>Hook:</strong> “How do we use data to make a decision under constraints?”</li>
+                  <li><strong>Partner role:</strong> operations manager (Client + Panelist)</li>
+                  <li><strong>Artifact:</strong> data-backed recommendation memo + visualization</li>
+                  <li><strong>Touchpoints:</strong> design brief + final pitch Q&amp;A</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 7 -->
+      <details class="section" data-title="Finding partners sourcing family inventory community colleges nonprofits government remote virtual">
+        <summary>
+          <div class="num">7</div>
+          <div>
+            <p class="stitle"><strong>Finding partners</strong> (without a second job)</p>
+            <p class="sdesc">Use existing networks, and remember: virtual makes geography irrelevant.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>Best sources</h3>
+                <ul>
+                  <li>Families/caregivers (“hidden network”)</li>
+                  <li>Libraries, museums, nonprofits</li>
+                  <li>Local government departments (planning, parks, public works)</li>
+                  <li>Community colleges / universities (grad students are fantastic)</li>
+                  <li>Local businesses and trades</li>
+                  <li>Remote professionals (virtual Q&amp;A, async feedback)</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Fast strategy: the “Community Inventory”</h3>
+                <ul>
+                  <li>Send one question: <code class="inline">Who do we know who works with ____?</code></li>
+                  <li>Offer 3 roles: <code class="inline">Q&amp;A</code>, <code class="inline">feedback</code>, <code class="inline">share an artifact</code></li>
+                  <li>Keep time asks tiny (20–45 minutes).</li>
+                </ul>
+
+                <div class="two-col" style="margin-top:10px">
+                  <div class="card">
+                    <h3><span class="tag el">Elementary example</span></h3>
+                    <ul>
+                      <li>“We’re learning about weather. Do you know a pilot, meteorologist, farmer, or building manager who could answer 5 student questions?”</li>
+                    </ul>
+                  </div>
+                  <div class="card">
+                    <h3><span class="tag sec">Secondary example</span></h3>
+                    <ul>
+                      <li>“We’re doing career-connected writing. Do you know someone who reviews proposals, reports, or marketing materials?”</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 8 -->
+      <details class="section" data-title="Outreach email scripts invitation follow-up options scheduling">
+        <summary>
+          <div class="num">8</div>
+          <div>
+            <p class="stitle"><strong>Outreach that gets replies</strong> (copy/paste scripts)</p>
+            <p class="sdesc">Be specific: role, time, and what they will actually do—offer two options.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3><span class="tag el">Elementary outreach script</span></h3>
+                <p class="muted" style="margin:0 0 8px">
+                  Great when students are younger: emphasize curiosity, simple artifacts, and joyful expertise.
+                </p>
+                <div class="card" style="border-style:dashed">
+                  <p style="margin:0">
+                    Hi [Name] — I’m a [grade] teacher at [School]. My students are starting a project on <strong>[topic]</strong>.
+                    Would you be open to a <strong>low-lift</strong> role as a <strong>[Guest Expert]</strong> for <strong>[20–30 minutes]</strong>
+                    in the next [2–3 weeks]? Students will share <strong>[a simple artifact]</strong> and ask a few curated questions.
+                    If yes, two easy options are: [Option A] or [Option B]. Thank you—your perspective helps students see real-world connections.
+                  </p>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3><span class="tag sec">Secondary outreach script</span></h3>
+                <p class="muted" style="margin:0 0 8px">
+                  Great for older students: emphasize authentic constraints, quality feedback, and workplace standards.
+                </p>
+                <div class="card" style="border-style:dashed">
+                  <p style="margin:0">
+                    Hi [Name] — I’m a [subject] teacher at [School]. Students are working on <strong>[project]</strong> and we want to build in authentic feedback.
+                    Would you serve as a <strong>[Feedback Coach / Panelist / Client]</strong> for <strong>[30–60 minutes]</strong>?
+                    You’d review <strong>[artifact]</strong> using a short rubric (clarity, evidence, feasibility, audience) and ask 1–2 questions per team.
+                    Two time options: [Option A] or [Option B]. If live time is tough, async comments on 3–5 drafts also helps a lot.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="two-col" style="margin-top:12px">
+              <div class="card">
+                <h3>Follow-up (if they don’t reply)</h3>
+                <ul>
+                  <li>Keep it friendly and tiny: “If live time is hard, could you do one async option instead?”</li>
+                  <li>Offer an A/B choice again.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>If they’re hesitant</h3>
+                <ul>
+                  <li>Offer: <code class="inline">recorded answer to 2 questions</code> OR <code class="inline">quick artifact share</code> OR <code class="inline">3 comments on drafts</code>.</li>
+                  <li>Reassure: teacher moderates, time is limited, and expectations are clear.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 9 -->
+      <details class="section" data-title="Safety privacy logistics boundaries permissions communication norms">
+        <summary>
+          <div class="num">9</div>
+          <div>
+            <p class="stitle"><strong>Safety, privacy, and smooth logistics</strong></p>
+            <p class="sdesc">Protect students and partners with clear boundaries and teacher-mediated communication.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>Non-negotiables</h3>
+                <ul>
+                  <li>Follow school policy for visitors/background checks.</li>
+                  <li>No student personal info shared.</li>
+                  <li>Teacher-mediated communication (especially for minors).</li>
+                  <li>Clear role + time + topic boundaries.</li>
+                  <li>Plan B for tech (phone-in, recorded video, async form).</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Equity check</h3>
+                <ul>
+                  <li>Don’t rely only on “who families know.” Build broader partner lists.</li>
+                  <li>Highlight multiple pathways (trades, service roles, public sector, arts, STEM).</li>
+                  <li>Ensure students see a range of identities and lived experiences represented.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="two-col" style="margin-top:12px">
+              <div class="card">
+                <h3><span class="tag el">Elementary logistics example</span></h3>
+                <ul>
+                  <li>Students practice greetings, turn-taking, and asking “kind questions.”</li>
+                  <li>Use a simple “question card” protocol: 1 welcome, 3 questions, 1 thank-you.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3><span class="tag sec">Secondary logistics example</span></h3>
+                <ul>
+                  <li>Students submit questions in advance; teacher approves and sequences.</li>
+                  <li>Students assigned roles: host, timekeeper, note-taker, follow-up lead.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 10 -->
+      <details class="section" data-title="Student prep question building professional norms roles reflection">
+        <summary>
+          <div class="num">10</div>
+          <div>
+            <p class="stitle"><strong>Student prep</strong> (so it’s not awkward)</p>
+            <p class="sdesc">A tiny prep routine that makes partner time meaningful.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>3 question types to teach</h3>
+                <ul>
+                  <li><strong>How does this work in real life?</strong> What does a normal day look like?</li>
+                  <li><strong>What do beginners misunderstand?</strong> What mistakes should we avoid?</li>
+                  <li><strong>What would you change about our idea?</strong> What’s one improvement we should make next?</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Simple roles during partner time</h3>
+                <ul>
+                  <li>Host / greeter</li>
+                  <li>Timekeeper</li>
+                  <li>Question lead</li>
+                  <li>Notetaker</li>
+                  <li>Thank-you lead</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="two-col" style="margin-top:12px">
+              <div class="card">
+                <h3><span class="tag el">Elementary prep example</span></h3>
+                <ul>
+                  <li>Students practice “thumbs-up listening” and ask one question from a shared list.</li>
+                  <li>Afterward: students complete a 3-sentence reflection: “I learned… / I wonder… / Next we should…”</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3><span class="tag sec">Secondary prep example</span></h3>
+                <ul>
+                  <li>Students submit questions in a form; teacher groups by theme (method, constraints, quality, impact).</li>
+                  <li>Afterward: teams update a “decision log” with 2 changes they’ll make based on partner feedback.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 11 -->
+      <details class="section" data-title="Grab and go tools templates rubric feedback form partner brief checklist reflection thank you">
+        <summary>
+          <div class="num">11</div>
+          <div>
+            <p class="stitle"><strong>Grab-and-go tools</strong> (what to include in your teacher packet)</p>
+            <p class="sdesc">These make implementation fast and consistent.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3>Core tools</h3>
+                <ul>
+                  <li>Partner Role Menu (with time estimates)</li>
+                  <li>Outreach templates (invite + follow-up)</li>
+                  <li>One-page Partner Brief (project + what they’ll do)</li>
+                  <li>Student Question Builder</li>
+                  <li>Feedback Form / Rubric (fast)</li>
+                  <li>Logistics checklist + Plan B</li>
+                  <li>Reflection prompts</li>
+                  <li>Thank-you note template</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>Rubric criteria that work for most projects</h3>
+                <ul>
+                  <li><strong>Clarity:</strong> Is the idea easy to understand?</li>
+                  <li><strong>Evidence:</strong> Is it supported with data/examples?</li>
+                  <li><strong>Feasibility:</strong> Does it work within constraints?</li>
+                  <li><strong>Audience:</strong> Is it designed for real users/needs?</li>
+                </ul>
+                <p class="muted" style="margin-top:8px">
+                  Best practice: ask partners to score only <strong>2–3 criteria</strong> to keep it low-lift.
+                </p>
+              </div>
+            </div>
+
+            <div class="two-col" style="margin-top:12px">
+              <div class="card">
+                <h3><span class="tag el">Elementary add-ons</span></h3>
+                <ul>
+                  <li>“Kid-friendly feedback stems” (I notice… / I wonder… / What if…)</li>
+                  <li>Simple graphic organizer for Q&amp;A notes</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3><span class="tag sec">Secondary add-ons</span></h3>
+                <ul>
+                  <li>Decision log template (what changed + why)</li>
+                  <li>Pitch deck outline (problem, evidence, solution, constraints, impact)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- 12 -->
+      <details class="section" data-title="Example gallery ELA math science social studies CTE art media primary middle high school">
+        <summary>
+          <div class="num">12</div>
+          <div>
+            <p class="stitle"><strong>Quick example gallery</strong> (ready to adapt)</p>
+            <p class="sdesc">A few fast “plug-in” ideas across subjects—elementary + secondary.</p>
+          </div>
+          <div class="chev" aria-hidden="true">▾</div>
+        </summary>
+        <div class="content">
+          <div class="content-inner">
+            <div class="two-col">
+              <div class="card">
+                <h3><span class="tag el">Elementary</span></h3>
+                <ul>
+                  <li><strong>ELA:</strong> partner (journalist) reviews student “how-to” writing for clarity and audience.</li>
+                  <li><strong>Math:</strong> partner (store manager) shares a “budget + choices” scenario; students justify decisions.</li>
+                  <li><strong>Science:</strong> partner (park ranger) provides constraints for a habitat protection plan.</li>
+                  <li><strong>Art:</strong> partner (designer) offers one layout rule; students revise posters.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3><span class="tag sec">Secondary</span></h3>
+                <ul>
+                  <li><strong>Science:</strong> partner (lab tech) teaches error reduction; students add a QA step to procedures.</li>
+                  <li><strong>Social Studies:</strong> partner (nonprofit) acts as client for a community issue; students create policy memos.</li>
+                  <li><strong>Math/Stats:</strong> partner (analyst) shares a dataset; students tell two stories from the same data.</li>
+                  <li><strong>CTE/Tech:</strong> partner (QA tester) reviews prototypes and asks “user questions.”</li>
+                </ul>
+              </div>
+            </div>
+            <p class="muted" style="margin:12px 0 0">
+              If you want, you can copy this page into your site/LMS as-is. The expand/collapse + search work offline.
+            </p>
+          </div>
+        </div>
+      </details>
+
+    </main>
+
+    <div class="footer">
+      <strong>Tip for making this “teacher-proof”:</strong> add a one-page “Partner Role Menu,” a one-page “Partner Brief,” and a one-page “Feedback Form.”
+      Those three items remove 80% of the friction.
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const expandAllBtn = document.getElementById('expandAll');
+      const collapseAllBtn = document.getElementById('collapseAll');
+      const sections = Array.from(document.querySelectorAll('details.section'));
+      const search = document.getElementById('q');
+
+      function setAll(open){
+        sections.forEach(d => d.open = open);
+      }
+
+      expandAllBtn.addEventListener('click', () => setAll(true));
+      collapseAllBtn.addEventListener('click', () => setAll(false));
+
+      // Search/filter: matches section title text + body text
+      search.addEventListener('input', () => {
+        const q = search.value.trim().toLowerCase();
+        sections.forEach(d => {
+          const blob = (d.dataset.title + " " + d.textContent).toLowerCase();
+          const match = q === "" || blob.includes(q);
+          d.style.display = match ? "" : "none";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
