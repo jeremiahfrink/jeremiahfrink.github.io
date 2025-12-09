@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Planning with Purpose — 5 Strategies for Engagement</title>
+  <style>
+    :root{
+      --navy:#0A2388;
+      --teal:#26A7D3;
+      --orange:#FBB268;
+      --sky:#81A2C9;
+      --ink:#0f172a;
+      --muted:#475569;
+      --bg:#f6f8fc;
+      --card:#ffffff;
+      --border: rgba(15, 23, 42, .10);
+      --shadow: 0 10px 30px rgba(10, 35, 136, .10);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1100px 600px at 10% -10%, rgba(38,167,211,.20), transparent 55%),
+        radial-gradient(900px 500px at 90% 0%, rgba(251,178,104,.20), transparent 55%),
+        linear-gradient(180deg, #ffffff, var(--bg));
+    }
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 80px;}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;}
+    .brand{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.75);
+      backdrop-filter: blur(8px);
+    }
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(251,178,104,.25);}
+    .brand .title{font-weight:800;color:var(--navy);letter-spacing:.2px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    button, .chip{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.88);
+      color:var(--ink);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    button:hover, .chip:hover{transform: translateY(-1px);border-color: rgba(10,35,136,.25);}
+    button.primary{
+      background: linear-gradient(90deg, rgba(10,35,136,.95), rgba(38,167,211,.95));
+      color:#fff;border-color:transparent;
+      box-shadow: 0 10px 24px rgba(10,35,136,.18);
+    }
+    .hero{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .hero h1{
+      margin:0 0 8px 0;
+      font-size: clamp(22px, 3vw, 32px);
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15.5px;
+    }
+
+    .bar{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:12px;
+    }
+    @media (max-width: 920px){.bar{grid-template-columns:1fr}}
+    .panel{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: 14px;
+    }
+    .panel h2{
+      margin:0 0 10px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--navy);
+      display:flex;align-items:center;gap:10px;
+    }
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .chip.active{border-color: rgba(38,167,211,.60);background: rgba(38,167,211,.12);}
+    .chip.warn.active{border-color: rgba(251,178,104,.70);background: rgba(251,178,104,.18);}
+    .hint{color:var(--muted);font-size:13.5px;line-height:1.45;margin-top:10px}
+
+    .miniCard{
+      display:flex;gap:12px;align-items:flex-start;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: rgba(10,35,136,.03);
+    }
+    .thumb{
+      width:120px;flex:0 0 auto;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      background:#fff;
+      cursor:pointer;
+    }
+    .thumb img{width:100%;height:auto;display:block}
+    .miniText b{color:var(--navy)}
+    .miniText{color:var(--muted);font-size:13.5px;line-height:1.45}
+    .miniActions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .smallBtn{padding:9px 10px;font-size:12.5px;font-weight:800}
+
+    details.accordion{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 10px 26px rgba(10,35,136,.06);
+      overflow:hidden;
+    }
+    details.accordion + details.accordion{margin-top:12px;}
+    details.accordion[hidden]{display:none !important;}
+
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 16px 16px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumL{display:flex;gap:12px;align-items:flex-start}
+    .num{
+      width:34px;height:34px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;color:#fff;
+      background: linear-gradient(180deg, var(--navy), rgba(10,35,136,.75));
+      flex: 0 0 auto;
+    }
+    .sumTitle{font-weight:900;color:var(--ink);line-height:1.2}
+    .sumSub{margin-top:4px;color:var(--muted);font-size:13.5px;line-height:1.35}
+    .caret{
+      margin-top:4px;
+      width:26px;height:26px;border-radius:999px;
+      border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      color: var(--navy);
+      flex:0 0 auto;
+      transition: transform .15s ease;
+    }
+    details[open] .caret{transform: rotate(180deg)}
+    .content{padding: 0 16px 16px 16px}
+    .content p{margin:10px 0;color:var(--ink);line-height:1.55}
+    .content h3{
+      margin:14px 0 6px 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--navy);
+    }
+    ul{margin:8px 0 10px 18px;color:var(--ink);line-height:1.5}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;}
+    .pill{
+      border:1px solid var(--border);
+      padding: 8px 10px;border-radius:999px;
+      font-size: 12.5px;
+      font-weight: 900;
+      background: rgba(10,35,136,.06);
+      color: var(--navy);
+    }
+    .pill.teal{background: rgba(38,167,211,.12);color: #0b4b64;}
+    .pill.orange{background: rgba(251,178,104,.18);color:#7a3b00;}
+
+    .tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+    .highlight{
+      outline: 3px solid rgba(38,167,211,.28);
+      box-shadow: 0 16px 40px rgba(38,167,211,.18);
+    }
+
+    .status{
+      margin: 14px 2px 10px 2px;
+      color: var(--muted);
+      font-size: 13.5px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      flex-wrap:wrap;
+    }
+    .count{font-weight:900;color:var(--navy)}
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(15,23,42,.75);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 9999;
+    }
+    .modal.open{display:flex;}
+    .modalCard{
+      width:min(1100px, 96vw);
+      max-height: 92vh;
+      background:#fff;
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.25);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      display:flex;flex-direction:column;
+    }
+    .modalTop{
+      padding: 10px 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, rgba(10,35,136,.06), rgba(38,167,211,.08));
+    }
+    .modalTop .mtitle{font-weight:900;color:var(--navy)}
+    .modalBody{overflow:auto}
+    .modalBody img{width:100%;height:auto;display:block}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div class="title">Planning with Purpose</div>
+      </div>
+      <div class="actions">
+        <button class="smallBtn primary" id="btnReset">Show all</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <h1>Engagement is designed: Do • Feel • Think</h1>
+      <p>
+        Engagement isn’t compliance and it isn’t “flashy.” It’s lesson design that supports what students <b>do</b> (behavioral engagement),
+        how they <b>feel</b> (emotional engagement), and how deeply they <b>think</b> (cognitive engagement).
+        Disengagement can look different in different students—so we need a set of purposeful design moves.
+      </p>
+
+      <div class="bar">
+        <div class="panel">
+          <h2>Filter the strategies</h2>
+
+          <div style="font-weight:900;color:var(--navy);margin:2px 0 8px 0;">Engagement lens</div>
+          <div class="row" id="lensRow">
+            <span class="chip" data-lens="behavioral">Behavioral (I do)</span>
+            <span class="chip" data-lens="emotional">Emotional (I feel)</span>
+            <span class="chip" data-lens="cognitive">Cognitive (I think)</span>
+          </div>
+
+          <div style="font-weight:900;color:var(--navy);margin:12px 0 8px 0;">Disengagement profile</div>
+          <div class="row" id="profileRow">
+            <span class="chip warn" data-profile="disruptor">Disruptor</span>
+            <span class="chip warn" data-profile="alienated">Alienated</span>
+            <span class="chip warn" data-profile="compliant">Compliant</span>
+          </div>
+
+          <div class="hint">
+            Clicking a filter will <b>show only</b> the best-fit strategies. Click <b>Show all</b> to reset.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Engagement organizer</h2>
+          <div class="miniCard">
+            <div class="thumb" id="thumbOpen" title="Click to expand">
+     
+              <img src="engagement-equation.png" alt="The Engagement Equation graphic (thumbnail)" />
+            </div>
+            <div class="miniText">
+              <b>Use this visual anchor:</b> it reinforces the three engagement dimensions (Do / Feel / Think) and the “why” behind designing for engagement.
+              <div class="miniActions">
+                <button class="smallBtn" id="btnOpenModal">View full size</button>
+              </div>
+              <div class="hint" style="margin-top:8px">
+                We also have a full infographic for you. Open that <a href="engagement_infographic.png" target="_blank">here</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="status" aria-live="polite">
+      <div>Showing <span class="count" id="countShown">5</span> of <span class="count">5</span> strategies</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="smallBtn" id="btnCollapse">Collapse all</button>
+        <button class="smallBtn" id="btnExpandShown">Expand shown</button>
+      </div>
+    </div>
+
+    <!-- Strategy 1 (primary focus: behavioral + cognitive) -->
+    <details class="accordion strategy" id="s1" data-focus="behavioral,cognitive" data-profiles="disruptor,compliant">
+      <summary>
+        <div class="sumL">
+          <div class="num">1</div>
+          <div>
+            <div class="sumTitle">Build Ownership with Micro-Agency + Feedback Loops</div>
+            <div class="sumSub">“Mission Briefing → Challenge Zone → Save Point”</div>
+          </div>
+        </div>
+        <div class="caret">⌄</div>
+      </summary>
+      <div class="content">
+        <h3>Core strategy</h3>
+        <p>
+          Design lessons with (a) a clear <b>entry</b> (“mission”), (b) <b>choice + feedback</b> during work time, and (c) a short
+          <b>reflection checkpoint</b> to lock in learning and next steps.
+        </p>
+
+        <h3>Engagement connection</h3>
+        <ul>
+          <li><b>Behavioral:</b> predictable routines for participation + revision (students know what “doing the work” looks like).</li>
+          <li><b>Emotional:</b> identity/belonging rises when students “see themselves in the work.”</li>
+          <li><b>Cognitive:</b> reflection + feedback tightens thinking (metacognition and self-regulation).</li>
+        </ul>
+
+        <h3>TLPs</h3>
+        <p>Agency + Reflection (and often Equity via multiple pathways).</p>
+
+        <h3>Disengagement profiles it hits</h3>
+        <ul>
+          <li><b>Behavioral disengagement (“Disruptor”):</b> structure + clear moves reduce drift.</li>
+          <li><b>Cognitive disengagement (“Compliant”):</b> reflection/checkpoints prevent “doing school” without thinking.</li>
+        </ul>
+
+        <div class="meta">
+          <span class="pill teal">Primary: Behavioral</span>
+          <span class="pill">Primary: Cognitive</span>
+          <span class="pill orange">Supports: Emotional</span>
+        </div>
+
+        <div class="tools">
+          <button class="smallBtn" data-copy="s1">Copy this strategy</button>
+          <button class="smallBtn" data-link="s1">Copy link</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- Strategy 2 (primary focus: emotional + cognitive) -->
+    <details class="accordion strategy" id="s2" data-focus="emotional,cognitive" data-profiles="alienated,compliant">
+      <summary>
+        <div class="sumL">
+          <div class="num" style="background:linear-gradient(180deg,var(--teal),rgba(38,167,211,.75));">2</div>
+          <div>
+            <div class="sumTitle">Hook Relevance with an “Inquiry-to-Impact” Launch</div>
+            <div class="sumSub">Anchor → Question → Create → Teach Forward</div>
+          </div>
+        </div>
+        <div class="caret">⌄</div>
+      </summary>
+      <div class="content">
+        <h3>Core strategy</h3>
+        <p>
+          Start with an authentic anchor, generate/sort student questions, then move toward making/sharing something that helps others (“teach it forward”).
+        </p>
+
+        <h3>Engagement connection</h3>
+        <ul>
+          <li><b>Emotional:</b> the “anchor in the real world” creates relevance and belonging (“this matters here”).</li>
+          <li><b>Cognitive:</b> questioning + source evaluation drives real thinking (not just completion).</li>
+          <li><b>Behavioral:</b> students have clear actions (questioning, curating, producing, sharing).</li>
+        </ul>
+
+        <h3>TLPs</h3>
+        <p>Authenticity + Inquiry + Reflection.</p>
+
+        <h3>Disengagement profiles it hits</h3>
+        <ul>
+          <li><b>Emotionally disengaged (“Alienated”):</b> relevance + voice reduces disconnection.</li>
+          <li><b>Cognitively disengaged (“Compliant”):</b> the question-driven arc demands meaning-making, not just “right answers.”</li>
+        </ul>
+
+        <div class="meta">
+          <span class="pill orange">Primary: Emotional</span>
+          <span class="pill">Primary: Cognitive</span>
+          <span class="pill teal">Supports: Behavioral</span>
+        </div>
+
+        <div class="tools">
+          <button class="smallBtn" data-copy="s2">Copy this strategy</button>
+          <button class="smallBtn" data-link="s2">Copy link</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- Strategy 3 (primary focus: cognitive + emotional) -->
+    <details class="accordion strategy" id="s3" data-focus="cognitive,emotional" data-profiles="compliant,disruptor">
+      <summary>
+        <div class="sumL">
+          <div class="num" style="background:linear-gradient(180deg,var(--orange),rgba(251,178,104,.78));">3</div>
+          <div>
+            <div class="sumTitle">Move from “Assignment” to “Meaningful Challenge” through Remix + Redesign</div>
+            <div class="sumSub">Reveal → Reframe → Redesign → Reflect</div>
+          </div>
+        </div>
+        <div class="caret">⌄</div>
+      </summary>
+      <div class="content">
+        <h3>Core strategy</h3>
+        <p>
+          Take something you already teach and “remix” it so students make real decisions, design for an audience, and revise based on feedback.
+        </p>
+
+        <h3>Engagement connection</h3>
+        <ul>
+          <li><b>Cognitive:</b> redesign requires synthesis and transfer (students must <i>transform</i> ideas).</li>
+          <li><b>Emotional:</b> creativity + audience increases pride/connection.</li>
+          <li><b>Behavioral:</b> structured cycle keeps work moving and visible.</li>
+        </ul>
+
+        <h3>TLPs</h3>
+        <p>Agency + Authenticity + Reflection (and often Equity via multiple voices/choices).</p>
+
+        <h3>Disengagement profiles it hits</h3>
+        <ul>
+          <li><b>Cognitive disengagement (“Compliant”):</b> shifts from “for a grade” toward purpose.</li>
+          <li><b>Behavioral disengagement (“Disruptor”):</b> creative production + roles can reduce off-task behavior by giving meaningful ownership.</li>
+        </ul>
+
+        <div class="meta">
+          <span class="pill">Primary: Cognitive</span>
+          <span class="pill orange">Primary: Emotional</span>
+          <span class="pill teal">Supports: Behavioral</span>
+        </div>
+
+        <div class="tools">
+          <button class="smallBtn" data-copy="s3">Copy this strategy</button>
+          <button class="smallBtn" data-link="s3">Copy link</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- Strategy 4 (primary focus: cognitive) -->
+    <details class="accordion strategy" id="s4" data-focus="cognitive" data-profiles="disruptor,compliant">
+      <summary>
+        <div class="sumL">
+          <div class="num">4</div>
+          <div>
+            <div class="sumTitle">Design for Deep Thinking with a Problem-Solving Routine</div>
+            <div class="sumSub">Puzzle Breakdown + Iteration</div>
+          </div>
+        </div>
+        <div class="caret">⌄</div>
+      </summary>
+      <div class="content">
+        <h3>Core strategy</h3>
+        <p>
+          Use a repeatable “puzzle” routine that normalizes persistence, strategy, and iteration—so challenge becomes a feature, not a bug.
+        </p>
+
+        <h3>Engagement connection</h3>
+        <ul>
+          <li><b>Cognitive:</b> students must plan, test, revise (real thinking).</li>
+          <li><b>Behavioral:</b> routines support stamina and on-task behaviors during challenge.</li>
+          <li><b>Emotional:</b> builds confidence/efficacy (“I can do hard things”).</li>
+        </ul>
+
+        <h3>TLPs</h3>
+        <p>Inquiry (as problem investigation) + Reflection (after attempts) + Agency (strategy selection).</p>
+
+        <h3>Disengagement profiles it hits</h3>
+        <ul>
+          <li><b>Cognitive disengagement (“Compliant”):</b> makes learning visible through reasoning, not just answers.</li>
+          <li><b>Behavioral disengagement (“Disruptor”):</b> engaging, structured challenge can channel energy into the task.</li>
+        </ul>
+
+        <div class="meta">
+          <span class="pill">Primary: Cognitive</span>
+          <span class="pill teal">Supports: Behavioral</span>
+          <span class="pill orange">Supports: Emotional</span>
+        </div>
+
+        <div class="tools">
+          <button class="smallBtn" data-copy="s4">Copy this strategy</button>
+          <button class="smallBtn" data-link="s4">Copy link</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- Strategy 5 (primary focus: emotional + behavioral) -->
+    <details class="accordion strategy" id="s5" data-focus="emotional,behavioral" data-profiles="alienated,disruptor">
+      <summary>
+        <div class="sumL">
+          <div class="num" style="background:linear-gradient(180deg,var(--teal),rgba(38,167,211,.75));">5</div>
+          <div>
+            <div class="sumTitle">Create Belonging + Accountability with Structured Collaboration</div>
+            <div class="sumSub">Not “group work” → true collaboration</div>
+          </div>
+        </div>
+        <div class="caret">⌄</div>
+      </summary>
+      <div class="content">
+        <h3>Core strategy</h3>
+        <p>
+          Treat collaboration as a <b>designed</b> experience: roles, norms, empathy, and structures for sharing/challenging ideas
+          (so everyone has a seat at the table and ideas are shared, challenged, and refined).
+        </p>
+
+        <h3>Engagement connection</h3>
+        <ul>
+          <li><b>Emotional:</b> belonging + supportive relationships (directly aligned to the “focus on relationships” takeaway).</li>
+          <li><b>Behavioral:</b> clear participation expectations and shared responsibility.</li>
+          <li><b>Cognitive:</b> students refine thinking through dialogue and multiple viewpoints.</li>
+        </ul>
+
+        <h3>TLPs</h3>
+        <p>Collaboration + Equity (voice) + Reflection (team debrief).</p>
+
+        <h3>Disengagement profiles it hits</h3>
+        <ul>
+          <li><b>Emotionally disengaged (“Alienated”):</b> connection + being needed by a team.</li>
+          <li><b>Behaviorally disengaged (“Disruptor”):</b> clear roles/norms can reduce conflict and increase participation.</li>
+        </ul>
+
+        <div class="meta">
+          <span class="pill orange">Primary: Emotional</span>
+          <span class="pill teal">Primary: Behavioral</span>
+          <span class="pill">Supports: Cognitive</span>
+        </div>
+
+        <div class="tools">
+          <button class="smallBtn" data-copy="s5">Copy this strategy</button>
+          <button class="smallBtn" data-link="s5">Copy link</button>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modalCard" role="dialog" aria-modal="true" aria-label="Infographic">
+      <div class="modalTop">
+        <div class="mtitle">Engagement Organizer (full size)</div>
+        <button class="smallBtn" id="btnCloseModal">Close</button>
+      </div>
+      <div class="modalBody">
+        <img src="engagement-equation.png" alt="The Engagement Equation graphic (full size)" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    const strategies = $$(".strategy");
+    const countShown = $("#countShown");
+
+    // Ensure all collapsed on load (no hash auto-open)
+    strategies.forEach(s => s.open = false);
+
+    function setCount(){
+      const shown = strategies.filter(s => !s.hidden).length;
+      countShown.textContent = shown;
+    }
+
+    function clearActiveChips(){
+      $$(".chip", $("#lensRow")).forEach(c => c.classList.remove("active"));
+      $$(".chip", $("#profileRow")).forEach(c => c.classList.remove("active"));
+    }
+
+    function showAll(){
+      clearActiveChips();
+      strategies.forEach(s => { s.hidden = false; s.classList.remove("highlight"); s.open = false; });
+      setCount();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    $("#btnReset").addEventListener("click", showAll);
+
+    // Collapse / expand controls
+    $("#btnCollapse").addEventListener("click", () => {
+      strategies.forEach(s => { if(!s.hidden) s.open = false; });
+    });
+    $("#btnExpandShown").addEventListener("click", () => {
+      // expand only those currently shown
+      strategies.forEach(s => { if(!s.hidden) s.open = true; });
+      // keep it from feeling jumpy—no auto scroll
+    });
+
+    // Filtering logic (single filter at a time by design)
+    function filterByLens(lens){
+      clearActiveChips();
+      $(`.chip[data-lens="${lens}"]`, $("#lensRow")).classList.add("active");
+
+      strategies.forEach(s => {
+        const focus = (s.dataset.focus || "").split(",").map(x => x.trim()).filter(Boolean);
+        const match = focus.includes(lens);
+        s.hidden = !match;
+        s.classList.toggle("highlight", match);
+        s.open = false;
+      });
+
+      // Open the first shown strategy for quick access (optional but useful)
+      const first = strategies.find(s => !s.hidden);
+      if(first) first.open = true;
+
+      setCount();
+    }
+
+    function filterByProfile(profile){
+      clearActiveChips();
+      $(`.chip[data-profile="${profile}"]`, $("#profileRow")).classList.add("active");
+
+      strategies.forEach(s => {
+        const profiles = (s.dataset.profiles || "").split(",").map(x => x.trim()).filter(Boolean);
+        const match = profiles.includes(profile);
+        s.hidden = !match;
+        s.classList.toggle("highlight", match);
+        s.open = false;
+      });
+
+      const first = strategies.find(s => !s.hidden);
+      if(first) first.open = true;
+
+      setCount();
+    }
+
+    $$(".chip[data-lens]").forEach(chip => chip.addEventListener("click", () => filterByLens(chip.dataset.lens)));
+    $$(".chip[data-profile]").forEach(chip => chip.addEventListener("click", () => filterByProfile(chip.dataset.profile)));
+
+    // Copy + link buttons
+    function toast(msg){
+      let t = document.getElementById("toast");
+      if(!t){
+        t = document.createElement("div");
+        t.id = "toast";
+        t.style.position = "fixed";
+        t.style.left = "50%";
+        t.style.bottom = "18px";
+        t.style.transform = "translateX(-50%)";
+        t.style.background = "rgba(15,23,42,.92)";
+        t.style.color = "white";
+        t.style.padding = "10px 12px";
+        t.style.borderRadius = "999px";
+        t.style.fontWeight = "900";
+        t.style.fontSize = "13px";
+        t.style.boxShadow = "0 12px 28px rgba(0,0,0,.25)";
+        t.style.zIndex = "9999";
+        t.style.maxWidth = "90vw";
+        t.style.textAlign = "center";
+        document.body.appendChild(t);
+      }
+      t.textContent = msg;
+      t.style.opacity = "1";
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => t.style.opacity = "0", 1400);
+    }
+
+    $$("button[data-copy]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-copy");
+        const el = document.getElementById(id);
+        const parts = [];
+        parts.push($(".sumTitle", el).innerText.trim());
+        parts.push($(".sumSub", el).innerText.trim());
+        $$(".content h3, .content p, .content li", el).forEach(n => {
+          const t = n.innerText.replace(/\s+/g, " ").trim();
+          if(t) parts.push(t);
+        });
+        await navigator.clipboard.writeText(parts.join("\n\n"));
+        toast("Copied.");
+      });
+    });
+
+    $$("button[data-link]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-link");
+        const url = `${location.origin}${location.pathname}#${id}`;
+        await navigator.clipboard.writeText(url);
+        toast("Link copied.");
+      });
+    });
+
+    // Modal (infographic)
+    const modal = $("#modal");
+    const openModal = () => modal.classList.add("open");
+    const closeModal = () => modal.classList.remove("open");
+
+    $("#btnOpenModal").addEventListener("click", openModal);
+    $("#thumbOpen").addEventListener("click", openModal);
+    $("#btnCloseModal").addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+    // Initialize count
+    setCount();
+  </script>
+</body>
+</html>
