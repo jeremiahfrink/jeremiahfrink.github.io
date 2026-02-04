@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBL Gold Standard Reflection Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange-deep: #E85D04;
+            --orange-mid: #F48C06;
+            --orange-light: #FAA307;
+            --yellow-warm: #FFBA08;
+            --cream: #FFF8F0;
+            --charcoal: #2D3142;
+            --gray-soft: #4F5D75;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(45, 49, 66, 0.08);
+            --shadow-hover: 0 8px 30px rgba(45, 49, 66, 0.12);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--orange-deep);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--gray-soft);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--orange-deep), var(--orange-mid));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .intro-text {
+            color: var(--gray-soft);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Element Cards */
+        .elements-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .element-card {
+            border: 2px solid #E8E8E8;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .element-card:hover {
+            border-color: var(--orange-light);
+        }
+
+        .element-card.high-leverage {
+            border-color: var(--orange-mid);
+            background: linear-gradient(to right, rgba(250, 163, 7, 0.05), transparent);
+        }
+
+        .element-card.high-leverage .element-main {
+            position: relative;
+        }
+
+        .high-leverage-badge {
+            display: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--orange-deep);
+            background: rgba(250, 163, 7, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .element-card.high-leverage .high-leverage-badge {
+            display: inline-block;
+        }
+
+        .element-main {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .element-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .element-info {
+            flex: 1;
+        }
+
+        .element-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .element-brief {
+            font-size: 0.9rem;
+            color: var(--gray-soft);
+            margin-top: 0.15rem;
+        }
+
+        .rating-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .rating-btn {
+            padding: 0.4rem 0.75rem;
+            border: 2px solid #E8E8E8;
+            background: var(--white);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-soft);
+        }
+
+        .rating-btn:hover {
+            border-color: var(--orange-light);
+            color: var(--orange-deep);
+        }
+
+        .rating-btn.selected {
+            border-color: var(--orange-deep);
+            background: var(--orange-deep);
+            color: var(--white);
+        }
+
+        .rating-btn.selected.gap {
+            background: #DC2626;
+            border-color: #DC2626;
+        }
+
+        .rating-btn.selected.growing {
+            background: var(--yellow-warm);
+            border-color: var(--yellow-warm);
+            color: var(--charcoal);
+        }
+
+        .rating-btn.selected.strong {
+            background: #16A34A;
+            border-color: #16A34A;
+        }
+
+        .expand-toggle {
+            background: none;
+            border: none;
+            color: var(--gray-soft);
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.25rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .expand-toggle:hover {
+            color: var(--orange-deep);
+        }
+
+        .expand-toggle.expanded {
+            transform: rotate(180deg);
+        }
+
+        .element-expanded {
+            display: none;
+            padding: 0 1.25rem 1.25rem;
+            border-top: 1px solid #E8E8E8;
+            margin-top: 0;
+            animation: slideDown 0.3s ease;
+        }
+
+        .element-expanded.visible {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notes-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-soft);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .notes-field {
+            width: 100%;
+            min-height: 80px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .notes-field:focus {
+            outline: none;
+            border-color: var(--orange-light);
+        }
+
+        /* Section 2: High Leverage Moves */
+        .high-leverage-intro {
+            background: linear-gradient(135deg, rgba(232, 93, 4, 0.08), rgba(255, 186, 8, 0.08));
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .high-leverage-intro h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            color: var(--orange-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        .high-leverage-intro p {
+            font-size: 0.95rem;
+            color: var(--gray-soft);
+        }
+
+        .focus-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .focus-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .focus-option:hover {
+            border-color: var(--orange-light);
+        }
+
+        .focus-option.selected {
+            border-color: var(--orange-deep);
+            background: rgba(232, 93, 4, 0.05);
+        }
+
+        .focus-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #D1D5DB;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .focus-option.selected .focus-checkbox {
+            background: var(--orange-deep);
+            border-color: var(--orange-deep);
+        }
+
+        .focus-checkbox svg {
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .focus-option.selected .focus-checkbox svg {
+            opacity: 1;
+        }
+
+        .focus-label {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .focus-label .badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--orange-deep);
+            background: rgba(250, 163, 7, 0.2);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .focus-workspaces {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .focus-workspace {
+            display: none;
+            border: 2px solid var(--orange-light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            animation: slideDown 0.3s ease;
+        }
+
+        .focus-workspace.visible {
+            display: block;
+        }
+
+        .workspace-header {
+            background: linear-gradient(135deg, var(--orange-deep), var(--orange-mid));
+            color: var(--white);
+            padding: 1rem 1.25rem;
+        }
+
+        .workspace-header h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .workspace-content {
+            padding: 1.25rem;
+        }
+
+        .guiding-questions {
+            background: rgba(250, 163, 7, 0.08);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .guiding-questions h5 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--orange-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .guiding-questions ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .guiding-questions li {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .guiding-questions li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--orange-mid);
+            font-weight: 600;
+        }
+
+        .workspace-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 2px solid #E8E8E8;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        .workspace-textarea:focus {
+            outline: none;
+            border-color: var(--orange-light);
+        }
+
+        .workspace-textarea::placeholder {
+            color: #9CA3AF;
+        }
+
+        /* Go Deeper Section */
+        .go-deeper {
+            background: var(--charcoal);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .go-deeper h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .go-deeper > p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-prompts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .ai-prompt-group {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .ai-prompt-group.visible {
+            display: block;
+        }
+
+        .ai-prompt-group h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--yellow-warm);
+        }
+
+        .prompt-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .prompt-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .prompt-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--orange-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+        }
+
+        .no-selection-message {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            padding: 1rem;
+        }
+
+        /* Print Section */
+        .print-section {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .print-section p {
+            color: var(--gray-soft);
+            margin-bottom: 1.25rem;
+        }
+
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--orange-deep), var(--orange-mid));
+            color: var(--white);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(232, 93, 4, 0.3);
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 93, 4, 0.4);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0.5in;
+            }
+
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+
+            .element-card {
+                page-break-inside: avoid;
+            }
+
+            .expand-toggle,
+            .print-section,
+            .go-deeper,
+            .rating-buttons,
+            .focus-selector {
+                display: none !important;
+            }
+
+            .element-expanded {
+                display: block !important;
+                border-top: none;
+            }
+
+            .element-expanded:has(.notes-field:placeholder-shown) {
+                display: none !important;
+            }
+
+            .focus-workspace {
+                display: block !important;
+                border: 1px solid #ddd;
+            }
+
+            .focus-workspace:not(.visible) {
+                display: none !important;
+            }
+
+            .workspace-header {
+                background: var(--orange-deep) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .guiding-questions {
+                background: #f5f5f5 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            header {
+                margin-bottom: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid var(--orange-deep);
+            }
+
+            .print-date {
+                font-size: 0.9rem;
+                color: var(--gray-soft);
+            }
+        }
+
+        .print-header {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.85rem;
+            }
+
+            .section {
+                padding: 1.25rem;
+            }
+
+            .element-main {
+                flex-wrap: wrap;
+            }
+
+            .rating-buttons {
+                width: 100%;
+                margin-top: 0.5rem;
+                justify-content: flex-start;
+            }
+
+            .element-icon {
+                width: 38px;
+                height: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="print-header">
+            <p class="print-date">PBL Gold Standard Reflection • <span id="printDate"></span></p>
+        </div>
+
+        <header>
+            <h1>PBL Gold Standard Reflection</h1>
+            <p class="subtitle">A tool to help you examine your unit against the seven essential project design elements</p>
+        </header>
+
+        <!-- Section 1: Self-Check -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2>Gold Standard Self-Check</h2>
+            </div>
+            <p class="intro-text">Rate where your unit currently stands on each element. Expand any element to add notes for yourself.</p>
+
+            <div class="elements-grid">
+                <!-- Challenging Problem or Question -->
+                <div class="element-card high-leverage" data-element="challenging-problem">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(232, 93, 4, 0.12); color: #E85D04;">❓</div>
+                        <div class="element-info">
+                            <div class="element-name">
+                                Challenging Problem or Question
+                                <span class="high-leverage-badge">High Leverage</span>
+                            </div>
+                            <div class="element-brief">A meaningful problem to solve or question to answer</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Authenticity -->
+                <div class="element-card high-leverage" data-element="authenticity">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(244, 140, 6, 0.12); color: #F48C06;">🔍</div>
+                        <div class="element-info">
+                            <div class="element-name">
+                                Authenticity
+                                <span class="high-leverage-badge">High Leverage</span>
+                            </div>
+                            <div class="element-brief">Real-world context, tasks, tools, or impact</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Student Voice & Choice -->
+                <div class="element-card high-leverage" data-element="student-voice">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(255, 186, 8, 0.15); color: #D97706;">💬</div>
+                        <div class="element-info">
+                            <div class="element-name">
+                                Student Voice & Choice
+                                <span class="high-leverage-badge">High Leverage</span>
+                            </div>
+                            <div class="element-brief">Students make decisions about their work</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Sustained Inquiry -->
+                <div class="element-card" data-element="sustained-inquiry">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(232, 93, 4, 0.08); color: #E85D04;">🕐</div>
+                        <div class="element-info">
+                            <div class="element-name">Sustained Inquiry</div>
+                            <div class="element-brief">An extended, rigorous process of asking questions and finding resources</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Reflection -->
+                <div class="element-card" data-element="reflection">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(244, 140, 6, 0.08); color: #F48C06;">🧠</div>
+                        <div class="element-info">
+                            <div class="element-name">Reflection</div>
+                            <div class="element-brief">Students reflect on their learning and the project</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Critique & Revision -->
+                <div class="element-card" data-element="critique-revision">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(255, 186, 8, 0.1); color: #D97706;">🔄</div>
+                        <div class="element-info">
+                            <div class="element-name">Critique & Revision</div>
+                            <div class="element-brief">Students give, receive, and use feedback to improve</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Public Product -->
+                <div class="element-card" data-element="public-product">
+                    <div class="element-main" onclick="toggleExpand(this)">
+                        <div class="element-icon" style="background: rgba(232, 93, 4, 0.08); color: #E85D04;">🎯</div>
+                        <div class="element-info">
+                            <div class="element-name">Public Product</div>
+                            <div class="element-brief">Students share their work with an audience beyond the classroom</div>
+                        </div>
+                        <div class="rating-buttons" onclick="event.stopPropagation()">
+                            <button class="rating-btn gap" onclick="setRating(this, 'gap')">Gap</button>
+                            <button class="rating-btn growing" onclick="setRating(this, 'growing')">Growing</button>
+                            <button class="rating-btn strong" onclick="setRating(this, 'strong')">Strong</button>
+                        </div>
+                        <button class="expand-toggle" onclick="event.stopPropagation(); toggleExpand(this.parentElement)">▼</button>
+                    </div>
+                    <div class="element-expanded">
+                        <label class="notes-label">Your notes</label>
+                        <textarea class="notes-field" placeholder="What's working? What might need attention?"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: High-Leverage Moves -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2>High-Leverage Moves</h2>
+            </div>
+
+            <div class="high-leverage-intro">
+                <h3>Where to Focus Your Energy</h3>
+                <p>Research and practice suggest that <strong>Challenging Problem/Question</strong>, <strong>Authenticity</strong>, and <strong>Student Voice & Choice</strong> often have the biggest ripple effect—strengthening these tends to lift other elements. Select 2-3 elements to focus on below.</p>
+            </div>
+
+            <div class="focus-selector">
+                <div class="focus-option" onclick="toggleFocus(this, 'challenging-problem')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Challenging Problem or Question<span class="badge">Recommended</span></span>
+                </div>
+                <div class="focus-option" onclick="toggleFocus(this, 'authenticity')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Authenticity<span class="badge">Recommended</span></span>
+                </div>
+                <div class="focus-option" onclick="toggleFocus(this, 'student-voice')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Student Voice & Choice<span class="badge">Recommended</span></span>
+                </div>
+                <div class="focus-option" onclick="toggleFocus(this, 'sustained-inquiry')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Sustained Inquiry</span>
+                </div>
+                <div class="focus-option" onclick="toggleFocus(this, 'reflection')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Reflection</span>
+                </div>
+                <div class="focus-option" onclick="toggleFocus(this, 'critique-revision')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Critique & Revision</span>
+                </div>
+                <div class="focus-option" onclick="toggleFocus(this, 'public-product')">
+                    <div class="focus-checkbox">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2.5 7L5.5 10L11.5 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="focus-label">Public Product</span>
+                </div>
+            </div>
+
+            <div class="focus-workspaces">
+                <!-- Challenging Problem Workspace -->
+                <div class="focus-workspace" id="workspace-challenging-problem">
+                    <div class="workspace-header">
+                        <h4>Challenging Problem or Question</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>Is there a real problem students are working to solve, or a genuine question they're trying to answer?</li>
+                                <li>Is it open-ended enough that there isn't one "right" answer?</li>
+                                <li>Is it challenging enough to require sustained effort and deep thinking?</li>
+                                <li>Would someone outside of school actually care about this question?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Authenticity Workspace -->
+                <div class="focus-workspace" id="workspace-authenticity">
+                    <div class="workspace-header">
+                        <h4>Authenticity</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>Who outside of school actually cares about this topic or problem?</li>
+                                <li>Are students using tools, processes, or methods that professionals use?</li>
+                                <li>Could students' work actually matter to someone beyond the teacher?</li>
+                                <li>Does this feel "real" or does it feel like a school exercise dressed up?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Student Voice & Choice Workspace -->
+                <div class="focus-workspace" id="workspace-student-voice">
+                    <div class="workspace-header">
+                        <h4>Student Voice & Choice</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>What meaningful decisions do students get to make about their work?</li>
+                                <li>Can students pursue aspects of the topic that genuinely interest them?</li>
+                                <li>Do students have choice in how they demonstrate their learning?</li>
+                                <li>Are students contributing to defining the problem, questions, or direction—or just following your plan?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Sustained Inquiry Workspace -->
+                <div class="focus-workspace" id="workspace-sustained-inquiry">
+                    <div class="workspace-header">
+                        <h4>Sustained Inquiry</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>Does the project require students to ask questions, find resources, and apply information over time?</li>
+                                <li>Are students generating new questions as they learn, not just answering yours?</li>
+                                <li>Is there enough complexity that students can't just "Google the answer"?</li>
+                                <li>Does the timeline allow for depth, or is it a rush to a product?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Reflection Workspace -->
+                <div class="focus-workspace" id="workspace-reflection">
+                    <div class="workspace-header">
+                        <h4>Reflection</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>When and how do students pause to think about what they're learning?</li>
+                                <li>Do students reflect on both the content AND their process/collaboration?</li>
+                                <li>Is reflection built in throughout, or just tacked on at the end?</li>
+                                <li>Does reflection actually influence what students do next?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Critique & Revision Workspace -->
+                <div class="focus-workspace" id="workspace-critique-revision">
+                    <div class="workspace-header">
+                        <h4>Critique & Revision</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>Are students taught how to give specific, helpful feedback?</li>
+                                <li>Do students have structured opportunities to give AND receive feedback?</li>
+                                <li>Is there time and expectation built in for students to actually revise based on feedback?</li>
+                                <li>Does feedback come from multiple sources (peers, teacher, outside experts)?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Public Product Workspace -->
+                <div class="focus-workspace" id="workspace-public-product">
+                    <div class="workspace-header">
+                        <h4>Public Product</h4>
+                    </div>
+                    <div class="workspace-content">
+                        <div class="guiding-questions">
+                            <h5>Guiding Questions</h5>
+                            <ul>
+                                <li>Who will see students' final work beyond you?</li>
+                                <li>Is the audience authentic—people who actually care about the topic?</li>
+                                <li>Does having a public audience raise the stakes and quality of work?</li>
+                                <li>Could the product take a form that's actually used in the real world?</li>
+                            </ul>
+                        </div>
+                        <textarea class="workspace-textarea" placeholder="What's one concrete shift you could make to strengthen this element in your unit?"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Go Deeper with AI -->
+            <div class="go-deeper">
+                <h3>🤖 Go Deeper with AI</h3>
+                <p>Ready to think through your focus areas in more depth? Use these prompts with Claude or ChatGPT.</p>
+
+                <div class="ai-prompts-container">
+                    <p class="no-selection-message" id="no-prompts-message">Select focus areas above to see AI prompts tailored to your choices.</p>
+
+                    <!-- AI Prompts for Challenging Problem -->
+                    <div class="ai-prompt-group" id="prompts-challenging-problem">
+                        <h4>Challenging Problem or Question</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">I'm designing a PBL unit about [your topic]. Right now, my driving question is [your current question or "I don't have one yet"]. Help me develop a more compelling driving question by asking me questions about: who actually deals with this issue in the real world, what tensions or debates exist around this topic, and what would make students genuinely curious rather than just compliant.</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">Now that we have some question options, help me pressure-test them: Which of these questions is open-ended enough that students couldn't just Google the answer? Which would sustain several weeks of inquiry? Which might students actually argue about or have different perspectives on?</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Prompts for Authenticity -->
+                    <div class="ai-prompt-group" id="prompts-authenticity">
+                        <h4>Authenticity</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">I'm working on a unit about [your topic] for [grade level] students. I want to make it feel more real and less like "school." Interview me about my unit and then help me identify: What professionals or community members actually work on problems like this? What authentic formats could student work take? What real audiences might genuinely care about student findings or solutions?</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">Given what we've discussed, what's the difference between my students "playing school" with this topic versus actually doing something real? Be honest with me—where does my current plan still feel artificial, and what would it take to close that gap?</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Prompts for Student Voice & Choice -->
+                    <div class="ai-prompt-group" id="prompts-student-voice">
+                        <h4>Student Voice & Choice</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">In my unit about [your topic], students currently [describe what students do]. I want to give students more meaningful choice without losing focus on the learning goals. Ask me about my learning objectives, my constraints (time, resources, requirements), and my students—then help me identify 2-3 specific decision points where students could have real agency.</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">I'm worried that giving students too much choice will mean some miss important content or skills. Help me think through: What's the difference between "choice in how to learn" versus "choice in what to learn"? Where are the non-negotiables in my unit, and where is there genuine flexibility I haven't tapped into?</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Prompts for Sustained Inquiry -->
+                    <div class="ai-prompt-group" id="prompts-sustained-inquiry">
+                        <h4>Sustained Inquiry</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">My unit on [topic] currently runs for [timeframe]. I want to make sure the inquiry is genuinely sustained and rigorous, not just busy work spread over time. Walk me through: What makes a question worth multiple weeks of investigation? How do I build in complexity that unfolds over time rather than front-loading all the information?</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">Help me map out what genuine inquiry could look like week-by-week. Where should new questions emerge? When should students hit productive struggle? How do I keep the momentum without just telling them answers when they get stuck?</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Prompts for Reflection -->
+                    <div class="ai-prompt-group" id="prompts-reflection">
+                        <h4>Reflection</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">I want to build meaningful reflection into my PBL unit on [topic], but I find that reflection often feels forced or students just go through the motions. Help me design reflection that actually changes what students do next. Ask me about my project timeline and what decisions students will be making along the way.</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">Give me 3-4 specific reflection prompts or protocols I could use at different points in this project—ones that go beyond "what did you learn?" and actually help students think metacognitively about their process, collaboration, and growth.</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Prompts for Critique & Revision -->
+                    <div class="ai-prompt-group" id="prompts-critique-revision">
+                        <h4>Critique & Revision</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">In my unit, students will create [describe the product/output]. I want to build in meaningful critique and revision, but I'm not sure how to structure it so feedback is actually useful and students have time to implement it. Help me think through: When should critique happen? Who should give feedback? What does "good feedback" look like for this kind of work?</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">Design a critique protocol I could use with my students. I want something structured enough that students know how to participate, but flexible enough to surface genuine insights. Include how I'd introduce and model it, and how students would capture feedback to use later.</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Prompts for Public Product -->
+                    <div class="ai-prompt-group" id="prompts-public-product">
+                        <h4>Public Product</h4>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Starter Prompt</div>
+                            <div class="prompt-text">My students are working on [describe project] and right now the only audience is me. Help me brainstorm authentic audiences who would actually care about this work—not just "be nice to kids" but genuinely find value in what students produce. Consider: local community, professionals in related fields, other students, online communities, organizations working on this issue.</div>
+                        </div>
+                        <div class="prompt-item">
+                            <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                            <div class="prompt-label">Follow-up Prompt</div>
+                            <div class="prompt-text">Given the audience options we discussed, help me think through logistics: How would I actually connect students with this audience? What format would make the most sense? How do I prepare students to present to people outside of school? What could go wrong and how do I mitigate it?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Print Section -->
+        <div class="print-section">
+            <p>Save your reflection to reference as you develop your unit.</p>
+            <button class="print-btn" onclick="window.print()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                    <rect x="6" y="14" width="12" height="8"/>
+                </svg>
+                Print / Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Set print date
+        document.getElementById('printDate').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Track selected focus areas
+        let selectedFocusAreas = [];
+
+        function toggleExpand(element) {
+            const card = element.closest('.element-card');
+            const expanded = card.querySelector('.element-expanded');
+            const toggle = card.querySelector('.expand-toggle');
+            
+            expanded.classList.toggle('visible');
+            toggle.classList.toggle('expanded');
+        }
+
+        function setRating(btn, rating) {
+            const buttons = btn.parentElement.querySelectorAll('.rating-btn');
+            buttons.forEach(b => b.classList.remove('selected', 'gap', 'growing', 'strong'));
+            btn.classList.add('selected', rating);
+        }
+
+        function toggleFocus(element, focusId) {
+            element.classList.toggle('selected');
+            const workspace = document.getElementById('workspace-' + focusId);
+            const promptGroup = document.getElementById('prompts-' + focusId);
+            const noPromptsMessage = document.getElementById('no-prompts-message');
+
+            if (element.classList.contains('selected')) {
+                if (selectedFocusAreas.length >= 3) {
+                    // Deselect the first selected item
+                    const firstSelected = document.querySelector('.focus-option.selected:not([onclick*="' + focusId + '"])');
+                    if (firstSelected) {
+                        const firstFocusId = firstSelected.getAttribute('onclick').match(/'([^']+)'/)[1];
+                        firstSelected.classList.remove('selected');
+                        document.getElementById('workspace-' + firstFocusId).classList.remove('visible');
+                        document.getElementById('prompts-' + firstFocusId).classList.remove('visible');
+                        selectedFocusAreas = selectedFocusAreas.filter(id => id !== firstFocusId);
+                    }
+                }
+                selectedFocusAreas.push(focusId);
+                workspace.classList.add('visible');
+                promptGroup.classList.add('visible');
+            } else {
+                selectedFocusAreas = selectedFocusAreas.filter(id => id !== focusId);
+                workspace.classList.remove('visible');
+                promptGroup.classList.remove('visible');
+            }
+
+            // Toggle no-prompts message
+            noPromptsMessage.style.display = selectedFocusAreas.length > 0 ? 'none' : 'block';
+        }
+
+        function copyPrompt(btn) {
+            const promptText = btn.parentElement.querySelector('.prompt-text').textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
