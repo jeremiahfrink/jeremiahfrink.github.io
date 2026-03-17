@@ -1,0 +1,3600 @@
+{
+  "judge_assignments": {
+    "AI26J22": [
+      "ISTE26AI101",
+      "ISTE26AI126",
+      "ISTE26AI152",
+      "ISTE26AI177",
+      "ISTE26AI203"
+    ],
+    "AI26J23": [
+      "ISTE26AI101",
+      "ISTE26AI127",
+      "ISTE26AI152",
+      "ISTE26AI178",
+      "ISTE26AI203"
+    ],
+    "AI26J24": [
+      "ISTE26AI102",
+      "ISTE26AI127",
+      "ISTE26AI153",
+      "ISTE26AI178",
+      "ISTE26AI204"
+    ],
+    "AI26J25": [
+      "ISTE26AI102",
+      "ISTE26AI128",
+      "ISTE26AI153",
+      "ISTE26AI179",
+      "ISTE26AI204"
+    ],
+    "AI26J26": [
+      "ISTE26AI103",
+      "ISTE26AI128",
+      "ISTE26AI154",
+      "ISTE26AI179",
+      "ISTE26AI205"
+    ],
+    "AI26J27": [
+      "ISTE26AI103",
+      "ISTE26AI129",
+      "ISTE26AI154",
+      "ISTE26AI180",
+      "ISTE26AI205"
+    ],
+    "AI26J28": [
+      "ISTE26AI104",
+      "ISTE26AI129",
+      "ISTE26AI155",
+      "ISTE26AI180",
+      "ISTE26AI206"
+    ],
+    "AI26J29": [
+      "ISTE26AI104",
+      "ISTE26AI130",
+      "ISTE26AI155",
+      "ISTE26AI181",
+      "ISTE26AI206"
+    ],
+    "AI26J30": [
+      "ISTE26AI105",
+      "ISTE26AI130",
+      "ISTE26AI156",
+      "ISTE26AI181",
+      "ISTE26AI207"
+    ],
+    "AI26J31": [
+      "ISTE26AI105",
+      "ISTE26AI131",
+      "ISTE26AI156",
+      "ISTE26AI182",
+      "ISTE26AI207"
+    ],
+    "AI26J32": [
+      "ISTE26AI106",
+      "ISTE26AI131",
+      "ISTE26AI157",
+      "ISTE26AI182",
+      "ISTE26AI208"
+    ],
+    "AI26J33": [
+      "ISTE26AI106",
+      "ISTE26AI132",
+      "ISTE26AI157",
+      "ISTE26AI183",
+      "ISTE26AI208"
+    ],
+    "AI26J34": [
+      "ISTE26AI107",
+      "ISTE26AI132",
+      "ISTE26AI158",
+      "ISTE26AI183",
+      "ISTE26AI209"
+    ],
+    "AI26J35": [
+      "ISTE26AI107",
+      "ISTE26AI133",
+      "ISTE26AI158",
+      "ISTE26AI184",
+      "ISTE26AI209"
+    ],
+    "AI26J36": [
+      "ISTE26AI108",
+      "ISTE26AI133",
+      "ISTE26AI159",
+      "ISTE26AI184",
+      "ISTE26AI210"
+    ],
+    "AI26J37": [
+      "ISTE26AI108",
+      "ISTE26AI134",
+      "ISTE26AI159",
+      "ISTE26AI185",
+      "ISTE26AI210"
+    ],
+    "AI26J38": [
+      "ISTE26AI109",
+      "ISTE26AI134",
+      "ISTE26AI160",
+      "ISTE26AI185",
+      "ISTE26AI211"
+    ],
+    "AI26J39": [
+      "ISTE26AI109",
+      "ISTE26AI135",
+      "ISTE26AI160",
+      "ISTE26AI186",
+      "ISTE26AI211"
+    ],
+    "AI26J40": [
+      "ISTE26AI110",
+      "ISTE26AI135",
+      "ISTE26AI161",
+      "ISTE26AI186",
+      "ISTE26AI212"
+    ],
+    "AI26J41": [
+      "ISTE26AI110",
+      "ISTE26AI136",
+      "ISTE26AI161",
+      "ISTE26AI187",
+      "ISTE26AI212"
+    ],
+    "AI26J42": [
+      "ISTE26AI111",
+      "ISTE26AI136",
+      "ISTE26AI162",
+      "ISTE26AI187",
+      "ISTE26AI213"
+    ],
+    "AI26J43": [
+      "ISTE26AI111",
+      "ISTE26AI137",
+      "ISTE26AI162",
+      "ISTE26AI188",
+      "ISTE26AI213"
+    ],
+    "AI26J44": [
+      "ISTE26AI112",
+      "ISTE26AI137",
+      "ISTE26AI163",
+      "ISTE26AI188",
+      "ISTE26AI214"
+    ],
+    "AI26J45": [
+      "ISTE26AI112",
+      "ISTE26AI138",
+      "ISTE26AI163",
+      "ISTE26AI189",
+      "ISTE26AI214"
+    ],
+    "AI26J46": [
+      "ISTE26AI113",
+      "ISTE26AI138",
+      "ISTE26AI164",
+      "ISTE26AI189",
+      "ISTE26AI215"
+    ],
+    "AI26J47": [
+      "ISTE26AI113",
+      "ISTE26AI139",
+      "ISTE26AI164",
+      "ISTE26AI190",
+      "ISTE26AI215"
+    ],
+    "AI26J48": [
+      "ISTE26AI114",
+      "ISTE26AI139",
+      "ISTE26AI165",
+      "ISTE26AI190",
+      "ISTE26AI216"
+    ],
+    "AI26J49": [
+      "ISTE26AI114",
+      "ISTE26AI140",
+      "ISTE26AI165",
+      "ISTE26AI191",
+      "ISTE26AI216"
+    ],
+    "AI26J50": [
+      "ISTE26AI115",
+      "ISTE26AI140",
+      "ISTE26AI166",
+      "ISTE26AI191",
+      "ISTE26AI217"
+    ],
+    "AI26J51": [
+      "ISTE26AI115",
+      "ISTE26AI141",
+      "ISTE26AI166",
+      "ISTE26AI192",
+      "ISTE26AI217"
+    ],
+    "AI26J52": [
+      "ISTE26AI116",
+      "ISTE26AI141",
+      "ISTE26AI167",
+      "ISTE26AI192",
+      "ISTE26AI218"
+    ],
+    "AI26J53": [
+      "ISTE26AI116",
+      "ISTE26AI142",
+      "ISTE26AI167",
+      "ISTE26AI193",
+      "ISTE26AI218"
+    ],
+    "AI26J54": [
+      "ISTE26AI117",
+      "ISTE26AI142",
+      "ISTE26AI168",
+      "ISTE26AI193",
+      "ISTE26AI219"
+    ],
+    "AI26J55": [
+      "ISTE26AI117",
+      "ISTE26AI143",
+      "ISTE26AI168",
+      "ISTE26AI194",
+      "ISTE26AI219"
+    ],
+    "AI26J56": [
+      "ISTE26AI118",
+      "ISTE26AI143",
+      "ISTE26AI169",
+      "ISTE26AI194"
+    ],
+    "AI26J57": [
+      "ISTE26AI118",
+      "ISTE26AI144",
+      "ISTE26AI169",
+      "ISTE26AI195"
+    ],
+    "AI26J58": [
+      "ISTE26AI119",
+      "ISTE26AI144",
+      "ISTE26AI170",
+      "ISTE26AI195"
+    ],
+    "AI26J59": [
+      "ISTE26AI119",
+      "ISTE26AI145",
+      "ISTE26AI170",
+      "ISTE26AI196"
+    ],
+    "AI26J60": [
+      "ISTE26AI120",
+      "ISTE26AI145",
+      "ISTE26AI171",
+      "ISTE26AI196"
+    ],
+    "AI26J61": [
+      "ISTE26AI120",
+      "ISTE26AI146",
+      "ISTE26AI171",
+      "ISTE26AI197"
+    ],
+    "AI26J62": [
+      "ISTE26AI121",
+      "ISTE26AI146",
+      "ISTE26AI172",
+      "ISTE26AI197"
+    ],
+    "AI26J63": [
+      "ISTE26AI121",
+      "ISTE26AI147",
+      "ISTE26AI172",
+      "ISTE26AI198"
+    ],
+    "AI26J64": [
+      "ISTE26AI122",
+      "ISTE26AI147",
+      "ISTE26AI173",
+      "ISTE26AI198"
+    ],
+    "AI26J65": [
+      "ISTE26AI122",
+      "ISTE26AI148",
+      "ISTE26AI173",
+      "ISTE26AI199"
+    ],
+    "AI26J66": [
+      "ISTE26AI123",
+      "ISTE26AI148",
+      "ISTE26AI174",
+      "ISTE26AI199"
+    ],
+    "AI26J67": [
+      "ISTE26AI123",
+      "ISTE26AI149",
+      "ISTE26AI174",
+      "ISTE26AI200"
+    ],
+    "AI26J68": [
+      "ISTE26AI124",
+      "ISTE26AI149",
+      "ISTE26AI175",
+      "ISTE26AI200"
+    ],
+    "AI26J69": [
+      "ISTE26AI124",
+      "ISTE26AI150",
+      "ISTE26AI175",
+      "ISTE26AI201"
+    ],
+    "AI26J70": [
+      "ISTE26AI125",
+      "ISTE26AI150",
+      "ISTE26AI176",
+      "ISTE26AI201"
+    ],
+    "AI26J71": [
+      "ISTE26AI125",
+      "ISTE26AI151",
+      "ISTE26AI176",
+      "ISTE26AI202"
+    ],
+    "AI26J72": [
+      "ISTE26AI126",
+      "ISTE26AI151",
+      "ISTE26AI177",
+      "ISTE26AI202"
+    ]
+  },
+  "projects": {
+    "ISTE26AI101": {
+      "id": "ISTE26AI101",
+      "project_name": "A device powered by artificial intelligence technology to save the lives of students from suffocation on school buses",
+      "team_name": "The Pulse Of Life team",
+      "ai_tools_used": "My artificial intelligence tools are erdino smart type SP32 description which has WiFi two thermal sensors A and B a base for installing tools and parts a small screen LCD memory card for storing software tools",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?si=fwcDGeURn0ac2FKj&v=YRC5u40cYxQ&feature=youtu.be",
+        "password": ""
+      },
+      "team_story": {
+        "type": "text",
+        "value": "The Pulse Of Life team of artificial intelligence technologies\n\nAl-Rawad private schools-Khamis Mushait-Kingdom of Saudi Arabia\nSecondary section\n\nProject idea\n\nOur team noticed that there is a serious problem in the Arabian Gulf region, a problem that may be Global, which is that one of the students is forgotten inside the school bus after the trip is over. In some cases, the student may fall asleep inside the bus, and the driver or supervisor cannot notice him, which leads to the bus being closed and the student being left inside. With high temperatures and lack of oxygen inside the closed bus, a choking disaster may occur that may â€“ God forbid â€“ lead to the death of the student before he is rescued.\n\nBased on our humanitarian responsibility, we have created an intelligent system based on artificial intelligence technologies with the aim of protecting the lives of students and preventing such accidents from happening.\n\nThe mechanism of action of the system\n\nThe innovation is based on an Arduino smart device with Wi-Fi technology, as well as two thermal sensors (A and B) installed at the bus door, and a display to indicate the number of students inside the bus.\n\nThe idea of the system is based on the intelligent counting of students by the order of their passage through the sensors:\n\nWhen the student enters, he passes through sensor A and then B, and the device adds (1) to the counter shown on the screen.\n\nWhen the student exits, he passes through sensor B and then A, and the device deducts (1) from the counter.\n\nThus, the number of students inside the bus is calculated accurately moment by moment.\n\nSafety mechanism\n\nThe system displays on the screen the number of students remaining inside the bus, and the driver cannot close the bus before making sure that the counter is equal to (0). If any number appears greater than zero, this indicates the presence of a student inside the bus, which alerts the driver to the need to check before departure.\n\nThe goal of the project\n\nThe \"Pulse Of Life\" project aims to strengthen the safety of school transport, prevent choking accidents caused by students forgetting inside buses, and contribute to saving lives using modern artificial intelligence technologies."
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?si=fwcDGeURn0ac2FKj&v=YRC5u40cYxQ&feature=youtu.be",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI102": {
+      "id": "ISTE26AI102",
+      "project_name": "A.R.I.A: Autism Response & Interactive Assistant",
+      "team_name": "Team ARIA",
+      "ai_tools_used": "ChatGPT was a key tool throughout the development of our robot, assisting with both hardware and software. It helped us troubleshoot Python code in Thonny on the Raspberry Pi, especially for the camera module and emotion detection, and guided us in using libraries like OpenCV, NumPy, TensorFlow/Keras, Picamera2, and Flask to process images, run the model, and stream the video feed to our MIT App Inventor app. We also used Arduino code to control the robotâ€™s components, with ChatGPT helping debug and understand connections. The app communicated with the robot via the HC-05 Bluetooth module, allowing wireless control, while medo.dev was used to create an AI-assisted website to present and organize our project. ChatGPT further supported us in hardware assembly by clarifying component connections and troubleshooting issues, enabling us to efficiently integrate the robotâ€™s software, hardware, and control systems into a functional project.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1nTtbryoK0f7oaHbJHrtjMAnC__7T00aI/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1mEcuU_oadcKW0FV0iWKctGLzayFj3dDd/edit?usp=sharing&ouid=109714382494999550585&rtpof=true&sd=true",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1uoec2Y6x48QNrP2EPXyD8zIkfjDDIPPk?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI103": {
+      "id": "ISTE26AI103",
+      "project_name": "Abyss Bridge",
+      "team_name": "E-Brat",
+      "ai_tools_used": "Gemini, base44",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/87Y0FHVACsA",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://abyssbridge.base44.app/TeamIntro",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://abyssbridge.base44.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI104": {
+      "id": "ISTE26AI104",
+      "project_name": "AccessMatch",
+      "team_name": "Arya & Navya",
+      "ai_tools_used": "Playlab AI",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/ZZ6kQUbKA4k",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/13J6OlSNKtYkjaXgXfb8-GEtDyfK5BdIe/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmk4qi9yp03oxj10u92dzhlt8",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI105": {
+      "id": "ISTE26AI105",
+      "project_name": "AEGIS",
+      "team_name": "Team AEGIS",
+      "ai_tools_used": "GPT-5 mini\nStack AI",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://tinyurl.com/isteaegisvideo",
+        "password": ""
+      },
+      "team_story": {
+        "type": "note",
+        "value": "N/A we weren't informed",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/diamvi/AEGIS-app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": "No team story"
+    },
+    "ISTE26AI106": {
+      "id": "ISTE26AI106",
+      "project_name": "Agathon AI",
+      "team_name": "Rushil + Luca",
+      "ai_tools_used": "Claude, ChatGPT, Gemini, TipTap: AI was used in this project to help develop the app as well as to run the AI powered features.",
+      "pitch_video": {
+        "type": "url",
+        "value": "http://youtube.com/watch?v=uKd-MGG8z1E",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1F6eunIdHhwtCd1lbARgegrpCGstf9qbgNVi4yiO6CeI/edit?tab=t.0",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://agathon.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI107": {
+      "id": "ISTE26AI107",
+      "project_name": "AI Financial Topper",
+      "team_name": "Squashy Grapes",
+      "ai_tools_used": "PlayLab AI",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=04CPJUWhh0g",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1muXZ9X1-PSbzxJW78bQSrXHnkIjIgaZOAkXiX7oUaOk/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmk676vwi04hug70uc4jga07d",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI108": {
+      "id": "ISTE26AI108",
+      "project_name": "AI or Not",
+      "team_name": "Eleven",
+      "ai_tools_used": "Google Gemini \nChatGpt\nCanva AI",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1UU3OfsGi7KVyWyly_a3xaav9cz8b4OTY?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1zwKNAUtSpsEVZI1cJUhEUsZJb3fwQaGu?usp=share_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHCbeL8fPk/m5U0g4IAvfN1gEQ6b6UMNA/view?utm_content=DAHCbeL8fPk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd5d01b6c3f",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHDRwMlPcU/-8Amcjg9vuOUNmx7O0wNeg/watch?utm_content=DAHDRwMlPcU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd1f9a7f2eb",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI109": {
+      "id": "ISTE26AI109",
+      "project_name": "AI Spine Care",
+      "team_name": "AI Spine Care Inovators",
+      "ai_tools_used": "Research and Synthesis with Microsoft Copilot\nThe project began with an intentional use of Microsoft Copilot to bridge the gap between complex medical concepts and student understanding. As an AI-powered research assistant, Copilot allowed the team to gather and synthesize extensive data regarding spinal anatomy and specific deformities like scoliosis, kyphosis, and lordosis. This tool was chosen because it could quickly organize vast amounts of information into clear, actionable takeaways that served as the foundation for the projectâ€™s educational components. To ensure accuracy and maintain human oversightâ€”a key requirement of the challengeâ€”the students did not rely on the AI alone;they validated every piece of information through a professional medical lecture and a hands-on Q&A session with a doctor at KeÅ¾ovica Spa, ensuring the data used was medically sound.\n\nMotion Tracking via Micro:bit Machine Learning\nThe core technical innovation of the project involved training machine learning models to recognize physical movement patterns using Micro:bit technology. By utilizing built-in accelerometer and gyroscope sensors, the team collected real-time data samples of themselves performing various exercises both correctly and incorrectly. This AI-driven approach was essential because traditional \"if-then\" coding is often too rigid to account for the natural variance in human movement. Through iterative testing, the students acted as the primary \"human-in-the-loop,\" constantly refining the training parameters and adjusting sensor sensitivity whenever the AI failed to correctly identify a movement. This process turned a simple hardware device into a smart rehabilitation tool capable of providing immediate corrective feedback to help peers perform exercises correctly.\n\nPersonalized Interaction through PictoBlox\nThe AI SpineCare App, developed using PictoBlox, integrated sophisticated AI features to enhance user engagement and data security. The app utilized Face Recognition technology to identify and log in registered users, ensuring that progress tracking remained private and personalized to each individual. Beyond identification, the app featured a logic-based AI system that processed incoming data from the exercise devices to generate tailored recommendations and motivational \"summative reports\". By choosing AI for this interface, the team moved beyond a \"one-size-fits-all\" solution, creating a digital environment that adapts to the specific needs and performance levels of each student user.\n\nEthical Communication\nThroughout this process, the team remained mindful of ethical implications, focusing on user privacy during face registration and emphasizing that their tools are meant to assist, not replace, professional healthcare providers. By combining these various AI applications, the team demonstrated a creative and responsible use of technology to solve a pressing community health problem.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAGfM8uOeGc/c6AF_r4RXU2NZ8q2w4lxpw/watch?utm_content=DAGfM8uOeGc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h224252c1c4",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/19DhHLJbVkuqGBA9GDBrtYa190XSANA9Q/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://pictoblox.page.link/RZnbZGr7ULW6zcE99",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1EUaKC8zwAkCf3V1bRATdqWTbIu4JbMDp?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI110": {
+      "id": "ISTE26AI110",
+      "project_name": "AIoT SmartGrid 360",
+      "team_name": "WattNotWaste",
+      "ai_tools_used": "PixFree AI,",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1cHQpSDVosx8qHE2TL1Mx07xmYNKDAtGO/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Mwvfs5V5Xd2IoTu-NEZzWN7d5JEdldKe/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1lF7REAU1uOvk0QRt5A3HBEkQbnl4Vwwf/view?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/10i1NfQdWcYtVYyKP7xWrUfiM4RwjkJnT?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI111": {
+      "id": "ISTE26AI111",
+      "project_name": "AI-Powered Multispectral Drones: Amplifying Agronomist Pathogen Detection",
+      "team_name": "AI Crop Monitoring",
+      "ai_tools_used": "Gemini to assist website styling",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1x-smYo6nb6xWM2ItI6IMiMNyPoAmnDca/view",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1QSkEXYXETinjoNuNB6PVx_7x60DT82WDEDSeq951U4Y/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://crop-monitor.netlify.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI112": {
+      "id": "ISTE26AI112",
+      "project_name": "AquaVise",
+      "team_name": "AquaVise Innovators",
+      "ai_tools_used": "Ollama Gemma 2, Gemini, Chatgpt and Look extension MIT app inventor",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/NyJT1BLsWwE",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1B8xKiIpxYXPSGK8pdl0BaYbNc5XSG4iM/view?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/10SsoZKssZ9e18_Y35vuN_hb9vD7uaEut/view?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI113": {
+      "id": "ISTE26AI113",
+      "project_name": "ASAP Pitches",
+      "team_name": "Eden Prairie",
+      "ai_tools_used": "OpenAI, Claude",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/zQjQFrpNLc8",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1vUAEJWGuRgo5JL7s8AL_UOOtBA0WbGgKbjsTxg_p5ok/edit?tab=t.0",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://asa-ppitch.vercel.app/success",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI114": {
+      "id": "ISTE26AI114",
+      "project_name": "ASH AI",
+      "team_name": "KAM DEV",
+      "ai_tools_used": "Botpress, Claude AI, Chat GPT",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtube.com/shorts/PIf_dL287vw?si=Ndnb45bQ0v8YLwuv",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1WygL53agtAinO7aMII9yRoCrXzTI_6KA/edit?usp=sharing&ouid=103751238678349429813&rtpof=true&sd=true",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://claude.ai/public/artifacts/8afb0a17-e8b9-429c-97f5-7b6f34afd581",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/07/01/20260307013901-M4FQIP0M.json",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI115": {
+      "id": "ISTE26AI115",
+      "project_name": "Breath of the City (BotC)",
+      "team_name": "Team BotC",
+      "ai_tools_used": "The BOTC (Breath of the City) app was developed using medo.dev, an AI-powered app maker that assists users in building mobile and web applications through automated tools and guided development. The platform uses artificial intelligence to help generate parts of the app structure, making it easier to design interfaces, organize screens, and connect external services without extensive coding. Using medo.dev, the BOTC appâ€™s interface and core features were created, including the interactive map that displays markers showing temperature, humidity, and air quality data gathered from online APIs. These APIs act as the applicationâ€™s environmental data detectors, allowing the app to retrieve real-time environmental information from online data sources rather than relying on direct hardware sensors. Through this integration, the app can continuously collect updated readings from different locations and display them visually on the map for users to view and reference. In addition, ChatGPT was used as a supporting tool during the development process to help generate ideas, organize parts of the application workflow, and assist in writing portions of the project documentation and descriptions. Together, these tools supported the development of the BOTC appâ€™s environmental monitoring system, API-based data detection, feedback feature for user suggestions and improvements, and activity-tracking components such as step counting, estimated distance traveled, and time elapsed within a single application.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1e-JpLtsxuHU1ew8J8Tqr2_zU4IoN9ex-/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/19jMDz9LBREktKjymPZODiaprYfmyT80L/edit?usp=sharing&ouid=109714382494999550585&rtpof=true&sd=true",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://app-a0jx7i2oxjb5.appmedo.com/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI116": {
+      "id": "ISTE26AI116",
+      "project_name": "BrightPath",
+      "team_name": "BrightPath",
+      "ai_tools_used": "I only used an ai voice generator for my video.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=hGeEi22modU",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1FUYwM4leBdb5WlmiVCaivuFyCEb4petJ745cnT-1hoI/edit?tab=t.0#heading=h.ih9qliu7v2v6",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmhy1cdjr7lqpkw0uxlayxf5l",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI117": {
+      "id": "ISTE26AI117",
+      "project_name": "Business Bot",
+      "team_name": "Business Bot Innovator",
+      "ai_tools_used": "School AI\nGemini",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/7RILBNBpvO8",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1i2XOWs37GpL_lT6pe9r_MLz81eHD5VIjA_PlqS1_3bA/",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://sites.google.com/mcspanthers.org/businessbot/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI118": {
+      "id": "ISTE26AI118",
+      "project_name": "Calendly",
+      "team_name": "Solo Driven",
+      "ai_tools_used": "Google Antigravity (main code helper to create the app)\nChatGPT (helped with research and design)\nGemini (API)\nVercel (Helped make a link)\nGithub (Published code and uploaded to vercel)\nSupabase (For database)\nPlaylab AI (Helped students' study for tests, as a resource, so all the chatbots in there.)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1TUGMvMRI-RjScxDdygx4yXgs4ChDUd80/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1BixxJ8rDk4rmWDrvrBSSNro3qdJOz0i7D0J2z6dwYBM/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://calendlyapp.vercel.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "text",
+        "value": "AI Tools & Technologies Used:\nGoogle Antigravity (main code helper to create the app)\nChatGPT (helped with research and design)\nGemini (API)\nVercel (Helped make a link)\nGithub (Published code and uploaded to vercel)\nSupabase (For database)\nPlaylab AI (Helped students' study for tests, as a resource, so all the chatbots in there.)\n\nMy Email: sauhardhaishere@gmail.com"
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI119": {
+      "id": "ISTE26AI119",
+      "project_name": "CareBridge Vancouver",
+      "team_name": "CareBridge",
+      "ai_tools_used": "AI Tools Used:\n\nWe used Google Gemini API as the backbone of our AI Triage Engine (Brain 2: TRANSLATOR), which handles multilingual symptom interpretation and clinic routing for non-critical pathways. Gemini was chosen for its strong multilingual capabilities across the 9 languages we support.\n\nWe also used Cursor AI (powered by Claude) as a coding assistant to help accelerate development of the Next.js frontend and TypeScript backend logic.\n\nAll AI-generated triage outputs are strictly constrained by our rule-based Brain 1 (REFEREE) engine, which operates independently of any AI model to ensure CTAS-compliant safety outcomes.\n\nå¦‚æžœä½ ä»¬å®žé™…ä¸Šæ²¡ç”¨ Gemini APIï¼ˆè¿˜åœ¨ MVP é˜¶æ®µç”¨çš„æ˜¯ç¡¬è§„åˆ™ï¼‰ï¼Œå¯ä»¥ç®€åŒ–æˆï¼š\n\nWe used Cursor AI (Claude-powered) as a development assistant to help build and debug our Next.js/TypeScript codebase. For the triage logic, our Brain 1 (REFEREE) is a pure rule-based engine with no AI. Our Brain 2 (TRANSLATOR) is architected for Google Gemini API integration (planned for Phase 2), leveraging its multilingual capabilities for safe-zone routing.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1gIxvBzd9STMPSn-IsI0Om-iW5CnpIi7K/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1AXhQO8Wq5-miucmF9Nf8JRBAqBkv0Thus1VaJyR8X7Q/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://carebridge-vancouver.vercel.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI120": {
+      "id": "ISTE26AI120",
+      "project_name": "ChatBuddy",
+      "team_name": "ChatBuddy",
+      "ai_tools_used": "Google AI Studio (ASR / Visual Module / NLP Engine / Adaptive Engine / Reinforcement Engine)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1cnW0AgHFnabGjzEvoS8l7TEW7z-30exp/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/18gDE9geNI-9pSXbQKADDfVX-shJ1f2YOqIXD-JlcIbk/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://ai.studio/apps/drive/1Q_SCYDx69VztmAJ5L15sb109WlmqTI3Q?fullscreenApplet=true",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1Y9F1j7TCZ1m_-Q7Wlbbi-VVJN1U6KHps?usp=sharing",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": "Verifying School"
+    },
+    "ISTE26AI121": {
+      "id": "ISTE26AI121",
+      "project_name": "CivicClarify",
+      "team_name": "Gautam",
+      "ai_tools_used": "OpenAI API, GPT-4o-mini (LLM model), Python, Streamlit, JSON Schema Structured Outputs, and Chunk based Text Processing.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/UmpnvkUxlZQ",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/10bhoEIfFAFfpOKNTq7w6UV5EkQXOeXHNHD2vk65w_-8/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://youtu.be/YpIhoaCl8PU",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI122": {
+      "id": "ISTE26AI122",
+      "project_name": "CivicLens",
+      "team_name": "Business Buds",
+      "ai_tools_used": "Playlab AI (development platform), Claude (language model used within the Playlab environment), and ChatGPT (development assistance and documentation support).",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1HH1pr0YCNySoH2YVjuzLJ1OBtnx_LDsa/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1iCvi-tD4ljdYeSgLUtRvBQFq5SP4M_i6Rf_kUI2cYAQ/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmk4m0j1n0nlvj10ud6f3n9bx",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI123": {
+      "id": "ISTE26AI123",
+      "project_name": "Cogito",
+      "team_name": "The CodeBreakers",
+      "ai_tools_used": "AI Tools Used for Cogito:\n\n1. mlburnham/Political_DEBATE_large_v1.0 (Hugging Face)\n\nPurpose: First-stage classifier that determines whether input text contains political content\nModel Type: DeBERTa (Decoding-enhanced BERT with disentangled attention) fine-tuned on political discourse datasets\nAccuracy: 92% on political content detection\nHow It's Used: When a user submits an article URL via Cogito's Bias Detector, this model analyzes whether the content is political. Non-political content is flagged as such;political content proceeds to the second classifier.\nTraining Data: Trained on 12 datasets related to political partisanship and discourse\nTransparency Feature: Users can enable \"detailed analysis mode\" to see a line-by-line breakdown showing which text segments influenced the model's decision\n\n2. matous-volf/political-leaning-deberta-large (Hugging Face)\n\nPurpose: Second-stage classifier that determines political leaning of confirmed political text\nModel Type: DeBERTa-large fine-tuned specifically for political bias classification\nAccuracy: 89% on left/right/neutral classification\nHow It's Used: After text is confirmed as political, this model classifies it as left-leaning, right-leaning, or relatively neutral\nOutput: Provides both a classification label and a confidence score on a scale from -1.0 (left) to +1.0 (right), with values near zero indicating neutral content\nTransparency Feature: Line-by-line breakdown highlights specific phrases and word choices that contributed to the classification, helping users understand the model's reasoning\nIntegration: Results are displayed visually with color-coded indicators (blue for left, red for right, gray for neutral) alongside the detailed analysis\n\n3. Hugging Face Spaces\n\nPurpose: Cloud infrastructure for running AI model inference\nHow It's Used: Both bias detection models are hosted on Hugging Face Spaces, allowing Cogito's Flask backend to make API calls for real-time article analysis\nTechnical Implementation: Cogito's server sends article text to the Hugging Face Spaces endpoint, receives the classification result, and displays it to users with full transparency about how the decision was reached",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=B7a90rCOwJ4",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1z0a3Vb1AQBT779i_1xnU_NGqysotfUf6ORB16tczsDI/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://cogitonews.com/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://docs.google.com/presentation/d/e/2PACX-1vR4HprobsKv0PE3rPFBwybQDGAeDulQ2Bb5rKd7wVp59Q-GeWl_1BxertaCMbjhk6gK0iHCSUgz4-2o/pub?start=false&loop=false&delayms=3000&slide=id.g23b4f27dd85_0_0",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": "Verifying School"
+    },
+    "ISTE26AI124": {
+      "id": "ISTE26AI124",
+      "project_name": "Cognitive assistant robot for elderly adults who live alone and have early stages of Alzheimer's or senile dementia",
+      "team_name": "ORBI",
+      "ai_tools_used": "Arduino y modulo IA, Chat GPT, Dall-E",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1GWfhJG7-QD_BC3kA8282saovoZl6N9wb/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1t6orEKBEw4nEV4j9CFHcVAsSoHRRCQIt/edit?usp=sharing&ouid=103357823691958914990&rtpof=true&sd=true",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1DzcSEqjLn9io7ZcjHtzw1fSlwkhjxNc7/view?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1sklkDpYBW_dIL3R6JbBluXD3ClEtlnpO?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI125": {
+      "id": "ISTE26AI125",
+      "project_name": "CrisisIQ: Think Smart Because Every Second Matters",
+      "team_name": "MYA: AI Laboratory",
+      "ai_tools_used": "CrisisIQ uses two AI tools to improve emergency response. YOLOv8 analyzes user-submitted photos to identify disasters and assess severity, while the Mistral AI chatbot, running locally via Ollama, guides users and answers questions. Together, they quickly analyze incidents and support users as responders arrive.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1w1qEYS5cMZB88LjvkW-VywB0uTMTD53F?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/11P9Ezumaq4uGZduBBOfbp4XYQLcjZJEO?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1jCy0CNB-xrDWXm43N1fSONC30IqK1EmQ?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1L98DiYtwDWXJh2KXKmchu1w8QpQ2tZuv?usp=drive_link",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI126": {
+      "id": "ISTE26AI126",
+      "project_name": "CropIntel AR",
+      "team_name": "CropIntel",
+      "ai_tools_used": "Cursor, ChatGPT, TensorFlow",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/_E9FHhJ3s-o",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1JI0oHN10lEHiAjyM8Dccgpy4Tjqr24g5VZ6aqiXDSJQ/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "note",
+        "value": "ran locally, github linked",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI127": {
+      "id": "ISTE26AI127",
+      "project_name": "Discern: Media Literacy",
+      "team_name": "A-cubed",
+      "ai_tools_used": "Claude 4.5 Sonnet",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1B5V-gnm6mIW4vEUHB3St3zlE6WXHbqHx/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1J1b8AVMgcxHbzAD-WRjmBtzXyaVkB3shUUfD4442bVY/edit?tab=t.0",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmjx516r200nvnv0uraq0w84n",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI128": {
+      "id": "ISTE26AI128",
+      "project_name": "Drought Early Warning System",
+      "team_name": "DEWS",
+      "ai_tools_used": "We built a Random Forest Model. We used Google Gemini to assist us in learning how to analyze these advanced data structures. We also used Gemini to develop our team logo and create summaries of some of our website readings for easier understanding.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1N2_FKiDsnF5DcSztDFKscvnbDvaME8Dn/view?usp=drivesdk",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1-qtKmoIh2mAv3l7CPUr_FPnCFA8g-CePhtIenQb-FrQ/edit?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://droughtearlywarningsystem.com",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI129": {
+      "id": "ISTE26AI129",
+      "project_name": "Easy AI Support for Elderly",
+      "team_name": "E.A.S.E",
+      "ai_tools_used": "Gemini AI, Cursor",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/101-vRQ0R1b5x8QmMpWqwmX3ppP9-sObW/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1etE5vzy2u8BBmVWvNUuzRtbao1do57e1L7dGoT5kijs/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/dtpatrick0706/ElderlyChatApp",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI130": {
+      "id": "ISTE26AI130",
+      "project_name": "EcoBuddy: AI Climate & Sustainability Action Assistant",
+      "team_name": "GreenPulse",
+      "ai_tools_used": "https://github.com/popjane/free_chatgpt_api.git",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1t7h8FDUxBjMVLWmZw3LrvE8ZVz8j5Jhb/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Ic9h_Yzi3sj6-32ARy14wpCMmzahIGwU/view?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/Felix-0901/ecobuddy_app.git",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI131": {
+      "id": "ISTE26AI131",
+      "project_name": "EcoSimv3",
+      "team_name": "EcoSim Innovators",
+      "ai_tools_used": "EcoSimv3 leverages several AI tools responsibly:\n\n1. OpenAI GPT-4 - For generating unique species descriptions, ecosystem narratives, and educational explanations\n2. Stable Diffusion - For procedural generation of organism visualizations and habitat imagery\n3. Custom ML Models - Trained on biological datasets to simulate realistic evolutionary pressures and natural selection outcomes\n\nAll AI usage includes transparency features showing students how the AI made decisions, promoting AI literacy and responsible digital citizenship.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/ecosimv3-pitch",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://ecosimv3.edu/ngss-alignment",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/ecosimv3/demo",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://ecosimv3.edu/prototype",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI132": {
+      "id": "ISTE26AI132",
+      "project_name": "Ecosteps: Your Choices Shape The Future",
+      "team_name": "Nexplay Coding",
+      "ai_tools_used": "We utilized the two AI extensions in mBlock: text-to-speech and the cognitive services. The text-to-speech is used for the audio of the game. In the cognitive services, we use the speech recognition to make the game engaging instead of just clicking buttons.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/1itWMPkyELegWYI-M6nFvEQ8gGsdasWPJ?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/1rXr6vRA4bNG0AoWfeSwzEFpDSBqfcALy?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/1cm3yhGPW5ZtEbEdhO3YyWTQObfWXwL39?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI133": {
+      "id": "ISTE26AI133",
+      "project_name": "EgretEye",
+      "team_name": "Egret TechnoHub Crew",
+      "ai_tools_used": "As AI Innovators and creators of Egret Eye which promotes the responsible use of AI in social media, we explored and integrated multiple AI tools throughout the app creation process. Each tool played a significant role in ensuring that the app was informative, visually engaging, and easy to use. ChatGPT was the main research and content creation assistant. We used it to generate educational content such as stories, poems, and digital citizenship pledges about responsible AI use. We edited and improved the written content for clarity and engagement and learned and got help with coding using Thunkable, including understanding blocks, logic, and building specific app features. We also used Magic School AI for creative prompts for stories and social media scenarios. Also, some of the AI-generated questions and quizzes about digital responsibility were done here. Canva AI was our go-to design tool. We designed the user interface (UI) and prototype the app layout using Canva AI. We also generated AI-enhanced images for app backgrounds and icons. Thunkable was the platform we used to build the actual app. It has an AI-assisted template generator that helped us get ideas on user interface layouts and features. We also structured the app with proper navigation and visual elements. All logos, icons, and illustrations used in the app were created using AI-powered design tools.Visuals were later reviewed and enhanced using Canva and integrated into the Thunkable interface.\n\t\nBy combining all these tools, we were able to design, develop, and prototype an AI-powered app that educates users, especially students, on how to use social media responsibly in the age of artificial intelligence.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1_WNb7q1xKGd06lthbtDzgNbOoeEmqNCZ/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1arcuJ2nNWas_Yl0PK3_4FVSUVU5dPUOM/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://thunkable.site/w/tZQdazq9p0rV9l5o6Xmge",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Fs6x5n6J6wMTPEcB1YXRgv1nwRIfbB-7/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI134": {
+      "id": "ISTE26AI134",
+      "project_name": "ELIOS",
+      "team_name": "TEAM ELIOS",
+      "ai_tools_used": "Gemini, Firebase",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1zEU07z06lhwPNzqR3qlLEAJBr3v8A_1B/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1KX7QqdKdnxkNMrBIdq-4qx5gZPCK4P0N/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://elioslearning.netlify.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "mixed",
+        "value": "ELIOS FILES (In case the netlify link doesn't work): https://drive.google.com/drive/folders/1xYVuWQr_6CaLhMyhX3L58bnhgJT_rBlY?usp=drive_link",
+        "extracted_url": "https://drive.google.com/drive/folders/1xYVuWQr_6CaLhMyhX3L58bnhgJT_rBlY?usp=drive_link",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI135": {
+      "id": "ISTE26AI135",
+      "project_name": "Empower path :Aura",
+      "team_name": "Empower path: Aura",
+      "ai_tools_used": "Heygen for video \nBase 44 for app",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://app.heygen.com/videos/3604a947c14549379dadb286ab85c236",
+        "password": ""
+      },
+      "team_story": {
+        "type": "text",
+        "value": "Our project focus on well being and mental health also social problems because it considered one of the most challenges that faces many societies in the entire world, our project helps people to overcome their problems"
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://aura-empower-path.base44.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://www.dokie.ai/presentation/share/EA3PRjAdwPx9",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI136": {
+      "id": "ISTE26AI136",
+      "project_name": "FakeShield",
+      "team_name": "FakeShield",
+      "ai_tools_used": "Bolt.new and Claude by Anthropic",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=7BxKg0qcPqA",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1WmhSFlR-Bv-ajt5gcGJR1-FIMNks141y963jxww7TKA/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://fakeshield-critical-xdy7.bolt.host/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://docs.google.com/presentation/d/1N2IZwbhCV3TPnRx4Zq2mM3gzWzii5KZHaWlSY0bUk5U/edit?usp=sharing",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI137": {
+      "id": "ISTE26AI137",
+      "project_name": "FETCH AI",
+      "team_name": "Fetchers",
+      "ai_tools_used": "CHIP - it is an AI chatbot that allows users to ask for advice in taking care of their pets. Additionally, it can also match adopters with their most compatible pet.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/hmTUouBVFwE",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/11eUMYuDaD7pmEv6iH0EnNS77BGddDLUlM4e6ZXIvUpI/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1p9Y8gc9o6m9q9Tm1FJ9ZKl7KmAq7LsHm",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI138": {
+      "id": "ISTE26AI138",
+      "project_name": "Finansis",
+      "team_name": "JosÃ© Pablo Moreno GarcÃ­a, Santino UrueÃ±a, Carolina Vacas Bonilla",
+      "ai_tools_used": "Google AI Studio, InVideo, ChatGPT, Copilot, Gemini.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1mC_GM91roHJNCFGr5EVOGxUIUePkXoc5/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1NPMvglk3DEqwF1V2w8OCsljzavFJCi2pVXpBZg0zx18/edit?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://sites.google.com/pinecrest.edu.mx/finanzukis/inicio",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1DsmzD9092Fi4zP-KbDzTCCLJiAZ3MO4Mf1v817zxf4g/edit?usp=drive_link",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI139": {
+      "id": "ISTE26AI139",
+      "project_name": "Find Your Home",
+      "team_name": "Chantilly High School 1st Place Team",
+      "ai_tools_used": "Playlab.ai (we were strictly instructed by FCPS to use only Playlab as our platform for creation)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/TQMhyil9icc?si=ATQcKiDlKzRK8VcK (our original video was 4 minutes long, per FCPS guidelines)",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1LFWGBEtjw08qMmHG1t2LF_7h7lvwsNDc9embEYrbMDg/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmkbt18f50gv4g90u95h1neux",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHD4Z-LB7U/Kj4j1MMINTaYvRSxI3ayhg/edit?utm_content=DAHD4Z-LB7U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton\n\nhttps://drive.google.com/file/d/1On9binEGeGDzSMQeFsZqjDevHjCP98cX/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI140": {
+      "id": "ISTE26AI140",
+      "project_name": "FireCast",
+      "team_name": "FastTrack Aacademy",
+      "ai_tools_used": "We consulted ChatGPT while brainstorming ideas and debugging;all code and work, though, was created by us.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Sw1-DFA9_9hgohWcUmowWuX7qGsOMLpJ/view",
+        "password": ""
+      },
+      "team_story": {
+        "type": "text",
+        "value": "Wildfires are an escalating environmental and societal threat, damaging ecosystems, degrading air quality, and endangering communities and infrastructure. Existing wildfire analytics often focus on static risk scores or short-horizon simulations, but they donâ€™t capture how a fireâ€™s behavior changes over time (e.g., persisting, escalating, or collapsing) under shifting terrain and weather conditions. Our project addresses this gap by modeling wildfire progression as a dynamic, interpretable process to better anticipate dangerous regime shifts and support earlier, better-informed response. Our proposed solution is FireCast: a terrain-aware, state-space AI framework that models wildfire progression as transitions between latent â€œbehavior statesâ€ (e.g., stable, moderate growth, extreme growth, rain-driven collapse) rather than only producing static risk scores, a model we have not only tested thoroughly ourselves but also have hosted as a proof-of-concept on a website."
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://wildfire-simulation-warning-system.streamlit.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://github.com/DaPraxis/streamlit_kepler_wildfire",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI141": {
+      "id": "ISTE26AI141",
+      "project_name": "Flourished",
+      "team_name": "Bloom Trinity",
+      "ai_tools_used": "Gemini AI is integrated into the Flourished app to provide intelligent assistance and smart responses to users. It helps analyze user input, give helpful suggestions, and improve interaction within the app. By using Gemini AI, Flourished becomes more efficient, user-friendly, and capable of supporting users with smarter features. ðŸŒ±âœ¨",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1KeBc63S6uyanUJ55R6M8DNtmqxNP_e_Z?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/11468OTMKK1HLROgRfhGQi-DXpOi2yQpy?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1LNp8okLq3LsiKGCrkm52mpkkpN9yExS3?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI142": {
+      "id": "ISTE26AI142",
+      "project_name": "FLUX AI",
+      "team_name": "Time Savers",
+      "ai_tools_used": "Google Gemini, Intel AI Powered Laptop",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/Rm1_pefnQDE",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://vikasbharatipublicschool-my.sharepoint.com/:w:/g/personal/anni_vikasbharatipublicschool_onmicrosoft_com/IQA6zF1JLj5XTKr9taGxWUAIAV49Mj8RX7e-dNhCfFU82v0?e=B7HigV",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1xaAQeafXfaJwE68_kvq6TAPepsb4o9qe?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1xaAQeafXfaJwE68_kvq6TAPepsb4o9qe?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI143": {
+      "id": "ISTE26AI143",
+      "project_name": "FullRide",
+      "team_name": "PlayLab Scholars",
+      "ai_tools_used": "Playlab",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://docs.google.com/videos/d/16W9x8_4Z2_AxiltdSd5e35kXr-eMwxZ1ZTOOId3nyz0/edit?scene=id.p#scene=id.p",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/19JxgeZbx-PSW_dLnyHIG0Qlzs81zAvyZZavljNa2hBE/edit?tab=t.0",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmjiy3unw25udnt0ut3wz2o4z",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI144": {
+      "id": "ISTE26AI144",
+      "project_name": "Garden Chef AI",
+      "team_name": "Culinaseeds",
+      "ai_tools_used": "Figma for development and assisted by it's AI in developing the application.  The chatbot in the prototype are conceptual and scripted to give a presentation of what the application would look like if user communicates with AI.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1_0EqoU1saO3LGkFj3rcNy4kSjRrgBksP/view?fbclid=IwY2xjawQiF-9leHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEeP2RUBNazZs4AIKnJhK4ldo7DQ2BsV5fSW79PpaYqpXQO48HKgXHqAvS4LF4_aem_GcZK1ZALfFpKSFjq0gBHhw",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1oJejFCvTcSIUcakWCfwU3d1sJRG4jIa--phzBanPFjg/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://bats-washi-22688765.figma.site/ai-chat?fbclid=IwY2xjawQiF8RleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEekm3uEBrkMp3r9n6VhEfF9RjiHit_fnqtcQpaj66DSHUkpWwld2-tS0zBVkQ_aem_vEH7gVBP-Q-i4r9NCbrV0A",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI145": {
+      "id": "ISTE26AI145",
+      "project_name": "Grocery AI Assistant",
+      "team_name": "Smart Cart",
+      "ai_tools_used": "",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/Z8JqTbEORWQ?si=R1od6MosQCjl-jeo",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1-cUayq_Vm8Rv2RnuR013qkRCqzgIr3JbEcjOAcW_7Gw/edit?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmi3y2e3x0i8lil0u5lvwnuij",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI146": {
+      "id": "ISTE26AI146",
+      "project_name": "Healthy Habits",
+      "team_name": "Medical Masters",
+      "ai_tools_used": "We utilized ChatGPT to generate responses for the user and the Amazon Playlab IDE",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/home",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/18QFKfUBjPLgkLuksat-9laYVfYvIMt__jO-P7hjDMGg/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmixg90ob0anbmg0u288cc072/cmmp3ypei0ab4mo0wmsufawwv",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI147": {
+      "id": "ISTE26AI147",
+      "project_name": "HIVision",
+      "team_name": "Rhea & Nihiraâ€™s Team",
+      "ai_tools_used": "Gemini",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/149t19_0x-lGbyVKSne9M-Qbpx5s2xtQt/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1GXgYiilfQn9YVE90QQZcvPzK2ATNyvtW/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "note",
+        "value": "App",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "App",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI148": {
+      "id": "ISTE26AI148",
+      "project_name": "Ho`oia",
+      "team_name": "Team Wabisabi",
+      "ai_tools_used": "Throughout the development of HoÊ»oia, we intentionally used AI tools as assistive collaborators rather than decision-makers. We used ChatGPT and Google Gemini to help us brainstorm ideas, refine explanations of technical concepts, and troubleshoot parts of our heuristic detection framework. These tools also supported our research by helping us explore different indicators that might signal AI-generated images and by suggesting ways to clearly communicate those signals to users. For rapid prototyping, we used Lovable to quickly visualize our interface and test how explanations and feature values could be displayed in a user-friendly way. Importantly, we made the design decisions ourselvesâ€”AI tools helped us iterate faster, but our team evaluated the suggestions, tested the outputs, and determined how the final system should function. This approach allowed us to use AI responsibly while ensuring that the project reflected our own reasoning, experimentation, and learning.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/VL5pUXsboRA",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1UDa4BA-naMT4X6325xGUpZaztrixd2pq/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://hooia-ai.lovable.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/18WtpUvh2Ww8Eh3PiMoJVoDZB97V1qk7v/view?usp=sharing",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI149": {
+      "id": "ISTE26AI149",
+      "project_name": "iHear",
+      "team_name": "Habi",
+      "ai_tools_used": "Mediapipe, CNN, LSTM, TensorFlow Lite, OpenCV: MediaPipe is an artificial intelligence framework used for hand detection and tracking. It identifies and tracks 21 key landmarks on the hand, such as the fingers and palm joints. Instead of analyzing the whole image, MediaPipe converts the hand into numerical coordinates, which makes gesture recognition faster and more accurate. These landmark points are then used as input for the machine learning models that interpret the sign language gestures. Convolutional Neural Network (CNN) is a deep learning model designed to recognize patterns in images. In the system, the CNN analyzes the shape and structure of the hand gestures captured by the camera. It is particularly effective for identifying static signs, such as letters in the Filipino Sign Language (FSL) alphabet. The model automatically learns visual features from training data, allowing it to classify gestures without manual feature programming. Long Short-Term Memory (LSTM) is a type of recurrent neural network used for analyzing sequences and motion over time. In this project, LSTM helps recognize dynamic gestures, or signs that involve movement rather than a single hand shape. By remembering previous frames in a video sequence, LSTM can understand how a gesture changes over time and improve the accuracy of sign recognition.TensorFlow Lite is a lightweight version of the TensorFlow machine learning framework used to run trained AI models efficiently on embedded devices. In the system, it allows the CNN and LSTM models to perform real-time gesture recognition while using minimal processing power, making it suitable for hardware such as the ESP32-CAM. OpenCV (Open Source Computer Vision Library) is used for image processing and camera handling. It captures frames from the webcam or camera module and performs preprocessing tasks such as grayscale conversion, noise reduction, and image resizing. This prepares the visual data so the AI models can analyze it more accurately.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/ozw7g_qrWiY?si=e1TutaaKpv_oc7cB",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1SmU9-ABRi4xwYhmiKb8W0dxhk3zEovuHe7gZD8lWwDI/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHD6ru7JqM/sDtiMtaldYkyWE0SwWMfkw/edit?utm_content=DAHD6ru7JqM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI150": {
+      "id": "ISTE26AI150",
+      "project_name": "Infinity Chess Project",
+      "team_name": "EmoChess",
+      "ai_tools_used": "https://github.com/popjane/free_chatgpt_api",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1sMj4obTasRDRdZIyswo8toWGYWUitetS/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/17hJbYGIe5wz2evcjQicZIgALAq4uaiq6/view?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/Felix-0901/EmoChess_APP.git",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI151": {
+      "id": "ISTE26AI151",
+      "project_name": "IntelliVax",
+      "team_name": "Vaccine Innovators",
+      "ai_tools_used": "",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1gJHppnkOqXNNRmW_Z4OB9AGFoIlW99ld/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1Vq48c5_WDxBUCHUR47S3_RwBIz7GNUYWV4K890zV73k/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://ai-horizons-ptdcjxssh-pranavphes-projects.vercel.app/viroseek",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI152": {
+      "id": "ISTE26AI152",
+      "project_name": "IRIS",
+      "team_name": "Vanguards",
+      "ai_tools_used": "ChatGPT-4o mini\nDeepseek\nGemini",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1fshG77ZL_meqF8166K_W4PswMwH4vm9i?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1tE_dEBHyVfhKVbmhxA0N9sr-RI6w9bzm?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1E1FYL8EonaBaxFamLRlJwvmNoVzWkb-Q?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1erL6xBnjUsOguddQvUzLuOZ2I3l8YhTF?usp=drive_link",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI153": {
+      "id": "ISTE26AI153",
+      "project_name": "Kahu's Lighthouse",
+      "team_name": "Kahuart",
+      "ai_tools_used": "ChatGPT(Prompting to save the credit for Claude Code and Lovable), Claude Code(Backend), Lovable(UI)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1ZB1ISEXalWatDziaCu5HujR_9A4YoGHU/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/14K_EQYEBaIdcNfbfHLXRFgYXPyc0YToZbbfDLxJFWqY/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://kahuart.lovable.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI154": {
+      "id": "ISTE26AI154",
+      "project_name": "Kinetika",
+      "team_name": "Luz Rodante",
+      "ai_tools_used": "Google Gemini and Microsoft Copilot served as our technical mentors for this project. We utilized them to learn Python, understand how to deploy a web application using Streamlit, and design the logic behind our ethical triage algorithm. The AI provided step-by-step guidance that empowered us to write, structure, and debug the code for the 'SIK' ourselves.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://correoandeslosmochis-my.sharepoint.com/:v:/g/personal/rllantada_andeslosmochis_com/IQCj4v7miIn2T4TqWGJyTBwqASMViiPPcRMB-tiH0XoP650?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=F6GhpJ",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://correoandeslosmochis-my.sharepoint.com/:w:/g/personal/rllantada_andeslosmochis_com/IQDPU5nczPRbRIY8nj2sZ_bFAfZHUR3M8fF21zb69grSYt0?e=i3B69E",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://kinetika-web.streamlit.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI155": {
+      "id": "ISTE26AI155",
+      "project_name": "LeAc",
+      "team_name": "Mictlan",
+      "ai_tools_used": "groq API, gemini",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1c9cQPCT93LQASt2ew9IvPAmyZM-3dVud/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/14ZWXZRKhdWdWTbm8UxJxqylfA0I9sNUs/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://concursoia-ov9jjed8w-aguacatelife364-1329s-projects.vercel.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI156": {
+      "id": "ISTE26AI156",
+      "project_name": "Legatto",
+      "team_name": "Team Legatto",
+      "ai_tools_used": "During the development of our project, we used several AI tools as creative and technical collaborators to support research, prototyping, and problem-solving. We used ChatGPT to brainstorm ideas, refine our problem statement, and help us explore possible indicators that could signal AI-generated images. ChatGPT also assisted with debugging code and helping us explain technical concepts in clear language for users. We used Google Gemini to conduct additional research, compare different approaches to AI image detection, and validate our design ideas by generating alternative perspectives and suggestions. To quickly prototype our interface and visualize how explanations could be presented to users, we used Lovable, which allowed us to rapidly build and iterate on a browser-based interface for our tool. While these AI tools helped accelerate our development process, our team evaluated all suggestions, conducted testing with real and AI-generated images, and made the final decisions about how the system should function, ensuring that the project reflects our own experimentation, design thinking, and learning.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=juX5wte7A1E",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1eyJaxBLy2FX1D-mbHFy-28LdwXFnB9wB/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://legatto-azure.vercel.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1wioBinE_0u-Eb_KcGI0I0nBR8IxoSBUU/view?usp=sharing",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI157": {
+      "id": "ISTE26AI157",
+      "project_name": "Lexvira",
+      "team_name": "NEABots (Natalia Voloshin, Emma Mathias, and Anaiah Dean)",
+      "ai_tools_used": "Claude 4.5 Sonnet\nChatGPT\nPlaylab AI Companion",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=_wNZfKWnoEU",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1Z2KcXIe8GQIcC5OPyES0_btS9LM5G0HwAggpIW7P6Z0/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmjhcllk90479nt0ufepulcx0",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI158": {
+      "id": "ISTE26AI158",
+      "project_name": "MedExplain AI",
+      "team_name": "Swarit Das and Yimin Hou",
+      "ai_tools_used": "Claude Sonnet 4 (Anthropic API) - used to power the AI feautures including conversational health triage, visual symptom analysis, medical instruction translation, prescription interpretation, risk assesment scoring, and care recommendation",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1_TSNtxwb-yCM1gdMD0TLNXSLpyHE2-rZ/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1l4o0CyJDcA8yGGXKUj6ZLHh0z4JUEAwa4ftv12ztX6I/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://swaritdas.github.io/medex-AI/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "mixed",
+        "value": "Sample doctor visit pdf: https://drive.google.com/file/d/1oXkNgHX9dOqG2c2w3Ki995DBvN78Zxt5/view?usp=sharing",
+        "extracted_url": "https://drive.google.com/file/d/1oXkNgHX9dOqG2c2w3Ki995DBvN78Zxt5/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI159": {
+      "id": "ISTE26AI159",
+      "project_name": "Mediclation",
+      "team_name": "Solar",
+      "ai_tools_used": "To create realistic animations, I used Gemini AI responsibly in our design process. Starting from a single frame illustration of two characters, I used Gemini AI to generate prompt-guided animation variations, expanding it into from 1 illustration frame into 137 frames. These were then carefully refined and polished using Adobe tools.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/gX7uW7pxVwo",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1QfEnkgiKK0RUd7b9TsWf897blnQNjhTeawqDmRIsVCg/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/Icenoid10/Mediclation",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "-",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI160": {
+      "id": "ISTE26AI160",
+      "project_name": "Mental Wellness Checker",
+      "team_name": "Team Sky & Dagmawi",
+      "ai_tools_used": "Playlab",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/D0M63bedsZc",
+        "password": ""
+      },
+      "team_story": {
+        "type": "text",
+        "value": "Building a Friend in Your Pocket: My Journey Creating a Mental Wellness Companion\n\nI created this app because I saw a problem that kept me up at night: one in five teens experiences a mental health challenge, yet so many never seek help due to stigma, cost, or simply not knowing where to turn. I wanted to build something that could be there for young people when they needed it most: a digital companion that offers support without judgment, available 24 hours a day.\n\nI'm not trying to replace therapists. My app can't diagnose depression or prescribe medication. But what it can do is be the friend who listens at 2 a.m. when anxiety keeps someone awake, the supportive voice when academic stress feels crushing, or the gentle guide that helps someone find the courage to seek professional help when they need it most.\n\nMy purpose in creating this was simple yet profound: to normalize conversations about mental health and make emotional support accessible to every teen and young adult who needs it. The statistics that drove me to build this are sobering. Suicide is the second leading cause of death among young people aged 10 to 24, according to the CDC. Yet research from organizations like The Jed Foundation shows that when young people have access to support systems and coping strategies, outcomes improve dramatically. I wanted to be part of that solution.\n\nWhen someone opens my app, I wanted them to feel welcomed, not overwhelmed. Instead of clinical questionnaires or intimidating forms, users are greeted with genuine warmth: \"How are you feeling today?\" I designed the app to adapt its tone based on their response. It's gentle and validating for those struggling, upbeat and encouraging for those celebrating wins. Through thoughtful questions about sleep, stress, social connections, and self-care, my app helps users reflect on their mental wellness without making them feel like they're being analyzed.\n\nWhat makes my creation different from simply googling \"how to feel better\" is the personalized, empathetic approach I built into every interaction. I programmed it to offer evidence-based coping strategies: breathing exercises for anxiety, grounding techniques for overwhelming emotions, journaling prompts for self-discovery. It validates feelings without minimizing them, using phrases like \"It's okay to feel this way\" and \"That sounds really difficult,\" because I learned through my research that sometimes, being heard is the first step toward healing.\n\nBut I also built in transparency about limitations. My app regularly reminds users that it's a supportive tool, not a replacement for professional care. When conversations reveal serious concerns, it immediately provides resources: crisis hotlines like 988, school counselors, and platforms like BetterHelp and Talkspace. I designed it to detect when someone needs more than technology can offer and to guide them toward that help without shame or hesitation.\n\nThe impact I hope to achieve extends beyond individual conversations. By making mental health support feel normal and accessible, I want to help reduce the stigma that prevents so many young people from seeking help. My app is available when school counselors aren't, affordable when therapy seems out of reach, and private when sharing feels scary. In an era where mental health challenges among youth are rising, I'm contributing to a new frontier in wellness support: not replacing human connection and professional care, but complementing them.\n\nI built this to be the first step, the midnight companion, the judgment-free space where young people can begin to understand their feelings and find their path toward healing. Because I believe everyone deserves to feel heard, supported, and hopeful about their mental health journey."
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmk2on57x05msmu0u3btnuzr5",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "none",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI161": {
+      "id": "ISTE26AI161",
+      "project_name": "Metro-pplication",
+      "team_name": "GEN Z INNOVATORS",
+      "ai_tools_used": "Claude AI, ChatGPT",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/12FDa_SaTbb6d6T7sbokOQQZirC8voC8k?fbclid=IwY2xjawQhz2tleHRuA2FlbQIxMABicmlkETE2WWxpYjdoOHpjTWIydXBpc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtOVZdCUhm7FiQ5enF9IDuNos8WIotUQEOr1mkwQeAdx0wv_dr8rV53KFkJF_aem_lfimgqSzgmnDFK4Ppy4jZQ",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1zB6sfH6Yc59ik0S7xAoNf31woLCODaSrDhSTLI4BtN8/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1ElirWoFC2fVRoTr4iOmAwToByfCnGMHL?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHDDBBGVv8/Y7pRP5obZtxYH2-fX5ldYA/edit?utm_content=DAHDDBBGVv8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI162": {
+      "id": "ISTE26AI162",
+      "project_name": "MindEase - AI Emotional Support & Companion System",
+      "team_name": "MindBridge",
+      "ai_tools_used": "https://github.com/popjane/free_chatgpt_api",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/14iiD9W4CEDVFZKasq9ppR2g70Uu39Cya/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1NgJ6FllWALjHQvlBEAT7s78cceZICPr9/view?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/Felix-0901/mindease_app.git",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI163": {
+      "id": "ISTE26AI163",
+      "project_name": "Moot Court AI",
+      "team_name": "Court Architects",
+      "ai_tools_used": "Gemini 3 / GPT-4o: processes complex reasoning and generates dynamic scenarios in real-time.\nClaude 4.5: ensures every interaction remains intellectually sharp and contextually grounded.\nGrok 4.1: bridges the gap between theoretical data and real-world inquiries.\nCursor AI Agent: designed to predict and automate complex tasks, streamlining the development process through contextual awareness.\nClaude Code Sonnet 4.6: optimized for executing technical plans and ensuring structural integrity throughout the codebase.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1EY-gF42VFPis8nORTECvrbZ_1zH0hAXo/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1DeT_oH0WRDKdvc2xYnRaw8dXZmwETpjQ/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://moot-court.pages.dev/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI164": {
+      "id": "ISTE26AI164",
+      "project_name": "MyCompass",
+      "team_name": "Lost & Found",
+      "ai_tools_used": "- Microsoft Copilot, which supported the development of our team story by helping us outline and put together our writing, after being reviewed, edited, and refined by us for the purposes of our app.\n- General Gemini Popup During Regular Search on Google, for finding research and results for CBT and DBT techniques.\n- Canva AI, for the logo image of MyCompass in my demo video.\n- Playlab AI Assistant inside my project, for helping me organize and better format my workflow for organization, and better phrasing.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1WzLdn5gf6QQSV1cBDavkDq30ZFe-epR2/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/13ecrh1OwrSSR94tLDuC8rvVknTD-djJKmQqWuchjs_k/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmjugfkug2fn9m80vxxg6y023",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI165": {
+      "id": "ISTE26AI165",
+      "project_name": "NarrAIter",
+      "team_name": "CreAIters",
+      "ai_tools_used": "Playlab",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAG-5q_saQs/ZHdvJaeuLn9SiemU5CSq-A/edit?utm_content=DAG-5\nq_saQs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1nNhPVGBloXIhqfE-7DUwcOty3bpGelWM/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmjhj98ey0lt6nt0ubgyb35i4",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI166": {
+      "id": "ISTE26AI166",
+      "project_name": "NurturePulse",
+      "team_name": "ALCTeam",
+      "ai_tools_used": "Open AI",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/13ACptvAe9WZgY6e-hQK9CD-8a-nnuavc/view?pli=1",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1V97uulokaiqA9xneb3UAxbUYyNyvhiKu-jK3uT8gz1U/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://nurture-pulse.vercel.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI167": {
+      "id": "ISTE26AI167",
+      "project_name": "NutriAI",
+      "team_name": "BioBalance",
+      "ai_tools_used": "Google Ai studio and AI Powered Intel Laptop",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1sDOSdmeFSHGQbGjr2ABqa_cf8cuox1KZ?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1fsH50WoNi_hwz1lXNnC7SEMsA4-PCj5Y/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1sDOSdmeFSHGQbGjr2ABqa_cf8cuox1KZ?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1sDOSdmeFSHGQbGjr2ABqa_cf8cuox1KZ?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI168": {
+      "id": "ISTE26AI168",
+      "project_name": "OpportunityHub",
+      "team_name": "NYSSK",
+      "ai_tools_used": "Exa.ai, chat-gpt 5 nano (OpenAI)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1tSmw7GGiPwFFR3DIXTO6WBlCeOEU2doZ/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://iste-ai-innovator-challenge-2026.vercel.app/team-story",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://iste-ai-innovator-challenge-2026.vercel.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI169": {
+      "id": "ISTE26AI169",
+      "project_name": "Passion",
+      "team_name": "West Springfield United",
+      "ai_tools_used": "1. ChatGPT (for script and narrative refinement and visuals brainstorming)\n2. Playlab (to build AI-powered app & learn how to use Playlab)\n3. zlabz.io (to create opening scene in demo video)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1N6TVYgSOqA7CE4Oa04R8AuztoXuguhY_/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/172iaLcIAjscMW_Qq_fctbP2RpwSJczH-QYmAAY3JXvA/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cml157nn401valg0uhofqzsjm",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI170": {
+      "id": "ISTE26AI170",
+      "project_name": "PathGuard",
+      "team_name": "Safety is Good",
+      "ai_tools_used": "https://github.com/ultralytics/ultralytics.git",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1LoE-uZMczmookugEb1n-mk5bQ0SdVsCQ/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1TOgKNgbvSqJjGPne7dijDRGIjl8NCa-W/view?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/Felix-0901/PathGuard.git",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI171": {
+      "id": "ISTE26AI171",
+      "project_name": "PathoScan",
+      "team_name": "PathoScaners",
+      "ai_tools_used": "PyTorch (for the code) and EasyBib (for citations)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1rzceeXO4aTxy6tach_lV57pULS_hgGOH/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1k70MpHJuN34F1XCaY6Y6K8Oyle4WH4zm/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/15hQPJGCw28NIVYwZ46ndB0cmLDMZbbij/view?usp=sharing (due to the current ongoing war in the Middle East, communication among team members has been difficult, limiting our ability to further develop our code into a website;however, the code is shown in the image and is fully functional and able to detect whether a sample is classified as cancerous or healthy, with training showing up to 100% accuracy).",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHAW8n6k8s/ItkorplOb15os-3AHEAXhg/edit?utm_content=DAHAW8n6k8s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI172": {
+      "id": "ISTE26AI172",
+      "project_name": "Poses N' Pixels",
+      "team_name": "Poses N' Pixels",
+      "ai_tools_used": "PoseNet: A machine learning model that tracks and recognizes human poses from a camera feed.\nFaceMesh: A model that tracks and identifies facial landmarks for animation and expression recognition.\nPredefined Rig (Bone Hierarchy): A skeleton structure mapped onto the vector illustrations to enable realistic movement.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/mMQ3tKKNvDI",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHD6beD-JI/KoCWcnXwTpvCDRZ0Ecjn4w/view?utm_content=DAHD6beD-JI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0ea16023dc",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://sites.google.com/view/poses-n-pixels/program",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://www.canva.com/design/DAHD6Y7x4X4/O9Pu0Nxz6Uhzd-QvUu8Mag/view?utm_content=DAHD6Y7x4X4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42415cb32d",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI173": {
+      "id": "ISTE26AI173",
+      "project_name": "Prescripto",
+      "team_name": "MSHSI Team C",
+      "ai_tools_used": "Chat GPT for enhancing ideas, Grok for getting ideas for the power point presentation, and Claude for design prototype",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1kK6FTgFCxP4HOj0YKre8QiB1Gopk6yYK/view?usp=drivesdk",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1eKy1RnkBVC2xoZxMaQoSjrKSfQ2hWLkucBCwyLKOUN8/edit?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://claude.ai/share/46beba34-638a-47f3-9aba-9952d1b5a63f",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI174": {
+      "id": "ISTE26AI174",
+      "project_name": "ProdigyPro",
+      "team_name": "Jaguar Innovators",
+      "ai_tools_used": "Lovable, Resend, Vercel, Supabase, Scikit, spaCY, CodeX",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/tVBinBX0xWs",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1jGOWXj_ROMiloEHgAGGGRg9fFeM2hUrev_LSrk2bCAs/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://eclinestudents.com",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI175": {
+      "id": "ISTE26AI175",
+      "project_name": "Project GreenQueue",
+      "team_name": "Food for Thought",
+      "ai_tools_used": "Roboflow (Computer Vision), Replit",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/iPs6QVlhPuk",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1hselzDIPYoYZeTdpVYq2AuN0-F9N51nIVz9Hd4zQbmQ/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://ai-queue-counter.replit.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI176": {
+      "id": "ISTE26AI176",
+      "project_name": "Project SARA: Sustainable Analysis & Recipe Assistant",
+      "team_name": "Team SARA",
+      "ai_tools_used": "During the development of Project S.A.R.A., we strategically utilized AI across both our hardware and software layers to move from basic monitoring to proactive waste prevention. On the hardware side, we used AI to refine our C++ Arduino code, specifically for implementing the averaging algorithm that filters out electrical noise from the MQ-2 sensor and DHT11, ensuring the buzzer only triggers for legitimate threats. For the software and user interface, we used Wix to design a professional mission landing page and Bolt to rapidly prototype the responsive web dashboard that hosts our live sensor data. Finally, we integrated Gemini as the core intelligence of our \"Recipe Assistant,\" which takes the real-time alerts from our sensors and processes them to generate creative, waste-reducing culinary solutions.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1pfWkPo1uqAoYNq2V3hHe6_PyoABc5EA8/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1xy2XlZDSSZJ261e2K_KQTApQjhVysxtv/edit?usp=sharing&ouid=109714382494999550585&rtpof=true&sd=true",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "note",
+        "value": "The project is an IoT system, so the software component that complements the hardware can only be accessed through an IP address that is specific to the userâ€™s Wi-Fi network.",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI177": {
+      "id": "ISTE26AI177",
+      "project_name": "Q&Ace",
+      "team_name": "Team Q&Ace",
+      "ai_tools_used": "- OpenAI\n- Perplexity\n- ChatGPT",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1WtTfs6leqjD1Fddd0jv2ygwLp2ORmbDW?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1iSIQh3Pz3-QBKwI7h0kbcfbSM_WoiLcN?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1OIzm6mLjxAnxNqn1rHtbaSdREjIIcrzv",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "none",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI178": {
+      "id": "ISTE26AI178",
+      "project_name": "Questelligence",
+      "team_name": "Team Intelliquesters",
+      "ai_tools_used": "Gemini, ChatGPT, Claude, Ollama, and Google's API key",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/HEuYnbCzsqk?si=EVKuLpHlqHOcivWj",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://youtu.be/UOiMaBeod4k?si=rlkY0DoZwS8E8oPb",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://kyelolololo.itch.io/questelligence",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI179": {
+      "id": "ISTE26AI179",
+      "project_name": "Real World Math",
+      "team_name": "Anna and Bridget",
+      "ai_tools_used": "Playlab",
+      "pitch_video": {
+        "type": "note",
+        "value": "Local file (not accessible online)"
+      },
+      "team_story": {
+        "type": "note",
+        "value": "Local file (not accessible online)"
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmk8g1g1m30kohe0vj48j5v54",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "Local file (not accessible online)"
+      },
+      "hold": true,
+      "hold_reason": "Files are on local drive"
+    },
+    "ISTE26AI180": {
+      "id": "ISTE26AI180",
+      "project_name": "ReLeaf",
+      "team_name": "Climate Family",
+      "ai_tools_used": "Teachable Machine Image Classifier to recognize and classify herbal plants using machine learning models, ChatGPT API for AI chat",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Jo5wO-uYVGpg9qi16KTWXfbU4RO-rt5T/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1-t8Sv9iwSUGpe0ARxvnjkO4B47G85TAn/view?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1TgCjD8HFO6n1tFfcQN9USDYsaJvxfu5A/view?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI181": {
+      "id": "ISTE26AI181",
+      "project_name": "ReSiklo",
+      "team_name": "Earth Warriors",
+      "ai_tools_used": "Jong AI (created from Groq AI specially for ReSiklo)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1CBHd8fB-W6qLwHDUNy9pvnWYGwkEk9le/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1sFccl6qPUVhyqONTdqWDLKxdMIDke8WAGiYu1XY-NVw/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1cIUuusc2gXdAgD-2K40caugbffBmMBZm?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://Walkthrough:\nhttps://drive.google.com/file/d/1oxHegeOfaSd-u34H6WnVLu7TAJS_JDyB/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI182": {
+      "id": "ISTE26AI182",
+      "project_name": "SAFElink",
+      "team_name": "StormPulse",
+      "ai_tools_used": "Chatgpt.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutu.be%2FTMeYt4dooGE%3Ffeature%3Dshared%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExd0ZJcDFlY2txSlBKa01TYnNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR4iZRrpRWgBdqGIc2IOcVVbTcuCf94VdE6FncZhF0SCcxvhlyCsT4yNvsaetQ_aem_BCSzZmrvreu4dms1v7CnVA&h=AT6Vr0JRHlWOyRNOUSeEwPTFmzVo14mGIQ61wizCVVpmKOcZ8k36I5dik0cgVl7jOaopBGifGPZwKZzQWkX-pQVfwst74NRn4-prGWFkwEP2quHVKMB1Q7ltpn6oEX6oh5bBEmpQfVq3jiz9dA28Tg",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://l.facebook.com/l.php?u=https%3A%2F%2Fdocs.google.com%2Fdocument%2Fd%2F1SDXVZT1xP_wxjsZZnk4fkKzJp7owhDOA9T-zrPG7bXs%2Fedit%3Fusp%3Dsharing%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExd0ZJcDFlY2txSlBKa01TYnNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR7uuFFzI6lyIEao7VRUcBIpp_L2fhZmmcatfQKzq5wkVH5UY266jKXdmxMrrA_aem_Wqm-8JKAMtGZtSsSxGXI7g&h=AT4cHxoD5m3CNqRJrOO-9NH01_--3Bl9Q-0L_OwSDeZsNoavLKFPsmUXljQStFYCpoCvtWSqF5OLZv06pQwT8QEWKbZ0VnGSun8ybx7l0tE4tfwBMEeXKlGT92tEFVprxJUBEF2cy_rHNb4",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1wVxm3Ly07t7QjjiHhYOK20yiSAw0AB0x%3Fusp%3Dsharing%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExd0ZJcDFlY2txSlBKa01TYnNydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6TReQr98PLNTllEq2F8RL9XgoWJ-sAtkE_gEKFhKhGJWE-UdJ3BQ_gisYfWg_aem_gIVa-U6dvm-VGEJSw_aobw&h=AT4-N5sbYTQ_mXd3gD3QVD-XnoiHrEGGkOHDHjaS81opq2j_uiacDzqbn_yqFQLCjMwLHYA7Y5GX6FNOprdURYutZz7foio8xqjrVF3cSpFs_h1QA-smnXCdOMdqwsYFgDHGFMnwUKKX59c",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI183": {
+      "id": "ISTE26AI183",
+      "project_name": "SafeSignal",
+      "team_name": "SafeSignal",
+      "ai_tools_used": "Figma AI, OpenAI APIs for content generation and automation features, including First Draft for wireframes and support for Auto Layout..",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/guNYlHbZsR8?si=quXA9zCtN4kYgRo4",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1AdpUAKparQmPOB9Q1eUTEYR1tiCr7Btk?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://eurekacreator.com/ISTE/safesignal",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI184": {
+      "id": "ISTE26AI184",
+      "project_name": "SARA AI - Smart Adaptive Resource Assistant",
+      "team_name": "Equinox",
+      "ai_tools_used": "The core intelligence of the system is powered by the Groq API using the Llama 3.3 70B large language model. This model generates personalised explanations, answers student questions, and assists with quizzes and study sessions.\nFor speech interaction, SARA AI uses the Web Speech API, which enables both speech recognition and text-to-speech. This allows students to interact with the system entirely through voice commands, making the platform accessible to visually impaired learners.\nTo process images such as exam timetables and syllabus documents, the system integrates Tesseract.js for Optical Character Recognition (OCR). This allows the AI to extract text from uploaded images and convert them into readable and teachable content.\nDevelopment of the application was done using HTML, CSS, and JavaScript, and the entire system runs directly in the browser without requiring installation.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/4pAQM_6ssMc",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://github.com/ar3696233/SARA-AGENTIC-AI/blob/main/team_story.md",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/ar3696233/SARA-AGENTIC-AI.git",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://github.com/ar3696233/SARA-AGENTIC-AI/blob/main/SARA_AI_Presentation.pdf",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI185": {
+      "id": "ISTE26AI185",
+      "project_name": "Saviour Of Food Grains",
+      "team_name": "Zero Hungers",
+      "ai_tools_used": "AI Tools Used: We utilized Gemini for structural ideation and content refinement, Canva Magic Media for creating inclusive visual aids, and ElevenLabs for text-to-speech accessibility.\n\nOur Responsible Approach:\nWe maintained a \"Human-in-the-Loop\" workflow, treating AI as a design assistant rather than an autonomous creator. Every output was cross-referenced with verified sources to ensure accuracy, audited for bias to promote inclusivity (aligned with UN SDG 4: Quality Education), and reviewed for safety. We prioritized ethical use by maintaining full intellectual control over the final product, ensuring it fosters digital citizenship while providing equitable access for all learners.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/15chvm05Dsz5EDh1PMLMkChpN95PJFwRc/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1KW0qdR6B_PJ15S4JqOOcYYnqIubOleHuTHh9vXb2qb0/edit?tab=t.0#heading=h.o3f0c9y473we",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1jvlBJco_D5jQd4DSIj1Dt_3CNmg3U71u?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI186": {
+      "id": "ISTE26AI186",
+      "project_name": "SDG Quest World",
+      "team_name": "SDGAdventurers",
+      "ai_tools_used": "Short description: We utilized YOLOv26 for the camera function in the mobile section of the gameplay. YOLOv26 allows for real-time object detection and image segmentation that helps with completing the mobile-related quests",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/10bgE6M03N77jBvM9XxvFb5xVhAFb9Cfb?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/1g0ToAqPHQmM9UDc869dP4XKxcLYAPsqY?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/1tEiHU4Hi44eKw9Ece9nuymPjC4e5pOwg?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/0/folders/1Ug1Lg-azYCzzKfQEYTuglCs1G-_hR0UP?fbclid=IwY2xjawQiF6BleHRuA2FlbQIxMABicmlkETFiaUR1MUdkZGNkMXI5dTl0c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHkFqPlR9mYzepp8IO-XVwaF8gyWEp6qDorBHIR3DLecllJqQgM8Z2OaU-rH4_aem_qWt60M-gISM-9uCu-IiIsw",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI187": {
+      "id": "ISTE26AI187",
+      "project_name": "ShineGuide",
+      "team_name": "CognitiveWorks",
+      "ai_tools_used": "ChatGPT, Figma AI",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=PUNiAdiMYAE",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1rCLvwM2AVjbReFpMy5i-QFr9JqzB39PU/view?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/IMIvanov22/Cognitive-Works",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI188": {
+      "id": "ISTE26AI188",
+      "project_name": "SignSpeak",
+      "team_name": "Los papus67",
+      "ai_tools_used": "We use atoms ai and chatgpt only",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/TRavJXPeC2s?si=jtzbn8Flz_PON_EB",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://1drv.ms/w/c/97405313bd8f6139/IQB42eA2_CsPT6iQkOzwfGmbAZ3cd3NTsi6rnhjBgmeTSDg",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://1022388-4763f42dc18d4d7183451c34fb136dee-3-v2.app.atoms.dev/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI189": {
+      "id": "ISTE26AI189",
+      "project_name": "Slouth",
+      "team_name": "Slouths of Precinct 289",
+      "ai_tools_used": "Lovable (lovable.dev), Google Gemini API (used within Lovable), ChatGPT (used in brainstorming, planning, and suggested tasks content).",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1U0Mz_Y4-BDR0pVbZkec1Mv25FT93hewb/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1JCr2P9GE44fOjT-7mCpx9J2n3ZYbBvJsfH-G0PymDEI/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://slouth.lovable.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI190": {
+      "id": "ISTE26AI190",
+      "project_name": "Smart Bill",
+      "team_name": "Danelle Landgraf",
+      "ai_tools_used": "Gemini api was used in the project but no AI tools were used in the creation on any media submitted",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1zFjgvMX84Dv4Qr4O1L4av2idee09Uwr7/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1Vyt-nmBJSahIPKP-nc_-efAFxt-kapuETUZhFwWJvpo/edit?tab=t.0",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/zeraxal/United_Nations_Thing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI191": {
+      "id": "ISTE26AI191",
+      "project_name": "Smart Drone for Rapid Search and Rescue",
+      "team_name": "Lifeguard AI",
+      "ai_tools_used": "IoT, Google Scribts , CSS, Java , Esp32",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://mega.nz/file/YQhmWTpJ#SjEyJxReHFh67zBDBf9J0BkgWQ710pQpP18qD2v1m5U",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1P_uMRrZIX127ob3ZEbPPk_H5EuTGajxx/view?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/13h3b0SMwYCzCEKyPtOVEyoIC_mG86eRw/view?usp=drivesdk",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://script.google.com/macros/s/AKfycbw0kEzarsaOu7x1sm0CZ0ZuydjgcbP9RquQS0b7nRT-av71KfSV6A9wgCb1GtFRjJDd/exec",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI192": {
+      "id": "ISTE26AI192",
+      "project_name": "SmartBridge Infrastructure",
+      "team_name": "SmartBridge",
+      "ai_tools_used": "AI IoT Storage Data Application",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/65HcIGXekrM",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1r2VG7_G1qNX6lE-SKMRNY6Qgsd41IxFZvh2wrsR7uR8/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1RkuAJdgZhn2Cx1VWWsRHEdmn6Z4iwHfMcP-ecl9HaG0/edit?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "Arduino IDE",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI193": {
+      "id": "ISTE26AI193",
+      "project_name": "SocialWellBeing",
+      "team_name": "TrioCore",
+      "ai_tools_used": "Artificial intelligence plays a central role in the development of our solution, both as a core component of the product and as a supportive tool throughout the design and development process.\n\nOur solution leverages AI to analyze user inputs, identify behavioral and emotional patterns, and enable personalized experiences aimed at improving social well-being. These AI-driven processes are designed and controlled within a human-centered framework, where all system logic, ethical boundaries, and decision-making criteria are defined by the team.\n\nDuring the ideation and development phases, multiple AI tools were used responsibly to enhance productivity and insight generation. ChatGPT and Gemini were utilized to support problem exploration, system design discussions, content refinement, and clarity in communication. Gemini was also explored for image and visual verification tasks, supporting accuracy and consistency during visual development stages.\n\nPerplexity AI was used as a research assistant to cross-check information, explore existing approaches, and validate assumptions through structured summaries of reliable sources. This allowed the team to make more informed decisions while maintaining independent critical evaluation.\n\nManus AI was employed for early-stage prototyping, workflow modeling, and rapid iteration of possible system structures. By simulating different flows and interactions, Manus helped us test ideas efficiently before implementation.\n\nAcross all stages, artificial intelligence functioned as an accelerator and analytical supportâ€”not as an autonomous decision-maker. The team retained full ownership of the concept, system architecture, ethical responsibility, and final outcomes. All AI-generated insights were reviewed, filtered, and adapted by the team to align with our values and project goals.\n\nBy combining AI-powered analysis with human judgment, empathy, and oversight, our project demonstrates a responsible and impactful use of artificial intelligence to address real-world social challenges.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/eBrlLVjwKpA",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1_DegI9LLXbLRgS7_3CDn5HJBsYmLqnNx0rb3Vrd-m90/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://socialwell-r8ulbspc.manus.space",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI194": {
+      "id": "ISTE26AI194",
+      "project_name": "SOLPrep.com",
+      "team_name": "Langley Team 9",
+      "ai_tools_used": "CnatGP1/Claude/Playlab Assistant\nUsed for debugging code\nUsed to optimize and rapidly test different prompts",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1WcMNKj48nDBTzfYDjrqVV9zTUxj4F9_i/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1Y3wVhD5qUcSw-G14K1Crc14rvkQ9SjfAr9W-QWQf4hY/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://solprep.com",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/17X7y2hY2FIElgDSqtswniWiBnsJ3BBLg/view?usp=sharing\nhttps://docs.google.com/document/d/1cU7Epw8zVre594kQnNcX-FhGLc3yifHPD_56bmwGL8k/edit?usp=sharing\nhttps://docs.google.com/document/d/1f8HC2gmbHxxnibFYcT-ch3yseOz3AHX8sDg70CnbTtg/edit?usp=sharing",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI195": {
+      "id": "ISTE26AI195",
+      "project_name": "Sproutly",
+      "team_name": "SproutCoders",
+      "ai_tools_used": "We used and taught Scikit-learn how to recognize the statistics and algorithms for the trees based on the map. NumPy numeric for compiling. And we used Gemini to make responses about tips on how to take care and plant the tree you plotted in the map.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1jvCL4NeNOeqpcKhV3WHgNoaOsJt-4qxN?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1Efxzox11CoWE1csv8-LrnsxPi6Ee79Bk?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1ppad7QXLau9qRRBGmW8Cvx-XMWe7Zt1M?usp=drive_link",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI196": {
+      "id": "ISTE26AI196",
+      "project_name": "SproutScan",
+      "team_name": "SproutScanners",
+      "ai_tools_used": "CHAT GPT IMAGE MODEL, GOOGLE GEMINI, OPEN CV",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/t5Hmv278yzs",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/17AaQE2DBwa4wAlTDnNGl5ABK0ZT7xQSS-67oFsjaQ6o/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://sproutscan-plant-ide-qnp2.bolt.host/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI197": {
+      "id": "ISTE26AI197",
+      "project_name": "STAR - Searching The Areas Resources",
+      "team_name": "STAR",
+      "ai_tools_used": "PlayLab AI software - Llama 4 Scout AI model",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/19uPqQkPcHnhZRu7ylLuGA8zInvTNL9zT/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1tVspaP3ic9R7yYhg2NkpHQtI7IfZIgxG-gDWlr3ayR4/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmk2ql0xa0dvzmu0u9mgd2vna",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI198": {
+      "id": "ISTE26AI198",
+      "project_name": "Substance Busters",
+      "team_name": "Shanzeh and Manha Khan",
+      "ai_tools_used": "Playlab, Claude Sonnet integrated in Playlab.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/pA6fG9bTBMM",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1zu-HEP0Tbogz7c3Dv0nL3_SXqF4Zn5Ix/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmjzzqwnz0li2mx0vftz596qz",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI199": {
+      "id": "ISTE26AI199",
+      "project_name": "SuitAble AI",
+      "team_name": "Coding Pandas",
+      "ai_tools_used": "",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1FtLB071r8sH7qrlhfX8awZoly0ZYiOH8/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Pyw_bo3sIFoyd6WCZaJJu65Jp-YnExzg/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmiwhp9mz3c3pks0vj3ou6rry",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI200": {
+      "id": "ISTE26AI200",
+      "project_name": "Swype AI",
+      "team_name": "Cora: A Real-Time Voice Agentic System for Accessible Web  Interaction with Gesture Guidance",
+      "ai_tools_used": "https://drive.google.com/file/d/10uH7HzM6zl001QFkB4waeXDnqUSuT6cl/view?usp=sharing",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/10uH7HzM6zl001QFkB4waeXDnqUSuT6cl/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/10uH7HzM6zl001QFkB4waeXDnqUSuT6cl/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/DhanvinG/Cora",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/10uH7HzM6zl001QFkB4waeXDnqUSuT6cl/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI201": {
+      "id": "ISTE26AI201",
+      "project_name": "TeamUp",
+      "team_name": "TeamUp Squad",
+      "ai_tools_used": "Replit",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/dnidvo7yMno?feature=shared",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1MH4hs93Jv0swNNyb99kK7COs93_uBr1g5qe1CXmb_LA/edit?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://teamup-mindful-educator.replit.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI202": {
+      "id": "ISTE26AI202",
+      "project_name": "The Agribot Challenge",
+      "team_name": "Team Sinaga Kenya",
+      "ai_tools_used": "Chatgpt",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://youtu.be/cVQUirIJhRA?si=mvFywMoTAaPY-tNW",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1Ff8WKtZnlTzZDMB8Z3l9DNYNrAhumXt23plzJg0wJn0/edit?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://docs.google.com/presentation/d/1P3f-SUq4HAa2YwLP8TSGpCJdSPhhhXSYftQ5aajFUfQ/edit?usp=drivesdk",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI203": {
+      "id": "ISTE26AI203",
+      "project_name": "Threads of Hope",
+      "team_name": "Flowear",
+      "ai_tools_used": "We used Firebase Studio, which contains Gemini in it, to help build our website.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1xgteIeTQYzrQ2uGStPiCVP4yMpfD2UWo/view?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1slztnE9nCudVdqLmhO05oeMORikKyGba/edit?usp=drive_link&ouid=114451788423515156948&rtpof=true&sd=true",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://project-med2fjosq-annieou0315-7857s-projects.vercel.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI204": {
+      "id": "ISTE26AI204",
+      "project_name": "Trashify",
+      "team_name": "Trashif.ai",
+      "ai_tools_used": "For our project, we used Teachable Machine to train a model that can classify different types of trash into their respective categories. We gathered images from the web and used them as training data for our model. These images helped the system learn how to recognize patterns and identify each type of waste. We also used ChatGPT and Gemini to help us create and organize the structure of our code.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/17bWQVimkWwxNRPJE2kVJeG8J0vNs4N9l?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1nVXcuID_uVrZTcrUl7t-alnyl_Ke9ZSk?usp=drive_link",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://jaidia83.github.io/TRASHIFY/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1h07JBax57VzRST8f6J7XjJdv9JRaTIVq?usp=drive_link",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI205": {
+      "id": "ISTE26AI205",
+      "project_name": "vicina",
+      "team_name": "vicina",
+      "ai_tools_used": "We have used the chatgpt coding agent to help with building the codebase and figma's ai for design ideas. The project itself has a depth estimation AI model with a ViT backbone.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://codingburgas-my.sharepoint.com/:v:/g/personal/kkivanov22_codingburgas_bg/IQDvXoj2e9bjQLlOQVyCm6giAYHyYqdHsT-_JANDs3u63i8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=0BwzOU",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://codingburgas-my.sharepoint.com/:w:/g/personal/kkivanov22_codingburgas_bg/IQDbkd3N3uLuR4yGwvsM370NAdqNZrgjAf0ilkFFfBZL_l8?e=7NLuaL",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://github.com/KKIvanov22/vicina",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI206": {
+      "id": "ISTE26AI206",
+      "project_name": "Visual AI Story",
+      "team_name": "HF314",
+      "ai_tools_used": "1.Gemini (online) :form the Native version of the website+final cssï¼›\n2.deepseakV3.1 (online) : debugï¼›\n3.deepseekR1-7b: css;4.Llama-3.1-8b: built-in LLM (WebLLM, download)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1Z1_4VYrCp2sbOPpZX2AbqFJ3zkWg5tY1?usp=drive_link",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1af1-BUY-T_mOJ6sMMU1OK69n8_9JSJwP/edit",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.fogbud.com/VisualAIStory.html",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI207": {
+      "id": "ISTE26AI207",
+      "project_name": "WASTECO",
+      "team_name": "WASTECO",
+      "ai_tools_used": "In the paper we incorporated AI by deploying the YOLOv8 objectâ€‘detection model to recognize waste items in real time, achieving a confidence threshold ofâ€¯â‰¥â€¯0.6 before routing the material to the appropriate compartment. The model was trained on a TACOâ€‘derived image set, which provides diverse examples of biodegradable, nonâ€‘biodegradable and recyclable trash while deliberately excluding any personal or location data to safeguard privacy.",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1tN9ZQJ8_3Id6W_9AT98kxqnaesNfWCRk",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1K0LFYPn8J7OeCle5ML3i2_oeWLsmLbRfGOxP517OJqQ/edit?usp=drivesdk",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1oUFx5hQGm_qj_k8Np5xYh-hJTn5-D4Xn",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI208": {
+      "id": "ISTE26AI208",
+      "project_name": "WASTEWISE",
+      "team_name": "WASTEWISE",
+      "ai_tools_used": "COMPUTER VISION USING LIGHTWEIGHT CNN AND GRABCUT REFINEMENT",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=ZV4H2KXvKD8",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/drive/u/1/folders/1yRm6_jRhYcG_QHuxXAMIDdxbuGiNno-n",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://art-783.github.io/ww-website",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": ""
+    },
+    "ISTE26AI209": {
+      "id": "ISTE26AI209",
+      "project_name": "WordWings",
+      "team_name": "WordWings",
+      "ai_tools_used": "ChatGPT (for research assistance)\nPlaylab (for app design)\nGoogle Vids (for video/demo creation)",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1Zf-apCBWe5SghZUDeqc_OG93aSHWDXpO/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1GFz64Ai_Xe-6UFlq66n-snJA2BQz9vTX4pxJ66zoV6w/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://www.playlab.ai/project/cmka18mpd66uthe0vgtvbfrz6",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI210": {
+      "id": "ISTE26AI210",
+      "project_name": "you-act",
+      "team_name": "uncrowned developers",
+      "ai_tools_used": "blackbox ai zencoder",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1FJMz3L2DeALNH68AVCu2btguVuqQEQkX/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1BJ-27d9bcFcJaBG4NJVGTBK12zi1Auzr/view",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://you-act-final-version.vercel.app",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": true,
+      "hold_reason": "Verifying school"
+    },
+    "ISTE26AI211": {
+      "id": "ISTE26AI211",
+      "project_name": "YoungHands",
+      "team_name": "Angelica B (one person)",
+      "ai_tools_used": "Open AI API, help from Copilot",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/11tZVfgQzIlZMTPnvclPxb1ZnyKfL8YJl/view?usp=sharing",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://docs.google.com/document/d/1vNEjxUw39ffr-JfNAqkkq1S-kdZTG5k-SwLxFFk2Dlc/edit?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1ci938p7VSN3S_lXb4KoPi4lBdaDYku2C/view?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "empty",
+        "value": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI212": {
+      "id": "ISTE26AI212",
+      "project_name": "Hoʻoia",
+      "team_name": "Team Wabisabi",
+      "ai_tools_used": "ChatGPT, Gemini, Loveable",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=EiAQ83HZhr0",
+        "password": ""
+      },
+      "team_story": {
+        "type": "note",
+        "value": "(No hyperlink in PDF)",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://hooia-ai.lovable.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/18WtpUvh2Ww8Eh3PiMoJVoDZB97V1qk7v/view?usp=sharing",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": "Missing Link"
+    },
+    "ISTE26AI213": {
+      "id": "ISTE26AI213",
+      "project_name": "Legatto",
+      "team_name": "Team Legatto",
+      "ai_tools_used": "ChatGPT, Gemini, Loveable",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=juX5wte7A1E",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1eyJaxBLy2FX1D-mbHFy-28LdwXFnB9wB/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://legatto-azure.vercel.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1wioBinE_0u-Eb_KcGI0I0nBR8IxoSBUU/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI214": {
+      "id": "ISTE26AI214",
+      "project_name": "Autonomous Cybersecurity Bot",
+      "team_name": "Strawberries",
+      "ai_tools_used": "ChatGPT, Gemini, ClaudeAI, Loveable",
+      "pitch_video": {
+        "type": "url",
+        "value": "http://youtube.com/watch?v=Ue9m2UFwiCA&feature=youtu.be",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1cvObAv-QJKO0VFDN32kmFJNlEXnjjm94/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://kind-filter-bot.lovable.app/",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1qFxH5xRUeKgIQC1jFe3flQ5z_eWaDZUi/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI215": {
+      "id": "ISTE26AI215",
+      "project_name": "Hoʻoulu Keiki",
+      "team_name": "Mathletes & Athletes",
+      "ai_tools_used": "Claude 4 Sonnet",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=U9W1N_t3DCk",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/11WRaHxKQq9N6dsuVwZ6jvEfcRWjeLlsH/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "note",
+        "value": "(No hyperlink in PDF; Password: \"StudentsofHawaii\")",
+        "password": "StudentsofHawaii"
+      },
+      "additional_artifact": {
+        "type": "note",
+        "value": "(No hyperlink in PDF; noted as Instructional Video)",
+        "password": ""
+      },
+      "hold": true,
+      "hold_reason": "Missing Link"
+    },
+    "ISTE26AI216": {
+      "id": "ISTE26AI216",
+      "project_name": "HI Counselor",
+      "team_name": "Sweet & Salty",
+      "ai_tools_used": "Gemini, ChatGPT",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/16ZF8CMDVuGz0wBc8lbZ6QGxS4PWZ-TOX/view",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1YBrp3DaMwEzjNDeFJm7Xo-X6hMyiumP6/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://gemini.google.com/gem/89b11dada497?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1KABCCE5J8csh34QAZJfpb_sgt3NIgLO9/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI217": {
+      "id": "ISTE26AI217",
+      "project_name": "Aloha Math AI",
+      "team_name": "Aloha Math AI",
+      "ai_tools_used": "ChatGPT",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1iUsVBHEGY8RMe5qmf8edQGZe1-Xmc76o/view",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1irNohv87vTic8vFFgKzT-Gq7O0xOPrbM/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://chatgpt.com/g/g-696eac38117c819191517641463a933f-aloha-math-ai",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1eS_t7AacwtBiNOWjBT0TMm2n3qF2VHTK/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI218": {
+      "id": "ISTE26AI218",
+      "project_name": "Malama Haumana",
+      "team_name": "Kempters",
+      "ai_tools_used": "Gemini",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1sZiJfWwPk2i3xnQJYfAsZriiIJvSBZ4K/view",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1KzgK9TukP0aBFXLvzt9gkvV39h93pLjA/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://gemini.google.com/gem/69517b64afad?usp=sharing",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/17Cg8izKAUw0R5B01IxdcWduc-XMWZswN/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    },
+    "ISTE26AI219": {
+      "id": "ISTE26AI219",
+      "project_name": "Cognito Curriculum Creators",
+      "team_name": "TBSEK",
+      "ai_tools_used": "Google AI Studio, Gemini",
+      "pitch_video": {
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=P2V0zqIcwH8",
+        "password": ""
+      },
+      "team_story": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1YjnPYPDGkbUpDHP8DabhcS6RQjKtr-Hu/view?usp=sharing",
+        "password": ""
+      },
+      "digital_product": {
+        "type": "url",
+        "value": "https://cognito-custom-learning-platform-523645898500.us-west1.run.app/#/notes",
+        "password": ""
+      },
+      "additional_artifact": {
+        "type": "url",
+        "value": "https://drive.google.com/file/d/1lB5fAIYlLmMoDZUO8zKU3YviPnSse4sr/view?usp=sharing",
+        "password": ""
+      },
+      "hold": false,
+      "hold_reason": ""
+    }
+  }
+}

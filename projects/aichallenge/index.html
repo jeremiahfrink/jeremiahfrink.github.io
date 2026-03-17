@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISTE + ASCD AI Innovator Challenge — Judge Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iste-blue: #003B6F;
+    --iste-teal: #00838F;
+    --iste-light-teal: #4DD0E1;
+    --iste-accent: #FF6F00;
+    --iste-green: #2E7D32;
+    --hold-red: #C62828;
+    --hold-bg: #FFEBEE;
+    --hold-border: #EF5350;
+    --card-bg: #FFFFFF;
+    --page-bg: #F0F4F8;
+    --text-primary: #1A2332;
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
+    --border-light: #E2E8F0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+    --radius: 12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--page-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: linear-gradient(135deg, var(--iste-blue) 0%, var(--iste-teal) 60%, var(--iste-light-teal) 100%);
+    padding: 2rem 1.5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(77,208,225,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.35rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .header-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── LOGIN SECTION ── */
+  .login-section {
+    max-width: 480px;
+    margin: -1.5rem auto 2rem;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+  }
+  .login-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    text-align: center;
+  }
+  .login-card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--iste-blue);
+  }
+  .login-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+  }
+  .login-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .login-row input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .login-row input:focus {
+    border-color: var(--iste-teal);
+  }
+  .login-row input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .login-row button {
+    padding: 0.75rem 1.5rem;
+    background: var(--iste-teal);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .login-row button:hover { background: var(--iste-blue); }
+  .login-row button:active { transform: scale(0.97); }
+
+  .error-msg {
+    color: var(--hold-red);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+    display: none;
+  }
+
+  /* ── JUDGE INFO BAR ── */
+  .judge-bar {
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+    padding: 0 1rem;
+    display: none;
+  }
+  .judge-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .judge-bar-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .judge-id-pill {
+    background: var(--iste-blue);
+    color: #fff;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .judge-count {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .judge-count strong {
+    color: var(--iste-teal);
+  }
+  .btn-logout {
+    background: none;
+    border: 1px solid var(--border-light);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-logout:hover {
+    border-color: var(--hold-red);
+    color: var(--hold-red);
+  }
+
+  /* ── PROJECT CARDS ── */
+  .projects-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem 3rem;
+    display: none;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    border-left: 5px solid var(--iste-teal);
+  }
+  .project-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  .project-card.on-hold {
+    border-left-color: var(--hold-red);
+  }
+
+  .card-header {
+    padding: 1.25rem 1.5rem 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .card-header-left {
+    flex: 1;
+    min-width: 200px;
+  }
+  .project-id {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--iste-teal);
+    margin-bottom: 0.2rem;
+  }
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .team-name {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-top: 0.15rem;
+  }
+
+  /* HOLD banner */
+  .hold-banner {
+    background: var(--hold-bg);
+    border: 1px solid var(--hold-border);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    margin: 0.5rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .hold-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--hold-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-top: 1px;
+  }
+  .hold-text {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--hold-red);
+  }
+  .hold-reason {
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  /* Card body fields */
+  .card-body {
+    padding: 0.5rem 1.5rem 1.25rem;
+  }
+
+  .field-row {
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .field-row:last-child { border-bottom: none; }
+
+  .field-label {
+    flex-shrink: 0;
+    width: 180px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 0.15rem;
+  }
+  .field-value {
+    flex: 1;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    word-break: break-word;
+  }
+  .field-value a {
+    color: var(--iste-teal);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .field-value a:hover {
+    color: var(--iste-blue);
+    text-decoration: underline;
+  }
+  .password-tag {
+    display: inline-block;
+    background: #FFF3E0;
+    border: 1px solid #FFB74D;
+    color: #E65100;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+  }
+  .long-text {
+    white-space: pre-wrap;
+    line-height: 1.65;
+    font-size: 0.88rem;
+    max-height: 160px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.35s ease;
+  }
+  .long-text.expanded {
+    max-height: 5000px;
+  }
+  .long-text-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, var(--card-bg));
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .long-text.expanded + .long-text-fade,
+  .long-text.expanded ~ .long-text-fade {
+    opacity: 0;
+  }
+  .btn-expand {
+    background: none;
+    border: none;
+    color: var(--iste-teal);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.3rem 0;
+  }
+  .btn-expand:hover { text-decoration: underline; }
+  .empty-value { color: var(--text-muted); font-style: italic; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+/* ── INSTRUCTIONS PANEL ── */
+  .instructions-panel {
+    max-width: 720px;
+    margin: -1.5rem auto 1.5rem;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+  }
+  .instructions-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 1.75rem 2rem;
+    border-top: 4px solid var(--iste-accent);
+  }
+  .instructions-card > p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    line-height: 1.65;
+  }
+  .instructions-card > p:first-child {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+  .instructions-card h3 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--iste-blue);
+    margin: 1rem 0 0.5rem;
+  }
+  .instructions-card ul {
+    padding-left: 1.25rem;
+    margin: 0 0 0.5rem;
+  }
+  .instructions-card li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.45rem;
+    line-height: 1.6;
+  }
+  .instructions-card ul ul {
+    margin-top: 0.4rem;
+  }
+  .instructions-card ul ul li {
+    font-size: 0.87rem;
+  }
+  .instructions-card a {
+    color: var(--iste-teal);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .instructions-card a:hover {
+    text-decoration: underline;
+    color: var(--iste-blue);
+  }
+  .instructions-card .doc-link {
+    background: #E0F2F1;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+  }
+  .contact-line {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-light);
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .field-row { flex-direction: column; gap: 0.2rem; }
+    .field-label { width: auto; }
+    .login-row { flex-direction: column; }
+    .judge-bar-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-badge">ISTE + ASCD</div>
+  <h1 class="header-title">AI Innovator Challenge</h1>
+  <p class="header-subtitle">Judge Review Portal — 2026</p>
+</header>
+
+<section class="instructions-panel">
+  <div class="instructions-card">
+    <p>You have been assigned student projects to review. Please enter your Judge ID that was included in your email for this phase.</p>
+    <p>For each project, you'll watch a short video, review the product(s) created with AI, and complete a scoring form.</p>
+
+    <h3>Key Information</h3>
+    <ul>
+      <li><strong>Deadline:</strong> Please complete all judging by <strong>8:00 PM Eastern Time on Friday, April 3</strong>.</li>
+<li><strong>Process:</strong> Please use the <a class="doc-link" href="https://docs.google.com/document/d/1_caW2tfZByMoBAxQEFLg-bmfkJ60Rpa4FFjZP1csD1Y/edit?tab=t.4s8e8k3efxsm" target="_blank">2026 Judging Process</a>.</li>
+      <li><strong>Guidance:</strong> Please refer to the <a class="doc-link" href="https://drive.google.com/file/d/1Sd1olx-enAcwP7a68vCH9Zw_Sq4fU1L3/view?usp=sharing" target="_blank">the Rubric</a> document for scoring criteria and expectations before completing the <a class="doc-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeOTuz2atzjEqdZKY4SkEUnQN1ltzpPwA_OBROmOZovbeT74A/viewform?usp=publish-editor" target="_blank">AI Innovator Challenge 2026 - Judging Form</a> for each project.</li>
+      <li><strong>Judges are encouraged to:</strong>
+        <ul>
+          <li>Approach the evaluation with a mindset that recognizes innovation, rewards effort, and promotes a forward-thinking attitude among participants</li>
+          <li>Focus on the preponderance of evidence that you can see in the products and videos that are submitted, not what you think they intended</li>
+          <li>Remember that part of this work is their ability to communicate effectively</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="contact-line">
+      Questions or concerns? Reach out to <a href="mailto:generationai@iste.org">generationai@iste.org</a>
+    </div>
+  </div>
+</section>
+
+<section class="login-section" id="loginSection">
+  <div class="login-card">
+    <h2>Welcome, Judge</h2>
+    <p>Enter your Judge ID to view your assigned projects.</p>
+    <div class="login-row">
+      <input type="text" id="judgeInput" placeholder="e.g. AI26J34" autocomplete="off" spellcheck="false">
+      <button onclick="loadAssignments()">View Projects</button>
+    </div>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+</section>
+
+<section class="judge-bar" id="judgeBar">
+  <div class="judge-bar-inner">
+    <div class="judge-bar-info">
+      <span class="judge-id-pill" id="judgeIdDisplay"></span>
+      <span class="judge-count"><strong id="projectCount">0</strong> projects assigned</span>
+    </div>
+    <button class="btn-logout" onclick="logout()">Change Judge</button>
+  </div>
+</section>
+
+<section class="projects-container" id="projectsContainer"></section>
+
+<footer class="site-footer">
+  ISTE + ASCD AI Innovator Challenge 2026 — Judge Portal
+</footer>
+
+<script>
+let DATA = null;
+
+async function init() {
+  try {
+    const resp = await fetch('data.json');
+    DATA = await resp.json();
+  } catch (e) {
+    console.error('Failed to load data.json:', e);
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('errorMsg').style.display = 'none';
+}
+
+function loadAssignments() {
+  hideError();
+  if (!DATA) { showError('Data file is still loading. Please try again.'); return; }
+
+  const raw = document.getElementById('judgeInput').value.trim();
+  if (!raw) { showError('Please enter your Judge ID.'); return; }
+
+  // Normalize: try exact match first, then case-insensitive
+  let judgeId = null;
+  if (DATA.judge_assignments[raw]) {
+    judgeId = raw;
+  } else {
+    const upper = raw.toUpperCase();
+    for (const key of Object.keys(DATA.judge_assignments)) {
+      if (key.toUpperCase() === upper) { judgeId = key; break; }
+    }
+  }
+
+  if (!judgeId) {
+    showError('Judge ID not found. Please check and try again.');
+    return;
+  }
+
+  const projectIds = DATA.judge_assignments[judgeId];
+  document.getElementById('loginSection').style.display = 'none';
+  document.getElementById('judgeBar').style.display = 'block';
+  document.getElementById('projectsContainer').style.display = 'block';
+  document.getElementById('judgeIdDisplay').textContent = judgeId;
+  document.getElementById('projectCount').textContent = projectIds.length;
+
+  renderProjects(projectIds);
+}
+
+function renderUrlField(obj) {
+  if (!obj || obj.type === 'empty' || !obj.value) {
+    return '<span class="empty-value">Not provided</span>';
+  }
+
+  if (obj.type === 'text') {
+    const id = 'lt-' + Math.random().toString(36).slice(2, 9);
+    const escaped = escapeHtml(obj.value);
+    return `
+      <div>
+        <div class="long-text" id="${id}">${escaped}</div>
+        <div class="long-text-fade" id="${id}-fade"></div>
+        <button class="btn-expand" onclick="toggleExpand('${id}')">Read more</button>
+      </div>`;
+  }
+
+  if (obj.type === 'url') {
+    let html = `<a href="${escapeHtml(obj.value)}" target="_blank" rel="noopener">${escapeHtml(obj.value)}</a>`;
+    if (obj.password) {
+      html += `<span class="password-tag">Password: ${escapeHtml(obj.password)}</span>`;
+    }
+    return html;
+  }
+
+  if (obj.type === 'mixed') {
+    let html = '';
+    if (obj.extracted_url) {
+      html += `<a href="${escapeHtml(obj.extracted_url)}" target="_blank" rel="noopener">${escapeHtml(obj.extracted_url)}</a><br>`;
+    }
+    html += `<span style="font-size:0.85rem;color:var(--text-secondary)">${escapeHtml(obj.value)}</span>`;
+    if (obj.password) {
+      html += `<span class="password-tag">Password: ${escapeHtml(obj.password)}</span>`;
+    }
+    return html;
+  }
+
+  if (obj.type === 'note') {
+    let html = `<span style="color:var(--text-secondary)">${escapeHtml(obj.value)}</span>`;
+    if (obj.password) {
+      html += `<span class="password-tag">Password: ${escapeHtml(obj.password)}</span>`;
+    }
+    return html;
+  }
+
+  return escapeHtml(obj.value);
+}
+
+function renderProjects(projectIds) {
+  const container = document.getElementById('projectsContainer');
+  container.innerHTML = '';
+
+  for (const pid of projectIds) {
+    const p = DATA.projects[pid];
+    if (!p) continue;
+
+    const isHold = p.hold;
+    const card = document.createElement('div');
+    card.className = 'project-card' + (isHold ? ' on-hold' : '');
+
+    let holdHtml = '';
+    if (isHold) {
+      const reasonPart = p.hold_reason
+        ? ` <span class="hold-reason">— ${escapeHtml(p.hold_reason)}</span>`
+        : '';
+      holdHtml = `
+        <div class="hold-banner">
+          <div class="hold-icon">!</div>
+          <div class="hold-text">HOLD BEFORE JUDGING${reasonPart}</div>
+        </div>`;
+    }
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="project-id">${escapeHtml(p.id)}</div>
+          <div class="project-name">${escapeHtml(p.project_name)}</div>
+          <div class="team-name">${escapeHtml(p.team_name)}</div>
+        </div>
+      </div>
+      ${holdHtml}
+      <div class="card-body">
+        <div class="field-row">
+          <div class="field-label">AI Tools Used</div>
+          <div class="field-value">${escapeHtml(p.ai_tools_used) || '<span class="empty-value">Not provided</span>'}</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Pitch Video</div>
+          <div class="field-value">${renderUrlField(p.pitch_video)}</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Team Story</div>
+          <div class="field-value">${renderUrlField(p.team_story)}</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Digital Product / Prototype</div>
+          <div class="field-value">${renderUrlField(p.digital_product)}</div>
+        </div>
+        <div class="field-row">
+          <div class="field-label">Additional Artifact</div>
+          <div class="field-value">${renderUrlField(p.additional_artifact)}</div>
+        </div>
+      </div>`;
+
+    container.appendChild(card);
+  }
+}
+
+function toggleExpand(id) {
+  const el = document.getElementById(id);
+  const fade = document.getElementById(id + '-fade');
+  const btn = el.parentElement.querySelector('.btn-expand');
+  if (el.classList.contains('expanded')) {
+    el.classList.remove('expanded');
+    if (fade) fade.style.opacity = '1';
+    btn.textContent = 'Read more';
+  } else {
+    el.classList.add('expanded');
+    if (fade) fade.style.opacity = '0';
+    btn.textContent = 'Show less';
+  }
+}
+
+function logout() {
+  document.getElementById('loginSection').style.display = 'block';
+  document.getElementById('judgeBar').style.display = 'none';
+  document.getElementById('projectsContainer').style.display = 'none';
+  document.getElementById('projectsContainer').innerHTML = '';
+  document.getElementById('judgeInput').value = '';
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// Allow Enter key
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('judgeInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') loadAssignments();
+  });
+});
+
+init();
+</script>
+
+</body>
+</html>
