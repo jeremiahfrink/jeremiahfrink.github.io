@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ready Schools — Workflow Navigator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CSS VARIABLES & RESET
+   ============================================================ */
+:root {
+  /* Stage palette — muted, professional, distinct */
+  --stage-1: #2D6A4F;
+  --stage-1-light: #D8F3DC;
+  --stage-2: #1B4965;
+  --stage-2-light: #D0E8F2;
+  --stage-3: #7B2D8E;
+  --stage-3-light: #EDDBF4;
+  --stage-4: #B5651D;
+  --stage-4-light: #FDEBD0;
+  --stage-5: #C4302B;
+  --stage-5-light: #FADBD8;
+  --stage-6: #1A759F;
+  --stage-6-light: #D6EAF8;
+  --stage-7: #6C3483;
+  --stage-7-light: #E8DAEF;
+  --stage-8: #117A65;
+  --stage-8-light: #D1F2EB;
+  --stage-9: #AF601A;
+  --stage-9-light: #FAE5D3;
+  --stage-ongoing: #566573;
+  --stage-ongoing-light: #E5E8E8;
+
+  /* Core palette */
+  --ink: #1A1A2E;
+  --ink-soft: #4A4A5A;
+  --ink-muted: #8A8A9A;
+  --surface: #FAFAF8;
+  --surface-card: #FFFFFF;
+  --surface-warm: #F5F3EF;
+  --border: #E8E6E1;
+  --border-strong: #D0CEC8;
+  --accent: #1B4965;
+  --accent-light: #D0E8F2;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Sizing */
+  --max-width: 1200px;
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   PAGE SHELL — HEADER
+   ============================================================ */
+.site-header {
+  background: var(--ink);
+  color: white;
+  padding: var(--space-lg) var(--space-xl);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.site-title span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   NAVIGATION TABS
+   ============================================================ */
+.nav-tabs {
+  display: flex;
+  gap: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.nav-tab {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav-tab.active {
+  color: var(--ink);
+  background: white;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* ============================================================
+   VIEW CONTAINERS
+   ============================================================ */
+.view { display: none; }
+.view.active { display: block; }
+
+.view-body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+/* ============================================================
+   OVERVIEW VIEW
+   ============================================================ */
+
+/* Hero / intro */
+.overview-hero {
+  margin-bottom: var(--space-3xl);
+}
+
+.overview-hero h1 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: var(--space-md);
+}
+
+.overview-hero .lead {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  max-width: 720px;
+  line-height: 1.65;
+}
+
+/* Core flow plain language */
+.core-flow-box {
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.core-flow-box h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+.core-flow-box p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.core-flow-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-xs);
+  align-items: center;
+  padding: 0;
+}
+
+.core-flow-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.core-flow-list li .flow-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.core-flow-list li .flow-arrow {
+  color: var(--border-strong);
+  font-size: 0.85rem;
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+
+/* Visual roadmap */
+.roadmap-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.roadmap-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em;
+}
+
+.roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* The connecting line */
+.roadmap::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: var(--border-strong);
+}
+
+.roadmap-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  position: relative;
+  padding: var(--space-md) 0;
+}
+
+.roadmap-node {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.roadmap-content {
+  flex: 1;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  min-width: 0;
+}
+
+.roadmap-content:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border-color: var(--border-strong);
+}
+
+.roadmap-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-xs);
+  letter-spacing: -0.01em;
+}
+
+.roadmap-content .stage-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.stage-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.stage-timing {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.roadmap-content p {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.roadmap-content .step-count {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  margin-top: var(--space-sm);
+  font-weight: 500;
+}
+
+/* Stage summary cards */
+.stage-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.stage-summary-grid h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em;
+  grid-column: 1 / -1;
+}
+
+/* Scope snapshot */
+.scope-snapshot {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.scope-snapshot h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.01em;
+}
+
+.scope-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+}
+
+.scope-stat {
+  text-align: center;
+}
+
+.scope-stat .num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.scope-stat .label {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--surface-warm);
+  border-top: 1px solid var(--border);
+  padding: var(--space-xl);
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .overview-hero h1 { font-size: 1.7rem; }
+  .view-body { padding: var(--space-xl) var(--space-md); }
+  .roadmap::before { left: 18px; }
+  .roadmap-node { width: 36px; height: 36px; font-size: 0.7rem; }
+  .scope-stats { gap: var(--space-lg); }
+  .stage-summary-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   STAGE 2 PLACEHOLDER STYLES
+   Workflow Detail view styles will go here
+   ============================================================ */
+/* [STAGE 2 CSS] */
+
+/* Workflow controls bar */
+.workflow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.workflow-controls h1 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+
+.workflow-controls .controls-right {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.btn-control {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-control:hover {
+  background: var(--surface-warm);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+/* Stage accordion */
+.wf-stage {
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-card);
+  transition: box-shadow 0.2s ease;
+}
+
+.wf-stage:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.wf-stage-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-xl);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.wf-stage-header:hover {
+  background: var(--surface-warm);
+}
+
+.wf-stage-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.wf-stage-title-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.wf-stage-title-block h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.wf-stage-title-block .wf-stage-subtitle {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.wf-stage-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+.wf-stage-timing-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.wf-stage-chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--ink-muted);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.wf-stage.open .wf-stage-chevron {
+  transform: rotate(180deg);
+}
+
+/* Step cards inside stage */
+.wf-steps {
+  display: none;
+  padding: 0 var(--space-xl) var(--space-lg);
+}
+
+.wf-stage.open .wf-steps {
+  display: block;
+}
+
+.wf-step-card {
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  border-left: 3px solid var(--border);
+}
+
+.wf-step-card:last-child {
+  margin-bottom: 0;
+}
+
+.wf-step-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.wf-step-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.wf-step-owner {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--accent-light);
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Tier 1: What Happens — always visible */
+.wf-step-summary {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-top: var(--space-sm);
+}
+
+/* Detail toggle */
+.wf-step-toggle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: var(--space-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+}
+
+.wf-step-toggle:hover {
+  color: var(--ink);
+}
+
+.wf-step-toggle .toggle-icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 0.65rem;
+}
+
+.wf-step-card.details-open .wf-step-toggle .toggle-icon {
+  transform: rotate(90deg);
+}
+
+/* Tier 2: Detail fields — hidden by default */
+.wf-step-details {
+  display: none;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+}
+
+.wf-step-card.details-open .wf-step-details {
+  display: block;
+}
+
+.wf-step-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.wf-step-field {
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.wf-step-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.wf-step-field-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: 3px;
+}
+
+.wf-step-field-value {
+  color: var(--ink-soft);
+}
+
+/* Stage divider line between steps */
+.wf-steps-connector {
+  width: 2px;
+  height: 12px;
+  background: var(--border-strong);
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .wf-stage-header { padding: var(--space-md); }
+  .wf-steps { padding: 0 var(--space-md) var(--space-md); }
+  .wf-step-body { grid-template-columns: 1fr; }
+  .wf-stage-meta { display: none; }
+  .workflow-controls h1 { font-size: 1.4rem; }
+}
+
+
+/* ============================================================
+   STAGE 3 PLACEHOLDER STYLES
+   Timeline & Readiness view styles will go here
+   ============================================================ */
+/* [STAGE 3 CSS] */
+
+.tl-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.tl-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-xs);
+}
+
+.tl-header p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 680px;
+}
+
+/* Timeline track */
+.tl-track {
+  position: relative;
+  padding-left: 140px;
+}
+
+.tl-track::before {
+  content: '';
+  position: absolute;
+  left: 126px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--border-strong), var(--border));
+  border-radius: 2px;
+}
+
+/* Time period group */
+.tl-period {
+  position: relative;
+  margin-bottom: var(--space-2xl);
+}
+
+.tl-period:last-child {
+  margin-bottom: 0;
+}
+
+.tl-period-label {
+  position: absolute;
+  left: -140px;
+  top: 0;
+  width: 120px;
+  text-align: right;
+  padding-right: var(--space-md);
+}
+
+.tl-period-label .tl-date {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.tl-period-label .tl-date-sub {
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* Timeline node on the track */
+.tl-period::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--accent);
+  z-index: 2;
+}
+
+/* Stage cards within a period */
+.tl-stages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-left: var(--space-lg);
+}
+
+.tl-stage-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  border-left: 4px solid var(--border);
+  transition: box-shadow 0.2s ease;
+}
+
+.tl-stage-card:hover {
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.tl-stage-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.tl-stage-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.tl-stage-card-header h3 {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.tl-stage-card-header .tl-step-count {
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.tl-stage-summary {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: var(--space-md);
+}
+
+/* Readiness section within card */
+.tl-readiness {
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+}
+
+.tl-readiness-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.tl-resource-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tl-resource-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: var(--surface-warm);
+  color: var(--ink-soft);
+  border: 1px solid var(--border);
+  line-height: 1.4;
+  transition: all 0.15s ease;
+}
+
+/* Not yet ready — bold to draw attention */
+.tl-resource-tag.not-ready {
+  font-weight: 700;
+  color: var(--ink);
+  border-color: var(--border-strong);
+  background: var(--surface-warm);
+}
+
+/* Ready / completed — green */
+.tl-resource-tag.ready {
+  font-weight: 500;
+  color: #1B6E3D;
+  background: #E6F4EC;
+  border-color: #B2DBBF;
+}
+
+/* ============================================================
+   ADMIN PANEL
+   ============================================================ */
+.admin-toggle-btn {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.admin-toggle-btn:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.admin-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 200;
+}
+
+.admin-overlay.open {
+  display: block;
+}
+
+.admin-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  max-width: 90vw;
+  height: 100vh;
+  background: var(--surface-card);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+  z-index: 201;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-panel.open {
+  right: 0;
+}
+
+.admin-panel-header {
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.admin-panel-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.admin-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.admin-close-btn:hover {
+  color: var(--ink);
+}
+
+.admin-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.admin-stage-group {
+  margin-bottom: var(--space-xl);
+}
+
+.admin-stage-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.admin-stage-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.admin-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 0;
+}
+
+.admin-item label {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  flex: 1;
+  line-height: 1.35;
+}
+
+.admin-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #1B6E3D;
+  flex-shrink: 0;
+}
+
+.admin-item.checked label {
+  color: #1B6E3D;
+  text-decoration: line-through;
+  text-decoration-color: #B2DBBF;
+}
+
+.admin-panel-footer {
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-counter {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.admin-reset-btn {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #C0392B;
+  background: none;
+  border: 1px solid #E6B0AA;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.admin-reset-btn:hover {
+  background: #FDEDEC;
+}
+
+/* Readiness summary panel at top */
+.tl-readiness-summary {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.tl-readiness-summary h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
+}
+
+.tl-readiness-summary p {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.tl-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-md);
+}
+
+.tl-highlight-item {
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+}
+
+.tl-highlight-item .tl-hi-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.tl-highlight-item .tl-hi-value {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.tl-highlight-item .tl-hi-detail {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .tl-track {
+    padding-left: 0;
+  }
+  .tl-track::before {
+    left: 6px;
+  }
+  .tl-period-label {
+    position: relative;
+    left: 0;
+    width: auto;
+    text-align: left;
+    padding-left: var(--space-xl);
+    padding-right: 0;
+    margin-bottom: var(--space-sm);
+  }
+  .tl-period::before {
+    left: 0;
+  }
+  .tl-stages {
+    padding-left: var(--space-xl);
+  }
+  .tl-header h1 { font-size: 1.4rem; }
+  .tl-highlight-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER + NAV
+     ============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title">
+      AI Ready Schools
+      <span>Workflow Navigator</span>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-view="overview">Overview</button>
+      <button class="nav-tab" data-view="workflow">Workflow Detail</button>
+      <button class="nav-tab" data-view="timeline">Timeline &amp; Readiness</button>
+    </nav>
+    <button class="admin-toggle-btn" onclick="openAdmin()">✎ Update Readiness</button>
+  </div>
+</header>
+
+<!-- ============================================================
+     VIEW 1: OVERVIEW
+     ============================================================ -->
+<main id="view-overview" class="view active">
+  <div class="view-body">
+
+    <div class="overview-hero">
+      <h1>AI Ready Schools District Workflow</h1>
+      <p class="lead">A complete view of the end-to-end process for bringing districts into the AI Ready Schools initiative — from first outreach through professional learning, classroom use, and story collection.</p>
+    </div>
+
+    <!-- Scope Snapshot -->
+    <div class="scope-snapshot">
+      <h2>Scope at a Glance</h2>
+      <div class="scope-stats" id="scope-stats">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- Visual Roadmap -->
+    <div class="roadmap-section">
+      <h2>Stage Roadmap</h2>
+      <div class="roadmap" id="roadmap">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ============================================================
+     VIEW 2: WORKFLOW DETAIL
+     Placeholder — Stage 2 will build this
+     ============================================================ -->
+<main id="view-workflow" class="view">
+  <div class="view-body">
+    <!-- [STAGE 2 HTML] -->
+    <div class="workflow-controls">
+      <h1>Workflow Detail</h1>
+      <div class="controls-right">
+        <button class="btn-control" id="btn-expand-all">Expand All</button>
+        <button class="btn-control" id="btn-collapse-all">Collapse All</button>
+      </div>
+    </div>
+    <div id="workflow-stages">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================
+     VIEW 3: TIMELINE & READINESS
+     Placeholder — Stage 3 will build this
+     ============================================================ -->
+<main id="view-timeline" class="view">
+  <div class="view-body">
+    <!-- [STAGE 3 HTML] -->
+    <div class="tl-header">
+      <h1>Timeline &amp; Readiness</h1>
+      <p>When each stage begins and what resources, materials, and processes must be in place for it to function. This is the coordination picture.</p>
+    </div>
+
+    <!-- Readiness highlights -->
+    <div class="tl-readiness-summary">
+      <h2>Key Coordination Milestones</h2>
+      <p>The workflow spans from now through August 2026. These are the critical windows where materials, processes, and people must be ready.</p>
+      <div class="tl-highlight-grid" id="tl-highlights">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- Timeline track -->
+    <div class="tl-track" id="tl-track">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================
+     ADMIN PANEL
+     ============================================================ -->
+<div class="admin-overlay" id="admin-overlay" onclick="closeAdmin()"></div>
+<div class="admin-panel" id="admin-panel">
+  <div class="admin-panel-header">
+    <h2>Update Readiness</h2>
+    <button class="admin-close-btn" onclick="closeAdmin()">✕</button>
+  </div>
+  <div class="admin-panel-body" id="admin-panel-body">
+    <!-- populated by JS -->
+  </div>
+  <div class="admin-panel-footer">
+    <span class="admin-counter" id="admin-counter"></span>
+    <button class="admin-reset-btn" onclick="resetReadiness()">Reset All</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <p>AI Ready Schools Workflow Navigator &middot; Source: AI-Ready Schools Workflow v2 &middot; For internal planning and coordination use</p>
+</footer>
+
+<!-- ============================================================
+     DATA LAYER
+     All spreadsheet data structured here. Used by all views.
+     ============================================================ -->
+<script>
+/* ============================================================
+   RESOURCE READINESS STATUS
+   ============================================================
+   Loaded from browser localStorage. Updated via the admin panel.
+   ============================================================ */
+const STORAGE_KEY = 'aiready_resource_status';
+
+function loadResourceStatus() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return {};
+}
+
+function saveResourceStatus() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(RESOURCE_STATUS));
+  } catch(e) {}
+}
+
+let RESOURCE_STATUS = loadResourceStatus();
+
+const WORKFLOW_DATA = {
+  stages: [
+    {
+      id: 1,
+      name: "Targeting and Outreach",
+      color: "#2D6A4F",
+      colorLight: "#D8F3DC",
+      timing: "Now",
+      summary: "Identify, prioritize, and present the AI Ready Schools initiative to target districts. AEs lead outreach using the toolkit and hand off interested district contacts for follow-up.",
+      steps: [
+        {
+          step: "Maintain target district list",
+          owner: "Joseph + AEs",
+          whatHappens: "Keep and update the working list of districts to focus on, including district, region, and status information.",
+          followUp: "Update statuses as districts are added, prioritized, or changed.",
+          output: "Current target district list.",
+          resources: "Master district list/tracker",
+          timing: "Now"
+        },
+        {
+          step: "Present initiative to district",
+          owner: "AE",
+          whatHappens: "AE presents AI Ready Schools to the district using the outreach toolkit and supporting materials.",
+          followUp: "If the district is interested, AE sends the one-pager, directs them to the website, and submits the district contact for follow-up.",
+          output: "District receives program overview and follow-up materials.",
+          resources: "Outreach toolkit, presentation deck, one-pager, FAQ, website/resource page",
+          timing: "Now"
+        },
+        {
+          step: "Submit district contact for follow-up",
+          owner: "AE → PM/Ediz",
+          whatHappens: "AE provides the district contact name and email so the district can receive the first participation form.",
+          followUp: "PM/Ediz prepares and sends the first form email.",
+          output: "District contact is entered into workflow.",
+          resources: "Contact submission process, email template",
+          timing: "Now"
+        }
+      ]
+    },
+    {
+      id: 2,
+      name: "District Sign-Up and Validation",
+      color: "#1B4965",
+      colorLight: "#D0E8F2",
+      timing: "Mar 23, 2026",
+      summary: "Districts receive and complete the participation form. The PM cross-references submissions against the approved list, resolves any exceptions, and confirms district approval.",
+      steps: [
+        {
+          step: "Send district participation form",
+          owner: "PM/Ediz",
+          whatHappens: "PM/Ediz sends the official district participation form to the identified district contact.",
+          followUp: "District is expected to complete the form; PM monitors for submission.",
+          output: "District has received participation form.",
+          resources: "District participation form, first-form email template, send process",
+          timing: "Mar 23, 2026"
+        },
+        {
+          step: "District completes participation form",
+          owner: "District contact",
+          whatHappens: "District contact submits the participation form indicating intent to join and listing participating schools.",
+          followUp: "Form responses are exported regularly for review.",
+          output: "District response is captured.",
+          resources: "District participation form",
+          timing: "Mar 23, 2026"
+        },
+        {
+          step: "Cross-reference district submission",
+          owner: "PM",
+          whatHappens: "PM reviews the district form against the approved district list and expected school count.",
+          followUp: "Mark as approved, needs clarification, or needs exception review. Export/update tracker.",
+          output: "District status is updated in PM tracker.",
+          resources: "Form export, master district list, PM tracker",
+          timing: "Mar 23, 2026"
+        },
+        {
+          step: "Resolve exceptions if needed",
+          owner: "PM + AE",
+          whatHappens: "If the district is not on the list or the school count does not match, PM checks with AE or leadership.",
+          followUp: "Update tracker with decision to proceed, hold, or decline, and communicate needed changes.",
+          output: "District is either approved or paused.",
+          resources: "District tracker, AE review process",
+          timing: "Mar 23, 2026"
+        }
+      ]
+    },
+    {
+      id: 3,
+      name: "Device Deployment",
+      color: "#7B2D8E",
+      colorLight: "#EDDBF4",
+      timing: "Mar 23–30, 2026",
+      summary: "Approved districts receive AI PCs through TD SYNNEX. Devices are shipped, received, imaged by the district, loaded with required software, and confirmed ready for educator use.",
+      steps: [
+        {
+          step: "Send fulfillment request to TD SYNNEX",
+          owner: "PM",
+          whatHappens: "PM sends the approved shipment request and district/school information to TD SYNNEX.",
+          followUp: "TD SYNNEX confirms receipt and begins processing.",
+          output: "Shipment request submitted.",
+          resources: "Shipment request template, district and school shipment data",
+          timing: "Mar 23, 2026"
+        },
+        {
+          step: "Process and ship devices",
+          owner: "TD SYNNEX",
+          whatHappens: "TD SYNNEX processes the approved request and ships devices based on the district shipment details.",
+          followUp: "Shipment and tracking information are returned to PM.",
+          output: "Devices and related documentation are sent.",
+          resources: "Fulfillment request details, shipping information, shipment documentation/device information",
+          timing: "Mar 23, 2026"
+        },
+        {
+          step: "Record shipment, delivery, and district receipt status",
+          owner: "PM",
+          whatHappens: "PM records shipment date, tracking, expected delivery, and confirmation of receipt from the district.",
+          followUp: "Follow up on delays, missing shipment information, or lack of district receipt confirmation.",
+          output: "Current device fulfillment status is visible.",
+          resources: "Tracking/report-back process from TD SYNNEX, PM tracker",
+          timing: "Mar 23, 2026"
+        },
+        {
+          step: "District receives and images devices",
+          owner: "District IT / District Contact",
+          whatHappens: "District receives the shipped AI PCs, confirms receipt, and completes local imaging and setup.",
+          followUp: "District confirms receipt and completion of imaging/setup, and PM follows up if confirmation is delayed.",
+          output: "Devices are received and imaged for district use.",
+          resources: "Device receipt instructions, imaging guidance/information, district confirmation process",
+          timing: "Mar 30, 2026"
+        },
+        {
+          step: "District downloads, installs, and verifies required software",
+          owner: "District IT / District Contact",
+          whatHappens: "District accesses the bundled software package or download location, installs the required tools, and verifies functionality.",
+          followUp: "District confirms software installation status, and PM follows up on missing confirmations.",
+          output: "Devices have required software installed and verified.",
+          resources: "Software package/download hub, installation guide, software list, FAQ/troubleshooting",
+          timing: "Mar 30, 2026"
+        },
+        {
+          step: "Confirm devices are ready for educator use",
+          owner: "PM + District Contact",
+          whatHappens: "PM confirms that the district has received, imaged, and installed required software on all devices.",
+          followUp: "Track districts that are complete versus those needing additional follow-up or support.",
+          output: "Device readiness status is confirmed.",
+          resources: "PM tracker, district confirmation process, device readiness checklist",
+          timing: "Mar 30, 2026"
+        }
+      ]
+    },
+    {
+      id: 4,
+      name: "District Onboarding",
+      color: "#B5651D",
+      colorLight: "#FDEBD0",
+      timing: "Apr 1, 2026",
+      summary: "Districts that are approved and device-ready receive onboarding communications, including next-steps guidance and the second form to collect educator and school leader details.",
+      steps: [
+        {
+          step: "Send district next-steps email",
+          owner: "PM",
+          whatHappens: "PM sends a standard email confirming the district is moving forward. The email includes confirmed schools, what to expect, and the PL approach.",
+          followUp: "District is asked to complete the next form and prepare for PL planning.",
+          output: "District receives clear onboarding next steps.",
+          resources: "Standard next-steps email, confirmed school list, PL approach information",
+          timing: "Apr 1, 2026"
+        },
+        {
+          step: "Trigger second form for educators and leaders",
+          owner: "PM/Ediz",
+          whatHappens: "District contact is added to the distribution process for the second form that collects educator and school leader names and emails.",
+          followUp: "Form is sent to district contact and PM monitors for submission.",
+          output: "District receives school-level participant form.",
+          resources: "Second form, form distribution process",
+          timing: "Apr 1, 2026"
+        }
+      ]
+    },
+    {
+      id: 5,
+      name: "Educator and Leader Collection",
+      color: "#C4302B",
+      colorLight: "#FADBD8",
+      timing: "Apr 1–6, 2026",
+      summary: "Districts submit educator and school leader names/emails for all participating schools. The PM reviews submissions for completeness and follows up on gaps.",
+      steps: [
+        {
+          step: "Submit educator and school leader information",
+          owner: "District contact",
+          whatHappens: "District submits names and emails for participating educators and school leaders at each school.",
+          followUp: "PM monitors submissions until all participating schools are accounted for.",
+          output: "School-level participant information is collected.",
+          resources: "Educator and school leader form, submission guidance",
+          timing: "Apr 1, 2026"
+        },
+        {
+          step: "Review submissions for completeness",
+          owner: "PM",
+          whatHappens: "PM checks that each participating school has the expected educators and school leaders listed.",
+          followUp: "Follow up with district if any schools, names, or emails are missing.",
+          output: "Complete or incomplete participant roster identified.",
+          resources: "Form submissions, confirmed school list, PM tracker",
+          timing: "Apr 6, 2026"
+        }
+      ]
+    },
+    {
+      id: 6,
+      name: "Welcome and Orientation",
+      color: "#1A759F",
+      colorLight: "#D6EAF8",
+      timing: "Apr 6, 2026",
+      summary: "Participating educators and leaders receive welcome materials and orientation information. The PM holds a PL planning meeting with district and school leadership to determine the approach.",
+      steps: [
+        {
+          step: "Send welcome and orientation email",
+          owner: "PM",
+          whatHappens: "PM sends welcome email to participating educators and leaders with orientation information and program overview.",
+          followUp: "Track which participants have received the welcome and orientation information.",
+          output: "Educators and leaders are officially onboarded.",
+          resources: "Welcome email template, orientation information, overview materials",
+          timing: "Apr 6, 2026"
+        },
+        {
+          step: "Hold district PL planning meeting",
+          owner: "PM + District Leader + School Leader(s)",
+          whatHappens: "PM meets with district leader and school leader(s) to determine how professional learning will be structured and delivered.",
+          followUp: "Record decisions, scheduling needs, and district-specific next steps.",
+          output: "District PL approach is identified.",
+          resources: "PL overview materials, meeting agenda, PL decision log/process",
+          timing: "Apr 6, 2026"
+        }
+      ]
+    },
+    {
+      id: 7,
+      name: "Scheduling PL and Support",
+      color: "#6C3483",
+      colorLight: "#E8DAEF",
+      timing: "Apr 13, 2026",
+      summary: "The PL model and logistics are finalized with district leadership, and sessions plus support structures are scheduled and communicated.",
+      steps: [
+        {
+          step: "Confirm PL model and logistics",
+          owner: "PM + District Leader + School Leader(s)",
+          whatHappens: "Finalize the professional learning approach, identify audience and format, and determine scheduling windows.",
+          followUp: "Prepare calendar options, confirm participation expectations, and align needed support.",
+          output: "District PL delivery model and logistics are confirmed.",
+          resources: "PL approach options, scheduling process, planning notes",
+          timing: "Apr 13, 2026"
+        },
+        {
+          step: "Schedule sessions and support structures",
+          owner: "PM",
+          whatHappens: "PM schedules the agreed-upon sessions, support touchpoints, and needed communications.",
+          followUp: "Send calendar invites, session details, and any preparation materials.",
+          output: "PL schedule is established and shared.",
+          resources: "Calendar/scheduling workflow, communication templates",
+          timing: "Apr 13, 2026"
+        }
+      ]
+    },
+    {
+      id: 8,
+      name: "Running PL",
+      color: "#117A65",
+      colorLight: "#D1F2EB",
+      timing: "Apr 13–20, 2026",
+      summary: "Professional learning sessions are delivered, participation is tracked, follow-up support is provided, and ongoing monthly PL continues through the website/webservice.",
+      steps: [
+        {
+          step: "Deliver PL offerings",
+          owner: "PM / Facilitators",
+          whatHappens: "Run the planned professional learning sessions and related support experiences for participating educators and leaders.",
+          followUp: "Share materials, reminders, and immediate next steps after each offering.",
+          output: "PL is delivered.",
+          resources: "PL decks, agendas, facilitator guides, participant materials",
+          timing: "Apr 13, 2026"
+        },
+        {
+          step: "Track participation and provide follow-up support",
+          owner: "PM",
+          whatHappens: "Track attendance/participation and provide follow-up resources, reminders, and support.",
+          followUp: "Identify districts or participants needing additional support or make-up opportunities.",
+          output: "Participation and support status are documented.",
+          resources: "Attendance/process tracker, follow-up communications, support resources",
+          timing: "Apr 13, 2026"
+        },
+        {
+          step: "Deliver ongoing monthly PL via website/webservice",
+          owner: "PM / Facilitators / Web support",
+          whatHappens: "Provide ongoing once-a-month professional learning through the designated website or webservice platform.",
+          followUp: "Maintain the website/webservice, update session information and materials, send reminders.",
+          output: "Ongoing monthly PL is delivered and accessible to participants.",
+          resources: "Monthly PL plan, website/resource hub, webservice/platform setup, session materials",
+          timing: "Apr 20, 2026"
+        }
+      ]
+    },
+    {
+      id: 9,
+      name: "Use Cases, Feedback, and Story Collection",
+      color: "#AF601A",
+      colorLight: "#FAE5D3",
+      timing: "Jun–Aug 2026",
+      summary: "Classroom use cases are requested and collected from educators, district-level feedback is gathered, and promising customer stories are identified and moved into a development pipeline.",
+      steps: [
+        {
+          step: "Request classroom use case submissions",
+          owner: "PM",
+          whatHappens: "PM sends participating educators the request and process for submitting their classroom use cases.",
+          followUp: "Remind educators and district contacts of the timeline and expectations for submissions.",
+          output: "Educators receive clear request to submit classroom use cases.",
+          resources: "Use case submission form/process, email template, submission guidance",
+          timing: "Jun 1, 2026"
+        },
+        {
+          step: "Collect classroom use case submissions",
+          owner: "Educators / District Contacts",
+          whatHappens: "Educators submit classroom use cases, either directly or through the district process.",
+          followUp: "PM monitors submissions and checks which districts/schools have responded.",
+          output: "Classroom use case submissions are collected.",
+          resources: "Classroom use case form, confirmed participant list, PM tracker, Use case submission guide",
+          timing: "Jun 1, 2026"
+        },
+        {
+          step: "Review and organize classroom use cases",
+          owner: "PM",
+          whatHappens: "PM reviews submissions for completeness, clarity, and alignment to the initiative goals.",
+          followUp: "Follow up if clarification or missing details are needed.",
+          output: "Use cases are categorized and ready for reporting or selection.",
+          resources: "Submission responses, review criteria, PM tracker",
+          timing: "Jun 1, 2026"
+        },
+        {
+          step: "Collect district-level feedback",
+          owner: "PM + District Leaders",
+          whatHappens: "PM gathers district-level feedback on implementation, support, device experience, and outcomes.",
+          followUp: "Follow up with districts that have not yet provided feedback or where more detail is needed.",
+          output: "District-level feedback is collected.",
+          resources: "District feedback form/interview guide, email template, meeting notes process",
+          timing: "Jun 1, 2026"
+        },
+        {
+          step: "Identify possible customer stories",
+          owner: "PM + AE + District Leaders",
+          whatHappens: "PM reviews educator use cases and district feedback to identify promising stories for sharing.",
+          followUp: "Check interest, permissions, and fit with districts/AEs before moving forward.",
+          output: "Potential customer stories are identified.",
+          resources: "Story identification criteria, permissions process, notes from submissions/feedback",
+          timing: "Aug 1, 2026"
+        },
+        {
+          step: "Develop customer story pipeline",
+          owner: "PM + Communications/Project Leads",
+          whatHappens: "Promising stories are moved into a light pipeline for follow-up, documentation, and potential publication.",
+          followUp: "Prioritize which stories to pursue and assign next steps.",
+          output: "Story candidates are tracked for future development and sharing.",
+          resources: "Story tracker, follow-up templates, customer story process",
+          timing: "Aug 1, 2026"
+        }
+      ]
+    },
+    {
+      id: "ongoing",
+      name: "Ongoing Monitoring and Follow-Up",
+      color: "#566573",
+      colorLight: "#E5E8E8",
+      timing: "Continuous",
+      summary: "The PM conducts weekly status reviews across all districts and follows up on incomplete steps, unresolved issues, and districts that need additional support or escalation.",
+      steps: [
+        {
+          step: "Conduct weekly status review",
+          owner: "PM",
+          whatHappens: "PM reviews all districts for first form completion, second form completion, shipment status, imaging status, PL scheduling, and more.",
+          followUp: "Update tracker and generate weekly follow-up list.",
+          output: "Current status view across all districts.",
+          resources: "PM tracker/dashboard, form exports, shipment updates, communication log",
+          timing: "Now"
+        },
+        {
+          step: "Follow up with incomplete districts or unresolved issues",
+          owner: "PM, with AE support when needed",
+          whatHappens: "PM follows up with districts that have not completed required steps or have unresolved issues.",
+          followUp: "Continue outreach until the district completes the step, is paused, or is escalated.",
+          output: "Districts continue moving through the pipeline.",
+          resources: "Follow-up templates, contact list, status tracker, AE escalation process",
+          timing: "Now"
+        }
+      ]
+    }
+  ]
+};
+
+// ============================================================
+// UTILITY FUNCTIONS (shared across all views)
+// ============================================================
+function getStageNumber(stage) {
+  return stage.id === "ongoing" ? "∞" : stage.id;
+}
+
+function countAllSteps() {
+  return WORKFLOW_DATA.stages.reduce((sum, s) => sum + s.steps.length, 0);
+}
+
+function countUniqueOwners() {
+  const owners = new Set();
+  WORKFLOW_DATA.stages.forEach(s => {
+    s.steps.forEach(step => {
+      step.owner.split(/[+\/→,]/).forEach(o => owners.add(o.trim()));
+    });
+  });
+  return owners.size;
+}
+
+function countUniqueResources() {
+  const resources = new Set();
+  WORKFLOW_DATA.stages.forEach(s => {
+    s.steps.forEach(step => {
+      step.resources.split(',').forEach(r => {
+        const trimmed = r.trim();
+        if (trimmed) resources.add(trimmed);
+      });
+    });
+  });
+  return resources.size;
+}
+
+// ============================================================
+// RENDER: OVERVIEW VIEW
+// ============================================================
+function renderOverview() {
+  // Scope stats
+  const statsEl = document.getElementById('scope-stats');
+  const stats = [
+    { num: WORKFLOW_DATA.stages.length, label: "Stages" },
+    { num: countAllSteps(), label: "Total Steps" },
+    { num: countUniqueOwners(), label: "Roles Involved" },
+    { num: countUniqueResources(), label: "Resources / Materials" },
+    { num: "Mar–Aug", label: "Active Window" }
+  ];
+  statsEl.innerHTML = stats.map(s => `
+    <div class="scope-stat">
+      <div class="num">${s.num}</div>
+      <div class="label">${s.label}</div>
+    </div>
+  `).join('');
+
+  // Roadmap
+  const roadmapEl = document.getElementById('roadmap');
+  roadmapEl.innerHTML = WORKFLOW_DATA.stages.map(stage => `
+    <div class="roadmap-stage">
+      <div class="roadmap-node" style="background: ${stage.color};">
+        ${getStageNumber(stage)}
+      </div>
+      <div class="roadmap-content">
+        <div class="stage-meta">
+          <span class="stage-badge" style="background: ${stage.colorLight}; color: ${stage.color};">
+            ${stage.id === "ongoing" ? "Ongoing" : "Stage " + stage.id}
+          </span>
+          <span class="stage-timing">${stage.timing}</span>
+        </div>
+        <h3>${stage.name}</h3>
+        <p>${stage.summary}</p>
+        <div class="step-count">${stage.steps.length} step${stage.steps.length !== 1 ? 's' : ''} in this stage</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+
+// ============================================================
+// STAGE 2: WORKFLOW DETAIL
+// ============================================================
+const chevronSVG = `<svg class="wf-stage-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="5 8 10 13 15 8"/></svg>`;
+
+function renderWorkflow() {
+  const container = document.getElementById('workflow-stages');
+
+  container.innerHTML = WORKFLOW_DATA.stages.map(stage => {
+    const num = getStageNumber(stage);
+    const stepCards = stage.steps.map((step, i) => {
+      const connector = i < stage.steps.length - 1 ? '<div class="wf-steps-connector"></div>' : '';
+      return `
+        <div class="wf-step-card" style="border-left-color: ${stage.color};">
+          <div class="wf-step-header">
+            <div class="wf-step-name">${step.step}</div>
+            <div class="wf-step-owner">${step.owner}</div>
+          </div>
+          <div class="wf-step-summary">${step.whatHappens}</div>
+          <button class="wf-step-toggle" onclick="toggleStepDetails(this)">
+            <span class="toggle-icon">▶</span> Show details
+          </button>
+          <div class="wf-step-details">
+            <div class="wf-step-body">
+              <div class="wf-step-field">
+                <div class="wf-step-field-label">Follow-Up</div>
+                <div class="wf-step-field-value">${step.followUp}</div>
+              </div>
+              <div class="wf-step-field">
+                <div class="wf-step-field-label">Output</div>
+                <div class="wf-step-field-value">${step.output}</div>
+              </div>
+              <div class="wf-step-field">
+                <div class="wf-step-field-label">Resources Needed</div>
+                <div class="wf-step-field-value">${step.resources}</div>
+              </div>
+              <div class="wf-step-field">
+                <div class="wf-step-field-label">Timing</div>
+                <div class="wf-step-field-value">${step.timing}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        ${connector}
+      `;
+    }).join('');
+
+    return `
+      <div class="wf-stage" data-stage-id="${stage.id}">
+        <div class="wf-stage-header" onclick="toggleStage(this)">
+          <div class="wf-stage-num" style="background: ${stage.color};">${num}</div>
+          <div class="wf-stage-title-block">
+            <h2>${stage.name}</h2>
+            <div class="wf-stage-subtitle">${stage.steps.length} step${stage.steps.length !== 1 ? 's' : ''} · ${stage.summary.slice(0, 80)}…</div>
+          </div>
+          <div class="wf-stage-meta">
+            <span class="wf-stage-timing-badge" style="background: ${stage.colorLight}; color: ${stage.color};">${stage.timing}</span>
+          </div>
+          ${chevronSVG}
+        </div>
+        <div class="wf-steps">
+          ${stepCards}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Expand/collapse controls
+  document.getElementById('btn-expand-all').addEventListener('click', () => {
+    document.querySelectorAll('.wf-stage').forEach(el => el.classList.add('open'));
+  });
+  document.getElementById('btn-collapse-all').addEventListener('click', () => {
+    document.querySelectorAll('.wf-stage').forEach(el => el.classList.remove('open'));
+  });
+}
+
+function toggleStage(headerEl) {
+  headerEl.closest('.wf-stage').classList.toggle('open');
+}
+
+function toggleStepDetails(btn) {
+  const card = btn.closest('.wf-step-card');
+  card.classList.toggle('details-open');
+  btn.innerHTML = card.classList.contains('details-open')
+    ? '<span class="toggle-icon">▶</span> Hide details'
+    : '<span class="toggle-icon">▶</span> Show details';
+}
+
+renderWorkflow();
+
+
+// ============================================================
+// STAGE 3: TIMELINE & READINESS
+// ============================================================
+
+function getUniqueResources(stage) {
+  const resources = new Set();
+  stage.steps.forEach(step => {
+    step.resources.split(',').forEach(r => {
+      const trimmed = r.trim();
+      if (trimmed) resources.add(trimmed);
+    });
+  });
+  return [...resources];
+}
+
+function renderTimeline() {
+  // Group stages by time period
+  const periodData = [
+    {
+      label: "Now",
+      sublabel: "Already active",
+      stageIds: [1, "ongoing"]
+    },
+    {
+      label: "Mar 23",
+      sublabel: "2026",
+      stageIds: [2, 3]
+    },
+    {
+      label: "Apr 1",
+      sublabel: "2026",
+      stageIds: [4, 5]
+    },
+    {
+      label: "Apr 6",
+      sublabel: "2026",
+      stageIds: [6]
+    },
+    {
+      label: "Apr 13",
+      sublabel: "2026",
+      stageIds: [7, 8]
+    },
+    {
+      label: "Jun–Aug",
+      sublabel: "2026",
+      stageIds: [9]
+    }
+  ];
+
+  const stageMap = {};
+  WORKFLOW_DATA.stages.forEach(s => { stageMap[s.id] = s; });
+
+  // Render highlights
+  const highlightsEl = document.getElementById('tl-highlights');
+  const highlights = [
+    {
+      label: "Immediate",
+      value: "Outreach toolkit & tracker",
+      detail: "Master district list, presentation deck, one-pager, FAQ, and website must exist now."
+    },
+    {
+      label: "By Mar 23",
+      value: "Forms, templates, & fulfillment process",
+      detail: "District participation form, email templates, shipment request template, and TD SYNNEX process must be ready."
+    },
+    {
+      label: "By Apr 1",
+      value: "Onboarding emails & second form",
+      detail: "Next-steps email, confirmed school lists, PL approach information, and educator/leader collection form."
+    },
+    {
+      label: "By Apr 6",
+      value: "Welcome materials & PL planning process",
+      detail: "Welcome email template, orientation materials, PL overview, meeting agendas, and decision log."
+    },
+    {
+      label: "By Apr 13",
+      value: "PL content & delivery infrastructure",
+      detail: "Session decks, facilitator guides, participant materials, scheduling workflow, and communication templates."
+    },
+    {
+      label: "By Jun 1",
+      value: "Use case & feedback collection process",
+      detail: "Submission forms, review criteria, feedback guides, and email templates for educator outreach."
+    }
+  ];
+
+  highlightsEl.innerHTML = highlights.map(h => `
+    <div class="tl-highlight-item">
+      <div class="tl-hi-label">${h.label}</div>
+      <div class="tl-hi-value">${h.value}</div>
+      <div class="tl-hi-detail">${h.detail}</div>
+    </div>
+  `).join('');
+
+  // Render timeline track
+  const trackEl = document.getElementById('tl-track');
+  trackEl.innerHTML = periodData.map(period => {
+    const stageCards = period.stageIds.map(id => {
+      const stage = stageMap[id];
+      const num = getStageNumber(stage);
+      const resources = getUniqueResources(stage);
+
+      return `
+        <div class="tl-stage-card" style="border-left-color: ${stage.color};">
+          <div class="tl-stage-card-header">
+            <div class="tl-stage-num" style="background: ${stage.color};">${num}</div>
+            <h3>${stage.name}</h3>
+            <span class="tl-step-count">${stage.steps.length} steps</span>
+          </div>
+          <div class="tl-stage-summary">${stage.summary}</div>
+          <div class="tl-readiness">
+            <div class="tl-readiness-label">Must be ready</div>
+            <div class="tl-resource-list">
+              ${resources.map(r => {
+                const isReady = RESOURCE_STATUS[r] === true;
+                const cls = isReady ? 'ready' : 'not-ready';
+                const icon = isReady ? '✓ ' : '';
+                return `<span class="tl-resource-tag ${cls}">${icon}${r}</span>`;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="tl-period">
+        <div class="tl-period-label">
+          <div class="tl-date">${period.label}</div>
+          <div class="tl-date-sub">${period.sublabel}</div>
+        </div>
+        <div class="tl-stages">
+          ${stageCards}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+renderTimeline();
+
+
+// ============================================================
+// ADMIN PANEL
+// ============================================================
+function getAllResourcesByStage() {
+  return WORKFLOW_DATA.stages.map(stage => {
+    const resources = new Set();
+    stage.steps.forEach(step => {
+      step.resources.split(',').forEach(r => {
+        const trimmed = r.trim();
+        if (trimmed) resources.add(trimmed);
+      });
+    });
+    return {
+      stage: stage,
+      resources: [...resources]
+    };
+  });
+}
+
+function renderAdminPanel() {
+  const body = document.getElementById('admin-panel-body');
+  const groups = getAllResourcesByStage();
+
+  body.innerHTML = groups.map(group => {
+    const items = group.resources.map(r => {
+      const isChecked = RESOURCE_STATUS[r] === true;
+      const checkedClass = isChecked ? 'checked' : '';
+      const checkedAttr = isChecked ? 'checked' : '';
+      return `
+        <div class="admin-item ${checkedClass}">
+          <input type="checkbox" id="res-${hashStr(r)}" ${checkedAttr} 
+            onchange="toggleResource('${escapeStr(r)}', this.checked)">
+          <label for="res-${hashStr(r)}">${r}</label>
+        </div>
+      `;
+    }).join('');
+
+    const num = getStageNumber(group.stage);
+    return `
+      <div class="admin-stage-group">
+        <div class="admin-stage-label">
+          <span class="admin-stage-dot" style="background: ${group.stage.color};"></span>
+          ${num === '∞' ? '' : num + '. '}${group.stage.name}
+        </div>
+        ${items}
+      </div>
+    `;
+  }).join('');
+
+  updateAdminCounter();
+}
+
+function hashStr(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+function escapeStr(str) {
+  return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+}
+
+function toggleResource(name, checked) {
+  RESOURCE_STATUS[name] = checked;
+  saveResourceStatus();
+  renderTimeline();
+
+  // Update the checkbox's parent styling
+  const item = event.target.closest('.admin-item');
+  if (item) {
+    item.classList.toggle('checked', checked);
+  }
+  updateAdminCounter();
+}
+
+function updateAdminCounter() {
+  const allResources = getAllResourcesByStage();
+  let total = 0, ready = 0;
+  allResources.forEach(g => {
+    g.resources.forEach(r => {
+      total++;
+      if (RESOURCE_STATUS[r] === true) ready++;
+    });
+  });
+  const el = document.getElementById('admin-counter');
+  el.textContent = `${ready} of ${total} ready`;
+}
+
+function openAdmin() {
+  renderAdminPanel();
+  document.getElementById('admin-overlay').classList.add('open');
+  document.getElementById('admin-panel').classList.add('open');
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  document.getElementById('admin-panel').classList.remove('open');
+}
+
+function resetReadiness() {
+  if (!confirm('Reset all resources to not ready? This cannot be undone.')) return;
+  RESOURCE_STATUS = {};
+  saveResourceStatus();
+  renderTimeline();
+  renderAdminPanel();
+}
+
+
+// ============================================================
+// NAV / TAB SWITCHING
+// ============================================================
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('view-' + tab.dataset.view).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ============================================================
+// INIT
+// ============================================================
+renderOverview();
+</script>
+
+</body>
+</html>
