@@ -106,6 +106,24 @@ function nextTaskID(tasks) {
   return "T-" + String((nums.length ? Math.max(...nums) : 0) + 1).padStart(3, "0");
 }
 
+/* Date helpers */
+function toInternal(d) {
+  if (!d) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  var m = d.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) return m[3] + "-" + m[1].padStart(2,"0") + "-" + m[2].padStart(2,"0");
+  return d;
+}
+function toDisplay(d) {
+  if (!d) return "";
+  var m = d.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return m[2] + "/" + m[3] + "/" + m[1];
+  return d;
+}
+function normalizeTaskDates(tasks) {
+  return tasks.map(t => ({ ...t, "Due Date": toInternal(t["Due Date"]) }));
+}
+
 /* ---- Storage (localStorage) ---- */
 const STORAGE_KEY = "taskmanager-tasks-v2";
 function loadFromStorage() {
@@ -239,7 +257,7 @@ function KanbanCard({ task, onClick }) {
       <div style={{ fontSize: 13, fontWeight: 500, color: "#1e293b", lineHeight: 1.4, marginBottom: 6, textDecoration: isDone ? "line-through" : "none" }}>{task.Task}</div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>{task["Time Estimate"] && <TimeBadge time={task["Time Estimate"]} short />}</div>
-        {task["Due Date"] && <div style={{ fontSize: 11, color: "#94a3b8" }}>Due: {task["Due Date"]}</div>}
+        {task["Due Date"] && <div style={{ fontSize: 11, color: "#94a3b8" }}>Due: {toDisplay(task["Due Date"])}</div>}
       </div>
     </div>
   );
@@ -329,14 +347,14 @@ function TaskManager() {
       const parsed = parseCSV(ev.target.result);
       if (parsed.length) {
         if (tasks.length > 0) setConfirmImportData(parsed);
-        else { setTasks(parsed); setProjectFilter("All"); }
+        else { setTasks(normalizeTaskDates(parsed)); setProjectFilter("All"); }
       }
     };
     reader.readAsText(file);
     e.target.value = "";
   }
   function confirmImportAction() {
-    if (confirmImportData) { setTasks(confirmImportData); setProjectFilter("All"); setConfirmImportData(null); }
+    if (confirmImportData) { setTasks(normalizeTaskDates(confirmImportData)); setProjectFilter("All"); setConfirmImportData(null); }
   }
   function handleExport() {
     const blob = new Blob([generateCSV(tasks)], { type: "text/csv" });
@@ -431,7 +449,7 @@ function TaskManager() {
                         <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontWeight: 500, textDecoration: isDone ? "line-through" : "none", color: isDone ? "#94a3b8" : "#1e293b" }}>{t.Task}</td>
                         <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><PriorityDot priority={t.Priority} /></td>
                         <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><TimeBadge time={t["Time Estimate"]} short /></td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: "#64748b" }}>{t["Due Date"] || "—"}</td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: "#64748b" }}>{toDisplay(t["Due Date"]) || "—"}</td>
                         <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><StatusBadge status={t.Status} /></td>
                       </tr>
                     );
