@@ -40,6 +40,7 @@ const IconChevronDown = ({size,color}) => <Icon size={size} color={color} d="M6 
 const IconChevronUp = ({size,color}) => <Icon size={size} color={color} d="M18 15l-6-6-6 6" />;
 const IconFileText = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
 const IconAlert = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+const IconStickyNote = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M14 3v4a2 2 0 0 0 2 2h4"/></svg>;
 
 /* ---- Constants ---- */
 const STATUSES = ["Not Started", "In Progress", "Waiting", "Done"];
@@ -310,10 +311,13 @@ function TaskManager() {
   const [sortDir, setSortDir] = useState("asc");
   const [collapsed, setCollapsed] = useState({ "unestimated": true, "Quick (< 15 min)": true, "Short (< 1 hr)": true, "Medium (1-2 hrs)": true, "Long (2-4 hrs)": true });
   const [focusSort, setFocusSort] = useState("priority");
+  const [noteOpen, setNoteOpen] = useState(false);
+  const [noteText, setNoteText] = useState("");
   const fileRef = useRef(null);
 
-  useEffect(() => { const d = loadFromStorage(); if (d) setTasks(d); setLoaded(true); }, []);
+  useEffect(() => { const d = loadFromStorage(); if (d) setTasks(d); setLoaded(true); try { var n = localStorage.getItem("taskmanager-scratchpad"); if (n) setNoteText(n); } catch(e){} }, []);
   useEffect(() => { if (loaded) saveToStorage(tasks); }, [tasks, loaded]);
+  useEffect(() => { try { localStorage.setItem("taskmanager-scratchpad", noteText); } catch(e){} }, [noteText]);
 
   const projects = useMemo(() => [...new Set(tasks.map(t => t.Project).filter(Boolean))].sort(), [tasks]);
   const filtered = useMemo(() => {
@@ -395,6 +399,7 @@ function TaskManager() {
           <input ref={fileRef} type="file" accept=".csv" onChange={handleFileSelect} style={{ display: "none" }} />
           <button onClick={triggerImport} style={{ ...btnBase, background: "#f1f5f9", color: "#475569" }}><IconUpload size={15} /> Import</button>
           {tasks.length > 0 && <button onClick={handleExport} style={{ ...btnBase, background: "#f1f5f9", color: "#475569" }}><IconDownload size={15} /> Export</button>}
+          <button onClick={() => setNoteOpen(!noteOpen)} style={{ ...btnBase, background: noteOpen ? "#eef2ff" : "#f1f5f9", color: noteOpen ? "#4f46e5" : "#475569" }}><IconStickyNote size={15} /></button>
           <button onClick={() => setModal({ mode: "add" })} style={{ ...btnBase, background: "#4f46e5", color: "#fff" }}><IconPlus size={16} /> Add Task</button>
         </div>
       </div>
@@ -598,6 +603,44 @@ function TaskManager() {
           onCancel={() => setConfirmImportData(null)}
         />
       )}
+
+      {/* Scratchpad Panel */}
+      {noteOpen && <div onClick={() => setNoteOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.15)", zIndex: 900 }} />}
+      <div style={{
+        position: "fixed", top: 0, right: 0, height: "100vh", width: 340, maxWidth: "90vw",
+        background: "#fff", boxShadow: noteOpen ? "-8px 0 24px rgba(0,0,0,.1)" : "none",
+        transform: noteOpen ? "translateX(0)" : "translateX(100%)",
+        transition: "transform .25s ease", zIndex: 901,
+        display: "flex", flexDirection: "column", fontFamily: "inherit"
+      }}>
+        <div style={{ padding: "18px 20px 14px", borderBottom: "1.5px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <IconStickyNote size={18} color="#6366f1" />
+            <span style={{ fontWeight: 700, fontSize: 15, color: "#0f172a" }}>Scratchpad</span>
+          </div>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            {noteText.trim() && <button onClick={() => { if (confirm("Clear your scratchpad?")) setNoteText(""); }} style={{ background: "none", border: "1px solid #e2e8f0", borderRadius: 8, padding: "4px 10px", fontSize: 11, fontWeight: 600, color: "#94a3b8", cursor: "pointer", fontFamily: "inherit" }}>Clear</button>}
+            <button onClick={() => setNoteOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 2 }}><IconX size={18} /></button>
+          </div>
+        </div>
+        <div style={{ padding: "14px 20px 8px" }}>
+          <p style={{ fontSize: 12, color: "#94a3b8", margin: "0 0 4px" }}>Jot down your plan for the day. Use "- " to create bullet points.</p>
+        </div>
+        <div style={{ flex: 1, padding: "0 20px 20px", display: "flex", flexDirection: "column", gap: 12, overflow: "hidden" }}>
+          <textarea
+            value={noteText}
+            onChange={e => setNoteText(e.target.value)}
+            placeholder={"- Review AIReady emails\n- Prep Monday webinar deck\n- Follow up with Italy after lunch\n- Block calendar for deep work"}
+            style={{
+              flex: 1, width: "100%", padding: 14, border: "1.5px solid #e2e8f0", borderRadius: 12,
+              fontSize: 14, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, resize: "none",
+              outline: "none", color: "#1e293b", background: "#fafbff", boxSizing: "border-box"
+            }}
+            onFocus={e => e.target.style.borderColor = "#6366f1"}
+            onBlur={e => e.target.style.borderColor = "#e2e8f0"}
+          />
+        </div>
+      </div>
     </div>
   );
 }
