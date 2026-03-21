@@ -280,6 +280,7 @@ function FocusCard({ task, onClick, onToggleDone }) {
           <span style={{ background: pc.bg, color: pc.text, padding: "1px 7px", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>{task.Project}</span>
           {task.Priority && <PriorityDot priority={task.Priority} />}
           <StatusBadge status={task.Status} />
+          {task["Due Date"] && <span style={{ fontSize: 11, color: "#94a3b8" }}>Due: {toDisplay(task["Due Date"])}</span>}
         </div>
       </div>
     </div>
@@ -308,6 +309,7 @@ function TaskManager() {
   const [sortCol, setSortCol] = useState(null);
   const [sortDir, setSortDir] = useState("asc");
   const [collapsed, setCollapsed] = useState({ "unestimated": true, "Quick (< 15 min)": true, "Short (< 1 hr)": true, "Medium (1-2 hrs)": true, "Long (2-4 hrs)": true });
+  const [focusSort, setFocusSort] = useState("priority");
   const fileRef = useRef(null);
 
   useEffect(() => { const d = loadFromStorage(); if (d) setTasks(d); setLoaded(true); }, []);
@@ -490,6 +492,16 @@ function TaskManager() {
           {/* FOCUS / WHAT'S NEXT VIEW */}
           {view === "focus" && (
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {/* Sort toggle */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.03em" }}>Sort by</span>
+                <div style={{ background: "#f1f5f9", borderRadius: 10, padding: 3, display: "flex", gap: 2 }}>
+                  {[["priority", "Priority"], ["dueDate", "Due Date"]].map(([val, label]) => (
+                    <button key={val} onClick={() => setFocusSort(val)} style={{ border: "none", borderRadius: 8, padding: "5px 14px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", transition: "all .15s", background: focusSort === val ? "#fff" : "transparent", color: focusSort === val ? "#4f46e5" : "#64748b", boxShadow: focusSort === val ? "0 1px 3px rgba(0,0,0,.08)" : "none" }}>{label}</button>
+                  ))}
+                </div>
+              </div>
+
               {(() => {
                 const unest = activeTasks.filter(t => !t["Time Estimate"]);
                 if (unest.length === 0) return null;
@@ -544,7 +556,13 @@ function TaskManager() {
                     {isOpen && (
                       <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 6 }}>
                         {[...active].sort((a, b) => {
-                          const po = { High: 0, Medium: 1, Low: 2, "": 3 };
+                          if (focusSort === "dueDate") {
+                            var da = a["Due Date"] || "9999", db = b["Due Date"] || "9999";
+                            if (da < db) return -1; if (da > db) return 1;
+                            var po2 = { High: 0, Medium: 1, Low: 2, "": 3 };
+                            return (po2[a.Priority] !== undefined ? po2[a.Priority] : 3) - (po2[b.Priority] !== undefined ? po2[b.Priority] : 3);
+                          }
+                          var po = { High: 0, Medium: 1, Low: 2, "": 3 };
                           return (po[a.Priority] !== undefined ? po[a.Priority] : 3) - (po[b.Priority] !== undefined ? po[b.Priority] : 3);
                         }).map(t => (
                           <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
