@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f9fc; color: #1e293b; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9px; }
+  input:focus, select:focus, textarea:focus { border-color: #6366f1 !important; box-shadow: 0 0 0 3px rgba(99,102,241,.1); outline: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef, useMemo } = React;
+
+/* ---- Inline SVG Icons ---- */
+const Icon = ({ d, size = 16, color = "currentColor", sw = 2 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}>
+    <path d={d} />
+  </svg>
+);
+const IconPlus = ({size,color}) => <Icon size={size} color={color} d="M12 5v14M5 12h14" />;
+const IconUpload = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>;
+const IconDownload = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>;
+const IconList = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>;
+const IconColumns = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>;
+const IconClock = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+const IconX = ({size,color}) => <Icon size={size} color={color} d="M18 6L6 18M6 6l12 12" />;
+const IconTrash = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>;
+const IconCheck = ({size,color,sw}) => <Icon size={size} color={color} sw={sw||2} d="M20 6L9 17l-5-5" />;
+const IconChevronDown = ({size,color}) => <Icon size={size} color={color} d="M6 9l6 6 6-6" />;
+const IconChevronUp = ({size,color}) => <Icon size={size} color={color} d="M18 15l-6-6-6 6" />;
+const IconFileText = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>;
+const IconAlert = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+
+/* ---- Constants ---- */
+const STATUSES = ["Not Started", "In Progress", "Waiting", "Done"];
+const PRIORITIES = ["", "High", "Medium", "Low"];
+const TIME_ESTIMATES = ["", "Quick (< 15 min)", "Short (< 1 hr)", "Medium (1-2 hrs)", "Long (2-4 hrs)"];
+const TIME_ORDER = ["Quick (< 15 min)", "Short (< 1 hr)", "Medium (1-2 hrs)", "Long (2-4 hrs)"];
+const TIME_SHORT = { "Quick (< 15 min)": "Quick", "Short (< 1 hr)": "Short", "Medium (1-2 hrs)": "Medium", "Long (2-4 hrs)": "Long" };
+const TIME_COLORS = {
+  "Quick (< 15 min)": { bg: "#dcfce7", text: "#166534", dot: "#22c55e", desc: "Under 15 minutes" },
+  "Short (< 1 hr)": { bg: "#dbeafe", text: "#1e40af", dot: "#3b82f6", desc: "Under an hour" },
+  "Medium (1-2 hrs)": { bg: "#fef3c7", text: "#92400e", dot: "#f59e0b", desc: "1 to 2 hours" },
+  "Long (2-4 hrs)": { bg: "#fee2e2", text: "#991b1b", dot: "#ef4444", desc: "Half day block" },
+};
+const STATUS_COLORS = {
+  "Not Started": { bg: "#f1f5f9", text: "#475569", dot: "#94a3b8" },
+  "In Progress": { bg: "#dbeafe", text: "#1e40af", dot: "#3b82f6" },
+  "Waiting": { bg: "#fef3c7", text: "#92400e", dot: "#f59e0b" },
+  "Done": { bg: "#dcfce7", text: "#166534", dot: "#22c55e" },
+};
+const PRIORITY_COLORS = {
+  High: { bg: "#fee2e2", text: "#991b1b" },
+  Medium: { bg: "#fef3c7", text: "#92400e" },
+  Low: { bg: "#dbeafe", text: "#1e40af" },
+};
+const TAG_PALETTE = [
+  { bg: "#ede9fe", text: "#5b21b6" }, { bg: "#dbeafe", text: "#1e40af" },
+  { bg: "#ccfbf1", text: "#115e59" }, { bg: "#fce7f3", text: "#9d174d" },
+  { bg: "#fef3c7", text: "#92400e" }, { bg: "#e0e7ff", text: "#3730a3" },
+  { bg: "#dcfce7", text: "#166534" }, { bg: "#fee2e2", text: "#991b1b" },
+  { bg: "#f3e8ff", text: "#6b21a8" }, { bg: "#cffafe", text: "#155e75" },
+  { bg: "#fef9c3", text: "#854d0e" }, { bg: "#f1f5f9", text: "#334155" },
+];
+function hashStr(s) { let h = 0; for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0; return Math.abs(h); }
+function getProjectColor(name) { return TAG_PALETTE[hashStr(name) % TAG_PALETTE.length]; }
+
+/* ---- CSV Helpers ---- */
+function parseCSVLine(line) {
+  const r = []; let cur = "", inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (inQ) { if (c === '"' && line[i + 1] === '"') { cur += '"'; i++; } else if (c === '"') inQ = false; else cur += c; }
+    else { if (c === '"') inQ = true; else if (c === ",") { r.push(cur); cur = ""; } else cur += c; }
+  }
+  r.push(cur); return r;
+}
+function parseCSV(text) {
+  const lines = text.trim().replace(/\r\n/g, "\n").split("\n");
+  if (lines.length < 2) return [];
+  const hdr = parseCSVLine(lines[0]).map(h => h.trim());
+  return lines.slice(1).filter(l => l.trim()).map(line => {
+    const vals = parseCSVLine(line);
+    const obj = {};
+    hdr.forEach((h, i) => (obj[h] = (vals[i] || "").trim()));
+    return obj;
+  });
+}
+function escCSV(v) { const s = (v || "").toString(); return s.includes(",") || s.includes('"') || s.includes("\n") ? '"' + s.replace(/"/g, '""') + '"' : s; }
+function generateCSV(tasks) {
+  const cols = ["TaskID", "Project", "Task", "Priority", "Time Estimate", "Due Date", "Status", "Notes"];
+  return [cols.join(","), ...tasks.map(t => cols.map(c => escCSV(t[c])).join(","))].join("\n");
+}
+function nextTaskID(tasks) {
+  const nums = tasks.map(t => parseInt((t.TaskID || "").replace("T-", ""), 10)).filter(n => !isNaN(n));
+  return "T-" + String((nums.length ? Math.max(...nums) : 0) + 1).padStart(3, "0");
+}
+
+/* ---- Storage (localStorage) ---- */
+const STORAGE_KEY = "taskmanager-tasks-v2";
+function loadFromStorage() {
+  try { const d = localStorage.getItem(STORAGE_KEY); return d ? JSON.parse(d) : null; } catch { return null; }
+}
+function saveToStorage(tasks) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)); } catch (e) { console.error("Storage save failed", e); }
+}
+
+/* ---- Sub-components ---- */
+function ProjectPill({ name, count, active, onClick }) {
+  const c = name === "All" ? { bg: active ? "#1e293b" : "#f1f5f9", text: active ? "#fff" : "#475569" } : getProjectColor(name);
+  const style = name === "All" ? { background: c.bg, color: c.text } : { background: active ? c.text : c.bg, color: active ? "#fff" : c.text };
+  return (
+    <button onClick={onClick} style={{ ...style, border: "none", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap", transition: "all .15s", fontFamily: "inherit" }}>
+      {name} <span style={{ opacity: 0.7, fontWeight: 400, marginLeft: 3 }}>{count}</span>
+    </button>
+  );
+}
+function StatusBadge({ status }) {
+  const c = STATUS_COLORS[status] || STATUS_COLORS["Not Started"];
+  return <span style={{ background: c.bg, color: c.text, padding: "3px 10px", borderRadius: 12, fontSize: 12, fontWeight: 600, whiteSpace: "nowrap" }}>{status}</span>;
+}
+function PriorityDot({ priority }) {
+  if (!priority) return null;
+  const c = PRIORITY_COLORS[priority];
+  return <span style={{ background: c && c.bg, color: c && c.text, padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }}>{priority}</span>;
+}
+function TimeBadge({ time, short: isShort }) {
+  if (!time) return <span style={{ color: "#94a3b8", fontSize: 12 }}>—</span>;
+  const tc = TIME_COLORS[time];
+  if (isShort && tc) return <span style={{ background: tc.bg, color: tc.text, padding: "2px 8px", borderRadius: 10, fontSize: 11, fontWeight: 700 }}>{TIME_SHORT[time]}</span>;
+  return <span style={{ color: "#64748b", fontSize: 12 }}>{time}</span>;
+}
+
+function Modal({ children, onClose }) {
+  return (
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 999, backdropFilter: "blur(2px)" }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: "#fff", borderRadius: 16, padding: 28, width: "100%", maxWidth: 520, maxHeight: "90vh", overflow: "auto", boxShadow: "0 24px 48px rgba(0,0,0,.15)", fontFamily: "inherit" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function ConfirmModal({ message, onConfirm, onCancel }) {
+  return (
+    <Modal onClose={onCancel}>
+      <div style={{ textAlign: "center", padding: "8px 0" }}>
+        <div style={{ width: 56, height: 56, borderRadius: 16, background: "#fef3c7", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}><IconAlert size={28} color="#f59e0b" /></div>
+        <h3 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 700, color: "#0f172a" }}>Confirm Import</h3>
+        <p style={{ color: "#64748b", margin: "0 0 24px", lineHeight: 1.5 }}>{message}</p>
+        <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+          <button onClick={onCancel} style={{ background: "#f1f5f9", color: "#475569", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Cancel</button>
+          <button onClick={onConfirm} style={{ background: "#4f46e5", color: "#fff", border: "none", borderRadius: 10, padding: "10px 24px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Import &amp; Replace</button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+function TaskForm({ task, onSave, onDelete, onClose, projects }) {
+  const isNew = !task.TaskID;
+  const [form, setForm] = useState({ Project: "", Task: "", Priority: "", "Time Estimate": "", "Due Date": "", Status: "Not Started", Notes: "", ...task });
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+  const inputStyle = { width: "100%", padding: "9px 12px", border: "1.5px solid #e2e8f0", borderRadius: 10, fontSize: 14, fontFamily: "inherit", outline: "none", transition: "border .15s", boxSizing: "border-box" };
+  const labelStyle = { display: "block", fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 5, letterSpacing: "0.03em", textTransform: "uppercase" };
+  return (
+    <>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: "#0f172a" }}>{isNew ? "Add Task" : "Edit Task"}</h2>
+        <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: 4 }}><IconX size={20} /></button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+          <div>
+            <label style={labelStyle}>Project</label>
+            <input list="proj-list" value={form.Project} onChange={e => set("Project", e.target.value)} style={inputStyle} placeholder="Select or type new..." />
+            <datalist id="proj-list">{projects.map(p => <option key={p} value={p} />)}</datalist>
+          </div>
+          <div>
+            <label style={labelStyle}>Status</label>
+            <select value={form.Status} onChange={e => set("Status", e.target.value)} style={{ ...inputStyle, cursor: "pointer" }}>{STATUSES.map(s => <option key={s}>{s}</option>)}</select>
+          </div>
+        </div>
+        <div>
+          <label style={labelStyle}>Task</label>
+          <input value={form.Task} onChange={e => set("Task", e.target.value)} style={inputStyle} placeholder="What needs to be done?" />
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
+          <div>
+            <label style={labelStyle}>Priority</label>
+            <select value={form.Priority} onChange={e => set("Priority", e.target.value)} style={{ ...inputStyle, cursor: "pointer" }}>{PRIORITIES.map(p => <option key={p} value={p}>{p || "None"}</option>)}</select>
+          </div>
+          <div>
+            <label style={labelStyle}>Time Estimate</label>
+            <select value={form["Time Estimate"]} onChange={e => set("Time Estimate", e.target.value)} style={{ ...inputStyle, cursor: "pointer" }}>{TIME_ESTIMATES.map(t => <option key={t} value={t}>{t || "None"}</option>)}</select>
+          </div>
+          <div>
+            <label style={labelStyle}>Due Date</label>
+            <input type="date" value={form["Due Date"]} onChange={e => set("Due Date", e.target.value)} style={inputStyle} />
+          </div>
+        </div>
+        <div>
+          <label style={labelStyle}>Notes</label>
+          <textarea value={form.Notes} onChange={e => set("Notes", e.target.value)} rows={3} style={{ ...inputStyle, resize: "vertical" }} placeholder="Any additional context..." />
+        </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 24, gap: 10 }}>
+        <div>{!isNew && <button onClick={() => onDelete(task.TaskID)} style={{ background: "none", border: "1.5px solid #fca5a5", color: "#dc2626", borderRadius: 10, padding: "9px 16px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6 }}><IconTrash size={15} /> Delete</button>}</div>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button onClick={onClose} style={{ background: "#f1f5f9", color: "#475569", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Cancel</button>
+          <button onClick={() => { if (form.Task.trim()) onSave(form); }} style={{ background: "#4f46e5", color: "#fff", border: "none", borderRadius: 10, padding: "9px 20px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Save</button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function KanbanCard({ task, onClick }) {
+  const pc = getProjectColor(task.Project || "");
+  const isDone = task.Status === "Done";
+  return (
+    <div onClick={onClick} style={{ background: "#fff", borderRadius: 12, padding: 14, cursor: "pointer", border: "1.5px solid #f1f5f9", transition: "all .15s", boxShadow: "0 1px 3px rgba(0,0,0,.04)", marginBottom: 8, opacity: isDone ? 0.55 : 1 }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = "#c7d2fe"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.08)"; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,.04)"; }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+        <span style={{ background: pc.bg, color: pc.text, padding: "2px 8px", borderRadius: 8, fontSize: 11, fontWeight: 700 }}>{task.Project}</span>
+        <PriorityDot priority={task.Priority} />
+      </div>
+      <div style={{ fontSize: 13, fontWeight: 500, color: "#1e293b", lineHeight: 1.4, marginBottom: 6, textDecoration: isDone ? "line-through" : "none" }}>{task.Task}</div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div>{task["Time Estimate"] && <TimeBadge time={task["Time Estimate"]} short />}</div>
+        {task["Due Date"] && <div style={{ fontSize: 11, color: "#94a3b8" }}>Due: {task["Due Date"]}</div>}
+      </div>
+    </div>
+  );
+}
+
+function FocusCard({ task, onClick, onToggleDone }) {
+  const pc = getProjectColor(task.Project || "");
+  const isDone = task.Status === "Done";
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12, background: "#fff", borderRadius: 12, padding: "12px 16px", border: "1.5px solid #f1f5f9", transition: "all .15s", cursor: "pointer", opacity: isDone ? 0.45 : 1 }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = "#c7d2fe"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.08)"; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.boxShadow = "none"; }}>
+      <div onClick={e => { e.stopPropagation(); onToggleDone(task.TaskID); }}
+        style={{ width: 22, height: 22, borderRadius: 6, border: isDone ? "none" : "2px solid #cbd5e1", background: isDone ? "#22c55e" : "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all .15s" }}>
+        {isDone && <IconCheck size={14} color="#fff" sw={3} />}
+      </div>
+      <div onClick={onClick} style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 13, fontWeight: 500, color: "#1e293b", textDecoration: isDone ? "line-through" : "none", marginBottom: 3 }}>{task.Task}</div>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <span style={{ background: pc.bg, color: pc.text, padding: "1px 7px", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>{task.Project}</span>
+          {task.Priority && <PriorityDot priority={task.Priority} />}
+          <StatusBadge status={task.Status} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WelcomeScreen({ onImport }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "60vh", textAlign: "center", gap: 16 }}>
+      <div style={{ width: 72, height: 72, borderRadius: 20, background: "#ede9fe", display: "flex", alignItems: "center", justifyContent: "center" }}><IconFileText size={36} color="#6366f1" /></div>
+      <h2 style={{ fontSize: 24, fontWeight: 700, color: "#0f172a", margin: 0 }}>Welcome to Task Manager</h2>
+      <p style={{ color: "#64748b", maxWidth: 400, lineHeight: 1.6, margin: 0 }}>Import your TaskList.csv to get started, or add tasks manually.</p>
+      <button onClick={onImport} style={{ background: "#4f46e5", color: "#fff", border: "none", borderRadius: 12, padding: "12px 28px", fontSize: 15, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, fontFamily: "inherit", marginTop: 8 }}><IconUpload size={18} /> Import CSV</button>
+    </div>
+  );
+}
+
+/* ============ MAIN APP ============ */
+function TaskManager() {
+  const [tasks, setTasks] = useState([]);
+  const [view, setView] = useState("list");
+  const [projectFilter, setProjectFilter] = useState("All");
+  const [modal, setModal] = useState(null);
+  const [confirmImportData, setConfirmImportData] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+  const [sortCol, setSortCol] = useState(null);
+  const [sortDir, setSortDir] = useState("asc");
+  const [collapsed, setCollapsed] = useState({ "unestimated": true, "Quick (< 15 min)": true, "Short (< 1 hr)": true, "Medium (1-2 hrs)": true, "Long (2-4 hrs)": true });
+  const fileRef = useRef(null);
+
+  useEffect(() => { const d = loadFromStorage(); if (d) setTasks(d); setLoaded(true); }, []);
+  useEffect(() => { if (loaded) saveToStorage(tasks); }, [tasks, loaded]);
+
+  const projects = useMemo(() => [...new Set(tasks.map(t => t.Project).filter(Boolean))].sort(), [tasks]);
+  const filtered = useMemo(() => {
+    let f = projectFilter === "All" ? tasks : tasks.filter(t => t.Project === projectFilter);
+    if (view === "list" && sortCol) {
+      f = [...f].sort((a, b) => {
+        const av = (a[sortCol] || "").toLowerCase(), bv = (b[sortCol] || "").toLowerCase();
+        if (av < bv) return sortDir === "asc" ? -1 : 1;
+        if (av > bv) return sortDir === "asc" ? 1 : -1;
+        return 0;
+      });
+    }
+    return f;
+  }, [tasks, projectFilter, sortCol, sortDir, view]);
+
+  const activeTasks = useMemo(() => filtered.filter(t => t.Status !== "Done"), [filtered]);
+  const stats = useMemo(() => {
+    const s = { total: filtered.length, done: 0, inProgress: 0, waiting: 0 };
+    filtered.forEach(t => { if (t.Status === "Done") s.done++; else if (t.Status === "In Progress") s.inProgress++; else if (t.Status === "Waiting") s.waiting++; });
+    return s;
+  }, [filtered]);
+
+  function handleSort(col) {
+    if (sortCol === col) setSortDir(d => d === "asc" ? "desc" : "asc"); else { setSortCol(col); setSortDir("asc"); }
+  }
+  function toggleCollapse(key) { setCollapsed(prev => ({ ...prev, [key]: !prev[key] })); }
+  function triggerImport() { fileRef.current && fileRef.current.click(); }
+  function handleFileSelect(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const parsed = parseCSV(ev.target.result);
+      if (parsed.length) {
+        if (tasks.length > 0) setConfirmImportData(parsed);
+        else { setTasks(parsed); setProjectFilter("All"); }
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  }
+  function confirmImportAction() {
+    if (confirmImportData) { setTasks(confirmImportData); setProjectFilter("All"); setConfirmImportData(null); }
+  }
+  function handleExport() {
+    const blob = new Blob([generateCSV(tasks)], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = url; a.download = "TaskList.csv"; a.click();
+    URL.revokeObjectURL(url);
+  }
+  function handleSave(form) {
+    if (modal.mode === "add") setTasks(prev => [...prev, { ...form, TaskID: nextTaskID(prev) }]);
+    else setTasks(prev => prev.map(t => t.TaskID === form.TaskID ? form : t));
+    setModal(null);
+  }
+  function handleDelete(id) { setTasks(prev => prev.filter(t => t.TaskID !== id)); setModal(null); }
+  function toggleDone(id) {
+    setTasks(prev => prev.map(t => t.TaskID === id ? { ...t, Status: t.Status === "Done" ? "Not Started" : "Done" } : t));
+  }
+
+  const btnBase = { border: "none", borderRadius: 10, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "inherit", transition: "all .15s" };
+
+  return (
+    <div style={{ fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif", background: "#f8f9fc", minHeight: "100vh", color: "#1e293b" }}>
+
+      {/* Header */}
+      <div style={{ background: "#fff", borderBottom: "1.5px solid #f1f5f9", padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 50, flexWrap: "wrap", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+          <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800, color: "#0f172a", letterSpacing: "-0.02em" }}>
+            <span style={{ color: "#6366f1" }}>▪</span> Task Manager
+          </h1>
+          <div style={{ background: "#f1f5f9", borderRadius: 10, padding: 3, display: "flex", gap: 2 }}>
+            {[["list", IconList, "List"], ["kanban", IconColumns, "Board"], ["focus", IconClock, "What's Next"]].map(([v, Ico, label]) => (
+              <button key={v} onClick={() => setView(v)} style={{ ...btnBase, background: view === v ? "#fff" : "transparent", color: view === v ? "#4f46e5" : "#64748b", boxShadow: view === v ? "0 1px 3px rgba(0,0,0,.08)" : "none", padding: "6px 14px", fontSize: 13 }}><Ico size={15} /> {label}</button>
+            ))}
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 8 }}>
+          <input ref={fileRef} type="file" accept=".csv" onChange={handleFileSelect} style={{ display: "none" }} />
+          <button onClick={triggerImport} style={{ ...btnBase, background: "#f1f5f9", color: "#475569" }}><IconUpload size={15} /> Import</button>
+          {tasks.length > 0 && <button onClick={handleExport} style={{ ...btnBase, background: "#f1f5f9", color: "#475569" }}><IconDownload size={15} /> Export</button>}
+          <button onClick={() => setModal({ mode: "add" })} style={{ ...btnBase, background: "#4f46e5", color: "#fff" }}><IconPlus size={16} /> Add Task</button>
+        </div>
+      </div>
+
+      {loaded && tasks.length === 0 ? (
+        <WelcomeScreen onImport={triggerImport} />
+      ) : (
+        <div style={{ padding: "16px 24px" }}>
+          {/* Project pills + stats */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
+            <ProjectPill name="All" count={tasks.length} active={projectFilter === "All"} onClick={() => setProjectFilter("All")} />
+            {projects.map(p => (
+              <ProjectPill key={p} name={p} count={tasks.filter(t => t.Project === p).length} active={projectFilter === p} onClick={() => setProjectFilter(p)} />
+            ))}
+          </div>
+          <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 16, display: "flex", gap: 16 }}>
+            <span>{stats.total} task{stats.total !== 1 ? "s" : ""}</span>
+            <span style={{ color: STATUS_COLORS["Done"].dot }}>✓ {stats.done} done</span>
+            <span style={{ color: STATUS_COLORS["In Progress"].dot }}>● {stats.inProgress} in progress</span>
+            <span style={{ color: STATUS_COLORS["Waiting"].dot }}>● {stats.waiting} waiting</span>
+          </div>
+
+          {/* LIST VIEW */}
+          {view === "list" && (
+            <div style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", overflow: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, minWidth: 700 }}>
+                <thead>
+                  <tr style={{ background: "#f8f9fc" }}>
+                    <th style={{ width: 40, padding: "12px 8px" }}></th>
+                    {[["Project", 130], ["Task", null], ["Priority", 90], ["Time Estimate", 140], ["Due Date", 110], ["Status", 120]].map(([col, w]) => (
+                      <th key={col} onClick={() => handleSort(col)} style={{ padding: "12px 10px", textAlign: "left", fontWeight: 700, color: "#64748b", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", cursor: "pointer", userSelect: "none", whiteSpace: "nowrap", width: w || undefined }}>
+                        <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                          {col}{sortCol === col ? (sortDir === "asc" ? <IconChevronUp size={12} /> : <IconChevronDown size={12} />) : null}
+                        </span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map(t => {
+                    const pc = getProjectColor(t.Project || "");
+                    const isDone = t.Status === "Done";
+                    return (
+                      <tr key={t.TaskID} style={{ borderTop: "1px solid #f1f5f9", transition: "background .1s", opacity: isDone ? 0.5 : 1, cursor: "pointer" }}
+                        onMouseEnter={e => e.currentTarget.style.background = "#fafbff"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                        <td style={{ padding: "10px 8px", textAlign: "center" }}>
+                          <div onClick={e => { e.stopPropagation(); toggleDone(t.TaskID); }}
+                            style={{ width: 20, height: 20, borderRadius: 6, border: isDone ? "none" : "2px solid #cbd5e1", background: isDone ? "#22c55e" : "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto", transition: "all .15s" }}>
+                            {isDone && <IconCheck size={13} color="#fff" sw={3} />}
+                          </div>
+                        </td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><span style={{ background: pc.bg, color: pc.text, padding: "2px 9px", borderRadius: 8, fontSize: 12, fontWeight: 600 }}>{t.Project}</span></td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontWeight: 500, textDecoration: isDone ? "line-through" : "none", color: isDone ? "#94a3b8" : "#1e293b" }}>{t.Task}</td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><PriorityDot priority={t.Priority} /></td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><TimeBadge time={t["Time Estimate"]} short /></td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: "#64748b" }}>{t["Due Date"] || "—"}</td>
+                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><StatusBadge status={t.Status} /></td>
+                      </tr>
+                    );
+                  })}
+                  {filtered.length === 0 && (
+                    <tr><td colSpan={7} style={{ padding: 40, textAlign: "center", color: "#94a3b8" }}>No tasks found for this filter.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* KANBAN VIEW */}
+          {view === "kanban" && (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, alignItems: "start" }}>
+              {STATUSES.map(status => {
+                const cards = filtered.filter(t => t.Status === status);
+                const sc = STATUS_COLORS[status];
+                return (
+                  <div key={status} style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", minHeight: 200 }}>
+                    <div style={{ padding: "14px 16px 10px", borderBottom: "1.5px solid #f8f9fc", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 10, height: 10, borderRadius: "50%", background: sc.dot }} />
+                        <span style={{ fontWeight: 700, fontSize: 13, color: "#334155" }}>{status}</span>
+                      </div>
+                      <span style={{ background: sc.bg, color: sc.text, padding: "1px 8px", borderRadius: 10, fontSize: 12, fontWeight: 700 }}>{cards.length}</span>
+                    </div>
+                    <div style={{ padding: 10 }}>
+                      {cards.map(t => <KanbanCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} />)}
+                      {cards.length === 0 && <div style={{ padding: 20, textAlign: "center", color: "#cbd5e1", fontSize: 13 }}>No tasks</div>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* FOCUS / WHAT'S NEXT VIEW */}
+          {view === "focus" && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {(() => {
+                const unest = activeTasks.filter(t => !t["Time Estimate"]);
+                if (unest.length === 0) return null;
+                const isOpen = !collapsed["unestimated"];
+                return (
+                  <div style={{ background: "#fffbeb", border: "1.5px solid #fde68a", borderRadius: 14, overflow: "hidden" }}>
+                    <div onClick={() => toggleCollapse("unestimated")} style={{ padding: "14px 18px", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", userSelect: "none" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <IconAlert size={16} color="#f59e0b" />
+                        <span style={{ fontWeight: 700, fontSize: 14, color: "#92400e" }}>{unest.length} task{unest.length !== 1 ? "s" : ""} need a time estimate</span>
+                      </div>
+                      <div style={{ color: "#92400e", transition: "transform .2s", transform: isOpen ? "rotate(0deg)" : "rotate(-90deg)" }}><IconChevronDown size={18} /></div>
+                    </div>
+                    {isOpen && (
+                      <div style={{ padding: "0 18px 14px" }}>
+                        <p style={{ fontSize: 12, color: "#92400e", margin: "0 0 10px", opacity: 0.8 }}>Add time estimates so they show up in the right bucket below.</p>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                          {unest.slice(0, 10).map(t => (
+                            <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                          ))}
+                          {unest.length > 10 && <div style={{ textAlign: "center", fontSize: 12, color: "#92400e", padding: 6 }}>+ {unest.length - 10} more — click any task to add a time estimate</div>}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+
+              {TIME_ORDER.map(bucket => {
+                const bucketTasks = filtered.filter(t => t["Time Estimate"] === bucket);
+                const active = bucketTasks.filter(t => t.Status !== "Done");
+                const done = bucketTasks.filter(t => t.Status === "Done");
+                const tc = TIME_COLORS[bucket];
+                if (bucketTasks.length === 0) return null;
+                const isOpen = !collapsed[bucket];
+                return (
+                  <div key={bucket} style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", overflow: "hidden" }}>
+                    <div onClick={() => toggleCollapse(bucket)} style={{ padding: "16px 18px", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", userSelect: "none", borderBottom: isOpen ? "1.5px solid #f8f9fc" : "none" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                        <div style={{ width: 12, height: 12, borderRadius: "50%", background: tc.dot }} />
+                        <div>
+                          <span style={{ fontWeight: 700, fontSize: 15, color: "#1e293b" }}>{TIME_SHORT[bucket]}</span>
+                          <span style={{ fontSize: 12, color: "#94a3b8", marginLeft: 8 }}>{tc.desc}</span>
+                        </div>
+                      </div>
+                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                        <span style={{ background: tc.bg, color: tc.text, padding: "2px 10px", borderRadius: 10, fontSize: 12, fontWeight: 700 }}>{active.length} active</span>
+                        {done.length > 0 && <span style={{ background: STATUS_COLORS["Done"].bg, color: STATUS_COLORS["Done"].text, padding: "2px 10px", borderRadius: 10, fontSize: 12, fontWeight: 700 }}>{done.length} done</span>}
+                        <div style={{ color: "#94a3b8", transition: "transform .2s", transform: isOpen ? "rotate(0deg)" : "rotate(-90deg)", marginLeft: 4 }}><IconChevronDown size={18} /></div>
+                      </div>
+                    </div>
+                    {isOpen && (
+                      <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 6 }}>
+                        {[...active].sort((a, b) => {
+                          const po = { High: 0, Medium: 1, Low: 2, "": 3 };
+                          return (po[a.Priority] !== undefined ? po[a.Priority] : 3) - (po[b.Priority] !== undefined ? po[b.Priority] : 3);
+                        }).map(t => (
+                          <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                        ))}
+                        {done.map(t => (
+                          <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+              {activeTasks.length === 0 && filtered.filter(t => t.Status === "Done").length > 0 && (
+                <div style={{ textAlign: "center", padding: 40, color: "#22c55e", fontSize: 18, fontWeight: 700 }}>All tasks complete!</div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Edit/Add Modal */}
+      {modal && (
+        <Modal onClose={() => setModal(null)}>
+          <TaskForm task={modal.mode === "edit" ? modal.task : {}} onSave={handleSave} onDelete={handleDelete} onClose={() => setModal(null)} projects={projects} />
+        </Modal>
+      )}
+
+      {/* Import Confirmation */}
+      {confirmImportData && (
+        <ConfirmModal
+          message={"This will replace all " + tasks.length + " tasks in your browser with " + confirmImportData.length + " tasks from the CSV. Export first if you want to keep your current changes."}
+          onConfirm={confirmImportAction}
+          onCancel={() => setConfirmImportData(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<TaskManager />);
+</script>
+</body>
+</html>
