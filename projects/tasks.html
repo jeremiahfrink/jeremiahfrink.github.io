@@ -42,6 +42,7 @@ const IconFileText = ({size,color}) => <svg width={size||16} height={size||16} v
 const IconAlert = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
 const IconStickyNote = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M14 3v4a2 2 0 0 0 2 2h4"/></svg>;
 const IconCalendar = ({size,color}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill="none" stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>;
+const IconStar = ({size,color,filled}) => <svg width={size||16} height={size||16} viewBox="0 0 24 24" fill={filled ? (color||"currentColor") : "none"} stroke={color||"currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
 
 /* ---- Constants ---- */
 const STATUSES = ["Not Started", "In Progress", "Waiting", "Done"];
@@ -245,16 +246,21 @@ function TaskForm({ task, onSave, onDelete, onClose, projects }) {
   );
 }
 
-function KanbanCard({ task, onClick }) {
+function KanbanCard({ task, onClick, isStarred, onToggleStar }) {
   const pc = getProjectColor(task.Project || "");
   const isDone = task.Status === "Done";
   return (
-    <div onClick={onClick} style={{ background: "#fff", borderRadius: 12, padding: 14, cursor: "pointer", border: "1.5px solid #f1f5f9", transition: "all .15s", boxShadow: "0 1px 3px rgba(0,0,0,.04)", marginBottom: 8, opacity: isDone ? 0.55 : 1 }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = "#c7d2fe"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.08)"; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,.04)"; }}>
+    <div onClick={onClick} style={{ background: "#fff", borderRadius: 12, padding: 14, cursor: "pointer", border: isStarred ? "1.5px solid #fbbf24" : "1.5px solid #f1f5f9", transition: "all .15s", boxShadow: "0 1px 3px rgba(0,0,0,.04)", marginBottom: 8, opacity: isDone ? 0.55 : 1 }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.08)"; }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,.04)"; }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
         <span style={{ background: pc.bg, color: pc.text, padding: "2px 8px", borderRadius: 8, fontSize: 11, fontWeight: 700 }}>{task.Project}</span>
-        <PriorityDot priority={task.Priority} />
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <PriorityDot priority={task.Priority} />
+          <div onClick={e => { e.stopPropagation(); onToggleStar(task.TaskID); }} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
+            <IconStar size={14} color={isStarred ? "#f59e0b" : "#d1d5db"} filled={isStarred} />
+          </div>
+        </div>
       </div>
       <div style={{ fontSize: 13, fontWeight: 500, color: "#1e293b", lineHeight: 1.4, marginBottom: 6, textDecoration: isDone ? "line-through" : "none" }}>{task.Task}</div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -265,13 +271,16 @@ function KanbanCard({ task, onClick }) {
   );
 }
 
-function FocusCard({ task, onClick, onToggleDone }) {
+function FocusCard({ task, onClick, onToggleDone, isStarred, onToggleStar }) {
   const pc = getProjectColor(task.Project || "");
   const isDone = task.Status === "Done";
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, background: "#fff", borderRadius: 12, padding: "12px 16px", border: "1.5px solid #f1f5f9", transition: "all .15s", cursor: "pointer", opacity: isDone ? 0.45 : 1 }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = "#c7d2fe"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.08)"; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = "#f1f5f9"; e.currentTarget.style.boxShadow = "none"; }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 12, background: "#fff", borderRadius: 12, padding: "12px 16px", border: isStarred ? "1.5px solid #fbbf24" : "1.5px solid #f1f5f9", transition: "all .15s", cursor: "pointer", opacity: isDone ? 0.45 : 1 }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.08)"; }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; }}>
+      <div onClick={e => { e.stopPropagation(); onToggleStar(task.TaskID); }} style={{ cursor: "pointer", display: "flex", alignItems: "center", flexShrink: 0 }}>
+        <IconStar size={16} color={isStarred ? "#f59e0b" : "#d1d5db"} filled={isStarred} />
+      </div>
       <div onClick={e => { e.stopPropagation(); onToggleDone(task.TaskID); }}
         style={{ width: 22, height: 22, borderRadius: 6, border: isDone ? "none" : "2px solid #cbd5e1", background: isDone ? "#22c55e" : "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all .15s" }}>
         {isDone && <IconCheck size={14} color="#fff" sw={3} />}
@@ -314,13 +323,16 @@ function TaskManager() {
   const [focusSort, setFocusSort] = useState("priority");
   const [upcomingSort, setUpcomingSort] = useState("priority");
   const [upcomingCollapsed, setUpcomingCollapsed] = useState({ "todayTomorrow": false, "thisWeek": true, "nextFewWeeks": true, "later": true, "noDate": true });
+  const [starred, setStarred] = useState({});
+  const [hideCompleted, setHideCompleted] = useState(true);
   const [noteOpen, setNoteOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
   const fileRef = useRef(null);
 
-  useEffect(() => { const d = loadFromStorage(); if (d) setTasks(d); setLoaded(true); try { var n = localStorage.getItem("taskmanager-scratchpad"); if (n) setNoteText(n); } catch(e){} }, []);
+  useEffect(() => { const d = loadFromStorage(); if (d) setTasks(d); setLoaded(true); try { var n = localStorage.getItem("taskmanager-scratchpad"); if (n) setNoteText(n); } catch(e){} try { var s = localStorage.getItem("taskmanager-starred"); if (s) setStarred(JSON.parse(s)); } catch(e){} }, []);
   useEffect(() => { if (loaded) saveToStorage(tasks); }, [tasks, loaded]);
   useEffect(() => { try { localStorage.setItem("taskmanager-scratchpad", noteText); } catch(e){} }, [noteText]);
+  useEffect(() => { try { localStorage.setItem("taskmanager-starred", JSON.stringify(starred)); } catch(e){} }, [starred]);
 
   const projects = useMemo(() => [...new Set(tasks.map(t => t.Project).filter(Boolean))].sort(), [tasks]);
   const filtered = useMemo(() => {
@@ -427,6 +439,15 @@ function TaskManager() {
   function toggleDone(id) {
     setTasks(prev => prev.map(t => t.TaskID === id ? { ...t, Status: t.Status === "Done" ? "Not Started" : "Done" } : t));
   }
+  function toggleStar(id) {
+    setStarred(prev => { var n = Object.assign({}, prev); if (n[id]) delete n[id]; else n[id] = true; return n; });
+  }
+  function starredFirst(taskList) {
+    return [...taskList].sort(function(a, b) {
+      var sa = starred[a.TaskID] ? 0 : 1, sb = starred[b.TaskID] ? 0 : 1;
+      return sa - sb;
+    });
+  }
 
   const btnBase = { border: "none", borderRadius: 10, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "inherit", transition: "all .15s" };
 
@@ -474,48 +495,62 @@ function TaskManager() {
 
           {/* LIST VIEW */}
           {view === "list" && (
-            <div style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", overflow: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, minWidth: 700 }}>
-                <thead>
-                  <tr style={{ background: "#f8f9fc" }}>
-                    <th style={{ width: 40, padding: "12px 8px" }}></th>
-                    {[["Project", 130], ["Task", null], ["Priority", 90], ["Time Estimate", 140], ["Due Date", 110], ["Status", 120]].map(([col, w]) => (
-                      <th key={col} onClick={() => handleSort(col)} style={{ padding: "12px 10px", textAlign: "left", fontWeight: 700, color: "#64748b", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", cursor: "pointer", userSelect: "none", whiteSpace: "nowrap", width: w || undefined }}>
-                        <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                          {col}{sortCol === col ? (sortDir === "asc" ? <IconChevronUp size={12} /> : <IconChevronDown size={12} />) : null}
-                        </span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map(t => {
-                    const pc = getProjectColor(t.Project || "");
-                    const isDone = t.Status === "Done";
-                    return (
-                      <tr key={t.TaskID} style={{ borderTop: "1px solid #f1f5f9", transition: "background .1s", opacity: isDone ? 0.5 : 1, cursor: "pointer" }}
-                        onMouseEnter={e => e.currentTarget.style.background = "#fafbff"}
-                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                        <td style={{ padding: "10px 8px", textAlign: "center" }}>
-                          <div onClick={e => { e.stopPropagation(); toggleDone(t.TaskID); }}
-                            style={{ width: 20, height: 20, borderRadius: 6, border: isDone ? "none" : "2px solid #cbd5e1", background: isDone ? "#22c55e" : "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto", transition: "all .15s" }}>
-                            {isDone && <IconCheck size={13} color="#fff" sw={3} />}
-                          </div>
-                        </td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><span style={{ background: pc.bg, color: pc.text, padding: "2px 9px", borderRadius: 8, fontSize: 12, fontWeight: 600 }}>{t.Project}</span></td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontWeight: 500, textDecoration: isDone ? "line-through" : "none", color: isDone ? "#94a3b8" : "#1e293b" }}>{t.Task}</td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><PriorityDot priority={t.Priority} /></td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><TimeBadge time={t["Time Estimate"]} short /></td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: "#64748b" }}>{toDisplay(t["Due Date"]) || "—"}</td>
-                        <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><StatusBadge status={t.Status} /></td>
-                      </tr>
-                    );
-                  })}
-                  {filtered.length === 0 && (
-                    <tr><td colSpan={7} style={{ padding: 40, textAlign: "center", color: "#94a3b8" }}>No tasks found for this filter.</td></tr>
-                  )}
-                </tbody>
-              </table>
+            <div>
+              <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 10 }}>
+                <button onClick={() => setHideCompleted(!hideCompleted)} style={{ background: hideCompleted ? "#eef2ff" : "#f1f5f9", color: hideCompleted ? "#4f46e5" : "#64748b", border: "none", borderRadius: 8, padding: "5px 14px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6, transition: "all .15s" }}>
+                  <IconCheck size={13} /> {hideCompleted ? "Completed hidden" : "Showing completed"}
+                </button>
+              </div>
+              <div style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", overflow: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, minWidth: 740 }}>
+                  <thead>
+                    <tr style={{ background: "#f8f9fc" }}>
+                      <th style={{ width: 36, padding: "12px 4px" }}></th>
+                      <th style={{ width: 40, padding: "12px 8px" }}></th>
+                      {[["Project", 130], ["Task", null], ["Priority", 90], ["Time Estimate", 140], ["Due Date", 110], ["Status", 120]].map(([col, w]) => (
+                        <th key={col} onClick={() => handleSort(col)} style={{ padding: "12px 10px", textAlign: "left", fontWeight: 700, color: "#64748b", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", cursor: "pointer", userSelect: "none", whiteSpace: "nowrap", width: w || undefined }}>
+                          <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                            {col}{sortCol === col ? (sortDir === "asc" ? <IconChevronUp size={12} /> : <IconChevronDown size={12} />) : null}
+                          </span>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {starredFirst(hideCompleted ? filtered.filter(t => t.Status !== "Done") : filtered).map(t => {
+                      const pc = getProjectColor(t.Project || "");
+                      const isDone = t.Status === "Done";
+                      const isStar = !!starred[t.TaskID];
+                      return (
+                        <tr key={t.TaskID} style={{ borderTop: "1px solid #f1f5f9", transition: "background .1s", opacity: isDone ? 0.5 : 1, cursor: "pointer", background: isStar ? "#fffdf5" : "transparent" }}
+                          onMouseEnter={e => e.currentTarget.style.background = isStar ? "#fffbeb" : "#fafbff"}
+                          onMouseLeave={e => e.currentTarget.style.background = isStar ? "#fffdf5" : "transparent"}>
+                          <td style={{ padding: "10px 4px", textAlign: "center" }}>
+                            <div onClick={e => { e.stopPropagation(); toggleStar(t.TaskID); }} style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <IconStar size={15} color={isStar ? "#f59e0b" : "#d1d5db"} filled={isStar} />
+                            </div>
+                          </td>
+                          <td style={{ padding: "10px 8px", textAlign: "center" }}>
+                            <div onClick={e => { e.stopPropagation(); toggleDone(t.TaskID); }}
+                              style={{ width: 20, height: 20, borderRadius: 6, border: isDone ? "none" : "2px solid #cbd5e1", background: isDone ? "#22c55e" : "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto", transition: "all .15s" }}>
+                              {isDone && <IconCheck size={13} color="#fff" sw={3} />}
+                            </div>
+                          </td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><span style={{ background: pc.bg, color: pc.text, padding: "2px 9px", borderRadius: 8, fontSize: 12, fontWeight: 600 }}>{t.Project}</span></td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontWeight: 500, textDecoration: isDone ? "line-through" : "none", color: isDone ? "#94a3b8" : "#1e293b" }}>{t.Task}</td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><PriorityDot priority={t.Priority} /></td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><TimeBadge time={t["Time Estimate"]} short /></td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: "#64748b" }}>{toDisplay(t["Due Date"]) || "—"}</td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><StatusBadge status={t.Status} /></td>
+                        </tr>
+                      );
+                    })}
+                    {(hideCompleted ? filtered.filter(t => t.Status !== "Done") : filtered).length === 0 && (
+                      <tr><td colSpan={8} style={{ padding: 40, textAlign: "center", color: "#94a3b8" }}>No tasks found for this filter.</td></tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
 
@@ -535,7 +570,7 @@ function TaskManager() {
                       <span style={{ background: sc.bg, color: sc.text, padding: "1px 8px", borderRadius: 10, fontSize: 12, fontWeight: 700 }}>{cards.length}</span>
                     </div>
                     <div style={{ padding: 10 }}>
-                      {cards.map(t => <KanbanCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} />)}
+                      {starredFirst(cards).map(t => <KanbanCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} isStarred={!!starred[t.TaskID]} onToggleStar={toggleStar} />)}
                       {cards.length === 0 && <div style={{ padding: 20, textAlign: "center", color: "#cbd5e1", fontSize: 13 }}>No tasks</div>}
                     </div>
                   </div>
@@ -574,8 +609,8 @@ function TaskManager() {
                       <div style={{ padding: "0 18px 14px" }}>
                         <p style={{ fontSize: 12, color: "#92400e", margin: "0 0 10px", opacity: 0.8 }}>Add time estimates so they show up in the right bucket below.</p>
                         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                          {unest.slice(0, 10).map(t => (
-                            <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                          {starredFirst(unest).slice(0, 10).map(t => (
+                            <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} isStarred={!!starred[t.TaskID]} onToggleStar={toggleStar} />
                           ))}
                           {unest.length > 10 && <div style={{ textAlign: "center", fontSize: 12, color: "#92400e", padding: 6 }}>+ {unest.length - 10} more — click any task to add a time estimate</div>}
                         </div>
@@ -610,7 +645,7 @@ function TaskManager() {
                     </div>
                     {isOpen && (
                       <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 6 }}>
-                        {[...active].sort((a, b) => {
+                        {starredFirst([...active].sort((a, b) => {
                           if (focusSort === "dueDate") {
                             var da = a["Due Date"] || "9999", db = b["Due Date"] || "9999";
                             if (da < db) return -1; if (da > db) return 1;
@@ -619,11 +654,11 @@ function TaskManager() {
                           }
                           var po = { High: 0, Medium: 1, Low: 2, "": 3 };
                           return (po[a.Priority] !== undefined ? po[a.Priority] : 3) - (po[b.Priority] !== undefined ? po[b.Priority] : 3);
-                        }).map(t => (
-                          <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                        })).map(t => (
+                          <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} isStarred={!!starred[t.TaskID]} onToggleStar={toggleStar} />
                         ))}
-                        {done.map(t => (
-                          <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                        {starredFirst(done).map(t => (
+                          <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} isStarred={!!starred[t.TaskID]} onToggleStar={toggleStar} />
                         ))}
                       </div>
                     )}
@@ -659,7 +694,7 @@ function TaskManager() {
                       var b = buckets[key];
                       if (b.tasks.length === 0) return null;
                       var isOpen = !upcomingCollapsed[key];
-                      var sorted = sortUpcomingTasks(b.tasks);
+                      var sorted = starredFirst(sortUpcomingTasks(b.tasks));
                       return (
                         <div key={key} style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", overflow: "hidden" }}>
                           <div onClick={() => toggleUpcoming(key)} style={{ padding: "16px 18px", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", userSelect: "none", borderBottom: isOpen ? "1.5px solid #f8f9fc" : "none" }}>
@@ -683,7 +718,7 @@ function TaskManager() {
                           {isOpen && (
                             <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 6 }}>
                               {sorted.map(t => (
-                                <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} />
+                                <FocusCard key={t.TaskID} task={t} onClick={() => setModal({ mode: "edit", task: t })} onToggleDone={toggleDone} isStarred={!!starred[t.TaskID]} onToggleStar={toggleStar} />
                               ))}
                             </div>
                           )}
