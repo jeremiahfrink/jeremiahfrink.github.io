@@ -126,6 +126,11 @@ function toDisplay(d) {
 function normalizeTaskDates(tasks) {
   return tasks.map(t => ({ ...t, "Due Date": toInternal(t["Due Date"]) }));
 }
+function isOverdue(d) {
+  if (!d) return false;
+  var today = new Date().toISOString().slice(0, 10);
+  return d < today;
+}
 
 /* ---- Storage (localStorage) ---- */
 const STORAGE_KEY = "taskmanager-tasks-v2";
@@ -265,7 +270,7 @@ function KanbanCard({ task, onClick, isStarred, onToggleStar }) {
       <div style={{ fontSize: 13, fontWeight: 500, color: "#1e293b", lineHeight: 1.4, marginBottom: 6, textDecoration: isDone ? "line-through" : "none" }}>{task.Task}</div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>{task["Time Estimate"] && <TimeBadge time={task["Time Estimate"]} short />}</div>
-        {task["Due Date"] && <div style={{ fontSize: 11, color: "#94a3b8" }}>Due: {toDisplay(task["Due Date"])}</div>}
+        {task["Due Date"] && <div style={{ fontSize: 11, color: (task.Status !== "Done" && isOverdue(task["Due Date"])) ? "#dc2626" : "#94a3b8", fontWeight: (task.Status !== "Done" && isOverdue(task["Due Date"])) ? 700 : 400 }}>{(task.Status !== "Done" && isOverdue(task["Due Date"])) ? "Overdue: " : "Due: "}{toDisplay(task["Due Date"])}</div>}
       </div>
     </div>
   );
@@ -291,7 +296,7 @@ function FocusCard({ task, onClick, onToggleDone, isStarred, onToggleStar }) {
           <span style={{ background: pc.bg, color: pc.text, padding: "1px 7px", borderRadius: 6, fontSize: 11, fontWeight: 600 }}>{task.Project}</span>
           {task.Priority && <PriorityDot priority={task.Priority} />}
           <StatusBadge status={task.Status} />
-          {task["Due Date"] && <span style={{ fontSize: 11, color: "#94a3b8" }}>Due: {toDisplay(task["Due Date"])}</span>}
+          {task["Due Date"] && <span style={{ fontSize: 11, color: (task.Status !== "Done" && isOverdue(task["Due Date"])) ? "#dc2626" : "#94a3b8", fontWeight: (task.Status !== "Done" && isOverdue(task["Due Date"])) ? 700 : 400 }}>{(task.Status !== "Done" && isOverdue(task["Due Date"])) ? "Overdue: " : "Due: "}{toDisplay(task["Due Date"])}</span>}
         </div>
       </div>
     </div>
@@ -322,7 +327,7 @@ function TaskManager() {
   const [collapsed, setCollapsed] = useState({ "unestimated": true, "Quick (< 15 min)": true, "Short (< 1 hr)": true, "Medium (1-2 hrs)": true, "Long (2-4 hrs)": true });
   const [focusSort, setFocusSort] = useState("priority");
   const [upcomingSort, setUpcomingSort] = useState("priority");
-  const [upcomingCollapsed, setUpcomingCollapsed] = useState({ "todayTomorrow": false, "thisWeek": true, "nextFewWeeks": true, "later": true, "noDate": true });
+  const [upcomingCollapsed, setUpcomingCollapsed] = useState({ "overdue": false, "todayTomorrow": false, "thisWeek": true, "nextFewWeeks": true, "later": true, "noDate": true });
   const [starred, setStarred] = useState({});
   const [hideCompleted, setHideCompleted] = useState(true);
   const [noteOpen, setNoteOpen] = useState(false);
@@ -350,8 +355,8 @@ function TaskManager() {
 
   const activeTasks = useMemo(() => filtered.filter(t => t.Status !== "Done"), [filtered]);
   const stats = useMemo(() => {
-    const s = { total: filtered.length, done: 0, inProgress: 0, waiting: 0 };
-    filtered.forEach(t => { if (t.Status === "Done") s.done++; else if (t.Status === "In Progress") s.inProgress++; else if (t.Status === "Waiting") s.waiting++; });
+    const s = { total: filtered.length, done: 0, inProgress: 0, waiting: 0, overdue: 0 };
+    filtered.forEach(t => { if (t.Status === "Done") s.done++; else { if (t.Status === "In Progress") s.inProgress++; else if (t.Status === "Waiting") s.waiting++; if (isOverdue(t["Due Date"])) s.overdue++; } });
     return s;
   }, [filtered]);
 
@@ -372,9 +377,10 @@ function TaskManager() {
     var threeWeeksStr = threeWeeks.toISOString().slice(0, 10);
 
     var buckets = {
-      todayTomorrow: { label: "Today / Tomorrow", tasks: [], color: { bg: "#fee2e2", text: "#991b1b", dot: "#ef4444" } },
-      thisWeek: { label: "This Week", tasks: [], color: { bg: "#fef3c7", text: "#92400e", dot: "#f59e0b" } },
-      nextFewWeeks: { label: "Next Few Weeks", tasks: [], color: { bg: "#dbeafe", text: "#1e40af", dot: "#3b82f6" } },
+      overdue: { label: "Overdue", tasks: [], color: { bg: "#fee2e2", text: "#991b1b", dot: "#dc2626" } },
+      todayTomorrow: { label: "Today / Tomorrow", tasks: [], color: { bg: "#fef3c7", text: "#92400e", dot: "#f59e0b" } },
+      thisWeek: { label: "This Week", tasks: [], color: { bg: "#dbeafe", text: "#1e40af", dot: "#3b82f6" } },
+      nextFewWeeks: { label: "Next Few Weeks", tasks: [], color: { bg: "#e0e7ff", text: "#3730a3", dot: "#6366f1" } },
       later: { label: "Later", tasks: [], color: { bg: "#f1f5f9", text: "#475569", dot: "#94a3b8" } },
       noDate: { label: "No Date Set", tasks: [], color: { bg: "#f3e8ff", text: "#6b21a8", dot: "#a78bfa" } }
     };
@@ -382,6 +388,7 @@ function TaskManager() {
     taskList.forEach(function(t) {
       var d = t["Due Date"];
       if (!d) { buckets.noDate.tasks.push(t); }
+      else if (d < todayStr) { buckets.overdue.tasks.push(t); }
       else if (d <= tomStr) { buckets.todayTomorrow.tasks.push(t); }
       else if (d <= endOfWeekStr) { buckets.thisWeek.tasks.push(t); }
       else if (d <= threeWeeksStr) { buckets.nextFewWeeks.tasks.push(t); }
@@ -435,9 +442,14 @@ function TaskManager() {
     else setTasks(prev => prev.map(t => t.TaskID === form.TaskID ? form : t));
     setModal(null);
   }
-  function handleDelete(id) { setTasks(prev => prev.filter(t => t.TaskID !== id)); setModal(null); }
+  function handleDelete(id) { if (confirm("Delete this task? This can't be undone.")) { setTasks(prev => prev.filter(t => t.TaskID !== id)); setModal(null); } }
   function toggleDone(id) {
-    setTasks(prev => prev.map(t => t.TaskID === id ? { ...t, Status: t.Status === "Done" ? "Not Started" : "Done" } : t));
+    setTasks(prev => prev.map(t => {
+      if (t.TaskID !== id) return t;
+      var newStatus = t.Status === "Done" ? "Not Started" : "Done";
+      if (newStatus === "Done") { setStarred(prev => { var n = Object.assign({}, prev); delete n[id]; return n; }); }
+      return { ...t, Status: newStatus };
+    }));
   }
   function toggleStar(id) {
     setStarred(prev => { var n = Object.assign({}, prev); if (n[id]) delete n[id]; else n[id] = true; return n; });
@@ -481,16 +493,17 @@ function TaskManager() {
         <div style={{ padding: "16px 24px" }}>
           {/* Project pills + stats */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
-            <ProjectPill name="All" count={tasks.length} active={projectFilter === "All"} onClick={() => setProjectFilter("All")} />
+            <ProjectPill name="All" count={tasks.filter(t => t.Status !== "Done").length} active={projectFilter === "All"} onClick={() => setProjectFilter("All")} />
             {projects.map(p => (
-              <ProjectPill key={p} name={p} count={tasks.filter(t => t.Project === p).length} active={projectFilter === p} onClick={() => setProjectFilter(p)} />
+              <ProjectPill key={p} name={p} count={tasks.filter(t => t.Project === p && t.Status !== "Done").length} active={projectFilter === p} onClick={() => setProjectFilter(p)} />
             ))}
           </div>
           <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 16, display: "flex", gap: 16 }}>
-            <span>{stats.total} task{stats.total !== 1 ? "s" : ""}</span>
-            <span style={{ color: STATUS_COLORS["Done"].dot }}>✓ {stats.done} done</span>
+            <span>{stats.total - stats.done} active</span>
+            {stats.overdue > 0 && <span style={{ color: "#dc2626", fontWeight: 600 }}>! {stats.overdue} overdue</span>}
             <span style={{ color: STATUS_COLORS["In Progress"].dot }}>● {stats.inProgress} in progress</span>
             <span style={{ color: STATUS_COLORS["Waiting"].dot }}>● {stats.waiting} waiting</span>
+            <span style={{ color: STATUS_COLORS["Done"].dot }}>✓ {stats.done} done</span>
           </div>
 
           {/* LIST VIEW */}
@@ -540,7 +553,7 @@ function TaskManager() {
                           <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontWeight: 500, textDecoration: isDone ? "line-through" : "none", color: isDone ? "#94a3b8" : "#1e293b" }}>{t.Task}</td>
                           <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><PriorityDot priority={t.Priority} /></td>
                           <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><TimeBadge time={t["Time Estimate"]} short /></td>
-                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: "#64748b" }}>{toDisplay(t["Due Date"]) || "—"}</td>
+                          <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px", fontSize: 12, color: (t.Status !== "Done" && isOverdue(t["Due Date"])) ? "#dc2626" : "#64748b", fontWeight: (t.Status !== "Done" && isOverdue(t["Due Date"])) ? 700 : 400 }}>{toDisplay(t["Due Date"]) || "—"}{t.Status !== "Done" && isOverdue(t["Due Date"]) && " !"}</td>
                           <td onClick={() => setModal({ mode: "edit", task: t })} style={{ padding: "10px 10px" }}><StatusBadge status={t.Status} /></td>
                         </tr>
                       );
@@ -687,7 +700,7 @@ function TaskManager() {
               {(() => {
                 var buckets = getDateBuckets(filtered.filter(t => t.Status !== "Done"));
                 var doneTasks = filtered.filter(t => t.Status === "Done");
-                var bucketKeys = ["todayTomorrow", "thisWeek", "nextFewWeeks", "later", "noDate"];
+                var bucketKeys = ["overdue", "todayTomorrow", "thisWeek", "nextFewWeeks", "later", "noDate"];
                 return (
                   <>
                     {bucketKeys.map(key => {
