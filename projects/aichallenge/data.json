@@ -419,8 +419,8 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
-      "hold_reason": ""
+      "hold": false,
+      "hold_reason": "Requires log in"
     },
     "ISTE26AI104": {
       "id": "ISTE26AI104",
@@ -473,8 +473,8 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
-      "hold_reason": "No team story"
+      "hold": false,
+      "hold_reason": "no team story"
     },
     "ISTE26AI106": {
       "id": "ISTE26AI106",
@@ -638,7 +638,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI112": {
@@ -692,7 +692,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI114": {
@@ -747,7 +747,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI116": {
@@ -829,7 +829,7 @@
         "value": "AI Tools & Technologies Used:\nGoogle Antigravity (main code helper to create the app)\nChatGPT (helped with research and design)\nGemini (API)\nVercel (Helped make a link)\nGithub (Published code and uploaded to vercel)\nSupabase (For database)\nPlaylab AI (Helped students' study for tests, as a resource, so all the chatbots in there.)\n\nMy Email: sauhardhaishere@gmail.com"
       },
       "hold": true,
-      "hold_reason": ""
+      "hold_reason": "Requires log in"
     },
     "ISTE26AI119": {
       "id": "ISTE26AI119",
@@ -855,7 +855,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI120": {
@@ -884,7 +884,7 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "Verifying School"
+      "hold_reason": "school?"
     },
     "ISTE26AI121": {
       "id": "ISTE26AI121",
@@ -965,8 +965,8 @@
         "value": "https://docs.google.com/presentation/d/e/2PACX-1vR4HprobsKv0PE3rPFBwybQDGAeDulQ2Bb5rKd7wVp59Q-GeWl_1BxertaCMbjhk6gK0iHCSUgz4-2o/pub?start=false&loop=false&delayms=3000&slide=id.g23b4f27dd85_0_0",
         "password": ""
       },
-      "hold": true,
-      "hold_reason": "Verifying School"
+      "hold": false,
+      "hold_reason": "school- do not advance without ok from school"
     },
     "ISTE26AI124": {
       "id": "ISTE26AI124",
@@ -1102,7 +1102,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI129": {
@@ -1268,7 +1268,7 @@
         "extracted_url": "https://drive.google.com/drive/folders/1xYVuWQr_6CaLhMyhX3L58bnhgJT_rBlY?usp=drive_link",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI135": {
@@ -1295,7 +1295,7 @@
         "value": "https://www.dokie.ai/presentation/share/EA3PRjAdwPx9",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI136": {
@@ -1433,7 +1433,7 @@
         "value": "https://github.com/DaPraxis/streamlit_kepler_wildfire",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI141": {
@@ -1542,7 +1542,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI145": {
@@ -1652,7 +1652,7 @@
         "value": "https://drive.google.com/file/d/18WtpUvh2Ww8Eh3PiMoJVoDZB97V1qk7v/view?usp=sharing",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI149": {
@@ -1788,7 +1788,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI154": {
@@ -1815,7 +1815,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI155": {
@@ -1870,7 +1870,7 @@
         "value": "https://drive.google.com/file/d/1wioBinE_0u-Eb_KcGI0I0nBR8IxoSBUU/view?usp=sharing",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI157": {
@@ -2063,7 +2063,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI164": {
@@ -2144,7 +2144,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI167": {
@@ -2199,7 +2199,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI169": {
@@ -2363,7 +2363,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI175": {
@@ -2390,7 +2390,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI176": {
@@ -2498,7 +2498,7 @@
         "value": "Local file (not accessible online)"
       },
       "hold": true,
-      "hold_reason": "Files are on local drive"
+      "hold_reason": "files are on local drive"
     },
     "ISTE26AI180": {
       "id": "ISTE26AI180",
@@ -2579,7 +2579,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI183": {
@@ -2606,7 +2606,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI184": {
@@ -2743,7 +2743,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI189": {
@@ -2770,7 +2770,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI190": {
@@ -2880,7 +2880,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI194": {
@@ -2908,7 +2908,7 @@
         "value": "https://drive.google.com/file/d/17X7y2hY2FIElgDSqtswniWiBnsJ3BBLg/view?usp=sharing\nhttps://docs.google.com/document/d/1cU7Epw8zVre594kQnNcX-FhGLc3yifHPD_56bmwGL8k/edit?usp=sharing\nhttps://docs.google.com/document/d/1f8HC2gmbHxxnibFYcT-ch3yseOz3AHX8sDg70CnbTtg/edit?usp=sharing",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI195": {
@@ -3098,7 +3098,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI202": {
@@ -3152,7 +3152,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI204": {
@@ -3180,7 +3180,7 @@
         "value": "https://drive.google.com/drive/folders/1h07JBax57VzRST8f6J7XjJdv9JRaTIVq?usp=drive_link",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI205": {
@@ -3288,7 +3288,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI209": {
@@ -3343,7 +3343,7 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": "Verifying school"
+      "hold_reason": "School name"
     },
     "ISTE26AI211": {
       "id": "ISTE26AI211",
@@ -3398,7 +3398,7 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "Missing Link"
+      "hold_reason": ""
     },
     "ISTE26AI213": {
       "id": "ISTE26AI213",
@@ -3482,7 +3482,7 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "Missing Link"
+      "hold_reason": ""
     },
     "ISTE26AI216": {
       "id": "ISTE26AI216",
