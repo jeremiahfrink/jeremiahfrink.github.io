@@ -366,7 +366,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI102": {
       "id": "ISTE26AI102",
@@ -393,7 +394,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI103": {
       "id": "ISTE26AI103",
@@ -420,7 +422,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": "Requires log in"
+      "hold_reason": "Requires log in",
+      "judged_by": [
+        "AI26YYHJ"
+      ]
     },
     "ISTE26AI104": {
       "id": "ISTE26AI104",
@@ -447,7 +452,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI105": {
       "id": "ISTE26AI105",
@@ -474,7 +480,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": "no team story"
+      "hold_reason": "no team story",
+      "judged_by": [
+        "AI26KQ5Z"
+      ]
     },
     "ISTE26AI106": {
       "id": "ISTE26AI106",
@@ -502,7 +511,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI107": {
       "id": "ISTE26AI107",
@@ -529,7 +539,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI267RSA",
+        "AI26R7JP"
+      ]
     },
     "ISTE26AI108": {
       "id": "ISTE26AI108",
@@ -557,7 +571,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI109": {
       "id": "ISTE26AI109",
@@ -585,7 +600,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI110": {
       "id": "ISTE26AI110",
@@ -613,7 +629,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI111": {
       "id": "ISTE26AI111",
@@ -640,7 +657,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI112": {
       "id": "ISTE26AI112",
@@ -667,7 +685,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": "school?"
+      "hold_reason": "school?",
+      "judged_by": [
+        "AI26R7JR",
+        "AI26S33U"
+      ]
     },
     "ISTE26AI113": {
       "id": "ISTE26AI113",
@@ -694,7 +716,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI114": {
       "id": "ISTE26AI114",
@@ -722,7 +745,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26Q884"
+      ]
     },
     "ISTE26AI115": {
       "id": "ISTE26AI115",
@@ -749,7 +775,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26AAU7"
+      ]
     },
     "ISTE26AI116": {
       "id": "ISTE26AI116",
@@ -776,7 +805,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26C2IW"
+      ]
     },
     "ISTE26AI117": {
       "id": "ISTE26AI117",
@@ -803,7 +835,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI118": {
       "id": "ISTE26AI118",
@@ -831,7 +864,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "Requires log in"
+      "hold_reason": "Requires log in",
+      "judged_by": []
     },
     "ISTE26AI119": {
       "id": "ISTE26AI119",
@@ -858,7 +892,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI120": {
       "id": "ISTE26AI120",
@@ -886,7 +921,8 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "school?"
+      "hold_reason": "school?",
+      "judged_by": []
     },
     "ISTE26AI121": {
       "id": "ISTE26AI121",
@@ -913,7 +949,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI122": {
       "id": "ISTE26AI122",
@@ -940,7 +977,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI123": {
       "id": "ISTE26AI123",
@@ -968,7 +1006,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "school- do not advance without ok from school"
+      "hold_reason": "school- do not advance without ok from school",
+      "judged_by": []
     },
     "ISTE26AI124": {
       "id": "ISTE26AI124",
@@ -996,7 +1035,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "In spanish- need to swap"
+      "hold_reason": "In spanish- need to swap",
+      "judged_by": []
     },
     "ISTE26AI125": {
       "id": "ISTE26AI125",
@@ -1024,7 +1064,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26OPOC"
+      ]
     },
     "ISTE26AI126": {
       "id": "ISTE26AI126",
@@ -1051,7 +1094,8 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI127": {
       "id": "ISTE26AI127",
@@ -1078,7 +1122,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI128": {
       "id": "ISTE26AI128",
@@ -1105,7 +1150,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI129": {
       "id": "ISTE26AI129",
@@ -1132,7 +1178,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26YYHJ"
+      ]
     },
     "ISTE26AI130": {
       "id": "ISTE26AI130",
@@ -1159,7 +1208,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI131": {
       "id": "ISTE26AI131",
@@ -1187,7 +1237,8 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "Links not working"
+      "hold_reason": "Links not working",
+      "judged_by": []
     },
     "ISTE26AI132": {
       "id": "ISTE26AI132",
@@ -1214,7 +1265,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26ES1V",
+        "AI26R7JP"
+      ]
     },
     "ISTE26AI133": {
       "id": "ISTE26AI133",
@@ -1242,7 +1297,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI134": {
       "id": "ISTE26AI134",
@@ -1271,7 +1327,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI135": {
       "id": "ISTE26AI135",
@@ -1298,7 +1355,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI136": {
       "id": "ISTE26AI136",
@@ -1326,7 +1384,8 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI137": {
       "id": "ISTE26AI137",
@@ -1353,7 +1412,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26R7JR"
+      ]
     },
     "ISTE26AI138": {
       "id": "ISTE26AI138",
@@ -1381,7 +1443,11 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI2663L7",
+        "AI26S33U"
+      ]
     },
     "ISTE26AI139": {
       "id": "ISTE26AI139",
@@ -1409,7 +1475,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26Q884"
+      ]
     },
     "ISTE26AI140": {
       "id": "ISTE26AI140",
@@ -1436,7 +1505,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI141": {
       "id": "ISTE26AI141",
@@ -1463,7 +1533,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26C2IW",
+        "AI26AAU7"
+      ]
     },
     "ISTE26AI142": {
       "id": "ISTE26AI142",
@@ -1491,7 +1565,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI143": {
       "id": "ISTE26AI143",
@@ -1518,7 +1593,8 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": "Drive fodlers not accessble"
+      "hold_reason": "Drive fodlers not accessble",
+      "judged_by": []
     },
     "ISTE26AI144": {
       "id": "ISTE26AI144",
@@ -1545,7 +1621,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI145": {
       "id": "ISTE26AI145",
@@ -1572,7 +1649,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI146": {
       "id": "ISTE26AI146",
@@ -1599,7 +1677,8 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": "Incomplete pitch video"
+      "hold_reason": "Incomplete pitch video",
+      "judged_by": []
     },
     "ISTE26AI147": {
       "id": "ISTE26AI147",
@@ -1627,7 +1706,8 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI148": {
       "id": "ISTE26AI148",
@@ -1655,7 +1735,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI149": {
       "id": "ISTE26AI149",
@@ -1682,7 +1763,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26Q1GZ",
+        "AI265ET2"
+      ]
     },
     "ISTE26AI150": {
       "id": "ISTE26AI150",
@@ -1709,7 +1794,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26OPOC",
+        "AI26S8F4"
+      ]
     },
     "ISTE26AI151": {
       "id": "ISTE26AI151",
@@ -1736,7 +1825,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI152": {
       "id": "ISTE26AI152",
@@ -1764,7 +1854,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "Google Drive Access"
+      "hold_reason": "Google Drive Access",
+      "judged_by": []
     },
     "ISTE26AI153": {
       "id": "ISTE26AI153",
@@ -1791,7 +1882,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI154": {
       "id": "ISTE26AI154",
@@ -1818,7 +1910,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26YYHJ"
+      ]
     },
     "ISTE26AI155": {
       "id": "ISTE26AI155",
@@ -1845,7 +1940,8 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI156": {
       "id": "ISTE26AI156",
@@ -1873,7 +1969,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI157": {
       "id": "ISTE26AI157",
@@ -1900,7 +1997,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26ES1V",
+        "AI26POVR"
+      ]
     },
     "ISTE26AI158": {
       "id": "ISTE26AI158",
@@ -1929,7 +2030,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26R7JP"
+      ]
     },
     "ISTE26AI159": {
       "id": "ISTE26AI159",
@@ -1957,7 +2061,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI160": {
       "id": "ISTE26AI160",
@@ -1984,7 +2089,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI161": {
       "id": "ISTE26AI161",
@@ -2012,7 +2118,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI162": {
       "id": "ISTE26AI162",
@@ -2039,7 +2146,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI163": {
       "id": "ISTE26AI163",
@@ -2066,7 +2174,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26R7JR"
+      ]
     },
     "ISTE26AI164": {
       "id": "ISTE26AI164",
@@ -2093,7 +2204,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI2663L7"
+      ]
     },
     "ISTE26AI165": {
       "id": "ISTE26AI165",
@@ -2120,7 +2234,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26Q884"
+      ]
     },
     "ISTE26AI166": {
       "id": "ISTE26AI166",
@@ -2147,7 +2264,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26AAU7"
+      ]
     },
     "ISTE26AI167": {
       "id": "ISTE26AI167",
@@ -2175,7 +2295,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26C2IW"
+      ]
     },
     "ISTE26AI168": {
       "id": "ISTE26AI168",
@@ -2202,7 +2325,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI169": {
       "id": "ISTE26AI169",
@@ -2229,7 +2353,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26SDY7"
+      ]
     },
     "ISTE26AI170": {
       "id": "ISTE26AI170",
@@ -2256,7 +2383,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI171": {
       "id": "ISTE26AI171",
@@ -2284,7 +2412,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI172": {
       "id": "ISTE26AI172",
@@ -2312,7 +2441,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI173": {
       "id": "ISTE26AI173",
@@ -2339,7 +2469,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI174": {
       "id": "ISTE26AI174",
@@ -2366,7 +2497,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI175": {
       "id": "ISTE26AI175",
@@ -2393,7 +2525,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26S8F4"
+      ]
     },
     "ISTE26AI176": {
       "id": "ISTE26AI176",
@@ -2420,7 +2555,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI177": {
       "id": "ISTE26AI177",
@@ -2448,7 +2584,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI178": {
       "id": "ISTE26AI178",
@@ -2475,7 +2612,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI179": {
       "id": "ISTE26AI179",
@@ -2500,7 +2638,8 @@
         "value": "Local file (not accessible online)"
       },
       "hold": true,
-      "hold_reason": "files are on local drive"
+      "hold_reason": "files are on local drive",
+      "judged_by": []
     },
     "ISTE26AI180": {
       "id": "ISTE26AI180",
@@ -2527,7 +2666,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26YYHJ"
+      ]
     },
     "ISTE26AI181": {
       "id": "ISTE26AI181",
@@ -2555,7 +2697,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI182": {
       "id": "ISTE26AI182",
@@ -2582,7 +2725,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI183": {
       "id": "ISTE26AI183",
@@ -2609,7 +2753,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26ES1V",
+        "AI26R7JP"
+      ]
     },
     "ISTE26AI184": {
       "id": "ISTE26AI184",
@@ -2637,7 +2785,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI185": {
       "id": "ISTE26AI185",
@@ -2664,7 +2813,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI186": {
       "id": "ISTE26AI186",
@@ -2692,7 +2842,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI187": {
       "id": "ISTE26AI187",
@@ -2719,7 +2870,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI188": {
       "id": "ISTE26AI188",
@@ -2746,7 +2898,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26R7JR"
+      ]
     },
     "ISTE26AI189": {
       "id": "ISTE26AI189",
@@ -2773,7 +2928,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI190": {
       "id": "ISTE26AI190",
@@ -2800,7 +2956,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26Q884"
+      ]
     },
     "ISTE26AI191": {
       "id": "ISTE26AI191",
@@ -2828,7 +2987,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI192": {
       "id": "ISTE26AI192",
@@ -2856,7 +3016,11 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26C2IW",
+        "AI26AAU7"
+      ]
     },
     "ISTE26AI193": {
       "id": "ISTE26AI193",
@@ -2883,7 +3047,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI194": {
       "id": "ISTE26AI194",
@@ -2911,7 +3076,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI195": {
       "id": "ISTE26AI195",
@@ -2938,7 +3104,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26SDY7"
+      ]
     },
     "ISTE26AI196": {
       "id": "ISTE26AI196",
@@ -2965,7 +3134,8 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": "Can't log in"
+      "hold_reason": "Can't log in",
+      "judged_by": []
     },
     "ISTE26AI197": {
       "id": "ISTE26AI197",
@@ -2992,7 +3162,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI198": {
       "id": "ISTE26AI198",
@@ -3019,7 +3190,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI199": {
       "id": "ISTE26AI199",
@@ -3046,7 +3218,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI200": {
       "id": "ISTE26AI200",
@@ -3074,7 +3247,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI201": {
       "id": "ISTE26AI201",
@@ -3101,7 +3275,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26S8F4",
+        "AI26OPOC"
+      ]
     },
     "ISTE26AI202": {
       "id": "ISTE26AI202",
@@ -3128,7 +3306,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI203": {
       "id": "ISTE26AI203",
@@ -3155,7 +3334,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI204": {
       "id": "ISTE26AI204",
@@ -3183,7 +3363,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI205": {
       "id": "ISTE26AI205",
@@ -3210,7 +3391,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26YYHJ"
+      ]
     },
     "ISTE26AI206": {
       "id": "ISTE26AI206",
@@ -3237,7 +3421,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI207": {
       "id": "ISTE26AI207",
@@ -3264,7 +3449,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI208": {
       "id": "ISTE26AI208",
@@ -3291,7 +3477,11 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26ES1V",
+        "AI26POVR"
+      ]
     },
     "ISTE26AI209": {
       "id": "ISTE26AI209",
@@ -3318,7 +3508,10 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26R7JP"
+      ]
     },
     "ISTE26AI210": {
       "id": "ISTE26AI210",
@@ -3345,7 +3538,8 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": "School name"
+      "hold_reason": "School name",
+      "judged_by": []
     },
     "ISTE26AI211": {
       "id": "ISTE26AI211",
@@ -3372,7 +3566,8 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI212": {
       "id": "ISTE26AI212",
@@ -3400,7 +3595,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI213": {
       "id": "ISTE26AI213",
@@ -3428,7 +3624,8 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI214": {
       "id": "ISTE26AI214",
@@ -3456,7 +3653,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26R7JR"
+      ]
     },
     "ISTE26AI215": {
       "id": "ISTE26AI215",
@@ -3484,7 +3684,8 @@
         "password": "StudentsofHawaii"
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     },
     "ISTE26AI216": {
       "id": "ISTE26AI216",
@@ -3512,7 +3713,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26Q884"
+      ]
     },
     "ISTE26AI217": {
       "id": "ISTE26AI217",
@@ -3540,7 +3744,10 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": [
+        "AI26AAU7"
+      ]
     },
     "ISTE26AI218": {
       "id": "ISTE26AI218",
@@ -3568,7 +3775,8 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "Can't access the Gem or the Pitch Video"
+      "hold_reason": "Can't access the Gem or the Pitch Video",
+      "judged_by": []
     },
     "ISTE26AI219": {
       "id": "ISTE26AI219",
@@ -3596,7 +3804,9 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "",
+      "judged_by": []
     }
-  }
+  },
+  "data_as_of": "March 28, 2026"
 }
