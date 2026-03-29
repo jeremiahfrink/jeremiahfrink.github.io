@@ -497,10 +497,11 @@
         "password": ""
       },
       "additional_artifact": {
-        "type": "empty",
-        "value": ""
+        "type": "url",
+        "value": "https://agathon.app/signup and enter your code \"ISTE-ASCD\"",
+        "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI107": {
@@ -825,10 +826,11 @@
         "password": ""
       },
       "additional_artifact": {
-        "type": "text",
-        "value": "AI Tools & Technologies Used:\nGoogle Antigravity (main code helper to create the app)\nChatGPT (helped with research and design)\nGemini (API)\nVercel (Helped make a link)\nGithub (Published code and uploaded to vercel)\nSupabase (For database)\nPlaylab AI (Helped students' study for tests, as a resource, so all the chatbots in there.)\n\nMy Email: sauhardhaishere@gmail.com"
+        "type": "note",
+        "value": "Requires to create a login- this can be generic email though",
+        "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Requires log in"
     },
     "ISTE26AI119": {
@@ -994,7 +996,7 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "In spanish- need to swap"
     },
     "ISTE26AI125": {
       "id": "ISTE26AI125",
@@ -1184,8 +1186,8 @@
         "value": "https://ecosimv3.edu/prototype",
         "password": ""
       },
-      "hold": false,
-      "hold_reason": ""
+      "hold": true,
+      "hold_reason": "Links not working"
     },
     "ISTE26AI132": {
       "id": "ISTE26AI132",
@@ -1515,8 +1517,8 @@
         "type": "empty",
         "value": ""
       },
-      "hold": false,
-      "hold_reason": ""
+      "hold": true,
+      "hold_reason": "Drive fodlers not accessble"
     },
     "ISTE26AI144": {
       "id": "ISTE26AI144",
@@ -1596,8 +1598,8 @@
         "type": "empty",
         "value": ""
       },
-      "hold": false,
-      "hold_reason": ""
+      "hold": true,
+      "hold_reason": "Incomplete pitch video"
     },
     "ISTE26AI147": {
       "id": "ISTE26AI147",
@@ -1713,7 +1715,7 @@
       "id": "ISTE26AI151",
       "project_name": "IntelliVax",
       "team_name": "Vaccine Innovators",
-      "ai_tools_used": "",
+      "ai_tools_used": "TensorFlow",
       "pitch_video": {
         "type": "url",
         "value": "https://drive.google.com/file/d/1gJHppnkOqXNNRmW_Z4OB9AGFoIlW99ld/view?usp=sharing",
@@ -1726,14 +1728,14 @@
       },
       "digital_product": {
         "type": "url",
-        "value": "https://ai-horizons-ptdcjxssh-pranavphes-projects.vercel.app/viroseek",
+        "value": "https://ai-horizons-wheat.vercel.app/",
         "password": ""
       },
       "additional_artifact": {
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI152": {
@@ -1762,7 +1764,7 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": ""
+      "hold_reason": "Google Drive Access"
     },
     "ISTE26AI153": {
       "id": "ISTE26AI153",
@@ -2409,15 +2411,15 @@
         "password": ""
       },
       "digital_product": {
-        "type": "note",
-        "value": "The project is an IoT system, so the software component that complements the hardware can only be accessed through an IP address that is specific to the userâ€™s Wi-Fi network.",
+        "type": "url",
+        "value": "https://drive.google.com/drive/folders/1hE5eBYKo-UBo774QepQBFAgzrXFOCf1M?usp=sharing",
         "password": ""
       },
       "additional_artifact": {
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI177": {
@@ -2465,14 +2467,14 @@
       },
       "digital_product": {
         "type": "url",
-        "value": "https://kyelolololo.itch.io/questelligence",
+        "value": "https://drive.google.com/drive/folders/147Xnv6WIobPH46s-s1Co7R-SP6E4nEzh",
         "password": ""
       },
       "additional_artifact": {
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI179": {
@@ -2963,7 +2965,7 @@
         "value": ""
       },
       "hold": true,
-      "hold_reason": ""
+      "hold_reason": "Can't log in"
     },
     "ISTE26AI197": {
       "id": "ISTE26AI197",
@@ -3234,7 +3236,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI207": {
@@ -3383,8 +3385,8 @@
         "password": ""
       },
       "team_story": {
-        "type": "note",
-        "value": "(No hyperlink in PDF)",
+        "type": "url",
+        "value": "https://www.youtube.com/watch?v=EiAQ83HZhr0",
         "password": ""
       },
       "digital_product": {
@@ -3397,7 +3399,7 @@
         "value": "https://drive.google.com/file/d/18WtpUvh2Ww8Eh3PiMoJVoDZB97V1qk7v/view?usp=sharing",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI213": {
@@ -3472,16 +3474,16 @@
         "password": ""
       },
       "digital_product": {
-        "type": "note",
-        "value": "(No hyperlink in PDF; Password: \"StudentsofHawaii\")",
-        "password": "StudentsofHawaii"
+        "type": "url",
+        "value": "https://claude.ai/public/artifacts/8554de9e-1e47-499f-bcde-75bbff7dd4be",
+        "password": ""
       },
       "additional_artifact": {
         "type": "note",
-        "value": "(No hyperlink in PDF; noted as Instructional Video)",
-        "password": ""
+        "value": "ADMIN Password: StudentsofHawaii",
+        "password": "StudentsofHawaii"
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": ""
     },
     "ISTE26AI216": {
@@ -3565,8 +3567,8 @@
         "value": "https://drive.google.com/file/d/17Cg8izKAUw0R5B01IxdcWduc-XMWZswN/view?usp=sharing",
         "password": ""
       },
-      "hold": false,
-      "hold_reason": ""
+      "hold": true,
+      "hold_reason": "Can't access the Gem or the Pitch Video"
     },
     "ISTE26AI219": {
       "id": "ISTE26AI219",
