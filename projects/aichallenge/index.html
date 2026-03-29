@@ -287,6 +287,42 @@
     margin-top: 0.15rem;
   }
 
+  /* Judging status badges */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    margin-top: 0.25rem;
+  }
+  .status-judged {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #A5D6A7;
+  }
+  .status-not-judged {
+    background: #FFF8E1;
+    color: #F57F17;
+    border: 1px solid #FFD54F;
+  }
+  .as-of-date {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .judge-progress {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .judge-progress strong {
+    color: var(--iste-green);
+  }
+
   /* HOLD banner */
   .hold-banner {
     background: var(--hold-bg);
@@ -419,76 +455,7 @@
     font-size: 0.8rem;
     color: var(--text-muted);
   }
-/* ── INSTRUCTIONS PANEL ── */
-  .instructions-panel {
-    max-width: 720px;
-    margin: -1.5rem auto 1.5rem;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 10;
-  }
-  .instructions-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    padding: 1.75rem 2rem;
-    border-top: 4px solid var(--iste-accent);
-  }
-  .instructions-card > p {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.75rem;
-    line-height: 1.65;
-  }
-  .instructions-card > p:first-child {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-  }
-  .instructions-card h3 {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--iste-blue);
-    margin: 1rem 0 0.5rem;
-  }
-  .instructions-card ul {
-    padding-left: 1.25rem;
-    margin: 0 0 0.5rem;
-  }
-  .instructions-card li {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.45rem;
-    line-height: 1.6;
-  }
-  .instructions-card ul ul {
-    margin-top: 0.4rem;
-  }
-  .instructions-card ul ul li {
-    font-size: 0.87rem;
-  }
-  .instructions-card a {
-    color: var(--iste-teal);
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .instructions-card a:hover {
-    text-decoration: underline;
-    color: var(--iste-blue);
-  }
-  .instructions-card .doc-link {
-    background: #E0F2F1;
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
-  }
-  .contact-line {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border-light);
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .field-row { flex-direction: column; gap: 0.2rem; }
@@ -505,31 +472,6 @@
   <h1 class="header-title">AI Innovator Challenge</h1>
   <p class="header-subtitle">Judge Review Portal — 2026</p>
 </header>
-
-<section class="instructions-panel">
-  <div class="instructions-card">
-    <p>You have been assigned student projects to review. Please enter your Judge ID that was included in your email for this phase.</p>
-    <p>For each project, you'll watch a short video, review the product(s) created with AI, and complete a scoring form.</p>
-
-    <h3>Key Information</h3>
-    <ul>
-      <li><strong>Deadline:</strong> Please complete all judging by <strong>8:00 PM Eastern Time on Friday, April 3</strong>.</li>
-<li><strong>Process:</strong> Please use the <a class="doc-link" href="https://docs.google.com/document/d/1_caW2tfZByMoBAxQEFLg-bmfkJ60Rpa4FFjZP1csD1Y/edit?tab=t.4s8e8k3efxsm" target="_blank">2026 Judging Process</a>.</li>
-      <li><strong>Guidance:</strong> Please refer to the <a class="doc-link" href="https://drive.google.com/file/d/1Sd1olx-enAcwP7a68vCH9Zw_Sq4fU1L3/view?usp=sharing" target="_blank">the Rubric</a> document for scoring criteria and expectations before completing the <a class="doc-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeOTuz2atzjEqdZKY4SkEUnQN1ltzpPwA_OBROmOZovbeT74A/viewform?usp=publish-editor" target="_blank">AI Innovator Challenge 2026 - Judging Form</a> for each project.</li>
-      <li><strong>Judges are encouraged to:</strong>
-        <ul>
-          <li>Approach the evaluation with a mindset that recognizes innovation, rewards effort, and promotes a forward-thinking attitude among participants</li>
-          <li>Focus on the preponderance of evidence that you can see in the products and videos that are submitted, not what you think they intended</li>
-          <li>Remember that part of this work is their ability to communicate effectively</li>
-        </ul>
-      </li>
-    </ul>
-
-    <div class="contact-line">
-      Questions or concerns? Reach out to <a href="mailto:generationai@iste.org">generationai@iste.org</a>
-    </div>
-  </div>
-</section>
 
 <section class="login-section" id="loginSection">
   <div class="login-card">
@@ -548,8 +490,12 @@
     <div class="judge-bar-info">
       <span class="judge-id-pill" id="judgeIdDisplay"></span>
       <span class="judge-count"><strong id="projectCount">0</strong> projects assigned</span>
+      <span class="judge-progress" id="judgeProgress"></span>
     </div>
-    <button class="btn-logout" onclick="logout()">Change Judge</button>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;">
+      <button class="btn-logout" onclick="logout()">Change Judge</button>
+      <span class="as-of-date" id="asOfDate"></span>
+    </div>
   </div>
 </section>
 
@@ -610,7 +556,21 @@ function loadAssignments() {
   document.getElementById('judgeIdDisplay').textContent = judgeId;
   document.getElementById('projectCount').textContent = projectIds.length;
 
-  renderProjects(projectIds);
+  // Show as-of date
+  if (DATA.data_as_of) {
+    document.getElementById('asOfDate').textContent = 'Judging status as of ' + DATA.data_as_of;
+  }
+
+  // Calculate and show progress
+  let judgedCount = 0;
+  for (const pid of projectIds) {
+    const p = DATA.projects[pid];
+    if (p && p.judged_by && p.judged_by.includes(judgeId)) judgedCount++;
+  }
+  document.getElementById('judgeProgress').innerHTML =
+    '<strong>' + judgedCount + '</strong> of ' + projectIds.length + ' judged';
+
+  renderProjects(projectIds, judgeId);
 }
 
 function renderUrlField(obj) {
@@ -660,7 +620,7 @@ function renderUrlField(obj) {
   return escapeHtml(obj.value);
 }
 
-function renderProjects(projectIds) {
+function renderProjects(projectIds, judgeId) {
   const container = document.getElementById('projectsContainer');
   container.innerHTML = '';
 
@@ -669,6 +629,7 @@ function renderProjects(projectIds) {
     if (!p) continue;
 
     const isHold = p.hold;
+    const isJudged = p.judged_by && p.judged_by.includes(judgeId);
     const card = document.createElement('div');
     card.className = 'project-card' + (isHold ? ' on-hold' : '');
 
@@ -684,6 +645,10 @@ function renderProjects(projectIds) {
         </div>`;
     }
 
+    const statusHtml = isJudged
+      ? '<span class="status-badge status-judged">✓ Judged</span>'
+      : '<span class="status-badge status-not-judged">○ Not Yet Judged</span>';
+
     card.innerHTML = `
       <div class="card-header">
         <div class="card-header-left">
@@ -691,6 +656,7 @@ function renderProjects(projectIds) {
           <div class="project-name">${escapeHtml(p.project_name)}</div>
           <div class="team-name">${escapeHtml(p.team_name)}</div>
         </div>
+        ${statusHtml}
       </div>
       ${holdHtml}
       <div class="card-body">
