@@ -740,6 +740,42 @@ body {
   color: var(--ink-soft);
 }
 
+/* Resource inline links */
+.resource-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  transition: all 0.15s ease;
+}
+
+.resource-link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+  border-bottom-style: solid;
+}
+
+/* Timeline resource tag links */
+a.tl-resource-tag-link {
+  text-decoration: none;
+}
+
+a.tl-resource-tag-link .tl-resource-tag {
+  cursor: pointer;
+}
+
+a.tl-resource-tag-link:hover .tl-resource-tag {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+a.tl-resource-tag-link:hover .tl-resource-tag.not-ready {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+a.tl-resource-tag-link:hover .tl-resource-tag.ready {
+  border-color: #1B6E3D;
+}
+
 /* Stage divider line between steps */
 .wf-steps-connector {
   width: 2px;
@@ -1354,21 +1390,58 @@ body {
 /* ============================================================
    RESOURCE READINESS STATUS
    ============================================================
-   Loaded from browser localStorage. Updated via the admin panel.
+   DEFAULT_RESOURCE_STATUS: Baked-in defaults. Set true here for
+   resources that are known-ready. Everyone sees these.
+   
+   localStorage overrides: Personal additions from the admin panel.
+   These layer on top of the defaults.
    ============================================================ */
 const STORAGE_KEY = 'aiready_resource_status';
 
+const DEFAULT_RESOURCE_STATUS = {
+  // Set any known-ready resources to true here.
+  // Example:
+  // "Master district list/tracker": true,
+  // "presentation deck": true,
+};
+
+/* ============================================================
+   RESOURCE LINKS
+   ============================================================
+   Map resource names to URLs. Only resources with links need
+   to be listed. Unlisted resources render as plain text.
+   ============================================================ */
+const RESOURCE_LINKS = {
+  // Add links as they become available. Examples:
+  // "District participation form": "https://forms.google.com/...",
+  // "Outreach toolkit": "https://drive.google.com/...",
+  // "PM tracker": "https://docs.google.com/spreadsheets/d/...",
+};
+
 function loadResourceStatus() {
+  // Start with baked-in defaults
+  const merged = Object.assign({}, DEFAULT_RESOURCE_STATUS);
+  // Layer on localStorage overrides
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const overrides = JSON.parse(saved);
+      Object.assign(merged, overrides);
+    }
   } catch(e) {}
-  return {};
+  return merged;
 }
 
 function saveResourceStatus() {
+  // Only save the differences from defaults (the personal overrides)
+  const overrides = {};
+  for (const key in RESOURCE_STATUS) {
+    if (RESOURCE_STATUS[key] !== DEFAULT_RESOURCE_STATUS[key]) {
+      overrides[key] = RESOURCE_STATUS[key];
+    }
+  }
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(RESOURCE_STATUS));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(overrides));
   } catch(e) {}
 }
 
@@ -1378,7 +1451,7 @@ const WORKFLOW_DATA = {
   stages: [
     {
       id: 1,
-      name: "Identifying and Outreach",
+      name: "Targeting and Outreach",
       color: "#2D6A4F",
       colorLight: "#D8F3DC",
       timing: "Now",
@@ -1553,7 +1626,7 @@ const WORKFLOW_DATA = {
     },
     {
       id: 5,
-      name: "Educator and School Leader Identification",
+      name: "Educator and Leader Collection",
       color: "#C4302B",
       colorLight: "#FADBD8",
       timing: "Apr 1–6, 2026",
@@ -1801,6 +1874,24 @@ function countUniqueResources() {
   return resources.size;
 }
 
+// Render a resource name as a link if one exists, otherwise plain text
+function resourceAsInlineLink(name) {
+  const url = RESOURCE_LINKS[name];
+  if (url) {
+    return `<a href="${url}" target="_blank" rel="noopener" class="resource-link">${name}</a>`;
+  }
+  return name;
+}
+
+// Convert a comma-separated resources string to inline text with links
+function resourcesInlineLinked(resourceStr) {
+  return resourceStr.split(',').map(r => {
+    const trimmed = r.trim();
+    if (!trimmed) return '';
+    return resourceAsInlineLink(trimmed);
+  }).filter(Boolean).join(', ');
+}
+
 // ============================================================
 // RENDER: OVERVIEW VIEW
 // ============================================================
@@ -1878,7 +1969,7 @@ function renderWorkflow() {
               </div>
               <div class="wf-step-field">
                 <div class="wf-step-field-label">Resources Needed</div>
-                <div class="wf-step-field-value">${step.resources}</div>
+                <div class="wf-step-field-value">${resourcesInlineLinked(step.resources)}</div>
               </div>
               <div class="wf-step-field">
                 <div class="wf-step-field-label">Timing</div>
@@ -2054,7 +2145,11 @@ function renderTimeline() {
                 const isReady = RESOURCE_STATUS[r] === true;
                 const cls = isReady ? 'ready' : 'not-ready';
                 const icon = isReady ? '✓ ' : '';
-                return `<span class="tl-resource-tag ${cls}">${icon}${r}</span>`;
+                const url = RESOURCE_LINKS[r];
+                const tag = `<span class="tl-resource-tag ${cls}">${icon}${r}</span>`;
+                return url
+                  ? `<a href="${url}" target="_blank" rel="noopener" class="tl-resource-tag-link">${tag}</a>`
+                  : tag;
               }).join('')}
             </div>
           </div>
@@ -2182,9 +2277,9 @@ function closeAdmin() {
 }
 
 function resetReadiness() {
-  if (!confirm('Reset all resources to not ready? This cannot be undone.')) return;
-  RESOURCE_STATUS = {};
-  saveResourceStatus();
+  if (!confirm('Reset all resources back to defaults? Your personal changes will be cleared.')) return;
+  RESOURCE_STATUS = Object.assign({}, DEFAULT_RESOURCE_STATUS);
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
   renderTimeline();
   renderAdminPanel();
 }
