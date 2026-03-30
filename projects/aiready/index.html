@@ -1399,10 +1399,62 @@ a.tl-resource-tag-link:hover .tl-resource-tag.ready {
 const STORAGE_KEY = 'aiready_resource_status';
 
 const DEFAULT_RESOURCE_STATUS = {
-  // Set any known-ready resources to true here.
-  // Example:
-  // "Master district list/tracker": true,
-  // "presentation deck": true,
+  // 1. Targeting and Outreach
+  "FAQ": true,
+  "Comprehensive PM Tracker": true,
+  "Outreach toolkit": true,
+  "email templates": true,
+  "one-pager": true,
+  "presentation deck": true,
+  "website/resource page": true,
+  // 2. District Sign-Up and Validation
+  "District participation form": true,
+  "District tracker": true,
+  "first-form email template": true,
+  // 3. Device Deployment
+  "In the box documents": false,
+  "Process for requesting and sending": true,
+  "Shipment request template": false,
+  "Software package/download hub": false,
+  // 4. District Onboarding
+  "PL approach information": true,
+  "Educator and school leader form": true,
+  "Standard next-steps email": false,
+  // 5. Educator and Leader Collection
+  "Form submissions": false,
+  // 6. Welcome and Orientation
+  "PL decision log/process": false,
+  "PL overview materials": true,
+  "Welcome email template": false,
+  "meeting agenda": false,
+  "orientation information": false,
+  "overview materials": false,
+  // 7. Scheduling PL and Support
+  "Calendar/scheduling workflow": false,
+  "scheduling process": false,
+  // 8. Running PL
+  "Attendance Form": false,
+  "Monthly PL plan": false,
+  "PL decks": false,
+  "agendas": false,
+  "attendance/process tracker": false,
+  "communication templates": false,
+  "facilitator guides": false,
+  "follow-up communications": false,
+  "participant materials": false,
+  "session materials": false,
+  "support resources": false,
+  // 9. Use Cases, Feedback, and Story Collection
+  "Classroom use case form": false,
+  "District feedback form/interview guide": false,
+  "Story identification criteria": false,
+  "Story tracker": false,
+  "customer story process": false,
+  "email template": false,
+  "permissions process": false,
+  // Ongoing Monitoring and Follow-Up
+  "shipment updates": false,
+  "status tracker": false,
 };
 
 /* ============================================================
@@ -1412,10 +1464,18 @@ const DEFAULT_RESOURCE_STATUS = {
    to be listed. Unlisted resources render as plain text.
    ============================================================ */
 const RESOURCE_LINKS = {
-  // Add links as they become available. Examples:
-  // "District participation form": "https://forms.google.com/...",
-  // "Outreach toolkit": "https://drive.google.com/...",
-  // "PM tracker": "https://docs.google.com/spreadsheets/d/...",
+  // 1. Targeting and Outreach
+  "FAQ": "https://docs.google.com/document/d/1fffYGcrR81JIOVSKsMd6Dd7gbCX0hpAg/edit?usp=drive_link&ouid=116098965606763672622&rtpof=true&sd=true",
+  "email templates": "https://docs.google.com/document/d/1qNGKL8yxHhFu3Imq12H9EVkvZrnW5xkr/edit?usp=drive_link&ouid=116098965606763672622&rtpof=true&sd=true",
+  "presentation deck": "https://docs.google.com/presentation/d/1LCLuTEeuDA09G0KNMZRMWr2gyDFA2JN8/edit?usp=drive_link&ouid=116098965606763672622&rtpof=true&sd=true",
+  "website/resource page": "https://aireadyschool.intel.com",
+  // 2. District Sign-Up and Validation
+  "District participation form": "https://intel.az1.qualtrics.com/jfe/form/SV_7VendvGdvAkuEbY",
+  "first-form email template": "https://docs.google.com/document/d/1qNGKL8yxHhFu3Imq12H9EVkvZrnW5xkr/edit?usp=drive_link&ouid=116098965606763672622&rtpof=true&sd=true",
+  // 3. Device Deployment
+  "Process for requesting and sending": "https://docs.google.com/document/d/177k9FkLp7NPWbNZiha6eqqAJd-PWRsRf/edit?usp=drive_link&ouid=116098965606763672622&rtpof=true&sd=true",
+  // 4. District Onboarding
+  "PL approach information": "https://docs.google.com/document/d/1a8jByM_s62TWqJNmqr3uBwHWrwx7pxmbG86qLqppKEo/edit?usp=drive_link",
 };
 
 function loadResourceStatus() {
@@ -1463,7 +1523,7 @@ const WORKFLOW_DATA = {
           whatHappens: "Keep and update the working list of districts to focus on, including district, region, and status information.",
           followUp: "Update statuses as districts are added, prioritized, or changed.",
           output: "Current target district list.",
-          resources: "Master district list/tracker",
+          resources: "Comprehensive PM Tracker",
           timing: "Now"
         },
         {
@@ -1481,7 +1541,7 @@ const WORKFLOW_DATA = {
           whatHappens: "AE provides the district contact name and email so the district can receive the first participation form.",
           followUp: "PM/Ediz prepares and sends the first form email.",
           output: "District contact is entered into workflow.",
-          resources: "Contact submission process, email template",
+          resources: "email templates",
           timing: "Now"
         }
       ]
@@ -1500,7 +1560,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM/Ediz sends the official district participation form to the identified district contact.",
           followUp: "District is expected to complete the form; PM monitors for submission.",
           output: "District has received participation form.",
-          resources: "District participation form, first-form email template, send process",
+          resources: "District participation form, first-form email template",
           timing: "Mar 23, 2026"
         },
         {
@@ -1518,7 +1578,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM reviews the district form against the approved district list and expected school count.",
           followUp: "Mark as approved, needs clarification, or needs exception review. Export/update tracker.",
           output: "District status is updated in PM tracker.",
-          resources: "Form export, master district list, PM tracker",
+          resources: "District tracker",
           timing: "Mar 23, 2026"
         },
         {
@@ -1527,7 +1587,7 @@ const WORKFLOW_DATA = {
           whatHappens: "If the district is not on the list or the school count does not match, PM checks with AE or leadership.",
           followUp: "Update tracker with decision to proceed, hold, or decline, and communicate needed changes.",
           output: "District is either approved or paused.",
-          resources: "District tracker, AE review process",
+          resources: "District tracker",
           timing: "Mar 23, 2026"
         }
       ]
@@ -1546,7 +1606,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM sends the approved shipment request and district/school information to TD SYNNEX.",
           followUp: "TD SYNNEX confirms receipt and begins processing.",
           output: "Shipment request submitted.",
-          resources: "Shipment request template, district and school shipment data",
+          resources: "Shipment request template, Process for requesting and sending",
           timing: "Mar 23, 2026"
         },
         {
@@ -1555,7 +1615,7 @@ const WORKFLOW_DATA = {
           whatHappens: "TD SYNNEX processes the approved request and ships devices based on the district shipment details.",
           followUp: "Shipment and tracking information are returned to PM.",
           output: "Devices and related documentation are sent.",
-          resources: "Fulfillment request details, shipping information, shipment documentation/device information",
+          resources: "Process for requesting and sending",
           timing: "Mar 23, 2026"
         },
         {
@@ -1564,7 +1624,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM records shipment date, tracking, expected delivery, and confirmation of receipt from the district.",
           followUp: "Follow up on delays, missing shipment information, or lack of district receipt confirmation.",
           output: "Current device fulfillment status is visible.",
-          resources: "Tracking/report-back process from TD SYNNEX, PM tracker",
+          resources: "Process for requesting and sending",
           timing: "Mar 23, 2026"
         },
         {
@@ -1573,7 +1633,7 @@ const WORKFLOW_DATA = {
           whatHappens: "District receives the shipped AI PCs, confirms receipt, and completes local imaging and setup.",
           followUp: "District confirms receipt and completion of imaging/setup, and PM follows up if confirmation is delayed.",
           output: "Devices are received and imaged for district use.",
-          resources: "Device receipt instructions, imaging guidance/information, district confirmation process",
+          resources: "In the box documents",
           timing: "Mar 30, 2026"
         },
         {
@@ -1582,7 +1642,7 @@ const WORKFLOW_DATA = {
           whatHappens: "District accesses the bundled software package or download location, installs the required tools, and verifies functionality.",
           followUp: "District confirms software installation status, and PM follows up on missing confirmations.",
           output: "Devices have required software installed and verified.",
-          resources: "Software package/download hub, installation guide, software list, FAQ/troubleshooting",
+          resources: "Software package/download hub, In the box documents",
           timing: "Mar 30, 2026"
         },
         {
@@ -1591,7 +1651,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM confirms that the district has received, imaged, and installed required software on all devices.",
           followUp: "Track districts that are complete versus those needing additional follow-up or support.",
           output: "Device readiness status is confirmed.",
-          resources: "PM tracker, district confirmation process, device readiness checklist",
+          resources: "Comprehensive PM Tracker",
           timing: "Mar 30, 2026"
         }
       ]
@@ -1610,7 +1670,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM sends a standard email confirming the district is moving forward. The email includes confirmed schools, what to expect, and the PL approach.",
           followUp: "District is asked to complete the next form and prepare for PL planning.",
           output: "District receives clear onboarding next steps.",
-          resources: "Standard next-steps email, confirmed school list, PL approach information",
+          resources: "Standard next-steps email, PL approach information",
           timing: "Apr 1, 2026"
         },
         {
@@ -1619,7 +1679,7 @@ const WORKFLOW_DATA = {
           whatHappens: "District contact is added to the distribution process for the second form that collects educator and school leader names and emails.",
           followUp: "Form is sent to district contact and PM monitors for submission.",
           output: "District receives school-level participant form.",
-          resources: "Second form, form distribution process",
+          resources: "Educator and school leader form",
           timing: "Apr 1, 2026"
         }
       ]
@@ -1638,7 +1698,7 @@ const WORKFLOW_DATA = {
           whatHappens: "District submits names and emails for participating educators and school leaders at each school.",
           followUp: "PM monitors submissions until all participating schools are accounted for.",
           output: "School-level participant information is collected.",
-          resources: "Educator and school leader form, submission guidance",
+          resources: "Educator and school leader form",
           timing: "Apr 1, 2026"
         },
         {
@@ -1647,7 +1707,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM checks that each participating school has the expected educators and school leaders listed.",
           followUp: "Follow up with district if any schools, names, or emails are missing.",
           output: "Complete or incomplete participant roster identified.",
-          resources: "Form submissions, confirmed school list, PM tracker",
+          resources: "Form submissions, Comprehensive PM Tracker",
           timing: "Apr 6, 2026"
         }
       ]
@@ -1694,7 +1754,7 @@ const WORKFLOW_DATA = {
           whatHappens: "Finalize the professional learning approach, identify audience and format, and determine scheduling windows.",
           followUp: "Prepare calendar options, confirm participation expectations, and align needed support.",
           output: "District PL delivery model and logistics are confirmed.",
-          resources: "PL approach options, scheduling process, planning notes",
+          resources: "scheduling process",
           timing: "Apr 13, 2026"
         },
         {
@@ -1731,7 +1791,7 @@ const WORKFLOW_DATA = {
           whatHappens: "Track attendance/participation and provide follow-up resources, reminders, and support.",
           followUp: "Identify districts or participants needing additional support or make-up opportunities.",
           output: "Participation and support status are documented.",
-          resources: "Attendance/process tracker, follow-up communications, support resources",
+          resources: "Attendance Form, attendance/process tracker, follow-up communications, support resources",
           timing: "Apr 13, 2026"
         },
         {
@@ -1740,7 +1800,7 @@ const WORKFLOW_DATA = {
           whatHappens: "Provide ongoing once-a-month professional learning through the designated website or webservice platform.",
           followUp: "Maintain the website/webservice, update session information and materials, send reminders.",
           output: "Ongoing monthly PL is delivered and accessible to participants.",
-          resources: "Monthly PL plan, website/resource hub, webservice/platform setup, session materials",
+          resources: "Monthly PL plan, session materials",
           timing: "Apr 20, 2026"
         }
       ]
@@ -1759,7 +1819,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM sends participating educators the request and process for submitting their classroom use cases.",
           followUp: "Remind educators and district contacts of the timeline and expectations for submissions.",
           output: "Educators receive clear request to submit classroom use cases.",
-          resources: "Use case submission form/process, email template, submission guidance",
+          resources: "Classroom use case form, email template",
           timing: "Jun 1, 2026"
         },
         {
@@ -1768,7 +1828,7 @@ const WORKFLOW_DATA = {
           whatHappens: "Educators submit classroom use cases, either directly or through the district process.",
           followUp: "PM monitors submissions and checks which districts/schools have responded.",
           output: "Classroom use case submissions are collected.",
-          resources: "Classroom use case form, confirmed participant list, PM tracker, Use case submission guide",
+          resources: "Classroom use case form, Comprehensive PM Tracker",
           timing: "Jun 1, 2026"
         },
         {
@@ -1777,7 +1837,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM reviews submissions for completeness, clarity, and alignment to the initiative goals.",
           followUp: "Follow up if clarification or missing details are needed.",
           output: "Use cases are categorized and ready for reporting or selection.",
-          resources: "Submission responses, review criteria, PM tracker",
+          resources: "Comprehensive PM Tracker",
           timing: "Jun 1, 2026"
         },
         {
@@ -1786,7 +1846,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM gathers district-level feedback on implementation, support, device experience, and outcomes.",
           followUp: "Follow up with districts that have not yet provided feedback or where more detail is needed.",
           output: "District-level feedback is collected.",
-          resources: "District feedback form/interview guide, email template, meeting notes process",
+          resources: "District feedback form/interview guide, email template",
           timing: "Jun 1, 2026"
         },
         {
@@ -1795,7 +1855,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM reviews educator use cases and district feedback to identify promising stories for sharing.",
           followUp: "Check interest, permissions, and fit with districts/AEs before moving forward.",
           output: "Potential customer stories are identified.",
-          resources: "Story identification criteria, permissions process, notes from submissions/feedback",
+          resources: "Story identification criteria, permissions process",
           timing: "Aug 1, 2026"
         },
         {
@@ -1804,7 +1864,7 @@ const WORKFLOW_DATA = {
           whatHappens: "Promising stories are moved into a light pipeline for follow-up, documentation, and potential publication.",
           followUp: "Prioritize which stories to pursue and assign next steps.",
           output: "Story candidates are tracked for future development and sharing.",
-          resources: "Story tracker, follow-up templates, customer story process",
+          resources: "Story tracker, customer story process",
           timing: "Aug 1, 2026"
         }
       ]
@@ -1823,7 +1883,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM reviews all districts for first form completion, second form completion, shipment status, imaging status, PL scheduling, and more.",
           followUp: "Update tracker and generate weekly follow-up list.",
           output: "Current status view across all districts.",
-          resources: "PM tracker/dashboard, form exports, shipment updates, communication log",
+          resources: "Comprehensive PM Tracker, shipment updates",
           timing: "Now"
         },
         {
@@ -1832,7 +1892,7 @@ const WORKFLOW_DATA = {
           whatHappens: "PM follows up with districts that have not completed required steps or have unresolved issues.",
           followUp: "Continue outreach until the district completes the step, is paused, or is escalated.",
           output: "Districts continue moving through the pipeline.",
-          resources: "Follow-up templates, contact list, status tracker, AE escalation process",
+          resources: "status tracker",
           timing: "Now"
         }
       ]
@@ -2085,32 +2145,32 @@ function renderTimeline() {
     {
       label: "Immediate",
       value: "Outreach toolkit & tracker",
-      detail: "Master district list, presentation deck, one-pager, FAQ, and website must exist now."
+      detail: "Comprehensive PM Tracker, presentation deck, one-pager, FAQ, email templates, and website/resource page."
     },
     {
       label: "By Mar 23",
       value: "Forms, templates, & fulfillment process",
-      detail: "District participation form, email templates, shipment request template, and TD SYNNEX process must be ready."
+      detail: "District participation form, first-form email template, Shipment request template, and Process for requesting and sending."
     },
     {
       label: "By Apr 1",
-      value: "Onboarding emails & second form",
-      detail: "Next-steps email, confirmed school lists, PL approach information, and educator/leader collection form."
+      value: "Onboarding & educator collection",
+      detail: "Standard next-steps email, PL approach information, and Educator and school leader form."
     },
     {
       label: "By Apr 6",
       value: "Welcome materials & PL planning process",
-      detail: "Welcome email template, orientation materials, PL overview, meeting agendas, and decision log."
+      detail: "Welcome email template, orientation information, overview materials, PL overview materials, meeting agenda, and PL decision log/process."
     },
     {
       label: "By Apr 13",
       value: "PL content & delivery infrastructure",
-      detail: "Session decks, facilitator guides, participant materials, scheduling workflow, and communication templates."
+      detail: "PL decks, facilitator guides, participant materials, agendas, Calendar/scheduling workflow, and communication templates."
     },
     {
       label: "By Jun 1",
       value: "Use case & feedback collection process",
-      detail: "Submission forms, review criteria, feedback guides, and email templates for educator outreach."
+      detail: "Classroom use case form, District feedback form/interview guide, and email template for educator outreach."
     }
   ];
 
