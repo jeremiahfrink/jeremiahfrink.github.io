@@ -1,3 +1,4 @@
+<!-- Updated: March 31, 2026 — Held projects now hidden from judges instead of shown with banner -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -550,11 +551,15 @@ function loadAssignments() {
   }
 
   const projectIds = DATA.judge_assignments[judgeId];
+  const visibleIds = projectIds.filter(pid => {
+    const p = DATA.projects[pid];
+    return p && !p.hold;
+  });
   document.getElementById('loginSection').style.display = 'none';
   document.getElementById('judgeBar').style.display = 'block';
   document.getElementById('projectsContainer').style.display = 'block';
   document.getElementById('judgeIdDisplay').textContent = judgeId;
-  document.getElementById('projectCount').textContent = projectIds.length;
+  document.getElementById('projectCount').textContent = visibleIds.length;
 
   // Show as-of date
   if (DATA.data_as_of) {
@@ -563,14 +568,14 @@ function loadAssignments() {
 
   // Calculate and show progress
   let judgedCount = 0;
-  for (const pid of projectIds) {
+  for (const pid of visibleIds) {
     const p = DATA.projects[pid];
     if (p && p.judged_by && p.judged_by.includes(judgeId)) judgedCount++;
   }
   document.getElementById('judgeProgress').innerHTML =
-    '<strong>' + judgedCount + '</strong> of ' + projectIds.length + ' judged';
+    '<strong>' + judgedCount + '</strong> of ' + visibleIds.length + ' judged';
 
-  renderProjects(projectIds, judgeId);
+  renderProjects(visibleIds, judgeId);
 }
 
 function renderUrlField(obj) {
