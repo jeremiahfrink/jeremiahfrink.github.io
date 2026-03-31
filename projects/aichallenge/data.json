@@ -424,7 +424,7 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": "Requires log in",
+      "hold_reason": "",
       "judged_by": [
         "AI26YYHJ"
       ]
@@ -484,7 +484,7 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": "no team story",
+      "hold_reason": "",
       "judged_by": [
         "AI26KQ5Z"
       ]
@@ -699,7 +699,7 @@
         "value": ""
       },
       "hold": false,
-      "hold_reason": "school?",
+      "hold_reason": "",
       "judged_by": [
         "AI26R7JR",
         "AI26S33U"
@@ -881,7 +881,7 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "Requires log in",
+      "hold_reason": "",
       "judged_by": [
         "AI26SDY7",
         "AI26IV85"
@@ -940,8 +940,8 @@
         "value": "https://drive.google.com/drive/folders/1Y9F1j7TCZ1m_-Q7Wlbbi-VVJN1U6KHps?usp=sharing",
         "password": ""
       },
-      "hold": true,
-      "hold_reason": "school?",
+      "hold": false,
+      "hold_reason": "",
       "judged_by": [
         "AI26D5BM"
       ]
@@ -1033,7 +1033,7 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "school- do not advance without ok from school",
+      "hold_reason": "",
       "judged_by": [
         "AI26Q1GZ",
         "AI267BT4"
@@ -1065,7 +1065,7 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "In spanish- need to swap",
+      "hold_reason": "",
       "judged_by": [
         "AI265ET2",
         "AI26S8F4"
@@ -1426,7 +1426,7 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "",
+      "hold_reason": "Failed to Fetch",
       "judged_by": [
         "AI262SR5"
       ]
@@ -1757,7 +1757,7 @@
         "password": ""
       },
       "hold": true,
-      "hold_reason": "",
+      "hold_reason": "Don't have access to the App",
       "judged_by": []
     },
     "ISTE26AI148": {
@@ -1910,7 +1910,7 @@
         "password": ""
       },
       "hold": false,
-      "hold_reason": "Google Drive Access",
+      "hold_reason": "",
       "judged_by": []
     },
     "ISTE26AI153": {
@@ -1939,7 +1939,9 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": []
+      "judged_by": [
+        "AI262T01"
+      ]
     },
     "ISTE26AI154": {
       "id": "ISTE26AI154",
@@ -1995,7 +1997,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "",
       "judged_by": []
     },
@@ -2267,8 +2269,8 @@
         "type": "empty",
         "value": ""
       },
-      "hold": false,
-      "hold_reason": "",
+      "hold": true,
+      "hold_reason": "Playlab link is not public",
       "judged_by": [
         "AI2663L7"
       ]
@@ -3644,8 +3646,8 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
-      "hold_reason": "School name",
+      "hold": false,
+      "hold_reason": "",
       "judged_by": []
     },
     "ISTE26AI211": {
