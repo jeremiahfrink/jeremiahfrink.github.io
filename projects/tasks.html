@@ -101,7 +101,7 @@ function parseCSV(text) {
 }
 function escCSV(v) { const s = (v || "").toString(); return s.includes(",") || s.includes('"') || s.includes("\n") ? '"' + s.replace(/"/g, '""') + '"' : s; }
 function generateCSV(tasks) {
-  const cols = ["TaskID", "Project", "Task", "Priority", "Time Estimate", "Due Date", "Status", "Notes"];
+  const cols = ["TaskID", "Project", "Task", "Priority", "Time Estimate", "Due Date", "Status", "Notes", "Archived"];
   return [cols.join(","), ...tasks.map(t => cols.map(c => escCSV(t[c])).join(","))].join("\n");
 }
 function nextTaskID(tasks) {
@@ -330,6 +330,7 @@ function TaskManager() {
   const [upcomingCollapsed, setUpcomingCollapsed] = useState({ "overdue": false, "todayTomorrow": false, "thisWeek": true, "nextFewWeeks": true, "later": true, "noDate": true });
   const [starred, setStarred] = useState({});
   const [hideCompleted, setHideCompleted] = useState(true);
+  const [showArchived, setShowArchived] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
   const fileRef = useRef(null);
@@ -340,8 +341,19 @@ function TaskManager() {
   useEffect(() => { try { localStorage.setItem("taskmanager-starred", JSON.stringify(starred)); } catch(e){} }, [starred]);
 
   const projects = useMemo(() => [...new Set(tasks.map(t => t.Project).filter(Boolean))].sort(), [tasks]);
+  const activeProjects = useMemo(() => projects.filter(p => tasks.some(t => t.Project === p && t.Archived !== "yes")), [projects, tasks]);
+  const archivedProjects = useMemo(() => projects.filter(p => tasks.filter(t => t.Project === p).length > 0 && tasks.filter(t => t.Project === p).every(t => t.Archived === "yes")), [projects, tasks]);
+  const isArchivedProject = useMemo(() => { var m = {}; archivedProjects.forEach(p => m[p] = true); return m; }, [archivedProjects]);
+
   const filtered = useMemo(() => {
-    let f = projectFilter === "All" ? tasks : tasks.filter(t => t.Project === projectFilter);
+    let f;
+    if (projectFilter === "All") {
+      f = tasks.filter(t => t.Archived !== "yes");
+    } else if (isArchivedProject[projectFilter]) {
+      f = tasks.filter(t => t.Project === projectFilter);
+    } else {
+      f = tasks.filter(t => t.Project === projectFilter && t.Archived !== "yes");
+    }
     if (view === "list" && sortCol) {
       f = [...f].sort((a, b) => {
         const av = (a[sortCol] || "").toLowerCase(), bv = (b[sortCol] || "").toLowerCase();
@@ -351,7 +363,7 @@ function TaskManager() {
       });
     }
     return f;
-  }, [tasks, projectFilter, sortCol, sortDir, view]);
+  }, [tasks, projectFilter, sortCol, sortDir, view, isArchivedProject]);
 
   const activeTasks = useMemo(() => filtered.filter(t => t.Status !== "Done"), [filtered]);
   const stats = useMemo(() => {
@@ -460,6 +472,17 @@ function TaskManager() {
       return sa - sb;
     });
   }
+  function archiveProject(project) {
+    if (confirm('Archive "' + project + '" and all its tasks?')) {
+      setTasks(prev => prev.map(t => t.Project === project ? { ...t, Archived: "yes" } : t));
+      setProjectFilter("All");
+    }
+  }
+  function unarchiveProject(project) {
+    setTasks(prev => prev.map(t => t.Project === project ? { ...t, Archived: "" } : t));
+    setProjectFilter(project);
+    setShowArchived(false);
+  }
 
   const btnBase = { border: "none", borderRadius: 10, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "inherit", transition: "all .15s" };
 
@@ -493,11 +516,40 @@ function TaskManager() {
         <div style={{ padding: "16px 24px" }}>
           {/* Project pills + stats */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
-            <ProjectPill name="All" count={tasks.filter(t => t.Status !== "Done").length} active={projectFilter === "All"} onClick={() => setProjectFilter("All")} />
-            {projects.map(p => (
-              <ProjectPill key={p} name={p} count={tasks.filter(t => t.Project === p && t.Status !== "Done").length} active={projectFilter === p} onClick={() => setProjectFilter(p)} />
+            <ProjectPill name="All" count={tasks.filter(t => t.Status !== "Done" && t.Archived !== "yes").length} active={projectFilter === "All"} onClick={() => { setProjectFilter("All"); setShowArchived(false); }} />
+            {activeProjects.map(p => (
+              <div key={p} style={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <ProjectPill name={p} count={tasks.filter(t => t.Project === p && t.Status !== "Done" && t.Archived !== "yes").length} active={projectFilter === p} onClick={() => setProjectFilter(p)} />
+                {projectFilter === p && (
+                  <button onClick={() => archiveProject(p)} title="Archive project" style={{ background: "none", border: "none", cursor: "pointer", padding: 2, display: "flex", alignItems: "center", opacity: 0.5, transition: "opacity .15s" }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = "1"} onMouseLeave={e => e.currentTarget.style.opacity = "0.5"}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                  </button>
+                )}
+              </div>
+            ))}
+            {archivedProjects.length > 0 && (
+              <button onClick={() => setShowArchived(!showArchived)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600, color: showArchived ? "#4f46e5" : "#94a3b8", fontFamily: "inherit", padding: "6px 8px", transition: "color .15s" }}>
+                {archivedProjects.length} archived
+              </button>
+            )}
+            {showArchived && archivedProjects.map(p => (
+              <div key={p} style={{ display: "flex", alignItems: "center", gap: 2, opacity: 0.6 }}>
+                <ProjectPill name={p} count={tasks.filter(t => t.Project === p).length} active={projectFilter === p} onClick={() => setProjectFilter(p)} />
+                {projectFilter === p && (
+                  <button onClick={() => unarchiveProject(p)} title="Unarchive project" style={{ background: "none", border: "none", cursor: "pointer", padding: 2, display: "flex", alignItems: "center" }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                  </button>
+                )}
+              </div>
             ))}
           </div>
+          {projectFilter !== "All" && isArchivedProject[projectFilter] && (
+            <div style={{ background: "#fef3c7", border: "1.5px solid #fde68a", borderRadius: 10, padding: "8px 14px", marginBottom: 10, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{ fontSize: 13, color: "#92400e", fontWeight: 500 }}>This project is archived.</span>
+              <button onClick={() => unarchiveProject(projectFilter)} style={{ background: "#fff", border: "1px solid #fde68a", borderRadius: 8, padding: "4px 12px", fontSize: 12, fontWeight: 600, color: "#92400e", cursor: "pointer", fontFamily: "inherit" }}>Unarchive</button>
+            </div>
+          )}
           <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 16, display: "flex", gap: 16 }}>
             <span>{stats.total - stats.done} active</span>
             {stats.overdue > 0 && <span style={{ color: "#dc2626", fontWeight: 600 }}>! {stats.overdue} overdue</span>}
@@ -757,7 +809,7 @@ function TaskManager() {
       {/* Edit/Add Modal */}
       {modal && (
         <Modal onClose={() => setModal(null)}>
-          <TaskForm task={modal.mode === "edit" ? modal.task : {}} onSave={handleSave} onDelete={handleDelete} onClose={() => setModal(null)} projects={projects} />
+          <TaskForm task={modal.mode === "edit" ? modal.task : {}} onSave={handleSave} onDelete={handleDelete} onClose={() => setModal(null)} projects={activeProjects} />
         </Modal>
       )}
 
