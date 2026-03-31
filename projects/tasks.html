@@ -196,7 +196,11 @@ function ConfirmModal({ message, onConfirm, onCancel }) {
 function TaskForm({ task, onSave, onDelete, onClose, projects }) {
   const isNew = !task.TaskID;
   const [form, setForm] = useState({ Project: "", Task: "", Priority: "", "Time Estimate": "", "Due Date": "", Status: "Not Started", Notes: "", ...task });
+  const [newProject, setNewProject] = useState(false);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+  // If task's project isn't in the active list (e.g. typed manually before), start in new-project mode
+  const projectInList = !form.Project || projects.indexOf(form.Project) !== -1;
+  const showNewInput = newProject || (!isNew && form.Project && !projectInList);
   const inputStyle = { width: "100%", padding: "9px 12px", border: "1.5px solid #e2e8f0", borderRadius: 10, fontSize: 14, fontFamily: "inherit", outline: "none", transition: "border .15s", boxSizing: "border-box" };
   const labelStyle = { display: "block", fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 5, letterSpacing: "0.03em", textTransform: "uppercase" };
   return (
@@ -209,8 +213,18 @@ function TaskForm({ task, onSave, onDelete, onClose, projects }) {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
           <div>
             <label style={labelStyle}>Project</label>
-            <input list="proj-list" value={form.Project} onChange={e => set("Project", e.target.value)} style={inputStyle} placeholder="Select or type new..." />
-            <datalist id="proj-list">{projects.map(p => <option key={p} value={p} />)}</datalist>
+            {showNewInput ? (
+              <div style={{ display: "flex", gap: 6 }}>
+                <input value={form.Project} onChange={e => set("Project", e.target.value)} style={{ ...inputStyle, flex: 1 }} placeholder="New project name..." />
+                <button onClick={() => { setNewProject(false); set("Project", projects[0] || ""); }} style={{ background: "#f1f5f9", border: "none", borderRadius: 8, padding: "0 10px", fontSize: 12, fontWeight: 600, color: "#64748b", cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>Back</button>
+              </div>
+            ) : (
+              <select value={form.Project} onChange={e => { if (e.target.value === "__new__") { setNewProject(true); set("Project", ""); } else { set("Project", e.target.value); } }} style={{ ...inputStyle, cursor: "pointer" }}>
+                <option value="">Select project...</option>
+                {projects.map(p => <option key={p} value={p}>{p}</option>)}
+                <option value="__new__">+ New Project...</option>
+              </select>
+            )}
           </div>
           <div>
             <label style={labelStyle}>Status</label>
