@@ -1,4 +1,4 @@
-<!-- Updated: March 31, 2026 — Held projects now hidden from judges instead of shown with banner -->
+<!-- Updated: March 31, 2026 — Added Judging Process link to header, Rubric + Form links to judge bar; held projects hidden from judges -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,6 +189,15 @@
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
     padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+  .judge-bar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     flex-wrap: wrap;
     gap: 0.75rem;
   }
@@ -457,12 +466,60 @@
     color: var(--text-muted);
   }
 
+  .header-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.4rem 1.2rem;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .header-link:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .judge-resources {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .judge-resources a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.8rem;
+    background: #E0F2F1;
+    border: 1px solid #B2DFDB;
+    border-radius: 6px;
+    color: var(--iste-teal);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .judge-resources a:hover {
+    background: var(--iste-teal);
+    color: #fff;
+    border-color: var(--iste-teal);
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .field-row { flex-direction: column; gap: 0.2rem; }
     .field-label { width: auto; }
     .login-row { flex-direction: column; }
     .judge-bar-inner { flex-direction: column; text-align: center; }
+    .judge-bar-top { flex-direction: column; text-align: center; }
+    .judge-resources { justify-content: center; }
   }
 </style>
 </head>
@@ -472,6 +529,7 @@
   <div class="header-badge">ISTE + ASCD</div>
   <h1 class="header-title">AI Innovator Challenge</h1>
   <p class="header-subtitle">Judge Review Portal — 2026</p>
+  <a class="header-link" href="https://docs.google.com/document/d/1_caW2tfZByMoBAxQEFLg-bmfkJ60Rpa4FFjZP1csD1Y/edit?tab=t.4s8e8k3efxsm" target="_blank" rel="noopener">📋 Judging Process</a>
 </header>
 
 <section class="login-section" id="loginSection">
@@ -488,14 +546,20 @@
 
 <section class="judge-bar" id="judgeBar">
   <div class="judge-bar-inner">
-    <div class="judge-bar-info">
-      <span class="judge-id-pill" id="judgeIdDisplay"></span>
-      <span class="judge-count"><strong id="projectCount">0</strong> projects assigned</span>
-      <span class="judge-progress" id="judgeProgress"></span>
+    <div class="judge-bar-top">
+      <div class="judge-bar-info">
+        <span class="judge-id-pill" id="judgeIdDisplay"></span>
+        <span class="judge-count"><strong id="projectCount">0</strong> projects assigned</span>
+        <span class="judge-progress" id="judgeProgress"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;">
+        <button class="btn-logout" onclick="logout()">Change Judge</button>
+        <span class="as-of-date" id="asOfDate"></span>
+      </div>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;">
-      <button class="btn-logout" onclick="logout()">Change Judge</button>
-      <span class="as-of-date" id="asOfDate"></span>
+    <div class="judge-resources">
+      <a href="https://drive.google.com/file/d/1Sd1olx-enAcwP7a68vCH9Zw_Sq4fU1L3/view?usp=sharing" target="_blank" rel="noopener">📄 Rubric</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeOTuz2atzjEqdZKY4SkEUnQN1ltzpPwA_OBROmOZovbeT74A/viewform?usp=publish-editor" target="_blank" rel="noopener">✏️ Judging Form</a>
     </div>
   </div>
 </section>
