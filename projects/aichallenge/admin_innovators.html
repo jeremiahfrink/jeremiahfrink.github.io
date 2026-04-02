@@ -1,0 +1,254 @@
+<!-- Updated: April 2, 2026 — Added status segmentation, pace tracker, judge nudge list, better missing-data handling -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISTE + ASCD AI Innovator Challenge — Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#003B6F;--teal:#00838F;--lteal:#4DD0E1;--accent:#FF6F00;--green:#2E7D32;--red:#C62828;--amber:#F57F17;--purple:#7B1FA2;--bg:#0F1923;--card:#1A2736;--card2:#22334A;--text:#E8EDF2;--text2:#94A3B8;--text3:#64748B;--border:#2D3F52;--radius:10px;--shadow:0 4px 20px rgba(0,0,0,.3)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--lteal);text-decoration:none}a:hover{text-decoration:underline}
+.auth-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem}
+.auth-card{background:var(--card);border-radius:var(--radius);padding:2.5rem;max-width:400px;width:100%;text-align:center;box-shadow:var(--shadow)}
+.auth-card h1{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.3rem}
+.auth-card p{color:var(--text2);font-size:.9rem;margin-bottom:1.5rem}
+.auth-row{display:flex;gap:.5rem}
+.auth-row input{flex:1;padding:.7rem 1rem;background:var(--card2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:inherit;font-size:.95rem;outline:none}
+.auth-row input:focus{border-color:var(--teal)}
+.auth-row button{padding:.7rem 1.3rem;background:var(--teal);color:#fff;border:none;border-radius:6px;font-family:inherit;font-weight:600;cursor:pointer}
+.auth-err{color:var(--red);font-size:.85rem;margin-top:.75rem;display:none}
+.shell{display:none}
+.top-bar{background:linear-gradient(135deg,var(--blue),var(--teal));padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.top-bar h1{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff}
+.top-bar .as-of{color:rgba(255,255,255,.7);font-size:.82rem}
+.top-bar button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.35rem 1rem;border-radius:6px;font-family:inherit;font-size:.8rem;cursor:pointer}
+.tabs{display:flex;background:var(--card);border-bottom:2px solid var(--border);padding:0 2rem}
+.tab{padding:.85rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;margin-bottom:-2px}
+.tab:hover{color:var(--text2)}.tab.active{color:var(--lteal);border-bottom-color:var(--lteal)}
+.panel{display:none;padding:1.5rem 2rem 3rem;max-width:1400px;margin:0 auto}.panel.active{display:block}
+.pace-banner{background:var(--card);border-radius:var(--radius);padding:1.2rem 1.5rem;margin-bottom:1.5rem;border-left:4px solid var(--accent);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.pace-text{font-size:.92rem}.pace-text strong{color:var(--accent)}
+.pace-bar-outer{width:200px;height:10px;background:var(--border);border-radius:5px;overflow:hidden}
+.pace-bar-inner{height:100%;border-radius:5px;transition:width .5s}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:1.1rem;border-left:4px solid var(--teal)}
+.stat-card.warn{border-left-color:var(--amber)}.stat-card.good{border-left-color:var(--green)}.stat-card.bad{border-left-color:var(--red)}.stat-card.info{border-left-color:var(--purple)}
+.stat-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.25rem}
+.stat-val{font-size:1.5rem;font-weight:700}.stat-sub{font-size:.75rem;color:var(--text2);margin-top:.15rem}
+.section{background:var(--card);border-radius:var(--radius);margin-bottom:1.5rem;overflow:hidden}
+.section-head{padding:1rem 1.3rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.section-head h2{font-size:1rem;font-weight:700}
+.section-head .cnt{font-size:.8rem;color:var(--text3);font-weight:400;margin-left:.5rem}
+.section-head .filter{display:flex;gap:.5rem;flex-wrap:wrap}
+.section-head .filter button{padding:.3rem .8rem;font-size:.75rem;font-family:inherit;font-weight:500;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.section-head .filter button.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{text-align:left;padding:.6rem 1rem;background:var(--card2);color:var(--text2);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;position:sticky;top:0;white-space:nowrap}
+td{padding:.5rem 1rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tr:hover td{background:rgba(77,208,225,.04)}
+.badge{display:inline-block;padding:.15rem .55rem;border-radius:50px;font-size:.7rem;font-weight:600}
+.badge-green{background:#1B5E2033;color:#66BB6A;border:1px solid #2E7D3255}
+.badge-amber{background:#F57F1722;color:#FFB74D;border:1px solid #F57F1744}
+.badge-red{background:#C6282822;color:#EF5350;border:1px solid #C6282844}
+.badge-blue{background:#00838F22;color:var(--lteal);border:1px solid #00838F44}
+.badge-purple{background:#7B1FA222;color:#CE93D8;border:1px solid #7B1FA244}
+.badge-gray{background:#37474F44;color:#90A4AE;border:1px solid #546E7A55}
+.pct-bar{width:55px;height:5px;background:var(--border);border-radius:3px;display:inline-block;vertical-align:middle;margin-left:.4rem}
+.pct-fill{height:100%;border-radius:3px}
+.nudge-card{padding:1.2rem 1.5rem}
+.nudge-judge{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.nudge-judge:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.nudge-id{font-weight:700;font-size:.9rem;margin-bottom:.3rem}
+.nudge-projects{font-size:.82rem;color:var(--text2);line-height:1.7}
+.nudge-projects code{background:var(--card2);padding:.15rem .4rem;border-radius:3px;font-size:.78rem;color:var(--lteal);margin-right:.3rem}
+.expand-row{display:none}.expand-row.show{display:table-row}
+.expand-cell{padding:1rem 1.5rem;background:var(--card2);border-bottom:1px solid var(--border)}
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.detail-item{font-size:.84rem}
+.detail-item .label{font-size:.7rem;text-transform:uppercase;color:var(--text3);margin-bottom:.2rem;letter-spacing:.03em}
+.detail-item .val{color:var(--text)}.detail-item .val a{word-break:break-all}
+.score-row{display:flex;gap:.35rem;margin-top:.25rem}
+.score-pip{width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}
+.pip-4{background:#2E7D3244;color:#66BB6A}.pip-3{background:#1565C044;color:#64B5F6}.pip-2{background:#F57F1733;color:#FFB74D}.pip-1{background:#C6282833;color:#EF5350}
+.chart-wrap{padding:1.2rem}
+.bar-chart{display:flex;align-items:flex-end;gap:5px;height:110px}
+.bar-col{display:flex;flex-direction:column;align-items:center;flex:1}
+.bar{background:var(--teal);border-radius:3px 3px 0 0;width:100%;min-width:6px;transition:height .3s}
+.bar-label{font-size:.6rem;color:var(--text3);margin-top:.25rem;writing-mode:vertical-rl;transform:rotate(180deg);max-height:55px;overflow:hidden}
+.seg-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.seg-card{background:var(--card);border-radius:var(--radius);padding:1rem;text-align:center;border-top:3px solid var(--border)}
+.seg-card .seg-val{font-size:1.8rem;font-weight:800;margin:.3rem 0}
+.seg-card .seg-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text3)}
+@media(max-width:768px){.panel{padding:1rem}.tabs{padding:0 .5rem}.tab{padding:.7rem .7rem;font-size:.8rem}.top-bar{padding:1rem}.pace-banner{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="auth-wrap" id="authWrap">
+<div class="auth-card"><h1>Admin Dashboard</h1><p>ISTE + ASCD AI Innovator Challenge 2026</p>
+<div class="auth-row"><input type="password" id="pwInput" placeholder="Enter admin code" autocomplete="off"><button onclick="tryAuth()">Enter</button></div>
+<div class="auth-err" id="authErr">Incorrect code. Try again.</div></div></div>
+
+<div class="shell" id="shell">
+<div class="top-bar"><div><h1>AI Innovator Challenge — Admin</h1><span class="as-of" id="asOf"></span></div><button onclick="location.reload()">Logout</button></div>
+<div class="tabs"><div class="tab active" data-tab="ops">Operations</div><div class="tab" data-tab="results">Results & Round 2</div></div>
+
+<div class="panel active" id="panel-ops">
+<div id="paceBanner"></div>
+<div class="stats-row" id="opsStats"></div>
+<div class="section"><div class="section-head"><h2>Judge Reminder List</h2><span class="cnt" id="nudgeCnt"></span></div><div class="nudge-card" id="nudgeList"></div></div>
+<div class="section"><div class="section-head"><h2>Judge Completion</h2><div class="filter" id="judgeFilter"></div></div><div class="tbl-wrap"><table id="judgeTable"><thead></thead><tbody></tbody></table></div></div>
+<div class="section"><div class="section-head"><h2>Project Coverage</h2><div class="filter" id="projFilter"></div></div><div class="tbl-wrap"><table id="projTable"><thead></thead><tbody></tbody></table></div></div>
+<div class="section"><div class="section-head"><h2>Current Holds</h2></div><div class="tbl-wrap"><table id="holdTable"><thead></thead><tbody></tbody></table></div></div>
+</div>
+
+<div class="panel" id="panel-results">
+<div class="seg-row" id="segRow"></div>
+<div class="stats-row" id="resStats"></div>
+<div class="section"><div class="section-head"><h2>Project Rankings</h2><div class="filter" id="r1Filter"></div></div><div class="tbl-wrap"><table id="r1Table"><thead></thead><tbody></tbody></table></div></div>
+<div class="section"><div class="section-head"><h2>Score Distribution</h2></div><div class="chart-wrap" id="distChart"></div></div>
+<div class="section"><div class="section-head"><h2>Rubric Dimension Averages</h2></div><div class="chart-wrap" id="dimChart"></div></div>
+<div class="section"><div class="section-head"><h2>Judge Disagreements (Gap ≥ 6)</h2></div><div class="tbl-wrap"><table id="disagreeTable"><thead></thead><tbody></tbody></table></div></div>
+</div>
+</div>
+
+<script>
+const PW='ISTEaiASCD2026';let D=null;
+const DIMS=['Connection to Community Problem & SDG','Impact, Relevance & Longevity','Responsible & Ethical Use of AI','Innovation & Creativity','Design Quality & Accessibility','Collaboration & Process','Presentation & Communication'];
+const DS=['Community & SDG','Impact','Responsible AI','Innovation','Design Quality','Collaboration','Communication'];
+
+function tryAuth(){if(document.getElementById('pwInput').value.trim()===PW){document.getElementById('authWrap').style.display='none';document.getElementById('shell').style.display='block';init()}else document.getElementById('authErr').style.display='block'}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('pwInput').addEventListener('keypress',e=>{if(e.key==='Enter')tryAuth()})});
+
+async function init(){
+D=await(await fetch('data.json')).json();
+document.getElementById('asOf').textContent='Data as of '+D.data_as_of;
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+t.classList.add('active');document.getElementById('panel-'+t.dataset.tab).classList.add('active')}));
+renderOps();renderResults();}
+
+function judgesFor(pid){const o=[];for(const[j,ps]of Object.entries(D.judge_assignments)){if(ps.includes(pid))o.push(j)}return o}
+
+function classify(p){
+if(p.hold)return'hold';const n=p.scores?p.scores.length:0;
+if(n===0)return'unscored';if(n>=2)return p.meets_round1?'confirmed':'confirmed_not';
+const s=p.scores[0];const has1=Object.values(s.criteria).some(v=>v===1);
+return(s.total>=20&&!has1&&s.advance_recommended)?'on_track':'at_risk';}
+
+function sBadge(c){const m={confirmed:['badge-green','Advancing'],confirmed_not:['badge-red','Not Advancing'],on_track:['badge-blue','On Track'],at_risk:['badge-amber','At Risk'],unscored:['badge-gray','Unscored'],hold:['badge-purple','On Hold']};const x=m[c]||['badge-gray','?'];return'<span class="badge '+x[0]+'">'+x[1]+'</span>'}
+
+function setupF(id,vals,labels,cb){const el=document.getElementById(id);el.innerHTML=vals.map((v,i)=>'<button class="'+(i===0?'active':'')+'" data-f="'+v+'">'+labels[i]+'</button>').join('');el.addEventListener('click',e=>{if(!e.target.dataset.f)return;el.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');cb(e.target.dataset.f)})}
+
+function renderOps(){
+const judges=Object.entries(D.judge_assignments),projects=Object.values(D.projects);
+let tA=0,tD=0;const jRows=[],nudge=[];
+for(const[jid,pids]of judges){
+const vis=pids.filter(p=>D.projects[p]&&!D.projects[p].hold);let done=0;const out=[];
+for(const p of vis){if(D.projects[p].judged_by&&D.projects[p].judged_by.includes(jid))done++;else out.push(p)}
+tA+=vis.length;tD+=done;const pct=vis.length?Math.round(done/vis.length*100):0;
+jRows.push({jid,assigned:vis.length,done,remain:out.length,pct,out});
+if(out.length>0)nudge.push({jid,out,done,assigned:vis.length})}
+nudge.sort((a,b)=>a.done-b.done);
+const jDone=jRows.filter(r=>r.remain===0&&r.assigned>0).length;
+const jZero=jRows.filter(r=>r.done===0&&r.assigned>0).length;
+const pS=projects.filter(p=>p.scores&&p.scores.length>0).length;
+const pD=projects.filter(p=>p.scores&&p.scores.length>=2).length;
+const holds=projects.filter(p=>p.hold).length;
+
+const pct=tA?Math.round(tD/tA*100):0;const pc=pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+document.getElementById('paceBanner').innerHTML='<div class="pace-banner"><div class="pace-text"><strong>'+tD+'</strong> of <strong>'+tA+'</strong> judge-project submissions ('+pct+'%) — Deadline: April 3, 8PM ET</div><div class="pace-bar-outer"><div class="pace-bar-inner" style="width:'+pct+'%;background:'+pc+'"></div></div></div>';
+
+document.getElementById('opsStats').innerHTML=
+'<div class="stat-card"><div class="stat-label">Judges</div><div class="stat-val">'+judges.length+'</div></div>'+
+'<div class="stat-card good"><div class="stat-label">Judges Done</div><div class="stat-val">'+jDone+'</div><div class="stat-sub">of '+judges.length+'</div></div>'+
+'<div class="stat-card bad"><div class="stat-label">@ Zero</div><div class="stat-val">'+jZero+'</div></div>'+
+'<div class="stat-card"><div class="stat-label">Projects Scored</div><div class="stat-val">'+pS+'</div><div class="stat-sub">'+pD+' fully scored</div></div>'+
+'<div class="stat-card warn"><div class="stat-label">On Hold</div><div class="stat-val">'+holds+'</div></div>'+
+'<div class="stat-card info"><div class="stat-label">Need 2nd Judge</div><div class="stat-val">'+(pS-pD)+'</div></div>';
+
+document.getElementById('nudgeCnt').textContent=nudge.length+' judges with outstanding work';
+document.getElementById('nudgeList').innerHTML=nudge.length?nudge.map(j=>'<div class="nudge-judge"><div class="nudge-id">'+j.jid+' <span style="font-weight:400;color:var(--text3);font-size:.82rem">— '+j.done+'/'+j.assigned+' done, '+j.out.length+' remaining</span></div><div class="nudge-projects">'+j.out.map(p=>'<code>'+p+'</code>').join('')+'</div></div>').join(''):'<div style="padding:1rem;color:var(--text3);text-align:center">All judges are complete!</div>';
+
+let jF='all';const renderJ=()=>{let rows=[...jRows];
+if(jF==='incomplete')rows=rows.filter(r=>r.remain>0);if(jF==='zero')rows=rows.filter(r=>r.done===0&&r.assigned>0);if(jF==='complete')rows=rows.filter(r=>r.remain===0&&r.assigned>0);
+rows.sort((a,b)=>a.pct-b.pct);const t=document.getElementById('judgeTable');
+t.querySelector('thead').innerHTML='<tr><th>Judge ID</th><th>Assigned</th><th>Done</th><th>Remaining</th><th>Progress</th></tr>';
+t.querySelector('tbody').innerHTML=rows.map(r=>{const c=r.pct===100?'badge-green':r.done===0?'badge-red':'badge-amber';const fc=r.pct===100?'var(--green)':r.done===0?'var(--red)':'var(--amber)';
+return'<tr><td><strong>'+r.jid+'</strong></td><td>'+r.assigned+'</td><td>'+r.done+'</td><td>'+r.remain+'</td><td><span class="badge '+c+'">'+r.pct+'%</span><span class="pct-bar"><span class="pct-fill" style="width:'+r.pct+'%;background:'+fc+'"></span></span></td></tr>'}).join('')};
+setupF('judgeFilter',['all','incomplete','zero','complete'],['All','Incomplete','No Submissions','Complete'],v=>{jF=v;renderJ()});renderJ();
+
+let pF='all';const pRows=projects.map(p=>{const jl=judgesFor(p.id);return{id:p.id,name:p.project_name,judges:jl,scored:p.scores?p.scores.length:0,hold:p.hold,avg:p.avg_score,cls:classify(p)}});
+const renderP=()=>{let rows=pRows;
+if(pF==='unjudged')rows=rows.filter(r=>r.scored===0&&!r.hold);if(pF==='partial')rows=rows.filter(r=>r.scored===1);if(pF==='complete')rows=rows.filter(r=>r.scored>=2);if(pF==='hold')rows=rows.filter(r=>r.hold);
+const t=document.getElementById('projTable');t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Name</th><th>Judge 1</th><th>Judge 2</th><th>Scores</th><th>Avg</th><th>Status</th></tr>';
+t.querySelector('tbody').innerHTML=rows.map(r=>{const s=r.scored>=2?'badge-green':r.scored===1?'badge-amber':'badge-red';const j1=r.judges[0]||'-',j2=r.judges[1]||'-';const p=D.projects[r.id];const j1d=p.judged_by&&p.judged_by.includes(j1)?'✓':'○';const j2d=p.judged_by&&p.judged_by.includes(j2)?'✓':'○';
+return'<tr><td><strong>'+r.id+'</strong></td><td style="white-space:normal;max-width:220px">'+esc(r.name)+'</td><td>'+j1+' '+j1d+'</td><td>'+j2+' '+j2d+'</td><td><span class="badge '+s+'">'+r.scored+'/2</span></td><td>'+(r.avg!=null?r.avg:'-')+'</td><td>'+sBadge(r.cls)+'</td></tr>'}).join('')};
+setupF('projFilter',['all','unjudged','partial','complete','hold'],['All','Unjudged','Partial','Full','Holds'],v=>{pF=v;renderP()});renderP();
+
+const hRows=projects.filter(p=>p.hold);const ht=document.getElementById('holdTable');
+ht.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Name</th><th>Reason</th><th>Judges</th></tr>';
+ht.querySelector('tbody').innerHTML=hRows.map(p=>'<tr><td><strong>'+p.id+'</strong></td><td style="white-space:normal">'+esc(p.project_name)+'</td><td>'+(esc(p.hold_reason)||'—')+'</td><td>'+judgesFor(p.id).join(', ')+'</td></tr>').join('')}
+
+function renderResults(){
+const projects=Object.values(D.projects),scored=projects.filter(p=>p.scores&&p.scores.length>0),dualS=projects.filter(p=>p.scores&&p.scores.length>=2);
+const seg={confirmed:0,confirmed_not:0,on_track:0,at_risk:0,unscored:0,hold:0};
+projects.forEach(p=>seg[classify(p)]++);
+
+document.getElementById('segRow').innerHTML=
+'<div class="seg-card" style="border-top-color:var(--green)"><div class="seg-label">Confirmed Advancing</div><div class="seg-val" style="color:#66BB6A">'+seg.confirmed+'</div></div>'+
+'<div class="seg-card" style="border-top-color:#1565C0"><div class="seg-label">On Track (1 judge)</div><div class="seg-val" style="color:#64B5F6">'+seg.on_track+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--amber)"><div class="seg-label">At Risk (1 judge)</div><div class="seg-val" style="color:#FFB74D">'+seg.at_risk+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--red)"><div class="seg-label">Not Advancing</div><div class="seg-val" style="color:#EF5350">'+seg.confirmed_not+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--text3)"><div class="seg-label">Not Yet Scored</div><div class="seg-val" style="color:#90A4AE">'+seg.unscored+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--purple)"><div class="seg-label">On Hold</div><div class="seg-val" style="color:#CE93D8">'+seg.hold+'</div></div>';
+
+const allS=scored.filter(p=>p.avg_score!=null).map(p=>p.avg_score);
+const avgA=allS.length?(allS.reduce((a,b)=>a+b,0)/allS.length).toFixed(1):'-';
+const advR=scored.filter(p=>p.scores.every(s=>s.advance_recommended)&&p.scores.length>=2).length;
+document.getElementById('resStats').innerHTML=
+'<div class="stat-card"><div class="stat-label">Avg Score</div><div class="stat-val">'+avgA+'</div><div class="stat-sub">out of 28</div></div>'+
+'<div class="stat-card"><div class="stat-label">Highest</div><div class="stat-val">'+(allS.length?Math.max(...allS):'-')+'</div></div>'+
+'<div class="stat-card"><div class="stat-label">Lowest</div><div class="stat-val">'+(allS.length?Math.min(...allS):'-')+'</div></div>'+
+'<div class="stat-card good"><div class="stat-label">Both Rec. Advance</div><div class="stat-val">'+advR+'</div></div>'+
+'<div class="stat-card warn"><div class="stat-label">Need 2nd Judge</div><div class="stat-val">'+(scored.length-dualS.length)+'</div></div>';
+
+let rF='advancing';const ranked=scored.filter(p=>p.avg_score!=null).sort((a,b)=>b.avg_score-a.avg_score);
+const renderR=()=>{let rows=ranked;
+if(rF==='advancing')rows=rows.filter(p=>p.meets_round1);
+if(rF==='on_track')rows=rows.filter(p=>classify(p)==='on_track');
+if(rF==='at_risk')rows=rows.filter(p=>classify(p)==='at_risk');
+if(rF==='not')rows=rows.filter(p=>classify(p)==='confirmed_not');
+const t=document.getElementById('r1Table');
+t.querySelector('thead').innerHTML='<tr><th>#</th><th>ID</th><th>Project</th><th>Team</th><th>Avg</th><th>Judges</th><th>Status</th><th></th></tr>';
+t.querySelector('tbody').innerHTML=rows.map((p,i)=>{
+const c=classify(p);const si=p.scores.map(s=>s.judge_id+': '+s.total+(s.advance_recommended?' ✓':' ✗')).join(' | ');
+const did='d-'+p.id.replace(/\W/g,'');
+let det='<div class="detail-grid">';
+p.scores.forEach(s=>{det+='<div class="detail-item"><div class="label">'+esc(s.judge_id)+' — '+s.total+'/28 '+(s.advance_recommended?'(Advance: Yes)':'(Advance: No)')+'</div><div class="score-row">';
+DIMS.forEach((d,di)=>{const v=s.criteria[d];det+='<div class="score-pip pip-'+v+'" title="'+DS[di]+': '+v+'">'+v+'</div>'});det+='</div></div>'});
+[['Pitch Video','pitch_video'],['Team Story','team_story'],['Digital Product','digital_product'],['Additional','additional_artifact']].forEach(([l,k])=>{const o=p[k];if(o&&o.type==='url'&&o.value)det+='<div class="detail-item"><div class="label">'+l+'</div><div class="val"><a href="'+esc(o.value)+'" target="_blank">'+esc(o.value.substring(0,70))+'</a></div></div>'});
+p.scores.forEach(s=>{if(s.comments_panel)det+='<div class="detail-item"><div class="label">Panel Notes ('+esc(s.judge_id)+')</div><div class="val" style="white-space:pre-wrap;font-size:.8rem;max-height:100px;overflow:auto">'+esc(s.comments_panel.substring(0,500))+'</div></div>'});
+det+='</div>';
+return'<tr onclick="toggleD(\''+did+'\')" style="cursor:pointer"><td>'+(i+1)+'</td><td><strong>'+p.id+'</strong></td><td style="white-space:normal;max-width:200px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:130px">'+esc(p.team_name)+'</td><td><strong>'+p.avg_score+'</strong></td><td style="font-size:.76rem">'+si+'</td><td>'+sBadge(c)+'</td><td style="color:var(--text3)">▶</td></tr><tr class="expand-row" id="'+did+'"><td colspan="8" class="expand-cell">'+det+'</td></tr>'}).join('')};
+setupF('r1Filter',['advancing','on_track','all','at_risk','not'],['Advancing ('+seg.confirmed+')','On Track ('+seg.on_track+')','All Scored','At Risk ('+seg.at_risk+')','Not Advancing ('+seg.confirmed_not+')'],v=>{rF=v;renderR()});renderR();
+
+const bins={};for(let i=7;i<=28;i++)bins[i]=0;allS.forEach(s=>{const b=Math.round(s);if(bins[b]!==undefined)bins[b]++});const mx=Math.max(...Object.values(bins),1);
+document.getElementById('distChart').innerHTML='<div class="bar-chart">'+Object.entries(bins).map(([k,v])=>'<div class="bar-col"><div class="bar" style="height:'+v/mx*100+'%;'+(v>0?'':'opacity:.15')+'" title="'+k+': '+v+'"></div><div class="bar-label">'+k+'</div></div>').join('')+'</div>';
+
+const dA=DIMS.map(d=>{let s=0,c=0;scored.forEach(p=>p.scores.forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}}));return c?(s/c):0});
+document.getElementById('dimChart').innerHTML='<div class="bar-chart" style="height:100px">'+dA.map((v,i)=>'<div class="bar-col"><div class="bar" style="height:'+v/4*100+'%" title="'+DS[i]+': '+v.toFixed(2)+'"></div><div class="bar-label" style="max-height:65px">'+DS[i]+'</div></div>').join('')+'</div>';
+
+const dis=dualS.filter(p=>p.scores.length>=2&&Math.abs(p.scores[0].total-p.scores[1].total)>=6).sort((a,b)=>Math.abs(b.scores[0].total-b.scores[1].total)-Math.abs(a.scores[0].total-a.scores[1].total));
+const dt=document.getElementById('disagreeTable');dt.querySelector('thead').innerHTML='<tr><th>Project</th><th>Name</th><th>J1</th><th>Score</th><th>J2</th><th>Score</th><th>Gap</th></tr>';
+dt.querySelector('tbody').innerHTML=dis.length?dis.map(p=>{const s1=p.scores[0],s2=p.scores[1],g=Math.abs(s1.total-s2.total);return'<tr><td><strong>'+p.id+'</strong></td><td style="white-space:normal">'+esc(p.project_name)+'</td><td>'+s1.judge_id+'</td><td>'+s1.total+'</td><td>'+s2.judge_id+'</td><td>'+s2.total+'</td><td><span class="badge badge-red">'+g+'</span></td></tr>'}).join(''):'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:1.5rem">No significant disagreements</td></tr>'}
+
+function toggleD(id){document.getElementById(id).classList.toggle('show')}
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+</script>
+</body>
+</html>
