@@ -1506,7 +1506,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26D5BM"
+        "AI26D5BM",
+        "AI26M1AS"
       ],
       "scores": [
         {
@@ -1524,9 +1525,25 @@
           "advance_recommended": true,
           "comments_panel": "I gave the project a perfect score of 4 for Innovation and Design, but I deducted points on the relevant criteria because they did not establish any connection to the United Nations Sustainable Development Goals (SDGs) and did not address data privacy. Additionally, I verified their teamwork not directly through their own narrative, but through the task assignments in the “Advancing Autism Awareness Forum” booklet they submitted as an appendix.\nSince the work turned out to be more of an individual effort, \nI deducted points because the collaboration codes did not explain the logic behind the work. It was supposed to be shared at a nice panel, but mentioning the collaboration beforehand and having prior interaction with the speakers would have prevented the point deduction. I appreciated that they considered individuals with disabilities. I appreciated the consideration given to individuals with disabilities. Since I couldn’t review all the other projects and the topic was also good, I wanted to give it a second chance. Kind regards",
           "comments_student": "First of all, the fact that the project focuses on disadvantaged individuals is noteworthy. The consideration of these disadvantages has earned the project extra points. The question of whether the work was primarily individual in nature has been raised. The uploaded documents serve as evidence of this. The names of team members should be mentioned in the introduction or process section of the story. More importantly, the task distribution—specifically, who took on which role during the project’s design and AI integration phases—must be explained. For example, it should briefly detail who handled coding/AI modeling, who designed the user interface, or who prepared the educational content. The flow of the video presentation was engaging and unique. Mastery of the subject matter was evident. The current text only mentions volunteering within the “Alliance for Impact (AFI).” A paragraph should be added to the text describing how the team collaborated with medical experts and civil society at the “Advancing Autism Awareness Forum” and how this field experience guided the design of ChatBuddy (e.g., accessibility principles). Yes, there will be a presentation. Prior to that, the speakers’ collaboration efforts could be highlighted. Emphasizing the problem context and integrating it more deeply into the project will earn bonus points. Additionally, the website created for ChatBuddy includes a “About Us” or “Privacy Policy” section, ensuring all rights are protected and necessary permissions have been obtained. References must be cited. Providing evidence alongside the verbal explanation will be beneficial. Kind regards"
+        },
+        {
+          "judge_id": "AI26M1AS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 2
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "Digital Product Testing: I highly recommend thoroughly testing the actual digital product link. While the submission essay claims the app uses \"AI-powered speech analysis\" to provide personalized feedback, my hands-on testing revealed this feature is currently non-functional. The app does not actually process or listen to the user's audio input; it simply operates on a loop that provides generic, positive feedback regardless of what noise is made. Because of this, I scored Innovation and Design Quality lower, as the actual integration of AI falls significantly short of the project's claims.\n\nPitch Video Pacing: I scored Presentation & Communication a 2. To fit within the required time limit, the student artificially sped up the audio of the pitch video. This resulted in a rushed, unnatural delivery that required me to constantly pause the video just to comprehend the information, failing the rubric's requirement that the narrative be \"easy to understand for a broad audience.\"\n\nStrong Community Connection: Despite the technical and presentation flaws, the student's foundation is excellent. The project stems from authentic volunteer experience and directly addresses a documented shortage of tutors for neurodiverse children.",
+          "comments_student": "What you did well: Your dedication to supporting neurodiverse learners is incredibly inspiring. Drawing from your three years of volunteer experience to address the tutor shortage shows a profound connection to your community. Furthermore, your user research is outstanding—surveying parents and hosting an intro seminar with over 60 families proves that you are actively listening to the people you want to help. The user interface you designed is also very clean, calming, and visually accessible for your target audience.\n\nAreas for Growth (The Prototype): Your essay mentions that ChatBuddy utilizes \"AI-powered speech analysis\" and \"adaptive AI models that respond to each child’s speech patterns\". However, during testing, the app did not actually process audio input and instead provided generic positive feedback regardless of what was said. In future iterations, it is vital to actually integrate the backend AI listening models you described, or be completely transparent in your pitch about what features are fully functional versus what is currently a \"mock-up.\" This is especially critical because your app features a parent dashboard that tracks and reports on the child's milestones and accuracy. Providing fabricated progress metrics to caregivers breaks trust and severely undermines the app's goal of making communication practice \"measurable\". True AI literacy requires transparency about a tool's current limitations.\n\nAreas for Growth (The Pitch): You have so much great information to share, but artificially speeding up the audio in your pitch video to meet the time limit made it very difficult to digest your message. When an audience has to constantly pause a video to understand the speaker, the impact of the story is lost. In the future, focus on editing down your script to highlight only the most critical points so you can speak at a natural, engaging pace."
         }
       ],
-      "avg_score": 22.0,
+      "avg_score": 21.0,
       "meets_round1": false
     },
     "ISTE26AI121": {
@@ -1857,7 +1874,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "",
       "judged_by": [],
       "scores": [],
@@ -2087,7 +2104,7 @@
         "value": "https://ecosimv3.edu/prototype",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Links not working",
       "judged_by": [],
       "scores": [],
@@ -2356,7 +2373,7 @@
         "value": "https://docs.google.com/presentation/d/1N2IZwbhCV3TPnRx4Zq2mM3gzWzii5KZHaWlSY0bUk5U/edit?usp=sharing",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Failed to Fetch",
       "judged_by": [
         "AI262SR5"
@@ -2425,7 +2442,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26R7JR"
+        "AI26R7JR",
+        "AI26XVQS"
       ],
       "scores": [
         {
@@ -2443,9 +2461,25 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": "You showed a good understanding of AI concepts and how your system works. Your explanation of the process demonstrates effort in learning technical skills.\nSuggestion for improvement: Try to include more specific details about your data, algorithms, or how the AI model is trained to make your project more convincing."
+        },
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 1,
+            "Presentation & Communication": 3
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "I was not able to download the prototype from Google Drive so this score is based on the video and write up.",
+          "comments_student": ""
         }
       ],
-      "avg_score": 19.0,
+      "avg_score": 16.5,
       "meets_round1": false
     },
     "ISTE26AI138": {
@@ -2757,7 +2791,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Drive fodlers not accessble",
       "judged_by": [],
       "scores": [],
@@ -2905,7 +2939,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Incomplete pitch video",
       "judged_by": [],
       "scores": [],
@@ -2937,7 +2971,7 @@
         "value": "App",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Don't have access to the App",
       "judged_by": [],
       "scores": [],
@@ -3286,7 +3320,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26YYHJ"
+        "AI26YYHJ",
+        "AI26D3Q3"
       ],
       "scores": [
         {
@@ -3304,9 +3339,25 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26D3Q3",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "The self-learning is one of the most impressive aspects of your project. They not only used AI tools like Gemini and Copilot to support your learning, but they also thoughtfully applied AI to solve a real ethical dilemma.",
+          "comments_student": "You clearly describe how hurricanes and power outages impact daily life in Sinaloa, and more importantly, how those outages can become life-threatening for vulnerable populations. Transforming bicycles into emergency energy sources is already innovative, but combining that with an AI-driven triage system elevates your solution to another level. The integration of physical design, community engagement, and AI reflects strong design thinking and inventive problem-solving.\n\nOne area that could strengthen your project even further is clarifying how the system moves from idea to real-world action. For example, it would be helpful to better understand who inputs the data into the “SIK Brain” (e.g., families, healthcare workers, emergency responders) and how those needs are verified. Additionally, consider explaining who is responsible for acting on the AI’s prioritization: who physically connects the stored energy to those in need and how that process is coordinated during an emergency. Who would be the primary user of your your system?"
         }
       ],
-      "avg_score": 15.0,
+      "avg_score": 19.5,
       "meets_round1": false
     },
     "ISTE26AI155": {
@@ -3755,9 +3806,28 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": [],
-      "scores": [],
-      "avg_score": null,
+      "judged_by": [
+        "AI26XVQS"
+      ],
+      "scores": [
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 1,
+            "Presentation & Communication": 2
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "Interesting concept. Unfortunately, the team did not provide a write up, discuss their collaboration and iteration, test with the target audience, consult experts or connect the project to the UN SDG. There is also no mention of responsible and ethical AI which is critical when dealing with a mental health app and considering data privacy with such a solution.",
+          "comments_student": ""
+        }
+      ],
+      "avg_score": 14.0,
       "meets_round1": false
     },
     "ISTE26AI163": {
@@ -3834,7 +3904,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Playlab link is not public",
       "judged_by": [
         "AI2663L7"
@@ -4255,7 +4325,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26D5BM"
+        "AI26D5BM",
+        "AI26M1AS"
       ],
       "scores": [
         {
@@ -4273,9 +4344,25 @@
           "advance_recommended": true,
           "comments_panel": "PathoScan is a highly effective project that deserves full marks in the ‘Innovation’ and ‘Impact’ categories, having achieved a 99% accuracy rate in colon cancer diagnosis and with a six-year plan that includes FDA approval and hospital partnerships. However, adhering to the rubric guidelines, I had to deduct 2 points from one criterion: although the text appears to make no reference to the United Nations Sustainable Development Goals (SDGs), the presentation does include them. This has made a positive contribution to the project. Second, although the developed tool is an AI that processes sensitive medical data, no evidence was provided regarding how patient data privacy would be ensured.\nAdditionally, the team noted in their supplementary remarks that they struggled to communicate due to the ongoing war in the Middle East and were unable to convert the code into a website or user interface. While this is a very unfortunate and entirely valid human excuse, as a judge, in accordance with the rule to “score based on the evidence presented, not intentions,” I was compelled to deduct points in the “Design Quality” criterion because there was no interface design available for review. The team’s vision and determination in the face of challenges are incredible. I believe their work demonstrated dedication through online communication channels. Given that the project topic addresses real-life problems, I am giving them a chance for Round 2. Kind regards",
           "comments_student": "First of all, I’d like to congratulate the entire team (Noah, Maanya, and Chloe) for developing a solution to such a meaningful and global problem! Drawing inspiration from Noah’s grandfather’s story, the empathy you’ve shown in addressing the inequality in access to healthcare technology in regions like Lebanon and India is truly inspiring. Despite struggling to communicate under such challenging and grueling conditions—such as the war in the Middle East—your refusal to give up and your development of a functional AI model with a 99% accuracy rate is a remarkable example of determination and teamwork. Your 6-year development plan proves just how solid your vision is\n. I have two small suggestions to make your project even more unbeatable when presenting to investors or in competitions in the future: 1) It would be very effective to explicitly state in the written text that your wonderful vision aligns with the United Nations’ “Healthy Individuals” (SDG 3) goal. 2) Since you are designing a medical AI, you should also incorporate into your designs how you will protect patients’ sensitive diagnostic data (data privacy) within your system. This will have a particularly positive impact during the website development phase. I am proud of all of you for the outstanding work you have produced despite all the challenges you faced. Best regards"
+        },
+        {
+          "judge_id": "AI26M1AS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "Prototype Usability vs. Context: I had to score Design Quality & Accessibility as a 2 because the digital product is merely a screenshot of the Python terminal training log. It is not a usable interface. However, I strongly urge the committee to read the students' note: \"due to the current ongoing war in the Middle East, communication among team members has been difficult, limiting our ability to further develop our code into a website...\" * Exceptional Technical Depth: Even without the website frontend, this team is operating at a very high level. They coded a Convolutional Neural Network (CNN) using PyTorch and tracked validation loss/accuracy. The terminal screenshot proves the backend code exists and functions.\n\nAdvocating for Grace: While we must score based on the rubric, the fact that this team coordinated across international borders during an active war to build a functional PyTorch AI model is staggering. If they are on the bubble for advancement, I highly recommend pushing them through to Phase 2.",
+          "comments_student": "What you did well: Your project is absolutely stellar. To code a CNN in PyTorch for medical imaging is a massive technical achievement. It is incredibly impressive that you understood the need for data augmentation to ensure your model generalizes properly. Furthermore, tying this technical feat to a deeply personal story, and mapping out a realistic 6-year business and FDA approval timeline, makes this one of the most comprehensive and inspiring pitches in the competition.\n\nAcknowledging your circumstances: We read your note regarding the communication difficulties caused by the ongoing war in the Middle East. Please know that we are deeply moved by your resilience. The fact that you managed to build, train, and validate a highly accurate AI model under those circumstances is a testament to your brilliance and dedication.\n\nAreas for Growth (The Prototype): Because the rubric requires the solution to be \"usable\" by its intended audience, we had to score the design quality lower since the current prototype is a terminal log rather than a doctor-facing interface. We completely understand why this is the case right now.\n\nNext Steps for Development: When circumstances allow you to safely resume full collaboration, your next major milestone will be building the frontend. Focus on how a doctor will upload the slide and what the output will look like on their screen. Interviewing medical professionals about their current digital workflows will give you invaluable insights into how your software's user interface should be designed. We are cheering you on!"
         }
       ],
-      "avg_score": 24.0,
+      "avg_score": 24.5,
       "meets_round1": false
     },
     "ISTE26AI172": {
@@ -4703,7 +4790,7 @@
         "type": "note",
         "value": "Local file (not accessible online)"
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "files are on local drive",
       "judged_by": [],
       "scores": [],
@@ -4954,7 +5041,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI267RSA"
+        "AI267RSA",
+        "AI26IEBZ"
       ],
       "scores": [
         {
@@ -4972,9 +5060,25 @@
           "advance_recommended": false,
           "comments_panel": "I found the link hard to noctivagate and was not sure how to upload documents to have it translated or read back to me. The idea was a great idea and the collaborative planning was clearly seen.",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26IEBZ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "Technically this product seems like a winner.  It was not clear about the type or vastness of the collaboration amongst the partners.",
+          "comments_student": ""
         }
       ],
-      "avg_score": 17.0,
+      "avg_score": 21.5,
       "meets_round1": false
     },
     "ISTE26AI185": {
@@ -5188,7 +5292,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26R7JR"
+        "AI26R7JR",
+        "AI26XVQS"
       ],
       "scores": [
         {
@@ -5206,9 +5311,25 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": "Your team created a user-friendly and well-thought-out design. The interface and flow of your solution make it easy to understand how users will interact with your AI system.\nSuggestion for improvement: You may enhance your project by adding more detailed user testing or feedback to improve usability."
+        },
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 1,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 1,
+            "Presentation & Communication": 2
+          },
+          "total": 11,
+          "advance_recommended": false,
+          "comments_panel": "Interesting idea for an app. They concept and pitch materials would need significant revision to move forward. Not much clarity about the process or collaboration provided.",
+          "comments_student": ""
         }
       ],
-      "avg_score": 17.0,
+      "avg_score": 14.0,
       "meets_round1": false
     },
     "ISTE26AI189": {
@@ -5637,7 +5758,7 @@
         "type": "empty",
         "value": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Can't log in",
       "judged_by": [],
       "scores": [],
@@ -5671,7 +5792,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26LKLE"
+        "AI26LKLE",
+        "AI26M1AS"
       ],
       "scores": [
         {
@@ -5689,9 +5811,25 @@
           "advance_recommended": true,
           "comments_panel": "The project provided no security around AI, but the tool itself did when I asked questions about privacy and storage of personal information.  I did not see where they discussed how they tested it to make sure it was accurate.  I tried it for my location and it did not include all of the information in my community, but I realize that it is also dependent on the material available to the AI.",
           "comments_student": "Great app!  This is very timely and needed everywhere in our country at this time."
+        },
+        {
+          "judge_id": "AI26M1AS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "Critical Digital Product Failure: I strongly urge you to test the actual digital product link provided by the team. While their essay claims they conducted \"extensive trial-and-error testing\" and found \"no discrepancies\" when cross-checking locations globally, real-world testing reveals the app suffers from heavy hallucinations. The AI frequently generates inaccurate locations and entirely fabricated websites.\n\nEthical and Design Scoring: Because the target audience is highly vulnerable individuals facing food and resource insecurity, providing them with fake addresses or non-existent support resources is actively harmful. As a result, I scored both Ethical Use of AI and Design Quality & Accessibility as a 2 (Minimal evidence). The app lacks the necessary guardrails and factual grounding to be considered usable or safe for its intended purpose.\n\nStrong Concept, Flawed Execution: The team's foundational idea is excellent, and their specific effort to mitigate bias by ensuring small, locally-owned nonprofits are highlighted over larger organizations is a great ethical consideration. However, the technical execution completely undermines these goals.",
+          "comments_student": "What you did well: Your mission to combat food and resource insecurity is deeply commendable, and you have clearly identified a widespread issue affecting millions. Your written essay and pitch video were both highly professional, well-organized, and effectively communicated your vision. Additionally, your deliberate effort to adjust the AI to prevent larger organizations from overshadowing smaller, locally-owned nonprofits is exactly the kind of ethical foresight we look for in AI design!\n\nAreas for Growth (The Prototype): In your essay, you stated that your testing demonstrated \"strong stability and reliability\" and that \"no discrepancies were found\" when verifying AI outputs. However, during my evaluation of your app, the AI suffered from severe hallucinations, frequently providing inaccurate local addresses and completely fabricating websites. When building an app for vulnerable populations—such as a single mother looking for essentials —accuracy is the most critical feature. Sending someone in need to a fake location can cause real-world harm and distress.\n\nNext Steps for Development: To solve this hallucination issue, you cannot rely solely on the Llama 4 Scout model's internal knowledge base to generate locations. In future iterations, you will need to \"ground\" your AI by connecting it directly to a verified, continually updated database or API (like Google Places API) so the AI only retrieves and summarizes real data rather than inventing it. Additionally, keep in mind that community shelters or food banks in many rural areas have a poor official website presence. They often utilize only social media to advertise events and available resources. You need to ensure your AI model is explicitly instructed and capable of searching social media platforms, especially local Facebook pages, to accurately capture these local offerings. Furthermore, you must include a clear, prominent disclaimer on your interface warning users that AI can make mistakes and that they should call ahead to verify resources."
         }
       ],
-      "avg_score": 23.0,
+      "avg_score": 22.0,
       "meets_round1": false
     },
     "ISTE26AI198": {
@@ -5972,9 +6110,28 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": [],
-      "scores": [],
-      "avg_score": null,
+      "judged_by": [
+        "AI262OQL"
+      ],
+      "scores": [
+        {
+          "judge_id": "AI262OQL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 1,
+            "Collaboration & Process": 1,
+            "Presentation & Communication": 2
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "Although the pitch video was done professionally, it seems as though this was produced for another purpose.  While I understand the purpose of getting more women to farm is great, there was little to no evidence of this project coming from students.  I also don't have a clear idea of what the agribot is.",
+          "comments_student": "While the problem identified is a very real problem in your community; having a lack of interest in farming, there was little evidence of collaboration and student voice in the project.  I also didn't see a clearly defined digital product or prototype produced.  I did, however, like the idea of bringing STEM into the classroom and merging it with agriculture."
+        }
+      ],
+      "avg_score": 14.0,
       "meets_round1": false
     },
     "ISTE26AI203": {
@@ -6086,7 +6243,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26YYHJ"
+        "AI26YYHJ",
+        "AI26D3Q3"
       ],
       "scores": [
         {
@@ -6104,9 +6262,25 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26D3Q3",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 1,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 15,
+          "advance_recommended": false,
+          "comments_panel": "This tool has good potential, but there is no enough demonstration on how the app works (there was no audio notification example provided).",
+          "comments_student": "Your project presents a meaningful and inspiring vision for supporting visually impaired individuals, and the idea of real-time audio guidance is especially promising. One area that could strengthen your project further is how the solution is demonstrated in action.\n\nIn the current presentation, it is not fully clear how the audio guidance works in a real-world scenario. Seeing or hearing an example of the system actively providing directions (such as alerting users to obstacles or guiding their movement) would help the audience better understand its effectiveness and usability.\n\nAdditionally, it would be helpful to clarify how visually impaired users navigate and interact with the app itself. For example:\nHow do users start or control the system without relying on a screen?\nAre there voice commands, automatic activation, or other hands-free features?\nHow is the interface designed to be accessible for someone with limited or no vision?"
         }
       ],
-      "avg_score": 12.0,
+      "avg_score": 13.5,
       "meets_round1": false
     },
     "ISTE26AI206": {
@@ -6135,9 +6309,28 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": [],
-      "scores": [],
-      "avg_score": null,
+      "judged_by": [
+        "AI269729"
+      ],
+      "scores": [
+        {
+          "judge_id": "AI269729",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "This project stands out for its clear alignment to a specific need and strong user-centered design approach. While the product is not fully developed, the strength of the problem, innovation, and process makes it a compelling candidate.",
+          "comments_student": "Your project stands out because it is deeply personal and clearly connected to a real need. One of your biggest strengths is your connection to your users. You took the time to talk to visually impaired individuals and even consulted with experts. That shows maturity and strong thinking. \n\nWhat makes your project especially strong is your process. You were honest about your challenges, and instead of stopping, you kept going. \n\nTo strengthen your project even further:\n1. Clarify your AI system: How do you ensure the stories are accurate and appropriate? How does your AI adapt to different learners?\n\n2. Show your product more clearly: Show how accessibility features work in practice.\n\n3. Continue improving usability: Keep testing with users and refining based on feedback\n\nExcellent work!"
+        }
+      ],
+      "avg_score": 26.0,
       "meets_round1": false
     },
     "ISTE26AI207": {
@@ -6331,9 +6524,28 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": [],
-      "scores": [],
-      "avg_score": null,
+      "judged_by": [
+        "AI26IEBZ"
+      ],
+      "scores": [
+        {
+          "judge_id": "AI26IEBZ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 1,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 1,
+            "Presentation & Communication": 3
+          },
+          "total": 15,
+          "advance_recommended": false,
+          "comments_panel": "I can only infer what this application does and I'm not sure where AI comes into play.  The video does not have any sound, so it looks like it is just a screen recording of someone using the app.",
+          "comments_student": ""
+        }
+      ],
+      "avg_score": 15.0,
       "meets_round1": false
     },
     "ISTE26AI211": {
@@ -6497,9 +6709,28 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": [],
-      "scores": [],
-      "avg_score": null,
+      "judged_by": [
+        "AI26XVQS"
+      ],
+      "scores": [
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 20,
+          "advance_recommended": true,
+          "comments_panel": "Good concept. Like the additional artifact explaining how music teachers can use this app to support student learning. Missing a connection to the UNSDG and discussion of ethical and responsible AI. But nice execution and strong student ownership.",
+          "comments_student": ""
+        }
+      ],
+      "avg_score": 20.0,
       "meets_round1": false
     },
     "ISTE26AI214": {
@@ -6748,7 +6979,7 @@
         "value": "https://drive.google.com/file/d/17Cg8izKAUw0R5B01IxdcWduc-XMWZswN/view?usp=sharing",
         "password": ""
       },
-      "hold": true,
+      "hold": false,
       "hold_reason": "Can't access the Gem or the Pitch Video",
       "judged_by": [],
       "scores": [],
@@ -6807,5 +7038,5 @@
       "meets_round1": false
     }
   },
-  "data_as_of": "April 2, 2026"
+  "data_as_of": "April 3, 2026"
 }
