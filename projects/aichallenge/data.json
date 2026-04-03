@@ -1,12 +1,6 @@
 {
   "judge_assignments": {
-    "AI26ESS4": [
-      "ISTE26AI101",
-      "ISTE26AI126",
-      "ISTE26AI152",
-      "ISTE26AI177",
-      "ISTE26AI203"
-    ],
+    "AI26ESS4": [],
     "AI26DIVU": [
       "ISTE26AI101",
       "ISTE26AI127",
@@ -352,6 +346,13 @@
     ],
     "AI26JGIS": [
       "ISTE26AI124"
+    ],
+    "AI26W4NF": [
+      "ISTE26AI101",
+      "ISTE26AI126",
+      "ISTE26AI152",
+      "ISTE26AI177",
+      "ISTE26AI203"
     ]
   },
   "projects": {
@@ -7036,5 +7037,5 @@
       "meets_round1": false
     }
   },
-  "data_as_of": "April 3, 2026 at 6:38 AM ET"
+  "data_as_of": "April 3, 2026 at 6:59 AM ET"
 }
