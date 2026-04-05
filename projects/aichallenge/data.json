@@ -8,11 +8,8 @@
       "ISTE26AI146"
     ],
     "AI26DIVU": [
-      "ISTE26AI101",
       "ISTE26AI127",
-      "ISTE26AI152",
       "ISTE26AI178",
-      "ISTE26AI203",
       "ISTE26AI143",
       "ISTE26AI146"
     ],
@@ -457,26 +454,9 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "ISTE26AI153",
         "AI262T01"
       ],
       "scores": [
-        {
-          "judge_id": "ISTE26AI153",
-          "criteria": {
-            "Connection to Community Problem & SDG": 4,
-            "Impact, Relevance & Longevity": 4,
-            "Responsible & Ethical Use of AI": 4,
-            "Innovation & Creativity": 3,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 3,
-            "Presentation & Communication": 4
-          },
-          "total": 25,
-          "advance_recommended": true,
-          "comments_panel": "I really liked their attention to a problem that uses AI to protect the intellectual property rights of creators.",
-          "comments_student": "You have a great solution to an important issue that plagues our humanity. It is very important and timely to address this issue and not back down on your stance to protect the intellectual property rights of creators. You directly address this with your product and it's very impressive. Keep up the good work."
-        },
         {
           "judge_id": "AI262T01",
           "criteria": {
@@ -980,25 +960,10 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI262SR5"
+        "AI262SR5",
+        "AI26TUYL"
       ],
       "scores": [
-        {
-          "judge_id": "AI262SR5",
-          "criteria": {
-            "Connection to Community Problem & SDG": 1,
-            "Impact, Relevance & Longevity": 1,
-            "Responsible & Ethical Use of AI": 2,
-            "Innovation & Creativity": 2,
-            "Design Quality & Accessibility": 1,
-            "Collaboration & Process": 1,
-            "Presentation & Communication": 1
-          },
-          "total": 9,
-          "advance_recommended": false,
-          "comments_panel": "input for the jury to be more careful again",
-          "comments_student": "input for the student team to better understand each task and to make the task more organized"
-        },
         {
           "judge_id": "AI262SR5",
           "criteria": {
@@ -1014,9 +979,25 @@
           "advance_recommended": false,
           "comments_panel": "more focused",
           "comments_student": "further strengthened"
+        },
+        {
+          "judge_id": "AI26TUYL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "\"The WattNotWaste project stands out for its deep technical understanding of cascading grid failures. The team successfully blended personal experience with an innovative application of AIoT technology, creating a prototype with real social and economic significance.\"",
+          "comments_student": "\"Great job! Your story of how daily power cuts inspired you to create AIoT SmartGrid 360 is very compelling. Your collaboration process in the Atal Tinkering Labs is impressive, showing how you turned curiosity into a working hardware prototype. Keep up the great work!\""
         }
       ],
-      "avg_score": 15.5,
+      "avg_score": 24.0,
       "meets_round1": false
     },
     "ISTE26AI111": {
@@ -1372,22 +1353,6 @@
           "judge_id": "AI2618YW",
           "criteria": {
             "Connection to Community Problem & SDG": 3,
-            "Impact, Relevance & Longevity": 3,
-            "Responsible & Ethical Use of AI": 3,
-            "Innovation & Creativity": 3,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 1,
-            "Presentation & Communication": 3
-          },
-          "total": 19,
-          "advance_recommended": false,
-          "comments_panel": "The end product designed is a good one, but the presentation leaves out several components. The project was done by an individual and he does not indicate any collaboration at all in his project. I am sure he went through designs and testing, but again does not indicate in his project. No mention of accessibility. Some areas are just not addressed in his proposal.",
-          "comments_student": "I like that you designed something for students to use and when I tested BrightPath it worked really well! It was able to walk me through Economics concepts and provide me with individualized support. It seems like a really great study support tool."
-        },
-        {
-          "judge_id": "AI2618YW",
-          "criteria": {
-            "Connection to Community Problem & SDG": 3,
             "Impact, Relevance & Longevity": 4,
             "Responsible & Ethical Use of AI": 3,
             "Innovation & Creativity": 3,
@@ -1401,7 +1366,7 @@
           "comments_student": "I like the design of BrightPath and it works very well. I was able to use it to get some great hep on Supply and Demand. I can see this helping many students. You'll want to be sure you have addressed all requirements of the rubric to support such a great end product."
         }
       ],
-      "avg_score": 19.3,
+      "avg_score": 19.5,
       "meets_round1": false
     },
     "ISTE26AI117": {
@@ -2510,7 +2475,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26QQ79"
+        "AI26QQ79",
+        "AI26TUYL"
       ],
       "scores": [
         {
@@ -2528,9 +2494,25 @@
           "advance_recommended": false,
           "comments_panel": "The app design is visually appealing and secure, but the language option is not functional and the application’s response time is very slow. While the concept and design are good, these practical issues could significantly affect usability.",
           "comments_student": "Your app looks attractive and well-designed, great thought and concept!"
+        },
+        {
+          "judge_id": "AI26TUYL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "\"Inner Harmony\" effectively addresses a pressing global issue—mental health—through a well-structured AI ecosystem. The team demonstrated exceptional Responsible & Ethical Use of AI by explicitly stating that the tool supports rather than replaces professional therapy, showing high awareness of privacy and limitations. The presentation quality via Dokie.ai and the HeyGen pitch video is professional, engaging, and highly accessible to a broad audience. While the local community connection could be more specific, the project's potential for longevity and scalability is evident.",
+          "comments_student": "Great job on \"Inner Harmony\"! Your project shows a deep understanding of how AI can be used as a force for good in the field of mental well-being.\n\n* What worked well: Your pitch video is clear, compelling, and professionally produced. We particularly appreciate your focus on ethics and user privacy, which is a critical part of AI literacy.\n* Tip for the future: To strengthen your submission for the next stage, try to provide more \"Evidence of testing and iteration\". Showing how you gathered feedback from potential users and changed your design based on that feedback would demonstrate a strong mastery of the design process. Keep up the fantastic work!"
         }
       ],
-      "avg_score": 18.0,
+      "avg_score": 20.0,
       "meets_round1": false
     },
     "ISTE26AI136": {
@@ -2577,28 +2559,12 @@
           },
           "total": 28,
           "advance_recommended": true,
-          "comments_panel": "input for the jury to be better understood again",
-          "comments_student": "very good innovation"
-        },
-        {
-          "judge_id": "AI262SR5",
-          "criteria": {
-            "Connection to Community Problem & SDG": 4,
-            "Impact, Relevance & Longevity": 4,
-            "Responsible & Ethical Use of AI": 4,
-            "Innovation & Creativity": 4,
-            "Design Quality & Accessibility": 4,
-            "Collaboration & Process": 4,
-            "Presentation & Communication": 4
-          },
-          "total": 28,
-          "advance_recommended": true,
           "comments_panel": "more focused",
           "comments_student": "verry good"
         }
       ],
       "avg_score": 28.0,
-      "meets_round1": true
+      "meets_round1": false
     },
     "ISTE26AI137": {
       "id": "ISTE26AI137",
@@ -3462,7 +3428,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26W4NF"
+        "AI26W4NF",
+        "AI26ESS4"
       ],
       "scores": [
         {
@@ -3480,10 +3447,26 @@
           "advance_recommended": true,
           "comments_panel": "Strong entry. Met and exceeded most criteria.",
           "comments_student": "Strong entry. Met and exceeded most criteria."
+        },
+        {
+          "judge_id": "AI26ESS4",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "This was an excellent submission. I would love to see a bit more specificity around the responsible and ethical use of AI, particularly in how the solution considers users through areas such as bias, privacy, and overall impact.",
+          "comments_student": "I am truly impressed with the team’s level of commitment, creativity, and attention to detail throughout their project. It is clear that they invested both time and thought into their work, and that dedication absolutely shines through in the final product.\nAs they continue to grow, I would encourage them to take their project even further by adding more specificity around the responsible and ethical use of AI. Expanding on how they addressed key considerations such as algorithmic bias, user privacy, and the potential impact of their solution on users would strengthen an already strong submission.\nWhat stands out most is the team’s potential. They are not only building technical skills but also demonstrating the kind of thinking that will allow them to create meaningful and responsible innovations in the future. I am excited to see where their ideas take them next."
         }
       ],
-      "avg_score": 28.0,
-      "meets_round1": false
+      "avg_score": 27.0,
+      "meets_round1": true
     },
     "ISTE26AI153": {
       "id": "ISTE26AI153",
@@ -4007,22 +3990,6 @@
         {
           "judge_id": "AI262SR5",
           "criteria": {
-            "Connection to Community Problem & SDG": 3,
-            "Impact, Relevance & Longevity": 3,
-            "Responsible & Ethical Use of AI": 3,
-            "Innovation & Creativity": 3,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 3,
-            "Presentation & Communication": 4
-          },
-          "total": 22,
-          "advance_recommended": true,
-          "comments_panel": "more thoroughly",
-          "comments_student": "very good innovation"
-        },
-        {
-          "judge_id": "AI262SR5",
-          "criteria": {
             "Connection to Community Problem & SDG": 4,
             "Impact, Relevance & Longevity": 4,
             "Responsible & Ethical Use of AI": 4,
@@ -4053,7 +4020,7 @@
           "comments_student": "Congratulations! You have created a very complete application that teaches about smart cities in an engaging way. Your clear division of roles within the team—with dedicated programming and design leads—was a key factor in your success. For further development, you might consider how to collect user feedback to better adjust the difficulty levels of your AI-generated games. Great job on connecting your technical work so meaningfully to a local and global concern!"
         }
       ],
-      "avg_score": 25.3,
+      "avg_score": 27.0,
       "meets_round1": true
     },
     "ISTE26AI162": {
@@ -4329,22 +4296,6 @@
             "Innovation & Creativity": 3,
             "Design Quality & Accessibility": 3,
             "Collaboration & Process": 3,
-            "Presentation & Communication": 3
-          },
-          "total": 22,
-          "advance_recommended": false,
-          "comments_panel": "The \"Team Story\" does not mention the use of AI tools clearly  in the development or functionality of the NeuroFlow platform.\nThe team needs more explicit detail on collaboration with external parties and structured reflection on the iterative process.  \nThey need to make many adjustments in the way they represent their project to show its value! \nThe idea is very unique and creative but the lack of evidence in the presentation made it lose its value.",
-          "comments_student": "Explain the Intentional Use of AI: Clearly state where and how AI is used. \nSince the platform handles student well-being and reflection data, it is critical to address data privacy. How is student data protected? \nExplain how the team minimized potential bias or inaccuracies in the model's training or interpretation."
-        },
-        {
-          "judge_id": "AI26AAU7",
-          "criteria": {
-            "Connection to Community Problem & SDG": 4,
-            "Impact, Relevance & Longevity": 4,
-            "Responsible & Ethical Use of AI": 2,
-            "Innovation & Creativity": 3,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 3,
             "Presentation & Communication": 4
           },
           "total": 23,
@@ -4353,7 +4304,7 @@
           "comments_student": "Elaborate more on the role of AI. I am sure you worked a lot behind the scenes to create an experience that supports in visualizing the collected data. Elaborate more on that. \nHave you tested the program with an audience? Any iteration process that you went through?"
         }
       ],
-      "avg_score": 22.5,
+      "avg_score": 23.0,
       "meets_round1": false
     },
     "ISTE26AI167": {
@@ -4410,22 +4361,6 @@
             "Connection to Community Problem & SDG": 2,
             "Impact, Relevance & Longevity": 3,
             "Responsible & Ethical Use of AI": 2,
-            "Innovation & Creativity": 4,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 1,
-            "Presentation & Communication": 3
-          },
-          "total": 18,
-          "advance_recommended": false,
-          "comments_panel": "The project fails to address a few areas of the rubric - he could easily add a few things to make the connections, but they are not present as it is now. The sustainable development goals are not mentioned at all, he does not address potential privacy / bias issues which would be a concern with the medical information being collected. He worked as an individual and does not talk about any collaboration with others to develop his product. he has an interesting physical setup that must have taken some time to develop but he does not talk about his design process at all.",
-          "comments_student": "You have a really complex setup to get the person's biometrics - that took some time and ingenuity to set up! I like how you put that all together rather than relying on user inputs, it will be more accurate. This is a great concept to help people be more healthy."
-        },
-        {
-          "judge_id": "AI2618YW",
-          "criteria": {
-            "Connection to Community Problem & SDG": 2,
-            "Impact, Relevance & Longevity": 3,
-            "Responsible & Ethical Use of AI": 2,
             "Innovation & Creativity": 3,
             "Design Quality & Accessibility": 3,
             "Collaboration & Process": 1,
@@ -4437,7 +4372,7 @@
           "comments_student": "I like how you developed tools to collect biometric data from users rather than relying solely on their input. This must have taken some time to design and get to work properly! You have some great idea focusing on health. It can be hard in a short amount of time, but be sure you address all of the project requirements so we have all of the information to judge you on. This project has a great foundation to build on!"
         }
       ],
-      "avg_score": 18.3,
+      "avg_score": 18.5,
       "meets_round1": false
     },
     "ISTE26AI168": {
@@ -5631,22 +5566,6 @@
         {
           "judge_id": "AI262SR5",
           "criteria": {
-            "Connection to Community Problem & SDG": 4,
-            "Impact, Relevance & Longevity": 4,
-            "Responsible & Ethical Use of AI": 4,
-            "Innovation & Creativity": 4,
-            "Design Quality & Accessibility": 4,
-            "Collaboration & Process": 4,
-            "Presentation & Communication": 3
-          },
-          "total": 27,
-          "advance_recommended": true,
-          "comments_panel": "more thoroughly",
-          "comments_student": "good"
-        },
-        {
-          "judge_id": "AI262SR5",
-          "criteria": {
             "Connection to Community Problem & SDG": 3,
             "Impact, Relevance & Longevity": 4,
             "Responsible & Ethical Use of AI": 4,
@@ -5662,7 +5581,7 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": true
+      "meets_round1": false
     },
     "ISTE26AI188": {
       "id": "ISTE26AI188",
@@ -6011,28 +5930,11 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI2618YW",
-        "I2618YW"
+        "AI2618YW"
       ],
       "scores": [
         {
           "judge_id": "AI2618YW",
-          "criteria": {
-            "Connection to Community Problem & SDG": 2,
-            "Impact, Relevance & Longevity": 4,
-            "Responsible & Ethical Use of AI": 2,
-            "Innovation & Creativity": 3,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 3,
-            "Presentation & Communication": 4
-          },
-          "total": 21,
-          "advance_recommended": true,
-          "comments_panel": "Two weak points - lack of connection to the SDGs and they need to better address privacy concerns that would be a major pitfall of their platform. Otherwise the interface is well developed and I think it addresses a problem a lot of young people - maybe even older people - face in today's world. Ironic to use an online program to get people offline and interacting, but the small steps and gamification of it could be effective for some people.",
-          "comments_student": "The Social Well Being Platform is nicely designed. It flows nicely and you provide a lot of options for people to interact with it and get different types of support. I thought how you uses different AI platforms to develop your idea was well done and you made sure to use AI as an advisor and maintain ownership of your idea throughout. I do think a platform such as this could be beneficial to a lot of people. You would need to put in some privacy protections which would likely need to make it a paid platform, but not for this competition. Just something to think about. Overall your project was very well done!"
-        },
-        {
-          "judge_id": "I2618YW",
           "criteria": {
             "Connection to Community Problem & SDG": 2,
             "Impact, Relevance & Longevity": 4,
@@ -6048,7 +5950,7 @@
           "comments_student": "I like the design of your interface. I thought that the goal of your project was a good one and you approached it in a very thoughtful manner that would be attractive to many modern youth. I like how you describe your team members and the skills you have that compliment each other to make a well rounded, collaborative. Overall you did a great job!"
         }
       ],
-      "avg_score": 21.5,
+      "avg_score": 22.0,
       "meets_round1": false
     },
     "ISTE26AI194": {
@@ -6596,7 +6498,8 @@
       "hold": false,
       "hold_reason": "",
       "judged_by": [
-        "AI26W4NF"
+        "AI26W4NF",
+        "AI26ESS4"
       ],
       "scores": [
         {
@@ -6614,9 +6517,25 @@
           "advance_recommended": false,
           "comments_panel": "Missing connection to UNSDG, did not address safe, responsible and ethical application of AI tool. Not enough information on design process.",
           "comments_student": "Great idea.  Very generous and thoughtful of you."
+        },
+        {
+          "judge_id": "AI26ESS4",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "There is strong potential in this submission, particularly in its focus on sustainability. However, additional development is needed in addressing privacy considerations within the app design, especially as the solution scales to serve a broader and potentially younger user base.",
+          "comments_student": "Your team highlights an important and timely focus on sustainability within the fashion lifecycle. The student’s commitment to helping others through this initiative is both meaningful and commendable.\n\nAs the project continues to develop, I encourage further attention to privacy considerations within the app design, particularly when thinking about scalability and potential use by a broader audience, including younger users. Strengthening these elements would enhance both the safety and overall impact of the solution."
         }
       ],
-      "avg_score": 15.0,
+      "avg_score": 18.5,
       "meets_round1": false
     },
     "ISTE26AI204": {
@@ -7157,22 +7076,6 @@
         {
           "judge_id": "AI262SR5",
           "criteria": {
-            "Connection to Community Problem & SDG": 2,
-            "Impact, Relevance & Longevity": 3,
-            "Responsible & Ethical Use of AI": 4,
-            "Innovation & Creativity": 3,
-            "Design Quality & Accessibility": 4,
-            "Collaboration & Process": 4,
-            "Presentation & Communication": 4
-          },
-          "total": 24,
-          "advance_recommended": true,
-          "comments_panel": "more thoroughly",
-          "comments_student": "good"
-        },
-        {
-          "judge_id": "AI262SR5",
-          "criteria": {
             "Connection to Community Problem & SDG": 4,
             "Impact, Relevance & Longevity": 4,
             "Responsible & Ethical Use of AI": 4,
@@ -7203,7 +7106,7 @@
           "comments_student": "Excellent work, Skyler, Johnray, and Dylan! Your focus on \"explainability\" is a breath of fresh air in the field of AI detection. It was impressive to see how you listened to your community—especially the elders—and pivoted your solution to focus on education and confidence rather than just a simple 'real or fake' score. Your transparency about the tool's limitations shows great integrity and responsible AI leadership. Keep iterating on your weighted heuristics!"
         }
       ],
-      "avg_score": 26.0,
+      "avg_score": 27.0,
       "meets_round1": true
     },
     "ISTE26AI213": {
@@ -7596,5 +7499,5 @@
       "meets_round1": false
     }
   },
-  "data_as_of": "April 4, 2026 at 6:57 AM ET"
+  "data_as_of": "April 5, 2026 at 6:35 AM ET"
 }
