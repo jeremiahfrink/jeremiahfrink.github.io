@@ -358,7 +358,17 @@
       "ISTE26AI152",
       "ISTE26AI177",
       "ISTE26AI203"
-    ]
+    ],
+    "AI26H7XR": [],
+    "AI26B9KU": [],
+    "AI26N2LP": [],
+    "AI26T6MD": [],
+    "AI26F8CY": [],
+    "AI26V3HG": [],
+    "AI26J9TN": [],
+    "AI26L4XP": [],
+    "AI26R2KF": [],
+    "AI26Z7MC": []
   },
   "projects": {
     "ISTE26AI101": {
@@ -425,7 +435,11 @@
         }
       ],
       "avg_score": 17.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 17.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI102": {
       "id": "ISTE26AI102",
@@ -475,7 +489,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI103": {
       "id": "ISTE26AI103",
@@ -542,7 +560,11 @@
         }
       ],
       "avg_score": 19.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI104": {
       "id": "ISTE26AI104",
@@ -592,7 +614,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI105": {
       "id": "ISTE26AI105",
@@ -659,7 +685,11 @@
         }
       ],
       "avg_score": 18.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 18.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI106": {
       "id": "ISTE26AI106",
@@ -727,7 +757,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI107": {
       "id": "ISTE26AI107",
@@ -794,7 +828,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI108": {
       "id": "ISTE26AI108",
@@ -862,7 +900,11 @@
         }
       ],
       "avg_score": 24.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI109": {
       "id": "ISTE26AI109",
@@ -930,7 +972,11 @@
         }
       ],
       "avg_score": 26.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 26.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI110": {
       "id": "ISTE26AI110",
@@ -998,7 +1044,11 @@
         }
       ],
       "avg_score": 24.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI111": {
       "id": "ISTE26AI111",
@@ -1048,7 +1098,11 @@
         }
       ],
       "avg_score": 26.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 26.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI112": {
       "id": "ISTE26AI112",
@@ -1115,7 +1169,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI113": {
       "id": "ISTE26AI113",
@@ -1182,7 +1240,11 @@
         }
       ],
       "avg_score": 26.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 26.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI114": {
       "id": "ISTE26AI114",
@@ -1250,7 +1312,11 @@
         }
       ],
       "avg_score": 24.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI115": {
       "id": "ISTE26AI115",
@@ -1300,7 +1366,11 @@
         }
       ],
       "avg_score": 23.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI116": {
       "id": "ISTE26AI116",
@@ -1367,7 +1437,11 @@
         }
       ],
       "avg_score": 19.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI117": {
       "id": "ISTE26AI117",
@@ -1417,7 +1491,11 @@
         }
       ],
       "avg_score": 22.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI118": {
       "id": "ISTE26AI118",
@@ -1485,7 +1563,11 @@
         }
       ],
       "avg_score": 16.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 16.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI119": {
       "id": "ISTE26AI119",
@@ -1535,7 +1617,11 @@
         }
       ],
       "avg_score": 17.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 17.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI120": {
       "id": "ISTE26AI120",
@@ -1603,7 +1689,11 @@
         }
       ],
       "avg_score": 21.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 21.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI121": {
       "id": "ISTE26AI121",
@@ -1653,7 +1743,11 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI122": {
       "id": "ISTE26AI122",
@@ -1720,7 +1814,11 @@
         }
       ],
       "avg_score": 26.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 26.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI123": {
       "id": "ISTE26AI123",
@@ -1788,7 +1886,11 @@
         }
       ],
       "avg_score": 21.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 21.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI124": {
       "id": "ISTE26AI124",
@@ -1856,7 +1958,11 @@
         }
       ],
       "avg_score": 25.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI125": {
       "id": "ISTE26AI125",
@@ -1907,7 +2013,11 @@
         }
       ],
       "avg_score": 23.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI126": {
       "id": "ISTE26AI126",
@@ -1974,7 +2084,11 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 20.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI127": {
       "id": "ISTE26AI127",
@@ -2024,7 +2138,11 @@
         }
       ],
       "avg_score": 20.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 20.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI128": {
       "id": "ISTE26AI128",
@@ -2074,7 +2192,11 @@
         }
       ],
       "avg_score": 24.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI129": {
       "id": "ISTE26AI129",
@@ -2141,7 +2263,11 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI130": {
       "id": "ISTE26AI130",
@@ -2191,7 +2317,11 @@
         }
       ],
       "avg_score": 16.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 16.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI131": {
       "id": "ISTE26AI131",
@@ -2242,7 +2372,11 @@
         }
       ],
       "avg_score": 7.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 7.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI132": {
       "id": "ISTE26AI132",
@@ -2309,7 +2443,11 @@
         }
       ],
       "avg_score": 23.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI133": {
       "id": "ISTE26AI133",
@@ -2377,7 +2515,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI134": {
       "id": "ISTE26AI134",
@@ -2446,7 +2588,11 @@
         }
       ],
       "avg_score": 20.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 20.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI135": {
       "id": "ISTE26AI135",
@@ -2513,7 +2659,11 @@
         }
       ],
       "avg_score": 20.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 20.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI136": {
       "id": "ISTE26AI136",
@@ -2564,7 +2714,11 @@
         }
       ],
       "avg_score": 28.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 28.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI137": {
       "id": "ISTE26AI137",
@@ -2631,7 +2785,11 @@
         }
       ],
       "avg_score": 16.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 16.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI138": {
       "id": "ISTE26AI138",
@@ -2699,7 +2857,11 @@
         }
       ],
       "avg_score": 21.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 21.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI139": {
       "id": "ISTE26AI139",
@@ -2767,7 +2929,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI140": {
       "id": "ISTE26AI140",
@@ -2817,7 +2983,11 @@
         }
       ],
       "avg_score": 16.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 16.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI141": {
       "id": "ISTE26AI141",
@@ -2884,7 +3054,11 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI142": {
       "id": "ISTE26AI142",
@@ -2935,7 +3109,11 @@
         }
       ],
       "avg_score": 21.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 21.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI143": {
       "id": "ISTE26AI143",
@@ -2966,7 +3144,11 @@
       "judged_by": [],
       "scores": [],
       "avg_score": null,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": null,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI144": {
       "id": "ISTE26AI144",
@@ -3016,7 +3198,11 @@
         }
       ],
       "avg_score": 24.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI145": {
       "id": "ISTE26AI145",
@@ -3083,7 +3269,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI146": {
       "id": "ISTE26AI146",
@@ -3114,7 +3304,11 @@
       "judged_by": [],
       "scores": [],
       "avg_score": null,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": null,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI147": {
       "id": "ISTE26AI147",
@@ -3146,7 +3340,11 @@
       "judged_by": [],
       "scores": [],
       "avg_score": null,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": null,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI148": {
       "id": "ISTE26AI148",
@@ -3214,7 +3412,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI149": {
       "id": "ISTE26AI149",
@@ -3281,7 +3483,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI150": {
       "id": "ISTE26AI150",
@@ -3348,7 +3554,11 @@
         }
       ],
       "avg_score": 24.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI151": {
       "id": "ISTE26AI151",
@@ -3398,7 +3608,12 @@
         }
       ],
       "avg_score": 16.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 16.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI152": {
       "id": "ISTE26AI152",
@@ -3466,7 +3681,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI153": {
       "id": "ISTE26AI153",
@@ -3497,7 +3716,11 @@
       "judged_by": [],
       "scores": [],
       "avg_score": null,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": null,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI154": {
       "id": "ISTE26AI154",
@@ -3564,7 +3787,11 @@
         }
       ],
       "avg_score": 19.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 20.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI155": {
       "id": "ISTE26AI155",
@@ -3614,7 +3841,12 @@
         }
       ],
       "avg_score": 17.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 17.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI156": {
       "id": "ISTE26AI156",
@@ -3682,7 +3914,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI157": {
       "id": "ISTE26AI157",
@@ -3749,7 +3985,11 @@
         }
       ],
       "avg_score": 24.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI158": {
       "id": "ISTE26AI158",
@@ -3818,7 +4058,11 @@
         }
       ],
       "avg_score": 23.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI159": {
       "id": "ISTE26AI159",
@@ -3886,7 +4130,11 @@
         }
       ],
       "avg_score": 22.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI160": {
       "id": "ISTE26AI160",
@@ -3953,7 +4201,11 @@
         }
       ],
       "avg_score": 17.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 17.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI161": {
       "id": "ISTE26AI161",
@@ -4021,7 +4273,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI162": {
       "id": "ISTE26AI162",
@@ -4071,7 +4327,11 @@
         }
       ],
       "avg_score": 14.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 14.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI163": {
       "id": "ISTE26AI163",
@@ -4138,7 +4398,11 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI164": {
       "id": "ISTE26AI164",
@@ -4188,7 +4452,11 @@
         }
       ],
       "avg_score": 28.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 28.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI165": {
       "id": "ISTE26AI165",
@@ -4255,7 +4523,11 @@
         }
       ],
       "avg_score": 24.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI166": {
       "id": "ISTE26AI166",
@@ -4305,7 +4577,11 @@
         }
       ],
       "avg_score": 23.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 23.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI167": {
       "id": "ISTE26AI167",
@@ -4373,7 +4649,11 @@
         }
       ],
       "avg_score": 18.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 18.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI168": {
       "id": "ISTE26AI168",
@@ -4423,7 +4703,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI169": {
       "id": "ISTE26AI169",
@@ -4490,7 +4774,11 @@
         }
       ],
       "avg_score": 22.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI170": {
       "id": "ISTE26AI170",
@@ -4540,7 +4828,12 @@
         }
       ],
       "avg_score": 14.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 14.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI171": {
       "id": "ISTE26AI171",
@@ -4608,7 +4901,11 @@
         }
       ],
       "avg_score": 24.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI172": {
       "id": "ISTE26AI172",
@@ -4659,7 +4956,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI173": {
       "id": "ISTE26AI173",
@@ -4726,7 +5027,11 @@
         }
       ],
       "avg_score": 24.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 24.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI174": {
       "id": "ISTE26AI174",
@@ -4793,7 +5098,12 @@
         }
       ],
       "avg_score": 15.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 15.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI175": {
       "id": "ISTE26AI175",
@@ -4860,7 +5170,11 @@
         }
       ],
       "avg_score": 23.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI176": {
       "id": "ISTE26AI176",
@@ -4910,7 +5224,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI177": {
       "id": "ISTE26AI177",
@@ -4978,7 +5296,11 @@
         }
       ],
       "avg_score": 22.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI178": {
       "id": "ISTE26AI178",
@@ -5028,7 +5350,11 @@
         }
       ],
       "avg_score": 28.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 28.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI179": {
       "id": "ISTE26AI179",
@@ -5076,7 +5402,11 @@
         }
       ],
       "avg_score": 13.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 13.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI180": {
       "id": "ISTE26AI180",
@@ -5143,7 +5473,11 @@
         }
       ],
       "avg_score": 25.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI181": {
       "id": "ISTE26AI181",
@@ -5194,7 +5528,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI182": {
       "id": "ISTE26AI182",
@@ -5261,7 +5599,11 @@
         }
       ],
       "avg_score": 23.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI183": {
       "id": "ISTE26AI183",
@@ -5328,7 +5670,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI184": {
       "id": "ISTE26AI184",
@@ -5396,7 +5742,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI185": {
       "id": "ISTE26AI185",
@@ -5463,7 +5813,11 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI186": {
       "id": "ISTE26AI186",
@@ -5531,7 +5885,11 @@
         }
       ],
       "avg_score": 23.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI187": {
       "id": "ISTE26AI187",
@@ -5581,7 +5939,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI188": {
       "id": "ISTE26AI188",
@@ -5648,7 +6010,12 @@
         }
       ],
       "avg_score": 14.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 14.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI189": {
       "id": "ISTE26AI189",
@@ -5715,7 +6082,11 @@
         }
       ],
       "avg_score": 20.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 20.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI190": {
       "id": "ISTE26AI190",
@@ -5782,7 +6153,11 @@
         }
       ],
       "avg_score": 19.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI191": {
       "id": "ISTE26AI191",
@@ -5833,7 +6208,12 @@
         }
       ],
       "avg_score": 14.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 14.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI192": {
       "id": "ISTE26AI192",
@@ -5901,7 +6281,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI193": {
       "id": "ISTE26AI193",
@@ -5951,7 +6335,11 @@
         }
       ],
       "avg_score": 22.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI194": {
       "id": "ISTE26AI194",
@@ -6019,7 +6407,12 @@
         }
       ],
       "avg_score": 15.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 15.5,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI195": {
       "id": "ISTE26AI195",
@@ -6069,7 +6462,12 @@
         }
       ],
       "avg_score": 17.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 17.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI196": {
       "id": "ISTE26AI196",
@@ -6100,7 +6498,11 @@
       "judged_by": [],
       "scores": [],
       "avg_score": null,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": null,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI197": {
       "id": "ISTE26AI197",
@@ -6167,7 +6569,11 @@
         }
       ],
       "avg_score": 22.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI198": {
       "id": "ISTE26AI198",
@@ -6217,7 +6623,11 @@
         }
       ],
       "avg_score": 28.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 28.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI199": {
       "id": "ISTE26AI199",
@@ -6284,7 +6694,12 @@
         }
       ],
       "avg_score": 19.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 19.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI200": {
       "id": "ISTE26AI200",
@@ -6352,7 +6767,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI201": {
       "id": "ISTE26AI201",
@@ -6419,7 +6838,11 @@
         }
       ],
       "avg_score": 25.5,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI202": {
       "id": "ISTE26AI202",
@@ -6469,7 +6892,12 @@
         }
       ],
       "avg_score": 14.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 14.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI203": {
       "id": "ISTE26AI203",
@@ -6536,7 +6964,11 @@
         }
       ],
       "avg_score": 18.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 18.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI204": {
       "id": "ISTE26AI204",
@@ -6587,7 +7019,12 @@
         }
       ],
       "avg_score": 22.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 22.0,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI205": {
       "id": "ISTE26AI205",
@@ -6654,7 +7091,12 @@
         }
       ],
       "avg_score": 13.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 13.5,
+      "round2_judged_by": [],
+      "round2_scores": [],
+      "round2_status": "review"
     },
     "ISTE26AI206": {
       "id": "ISTE26AI206",
@@ -6704,7 +7146,11 @@
         }
       ],
       "avg_score": 26.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 26.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI207": {
       "id": "ISTE26AI207",
@@ -6771,7 +7217,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI208": {
       "id": "ISTE26AI208",
@@ -6838,7 +7288,11 @@
         }
       ],
       "avg_score": 23.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 23.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI209": {
       "id": "ISTE26AI209",
@@ -6905,7 +7359,11 @@
         }
       ],
       "avg_score": 21.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 21.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI210": {
       "id": "ISTE26AI210",
@@ -6972,7 +7430,11 @@
         }
       ],
       "avg_score": 14.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 14.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI211": {
       "id": "ISTE26AI211",
@@ -7039,7 +7501,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI212": {
       "id": "ISTE26AI212",
@@ -7107,7 +7573,11 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": true
+      "meets_round1": true,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI213": {
       "id": "ISTE26AI213",
@@ -7158,7 +7628,11 @@
         }
       ],
       "avg_score": 20.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 20.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI214": {
       "id": "ISTE26AI214",
@@ -7226,7 +7700,11 @@
         }
       ],
       "avg_score": 18.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": 18.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI215": {
       "id": "ISTE26AI215",
@@ -7294,7 +7772,11 @@
         }
       ],
       "avg_score": 22.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI216": {
       "id": "ISTE26AI216",
@@ -7362,7 +7844,11 @@
         }
       ],
       "avg_score": 22.5,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 22.5,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI217": {
       "id": "ISTE26AI217",
@@ -7413,7 +7899,11 @@
         }
       ],
       "avg_score": 25.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 25.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI218": {
       "id": "ISTE26AI218",
@@ -7445,7 +7935,11 @@
       "judged_by": [],
       "scores": [],
       "avg_score": null,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": false,
+      "r1_display_score": null,
+      "round2_judged_by": [],
+      "round2_scores": []
     },
     "ISTE26AI219": {
       "id": "ISTE26AI219",
@@ -7496,8 +7990,303 @@
         }
       ],
       "avg_score": 27.0,
-      "meets_round1": false
+      "meets_round1": false,
+      "advanced_to_round2": true,
+      "r1_display_score": 27.0,
+      "round2_judged_by": [],
+      "round2_scores": []
     }
   },
-  "data_as_of": "April 5, 2026 at 6:35 AM ET"
+  "data_as_of": "April 7, 2026 at 10:18 AM ET",
+  "round2_assignments": {
+    "AI26N2LP": [
+      "ISTE26AI177",
+      "ISTE26AI104",
+      "ISTE26AI207",
+      "ISTE26AI126",
+      "ISTE26AI161"
+    ],
+    "AI26L4XP": [
+      "ISTE26AI177",
+      "ISTE26AI104",
+      "ISTE26AI207",
+      "ISTE26AI180",
+      "ISTE26AI161"
+    ],
+    "AI26Z7MC": [
+      "ISTE26AI177",
+      "ISTE26AI117",
+      "ISTE26AI207",
+      "ISTE26AI180",
+      "ISTE26AI212"
+    ],
+    "AI26M1AS": [
+      "ISTE26AI149",
+      "ISTE26AI117",
+      "ISTE26AI148",
+      "ISTE26AI180",
+      "ISTE26AI212"
+    ],
+    "AI26R2KF": [
+      "ISTE26AI149",
+      "ISTE26AI117",
+      "ISTE26AI148",
+      "ISTE26AI106",
+      "ISTE26AI212"
+    ],
+    "AI26D5BM": [
+      "ISTE26AI149",
+      "ISTE26AI189",
+      "ISTE26AI148",
+      "ISTE26AI106",
+      "ISTE26AI113"
+    ],
+    "AI265DWQ": [
+      "ISTE26AI122",
+      "ISTE26AI189",
+      "ISTE26AI144",
+      "ISTE26AI106",
+      "ISTE26AI113"
+    ],
+    "AI26Q884": [
+      "ISTE26AI108",
+      "ISTE26AI189",
+      "ISTE26AI144",
+      "ISTE26AI215",
+      "ISTE26AI113"
+    ],
+    "AI2663L7": [
+      "ISTE26AI108",
+      "ISTE26AI181",
+      "ISTE26AI144",
+      "ISTE26AI193",
+      "ISTE26AI159"
+    ],
+    "AI262SR5": [
+      "ISTE26AI108",
+      "ISTE26AI181",
+      "ISTE26AI201",
+      "ISTE26AI215",
+      "ISTE26AI159"
+    ],
+    "AI26YYHJ": [
+      "ISTE26AI122",
+      "ISTE26AI181",
+      "ISTE26AI201",
+      "ISTE26AI215",
+      "ISTE26AI159"
+    ],
+    "AI26F8CY": [
+      "ISTE26AI122",
+      "ISTE26AI125",
+      "ISTE26AI201",
+      "ISTE26AI193",
+      "ISTE26AI169"
+    ],
+    "AI26KQ5Z": [
+      "ISTE26AI182",
+      "ISTE26AI125",
+      "ISTE26AI198",
+      "ISTE26AI193",
+      "ISTE26AI169"
+    ],
+    "AI26R7JP": [
+      "ISTE26AI182",
+      "ISTE26AI125",
+      "ISTE26AI198",
+      "ISTE26AI171",
+      "ISTE26AI169"
+    ],
+    "AI26H7XR": [
+      "ISTE26AI182",
+      "ISTE26AI168",
+      "ISTE26AI198",
+      "ISTE26AI158",
+      "ISTE26AI172"
+    ],
+    "AI26ESS4": [
+      "ISTE26AI211",
+      "ISTE26AI168",
+      "ISTE26AI156",
+      "ISTE26AI158",
+      "ISTE26AI172"
+    ],
+    "AI26C2IW": [
+      "ISTE26AI211",
+      "ISTE26AI168",
+      "ISTE26AI156",
+      "ISTE26AI158",
+      "ISTE26AI172"
+    ],
+    "AI269729": [
+      "ISTE26AI211",
+      "ISTE26AI133",
+      "ISTE26AI156",
+      "ISTE26AI171",
+      "ISTE26AI152"
+    ],
+    "AI26D3Q3": [
+      "ISTE26AI219",
+      "ISTE26AI133",
+      "ISTE26AI127",
+      "ISTE26AI171",
+      "ISTE26AI206"
+    ],
+    "AI26V3HG": [
+      "ISTE26AI219",
+      "ISTE26AI133",
+      "ISTE26AI127",
+      "ISTE26AI153",
+      "ISTE26AI206"
+    ],
+    "AI26B9KU": [
+      "ISTE26AI219",
+      "ISTE26AI150",
+      "ISTE26AI127",
+      "ISTE26AI153",
+      "ISTE26AI206"
+    ],
+    "AI26W4NF": [
+      "ISTE26AI139",
+      "ISTE26AI150",
+      "ISTE26AI110",
+      "ISTE26AI153",
+      "ISTE26AI111"
+    ],
+    "AI26J9TN": [
+      "ISTE26AI139",
+      "ISTE26AI150",
+      "ISTE26AI110",
+      "ISTE26AI128",
+      "ISTE26AI152"
+    ],
+    "AI26S33U": [
+      "ISTE26AI139",
+      "ISTE26AI115",
+      "ISTE26AI110",
+      "ISTE26AI128",
+      "ISTE26AI152"
+    ],
+    "AI26UAZN": [
+      "ISTE26AI104",
+      "ISTE26AI115",
+      "ISTE26AI178",
+      "ISTE26AI128",
+      "ISTE26AI111"
+    ],
+    "AI26RI5W": [
+      "ISTE26AI115",
+      "ISTE26AI178",
+      "ISTE26AI165",
+      "ISTE26AI111"
+    ],
+    "AI26T6MD": [
+      "ISTE26AI124",
+      "ISTE26AI178",
+      "ISTE26AI165",
+      "ISTE26AI154"
+    ],
+    "AI26AAU7": [
+      "ISTE26AI124",
+      "ISTE26AI197",
+      "ISTE26AI165",
+      "ISTE26AI154"
+    ],
+    "AI263SHA": [
+      "ISTE26AI124",
+      "ISTE26AI197",
+      "ISTE26AI208",
+      "ISTE26AI154"
+    ],
+    "AI262T01": [
+      "ISTE26AI216",
+      "ISTE26AI197",
+      "ISTE26AI208",
+      "ISTE26AI157"
+    ],
+    "AI26IEBZ": [
+      "ISTE26AI216",
+      "ISTE26AI112",
+      "ISTE26AI208",
+      "ISTE26AI157"
+    ],
+    "AI2618YW": [
+      "ISTE26AI216",
+      "ISTE26AI112",
+      "ISTE26AI200",
+      "ISTE26AI157"
+    ],
+    "AI26ES1V": [
+      "ISTE26AI187",
+      "ISTE26AI112",
+      "ISTE26AI200",
+      "ISTE26AI184"
+    ],
+    "AI26QQ79": [
+      "ISTE26AI187",
+      "ISTE26AI176",
+      "ISTE26AI200",
+      "ISTE26AI183"
+    ],
+    "AI26R7JR": [
+      "ISTE26AI187",
+      "ISTE26AI176",
+      "ISTE26AI173",
+      "ISTE26AI183"
+    ],
+    "AI26TUYL": [
+      "ISTE26AI132",
+      "ISTE26AI176",
+      "ISTE26AI173",
+      "ISTE26AI183"
+    ],
+    "AI26POVR": [
+      "ISTE26AI132",
+      "ISTE26AI217",
+      "ISTE26AI173",
+      "ISTE26AI184"
+    ],
+    "AI26SDY7": [
+      "ISTE26AI132",
+      "ISTE26AI217",
+      "ISTE26AI186",
+      "ISTE26AI184"
+    ],
+    "AI26DY2S": [
+      "ISTE26AI213",
+      "ISTE26AI217",
+      "ISTE26AI186",
+      "ISTE26AI109"
+    ],
+    "AI267RSA": [
+      "ISTE26AI213",
+      "ISTE26AI114",
+      "ISTE26AI186",
+      "ISTE26AI109"
+    ],
+    "AI26XVQS": [
+      "ISTE26AI145",
+      "ISTE26AI114",
+      "ISTE26AI192",
+      "ISTE26AI109"
+    ],
+    "AI26RCJR": [
+      "ISTE26AI213",
+      "ISTE26AI126",
+      "ISTE26AI192",
+      "ISTE26AI175"
+    ],
+    "AI26IV85": [
+      "ISTE26AI145",
+      "ISTE26AI114",
+      "ISTE26AI192",
+      "ISTE26AI175"
+    ],
+    "AI268RZE": [
+      "ISTE26AI145",
+      "ISTE26AI126",
+      "ISTE26AI161",
+      "ISTE26AI175"
+    ]
+  }
 }
