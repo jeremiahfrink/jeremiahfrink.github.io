@@ -439,7 +439,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 17.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Saudi Arabia",
+      "region": "Asir Region",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI102": {
       "id": "ISTE26AI102",
@@ -493,7 +497,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Saudi Arabia",
+      "region": "Eastern Province",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI103": {
       "id": "ISTE26AI103",
@@ -564,7 +572,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "China",
+      "region": "Beijing",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI104": {
       "id": "ISTE26AI104",
@@ -618,7 +630,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI105": {
       "id": "ISTE26AI105",
@@ -689,7 +705,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 18.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Laguna",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI106": {
       "id": "ISTE26AI106",
@@ -761,7 +781,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "California",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI107": {
       "id": "ISTE26AI107",
@@ -832,7 +856,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI108": {
       "id": "ISTE26AI108",
@@ -904,7 +932,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United Arab Emirates",
+      "region": "Abu Dhabi",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI109": {
       "id": "ISTE26AI109",
@@ -976,7 +1008,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "North Macedonia",
+      "region": "Karbinci",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI110": {
       "id": "ISTE26AI110",
@@ -1048,7 +1084,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Delhi",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI111": {
       "id": "ISTE26AI111",
@@ -1102,7 +1142,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "New Jersey",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI112": {
       "id": "ISTE26AI112",
@@ -1173,7 +1217,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Pangasinan",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI113": {
       "id": "ISTE26AI113",
@@ -1244,7 +1292,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Minnesota",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI114": {
       "id": "ISTE26AI114",
@@ -1316,7 +1368,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Coahuila",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI115": {
       "id": "ISTE26AI115",
@@ -1370,7 +1426,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Saudi Arabia",
+      "region": "Eastern Province",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI116": {
       "id": "ISTE26AI116",
@@ -1441,7 +1501,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI117": {
       "id": "ISTE26AI117",
@@ -1495,7 +1559,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Ohio",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI118": {
       "id": "ISTE26AI118",
@@ -1567,7 +1635,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 16.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI119": {
       "id": "ISTE26AI119",
@@ -1621,7 +1693,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 17.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Canada",
+      "region": "British Columbia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI120": {
       "id": "ISTE26AI120",
@@ -1693,7 +1769,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 21.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Canada",
+      "region": "Ontario",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI121": {
       "id": "ISTE26AI121",
@@ -1747,7 +1827,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "New Jersey",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI122": {
       "id": "ISTE26AI122",
@@ -1818,7 +1902,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI123": {
       "id": "ISTE26AI123",
@@ -1890,7 +1978,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 21.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "New Jersey",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI124": {
       "id": "ISTE26AI124",
@@ -1962,7 +2054,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Mexico City (CDMX)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI125": {
       "id": "ISTE26AI125",
@@ -2017,7 +2113,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI126": {
       "id": "ISTE26AI126",
@@ -2088,7 +2188,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Arkansas",
+      "stage": "Round 2",
+      "advancement_note": "Advanced by committee review"
     },
     "ISTE26AI127": {
       "id": "ISTE26AI127",
@@ -2142,7 +2246,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI128": {
       "id": "ISTE26AI128",
@@ -2196,7 +2304,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Texas",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI129": {
       "id": "ISTE26AI129",
@@ -2267,7 +2379,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "South Korea",
+      "region": "Gyeonggi-do",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI130": {
       "id": "ISTE26AI130",
@@ -2321,7 +2437,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 16.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Taiwan",
+      "region": "Hsinchu / New Taipei City",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI131": {
       "id": "ISTE26AI131",
@@ -2376,7 +2496,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 7.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Unknown",
+      "region": "Unknown",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI132": {
       "id": "ISTE26AI132",
@@ -2447,7 +2571,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI133": {
       "id": "ISTE26AI133",
@@ -2519,7 +2647,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Fujian Province listed but school is Philippine",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI134": {
       "id": "ISTE26AI134",
@@ -2592,7 +2724,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 20.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Cavite",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI135": {
       "id": "ISTE26AI135",
@@ -2663,7 +2799,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 20.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Tunisia",
+      "region": "Sidi Bouzid",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI136": {
       "id": "ISTE26AI136",
@@ -2718,7 +2858,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 28.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Coahuila",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI137": {
       "id": "ISTE26AI137",
@@ -2789,7 +2933,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 16.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Batangas",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI138": {
       "id": "ISTE26AI138",
@@ -2861,7 +3009,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 21.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Mexico City (CDMX)",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI139": {
       "id": "ISTE26AI139",
@@ -2933,7 +3085,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI140": {
       "id": "ISTE26AI140",
@@ -2987,7 +3143,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 16.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Canada",
+      "region": "Alberta",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI141": {
       "id": "ISTE26AI141",
@@ -3058,7 +3218,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Davao (likely)",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI142": {
       "id": "ISTE26AI142",
@@ -3113,7 +3277,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 21.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Delhi",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI143": {
       "id": "ISTE26AI143",
@@ -3148,7 +3316,11 @@
       "advanced_to_round2": false,
       "r1_display_score": null,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Initial Screening",
+      "advancement_note": ""
     },
     "ISTE26AI144": {
       "id": "ISTE26AI144",
@@ -3202,7 +3374,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Batangas",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI145": {
       "id": "ISTE26AI145",
@@ -3273,7 +3449,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI146": {
       "id": "ISTE26AI146",
@@ -3308,7 +3488,11 @@
       "advanced_to_round2": false,
       "r1_display_score": null,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Initial Screening",
+      "advancement_note": ""
     },
     "ISTE26AI147": {
       "id": "ISTE26AI147",
@@ -3344,7 +3528,11 @@
       "advanced_to_round2": false,
       "r1_display_score": null,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "New Jersey",
+      "stage": "Initial Screening",
+      "advancement_note": ""
     },
     "ISTE26AI148": {
       "id": "ISTE26AI148",
@@ -3416,7 +3604,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI149": {
       "id": "ISTE26AI149",
@@ -3487,7 +3679,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Metro Manila (Makati)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI150": {
       "id": "ISTE26AI150",
@@ -3558,7 +3754,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Taiwan",
+      "region": "Taipei / New Taipei / Nantou",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI151": {
       "id": "ISTE26AI151",
@@ -3613,7 +3813,11 @@
       "r1_display_score": 16.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "United States",
+      "region": "New Jersey",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI152": {
       "id": "ISTE26AI152",
@@ -3685,7 +3889,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Metro Manila (Makati)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI153": {
       "id": "ISTE26AI153",
@@ -3720,7 +3928,11 @@
       "advanced_to_round2": true,
       "r1_display_score": null,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI154": {
       "id": "ISTE26AI154",
@@ -3791,7 +4003,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Sinaloa",
+      "stage": "Round 2",
+      "advancement_note": "Advanced by committee review"
     },
     "ISTE26AI155": {
       "id": "ISTE26AI155",
@@ -3846,7 +4062,11 @@
       "r1_display_score": 17.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Mexico",
+      "region": "Coahuila",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI156": {
       "id": "ISTE26AI156",
@@ -3918,7 +4138,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI157": {
       "id": "ISTE26AI157",
@@ -3989,7 +4213,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI158": {
       "id": "ISTE26AI158",
@@ -4062,7 +4290,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI159": {
       "id": "ISTE26AI159",
@@ -4134,7 +4366,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Indonesia",
+      "region": "Jakarta (likely)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI160": {
       "id": "ISTE26AI160",
@@ -4205,7 +4441,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 17.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI161": {
       "id": "ISTE26AI161",
@@ -4277,7 +4517,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Cavite",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI162": {
       "id": "ISTE26AI162",
@@ -4331,7 +4575,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 14.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Taiwan",
+      "region": "Hsinchu / Taipei",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI163": {
       "id": "ISTE26AI163",
@@ -4402,7 +4650,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Tarlac",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI164": {
       "id": "ISTE26AI164",
@@ -4456,7 +4708,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 28.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI165": {
       "id": "ISTE26AI165",
@@ -4527,7 +4783,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI166": {
       "id": "ISTE26AI166",
@@ -4581,7 +4841,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 23.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Metro Manila (Quezon City)",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI167": {
       "id": "ISTE26AI167",
@@ -4653,7 +4917,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 18.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Delhi",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI168": {
       "id": "ISTE26AI168",
@@ -4707,7 +4975,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Kosovo",
+      "region": "",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI169": {
       "id": "ISTE26AI169",
@@ -4778,7 +5050,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI170": {
       "id": "ISTE26AI170",
@@ -4833,7 +5109,11 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Taiwan / Canada",
+      "region": "Taipei / British Columbia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI171": {
       "id": "ISTE26AI171",
@@ -4905,7 +5185,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United Arab Emirates",
+      "region": "Dubai",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI172": {
       "id": "ISTE26AI172",
@@ -4960,7 +5244,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Chandigarh",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI173": {
       "id": "ISTE26AI173",
@@ -5031,7 +5319,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI174": {
       "id": "ISTE26AI174",
@@ -5103,7 +5395,11 @@
       "r1_display_score": 15.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "United States",
+      "region": "Florida",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI175": {
       "id": "ISTE26AI175",
@@ -5174,7 +5470,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Singapore",
+      "region": "",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI176": {
       "id": "ISTE26AI176",
@@ -5228,7 +5528,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Saudi Arabia",
+      "region": "Eastern Province",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI177": {
       "id": "ISTE26AI177",
@@ -5300,7 +5604,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Cebu",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI178": {
       "id": "ISTE26AI178",
@@ -5354,7 +5662,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 28.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI179": {
       "id": "ISTE26AI179",
@@ -5406,7 +5718,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 13.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI180": {
       "id": "ISTE26AI180",
@@ -5477,7 +5793,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Aklan",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI181": {
       "id": "ISTE26AI181",
@@ -5532,7 +5852,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Metro Manila",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI182": {
       "id": "ISTE26AI182",
@@ -5603,7 +5927,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI183": {
       "id": "ISTE26AI183",
@@ -5674,7 +6002,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Puebla",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI184": {
       "id": "ISTE26AI184",
@@ -5746,7 +6078,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Delhi",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI185": {
       "id": "ISTE26AI185",
@@ -5817,7 +6153,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Delhi",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI186": {
       "id": "ISTE26AI186",
@@ -5889,7 +6229,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI187": {
       "id": "ISTE26AI187",
@@ -5943,7 +6287,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Bulgaria",
+      "region": "Burgas",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI188": {
       "id": "ISTE26AI188",
@@ -6015,7 +6363,11 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Mexico",
+      "region": "Coahuila",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI189": {
       "id": "ISTE26AI189",
@@ -6086,7 +6438,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Metro Manila (likely)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI190": {
       "id": "ISTE26AI190",
@@ -6157,7 +6513,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 19.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI191": {
       "id": "ISTE26AI191",
@@ -6213,7 +6573,11 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Saudi Arabia",
+      "region": "Asir Region",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI192": {
       "id": "ISTE26AI192",
@@ -6285,7 +6649,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United Arab Emirates",
+      "region": "Abu Dhabi",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI193": {
       "id": "ISTE26AI193",
@@ -6339,7 +6707,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Turkey",
+      "region": "İzmir",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI194": {
       "id": "ISTE26AI194",
@@ -6412,7 +6784,11 @@
       "r1_display_score": 15.5,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI195": {
       "id": "ISTE26AI195",
@@ -6467,7 +6843,11 @@
       "r1_display_score": 17.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI196": {
       "id": "ISTE26AI196",
@@ -6502,7 +6882,11 @@
       "advanced_to_round2": false,
       "r1_display_score": null,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Pennsylvania",
+      "stage": "Initial Screening",
+      "advancement_note": ""
     },
     "ISTE26AI197": {
       "id": "ISTE26AI197",
@@ -6573,7 +6957,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI198": {
       "id": "ISTE26AI198",
@@ -6627,7 +7015,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 28.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI199": {
       "id": "ISTE26AI199",
@@ -6699,7 +7091,11 @@
       "r1_display_score": 19.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI200": {
       "id": "ISTE26AI200",
@@ -6771,7 +7167,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI201": {
       "id": "ISTE26AI201",
@@ -6842,7 +7242,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Mexico",
+      "region": "Mexico City (CDMX) / Estado de México",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI202": {
       "id": "ISTE26AI202",
@@ -6897,7 +7301,11 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Kenya",
+      "region": "Siaya County",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI203": {
       "id": "ISTE26AI203",
@@ -6968,7 +7376,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 18.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "China",
+      "region": "Beijing",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI204": {
       "id": "ISTE26AI204",
@@ -7024,7 +7436,11 @@
       "r1_display_score": 22.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Philippines",
+      "region": "La Union",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI205": {
       "id": "ISTE26AI205",
@@ -7096,7 +7512,11 @@
       "r1_display_score": 13.5,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review"
+      "round2_status": "review",
+      "country": "Bulgaria",
+      "region": "Burgas",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI206": {
       "id": "ISTE26AI206",
@@ -7150,7 +7570,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "China",
+      "region": "Beijing",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI207": {
       "id": "ISTE26AI207",
@@ -7221,7 +7645,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Philippines",
+      "region": "Metro Manila (Makati)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI208": {
       "id": "ISTE26AI208",
@@ -7292,7 +7720,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "India",
+      "region": "Delhi",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI209": {
       "id": "ISTE26AI209",
@@ -7363,7 +7795,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 21.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Virginia",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI210": {
       "id": "ISTE26AI210",
@@ -7434,7 +7870,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 14.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Tunisia",
+      "region": "Sidi Bouzid",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI211": {
       "id": "ISTE26AI211",
@@ -7505,7 +7945,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "Italy",
+      "region": "Lazio (Rome)",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI212": {
       "id": "ISTE26AI212",
@@ -7577,7 +8021,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI213": {
       "id": "ISTE26AI213",
@@ -7632,7 +8080,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI214": {
       "id": "ISTE26AI214",
@@ -7704,7 +8156,11 @@
       "advanced_to_round2": false,
       "r1_display_score": 18.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 1",
+      "advancement_note": ""
     },
     "ISTE26AI215": {
       "id": "ISTE26AI215",
@@ -7776,7 +8232,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI216": {
       "id": "ISTE26AI216",
@@ -7848,7 +8308,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI217": {
       "id": "ISTE26AI217",
@@ -7903,7 +8367,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     },
     "ISTE26AI218": {
       "id": "ISTE26AI218",
@@ -7939,7 +8407,11 @@
       "advanced_to_round2": false,
       "r1_display_score": null,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Initial Screening",
+      "advancement_note": ""
     },
     "ISTE26AI219": {
       "id": "ISTE26AI219",
@@ -7994,7 +8466,11 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [],
-      "round2_scores": []
+      "round2_scores": [],
+      "country": "United States",
+      "region": "Hawaii",
+      "stage": "Round 2",
+      "advancement_note": ""
     }
   },
   "data_as_of": "April 7, 2026 at 10:18 AM ET",
