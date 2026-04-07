@@ -1,4 +1,4 @@
-<!-- Updated: April 5, 2026 — Round-aware portal with Round 1 and Round 2 tabs, R1 score display, R2 form/instructions -->
+<!-- Updated: April 7, 2026 — Fixed R2 deadline to Monday April 20; R1 score hidden until after judge scores project -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -286,10 +286,10 @@ function switchRound(round){
       'These projects have advanced from Round 1 and represent quality submissions. '+
       'Your task is to evaluate each project and determine which should be highlighted on the ISTE+ASCD website and which you would recommend as a finalist for Round 3.<br><br>'+
       '<ul>'+
-      '<li><strong>Deadline:</strong> Please complete all judging by <strong>8:00 PM Eastern Time on Sunday, April 20</strong>.</li>'+
+      '<li><strong>Deadline:</strong> Please complete all judging by <strong>8:00 PM Eastern Time on Monday, April 20</strong>.</li>'+
       '<li><strong>Guidance:</strong> Please refer to the <a href="'+RUBRIC+'" target="_blank">Rubric</a> for scoring criteria. Score based on evidence you can see or hear in the submitted artifacts.</li>'+
       '<li>Consider clear communication, strong evidence across criteria, and standout innovation and impact.</li>'+
-      '<li>The Round 1 average score is shown for context — please evaluate each project independently.</li>'+
+      '<li>The Round 1 average score will be revealed after you complete your scoring for each project. Please evaluate each project independently.</li>'+
       '</ul>'+
       'Questions or concerns? Reach out to <a href="mailto:generationai@iste.org">generationai@iste.org</a>'+
       '</div>';
@@ -353,12 +353,12 @@ function renderProjects(projectIds,judgeId,round){
 
     const statusHtml=isJudged?'<span class="status-badge status-judged">✓ Judged</span>':'<span class="status-badge status-not-judged">○ Not Yet Judged</span>';
 
-    // R1 score badge for Round 2
+    // R1 score badge for Round 2 — only shown AFTER judge has scored this project
     let r1ScoreHtml='';
-    if(round===2){
+    if(round===2 && isJudged){
       let displayScore=p.r1_display_score;
       if(displayScore!=null){
-        r1ScoreHtml='<span class="r1-score-badge">R1 Score: '+displayScore+'/28</span>';
+        r1ScoreHtml='<span class="r1-score-badge">R1 Avg Score: '+displayScore+'/28</span>';
       }
     }
 
