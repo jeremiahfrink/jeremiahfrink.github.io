@@ -1,0 +1,332 @@
+<!-- Updated: April 7, 2026 — Steering committee view with geographic data, funnel, project cards -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISTE + ASCD AI Innovator Challenge — Steering View</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1628;--card:#141F33;--card2:#1C2A42;--teal:#00ACC1;--lteal:#4DD0E1;
+  --purple:#7C4DFF;--green:#66BB6A;--amber:#FFB74D;--red:#EF5350;
+  --text:#E8EDF2;--text2:#94A3B8;--text3:#546E7A;--border:#253245;
+  --radius:12px;--shadow:0 4px 24px rgba(0,0,0,.35);
+  --gold:#FFD54F;--r2:#B388FF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh}
+a{color:var(--lteal);text-decoration:none}a:hover{text-decoration:underline}
+
+/* AUTH */
+.auth-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem}
+.auth-card{background:var(--card);border-radius:var(--radius);padding:2.5rem;max-width:420px;width:100%;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--purple)}
+.auth-card h1{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.2rem;color:#fff}
+.auth-card .sub{font-size:.95rem;color:var(--purple);font-weight:600;margin-bottom:.4rem}
+.auth-card p{color:var(--text2);font-size:.85rem;margin-bottom:1.5rem}
+.auth-row{display:flex;gap:.5rem}
+.auth-row input{flex:1;padding:.7rem 1rem;background:var(--card2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:inherit;font-size:.95rem;outline:none}
+.auth-row input:focus{border-color:var(--teal)}
+.auth-row button{padding:.7rem 1.3rem;background:var(--purple);color:#fff;border:none;border-radius:6px;font-family:inherit;font-weight:600;cursor:pointer}
+.auth-err{color:var(--red);font-size:.85rem;margin-top:.75rem;display:none}
+
+/* SHELL */
+.shell{display:none}
+.top-bar{background:linear-gradient(135deg,#1A237E,#4A148C,#7C4DFF);padding:1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.top-bar::before{content:'';position:absolute;top:-40%;right:-15%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.04),transparent 70%);border-radius:50%}
+.top-bar h1{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;position:relative;z-index:1}
+.top-bar .sub{color:rgba(255,255,255,.7);font-size:.9rem;position:relative;z-index:1;margin-top:.25rem}
+
+.content{max-width:1200px;margin:0 auto;padding:1.5rem 2rem 3rem}
+
+/* FUNNEL */
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem}
+.funnel-card{background:var(--card);border-radius:var(--radius);padding:1.2rem;text-align:center;border-top:3px solid var(--border);position:relative;overflow:hidden}
+.funnel-card .val{font-size:2rem;font-weight:800;margin:.2rem 0}
+.funnel-card .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text3)}
+.funnel-card .arrow{position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--border);font-size:1.2rem}
+
+/* SECTION */
+.section{background:var(--card);border-radius:var(--radius);margin-bottom:1.5rem;overflow:hidden;box-shadow:var(--shadow)}
+.section-head{padding:1rem 1.3rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.section-head h2{font-size:1rem;font-weight:700}
+.section-head .filter{display:flex;gap:.5rem;flex-wrap:wrap}
+.section-head .filter button{padding:.3rem .8rem;font-size:.74rem;font-family:inherit;font-weight:500;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.section-head .filter button.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.section-head .filter button:hover:not(.active){border-color:var(--text3)}
+.search-box{padding:.4rem .8rem;background:var(--card2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:inherit;font-size:.82rem;outline:none;width:180px}
+.search-box:focus{border-color:var(--teal)}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{text-align:left;padding:.6rem 1rem;background:var(--card2);color:var(--text2);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;position:sticky;top:0;white-space:nowrap;cursor:pointer}
+th:hover{color:var(--lteal)}
+td{padding:.5rem 1rem;border-bottom:1px solid var(--border);white-space:nowrap}
+tr:hover td{background:rgba(124,77,255,.04)}
+.pid-link{color:var(--lteal);cursor:pointer;font-weight:600}.pid-link:hover{text-decoration:underline}
+.badge{display:inline-block;padding:.15rem .55rem;border-radius:50px;font-size:.7rem;font-weight:600}
+.badge-r2{background:#7C4DFF22;color:var(--r2);border:1px solid #7C4DFF44}
+.badge-r1{background:#00ACC122;color:var(--lteal);border:1px solid #00ACC144}
+.badge-screen{background:#37474F44;color:#90A4AE;border:1px solid #546E7A55}
+.badge-green{background:#1B5E2033;color:var(--green);border:1px solid #2E7D3255}
+
+/* GEO TABLE */
+.geo-tbl td:first-child{font-weight:600}
+.geo-bar{height:6px;background:var(--border);border-radius:3px;min-width:60px;display:inline-block;vertical-align:middle;margin-left:.5rem}
+.geo-fill{height:100%;border-radius:3px;background:var(--teal)}
+
+/* CHART */
+.chart-wrap{padding:1.2rem}
+.bar-chart{display:flex;align-items:flex-end;gap:5px;height:100px}
+.bar-col{display:flex;flex-direction:column;align-items:center;flex:1}
+.bar{border-radius:3px 3px 0 0;width:100%;min-width:6px;transition:height .3s}
+.bar-label{font-size:.6rem;color:var(--text3);margin-top:.25rem;writing-mode:vertical-rl;transform:rotate(180deg);max-height:55px;overflow:hidden}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;overflow-y:auto;padding:2rem 1rem;backdrop-filter:blur(3px)}
+.modal-overlay.open{display:flex;justify-content:center;align-items:flex-start}
+.modal{background:var(--card);border-radius:var(--radius);max-width:800px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden;animation:modalIn .2s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-head{padding:1.2rem 1.5rem;background:linear-gradient(135deg,#1A237E,#4A148C);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.modal-head-left{flex:1}
+.modal-pid{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff;line-height:1.3;margin-top:.15rem}
+.modal-team{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.15rem}
+.modal-close{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:rgba(255,255,255,.25)}
+.modal-info{padding:.75rem 1.5rem;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;font-size:.85rem}
+.modal-info-pill{padding:.25rem .7rem;border-radius:50px;font-size:.75rem;font-weight:600}
+.modal-body{padding:1.2rem 1.5rem}
+.modal-section{margin-bottom:1.2rem}
+.modal-section-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.6rem;font-weight:600}
+.modal-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem}
+.modal-link-item{font-size:.82rem}.modal-link-label{color:var(--text3);font-size:.68rem;text-transform:uppercase;margin-bottom:.1rem}
+.modal-link-item a{word-break:break-all}
+.rubric-tbl{width:100%;border-collapse:collapse;font-size:.84rem}
+.rubric-tbl th{background:var(--card2);padding:.5rem .8rem;text-align:left;font-size:.7rem;text-transform:uppercase;color:var(--text2);border:1px solid var(--border)}
+.rubric-tbl td{padding:.5rem .8rem;border:1px solid var(--border);text-align:center;font-weight:600}
+.rubric-tbl td:first-child{text-align:left;font-weight:400;color:var(--text2)}
+.rubric-tbl tr:last-child td{background:var(--card2);font-weight:700}
+.rs4{color:#66BB6A}.rs3{color:#64B5F6}.rs2{color:#FFB74D}.rs1{color:#EF5350}
+.adv-note{background:#7C4DFF18;border:1px solid #7C4DFF44;border-radius:8px;padding:.6rem 1rem;font-size:.84rem;color:var(--r2);margin-top:.75rem}
+
+@media(max-width:768px){.content{padding:1rem}.funnel{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="auth-wrap" id="authWrap">
+<div class="auth-card">
+<h1>AI Innovator Challenge</h1>
+<div class="sub">Steering Committee View</div>
+<p>ISTE + ASCD 2026</p>
+<div class="auth-row"><input type="password" id="pwInput" placeholder="Enter access code" autocomplete="off"><button onclick="tryAuth()">Enter</button></div>
+<div class="auth-err" id="authErr">Incorrect code. Try again.</div>
+</div></div>
+
+<div class="shell" id="shell">
+<div class="top-bar">
+<h1>AI Innovator Challenge 2026</h1>
+<div class="sub">Steering Committee Overview</div>
+</div>
+
+<div class="content">
+<div class="funnel" id="funnel"></div>
+
+<div class="section">
+<div class="section-head">
+<h2>All Submissions</h2>
+<div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center">
+<input class="search-box" id="searchBox" placeholder="Search projects..." oninput="renderTable()">
+<div class="filter" id="stageFilter"></div>
+<div class="filter" id="countryFilter"></div>
+</div>
+</div>
+<div class="tbl-wrap"><table id="mainTable"><thead></thead><tbody></tbody></table></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+<div class="section">
+<div class="section-head"><h2>Geographic Distribution</h2></div>
+<div class="tbl-wrap"><table id="geoTable" class="geo-tbl"><thead></thead><tbody></tbody></table></div>
+</div>
+<div>
+<div class="section">
+<div class="section-head"><h2>Score Distribution</h2></div>
+<div class="chart-wrap" id="distChart"></div>
+</div>
+<div class="section">
+<div class="section-head"><h2>Rubric Dimension Averages</h2></div>
+<div class="chart-wrap" id="dimChart"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+<div class="modal">
+<div class="modal-head">
+<div class="modal-head-left"><div class="modal-pid" id="mPid"></div><div class="modal-title" id="mTitle"></div><div class="modal-team" id="mTeam"></div></div>
+<button class="modal-close" onclick="closeModal()">✕</button>
+</div>
+<div class="modal-info" id="mInfo"></div>
+<div class="modal-body" id="mBody"></div>
+</div>
+</div>
+
+<script>
+const PW='ISTEai2026';
+let D=null,stageF='all',countryF='all';
+const DIMS=['Connection to Community Problem & SDG','Impact, Relevance & Longevity','Responsible & Ethical Use of AI','Innovation & Creativity','Design Quality & Accessibility','Collaboration & Process','Presentation & Communication'];
+const DS=['Community & SDG','Impact','Responsible AI','Innovation','Design Quality','Collaboration','Communication'];
+
+function tryAuth(){if(document.getElementById('pwInput').value.trim()===PW){document.getElementById('authWrap').style.display='none';document.getElementById('shell').style.display='block';init()}else document.getElementById('authErr').style.display='block'}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('pwInput').addEventListener('keypress',e=>{if(e.key==='Enter')tryAuth()})});
+
+async function init(){
+D=await(await fetch('data.json')).json();
+renderFunnel();renderFilters();renderTable();renderGeo();renderCharts();
+}
+
+function renderFunnel(){
+const ps=Object.values(D.projects);
+const total=ps.length;
+const scored=ps.filter(p=>p.scores&&p.scores.length>0).length;
+const r2=ps.filter(p=>p.advanced_to_round2).length;
+const review=ps.filter(p=>p.round2_status==='review').length;
+document.getElementById('funnel').innerHTML=
+'<div class="funnel-card" style="border-top-color:var(--teal)"><div class="label">Submitted</div><div class="val" style="color:var(--lteal)">'+total+'</div><div class="label">Projects</div></div>'+
+'<div class="funnel-card" style="border-top-color:var(--green)"><div class="label">Scored (R1)</div><div class="val" style="color:var(--green)">'+scored+'</div><div class="label">By 2+ Judges</div></div>'+
+'<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">Round 2</div><div class="val" style="color:var(--r2)">'+r2+'</div><div class="label">Advancing</div></div>'+
+'<div class="funnel-card" style="border-top-color:var(--amber)"><div class="label">Under Review</div><div class="val" style="color:var(--amber)">'+review+'</div><div class="label">Pending</div></div>'+
+'<div class="funnel-card" style="border-top-color:var(--gold)"><div class="label">Round 3</div><div class="val" style="color:var(--gold)">TBD</div><div class="label">Finalists</div></div>';
+}
+
+function renderFilters(){
+const stages=['all','Round 2','Round 1','Initial Screening'];
+const sLabels=['All','Round 2','Round 1','Screening'];
+document.getElementById('stageFilter').innerHTML=stages.map((v,i)=>'<button class="'+(i===0?'active':'')+'" data-f="'+v+'">'+sLabels[i]+'</button>').join('');
+document.getElementById('stageFilter').addEventListener('click',e=>{if(!e.target.dataset.f)return;stageF=e.target.dataset.f;document.querySelectorAll('#stageFilter button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderTable()});
+
+const countries=new Set();Object.values(D.projects).forEach(p=>{if(p.country)countries.add(p.country)});
+const sorted=[...countries].sort();
+let chtml='<button class="active" data-f="all">All Countries</button>';
+sorted.forEach(c=>{chtml+='<button data-f="'+c+'">'+c+'</button>'});
+document.getElementById('countryFilter').innerHTML=chtml;
+document.getElementById('countryFilter').addEventListener('click',e=>{if(!e.target.dataset.f)return;countryF=e.target.dataset.f;document.querySelectorAll('#countryFilter button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderTable()});
+}
+
+function renderTable(){
+const search=document.getElementById('searchBox').value.toLowerCase();
+let rows=Object.values(D.projects);
+if(stageF!=='all')rows=rows.filter(p=>p.stage===stageF);
+if(countryF!=='all')rows=rows.filter(p=>p.country===countryF);
+if(search)rows=rows.filter(p=>(p.id+' '+p.project_name+' '+p.team_name+' '+p.country).toLowerCase().includes(search));
+rows.sort((a,b)=>{
+const so={['Round 2']:0,['Round 1']:1,['Initial Screening']:2};
+const sd=(so[a.stage]||9)-(so[b.stage]||9);
+if(sd!==0)return sd;
+return(b.avg_score||0)-(a.avg_score||0);
+});
+const t=document.getElementById('mainTable');
+t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Project Name</th><th>Team</th><th>Country</th><th>Region</th><th>R1 Avg</th><th>Stage</th></tr>';
+t.querySelector('tbody').innerHTML=rows.map(p=>{
+const sb=p.stage==='Round 2'?'badge-r2':p.stage==='Round 1'?'badge-r1':'badge-screen';
+const avg=p.avg_score!=null?p.avg_score:'—';
+return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><span class="badge '+sb+'">'+p.stage+'</span></td></tr>'
+}).join('');
+}
+
+function renderGeo(){
+const geo={};
+Object.values(D.projects).forEach(p=>{
+const c=p.country||'Unknown';
+if(!geo[c])geo[c]={total:0,r2:0};
+geo[c].total++;if(p.advanced_to_round2)geo[c].r2++;
+});
+const sorted=Object.entries(geo).sort((a,b)=>b[1].total-a[1].total);
+const mx=sorted[0]?sorted[0][1].total:1;
+const t=document.getElementById('geoTable');
+t.querySelector('thead').innerHTML='<tr><th>Country</th><th>Submitted</th><th>Round 2</th><th>Distribution</th></tr>';
+t.querySelector('tbody').innerHTML=sorted.map(([c,v])=>
+'<tr><td>'+esc(c)+'</td><td style="text-align:center">'+v.total+'</td><td style="text-align:center">'+v.r2+'</td><td><span class="geo-bar"><span class="geo-fill" style="width:'+Math.round(v.total/mx*100)+'%"></span></span></td></tr>'
+).join('');
+}
+
+function renderCharts(){
+const scored=Object.values(D.projects).filter(p=>p.avg_score!=null);
+const allS=scored.map(p=>p.avg_score);
+
+const bins={};for(let i=7;i<=28;i++)bins[i]=0;
+allS.forEach(s=>{const b=Math.round(s);if(bins[b]!==undefined)bins[b]++});
+const mx=Math.max(...Object.values(bins),1);
+document.getElementById('distChart').innerHTML='<div class="bar-chart">'+Object.entries(bins).map(([k,v])=>{
+const color=k>=24?'var(--purple)':k>=20?'var(--teal)':k>=16?'var(--amber)':'var(--red)';
+return'<div class="bar-col"><div class="bar" style="height:'+v/mx*100+'%;background:'+color+';'+(v>0?'':'opacity:.1')+'" title="'+k+': '+v+'"></div><div class="bar-label">'+k+'</div></div>'}).join('')+'</div>';
+
+const dA=DIMS.map(d=>{let s=0,c=0;scored.forEach(p=>p.scores.forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}}));return c?(s/c):0});
+document.getElementById('dimChart').innerHTML='<div class="bar-chart" style="height:90px">'+dA.map((v,i)=>
+'<div class="bar-col"><div class="bar" style="height:'+v/4*100+'%;background:var(--purple)" title="'+DS[i]+': '+v.toFixed(2)+'"></div><div class="bar-label" style="max-height:60px">'+DS[i]+'</div></div>'
+).join('')+'</div>';
+}
+
+function openProject(pid){
+const p=D.projects[pid];if(!p)return;
+document.getElementById('mPid').textContent=pid;
+document.getElementById('mTitle').textContent=p.project_name;
+document.getElementById('mTeam').textContent=p.team_name;
+
+const sb=p.stage==='Round 2'?'badge-r2':p.stage==='Round 1'?'badge-r1':'badge-screen';
+let infoHtml='<span class="modal-info-pill badge '+sb+'">'+p.stage+'</span>';
+if(p.avg_score!=null)infoHtml+='<span style="font-weight:600">R1 Avg: '+p.avg_score+'/28</span>';
+if(p.country)infoHtml+='<span style="color:var(--text2)">'+esc(p.country)+(p.region?', '+esc(p.region):'')+'</span>';
+document.getElementById('mInfo').innerHTML=infoHtml;
+
+let html='';
+
+// Links
+const links=[['Pitch Video','pitch_video'],['Team Story','team_story'],['Digital Product','digital_product'],['Additional Artifact','additional_artifact']];
+html+='<div class="modal-section"><div class="modal-section-title">Project Materials</div><div class="modal-links">';
+links.forEach(([label,key])=>{
+const o=p[key];html+='<div class="modal-link-item"><div class="modal-link-label">'+label+'</div>';
+if(!o||o.type==='empty'||!o.value)html+='<span style="color:var(--text3);font-style:italic">Not provided</span>';
+else if(o.type==='url')html+='<a href="'+esc(o.value)+'" target="_blank">'+esc(o.value.substring(0,55))+'…</a>'+(o.password?' <span class="badge" style="background:#F57F1722;color:var(--amber);border:1px solid #F57F1744">PW: '+esc(o.password)+'</span>':'');
+else if(o.type==='text')html+='<span style="color:var(--text2);font-size:.8rem">[Inline text]</span>';
+else if(o.type==='note')html+='<span style="color:var(--text2)">'+esc(o.value.substring(0,80))+'</span>';
+else if(o.type==='mixed'&&o.extracted_url)html+='<a href="'+esc(o.extracted_url)+'" target="_blank">'+esc(o.extracted_url.substring(0,55))+'…</a>';
+html+='</div>'});
+html+='</div></div>';
+
+// Rubric averages
+if(p.scores&&p.scores.length>0){
+html+='<div class="modal-section"><div class="modal-section-title">Average Rubric Scores</div>';
+html+='<table class="rubric-tbl"><thead><tr><th>Criterion</th><th>Average</th></tr></thead><tbody>';
+DIMS.forEach((d,i)=>{
+let s=0,c=0;p.scores.forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}});
+const avg=c?(s/c):0;const cls=avg>=3.5?'rs4':avg>=2.5?'rs3':avg>=1.5?'rs2':'rs1';
+html+='<tr><td>'+DS[i]+'</td><td class="'+cls+'">'+avg.toFixed(1)+'</td></tr>';
+});
+html+='<tr><td><strong>TOTAL AVERAGE</strong></td><td><strong>'+p.avg_score+'/28</strong></td></tr>';
+html+='</tbody></table>';
+
+if(p.advancement_note)html+='<div class="adv-note">ℹ '+esc(p.advancement_note)+'</div>';
+html+='</div>';
+}else{
+html+='<div class="modal-section" style="text-align:center;padding:1.5rem;color:var(--text3)">No scoring data available</div>';
+}
+
+// AI Tools
+if(p.ai_tools_used)html+='<div class="modal-section"><div class="modal-section-title">AI Tools Used</div><div style="font-size:.85rem;color:var(--text2);line-height:1.6">'+esc(p.ai_tools_used)+'</div></div>';
+
+document.getElementById('mBody').innerHTML=html;
+document.getElementById('modalOverlay').classList.add('open');
+document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''}
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+</script>
+</body>
+</html>
