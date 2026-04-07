@@ -1,4 +1,4 @@
-<!-- Updated: March 31, 2026 — Added Judging Process link to header, Rubric + Form links to judge bar; held projects hidden from judges -->
+<!-- Updated: April 5, 2026 — Round-aware portal with Round 1 and Round 2 tabs, R1 score display, R2 form/instructions -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,500 +26,116 @@
     --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
     --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
     --radius: 12px;
+    --r2-purple: #5E35B1;
+    --r2-purple-light: #EDE7F6;
+    --r2-purple-border: #B39DDB;
   }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--page-bg);color:var(--text-primary);min-height:100vh;line-height:1.6}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .site-header{background:linear-gradient(135deg,var(--iste-blue) 0%,var(--iste-teal) 60%,var(--iste-light-teal) 100%);padding:2rem 1.5rem 3rem;text-align:center;position:relative;overflow:hidden}
+  .site-header::before{content:'';position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 70%);border-radius:50%}
+  .header-badge{display:inline-block;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);padding:0.35rem 1.2rem;border-radius:50px;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.9);margin-bottom:1rem;position:relative;z-index:1}
+  .header-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:0.5rem;position:relative;z-index:1}
+  .header-subtitle{font-size:1.05rem;color:rgba(255,255,255,0.8);font-weight:400;position:relative;z-index:1}
+  .header-link{display:inline-block;margin-top:0.75rem;padding:0.4rem 1.2rem;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);border-radius:6px;color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;position:relative;z-index:1}
+  .header-link:hover{background:rgba(255,255,255,0.25)}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--page-bg);
-    color: var(--text-primary);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
+  .login-section{max-width:480px;margin:-1.5rem auto 2rem;padding:0 1rem;position:relative;z-index:10}
+  .login-card{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:2rem;text-align:center}
+  .login-card h2{font-size:1.15rem;font-weight:700;margin-bottom:0.3rem;color:var(--iste-blue)}
+  .login-card p{font-size:0.88rem;color:var(--text-muted);margin-bottom:1.2rem}
+  .login-row{display:flex;gap:0.75rem}
+  .login-row input{flex:1;padding:0.75rem 1rem;border:2px solid var(--border-light);border-radius:8px;font-family:inherit;font-size:1rem;font-weight:500;color:var(--text-primary);transition:border-color 0.2s;outline:none}
+  .login-row input:focus{border-color:var(--iste-teal)}
+  .login-row input::placeholder{color:var(--text-muted);font-weight:400}
+  .login-row button{padding:0.75rem 1.5rem;background:var(--iste-teal);color:#fff;font-family:inherit;font-size:0.95rem;font-weight:600;border:none;border-radius:8px;cursor:pointer;transition:background 0.2s,transform 0.1s;white-space:nowrap}
+  .login-row button:hover{background:var(--iste-blue)}
+  .error-msg{color:var(--hold-red);font-size:0.85rem;font-weight:500;margin-top:0.75rem;display:none}
 
-  /* ── HEADER ── */
-  .site-header {
-    background: linear-gradient(135deg, var(--iste-blue) 0%, var(--iste-teal) 60%, var(--iste-light-teal) 100%);
-    padding: 2rem 1.5rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .site-header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .site-header::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(77,208,225,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-  }
+  /* JUDGE BAR */
+  .judge-bar{max-width:960px;margin:0 auto 1rem;padding:0 1rem;display:none}
+  .judge-bar-inner{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.75rem}
+  .judge-bar-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem}
+  .judge-bar-info{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .judge-id-pill{background:var(--iste-blue);color:#fff;padding:0.3rem 0.9rem;border-radius:50px;font-size:0.85rem;font-weight:600;letter-spacing:0.03em}
+  .judge-count{font-size:0.9rem;color:var(--text-secondary)}
+  .judge-count strong{color:var(--iste-teal)}
+  .judge-progress{font-size:0.9rem;color:var(--text-secondary)}
+  .judge-progress strong{color:var(--iste-green)}
+  .btn-logout{background:none;border:1px solid var(--border-light);padding:0.4rem 1rem;border-radius:6px;font-family:inherit;font-size:0.82rem;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+  .btn-logout:hover{border-color:var(--hold-red);color:var(--hold-red)}
+  .as-of-date{font-size:0.82rem;color:var(--text-muted);font-style:italic}
+  .judge-resources{display:flex;gap:0.75rem;flex-wrap:wrap}
+  .judge-resources a{display:inline-flex;align-items:center;gap:0.3rem;padding:0.35rem 0.8rem;background:#E0F2F1;border:1px solid #B2DFDB;border-radius:6px;color:var(--iste-teal);font-size:0.8rem;font-weight:600;text-decoration:none;transition:all 0.2s}
+  .judge-resources a:hover{background:var(--iste-teal);color:#fff;border-color:var(--iste-teal)}
 
-  .header-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 0.35rem 1.2rem;
-    border-radius: 50px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
-  }
-  .header-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4.5vw, 3rem);
-    font-weight: 800;
-    color: #fff;
-    line-height: 1.15;
-    margin-bottom: 0.5rem;
-    position: relative;
-    z-index: 1;
-  }
-  .header-subtitle {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.8);
-    font-weight: 400;
-    position: relative;
-    z-index: 1;
-  }
+  /* ROUND TABS */
+  .round-tabs{max-width:960px;margin:0 auto 1.5rem;padding:0 1rem;display:none}
+  .round-tabs-inner{display:flex;background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .round-tab{flex:1;text-align:center;padding:0.75rem 1rem;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;border-bottom:3px solid transparent;color:var(--text-muted)}
+  .round-tab:hover{color:var(--text-secondary)}
+  .round-tab.active-r1{color:var(--iste-teal);border-bottom-color:var(--iste-teal);background:#F0FDFA}
+  .round-tab.active-r2{color:var(--r2-purple);border-bottom-color:var(--r2-purple);background:var(--r2-purple-light)}
+  .round-tab .tab-count{font-size:0.75rem;font-weight:400;color:var(--text-muted)}
 
-  /* ── LOGIN SECTION ── */
-  .login-section {
-    max-width: 480px;
-    margin: -1.5rem auto 2rem;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 10;
-  }
-  .login-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    padding: 2rem;
-    text-align: center;
-  }
-  .login-card h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    color: var(--iste-blue);
-  }
-  .login-card p {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    margin-bottom: 1.2rem;
-  }
-  .login-row {
-    display: flex;
-    gap: 0.75rem;
-  }
-  .login-row input {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--border-light);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    transition: border-color 0.2s;
-    outline: none;
-  }
-  .login-row input:focus {
-    border-color: var(--iste-teal);
-  }
-  .login-row input::placeholder {
-    color: var(--text-muted);
-    font-weight: 400;
-  }
-  .login-row button {
-    padding: 0.75rem 1.5rem;
-    background: var(--iste-teal);
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    white-space: nowrap;
-  }
-  .login-row button:hover { background: var(--iste-blue); }
-  .login-row button:active { transform: scale(0.97); }
+  /* INSTRUCTIONS */
+  .instructions-panel{max-width:960px;margin:0 auto 1.5rem;padding:0 1rem;display:none}
+  .instructions-card{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.25rem 1.5rem;border-top:4px solid var(--iste-accent);font-size:0.88rem;color:var(--text-secondary);line-height:1.65}
+  .instructions-card.r2-instructions{border-top-color:var(--r2-purple)}
+  .instructions-card ul{padding-left:1.25rem;margin:0.5rem 0}
+  .instructions-card li{margin-bottom:0.4rem}
 
-  .error-msg {
-    color: var(--hold-red);
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-top: 0.75rem;
-    display: none;
-  }
+  /* PROJECT CARDS */
+  .projects-container{max-width:960px;margin:0 auto;padding:0 1rem 3rem;display:none}
+  .project-card{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);margin-bottom:1.5rem;overflow:hidden;transition:box-shadow 0.2s;border-left:5px solid var(--iste-teal)}
+  .project-card:hover{box-shadow:var(--shadow-lg)}
+  .project-card.on-hold{border-left-color:var(--hold-red)}
+  .project-card.r2-card{border-left-color:var(--r2-purple)}
 
-  /* ── JUDGE INFO BAR ── */
-  .judge-bar {
-    max-width: 960px;
-    margin: 0 auto 1.5rem;
-    padding: 0 1rem;
-    display: none;
-  }
-  .judge-bar-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    padding: 1rem 1.5rem;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    flex-direction: column;
-  }
-  .judge-bar-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  .judge-bar-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .judge-id-pill {
-    background: var(--iste-blue);
-    color: #fff;
-    padding: 0.3rem 0.9rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-  }
-  .judge-count {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-  }
-  .judge-count strong {
-    color: var(--iste-teal);
-  }
-  .btn-logout {
-    background: none;
-    border: 1px solid var(--border-light);
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-logout:hover {
-    border-color: var(--hold-red);
-    color: var(--hold-red);
-  }
+  .card-header{padding:1.25rem 1.5rem 0.75rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+  .card-header-left{flex:1;min-width:200px}
+  .project-id{font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--iste-teal);margin-bottom:0.2rem}
+  .r2-card .project-id{color:var(--r2-purple)}
+  .project-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text-primary);line-height:1.3}
+  .team-name{font-size:0.88rem;color:var(--text-secondary);margin-top:0.15rem}
+  .card-header-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem}
 
-  /* ── PROJECT CARDS ── */
-  .projects-container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 1rem 3rem;
-    display: none;
-  }
+  .status-badge{display:inline-flex;align-items:center;gap:0.35rem;padding:0.3rem 0.85rem;border-radius:50px;font-size:0.78rem;font-weight:600;letter-spacing:0.02em;white-space:nowrap}
+  .status-judged{background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7}
+  .status-not-judged{background:#FFF8E1;color:#F57F17;border:1px solid #FFD54F}
 
-  .project-card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    transition: box-shadow 0.2s;
-    border-left: 5px solid var(--iste-teal);
-  }
-  .project-card:hover {
-    box-shadow: var(--shadow-lg);
-  }
-  .project-card.on-hold {
-    border-left-color: var(--hold-red);
-  }
+  .r1-score-badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.85rem;border-radius:50px;font-size:0.78rem;font-weight:600;background:var(--r2-purple-light);color:var(--r2-purple);border:1px solid var(--r2-purple-border)}
 
-  .card-header {
-    padding: 1.25rem 1.5rem 0.75rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .card-header-left {
-    flex: 1;
-    min-width: 200px;
-  }
-  .project-id {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--iste-teal);
-    margin-bottom: 0.2rem;
-  }
-  .project-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.3;
-  }
-  .team-name {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    margin-top: 0.15rem;
-  }
+  .hold-banner{background:var(--hold-bg);border:1px solid var(--hold-border);border-radius:8px;padding:0.7rem 1rem;margin:0.5rem 1.5rem;display:flex;align-items:flex-start;gap:0.6rem}
+  .hold-icon{flex-shrink:0;width:22px;height:22px;background:var(--hold-red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;font-weight:800;margin-top:1px}
+  .hold-text{font-size:0.88rem;font-weight:600;color:var(--hold-red)}
+  .hold-reason{font-weight:400;color:var(--text-secondary)}
 
-  /* Judging status badges */
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.3rem 0.85rem;
-    border-radius: 50px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    margin-top: 0.25rem;
-  }
-  .status-judged {
-    background: #E8F5E9;
-    color: #2E7D32;
-    border: 1px solid #A5D6A7;
-  }
-  .status-not-judged {
-    background: #FFF8E1;
-    color: #F57F17;
-    border: 1px solid #FFD54F;
-  }
-  .as-of-date {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-  .judge-progress {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-  }
-  .judge-progress strong {
-    color: var(--iste-green);
-  }
+  .card-body{padding:0.5rem 1.5rem 1.25rem}
+  .field-row{padding:0.65rem 0;border-bottom:1px solid var(--border-light);display:flex;gap:0.75rem;align-items:flex-start}
+  .field-row:last-child{border-bottom:none}
+  .field-label{flex-shrink:0;width:180px;font-size:0.78rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;color:var(--text-muted);padding-top:0.15rem}
+  .field-value{flex:1;font-size:0.92rem;color:var(--text-primary);word-break:break-word}
+  .field-value a{color:var(--iste-teal);text-decoration:none;font-weight:500;transition:color 0.15s}
+  .field-value a:hover{color:var(--iste-blue);text-decoration:underline}
+  .password-tag{display:inline-block;background:#FFF3E0;border:1px solid #FFB74D;color:#E65100;font-size:0.78rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:4px;margin-left:0.5rem}
+  .long-text{white-space:pre-wrap;line-height:1.65;font-size:0.88rem;max-height:160px;overflow:hidden;position:relative;transition:max-height 0.35s ease}
+  .long-text.expanded{max-height:5000px}
+  .long-text-fade{position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,var(--card-bg));pointer-events:none;transition:opacity 0.3s}
+  .long-text.expanded+.long-text-fade,.long-text.expanded~.long-text-fade{opacity:0}
+  .btn-expand{background:none;border:none;color:var(--iste-teal);font-family:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;padding:0.3rem 0}
+  .btn-expand:hover{text-decoration:underline}
+  .empty-value{color:var(--text-muted);font-style:italic}
 
-  /* HOLD banner */
-  .hold-banner {
-    background: var(--hold-bg);
-    border: 1px solid var(--hold-border);
-    border-radius: 8px;
-    padding: 0.7rem 1rem;
-    margin: 0.5rem 1.5rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-  }
-  .hold-icon {
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
-    background: var(--hold-red);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 800;
-    margin-top: 1px;
-  }
-  .hold-text {
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--hold-red);
-  }
-  .hold-reason {
-    font-weight: 400;
-    color: var(--text-secondary);
-  }
+  .site-footer{text-align:center;padding:2rem 1rem;font-size:0.8rem;color:var(--text-muted)}
 
-  /* Card body fields */
-  .card-body {
-    padding: 0.5rem 1.5rem 1.25rem;
-  }
-
-  .field-row {
-    padding: 0.65rem 0;
-    border-bottom: 1px solid var(--border-light);
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-  .field-row:last-child { border-bottom: none; }
-
-  .field-label {
-    flex-shrink: 0;
-    width: 180px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    padding-top: 0.15rem;
-  }
-  .field-value {
-    flex: 1;
-    font-size: 0.92rem;
-    color: var(--text-primary);
-    word-break: break-word;
-  }
-  .field-value a {
-    color: var(--iste-teal);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.15s;
-  }
-  .field-value a:hover {
-    color: var(--iste-blue);
-    text-decoration: underline;
-  }
-  .password-tag {
-    display: inline-block;
-    background: #FFF3E0;
-    border: 1px solid #FFB74D;
-    color: #E65100;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    margin-left: 0.5rem;
-  }
-  .long-text {
-    white-space: pre-wrap;
-    line-height: 1.65;
-    font-size: 0.88rem;
-    max-height: 160px;
-    overflow: hidden;
-    position: relative;
-    transition: max-height 0.35s ease;
-  }
-  .long-text.expanded {
-    max-height: 5000px;
-  }
-  .long-text-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background: linear-gradient(transparent, var(--card-bg));
-    pointer-events: none;
-    transition: opacity 0.3s;
-  }
-  .long-text.expanded + .long-text-fade,
-  .long-text.expanded ~ .long-text-fade {
-    opacity: 0;
-  }
-  .btn-expand {
-    background: none;
-    border: none;
-    color: var(--iste-teal);
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 0.3rem 0;
-  }
-  .btn-expand:hover { text-decoration: underline; }
-  .empty-value { color: var(--text-muted); font-style: italic; }
-
-  /* ── FOOTER ── */
-  .site-footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-
-  .header-link {
-    display: inline-block;
-    margin-top: 0.75rem;
-    padding: 0.4rem 1.2rem;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 6px;
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s;
-    position: relative;
-    z-index: 1;
-  }
-  .header-link:hover {
-    background: rgba(255,255,255,0.25);
-  }
-
-  .judge-resources {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-  .judge-resources a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.35rem 0.8rem;
-    background: #E0F2F1;
-    border: 1px solid #B2DFDB;
-    border-radius: 6px;
-    color: var(--iste-teal);
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .judge-resources a:hover {
-    background: var(--iste-teal);
-    color: #fff;
-    border-color: var(--iste-teal);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    .field-row { flex-direction: column; gap: 0.2rem; }
-    .field-label { width: auto; }
-    .login-row { flex-direction: column; }
-    .judge-bar-inner { flex-direction: column; text-align: center; }
-    .judge-bar-top { flex-direction: column; text-align: center; }
-    .judge-resources { justify-content: center; }
+  @media(max-width:640px){
+    .field-row{flex-direction:column;gap:0.2rem}
+    .field-label{width:auto}
+    .login-row{flex-direction:column}
+    .judge-bar-top{flex-direction:column;text-align:center}
+    .judge-resources{justify-content:center}
   }
 </style>
 </head>
@@ -535,9 +151,9 @@
 <section class="login-section" id="loginSection">
   <div class="login-card">
     <h2>Welcome, Judge</h2>
-    <p>Enter your Judge ID to view your assigned projects.</p>
+    <p>Enter your Judge ID that was included in your email for this phase.</p>
     <div class="login-row">
-      <input type="text" id="judgeInput" placeholder="e.g. AI26J34" autocomplete="off" spellcheck="false">
+      <input type="text" id="judgeInput" placeholder="e.g. AI26K7M2" autocomplete="off" spellcheck="false">
       <button onclick="loadAssignments()">View Projects</button>
     </div>
     <div class="error-msg" id="errorMsg"></div>
@@ -549,20 +165,26 @@
     <div class="judge-bar-top">
       <div class="judge-bar-info">
         <span class="judge-id-pill" id="judgeIdDisplay"></span>
-        <span class="judge-count"><strong id="projectCount">0</strong> projects assigned</span>
+        <span class="judge-count" id="judgeCount"></span>
         <span class="judge-progress" id="judgeProgress"></span>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem">
         <button class="btn-logout" onclick="logout()">Change Judge</button>
         <span class="as-of-date" id="asOfDate"></span>
       </div>
     </div>
-    <div class="judge-resources">
-      <a href="https://drive.google.com/file/d/1Sd1olx-enAcwP7a68vCH9Zw_Sq4fU1L3/view?usp=sharing" target="_blank" rel="noopener">📄 Rubric</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeOTuz2atzjEqdZKY4SkEUnQN1ltzpPwA_OBROmOZovbeT74A/viewform?usp=publish-editor" target="_blank" rel="noopener">✏️ Judging Form</a>
-    </div>
+    <div class="judge-resources" id="judgeResources"></div>
   </div>
 </section>
+
+<section class="round-tabs" id="roundTabs">
+  <div class="round-tabs-inner">
+    <div class="round-tab" id="tabR1" onclick="switchRound(1)">Round 1 <span class="tab-count" id="r1TabCount"></span></div>
+    <div class="round-tab" id="tabR2" onclick="switchRound(2)">Round 2 <span class="tab-count" id="r2TabCount"></span></div>
+  </div>
+</section>
+
+<section class="instructions-panel" id="instructionsPanel"></section>
 
 <section class="projects-container" id="projectsContainer"></section>
 
@@ -571,229 +193,216 @@
 </footer>
 
 <script>
-let DATA = null;
+let DATA=null, CUR_JUDGE=null, CUR_ROUND=0;
 
-async function init() {
-  try {
-    const resp = await fetch('data.json');
-    DATA = await resp.json();
-  } catch (e) {
-    console.error('Failed to load data.json:', e);
-  }
+const R1_FORM='https://docs.google.com/forms/d/e/1FAIpQLSeOTuz2atzjEqdZKY4SkEUnQN1ltzpPwA_OBROmOZovbeT74A/viewform?usp=publish-editor';
+const R2_FORM='https://docs.google.com/forms/d/e/1FAIpQLSeYEqc2jDDs-VkgIk8mkn35ENCapX-CmUWsexBMRkcaEm4UrQ/viewform?usp=publish-editor';
+const RUBRIC='https://drive.google.com/file/d/1Sd1olx-enAcwP7a68vCH9Zw_Sq4fU1L3/view?usp=sharing';
+
+async function init(){
+  try{const r=await fetch('data.json');DATA=await r.json()}catch(e){console.error('Failed to load data.json:',e)}
 }
 
-function showError(msg) {
-  const el = document.getElementById('errorMsg');
-  el.textContent = msg;
-  el.style.display = 'block';
-}
-function hideError() {
-  document.getElementById('errorMsg').style.display = 'none';
-}
+function showError(m){const e=document.getElementById('errorMsg');e.textContent=m;e.style.display='block'}
+function hideError(){document.getElementById('errorMsg').style.display='none'}
 
-function loadAssignments() {
+function getR1Projects(jid){return(DATA.judge_assignments||{})[jid]||[]}
+function getR2Projects(jid){return(DATA.round2_assignments||{})[jid]||[]}
+
+function loadAssignments(){
   hideError();
-  if (!DATA) { showError('Data file is still loading. Please try again.'); return; }
+  if(!DATA){showError('Data file is still loading. Please try again.');return}
+  const raw=document.getElementById('judgeInput').value.trim();
+  if(!raw){showError('Please enter your Judge ID.');return}
 
-  const raw = document.getElementById('judgeInput').value.trim();
-  if (!raw) { showError('Please enter your Judge ID.'); return; }
+  let judgeId=null;
+  // Check R1 and R2 assignments
+  const allJudges=new Set([...Object.keys(DATA.judge_assignments||{}),...Object.keys(DATA.round2_assignments||{})]);
+  if(allJudges.has(raw)){judgeId=raw}
+  else{const upper=raw.toUpperCase();for(const k of allJudges){if(k.toUpperCase()===upper){judgeId=k;break}}}
 
-  // Normalize: try exact match first, then case-insensitive
-  let judgeId = null;
-  if (DATA.judge_assignments[raw]) {
-    judgeId = raw;
-  } else {
-    const upper = raw.toUpperCase();
-    for (const key of Object.keys(DATA.judge_assignments)) {
-      if (key.toUpperCase() === upper) { judgeId = key; break; }
-    }
+  if(!judgeId){showError('Judge ID not found. Please check and try again.');return}
+  CUR_JUDGE=judgeId;
+
+  const r1=getR1Projects(judgeId).filter(p=>DATA.projects[p]&&!DATA.projects[p].hold);
+  const r2=getR2Projects(judgeId).filter(p=>DATA.projects[p]);
+  const hasR1=r1.length>0, hasR2=r2.length>0;
+
+  document.getElementById('loginSection').style.display='none';
+  document.getElementById('judgeBar').style.display='block';
+  document.getElementById('projectsContainer').style.display='block';
+  document.getElementById('judgeIdDisplay').textContent=judgeId;
+
+  if(DATA.data_as_of)document.getElementById('asOfDate').textContent='Judging status as of '+DATA.data_as_of;
+
+  // Show tabs only if judge has both rounds
+  if(hasR1&&hasR2){
+    document.getElementById('roundTabs').style.display='block';
+    document.getElementById('r1TabCount').textContent='('+r1.length+')';
+    document.getElementById('r2TabCount').textContent='('+r2.length+')';
+    switchRound(2); // default to R2 if they have both
+  }else if(hasR2){
+    document.getElementById('roundTabs').style.display='none';
+    switchRound(2);
+  }else{
+    document.getElementById('roundTabs').style.display='none';
+    switchRound(1);
   }
-
-  if (!judgeId) {
-    showError('Judge ID not found. Please check and try again.');
-    return;
-  }
-
-  const projectIds = DATA.judge_assignments[judgeId];
-  const visibleIds = projectIds.filter(pid => {
-    const p = DATA.projects[pid];
-    return p && !p.hold;
-  });
-  document.getElementById('loginSection').style.display = 'none';
-  document.getElementById('judgeBar').style.display = 'block';
-  document.getElementById('projectsContainer').style.display = 'block';
-  document.getElementById('judgeIdDisplay').textContent = judgeId;
-  document.getElementById('projectCount').textContent = visibleIds.length;
-
-  // Show as-of date
-  if (DATA.data_as_of) {
-    document.getElementById('asOfDate').textContent = 'Judging status as of ' + DATA.data_as_of;
-  }
-
-  // Calculate and show progress
-  let judgedCount = 0;
-  for (const pid of visibleIds) {
-    const p = DATA.projects[pid];
-    if (p && p.judged_by && p.judged_by.includes(judgeId)) judgedCount++;
-  }
-  document.getElementById('judgeProgress').innerHTML =
-    '<strong>' + judgedCount + '</strong> of ' + visibleIds.length + ' judged';
-
-  renderProjects(visibleIds, judgeId);
 }
 
-function renderUrlField(obj) {
-  if (!obj || obj.type === 'empty' || !obj.value) {
-    return '<span class="empty-value">Not provided</span>';
+function switchRound(round){
+  CUR_ROUND=round;
+  const r1=getR1Projects(CUR_JUDGE).filter(p=>DATA.projects[p]&&!DATA.projects[p].hold);
+  const r2=getR2Projects(CUR_JUDGE).filter(p=>DATA.projects[p]);
+  const pids=round===2?r2:r1;
+
+  // Tab highlighting
+  document.getElementById('tabR1').className='round-tab'+(round===1?' active-r1':'');
+  document.getElementById('tabR2').className='round-tab'+(round===2?' active-r2':'');
+
+  // Count & progress
+  const judgedKey=round===2?'round2_judged_by':'judged_by';
+  let done=0;
+  for(const pid of pids){
+    const p=DATA.projects[pid];
+    if(p&&p[judgedKey]&&p[judgedKey].includes(CUR_JUDGE))done++;
+  }
+  document.getElementById('judgeCount').innerHTML='<strong>'+pids.length+'</strong> projects assigned';
+  document.getElementById('judgeProgress').innerHTML='<strong>'+done+'</strong> of '+pids.length+' judged';
+
+  // Resources
+  const formUrl=round===2?R2_FORM:R1_FORM;
+  const formLabel=round===2?'✏️ Round 2 Judging Form':'✏️ Judging Form';
+  document.getElementById('judgeResources').innerHTML=
+    '<a href="'+RUBRIC+'" target="_blank" rel="noopener">📄 Rubric</a>'+
+    '<a href="'+formUrl+'" target="_blank" rel="noopener">'+formLabel+'</a>';
+
+  // Instructions
+  const ip=document.getElementById('instructionsPanel');
+  if(round===2){
+    ip.style.display='block';
+    ip.innerHTML='<div class="instructions-card r2-instructions">'+
+      '<strong>Round 2 — Website Highlights & Finalist Recommendation</strong><br>'+
+      'These projects have advanced from Round 1 and represent quality submissions. '+
+      'Your task is to evaluate each project and determine which should be highlighted on the ISTE+ASCD website and which you would recommend as a finalist for Round 3.<br><br>'+
+      '<ul>'+
+      '<li><strong>Deadline:</strong> Please complete all judging by <strong>8:00 PM Eastern Time on Sunday, April 20</strong>.</li>'+
+      '<li><strong>Guidance:</strong> Please refer to the <a href="'+RUBRIC+'" target="_blank">Rubric</a> for scoring criteria. Score based on evidence you can see or hear in the submitted artifacts.</li>'+
+      '<li>Consider clear communication, strong evidence across criteria, and standout innovation and impact.</li>'+
+      '<li>The Round 1 average score is shown for context — please evaluate each project independently.</li>'+
+      '</ul>'+
+      'Questions or concerns? Reach out to <a href="mailto:generationai@iste.org">generationai@iste.org</a>'+
+      '</div>';
+  }else{
+    ip.style.display='block';
+    ip.innerHTML='<div class="instructions-card">'+
+      '<strong>Round 1 — Ready to Share</strong><br>'+
+      'For each project, watch the pitch video, review the product(s) created with AI, and complete the scoring form.<br><br>'+
+      '<ul>'+
+      '<li><strong>Note:</strong> Round 1 judging is now closed. Your submissions are recorded below.</li>'+
+      '</ul>'+
+      'Questions or concerns? Reach out to <a href="mailto:generationai@iste.org">generationai@iste.org</a>'+
+      '</div>';
   }
 
-  if (obj.type === 'text') {
-    const id = 'lt-' + Math.random().toString(36).slice(2, 9);
-    const escaped = escapeHtml(obj.value);
-    return `
-      <div>
-        <div class="long-text" id="${id}">${escaped}</div>
-        <div class="long-text-fade" id="${id}-fade"></div>
-        <button class="btn-expand" onclick="toggleExpand('${id}')">Read more</button>
-      </div>`;
-  }
-
-  if (obj.type === 'url') {
-    let html = `<a href="${escapeHtml(obj.value)}" target="_blank" rel="noopener">${escapeHtml(obj.value)}</a>`;
-    if (obj.password) {
-      html += `<span class="password-tag">Password: ${escapeHtml(obj.password)}</span>`;
-    }
-    return html;
-  }
-
-  if (obj.type === 'mixed') {
-    let html = '';
-    if (obj.extracted_url) {
-      html += `<a href="${escapeHtml(obj.extracted_url)}" target="_blank" rel="noopener">${escapeHtml(obj.extracted_url)}</a><br>`;
-    }
-    html += `<span style="font-size:0.85rem;color:var(--text-secondary)">${escapeHtml(obj.value)}</span>`;
-    if (obj.password) {
-      html += `<span class="password-tag">Password: ${escapeHtml(obj.password)}</span>`;
-    }
-    return html;
-  }
-
-  if (obj.type === 'note') {
-    let html = `<span style="color:var(--text-secondary)">${escapeHtml(obj.value)}</span>`;
-    if (obj.password) {
-      html += `<span class="password-tag">Password: ${escapeHtml(obj.password)}</span>`;
-    }
-    return html;
-  }
-
-  return escapeHtml(obj.value);
+  renderProjects(pids,CUR_JUDGE,round);
 }
 
-function renderProjects(projectIds, judgeId) {
-  const container = document.getElementById('projectsContainer');
-  container.innerHTML = '';
+function renderUrlField(obj){
+  if(!obj||obj.type==='empty'||!obj.value)return'<span class="empty-value">Not provided</span>';
+  if(obj.type==='text'){
+    const id='lt-'+Math.random().toString(36).slice(2,9);
+    return'<div><div class="long-text" id="'+id+'">'+esc(obj.value)+'</div><div class="long-text-fade" id="'+id+'-fade"></div><button class="btn-expand" onclick="toggleExpand(\''+id+'\')">Read more</button></div>';
+  }
+  if(obj.type==='url'){
+    let h='<a href="'+esc(obj.value)+'" target="_blank" rel="noopener">'+esc(obj.value)+'</a>';
+    if(obj.password)h+='<span class="password-tag">Password: '+esc(obj.password)+'</span>';
+    return h;
+  }
+  if(obj.type==='mixed'){
+    let h='';
+    if(obj.extracted_url)h+='<a href="'+esc(obj.extracted_url)+'" target="_blank" rel="noopener">'+esc(obj.extracted_url)+'</a><br>';
+    h+='<span style="font-size:0.85rem;color:var(--text-secondary)">'+esc(obj.value)+'</span>';
+    if(obj.password)h+='<span class="password-tag">Password: '+esc(obj.password)+'</span>';
+    return h;
+  }
+  if(obj.type==='note'){
+    let h='<span style="color:var(--text-secondary)">'+esc(obj.value)+'</span>';
+    if(obj.password)h+='<span class="password-tag">Password: '+esc(obj.password)+'</span>';
+    return h;
+  }
+  return esc(obj.value);
+}
 
-  for (const pid of projectIds) {
-    const p = DATA.projects[pid];
-    if (!p) continue;
+function renderProjects(projectIds,judgeId,round){
+  const container=document.getElementById('projectsContainer');
+  container.innerHTML='';
+  const judgedKey=round===2?'round2_judged_by':'judged_by';
 
-    const isHold = p.hold;
-    const isJudged = p.judged_by && p.judged_by.includes(judgeId);
-    const card = document.createElement('div');
-    card.className = 'project-card' + (isHold ? ' on-hold' : '');
+  for(const pid of projectIds){
+    const p=DATA.projects[pid];
+    if(!p)continue;
+    const isJudged=p[judgedKey]&&p[judgedKey].includes(judgeId);
+    const card=document.createElement('div');
+    card.className='project-card'+(round===2?' r2-card':'')+(p.hold?' on-hold':'');
 
-    let holdHtml = '';
-    if (isHold) {
-      const reasonPart = p.hold_reason
-        ? ` <span class="hold-reason">— ${escapeHtml(p.hold_reason)}</span>`
-        : '';
-      holdHtml = `
-        <div class="hold-banner">
-          <div class="hold-icon">!</div>
-          <div class="hold-text">HOLD BEFORE JUDGING${reasonPart}</div>
-        </div>`;
+    let holdHtml='';
+    if(p.hold){
+      holdHtml='<div class="hold-banner"><div class="hold-icon">!</div><div class="hold-text">HOLD BEFORE JUDGING'+(p.hold_reason?' <span class="hold-reason">— '+esc(p.hold_reason)+'</span>':'')+'</div></div>';
     }
 
-    const statusHtml = isJudged
-      ? '<span class="status-badge status-judged">✓ Judged</span>'
-      : '<span class="status-badge status-not-judged">○ Not Yet Judged</span>';
+    const statusHtml=isJudged?'<span class="status-badge status-judged">✓ Judged</span>':'<span class="status-badge status-not-judged">○ Not Yet Judged</span>';
 
-    card.innerHTML = `
-      <div class="card-header">
-        <div class="card-header-left">
-          <div class="project-id">${escapeHtml(p.id)}</div>
-          <div class="project-name">${escapeHtml(p.project_name)}</div>
-          <div class="team-name">${escapeHtml(p.team_name)}</div>
-        </div>
-        ${statusHtml}
-      </div>
-      ${holdHtml}
-      <div class="card-body">
-        <div class="field-row">
-          <div class="field-label">AI Tools Used</div>
-          <div class="field-value">${escapeHtml(p.ai_tools_used) || '<span class="empty-value">Not provided</span>'}</div>
-        </div>
-        <div class="field-row">
-          <div class="field-label">Pitch Video</div>
-          <div class="field-value">${renderUrlField(p.pitch_video)}</div>
-        </div>
-        <div class="field-row">
-          <div class="field-label">Team Story</div>
-          <div class="field-value">${renderUrlField(p.team_story)}</div>
-        </div>
-        <div class="field-row">
-          <div class="field-label">Digital Product / Prototype</div>
-          <div class="field-value">${renderUrlField(p.digital_product)}</div>
-        </div>
-        <div class="field-row">
-          <div class="field-label">Additional Artifact</div>
-          <div class="field-value">${renderUrlField(p.additional_artifact)}</div>
-        </div>
-      </div>`;
+    // R1 score badge for Round 2
+    let r1ScoreHtml='';
+    if(round===2){
+      let displayScore=p.r1_display_score;
+      if(displayScore!=null){
+        r1ScoreHtml='<span class="r1-score-badge">R1 Score: '+displayScore+'/28</span>';
+      }
+    }
 
+    card.innerHTML=
+      '<div class="card-header"><div class="card-header-left">'+
+      '<div class="project-id">'+esc(p.id)+'</div>'+
+      '<div class="project-name">'+esc(p.project_name)+'</div>'+
+      '<div class="team-name">'+esc(p.team_name)+'</div>'+
+      '</div><div class="card-header-right">'+statusHtml+r1ScoreHtml+'</div></div>'+
+      holdHtml+
+      '<div class="card-body">'+
+      '<div class="field-row"><div class="field-label">AI Tools Used</div><div class="field-value">'+(esc(p.ai_tools_used)||'<span class="empty-value">Not provided</span>')+'</div></div>'+
+      '<div class="field-row"><div class="field-label">Pitch Video</div><div class="field-value">'+renderUrlField(p.pitch_video)+'</div></div>'+
+      '<div class="field-row"><div class="field-label">Team Story</div><div class="field-value">'+renderUrlField(p.team_story)+'</div></div>'+
+      '<div class="field-row"><div class="field-label">Digital Product / Prototype</div><div class="field-value">'+renderUrlField(p.digital_product)+'</div></div>'+
+      '<div class="field-row"><div class="field-label">Additional Artifact</div><div class="field-value">'+renderUrlField(p.additional_artifact)+'</div></div>'+
+      '</div>';
     container.appendChild(card);
   }
 }
 
-function toggleExpand(id) {
-  const el = document.getElementById(id);
-  const fade = document.getElementById(id + '-fade');
-  const btn = el.parentElement.querySelector('.btn-expand');
-  if (el.classList.contains('expanded')) {
-    el.classList.remove('expanded');
-    if (fade) fade.style.opacity = '1';
-    btn.textContent = 'Read more';
-  } else {
-    el.classList.add('expanded');
-    if (fade) fade.style.opacity = '0';
-    btn.textContent = 'Show less';
-  }
+function toggleExpand(id){
+  const el=document.getElementById(id),fade=document.getElementById(id+'-fade'),btn=el.parentElement.querySelector('.btn-expand');
+  if(el.classList.contains('expanded')){el.classList.remove('expanded');if(fade)fade.style.opacity='1';btn.textContent='Read more'}
+  else{el.classList.add('expanded');if(fade)fade.style.opacity='0';btn.textContent='Show less'}
 }
 
-function logout() {
-  document.getElementById('loginSection').style.display = 'block';
-  document.getElementById('judgeBar').style.display = 'none';
-  document.getElementById('projectsContainer').style.display = 'none';
-  document.getElementById('projectsContainer').innerHTML = '';
-  document.getElementById('judgeInput').value = '';
+function logout(){
+  CUR_JUDGE=null;CUR_ROUND=0;
+  document.getElementById('loginSection').style.display='block';
+  document.getElementById('judgeBar').style.display='none';
+  document.getElementById('roundTabs').style.display='none';
+  document.getElementById('instructionsPanel').style.display='none';
+  document.getElementById('projectsContainer').style.display='none';
+  document.getElementById('projectsContainer').innerHTML='';
+  document.getElementById('judgeInput').value='';
 }
 
-function escapeHtml(str) {
-  if (!str) return '';
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
-// Allow Enter key
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('judgeInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') loadAssignments();
-  });
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('judgeInput').addEventListener('keypress',e=>{if(e.key==='Enter')loadAssignments()});
 });
-
 init();
 </script>
-
 </body>
 </html>
