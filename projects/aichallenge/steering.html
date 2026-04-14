@@ -1,4 +1,4 @@
-<!-- Updated: April 7, 2026 — Steering committee view with geographic data, funnel, project cards -->
+<!-- Updated: April 14, 2026 — Added Round 2 progress to funnel, R2 status column, R2 averages and comments in modal -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,11 +195,16 @@ const ps=Object.values(D.projects);
 const total=ps.length;
 const scored=ps.filter(p=>p.scores&&p.scores.length>0).length;
 const r2=ps.filter(p=>p.advanced_to_round2).length;
+const r2Complete=ps.filter(p=>p.advanced_to_round2&&(p.round2_scores||[]).length>=3).length;
+const r2Partial=ps.filter(p=>p.advanced_to_round2&&(p.round2_scores||[]).length>0&&(p.round2_scores||[]).length<3).length;
+const r2Pct=r2?Math.round(((r2Complete*3)+(ps.filter(p=>p.advanced_to_round2).reduce((s,p)=>s+Math.min((p.round2_scores||[]).length,3),0)-(r2Complete*3)))/(r2*3)*100):0;
+const r2Subs=ps.filter(p=>p.advanced_to_round2).reduce((s,p)=>s+(p.round2_scores||[]).length,0);
 const review=ps.filter(p=>p.round2_status==='review').length;
 document.getElementById('funnel').innerHTML=
 '<div class="funnel-card" style="border-top-color:var(--teal)"><div class="label">Submitted</div><div class="val" style="color:var(--lteal)">'+total+'</div><div class="label">Projects</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--green)"><div class="label">Scored (R1)</div><div class="val" style="color:var(--green)">'+scored+'</div><div class="label">By 2+ Judges</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">Round 2</div><div class="val" style="color:var(--r2)">'+r2+'</div><div class="label">Advancing</div></div>'+
+'<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">R2 Progress</div><div class="val" style="color:var(--r2);font-size:1.5rem">'+r2Subs+' / '+(r2*3)+'</div><div class="label">'+r2Pct+'% — '+r2Complete+' Complete</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--amber)"><div class="label">Under Review</div><div class="val" style="color:var(--amber)">'+review+'</div><div class="label">Pending</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--gold)"><div class="label">Round 3</div><div class="val" style="color:var(--gold)">TBD</div><div class="label">Finalists</div></div>';
 }
@@ -231,11 +236,18 @@ if(sd!==0)return sd;
 return(b.avg_score||0)-(a.avg_score||0);
 });
 const t=document.getElementById('mainTable');
-t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Project Name</th><th>Team</th><th>Country</th><th>Region</th><th>R1 Avg</th><th>Stage</th></tr>';
+t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Project Name</th><th>Team</th><th>Country</th><th>Region</th><th>R1 Avg</th><th>Stage</th><th>R2 Status</th></tr>';
 t.querySelector('tbody').innerHTML=rows.map(p=>{
 const sb=p.stage==='Round 2'?'badge-r2':p.stage==='Round 1'?'badge-r1':'badge-screen';
 const avg=p.avg_score!=null?p.avg_score:'—';
-return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><span class="badge '+sb+'">'+p.stage+'</span></td></tr>'
+let r2Status='—';
+if(p.advanced_to_round2){
+  const n=(p.round2_scores||[]).length;
+  if(n===0)r2Status='<span class="badge badge-screen">Not Scored</span>';
+  else if(n<3)r2Status='<span class="badge" style="background:#F57F1722;color:#FFB74D;border:1px solid #F57F1744">Partial</span>';
+  else r2Status='<span class="badge badge-green">Complete</span>';
+}
+return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><span class="badge '+sb+'">'+p.stage+'</span></td><td>'+r2Status+'</td></tr>'
 }).join('');
 }
 
@@ -281,6 +293,8 @@ document.getElementById('mTeam').textContent=p.team_name;
 const sb=p.stage==='Round 2'?'badge-r2':p.stage==='Round 1'?'badge-r1':'badge-screen';
 let infoHtml='<span class="modal-info-pill badge '+sb+'">'+p.stage+'</span>';
 if(p.avg_score!=null)infoHtml+='<span style="font-weight:600">R1 Avg: '+p.avg_score+'/28</span>';
+const r2sc=p.round2_scores||[];
+if(r2sc.length>0){const r2a=(r2sc.reduce((a,b)=>a+b.total,0)/r2sc.length).toFixed(1);infoHtml+='<span style="font-weight:600;color:var(--r2)">R2 Avg: '+r2a+'/28</span>';}
 if(p.country)infoHtml+='<span style="color:var(--text2)">'+esc(p.country)+(p.region?', '+esc(p.region):'')+'</span>';
 document.getElementById('mInfo').innerHTML=infoHtml;
 
@@ -299,9 +313,9 @@ else if(o.type==='mixed'&&o.extracted_url)html+='<a href="'+esc(o.extracted_url)
 html+='</div>'});
 html+='</div></div>';
 
-// Rubric averages
+// Rubric averages — Round 1
 if(p.scores&&p.scores.length>0){
-html+='<div class="modal-section"><div class="modal-section-title">Average Rubric Scores</div>';
+html+='<div class="modal-section"><div class="modal-section-title">Round 1 — Average Rubric Scores</div>';
 html+='<table class="rubric-tbl"><thead><tr><th>Criterion</th><th>Average</th></tr></thead><tbody>';
 DIMS.forEach((d,i)=>{
 let s=0,c=0;p.scores.forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}});
@@ -310,11 +324,52 @@ html+='<tr><td>'+DS[i]+'</td><td class="'+cls+'">'+avg.toFixed(1)+'</td></tr>';
 });
 html+='<tr><td><strong>TOTAL AVERAGE</strong></td><td><strong>'+p.avg_score+'/28</strong></td></tr>';
 html+='</tbody></table>';
-
 if(p.advancement_note)html+='<div class="adv-note">ℹ '+esc(p.advancement_note)+'</div>';
 html+='</div>';
 }else{
-html+='<div class="modal-section" style="text-align:center;padding:1.5rem;color:var(--text3)">No scoring data available</div>';
+html+='<div class="modal-section" style="text-align:center;padding:1.5rem;color:var(--text3)">No Round 1 scoring data available</div>';
+}
+
+// Rubric averages — Round 2
+const r2scores=p.round2_scores||[];
+if(r2scores.length>0){
+const r2avg=(r2scores.reduce((a,b)=>a+b.total,0)/r2scores.length).toFixed(1);
+const need=3;
+html+='<div class="modal-section"><div class="modal-section-title">Round 2 — Average Rubric Scores ('+r2scores.length+' of '+need+' judges)</div>';
+html+='<table class="rubric-tbl"><thead><tr><th>Criterion</th><th>Average</th></tr></thead><tbody>';
+DIMS.forEach((d,i)=>{
+let s=0,c=0;r2scores.forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}});
+const avg=c?(s/c):0;const cls=avg>=3.5?'rs4':avg>=2.5?'rs3':avg>=1.5?'rs2':'rs1';
+html+='<tr><td>'+DS[i]+'</td><td class="'+cls+'">'+avg.toFixed(1)+'</td></tr>';
+});
+html+='<tr><td><strong>TOTAL AVERAGE</strong></td><td><strong>'+r2avg+'/28</strong></td></tr>';
+html+='</tbody></table>';
+if(r2scores.length<need)html+='<div style="font-size:.78rem;color:var(--text3);margin-top:.5rem;font-style:italic">Round 2 scoring in progress — '+(need-r2scores.length)+' more judge(s) needed</div>';
+html+='</div>';
+}else if(p.advanced_to_round2){
+html+='<div class="modal-section"><div class="modal-section-title">Round 2 Status</div><div style="font-size:.85rem;color:var(--text3);font-style:italic">Round 2 scoring not yet started for this project.</div></div>';
+}
+
+// Comments — anonymized, both panel and student
+const allComments=[];
+(p.scores||[]).forEach(s=>{
+  if(s.comments_panel)allComments.push({round:'R1',type:'Panel',text:s.comments_panel});
+  if(s.comments_student)allComments.push({round:'R1',type:'Student',text:s.comments_student});
+});
+r2scores.forEach(s=>{
+  if(s.comments_panel)allComments.push({round:'R2',type:'Panel',text:s.comments_panel});
+  if(s.comments_student)allComments.push({round:'R2',type:'Student',text:s.comments_student});
+});
+if(allComments.length>0){
+html+='<div class="modal-section"><div class="modal-section-title">Judge Comments</div>';
+allComments.forEach(c=>{
+const roundColor=c.round==='R2'?'var(--r2)':'var(--lteal)';
+html+='<div style="background:var(--card2);border-radius:8px;padding:.85rem 1rem;margin-bottom:.6rem;border-left:3px solid '+roundColor+'">';
+html+='<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:'+roundColor+';font-weight:600;margin-bottom:.3rem">'+c.round+' — '+(c.type==='Panel'?'Notes for Panel':'Feedback for Students')+'</div>';
+html+='<div style="font-size:.84rem;color:var(--text);line-height:1.6;white-space:pre-wrap">'+esc(c.text)+'</div>';
+html+='</div>';
+});
+html+='</div>';
 }
 
 // AI Tools
