@@ -629,8 +629,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26N2LP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26N2LP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 15,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -1083,8 +1102,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26S33U"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26S33U",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 18,
+          "advance_recommended": false,
+          "comments_panel": "Missing explicit connection to SDG.",
+          "comments_student": ""
+        }
+      ],
       "country": "India",
       "region": "Delhi",
       "stage": "Round 2",
@@ -1141,8 +1179,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26RI5W"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26RI5W",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "This project hits on all the guidelines in the rubric and has potential to have a really positive impact on agronomists. There is clear evidence of collaboration and an understanding of how AI can work with agriculture to have a helpful impact.",
+          "comments_student": "Great job! This project not only addresses an important problem in agriculture but also demonstrates a way that AI can help solve it. You demonstrate collaboration with experts and how you considered safety and ethics. I think this project can have worldwide impact for farmers to help prevent diseases in plants before they can be detected by the human eye."
+        }
+      ],
       "country": "United States",
       "region": "New Jersey",
       "stage": "Round 2",
@@ -1216,8 +1273,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26ES1V"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26ES1V",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "While this is an extremely comprehensive digital tool to promote education and conservation, the AI-enabled tool requires extensive input from the user which might hinder the impact.",
+          "comments_student": "This is an extremely comprehensive digital tool to promote education and conservation. Your 6 features help the user learn and modify their routines to save water. Well done!"
+        }
+      ],
       "country": "Philippines",
       "region": "Pangasinan",
       "stage": "Round 2",
@@ -1425,8 +1501,44 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26RI5W",
+        "AI26S33U"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26RI5W",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "There is no evidence of expert mentorship or feedback from other people. I'm not sure of the overall impact this app will make besides indicating the air quality. Adding the pedometer seems like a random addition that doesn't increase the value of the app or connect to the cause.",
+          "comments_student": "Thank you for taking the time to consider the impact of air quality on people. I would like to see more information on how you think your app will create change or be helpful to people. For example, if a user notices the poor air quality in their classroom, there isn't much they can do to change that circumstance. What could be some next steps once there is an indication that the air quality is poor? I appreciate that you were able to add a pedometer to the app, but I think it actually takes away from the app experience and it seems like an add-on that is unnecessary and doesn't add value. I'd also like to know more about how your app supports safety and privacy if people using the app are indicating on a map where they are or where the air quality is poor. People may not want to use your app if there is a risk that other people could find them so making privacy clear would be helpful."
+        },
+        {
+          "judge_id": "AI26S33U",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Saudi Arabia",
       "region": "Eastern Province",
       "stage": "Round 2",
@@ -1901,8 +2013,44 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 26.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26YYHJ",
+        "AI26F8CY"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26YYHJ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        },
+        {
+          "judge_id": "AI26F8CY",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "CivicLens is a quality project. While it lacks some specificity in connection to UN SDGs, scalability, and specifics related to collaboration, it is implied and students could be coached to bring these elements to the surface in their final project.",
+          "comments_student": "In an age where it is difficult to discern \"truth\" in the news, this project is timely and relevant for both youths and adults. Continue striving to separate the noise from the narrative, and create tools that support knowledge, wisdom, empathy, and connection."
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -2112,8 +2260,44 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26F8CY",
+        "AI26R7JP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26F8CY",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "CrisisIQ is an innovative and thoughtful way to use AI to solve real-world problems.",
+          "comments_student": "I am so impressed with how this team identified a genuine need in their community and used AI to create a powerful tool that has the potential to have a life changing impact on the people and the infrastructure of that community. You belong in this moment! Keep up the fantastic work!"
+        },
+        {
+          "judge_id": "AI26R7JP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
@@ -2187,8 +2371,44 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI268RZE",
+        "AI26N2LP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI268RZE",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 17,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": "Wonderful idea!"
+        },
+        {
+          "judge_id": "AI26N2LP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Arkansas",
       "stage": "Round 2",
@@ -2245,8 +2465,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26B9KU"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26B9KU",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": false,
+          "comments_panel": "It was not clear which UNSDG was selected, even though is aligned well with SDG 4: Quality Education.  Would have liked to see more evidence in Collaboration and Process portion.",
+          "comments_student": "Great goal and solution.  I had fun exploring your tool."
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -2303,8 +2542,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26S33U"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26S33U",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 24,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Texas",
       "stage": "Round 2",
@@ -2570,8 +2828,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26SDY7"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26SDY7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": "The students collaborated, and created a unified vision for the UNSDG solution, while also attending to the details of the app, data privacy, and security. The interactive learning tool was inclusive and integrated AI features.  The live player action/monitoring would be more realistic as an interface for students who are digital natives. The analysis and feedback features, I was not totally clear about it (other than correct or incorrect as the feedback), but this could prompt conversations at school and home about sustainable choices. Thank you for your submission."
+        }
+      ],
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
@@ -3084,8 +3361,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26S33U"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26S33U",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "Missing explicit connection to SDGs.",
+          "comments_student": "Really appreciated the goal of designing something for a group of folks who have generally been not the focus of this kind of support in other tools or processes. It was also really helpful to include the visible \"what not to include\" disclaimer at the beginning as so many folks don't know what they don't know!"
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -3448,8 +3744,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI268RZE"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI268RZE",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "Great presentation, will impact the community overall.",
+          "comments_student": "Very well presented, very well thought through and great idea. Well done."
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -3753,8 +4068,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26B9KU"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26B9KU",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "Did not address UNSDG.  Link to prototype did not work. Team story went to powerpoint version of video, did not show evidence of collaboration.",
+          "comments_student": "Loved the inclusivity of the app. Good use of data.  The app is visually appealing and looks easy to use."
+        }
+      ],
       "country": "Taiwan",
       "region": "Taipei / New Taipei / Nantou",
       "stage": "Round 2",
@@ -3888,8 +4222,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26S33U"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26S33U",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
       "stage": "Round 2",
@@ -3921,12 +4274,31 @@
       },
       "hold": false,
       "hold_reason": "",
-      "judged_by": [],
-      "scores": [],
-      "avg_score": null,
+      "judged_by": [
+        "AI262T01"
+      ],
+      "scores": [
+        {
+          "judge_id": "AI262T01",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 2
+          },
+          "total": 21,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
+      "avg_score": 21.0,
       "meets_round1": false,
       "advanced_to_round2": true,
-      "r1_display_score": null,
+      "r1_display_score": 21.0,
       "round2_judged_by": [],
       "round2_scores": [],
       "country": "United States",
@@ -4137,8 +4509,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26C2IW"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26C2IW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "This project demonstrates a strong balance between educational purpose and responsible AI integration. The team clearly understands the challenges in music education and proposes a solution that is both practical and supportive of existing teaching structures.\n\nParticularly notable is the team’s awareness of AI limitations and commitment to accuracy and human oversight, which reflects a mature and ethical approach to technology use. While the concept builds on existing tools, the thoughtful integration and focus on engagement make it a valuable contribution.\n\nRecommended to move forward, as the project shows strong potential for impact with further development in differentiation, scalability, and user validation.",
+          "comments_student": "Your project shows a strong understanding of the challenges in music education and presents a thoughtful solution that supports both students and teachers. Your focus on making learning more engaging and accessible is clear, and your use of AI as a support tool demonstrates maturity and responsibility.\n\nYour attention to accuracy and human oversight is especially impressive and reflects a strong understanding of how AI should be used in education.\n\nTo strengthen your project further, focus on clearly showing how your platform works in real situations, how it can grow beyond one context, and what makes it unique compared to existing music learning tools. Including user testing or feedback would also make your solution even stronger.\n\nOverall, this is a well-developed project with clear potential to support and improve music learning experiences."
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -4289,8 +4680,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26C2IW"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26C2IW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "This project presents a highly relevant and well-developed concept addressing an important issue in healthcare communication. The design is thoughtful, and the potential impact is significant.\n\nHowever, the project does not sufficiently address data privacy and ethical considerations, which are critical in any solution involving sensitive medical information. The absence of clear strategies for data protection, user safety, and responsible AI deployment represents a significant limitation.\n\nGiven the nature of the problem space, these concerns outweigh the strengths of the concept at this stage.\n\nNot recommended to move forward, unless substantial improvements are made in addressing privacy, security, and ethical AI use.",
+          "comments_student": "Your project shows a strong understanding of an important real-world problem, and your solution is thoughtful, well-structured, and clearly designed with the user in mind. The features you developed demonstrate creativity and a clear intention to make medical information more accessible.\n\nTo strengthen your project, it is essential to focus on data privacy and ethical considerations, especially because your platform involves sensitive health information. Clearly explaining how user data is protected, how information is stored, and how your system ensures safety and reliability will significantly improve your work.\n\nWith further development in these areas, your project has strong potential to become both impactful and responsible."
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -4365,8 +4775,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26YYHJ"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26YYHJ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Indonesia",
       "region": "Jakarta (likely)",
       "stage": "Round 2",
@@ -4516,8 +4945,44 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI268RZE",
+        "AI26N2LP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI268RZE",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 1
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        },
+        {
+          "judge_id": "AI26N2LP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 2
+          },
+          "total": 15,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "Cavite",
       "stage": "Round 2",
@@ -4782,8 +5247,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26RI5W"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26RI5W",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": false,
+          "comments_panel": "I believe this project has a broader impact than the team considered. I don't think their app should be limited to children in hospitals and can actually be applied to any student interested in hearing stories and learning to read in K-6.  My biggest concern is that if AI is generating stories there can be a lot of bias in the stories they write that will just perpetuate stereotypes. For example, will every story that features a teacher have a female teacher. If there is a police officer will it always be male? Will stories for boys be about sports and stories for girls be about princesses?  There is excellent evidence that the team asked for, received and implemented feedback. I love the feature that the user can put their own name into the story. When I tested the app there were some mistakes and incorrect feedback on the quizzes. It accepted wrong answers several times so there needs to be more tuning of the app before it is ready for public use.",
+          "comments_student": "This is a good idea and I think you can make this project more broad than you intended. While I understand your interest in helping children confined to a hospital, this app could be used by children at home that want to hear a story or practice their reading skills. I don't think there is anything that confines it to a hospital setting. I love how you incorporated feedback from some stakeholders and the added feature of being able to put their own name into the story is great. When I tested the app and the quiz feature I was told several answers that were incorrect were correct so there needs to be some refinement to the AI model to ensure that it is more accurate when grading student work. My biggest concern is that the AI model will output stories that perpetuate bias and stereotype. For example, will the stories perpetuate the idea that elementary teachers are females, police officers are male, firefighters are male, or nurses are female. I like that there were different skills to focus on and the back-end design that incorporates standards and skills is great. Keep refining this platform and I think you could have something that students will enjoy!"
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -4974,8 +5458,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26C2IW"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26C2IW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "This project demonstrates a high level of maturity in problem identification, design thinking, and iterative development. The team shows strong ownership, meaningful collaboration, and a clear commitment to building a solution grounded in real user needs. Their ability to reflect on system limitations and prioritize reliability over feature expansion is particularly notable.\n\nOverall, this is a well-developed, scalable solution with strong potential for real-world impact, and it is recommended to move forward to the next stage.",
+          "comments_student": "Your project is a strong and well-developed solution that clearly addresses a real and meaningful challenge faced by students. Your ability to combine personal experience, team collaboration, and user feedback has resulted in a platform that is both practical and impactful.\n\nWhat stands out most is your focus on iteration and reliability, showing that you understand not just how to build a product, but how to improve it based on real use.\n\nTo strengthen your work even further, consider expanding on how your AI system works, especially in terms of fairness and data protection, and highlight what makes your platform unique compared to others.\n\nOverall, this is an impressive project with clear potential to grow and make a real difference."
+        }
+      ],
       "country": "Kosovo",
       "region": "",
       "stage": "Round 2",
@@ -5049,8 +5552,44 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26F8CY",
+        "AI26R7JP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26F8CY",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "While Passion is clearly a quality product, there are many other AI tools already in place that enable students without access to mentors, tools, or advanced skills. The originality of this product, and the scalability beyond \"passion projects\" specifically would need to be addressed.",
+          "comments_student": "The thoughtful approach to this project is evident. Developing a tool to increase access and elevate student voice, creativity, and agency is important in our world today. One area of encouragement for the team: with all the other AI tools students have access to that will guide them through the design and implementation of a passion project, be sure to tell your audience what makes Passion different and more powerful for students. Also, how can this application be used by student beyond a passion project? Truly, this is wonderful and thoughtful work! There is much to be proud of!"
+        },
+        {
+          "judge_id": "AI26R7JP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -5184,8 +5723,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R7JP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R7JP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "I was not able to open the prototype link but definitely give this project 100% on creativity and innovation based on all the other evidence provided.",
+          "comments_student": ""
+        }
+      ],
       "country": "United Arab Emirates",
       "region": "Dubai",
       "stage": "Round 2",
@@ -5243,8 +5801,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26C2IW"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26C2IW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 13,
+          "advance_recommended": false,
+          "comments_panel": "This project demonstrates basic technical understanding of computer vision tools, including pose and facial tracking. However, it lacks a clearly defined problem, real-world application, and evidence of impact.\n\nThe submission focuses primarily on describing technologies rather than presenting a purpose-driven solution, which limits its effectiveness within the scope of this competition. Additionally, there is no discussion of ethical considerations, particularly important given the use of camera-based AI systems.\n\nNot recommended to move forward, as the project does not sufficiently meet the criteria related to problem-solving, impact, and responsible AI use.",
+          "comments_student": "Your project shows a good understanding of advanced technologies such as pose detection and facial tracking, and it is clear that you have explored how these tools can be used to create interactive systems.\n\nTo strengthen your project, it is important to clearly define what problem your system is solving and who it is designed to help. Try to focus on how your technology can create a meaningful impact in a real-world context.\n\nYou should also consider adding more detail about how users interact with your system, how it has been tested, and how you are addressing important aspects such as privacy and ethical use of AI.\n\nWith further development in these areas, your project could become much stronger and more aligned with real-world applications."
+        }
+      ],
       "country": "India",
       "region": "Chandigarh",
       "stage": "Round 2",
@@ -5469,8 +6046,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI268RZE"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI268RZE",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "They need more evidence if this will really work and for everyone but this can help save vendors money and prep in the long run.",
+          "comments_student": ""
+        }
+      ],
       "country": "Singapore",
       "region": "",
       "stage": "Round 2",
@@ -5603,8 +6199,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26N2LP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26N2LP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": "Hello, I liked the idea, development, and overall approach. One suggestion would be to review the font used in the application, as some characters appear incorrectly, for example, the letter “g” is displayed as a “9.”"
+        }
+      ],
       "country": "Philippines",
       "region": "Cebu",
       "stage": "Round 2",
@@ -5661,8 +6276,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 28.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26RI5W"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26RI5W",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 4
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "The idea is not fully formed. It's a good idea to gamify learning, but is limited right now. There are flashcards to help learn but not much else. Gamifying learning is not a new or novel idea or application of AI. Additionally, there is no evidence that they got feedback from experts or from peers as to how this would make learning better, more effective or more fun for them. There was no mention of how the project addresses ethical use or privacy.",
+          "comments_student": "The idea to gamify learning is great, but not necessarily new. I'd love to see more evidence of something novel about how students are learning the information. Flash cards and quizzes can be helpful, but only for some learning. I'd like to see some more choices for how students could learn new information. I'd also like to see how you tested your prototype with peers and how you incorporated their feedback into your project refinement. I'd also like to know more about how you are ensuring privacy for users. This idea has great potential; I encourage you to keep working on it and think about more ways to gamify learning in other ways. Your video was really cute and stood out for its creativity and production. Nice job!"
+        }
+      ],
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
@@ -5851,8 +6485,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26YYHJ"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26YYHJ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "Metro Manila",
       "stage": "Round 2",
@@ -5926,8 +6579,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R7JP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R7JP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
@@ -6077,8 +6749,44 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26SDY7",
+        "AI26ES1V"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26SDY7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 23,
+          "advance_recommended": true,
+          "comments_panel": "The creation of SARA and the use of AI tools seems highly advanced compared to other submissions. Is there an age category or level for this particular grouping of 4 submissions?",
+          "comments_student": "Thank you for submitting the creation of SARA, voice driven AI tutor, for people with disabilities. The comparison graph of other major AI assistants was helpful for consumers. I wish I knew more about the impact section \"34% improvement in quiz scores after two weeks\"; as that is compelling data. Lastly, I wonder if other languages will be created? Thank you for the thorough build to submit for this challenge."
+        },
+        {
+          "judge_id": "AI26ES1V",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "This project is unique because it uses voice commands in a closed system and does not give agentic AI access to the user's device. It is well-developed and tested.",
+          "comments_student": "Your passion for this challenge is evident and the application is well researched and developed. Great job!"
+        }
+      ],
       "country": "India",
       "region": "Delhi",
       "stage": "Round 2",
@@ -6228,8 +6936,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26SDY7"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26SDY7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": "Thank you for your submission! This team was determined to solve the problem of the SDG's being boring to learn about and created a gamified way to engage with meaningful content. Quest World sets out to build a community of learners and change makers; what a great tag line to create meaningful impact!"
+        }
+      ],
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
@@ -6286,8 +7013,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26ES1V"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26ES1V",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "While the application is well-developed, the project itself is open to medical risks and AI-bias, and mitigation strategies are not clearly outlined.",
+          "comments_student": ""
+        }
+      ],
       "country": "Bulgaria",
       "region": "Burgas",
       "stage": "Round 2",
@@ -6706,8 +7452,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26F8CY"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26F8CY",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "This project highlights how AI can actually be used to drive human connection rather than disconnection. While many claim that AI is creating more isolation, these students boldly demonstrate that when designed with empathy and care, AI can encourage us to re-engage in authentic, healthy relationships.",
+          "comments_student": "This is a bold approach - using AI to encourage people to become more connected and engaged with the world around them. In a time when many believe that AI is another way to drive people into isolation, you are reframing that narrative, demonstrating how it can actually drive us to deeper connection. It is clear you lead from a place of empathy and care, desiring to promote a healthier and more connected life. Continue to lead from the heart and creating things that enable us to be more deeply human."
+        }
+      ],
       "country": "Turkey",
       "region": "İzmir",
       "stage": "Round 2",
@@ -6956,8 +7721,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI262T01"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI262T01",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "This project has heart. It is clear that these young women want to help others. The use of AI is evident and their attempt to centralize information is evident.",
+          "comments_student": "This project has heart. It is clear that your team wants to help others. The use of AI is evident and your attempt to centralize information is evident. One concern is that if an individual is experiencing food insecurity, you may want to consider that they may not have internet access, or a phone, to use your app. Keep this in mind as you develop your platform."
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -7014,8 +7798,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 28.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R7JP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R7JP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "Great idea and implementation plan. However, I have seen more creative submissions in this round that recommend being showcased at ISTE.",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -7166,8 +7969,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26ES1V"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26ES1V",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "While this is a high-impact challenge and a well-developed project, the agentic system requires access to the user's entire system, and risk mitigation strategies are not outlined.",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -7241,8 +8063,44 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26YYHJ",
+        "AI26F8CY"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26YYHJ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 4
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        },
+        {
+          "judge_id": "AI26F8CY",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": false,
+          "comments_panel": "TeamUp is a quality project that any educator would be excited about. It ticks a lot of the boxes in the rubric as well. One area to consider is the originality of the concept and the creative approach. While the platform these students built is impressive, considering the plethora of AI tools teachers have access to that provides the same offerings as TeamUp, the originality seems lacking in this project.",
+          "comments_student": "Thank you for making every educator feel seen by their students. The burnout from designing thoughtful, intentional, and personalized learning experiences for every one of our students is real. Products like these help give teachers back the thing they want most - time with their students. One area of encouragement for your team: with the many AI powered products out there for teachers, really lean in on how this product offers something different and more robust than the others. Keep up the incredible work! You will do amazing things for all of us."
+        }
+      ],
       "country": "Mexico",
       "region": "Mexico City (CDMX) / Estado de México",
       "stage": "Round 2",
@@ -7569,8 +8427,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26B9KU"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26B9KU",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "Did not make UNSDG evident, although fits well with UNSDGs #4 & #10.",
+          "comments_student": "I loved the story of your journey through this project.  Keep going! You are truly full of heart."
+        }
+      ],
       "country": "China",
       "region": "Beijing",
       "stage": "Round 2",
@@ -7644,8 +8521,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26N2LP"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26N2LP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
       "stage": "Round 2",
@@ -7719,8 +8615,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 23.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI262T01"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI262T01",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "This project and the student competitor went above and beyond in presenting multiple points of information for this competition. He uses statistical data to make a case that this tool, and its framework, will be useful in many different applications - not just managing food waste. It has significant potential and should be featured at ISTELive26.",
+          "comments_student": "Wow. Wow. Wow. Your project has been clearly thought out and you consider multiple aspects of how food waste can be repurposed into helping others by using AI technology. I was very impressed by the statistical and financial data that you included in your project. In addition, I found your SaaS solution to be innovative.  Even though I am not a fan of subscription based services, this idea was one area that you considered to help your product create revenue. Very creative."
+        }
+      ],
       "country": "India",
       "region": "Delhi",
       "stage": "Round 2",
@@ -7944,8 +8859,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26C2IW"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26C2IW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": false,
+          "comments_panel": "This project stands out for its authentic problem identification and strong connection to real community needs. The team demonstrates initiative by engaging with stakeholders and grounding their idea in lived experience. While the concept is promising, further development is needed in technical design, ethical AI integration, and scalability planning to reach a higher level of impact and innovation.",
+          "comments_student": "Your project presents a meaningful and well-researched solution to a real challenge faced by many students. Your personal experience, combined with input from organizations and school staff, makes your work authentic and impactful.\n\nTo strengthen your project further, focus on clearly explaining how your platform works in practice, especially how users interact with it and how AI is used responsibly. Developing your prototype with more detail, testing, and user feedback will also help bring your idea closer to a real-world solution.\n\nOverall, this is a strong foundation with great potential to grow into something truly impactful."
+        }
+      ],
       "country": "Italy",
       "region": "Lazio (Rome)",
       "stage": "Round 2",
@@ -8231,8 +9165,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26YYHJ"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26YYHJ",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -8307,8 +9260,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI262T01"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI262T01",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "This project meets the requirements. It has potential to reach students in areas that have limited resources. The SDGs weren't clearly identified.",
+          "comments_student": "Your team worked hard on this project and it shows. I think your project has potential, but you may want to consider that the chatbot may not have the total picture of each student user and that could lead to a user who will derive incorrect information from the information presented. I do like that you are utilizing a cost effective solution (zero cost) for students who may not have access to a counselor who can guide them into the proper schedule for their needs. This is innovative. Great job!"
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -8366,8 +9338,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26SDY7"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26SDY7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": "Thank you for your submission with research and student data from Hawai'i and across the globe. The team clearly set out to tackle the math deficits by creating an AI for personalized guidance. Quality education, UNSDG 4, was never clearly outlined in the team story. However, the \"Connection to Community Problem & SDG\" section was clearly labeled as a statewide problem creating a community problem. Thank you for submitting!"
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -8465,15 +9456,34 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26B9KU"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26B9KU",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "Digital Product/Prototype link did not work.  Project did not address UNSDG.",
+          "comments_student": "Great goal.  I like that your app supports learning."
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 7, 2026 at 10:18 AM ET",
+  "data_as_of": "April 14, 2026 at 5:59 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
