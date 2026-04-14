@@ -1,4 +1,4 @@
-<!-- Updated: April 3, 2026 — Added judge assignment detail table, reassigned hold projects with existing scores -->
+<!-- Updated: April 14, 2026 — Added Round 1/Round 2 toggle, round-aware data throughout admin dashboard -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,6 +83,17 @@ tr:hover td{background:rgba(77,208,225,.04)}
 .seg-card{background:var(--card);border-radius:var(--radius);padding:1rem;text-align:center;border-top:3px solid var(--border)}
 .seg-card .seg-val{font-size:1.8rem;font-weight:800;margin:.3rem 0}
 .seg-card .seg-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text3)}
+/* ROUND SWITCHER */
+.round-switcher{background:var(--card);border-bottom:1px solid var(--border);padding:.85rem 2rem}
+.round-switcher-inner{max-width:600px;margin:0 auto;display:flex;background:var(--card2);border-radius:8px;padding:.3rem;gap:.3rem}
+.round-btn{flex:1;padding:.55rem 1rem;border-radius:6px;cursor:pointer;text-align:center;transition:all .15s;border:1px solid transparent}
+.round-btn:hover{background:rgba(77,208,225,.05)}
+.round-btn.active{background:var(--bg);border-color:var(--teal);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.round-btn.active.r2{border-color:#7B1FA2;box-shadow:0 1px 4px rgba(123,31,162,.3)}
+.rb-label{display:block;font-size:.92rem;font-weight:700;color:var(--text)}
+.round-btn.active .rb-label{color:var(--lteal)}
+.round-btn.active.r2 .rb-label{color:#CE93D8}
+.rb-sub{display:block;font-size:.7rem;color:var(--text3);margin-top:.1rem;text-transform:uppercase;letter-spacing:.04em}
 .pid-link{color:var(--lteal);cursor:pointer;font-weight:700;text-decoration:none}.pid-link:hover{text-decoration:underline}
 .proj-list{white-space:normal;line-height:1.8;max-width:400px}
 .proj-list code{background:var(--card2);padding:.15rem .4rem;border-radius:3px;font-size:.76rem;margin:.1rem .15rem;display:inline-block;cursor:pointer}
@@ -131,7 +142,13 @@ tr:hover td{background:rgba(77,208,225,.04)}
 
 <div class="shell" id="shell">
 <div class="top-bar"><div><h1>AI Innovator Challenge — Admin</h1><span class="as-of" id="asOf"></span></div><button onclick="location.reload()">Logout</button></div>
-<div class="tabs"><div class="tab active" data-tab="ops">Operations</div><div class="tab" data-tab="results">Results & Round 2</div></div>
+<div class="round-switcher">
+<div class="round-switcher-inner">
+<div class="round-btn active" id="rbR1" onclick="switchRound(1)"><span class="rb-label">Round 1</span><span class="rb-sub">Ready to Share</span></div>
+<div class="round-btn" id="rbR2" onclick="switchRound(2)"><span class="rb-label">Round 2</span><span class="rb-sub">Website Highlights</span></div>
+</div>
+</div>
+<div class="tabs"><div class="tab active" data-tab="ops">Operations</div><div class="tab" data-tab="results">Results</div></div>
 
 <div class="panel active" id="panel-ops">
 <div id="paceBanner"></div>
@@ -166,7 +183,7 @@ tr:hover td{background:rgba(77,208,225,.04)}
 </div>
 
 <script>
-const PW='ISTEaiASCD2026';let D=null;
+const PW='ISTEaiASCD2026';let D=null;let CUR_ROUND=1;
 const DIMS=['Connection to Community Problem & SDG','Impact, Relevance & Longevity','Responsible & Ethical Use of AI','Innovation & Creativity','Design Quality & Accessibility','Collaboration & Process','Presentation & Communication'];
 const DS=['Community & SDG','Impact','Responsible AI','Innovation','Design Quality','Collaboration','Communication'];
 
@@ -180,46 +197,84 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
 document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
 document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
 t.classList.add('active');document.getElementById('panel-'+t.dataset.tab).classList.add('active')}));
-renderOps();renderResults();}
+// Default to R2 if R2 has any activity, else R1
+const r2hasActivity=Object.values(D.projects||{}).some(p=>p.round2_scores&&p.round2_scores.length>0);
+switchRound(r2hasActivity?2:1);
+}
 
-function judgesFor(pid){const o=[];for(const[j,ps]of Object.entries(D.judge_assignments)){if(ps.includes(pid))o.push(j)}return o}
+function switchRound(r){
+CUR_ROUND=r;
+document.getElementById('rbR1').className='round-btn'+(r===1?' active':'');
+document.getElementById('rbR2').className='round-btn r2'+(r===2?' active':'');
+renderOps();renderResults();
+}
+
+// Round-aware getters
+function ASSIGN(){return CUR_ROUND===2?(D.round2_assignments||{}):(D.judge_assignments||{})}
+function JUDGED(p){return CUR_ROUND===2?(p.round2_judged_by||[]):(p.judged_by||[])}
+function SCORES(p){return CUR_ROUND===2?(p.round2_scores||[]):(p.scores||[])}
+function PROJECT_POOL(){
+  if(CUR_ROUND===2){return Object.values(D.projects).filter(p=>p.advanced_to_round2)}
+  return Object.values(D.projects);
+}
+function NUM_JUDGES(){return CUR_ROUND===2?3:2}
+function DEADLINE(){return CUR_ROUND===2?'April 20, 8PM ET':'April 3, 8PM ET'}
+function ROUND_LABEL(){return CUR_ROUND===2?'Round 2':'Round 1'}
+
+function judgesFor(pid){const o=[];for(const[j,ps]of Object.entries(ASSIGN())){if(ps.includes(pid))o.push(j)}return o}
 
 function classify(p){
-if(p.hold)return'hold';const n=p.scores?p.scores.length:0;
-if(n===0)return'unscored';if(n>=2)return p.meets_round1?'confirmed':'confirmed_not';
-const s=p.scores[0];const has1=Object.values(s.criteria).some(v=>v===1);
-return(s.total>=20&&!has1&&s.advance_recommended)?'on_track':'at_risk';}
+if(p.hold&&CUR_ROUND===1)return'hold';
+const scores=SCORES(p);const n=scores.length;const need=NUM_JUDGES();
+if(CUR_ROUND===1){
+  if(n===0)return'unscored';if(n>=2)return p.meets_round1?'confirmed':'confirmed_not';
+  const s=scores[0];const has1=Object.values(s.criteria).some(v=>v===1);
+  return(s.total>=20&&!has1&&s.advance_recommended)?'on_track':'at_risk';
+}
+// Round 2 logic: 24/28 min, no criterion=2, all 3 recommend
+if(n===0)return'unscored';
+if(n<need)return'partial';
+const totals=scores.map(s=>s.total);
+const avg=totals.reduce((a,b)=>a+b,0)/totals.length;
+const allAdv=scores.every(s=>s.advance_recommended);
+let no2=true;for(const d of DIMS){const vs=scores.map(s=>s.criteria[d]).filter(v=>v!=null);if(vs.length>=2&&vs.every(v=>v<=2))no2=false}
+return(avg>=24&&allAdv&&no2)?'confirmed':'confirmed_not';
+}
 
-function sBadge(c){const m={confirmed:['badge-green','Advancing'],confirmed_not:['badge-red','Not Advancing'],on_track:['badge-blue','On Track'],at_risk:['badge-amber','At Risk'],unscored:['badge-gray','Unscored'],hold:['badge-purple','On Hold']};const x=m[c]||['badge-gray','?'];return'<span class="badge '+x[0]+'">'+x[1]+'</span>'}
+function sBadge(c){const m={confirmed:['badge-green',CUR_ROUND===2?'Highlight':'Advancing'],confirmed_not:['badge-red',CUR_ROUND===2?'Not Highlight':'Not Advancing'],on_track:['badge-blue','On Track'],at_risk:['badge-amber','At Risk'],partial:['badge-amber','Partial Scores'],unscored:['badge-gray','Unscored'],hold:['badge-purple','On Hold']};const x=m[c]||['badge-gray','?'];return'<span class="badge '+x[0]+'">'+x[1]+'</span>'}
 
-function setupF(id,vals,labels,cb){const el=document.getElementById(id);el.innerHTML=vals.map((v,i)=>'<button class="'+(i===0?'active':'')+'" data-f="'+v+'">'+labels[i]+'</button>').join('');el.addEventListener('click',e=>{if(!e.target.dataset.f)return;el.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');cb(e.target.dataset.f)})}
+function setupF(id,vals,labels,cb){let el=document.getElementById(id);const fresh=el.cloneNode(false);el.parentNode.replaceChild(fresh,el);el=fresh;el.innerHTML=vals.map((v,i)=>'<button class="'+(i===0?'active':'')+'" data-f="'+v+'">'+labels[i]+'</button>').join('');el.addEventListener('click',e=>{if(!e.target.dataset.f)return;el.querySelectorAll('button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');cb(e.target.dataset.f)})}
 
 function renderOps(){
-const judges=Object.entries(D.judge_assignments),projects=Object.values(D.projects);
+const assign=ASSIGN();const judges=Object.entries(assign).filter(([j,ps])=>ps.length>0);
+const projects=PROJECT_POOL();const need=NUM_JUDGES();
 let tA=0,tD=0;const jRows=[],nudge=[];
 for(const[jid,pids]of judges){
-const vis=pids.filter(p=>D.projects[p]&&!D.projects[p].hold);let done=0;const out=[];
-for(const p of vis){if(D.projects[p].judged_by&&D.projects[p].judged_by.includes(jid))done++;else out.push(p)}
+const vis=pids.filter(p=>D.projects[p]&&(CUR_ROUND===2||!D.projects[p].hold));let done=0;const out=[];
+for(const p of vis){const jb=JUDGED(D.projects[p]);if(jb.includes(jid))done++;else out.push(p)}
 tA+=vis.length;tD+=done;const pct=vis.length?Math.round(done/vis.length*100):0;
 jRows.push({jid,assigned:vis.length,done,remain:out.length,pct,out});
 if(out.length>0)nudge.push({jid,out,done,assigned:vis.length})}
 nudge.sort((a,b)=>a.done-b.done);
 const jDone=jRows.filter(r=>r.remain===0&&r.assigned>0).length;
 const jZero=jRows.filter(r=>r.done===0&&r.assigned>0).length;
-const pS=projects.filter(p=>p.scores&&p.scores.length>0).length;
-const pD=projects.filter(p=>p.scores&&p.scores.length>=2).length;
-const holds=projects.filter(p=>p.hold).length;
+const pS=projects.filter(p=>SCORES(p).length>0).length;
+const pD=projects.filter(p=>SCORES(p).length>=need).length;
+const holds=Object.values(D.projects).filter(p=>p.hold).length;
+const partial=pS-pD;
 
 const pct=tA?Math.round(tD/tA*100):0;const pc=pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
-document.getElementById('paceBanner').innerHTML='<div class="pace-banner"><div class="pace-text"><strong>'+tD+'</strong> of <strong>'+tA+'</strong> judge-project submissions ('+pct+'%) — Deadline: April 3, 8PM ET</div><div class="pace-bar-outer"><div class="pace-bar-inner" style="width:'+pct+'%;background:'+pc+'"></div></div></div>';
+document.getElementById('paceBanner').innerHTML='<div class="pace-banner"><div class="pace-text"><strong>'+ROUND_LABEL()+':</strong> <strong>'+tD+'</strong> of <strong>'+tA+'</strong> judge-project submissions ('+pct+'%) — Deadline: '+DEADLINE()+'</div><div class="pace-bar-outer"><div class="pace-bar-inner" style="width:'+pct+'%;background:'+pc+'"></div></div></div>';
 
+const fullLabel=CUR_ROUND===2?'fully scored (3 judges)':'fully scored';
+const partialLabel=CUR_ROUND===2?'Need More Judges':'Need 2nd Judge';
 document.getElementById('opsStats').innerHTML=
-'<div class="stat-card"><div class="stat-label">Judges</div><div class="stat-val">'+judges.length+'</div></div>'+
+'<div class="stat-card"><div class="stat-label">Active Judges</div><div class="stat-val">'+judges.length+'</div></div>'+
 '<div class="stat-card good"><div class="stat-label">Judges Done</div><div class="stat-val">'+jDone+'</div><div class="stat-sub">of '+judges.length+'</div></div>'+
 '<div class="stat-card bad"><div class="stat-label">@ Zero</div><div class="stat-val">'+jZero+'</div></div>'+
-'<div class="stat-card"><div class="stat-label">Projects Scored</div><div class="stat-val">'+pS+'</div><div class="stat-sub">'+pD+' fully scored</div></div>'+
-'<div class="stat-card warn"><div class="stat-label">On Hold</div><div class="stat-val">'+holds+'</div></div>'+
-'<div class="stat-card info"><div class="stat-label">Need 2nd Judge</div><div class="stat-val">'+(pS-pD)+'</div></div>';
+'<div class="stat-card"><div class="stat-label">Projects Scored</div><div class="stat-val">'+pS+'</div><div class="stat-sub">'+pD+' '+fullLabel+'</div></div>'+
+(CUR_ROUND===1?'<div class="stat-card warn"><div class="stat-label">On Hold</div><div class="stat-val">'+holds+'</div></div>':'')+
+'<div class="stat-card info"><div class="stat-label">'+partialLabel+'</div><div class="stat-val">'+partial+'</div></div>';
 
 document.getElementById('nudgeCnt').textContent=nudge.length+' judges with outstanding work';
 document.getElementById('nudgeList').innerHTML=nudge.length?nudge.map(j=>'<div class="nudge-judge"><div class="nudge-id">'+j.jid+' <span style="font-weight:400;color:var(--text3);font-size:.82rem">— '+j.done+'/'+j.assigned+' done, '+j.out.length+' remaining</span></div><div class="nudge-projects">'+j.out.map(p=>'<code>'+p+'</code>').join('')+'</div></div>').join(''):'<div style="padding:1rem;color:var(--text3);text-align:center">All judges are complete!</div>';
@@ -240,32 +295,48 @@ rows.sort((a,b)=>a.pct-b.pct);
 const t=document.getElementById('jDetailTable');
 t.querySelector('thead').innerHTML='<tr><th>Judge ID</th><th>Progress</th><th style="width:40%">Judged</th><th style="width:40%">Not Yet Judged</th></tr>';
 t.querySelector('tbody').innerHTML=rows.map(r=>{
-const vis=D.judge_assignments[r.jid].filter(p=>D.projects[p]&&!D.projects[p].hold);
-const done=vis.filter(p=>D.projects[p].judged_by&&D.projects[p].judged_by.includes(r.jid));
-const pend=vis.filter(p=>!D.projects[p].judged_by||!D.projects[p].judged_by.includes(r.jid));
+const allPids=ASSIGN()[r.jid]||[];
+const vis=allPids.filter(p=>D.projects[p]&&(CUR_ROUND===2||!D.projects[p].hold));
+const done=vis.filter(p=>JUDGED(D.projects[p]).includes(r.jid));
+const pend=vis.filter(p=>!JUDGED(D.projects[p]).includes(r.jid));
 const doneHtml=done.length?done.map(p=>'<code class="done" onclick="event.stopPropagation();openProject(\''+p+'\')">'+p+'</code>').join(''):'<span style="color:var(--text3);font-style:italic">None</span>';
 const pendHtml=pend.length?pend.map(p=>'<code class="pending" onclick="event.stopPropagation();openProject(\''+p+'\')">'+p+'</code>').join(''):'<span style="color:var(--green);font-style:italic">All complete</span>';
 const c=r.pct===100?'badge-green':r.done===0?'badge-red':'badge-amber';
 return'<tr><td><strong>'+r.jid+'</strong></td><td><span class="badge '+c+'">'+r.done+'/'+r.assigned+'</span></td><td class="proj-list">'+doneHtml+'</td><td class="proj-list">'+pendHtml+'</td></tr>'}).join('')};
 setupF('jDetailFilter',['all','incomplete','zero','complete'],['All','Incomplete','No Submissions','Complete'],v=>{jdF=v;renderJD()});renderJD();
 
-let pF='all';const pRows=projects.map(p=>{const jl=judgesFor(p.id);return{id:p.id,name:p.project_name,judges:jl,scored:p.scores?p.scores.length:0,hold:p.hold,avg:p.avg_score,cls:classify(p)}});
+let pF='all';const pRows=projects.map(p=>{const jl=judgesFor(p.id);return{id:p.id,name:p.project_name,judges:jl,scored:SCORES(p).length,hold:p.hold,avg:CUR_ROUND===2?(SCORES(p).length?(SCORES(p).reduce((a,b)=>a+b.total,0)/SCORES(p).length).toFixed(1):null):p.avg_score,cls:classify(p)}});
 const renderP=()=>{let rows=pRows;
-if(pF==='unjudged')rows=rows.filter(r=>r.scored===0&&!r.hold);if(pF==='partial')rows=rows.filter(r=>r.scored===1);if(pF==='complete')rows=rows.filter(r=>r.scored>=2);if(pF==='hold')rows=rows.filter(r=>r.hold);
-const t=document.getElementById('projTable');t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Name</th><th>Judge 1</th><th>Judge 2</th><th>Scores</th><th>Avg</th><th>Status</th></tr>';
-t.querySelector('tbody').innerHTML=rows.map(r=>{const s=r.scored>=2?'badge-green':r.scored===1?'badge-amber':'badge-red';const j1=r.judges[0]||'-',j2=r.judges[1]||'-';const p=D.projects[r.id];const j1d=p.judged_by&&p.judged_by.includes(j1)?'✓':'○';const j2d=p.judged_by&&p.judged_by.includes(j2)?'✓':'○';
-return'<tr><td>'+pidHtml(r.id)+'</td><td style="white-space:normal;max-width:220px">'+esc(r.name)+'</td><td>'+j1+' '+j1d+'</td><td>'+j2+' '+j2d+'</td><td><span class="badge '+s+'">'+r.scored+'/2</span></td><td>'+(r.avg!=null?r.avg:'-')+'</td><td>'+sBadge(r.cls)+'</td></tr>'}).join('')};
+if(pF==='unjudged')rows=rows.filter(r=>r.scored===0&&!r.hold);if(pF==='partial')rows=rows.filter(r=>r.scored>0&&r.scored<need);if(pF==='complete')rows=rows.filter(r=>r.scored>=need);if(pF==='hold')rows=rows.filter(r=>r.hold);
+const t=document.getElementById('projTable');
+let head='<tr><th>Project ID</th><th>Name</th>';
+for(let i=1;i<=need;i++)head+='<th>Judge '+i+'</th>';
+head+='<th>Scores</th><th>Avg</th><th>Status</th></tr>';
+t.querySelector('thead').innerHTML=head;
+t.querySelector('tbody').innerHTML=rows.map(r=>{
+const s=r.scored>=need?'badge-green':r.scored>0?'badge-amber':'badge-red';
+const p=D.projects[r.id];const jb=JUDGED(p);
+let jcells='';
+for(let i=0;i<need;i++){
+  const j=r.judges[i]||'-';
+  const d=j!=='-'&&jb.includes(j)?'✓':'○';
+  jcells+='<td>'+j+' '+d+'</td>';
+}
+return'<tr><td>'+pidHtml(r.id)+'</td><td style="white-space:normal;max-width:220px">'+esc(r.name)+'</td>'+jcells+'<td><span class="badge '+s+'">'+r.scored+'/'+need+'</span></td><td>'+(r.avg!=null?r.avg:'-')+'</td><td>'+sBadge(r.cls)+'</td></tr>'}).join('')};
 setupF('projFilter',['all','unjudged','partial','complete','hold'],['All','Unjudged','Partial','Full','Holds'],v=>{pF=v;renderP()});renderP();
 
-const hRows=projects.filter(p=>p.hold);const ht=document.getElementById('holdTable');
+const hRows=Object.values(D.projects).filter(p=>p.hold);const ht=document.getElementById('holdTable');
 ht.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Name</th><th>Reason</th><th>Judges</th></tr>';
-ht.querySelector('tbody').innerHTML=hRows.map(p=>'<tr><td>'+pidHtml(p.id)+'</td><td style="white-space:normal">'+esc(p.project_name)+'</td><td>'+(esc(p.hold_reason)||'—')+'</td><td>'+judgesFor(p.id).join(', ')+'</td></tr>').join('')}
+ht.querySelector('tbody').innerHTML=hRows.length?hRows.map(p=>'<tr><td>'+pidHtml(p.id)+'</td><td style="white-space:normal">'+esc(p.project_name)+'</td><td>'+(esc(p.hold_reason)||'—')+'</td><td>'+judgesFor(p.id).join(', ')+'</td></tr>').join(''):'<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:1rem">No holds</td></tr>'}
 
 function renderResults(){
-const projects=Object.values(D.projects),scored=projects.filter(p=>p.scores&&p.scores.length>0),dualS=projects.filter(p=>p.scores&&p.scores.length>=2);
-const seg={confirmed:0,confirmed_not:0,on_track:0,at_risk:0,unscored:0,hold:0};
+const projects=PROJECT_POOL();const need=NUM_JUDGES();
+const scored=projects.filter(p=>SCORES(p).length>0);
+const dualS=projects.filter(p=>SCORES(p).length>=need);
+const seg={confirmed:0,confirmed_not:0,on_track:0,at_risk:0,partial:0,unscored:0,hold:0};
 projects.forEach(p=>seg[classify(p)]++);
 
+if(CUR_ROUND===1){
 document.getElementById('segRow').innerHTML=
 '<div class="seg-card" style="border-top-color:var(--green)"><div class="seg-label">Confirmed Advancing</div><div class="seg-val" style="color:#66BB6A">'+seg.confirmed+'</div></div>'+
 '<div class="seg-card" style="border-top-color:#1565C0"><div class="seg-label">On Track (1 judge)</div><div class="seg-val" style="color:#64B5F6">'+seg.on_track+'</div></div>'+
@@ -273,46 +344,69 @@ document.getElementById('segRow').innerHTML=
 '<div class="seg-card" style="border-top-color:var(--red)"><div class="seg-label">Not Advancing</div><div class="seg-val" style="color:#EF5350">'+seg.confirmed_not+'</div></div>'+
 '<div class="seg-card" style="border-top-color:var(--text3)"><div class="seg-label">Not Yet Scored</div><div class="seg-val" style="color:#90A4AE">'+seg.unscored+'</div></div>'+
 '<div class="seg-card" style="border-top-color:var(--purple)"><div class="seg-label">On Hold</div><div class="seg-val" style="color:#CE93D8">'+seg.hold+'</div></div>';
+}else{
+document.getElementById('segRow').innerHTML=
+'<div class="seg-card" style="border-top-color:var(--green)"><div class="seg-label">Confirmed Highlight</div><div class="seg-val" style="color:#66BB6A">'+seg.confirmed+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--amber)"><div class="seg-label">Partial Scores</div><div class="seg-val" style="color:#FFB74D">'+seg.partial+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--red)"><div class="seg-label">Not Highlighted</div><div class="seg-val" style="color:#EF5350">'+seg.confirmed_not+'</div></div>'+
+'<div class="seg-card" style="border-top-color:var(--text3)"><div class="seg-label">Not Yet Scored</div><div class="seg-val" style="color:#90A4AE">'+seg.unscored+'</div></div>';
+}
 
-const allS=scored.filter(p=>p.avg_score!=null).map(p=>p.avg_score);
+const allS=[];scored.forEach(p=>{const sc=SCORES(p);if(sc.length){const avg=sc.reduce((a,b)=>a+b.total,0)/sc.length;allS.push(avg)}});
 const avgA=allS.length?(allS.reduce((a,b)=>a+b,0)/allS.length).toFixed(1):'-';
-const advR=scored.filter(p=>p.scores.every(s=>s.advance_recommended)&&p.scores.length>=2).length;
+const advR=scored.filter(p=>SCORES(p).every(s=>s.advance_recommended)&&SCORES(p).length>=need).length;
+const partialLabel=CUR_ROUND===2?'Need More Judges':'Need 2nd Judge';
 document.getElementById('resStats').innerHTML=
 '<div class="stat-card"><div class="stat-label">Avg Score</div><div class="stat-val">'+avgA+'</div><div class="stat-sub">out of 28</div></div>'+
-'<div class="stat-card"><div class="stat-label">Highest</div><div class="stat-val">'+(allS.length?Math.max(...allS):'-')+'</div></div>'+
-'<div class="stat-card"><div class="stat-label">Lowest</div><div class="stat-val">'+(allS.length?Math.min(...allS):'-')+'</div></div>'+
-'<div class="stat-card good"><div class="stat-label">Both Rec. Advance</div><div class="stat-val">'+advR+'</div></div>'+
-'<div class="stat-card warn"><div class="stat-label">Need 2nd Judge</div><div class="stat-val">'+(scored.length-dualS.length)+'</div></div>';
+'<div class="stat-card"><div class="stat-label">Highest</div><div class="stat-val">'+(allS.length?Math.max(...allS).toFixed(1):'-')+'</div></div>'+
+'<div class="stat-card"><div class="stat-label">Lowest</div><div class="stat-val">'+(allS.length?Math.min(...allS).toFixed(1):'-')+'</div></div>'+
+'<div class="stat-card good"><div class="stat-label">All Recommend</div><div class="stat-val">'+advR+'</div></div>'+
+'<div class="stat-card warn"><div class="stat-label">'+partialLabel+'</div><div class="stat-val">'+(scored.length-dualS.length)+'</div></div>';
 
-let rF='advancing';const ranked=scored.filter(p=>p.avg_score!=null).sort((a,b)=>b.avg_score-a.avg_score);
+let rF=CUR_ROUND===1?'advancing':'all';
+const ranked=scored.map(p=>{const sc=SCORES(p);const avg=sc.reduce((a,b)=>a+b.total,0)/sc.length;return{p,avg}}).sort((a,b)=>b.avg-a.avg);
 const renderR=()=>{let rows=ranked;
-if(rF==='advancing')rows=rows.filter(p=>p.meets_round1);
-if(rF==='on_track')rows=rows.filter(p=>classify(p)==='on_track');
-if(rF==='at_risk')rows=rows.filter(p=>classify(p)==='at_risk');
-if(rF==='not')rows=rows.filter(p=>classify(p)==='confirmed_not');
+if(CUR_ROUND===1){
+  if(rF==='advancing')rows=rows.filter(r=>r.p.meets_round1);
+  if(rF==='on_track')rows=rows.filter(r=>classify(r.p)==='on_track');
+  if(rF==='at_risk')rows=rows.filter(r=>classify(r.p)==='at_risk');
+  if(rF==='not')rows=rows.filter(r=>classify(r.p)==='confirmed_not');
+}else{
+  if(rF==='confirmed')rows=rows.filter(r=>classify(r.p)==='confirmed');
+  if(rF==='partial')rows=rows.filter(r=>classify(r.p)==='partial');
+  if(rF==='not')rows=rows.filter(r=>classify(r.p)==='confirmed_not');
+}
 const t=document.getElementById('r1Table');
-t.querySelector('thead').innerHTML='<tr><th>#</th><th>ID</th><th>Project</th><th>Team</th><th>Avg</th><th>Judges</th><th>Status</th><th></th></tr>';
-t.querySelector('tbody').innerHTML=rows.map((p,i)=>{
-const c=classify(p);const si=p.scores.map(s=>s.judge_id+': '+s.total+(s.advance_recommended?' ✓':' ✗')).join(' | ');
-const did='d-'+p.id.replace(/\W/g,'');
-let det='<div class="detail-grid">';
-p.scores.forEach(s=>{det+='<div class="detail-item"><div class="label">'+esc(s.judge_id)+' — '+s.total+'/28 '+(s.advance_recommended?'(Advance: Yes)':'(Advance: No)')+'</div><div class="score-row">';
-DIMS.forEach((d,di)=>{const v=s.criteria[d];det+='<div class="score-pip pip-'+v+'" title="'+DS[di]+': '+v+'">'+v+'</div>'});det+='</div></div>'});
-[['Pitch Video','pitch_video'],['Team Story','team_story'],['Digital Product','digital_product'],['Additional','additional_artifact']].forEach(([l,k])=>{const o=p[k];if(o&&o.type==='url'&&o.value)det+='<div class="detail-item"><div class="label">'+l+'</div><div class="val"><a href="'+esc(o.value)+'" target="_blank">'+esc(o.value.substring(0,70))+'</a></div></div>'});
-p.scores.forEach(s=>{if(s.comments_panel)det+='<div class="detail-item"><div class="label">Panel Notes ('+esc(s.judge_id)+')</div><div class="val" style="white-space:pre-wrap;font-size:.8rem;max-height:100px;overflow:auto">'+esc(s.comments_panel.substring(0,500))+'</div></div>'});
-det+='</div>';
-return'<tr onclick="toggleD(\''+did+'\')" style="cursor:pointer"><td>'+(i+1)+'</td><td>'+pidHtml(p.id)+'</td><td style="white-space:normal;max-width:200px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:130px">'+esc(p.team_name)+'</td><td><strong>'+p.avg_score+'</strong></td><td style="font-size:.76rem">'+si+'</td><td>'+sBadge(c)+'</td><td style="color:var(--text3)">▶</td></tr><tr class="expand-row" id="'+did+'"><td colspan="8" class="expand-cell">'+det+'</td></tr>'}).join('')};
-setupF('r1Filter',['advancing','on_track','all','at_risk','not'],['Advancing ('+seg.confirmed+')','On Track ('+seg.on_track+')','All Scored','At Risk ('+seg.at_risk+')','Not Advancing ('+seg.confirmed_not+')'],v=>{rF=v;renderR()});renderR();
+t.querySelector('thead').innerHTML='<tr><th>#</th><th>ID</th><th>Project</th><th>Team</th><th>Avg</th><th>Judges</th><th>Status</th></tr>';
+t.querySelector('tbody').innerHTML=rows.map((r,i)=>{
+const p=r.p;const c=classify(p);const sc=SCORES(p);
+const si=sc.map(s=>s.judge_id+': '+s.total+(s.advance_recommended?' ✓':' ✗')).join(' | ');
+return'<tr style="cursor:pointer" onclick="openProject(\''+p.id+'\')"><td>'+(i+1)+'</td><td>'+pidHtml(p.id)+'</td><td style="white-space:normal;max-width:200px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:130px">'+esc(p.team_name)+'</td><td><strong>'+r.avg.toFixed(1)+'</strong></td><td style="font-size:.76rem">'+si+'</td><td>'+sBadge(c)+'</td></tr>'}).join('')};
+
+if(CUR_ROUND===1){
+setupF('r1Filter',['advancing','on_track','all','at_risk','not'],['Advancing ('+seg.confirmed+')','On Track ('+seg.on_track+')','All Scored','At Risk ('+seg.at_risk+')','Not Advancing ('+seg.confirmed_not+')'],v=>{rF=v;renderR()});
+}else{
+setupF('r1Filter',['all','confirmed','partial','not'],['All ('+scored.length+')','Highlight ('+seg.confirmed+')','Partial ('+seg.partial+')','Not Highlight ('+seg.confirmed_not+')'],v=>{rF=v;renderR()});
+}
+renderR();
 
 const bins={};for(let i=7;i<=28;i++)bins[i]=0;allS.forEach(s=>{const b=Math.round(s);if(bins[b]!==undefined)bins[b]++});const mx=Math.max(...Object.values(bins),1);
 document.getElementById('distChart').innerHTML='<div class="bar-chart">'+Object.entries(bins).map(([k,v])=>'<div class="bar-col"><div class="bar" style="height:'+v/mx*100+'%;'+(v>0?'':'opacity:.15')+'" title="'+k+': '+v+'"></div><div class="bar-label">'+k+'</div></div>').join('')+'</div>';
 
-const dA=DIMS.map(d=>{let s=0,c=0;scored.forEach(p=>p.scores.forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}}));return c?(s/c):0});
+const dA=DIMS.map(d=>{let s=0,c=0;scored.forEach(p=>SCORES(p).forEach(sc=>{if(sc.criteria[d]!=null){s+=sc.criteria[d];c++}}));return c?(s/c):0});
 document.getElementById('dimChart').innerHTML='<div class="bar-chart" style="height:100px">'+dA.map((v,i)=>'<div class="bar-col"><div class="bar" style="height:'+v/4*100+'%" title="'+DS[i]+': '+v.toFixed(2)+'"></div><div class="bar-label" style="max-height:65px">'+DS[i]+'</div></div>').join('')+'</div>';
 
-const dis=dualS.filter(p=>p.scores.length>=2&&Math.abs(p.scores[0].total-p.scores[1].total)>=6).sort((a,b)=>Math.abs(b.scores[0].total-b.scores[1].total)-Math.abs(a.scores[0].total-a.scores[1].total));
-const dt=document.getElementById('disagreeTable');dt.querySelector('thead').innerHTML='<tr><th>Project</th><th>Name</th><th>J1</th><th>Score</th><th>J2</th><th>Score</th><th>Gap</th></tr>';
-dt.querySelector('tbody').innerHTML=dis.length?dis.map(p=>{const s1=p.scores[0],s2=p.scores[1],g=Math.abs(s1.total-s2.total);return'<tr><td>'+pidHtml(p.id)+'</td><td style="white-space:normal">'+esc(p.project_name)+'</td><td>'+s1.judge_id+'</td><td>'+s1.total+'</td><td>'+s2.judge_id+'</td><td>'+s2.total+'</td><td><span class="badge badge-red">'+g+'</span></td></tr>'}).join(''):'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:1.5rem">No significant disagreements</td></tr>'}
+// Disagreements: check pairwise gaps in current round
+const dis=[];
+dualS.forEach(p=>{const sc=SCORES(p);const totals=sc.map(s=>s.total);const mx=Math.max(...totals);const mn=Math.min(...totals);if(mx-mn>=6)dis.push({p,gap:mx-mn,scores:sc})});
+dis.sort((a,b)=>b.gap-a.gap);
+const dt=document.getElementById('disagreeTable');
+dt.querySelector('thead').innerHTML='<tr><th>Project</th><th>Name</th><th>Judge Scores</th><th>Gap</th></tr>';
+dt.querySelector('tbody').innerHTML=dis.length?dis.map(d=>{
+const sList=d.scores.map(s=>s.judge_id+': '+s.total).join(' | ');
+return'<tr style="cursor:pointer" onclick="openProject(\''+d.p.id+'\')"><td>'+pidHtml(d.p.id)+'</td><td style="white-space:normal">'+esc(d.p.project_name)+'</td><td style="font-size:.78rem">'+sList+'</td><td><span class="badge badge-red">'+d.gap+'</span></td></tr>'
+}).join(''):'<tr><td colspan="4" style="text-align:center;color:var(--text3);padding:1.5rem">No significant disagreements</td></tr>';
+}
 
 function toggleD(id){document.getElementById(id).classList.toggle('show')}
 function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
@@ -325,13 +419,21 @@ document.getElementById('mTitle').textContent=p.project_name;
 document.getElementById('mTeam').textContent=p.team_name;
 const c=classify(p);
 const jl=judgesFor(pid);
+const scores=SCORES(p);
+const need=NUM_JUDGES();
+const avgVal=scores.length?(scores.reduce((a,b)=>a+b.total,0)/scores.length).toFixed(1):null;
 document.getElementById('mStatus').innerHTML=sBadge(c)+
-(p.avg_score!=null?' <span style="font-size:.9rem;margin-left:.5rem"><strong>Avg: '+p.avg_score+'</strong>/28</span>':' <span style="color:var(--text3)">No scores yet</span>')+
+(avgVal!=null?' <span style="font-size:.9rem;margin-left:.5rem"><strong>'+ROUND_LABEL()+' Avg: '+avgVal+'</strong>/28</span>':' <span style="color:var(--text3)">No '+ROUND_LABEL()+' scores yet</span>')+
 ' <span style="color:var(--text3);margin-left:auto;font-size:.8rem">Judges: '+jl.join(', ')+'</span>';
 
 let html='';
 
-// Links section
+// Show R1 score reference if viewing R2
+if(CUR_ROUND===2&&p.avg_score!=null){
+html+='<div class="modal-section"><div class="modal-section-title">Round 1 Reference</div><div style="font-size:.85rem;color:var(--text2)">R1 Avg Score: <strong style="color:var(--text)">'+p.avg_score+'/28</strong>'+(p.r1_display_score!=p.avg_score?' (display: '+p.r1_display_score+')':'')+'</div></div>';
+}
+
+// Links
 const links=[['Pitch Video','pitch_video'],['Team Story','team_story'],['Digital Product','digital_product'],['Additional Artifact','additional_artifact']];
 html+='<div class="modal-section"><div class="modal-section-title">Project Materials</div><div class="modal-links">';
 links.forEach(([label,key])=>{
@@ -345,50 +447,48 @@ else if(o.type==='mixed')html+=(o.extracted_url?'<a href="'+esc(o.extracted_url)
 html+='</div>'});
 html+='</div></div>';
 
-// Scoring table
-if(p.scores&&p.scores.length>0){
-html+='<div class="modal-section"><div class="modal-section-title">Scoring Breakdown</div>';
+// Scoring table for current round
+if(scores.length>0){
+html+='<div class="modal-section"><div class="modal-section-title">'+ROUND_LABEL()+' Scoring Breakdown</div>';
 html+='<table class="score-tbl"><thead><tr><th>Rubric Criterion</th>';
-p.scores.forEach(s=>{html+='<th>'+esc(s.judge_id)+'</th>'});
-if(p.scores.length>=2)html+='<th>Avg</th>';
+scores.forEach(s=>{html+='<th>'+esc(s.judge_id)+'</th>'});
+if(scores.length>=2)html+='<th>Avg</th>';
 html+='</tr></thead><tbody>';
 
 DIMS.forEach((d,i)=>{
 html+='<tr><td>'+DS[i]+'</td>';
 const vals=[];
-p.scores.forEach(s=>{const v=s.criteria[d];vals.push(v);html+='<td class="s'+v+'">'+v+'</td>'});
-if(p.scores.length>=2){const avg=(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);html+='<td>'+avg+'</td>'}
+scores.forEach(s=>{const v=s.criteria[d];vals.push(v);html+='<td class="s'+v+'">'+v+'</td>'});
+if(scores.length>=2){const avg=(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);html+='<td>'+avg+'</td>'}
 html+='</tr>'});
 
-// Total row
 html+='<tr><td><strong>TOTAL</strong></td>';
-p.scores.forEach(s=>{html+='<td>'+s.total+'/28</td>'});
-if(p.scores.length>=2)html+='<td>'+p.avg_score+'/28</td>';
+scores.forEach(s=>{html+='<td>'+s.total+'/28</td>'});
+if(scores.length>=2)html+='<td>'+avgVal+'/28</td>';
 html+='</tr>';
 
-// Advance recommendation row
-html+='<tr><td>Advance to Round 2?</td>';
-p.scores.forEach(s=>{html+='<td>'+(s.advance_recommended?'<span class="badge badge-green">Yes</span>':'<span class="badge badge-red">No</span>')+'</td>'});
-if(p.scores.length>=2){const allYes=p.scores.every(s=>s.advance_recommended);html+='<td>'+(allYes?'<span class="badge badge-green">Both Yes</span>':'<span class="badge badge-amber">Mixed</span>')+'</td>'}
-html+='</tr></tbody></table></div>';
+const advLabel=CUR_ROUND===2?'Recommend as Finalist?':'Advance to Round 2?';
+html+='<tr><td>'+advLabel+'</td>';
+scores.forEach(s=>{html+='<td>'+(s.advance_recommended?'<span class="badge badge-green">Yes</span>':'<span class="badge badge-red">No</span>')+'</td>'});
+if(scores.length>=2){const allYes=scores.every(s=>s.advance_recommended);html+='<td>'+(allYes?'<span class="badge badge-green">All Yes</span>':'<span class="badge badge-amber">Mixed</span>')+'</td>'}
+html+='</tr></tbody></table>';
+if(scores.length<need)html+='<div style="font-size:.8rem;color:var(--text3);margin-top:.5rem;font-style:italic">Awaiting '+(need-scores.length)+' more judge(s)</div>';
+html+='</div>';
 
-// Comments
-const hasComments=p.scores.some(s=>s.comments_panel||s.comments_student);
+const hasComments=scores.some(s=>s.comments_panel||s.comments_student);
 if(hasComments){
 html+='<div class="modal-section"><div class="modal-section-title">Judge Comments</div>';
-p.scores.forEach(s=>{
+scores.forEach(s=>{
 if(s.comments_panel)html+='<div class="comment-block"><div class="comment-judge">'+esc(s.judge_id)+'</div><div class="comment-type">Notes for Panel</div><div class="comment-text">'+esc(s.comments_panel)+'</div></div>';
 if(s.comments_student)html+='<div class="comment-block"><div class="comment-judge">'+esc(s.judge_id)+'</div><div class="comment-type">Feedback for Students</div><div class="comment-text">'+esc(s.comments_student)+'</div></div>';
 });
 html+='</div>'}
 }else{
-html+='<div class="modal-section" style="text-align:center;padding:2rem;color:var(--text3)">No scoring data available yet for this project.</div>';
+html+='<div class="modal-section" style="text-align:center;padding:2rem;color:var(--text3)">No '+ROUND_LABEL()+' scoring data available yet for this project.</div>';
 }
 
-// AI Tools
 if(p.ai_tools_used)html+='<div class="modal-section"><div class="modal-section-title">AI Tools Used</div><div style="font-size:.85rem;color:var(--text2);line-height:1.6">'+esc(p.ai_tools_used)+'</div></div>';
 
-// Hold info
 if(p.hold)html+='<div class="modal-section"><div class="modal-section-title">Hold Status</div><div><span class="badge badge-purple">ON HOLD</span> '+(p.hold_reason?esc(p.hold_reason):'No reason specified')+'</div></div>';
 
 document.getElementById('mBody').innerHTML=html;
