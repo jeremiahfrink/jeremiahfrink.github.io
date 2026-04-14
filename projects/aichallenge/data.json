@@ -4299,8 +4299,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 21.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26B9KU"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26B9KU",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "I feel like this presentation payed attention to the ciritia and tried to address all aspects of it.  They were particularly strong in criterion #6: Collaboration.",
+          "comments_student": "Great goal and solution.  You did a good job of meeting all criterion."
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -4603,8 +4622,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI262T01"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI262T01",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "This is a creative idea and has potential. The SDGs were implied, never directly addressed.",
+          "comments_student": "Your team has a great start. I would have liked to have seen you clearly identify your SDGs. You did utilize the efficiency of creating a chatbot to help learners understand their constitutional rights and I liked your attempt to ensure guides so the bot doesn't give out incorrect information. Unfortunately, the user is at the mercy of whatever data the LLM you used was trained on and would never know if it was incorrect. This could be problematic if the user gets bad information and acts on it. Keep up the good work!"
+        }
+      ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
@@ -9483,7 +9521,7 @@
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 14, 2026 at 5:59 AM ET",
+  "data_as_of": "April 14, 2026 at 6:03 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
