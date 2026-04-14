@@ -230,9 +230,10 @@ if(stageF!=='all')rows=rows.filter(p=>p.stage===stageF);
 if(countryF!=='all')rows=rows.filter(p=>p.country===countryF);
 if(search)rows=rows.filter(p=>(p.id+' '+p.project_name+' '+p.team_name+' '+p.country).toLowerCase().includes(search));
 rows.sort((a,b)=>{
-const so={['Round 2']:0,['Round 1']:1,['Initial Screening']:2};
-const sd=(so[a.stage]||9)-(so[b.stage]||9);
-if(sd!==0)return sd;
+const so={'Round 2':0,'Round 1':1,'Initial Screening':2};
+const av=so[a.stage]==null?9:so[a.stage];
+const bv=so[b.stage]==null?9:so[b.stage];
+if(av!==bv)return av-bv;
 return(b.avg_score||0)-(a.avg_score||0);
 });
 const t=document.getElementById('mainTable');
