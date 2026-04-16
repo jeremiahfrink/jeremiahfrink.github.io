@@ -1026,8 +1026,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI267RSA"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI267RSA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "North Macedonia",
       "region": "Karbinci",
       "stage": "Round 2",
@@ -1103,7 +1122,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [
-        "AI26S33U"
+        "AI26S33U",
+        "AI26J9TN"
       ],
       "round2_scores": [
         {
@@ -1121,6 +1141,22 @@
           "advance_recommended": false,
           "comments_panel": "Missing explicit connection to SDG.",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26J9TN",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "The project addresses a highly relevant and important issue and is grounded in a strong personal and contextual narrative. However, the submission lacks technical clarity, detailed explanation of the AI component, and evidence of testing or validation. The innovation, while valuable, is not clearly differentiated from existing smart grid solutions. The project would benefit from more structured documentation, clearer system explanation, and demonstration of measurable impact.",
+          "comments_student": "You chose a very important and meaningful problem, and your personal connection to power outages makes your project authentic and engaging. Your idea of using AI and IoT to prevent blackouts has strong potential and reflects good technical direction. To take your project to the next level, focus on clearly explaining how your system works, especially the role of AI, and include evidence of testing or results. Keep building this project as it has great potential."
         }
       ],
       "country": "India",
@@ -1443,8 +1479,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI267RSA"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI267RSA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 1,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 13,
+          "advance_recommended": false,
+          "comments_panel": "I could not access the project, the links did not work for me",
+          "comments_student": ""
+        }
+      ],
       "country": "Mexico",
       "region": "Coahuila",
       "stage": "Round 2",
@@ -2201,8 +2256,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26AAU7"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26AAU7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "The project does not mention or name a specific United Nations Sustainable Development Goal (SDG) that the project connects to however, the goal of the project is clearly SDG related!",
+          "comments_student": "You have created a thoughtful and exceptionally strong project! Your team demonstrated real courage and commitment by changing your initial focus to address a problem you personally witnessed. Kudos! Keep focusing on your mission to use technology to strengthen human bonds. You are all incredibly talented innovators!"
+        }
+      ],
       "country": "Mexico",
       "region": "Mexico City (CDMX)",
       "stage": "Round 2",
@@ -2543,7 +2617,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [
-        "AI26S33U"
+        "AI26S33U",
+        "AI26J9TN"
       ],
       "round2_scores": [
         {
@@ -2561,6 +2636,22 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26J9TN",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 1,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 4
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "This project demonstrates a strong connection to community needs and global challenges such as food security and climate change. The alignment with SDG Zero Hunger is clear and meaningful. However, the submission lacks detailed explanation of the AI model, sufficient evidence of testing, and differentiation from existing drought prediction tools. While the narrative and intent are strong, the technical execution and documentation do not reach finalist level expectations.",
+          "comments_student": "Your project shows a deep sense of care for your community and a strong understanding of how local problems connect to global challenges. Using AI to support farmers and address drought is a powerful and meaningful idea. To strengthen your project, try to explain more clearly how your AI works and include more examples of testing or results. Adding more technical detail and evidence will make your solution even stronger. You have a great foundation so keep developing it."
         }
       ],
       "country": "United States",
@@ -2829,7 +2920,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
       "round2_judged_by": [
-        "AI26SDY7"
+        "AI26SDY7",
+        "AI26TUYL"
       ],
       "round2_scores": [
         {
@@ -2847,6 +2939,22 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": "The students collaborated, and created a unified vision for the UNSDG solution, while also attending to the details of the app, data privacy, and security. The interactive learning tool was inclusive and integrated AI features.  The live player action/monitoring would be more realistic as an interface for students who are digital natives. The analysis and feedback features, I was not totally clear about it (other than correct or incorrect as the feedback), but this could prompt conversations at school and home about sustainable choices. Thank you for your submission."
+        },
+        {
+          "judge_id": "AI26TUYL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "\"Ecosteps\" is a standout project due to its holistic approach to climate education. The team’s ability to translate complex environmental data into an interactive AI-driven experience shows a high level of maturity and technical skill.",
+          "comments_student": "Congratulations on developing \"Ecosteps\"! Your project is a powerful reminder of how technology can inspire individual responsibility toward the planet. The way you combined real-life decision-making with AI feedback is very impressive. Keep exploring how AI can be used for social and environmental good!"
         }
       ],
       "country": "Philippines",
@@ -3362,7 +3470,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [
-        "AI26S33U"
+        "AI26S33U",
+        "AI26J9TN"
       ],
       "round2_scores": [
         {
@@ -3380,6 +3489,22 @@
           "advance_recommended": false,
           "comments_panel": "Missing explicit connection to SDGs.",
           "comments_student": "Really appreciated the goal of designing something for a group of folks who have generally been not the focus of this kind of support in other tools or processes. It was also really helpful to include the visible \"what not to include\" disclaimer at the beginning as so many folks don't know what they don't know!"
+        },
+        {
+          "judge_id": "AI26J9TN",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "This submission demonstrates excellent alignment with real world needs, particularly in addressing systemic barriers for immigrant and low income communities (sharing their personal experience was a nice add on). The team shows strong understanding of user centred design, accessibility, and ethical AI considerations such as privacy and bias mitigation. While the innovation lies more in integration than invention, the execution is polished and impactful. It stands out in communication and usability, making it a strong candidate for public facing representation.",
+          "comments_student": "Your project is incredibly meaningful and thoughtfully designed. The way you addressed a real challenge faced by immigrant families shows empathy, awareness, and purpose. Your use of AI to simplify complex systems into clear, step by step guidance is especially impressive, and the multilingual and accessibility features make your solution truly inclusive. To elevate your project even further, consider pushing the innovation beyond integration, perhaps by adding predictive or adaptive features. Overall, this is a powerful and impactful solution that reflects both technical skill and social responsibility."
         }
       ],
       "country": "United States",
@@ -4069,7 +4194,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [
-        "AI26B9KU"
+        "AI26B9KU",
+        "AI26J9TN"
       ],
       "round2_scores": [
         {
@@ -4087,6 +4213,22 @@
           "advance_recommended": false,
           "comments_panel": "Did not address UNSDG.  Link to prototype did not work. Team story went to powerpoint version of video, did not show evidence of collaboration.",
           "comments_student": "Loved the inclusivity of the app. Good use of data.  The app is visually appealing and looks easy to use."
+        },
+        {
+          "judge_id": "AI26J9TN",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "This is a conceptually innovative submission. The team redefines chess as a tool for social and emotional development, particularly for learners with ASD, and introduces measurable social KPI's, which is a novel and compelling idea. The system level thinking, scalability, and structured approach to inclusion are exceptional. While the project would benefit from clearer evidence of real world testing and deeper discussion of ethical AI considerations, its originality and vision make it a standout candidate.",
+          "comments_student": "Your project is truly inspiring. Transforming chess into a tool for inclusion and social development shows deep creativity and empathy. The idea of measuring social growth through structured KPI's is especially innovative and demonstrates advanced thinking beyond typical student projects. Your system design and strategic thinking are very impressive. To strengthen your work even further, consider including more real world testing with users and reflecting on ethical considerations of AI. Overall, this is a standout project with the potential to make a meaningful difference in education."
         }
       ],
       "country": "Taiwan",
@@ -4223,7 +4365,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [
-        "AI26S33U"
+        "AI26S33U",
+        "AI26J9TN"
       ],
       "round2_scores": [
         {
@@ -4241,6 +4384,22 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26J9TN",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "This submission stands out for its exceptional technical depth, clear problem definition, and strong real world applicability. The team developed a functional prototype integrating hardware, AI, and real time instruction delivery, supported by testing data and cost analysis. The innovation is significant, particularly in making wearable AI solutions affordable and scalable. While ethical AI considerations could be more explicitly addressed, the overall quality, rigour, and completeness make this project one of the strongest candidates for ISTE representation.",
+          "comments_student": "Your project is outstanding. The level of technical depth, from hardware design to AI integration, is extremely impressive and well beyond typical expectations. You clearly identified a real world problem and developed a practical, scalable solution with strong evidence through testing and performance data. Your focus on affordability makes your innovation even more impactful. To improve further, consider discussing ethical aspects such as data privacy and bias in AI systems. Overall, this is an exceptional project and well done."
         }
       ],
       "country": "Philippines",
@@ -5933,8 +6092,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26TUYL"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26TUYL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "Prescripto is an outstanding example of practical AI application. The team identified a specific, high-friction problem in clinical settings and used a suite of AI tools to build a credible solution. Their technical workflow is modern and efficient, and the resulting prototype demonstrates a clear understanding of UI/UX in a professional context.",
+          "comments_student": "Excellent work on Prescripto! Your ability to use different AI platforms like ChatGPT, Grok, and Claude for specific stages of your project shows a very high level of technical maturity. You’ve addressed a real pain point in the healthcare system with a solution that is both professional and patient-friendly. The clarity of your demo video and the personal motivation behind your project truly stand out. Keep pushing the boundaries of how AI can improve everyday life!"
+        }
+      ],
       "country": "Philippines",
       "region": "",
       "stage": "Round 2",
@@ -6161,8 +6339,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26TUYL"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26TUYL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "Project S.A.R.A. stands out as an exceptional example of end-to-end innovation, merging hardware engineering with advanced AI integration. The team’s strategic use of AI—ranging from low-level sensor data filtering in C++ to high-level creative reasoning via Gemini—demonstrates a sophisticated technical range. Beyond the tech, the project excels in storytelling, transforming a common household problem into a compelling narrative of sustainability. The professional quality of their web dashboard and the functional synergy between real-time data and AI-driven solutions make this a top-tier candidate for the finals.",
+          "comments_student": "Congratulations on developing S.A.R.A.! We were incredibly impressed by how you managed to bridge the gap between physical hardware and artificial intelligence. Your 'layered' approach to AI—using it both for technical precision in your sensors and for human-centric solutions in your Recipe Assistant—shows great maturity in design thinking. The emotional depth of your narrative, combined with a very polished and functional user interface, makes S.A.R.A. not just a gadget, but a meaningful tool for change. You’ve successfully given a 'voice' to the issue of food waste. Keep innovating!"
+        }
+      ],
       "country": "Saudi Arabia",
       "region": "Eastern Province",
       "stage": "Round 2",
@@ -6711,8 +6908,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26TUYL"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26TUYL",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "Safe Signal is a powerful example of how AI can be used for community protection without compromising ethical standards. The team’s decision to avoid high-risk AI applications (like individual tracking) and instead focus on pattern recognition is highly commendable. Their technical execution—from the Figma prototypes to the AI-driven data analysis—is top-tier.",
+          "comments_student": "Fantastic work, Bella and Nella! Your project, Safe Signal, is not only technically impressive but also incredibly meaningful. We were especially moved by your team story and the way you’ve turned a shared community concern into a tool for hope. Your thoughtful approach to AI ethics—choosing to protect privacy while still providing vital safety insights—shows the kind of leadership the world needs. The design of your 'SecureCity' platform is professional and very user-friendly. Keep building together!"
+        }
+      ],
       "country": "Mexico",
       "region": "Puebla",
       "stage": "Round 2",
@@ -6975,7 +7191,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 23.5,
       "round2_judged_by": [
-        "AI26SDY7"
+        "AI26SDY7",
+        "AI267RSA"
       ],
       "round2_scores": [
         {
@@ -6993,6 +7210,22 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": "Thank you for your submission! This team was determined to solve the problem of the SDG's being boring to learn about and created a gamified way to engage with meaningful content. Quest World sets out to build a community of learners and change makers; what a great tag line to create meaningful impact!"
+        },
+        {
+          "judge_id": "AI267RSA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "Great project, it is cumbersome to have to download everything and then copy a link over, I think this may make it hard for some to use.",
+          "comments_student": "Great project, it is cumbersome to have to download everything and then copy a link over, I think this may make it hard for some to use."
         }
       ],
       "country": "Philippines",
@@ -9051,8 +9284,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI267RSA"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI267RSA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "Legatto team did a great job clearly mapping out the steps for learning a new instrument. The sequence was easy to follow and supported by helpful reference images. I did not see what expert advice they reached out to for evaluations or what the clear improvements they made based on it. Overall I could consider this as a runner up with a few improvements",
+          "comments_student": "Legatto team, you did a great job clearly mapping out the steps for learning a new instrument. The sequence was easy to follow and supported by helpful reference images. To make your app even stronger, you might consider adding demo sounds so users can hear what each note should sound like when played"
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -9521,7 +9773,7 @@
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 14, 2026 at 6:03 AM ET",
+  "data_as_of": "April 15, 2026 at 10:50 PM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
