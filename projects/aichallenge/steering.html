@@ -1,4 +1,4 @@
-<!-- Updated: April 14, 2026 — Added Round 2 progress to funnel, R2 status column, R2 averages and comments in modal -->
+<!-- Updated: April 16, 2026 — Added Round 3 Preview with tiered candidates, R2 progress, comments in modal -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,6 +110,24 @@ tr:hover td{background:rgba(124,77,255,.04)}
 .rubric-tbl tr:last-child td{background:var(--card2);font-weight:700}
 .rs4{color:#66BB6A}.rs3{color:#64B5F6}.rs2{color:#FFB74D}.rs1{color:#EF5350}
 .adv-note{background:#7C4DFF18;border:1px solid #7C4DFF44;border-radius:8px;padding:.6rem 1rem;font-size:.84rem;color:var(--r2);margin-top:.75rem}
+/* R3 PREVIEW */
+.r3-tier{margin-bottom:1rem}
+.r3-tier-head{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.r3-tier-head .tier-count{font-weight:400;color:var(--text3);margin-left:.4rem}
+.r3-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.65rem}
+.r3-card{background:var(--card2);border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:all .15s;border-left:3px solid transparent}
+.r3-card:hover{background:rgba(124,77,255,.08)}
+.r3-card.tier-strong{border-left-color:var(--gold)}
+.r3-card.tier-likely{border-left-color:var(--r2)}
+.r3-card.tier-possible{border-left-color:var(--teal)}
+.r3-card.tier-watch{border-left-color:var(--text3)}
+.r3-card-id{font-size:.7rem;color:var(--text3);letter-spacing:.04em}
+.r3-card-name{font-size:.92rem;font-weight:600;margin:.15rem 0;line-height:1.3}
+.r3-card-scores{font-size:.78rem;color:var(--text2);display:flex;gap:.75rem;margin-top:.3rem}
+.r3-card-scores strong{color:var(--text)}
+.r3-card-tag{display:inline-block;font-size:.65rem;font-weight:600;padding:.1rem .45rem;border-radius:3px;margin-left:.4rem;text-transform:uppercase;letter-spacing:.03em}
+.r3-show-more{background:var(--card2);border:1px solid var(--border);color:var(--text2);padding:.55rem 1.2rem;border-radius:6px;font-family:inherit;font-size:.82rem;font-weight:500;cursor:pointer;width:100%;text-align:center;transition:all .15s;margin-top:.5rem}
+.r3-show-more:hover{border-color:var(--purple);color:var(--r2)}
 
 @media(max-width:768px){.content{padding:1rem}.funnel{grid-template-columns:1fr 1fr}}
 </style>
@@ -144,6 +162,11 @@ tr:hover td{background:rgba(124,77,255,.04)}
 </div>
 </div>
 <div class="tbl-wrap"><table id="mainTable"><thead></thead><tbody></tbody></table></div>
+</div>
+
+<div class="section" id="r3Section">
+<div class="section-head"><h2>Round 3 Preview — Finalist Candidates</h2><span style="font-size:.78rem;color:var(--text3);margin-left:.5rem">(preliminary — R2 scoring in progress)</span></div>
+<div id="r3Preview" style="padding:1rem 1.3rem"></div>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
@@ -187,7 +210,7 @@ document.addEventListener('DOMContentLoaded',()=>{document.getElementById('pwInp
 
 async function init(){
 D=await(await fetch('data.json')).json();
-renderFunnel();renderFilters();renderTable();renderGeo();renderCharts();
+renderFunnel();renderFilters();renderTable();renderGeo();renderCharts();renderR3Preview();
 }
 
 function renderFunnel(){
@@ -200,13 +223,14 @@ const r2Partial=ps.filter(p=>p.advanced_to_round2&&(p.round2_scores||[]).length>
 const r2Pct=r2?Math.round(((r2Complete*3)+(ps.filter(p=>p.advanced_to_round2).reduce((s,p)=>s+Math.min((p.round2_scores||[]).length,3),0)-(r2Complete*3)))/(r2*3)*100):0;
 const r2Subs=ps.filter(p=>p.advanced_to_round2).reduce((s,p)=>s+(p.round2_scores||[]).length,0);
 const review=ps.filter(p=>p.round2_status==='review').length;
+const r3Trending=ps.filter(p=>p.advanced_to_round2&&classifyR3(p)&&(classifyR3(p).tier==='strong'||classifyR3(p).tier==='strong_r1'||classifyR3(p).tier==='likely')).length;
 document.getElementById('funnel').innerHTML=
 '<div class="funnel-card" style="border-top-color:var(--teal)"><div class="label">Submitted</div><div class="val" style="color:var(--lteal)">'+total+'</div><div class="label">Projects</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--green)"><div class="label">Scored (R1)</div><div class="val" style="color:var(--green)">'+scored+'</div><div class="label">By 2+ Judges</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">Round 2</div><div class="val" style="color:var(--r2)">'+r2+'</div><div class="label">Advancing</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">R2 Progress</div><div class="val" style="color:var(--r2);font-size:1.5rem">'+r2Subs+' / '+(r2*3)+'</div><div class="label">'+r2Pct+'% — '+r2Complete+' Complete</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--amber)"><div class="label">Under Review</div><div class="val" style="color:var(--amber)">'+review+'</div><div class="label">Pending</div></div>'+
-'<div class="funnel-card" style="border-top-color:var(--gold)"><div class="label">Round 3</div><div class="val" style="color:var(--gold)">TBD</div><div class="label">Finalists</div></div>';
+'<div class="funnel-card" style="border-top-color:var(--gold)"><div class="label">Round 3</div><div class="val" style="color:var(--gold)">TBD</div><div class="label">'+r3Trending+' Trending</div></div>';
 }
 
 function renderFilters(){
@@ -283,6 +307,115 @@ const dA=DIMS.map(d=>{let s=0,c=0;scored.forEach(p=>p.scores.forEach(sc=>{if(sc.
 document.getElementById('dimChart').innerHTML='<div class="bar-chart" style="height:90px">'+dA.map((v,i)=>
 '<div class="bar-col"><div class="bar" style="height:'+v/4*100+'%;background:var(--purple)" title="'+DS[i]+': '+v.toFixed(2)+'"></div><div class="bar-label" style="max-height:60px">'+DS[i]+'</div></div>'
 ).join('')+'</div>';
+}
+
+function classifyR3(p){
+const r2=p.round2_scores||[];
+const r1=p.avg_score;
+if(r2.length===0){
+  return r1&&r1>=26?{tier:'strong_r1',label:'Strong R1',sort:r1}:null;
+}
+const r2avg=r2.reduce((a,b)=>a+b.total,0)/r2.length;
+const advPct=r2.filter(s=>s.advance_recommended).length/r2.length;
+let hasLow=false;
+DIMS.forEach(d=>{const vs=r2.map(s=>s.criteria[d]).filter(v=>v!=null);if(vs.some(v=>v<=2))hasLow=true});
+if(r2avg>=24&&advPct===1&&!hasLow)return{tier:'strong',label:'Strong',sort:r2avg+100};
+if(r2avg>=24&&advPct>=.5)return{tier:'likely',label:'Likely',sort:r2avg+50};
+if(r2avg>=22&&advPct>=.5)return{tier:'possible',label:'Possible',sort:r2avg+25};
+if(r2avg>=22)return{tier:'watch',label:'Watch',sort:r2avg};
+return null;
+}
+
+function r3Reason(c){
+const p=c.p;const r2=p.round2_scores||[];const r1=p.avg_score;
+if(r2.length===0)return'R1 score of '+r1+'/28 — awaiting Round 2';
+const r2avg=c.r2avg;
+const parts=[];
+if(r2avg>=27)parts.push('Exceptional R2 score');
+else if(r2avg>=25)parts.push('Very strong R2 score');
+else parts.push('Strong R2 score');
+if(r2.length>=2)parts.push(r2.length+' judges agree');
+else parts.push('1 of 3 judges scored');
+if(r1>=26)parts.push('backed by high R1 ('+r1+')');
+else if(r1>=24)parts.push('solid R1 ('+r1+')');
+if(r2.every(s=>s.advance_recommended))parts.push('all recommend finalist');
+return parts.join(' · ');
+}
+
+function renderR3Preview(){
+const all=Object.values(D.projects).filter(p=>p.advanced_to_round2);
+const candidates=[];
+all.forEach(p=>{
+  const c=classifyR3(p);if(!c)return;
+  const r2=p.round2_scores||[];
+  const r2avg=r2.length?(r2.reduce((a,b)=>a+b.total,0)/r2.length):null;
+  candidates.push({p,tier:c.tier,label:c.label,sort:c.sort,r2avg,r2n:r2.length});
+});
+candidates.sort((a,b)=>b.sort-a.sort);
+
+// Top 10 = highest-scoring Strong candidates
+const strong=candidates.filter(c=>c.tier==='strong'||c.tier==='strong_r1');
+const top10=strong.slice(0,10);
+const moreStrong=strong.slice(10);
+const likely=candidates.filter(c=>c.tier==='likely');
+const possible=candidates.filter(c=>c.tier==='possible');
+const watch=candidates.filter(c=>c.tier==='watch');
+
+function cardHtml(c,showReason){
+const p=c.p;const r2str=c.r2avg!=null?c.r2avg.toFixed(1):'—';
+const r2label=c.r2n>0?c.r2n+'/3 judges':'Awaiting R2';
+const tagColor=c.tier==='strong'||c.tier==='strong_r1'?'background:#FFD54F33;color:#FFD54F':c.tier==='likely'?'background:#B388FF33;color:#B388FF':c.tier==='possible'?'background:#4DD0E133;color:#4DD0E1':'background:#546E7A44;color:#90A4AE';
+let h='<div class="r3-card tier-'+(c.tier==='strong_r1'?'strong':c.tier)+'" onclick="openProject(\''+p.id+'\')">'+
+'<div class="r3-card-id">'+p.id+'<span class="r3-card-tag" style="'+tagColor+'">'+c.label+'</span></div>'+
+'<div class="r3-card-name">'+esc(p.project_name)+'</div>'+
+'<div class="r3-card-scores"><span>R1: <strong>'+(p.avg_score||'—')+'</strong>/28</span><span>R2: <strong>'+r2str+'</strong>/28</span><span style="color:var(--text3)">'+r2label+'</span></div>';
+if(showReason)h+='<div style="font-size:.72rem;color:var(--text3);margin-top:.35rem;line-height:1.4">'+r3Reason(c)+'</div>';
+h+='</div>';
+return h;
+}
+
+let html='';
+if(top10.length===0){
+html='<div style="text-align:center;padding:2rem;color:var(--text3)">Not enough Round 2 data yet to identify finalist candidates. Check back as more judges submit scores.</div>';
+}else{
+// Top candidates with reasons
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">Top Candidates<span class="tier-count">'+top10.length+' projects showing strongest signal</span></div>';
+html+='<div class="r3-grid">'+top10.map(c=>cardHtml(c,true)).join('')+'</div></div>';
+
+// Everything else behind show more
+const moreTotal=moreStrong.length+likely.length+possible.length+watch.length;
+if(moreTotal>0){
+html+='<div id="r3MoreWrap" style="display:none">';
+
+if(moreStrong.length>0){
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">More Strong Candidates<span class="tier-count">'+moreStrong.length+' projects</span></div>';
+html+='<div class="r3-grid">'+moreStrong.map(c=>cardHtml(c,false)).join('')+'</div></div>';
+}
+
+if(likely.length>0){
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--r2)">Likely Finalists<span class="tier-count">'+likely.length+' projects</span></div>';
+html+='<div class="r3-grid">'+likely.map(c=>cardHtml(c,false)).join('')+'</div></div>';
+}
+
+if(possible.length>0){
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--teal)">Possible Contenders<span class="tier-count">'+possible.length+' projects</span></div>';
+html+='<div class="r3-grid">'+possible.map(c=>cardHtml(c,false)).join('')+'</div></div>';
+}
+
+if(watch.length>0){
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--text3)">Watch List<span class="tier-count">'+watch.length+' projects</span></div>';
+html+='<div class="r3-grid">'+watch.map(c=>cardHtml(c,false)).join('')+'</div></div>';
+}
+html+='</div>';
+html+='<button class="r3-show-more" id="r3MoreBtn" onclick="expandR3()">Show '+moreTotal+' more candidates →</button>';
+}
+}
+document.getElementById('r3Preview').innerHTML=html;
+}
+
+function expandR3(){
+document.getElementById('r3MoreWrap').style.display='block';
+document.getElementById('r3MoreBtn').style.display='none';
 }
 
 function openProject(pid){
