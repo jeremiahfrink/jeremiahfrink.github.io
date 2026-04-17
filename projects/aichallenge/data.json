@@ -129,15 +129,13 @@
       "ISTE26AI110",
       "ISTE26AI135",
       "ISTE26AI161",
-      "ISTE26AI186",
-      "ISTE26AI212"
+      "ISTE26AI186"
     ],
     "AI262SR5": [
       "ISTE26AI110",
       "ISTE26AI136",
       "ISTE26AI161",
-      "ISTE26AI187",
-      "ISTE26AI212"
+      "ISTE26AI187"
     ],
     "AI26PKJB": [
       "ISTE26AI111",
@@ -799,8 +797,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R2KF"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "Very cool, I think!  I would have liked to see more detail around how things play out within a given tutoring session.  The presentation was fairly general.",
+          "comments_student": "I think this is a very cool application though honestly, I'm not sure.  With tutoring systems the devil is in the details ... how the AI manages the learning experience overall.  I didn't get a clear sense of how your product might be unique in that context.  That is, there are many math tutors now, what makes this one superior?  I know the whiteboard interface is part of that answer, and that's cool, but is there more?"
+        }
+      ],
       "country": "United States",
       "region": "California",
       "stage": "Round 2",
@@ -1310,7 +1327,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [
-        "AI26ES1V"
+        "AI26ES1V",
+        "AI2618YW"
       ],
       "round2_scores": [
         {
@@ -1328,6 +1346,22 @@
           "advance_recommended": false,
           "comments_panel": "While this is an extremely comprehensive digital tool to promote education and conservation, the AI-enabled tool requires extensive input from the user which might hinder the impact.",
           "comments_student": "This is an extremely comprehensive digital tool to promote education and conservation. Your 6 features help the user learn and modify their routines to save water. Well done!"
+        },
+        {
+          "judge_id": "AI2618YW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "This group developed a meaningful project centered on SDGs. Their one weak spot was I was unable to download and test their app. It looked very well done based on their pitch video, and maybe it was user end on my part as they did provide a link to files.",
+          "comments_student": "I liked that you tackled a real world issue in your community. Your pitch video was very well doe. Overall you had a very good project and I enjoyed seeing it! Good luck in the competition!"
         }
       ],
       "country": "Philippines",
@@ -1725,8 +1759,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R2KF"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": false,
+          "comments_panel": "I thought this was very cool, yet mostly a new way to gain access to advice and information one could find it other ways.  That is, it is not as innovative as some of the other projects that are literally changing the landscape around some issue.  That said, it looks like they put a lot of time and work into creating a fairly ready to go product.",
+          "comments_student": "Great job bringing your vision to reality.  I'm sure there are many small businesses that would use and appreciate the tool you have built out.  You also obviously did a lot of work, essentially bringing your idea to the point of having a solid MVP to demo.  It might be time to use your tool yourself to figure out the next steps to get you to investment! :)"
+        }
+      ],
       "country": "United States",
       "region": "Ohio",
       "stage": "Round 2",
@@ -4043,8 +4096,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R2KF"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "Given how hard it is to tell real from created these days, I think tools like this can play an important role in supporting AI literacy and critical thought.",
+          "comments_student": "I enjoyed your pitch and appreciate the potential value of your product.  I have two things for you to consider.  First, I know you designed for privacy and I think that's important given some deepfakes are intensely personal.  Still, I couldn't help but wonder, what if your process was automatically applied to all images uploaded to social media, with your \"probability of AI\" then watermarked on the image so that anyone seeing the image could instantly know how trustworthy it is or isn't.  My second point is more of a concern.  What if the AI image generators now use your tool to make even more realistic AI images ... ones that your tool doesn't catch.  Could your goals backfire?"
+        }
+      ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
@@ -4118,8 +4190,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26R2KF"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "I think they understated the potential impacting of allowing deaf and hearing peoples to interact directly as they have never been able to before.  This could reduce barriers big time and have a positive impact on many.",
+          "comments_student": "You've chosen a fantastic problem, and your solution could be revolutionary for deaf peoples.  Suddenly they can interact with the hearing, what doors might this open for them?  It also allows the hearing to connect better with deaf people, and connection is the path to equity and inclusion.  Very innovative and so potentially impactful.  Great work."
+        }
+      ],
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
       "stage": "Round 2",
@@ -4782,7 +4873,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [
-        "AI262T01"
+        "AI262T01",
+        "AI2618YW"
       ],
       "round2_scores": [
         {
@@ -4800,6 +4892,22 @@
           "advance_recommended": false,
           "comments_panel": "This is a creative idea and has potential. The SDGs were implied, never directly addressed.",
           "comments_student": "Your team has a great start. I would have liked to have seen you clearly identify your SDGs. You did utilize the efficiency of creating a chatbot to help learners understand their constitutional rights and I liked your attempt to ensure guides so the bot doesn't give out incorrect information. Unfortunately, the user is at the mercy of whatever data the LLM you used was trained on and would never know if it was incorrect. This could be problematic if the user gets bad information and acts on it. Keep up the good work!"
+        },
+        {
+          "judge_id": "AI2618YW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": true,
+          "comments_panel": "Good pitch video and I do think that this would be a useful product, but the project does not address the SDGs or inclusivity and accessibility. The team does reflect on the development process and their team collaboration.",
+          "comments_student": "I liked your topic and harnessing AI for such a practical use. You thought about some key ideas such as differences for age groups and laws changing. Good job on this project."
         }
       ],
       "country": "United States",
@@ -8241,7 +8349,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [
-        "AI26ES1V"
+        "AI26ES1V",
+        "AI2618YW"
       ],
       "round2_scores": [
         {
@@ -8259,6 +8368,22 @@
           "advance_recommended": false,
           "comments_panel": "While this is a high-impact challenge and a well-developed project, the agentic system requires access to the user's entire system, and risk mitigation strategies are not outlined.",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI2618YW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": true,
+          "comments_panel": "This project contained an impressive amount of research and technical development information. It addresses accessibility issues, but maybe needed to touch on privacy. The project did not address the SDGs or collaboration during the project.",
+          "comments_student": "You provided an impressive amount of research and detail in your project! This is a very practical tool that could help many people. You website says under development, I hope you are able to bring the tool to fruition one day!"
         }
       ],
       "country": "United States",
@@ -9156,82 +9281,6 @@
       "stage": "Round 2",
       "advancement_note": ""
     },
-    "ISTE26AI212": {
-      "id": "ISTE26AI212",
-      "project_name": "Hoʻoia",
-      "team_name": "Team Wabisabi",
-      "ai_tools_used": "ChatGPT, Gemini, Loveable",
-      "pitch_video": {
-        "type": "url",
-        "value": "https://www.youtube.com/watch?v=EiAQ83HZhr0",
-        "password": ""
-      },
-      "team_story": {
-        "type": "url",
-        "value": "https://www.youtube.com/watch?v=EiAQ83HZhr0",
-        "password": ""
-      },
-      "digital_product": {
-        "type": "url",
-        "value": "https://hooia-ai.lovable.app/",
-        "password": ""
-      },
-      "additional_artifact": {
-        "type": "url",
-        "value": "https://drive.google.com/file/d/18WtpUvh2Ww8Eh3PiMoJVoDZB97V1qk7v/view?usp=sharing",
-        "password": ""
-      },
-      "hold": false,
-      "hold_reason": "",
-      "judged_by": [
-        "AI262SR5",
-        "AI26TUYL"
-      ],
-      "scores": [
-        {
-          "judge_id": "AI262SR5",
-          "criteria": {
-            "Connection to Community Problem & SDG": 4,
-            "Impact, Relevance & Longevity": 4,
-            "Responsible & Ethical Use of AI": 4,
-            "Innovation & Creativity": 4,
-            "Design Quality & Accessibility": 4,
-            "Collaboration & Process": 4,
-            "Presentation & Communication": 4
-          },
-          "total": 28,
-          "advance_recommended": true,
-          "comments_panel": "very effective",
-          "comments_student": "very goodddd"
-        },
-        {
-          "judge_id": "AI26TUYL",
-          "criteria": {
-            "Connection to Community Problem & SDG": 4,
-            "Impact, Relevance & Longevity": 3,
-            "Responsible & Ethical Use of AI": 4,
-            "Innovation & Creativity": 4,
-            "Design Quality & Accessibility": 3,
-            "Collaboration & Process": 4,
-            "Presentation & Communication": 4
-          },
-          "total": 26,
-          "advance_recommended": true,
-          "comments_panel": "Hō'oia is a standout project because it addresses the psychological aspect of AI—trust and confidence—rather than just the technical one. By prioritizing human-in-the-loop judgment over automated certainty, the team demonstrates a mature understanding of AI's role in society.",
-          "comments_student": "Excellent work, Skyler, Johnray, and Dylan! Your focus on \"explainability\" is a breath of fresh air in the field of AI detection. It was impressive to see how you listened to your community—especially the elders—and pivoted your solution to focus on education and confidence rather than just a simple 'real or fake' score. Your transparency about the tool's limitations shows great integrity and responsible AI leadership. Keep iterating on your weighted heuristics!"
-        }
-      ],
-      "avg_score": 27.0,
-      "meets_round1": true,
-      "advanced_to_round2": true,
-      "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
-      "country": "United States",
-      "region": "Hawaii",
-      "stage": "Round 2",
-      "advancement_note": ""
-    },
     "ISTE26AI213": {
       "id": "ISTE26AI213",
       "project_name": "Legatto",
@@ -9551,7 +9600,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.5,
       "round2_judged_by": [
-        "AI262T01"
+        "AI262T01",
+        "AI2618YW"
       ],
       "round2_scores": [
         {
@@ -9569,6 +9619,22 @@
           "advance_recommended": false,
           "comments_panel": "This project meets the requirements. It has potential to reach students in areas that have limited resources. The SDGs weren't clearly identified.",
           "comments_student": "Your team worked hard on this project and it shows. I think your project has potential, but you may want to consider that the chatbot may not have the total picture of each student user and that could lead to a user who will derive incorrect information from the information presented. I do like that you are utilizing a cost effective solution (zero cost) for students who may not have access to a counselor who can guide them into the proper schedule for their needs. This is innovative. Great job!"
+        },
+        {
+          "judge_id": "AI2618YW",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "I like this idea for  students, but the project does not address any of the SDGs and it also does not address privacy / inclusivity concerns or collaboration. The group does talk about the process they went through to test and improve the app.",
+          "comments_student": "This is a great product for students! I like how you thought beyond high school to college and career goals in planning this program. When I tested the program I asked about a path for trades, but then asked what would happen if I changed my mind later in high school. The program gave me a way to pivot. You did a good job designing this scheduling program!"
         }
       ],
       "country": "United States",
@@ -9773,7 +9839,7 @@
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 15, 2026 at 10:50 PM ET",
+  "data_as_of": "April 16, 2026 at 8:36 PM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
@@ -9794,21 +9860,23 @@
       "ISTE26AI117",
       "ISTE26AI207",
       "ISTE26AI180",
-      "ISTE26AI212"
+      "ISTE26AI219"
     ],
     "AI26M1AS": [
       "ISTE26AI149",
       "ISTE26AI117",
       "ISTE26AI148",
       "ISTE26AI180",
-      "ISTE26AI212"
+      "ISTE26AI133"
     ],
     "AI26R2KF": [
       "ISTE26AI149",
       "ISTE26AI117",
       "ISTE26AI148",
       "ISTE26AI106",
-      "ISTE26AI212"
+      "ISTE26AI127",
+      "ISTE26AI171",
+      "ISTE26AI206"
     ],
     "AI26D5BM": [
       "ISTE26AI149",
@@ -9900,13 +9968,6 @@
       "ISTE26AI156",
       "ISTE26AI171",
       "ISTE26AI152"
-    ],
-    "AI26D3Q3": [
-      "ISTE26AI219",
-      "ISTE26AI133",
-      "ISTE26AI127",
-      "ISTE26AI171",
-      "ISTE26AI206"
     ],
     "AI26V3HG": [
       "ISTE26AI219",
