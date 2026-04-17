@@ -128,6 +128,12 @@ tr:hover td{background:rgba(124,77,255,.04)}
 .r3-card-tag{display:inline-block;font-size:.65rem;font-weight:600;padding:.1rem .45rem;border-radius:3px;margin-left:.4rem;text-transform:uppercase;letter-spacing:.03em}
 .r3-show-more{background:var(--card2);border:1px solid var(--border);color:var(--text2);padding:.55rem 1.2rem;border-radius:6px;font-family:inherit;font-size:.82rem;font-weight:500;cursor:pointer;width:100%;text-align:center;transition:all .15s;margin-top:.5rem}
 .r3-show-more:hover{border-color:var(--purple);color:var(--r2)}
+/* VIEW TOGGLE */
+.view-toggle{background:var(--card);border-bottom:1px solid var(--border);padding:.75rem 2rem;text-align:center}
+.view-toggle-inner{display:inline-flex;background:var(--card2);border-radius:8px;padding:.25rem;gap:.25rem}
+.view-btn{padding:.5rem 1.5rem;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--text3);font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .15s}
+.view-btn:hover{color:var(--text2)}
+.view-btn.active{background:var(--navy);color:var(--r2);border-color:var(--purple);box-shadow:0 1px 4px rgba(124,77,255,.25)}
 
 @media(max-width:768px){.content{padding:1rem}.funnel{grid-template-columns:1fr 1fr}}
 </style>
@@ -149,7 +155,15 @@ tr:hover td{background:rgba(124,77,255,.04)}
 <div class="sub">Steering Committee Overview</div>
 </div>
 
+<div class="view-toggle">
+<div class="view-toggle-inner">
+<button class="view-btn active" id="vOverview" onclick="switchView('overview')">Overview</button>
+<button class="view-btn" id="vR3" onclick="switchView('r3')">Round 3 Preview</button>
+</div>
+</div>
+
 <div class="content">
+<div id="overviewWrap">
 <div class="funnel" id="funnel"></div>
 
 <div class="section">
@@ -164,7 +178,7 @@ tr:hover td{background:rgba(124,77,255,.04)}
 <div class="tbl-wrap"><table id="mainTable"><thead></thead><tbody></tbody></table></div>
 </div>
 
-<div class="section" id="r3Section">
+<div class="section" id="r3SectionSmall">
 <div class="section-head"><h2>Round 3 Preview — Finalist Candidates</h2><span style="font-size:.78rem;color:var(--text3);margin-left:.5rem">(preliminary — R2 scoring in progress)</span></div>
 <div id="r3Preview" style="padding:1rem 1.3rem"></div>
 </div>
@@ -186,7 +200,17 @@ tr:hover td{background:rgba(124,77,255,.04)}
 </div>
 </div>
 </div>
+</div><!-- end overviewWrap -->
+
+<div id="r3FullWrap" style="display:none">
+<div class="section">
+<div class="section-head"><h2>Round 3 Preview — Finalist Candidates</h2><span style="font-size:.78rem;color:var(--text3);margin-left:.5rem">(preliminary — R2 scoring in progress)</span></div>
+<div id="r3PreviewFull" style="padding:1rem 1.3rem"></div>
 </div>
+</div>
+
+</div><!-- end content -->
+</div><!-- end shell -->
 
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
 <div class="modal">
@@ -342,6 +366,15 @@ if(r2.every(s=>s.advance_recommended))parts.push('all recommend finalist');
 return parts.join(' · ');
 }
 
+function topSort(a,b){
+// Prioritize: 2+ R2 judges with high avg > 1 R2 judge > R1 only
+const aR2=a.r2avg||0,bR2=b.r2avg||0;
+const aR1=a.p.avg_score||0,bR1=b.p.avg_score||0;
+const aScore=aR2*2+(a.r2n>=2?5:0)+(a.r2n>=3?3:0)+aR1*0.3;
+const bScore=bR2*2+(b.r2n>=2?5:0)+(b.r2n>=3?3:0)+bR1*0.3;
+return bScore-aScore;
+}
+
 function renderR3Preview(){
 const all=Object.values(D.projects).filter(p=>p.advanced_to_round2);
 const candidates=[];
@@ -351,12 +384,11 @@ all.forEach(p=>{
   const r2avg=r2.length?(r2.reduce((a,b)=>a+b.total,0)/r2.length):null;
   candidates.push({p,tier:c.tier,label:c.label,sort:c.sort,r2avg,r2n:r2.length});
 });
-candidates.sort((a,b)=>b.sort-a.sort);
 
-// Top 10 = highest-scoring Strong candidates
 const strong=candidates.filter(c=>c.tier==='strong'||c.tier==='strong_r1');
-const top10=strong.slice(0,10);
-const moreStrong=strong.slice(10);
+strong.sort(topSort);
+const top15=strong.slice(0,15);
+const moreStrong=strong.slice(15);
 const likely=candidates.filter(c=>c.tier==='likely');
 const possible=candidates.filter(c=>c.tier==='possible');
 const watch=candidates.filter(c=>c.tier==='watch');
@@ -370,52 +402,35 @@ let h='<div class="r3-card tier-'+(c.tier==='strong_r1'?'strong':c.tier)+'" oncl
 '<div class="r3-card-name">'+esc(p.project_name)+'</div>'+
 '<div class="r3-card-scores"><span>R1: <strong>'+(p.avg_score||'—')+'</strong>/28</span><span>R2: <strong>'+r2str+'</strong>/28</span><span style="color:var(--text3)">'+r2label+'</span></div>';
 if(showReason)h+='<div style="font-size:.72rem;color:var(--text3);margin-top:.35rem;line-height:1.4">'+r3Reason(c)+'</div>';
-h+='</div>';
-return h;
+h+='</div>';return h;
 }
 
+function buildHtml(cid){
 let html='';
-if(top10.length===0){
-html='<div style="text-align:center;padding:2rem;color:var(--text3)">Not enough Round 2 data yet to identify finalist candidates. Check back as more judges submit scores.</div>';
-}else{
-// Top candidates with reasons
-html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">Top Candidates<span class="tier-count">'+top10.length+' projects showing strongest signal</span></div>';
-html+='<div class="r3-grid">'+top10.map(c=>cardHtml(c,true)).join('')+'</div></div>';
-
-// Everything else behind show more
+if(top15.length===0)return'<div style="text-align:center;padding:2rem;color:var(--text3)">Not enough Round 2 data yet to identify finalist candidates. Check back as more judges submit scores.</div>';
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">Top Candidates<span class="tier-count">'+top15.length+' projects showing strongest signal</span></div>';
+html+='<div class="r3-grid">'+top15.map(c=>cardHtml(c,true)).join('')+'</div></div>';
 const moreTotal=moreStrong.length+likely.length+possible.length+watch.length;
 if(moreTotal>0){
-html+='<div id="r3MoreWrap" style="display:none">';
-
-if(moreStrong.length>0){
-html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">More Strong Candidates<span class="tier-count">'+moreStrong.length+' projects</span></div>';
-html+='<div class="r3-grid">'+moreStrong.map(c=>cardHtml(c,false)).join('')+'</div></div>';
-}
-
-if(likely.length>0){
-html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--r2)">Likely Finalists<span class="tier-count">'+likely.length+' projects</span></div>';
-html+='<div class="r3-grid">'+likely.map(c=>cardHtml(c,false)).join('')+'</div></div>';
-}
-
-if(possible.length>0){
-html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--teal)">Possible Contenders<span class="tier-count">'+possible.length+' projects</span></div>';
-html+='<div class="r3-grid">'+possible.map(c=>cardHtml(c,false)).join('')+'</div></div>';
-}
-
-if(watch.length>0){
-html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--text3)">Watch List<span class="tier-count">'+watch.length+' projects</span></div>';
-html+='<div class="r3-grid">'+watch.map(c=>cardHtml(c,false)).join('')+'</div></div>';
-}
+html+='<div id="'+cid+'More" style="display:none">';
+if(moreStrong.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">More Strong Candidates<span class="tier-count">'+moreStrong.length+'</span></div><div class="r3-grid">'+moreStrong.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
+if(likely.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--r2)">Likely Finalists<span class="tier-count">'+likely.length+'</span></div><div class="r3-grid">'+likely.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
+if(possible.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--teal)">Possible Contenders<span class="tier-count">'+possible.length+'</span></div><div class="r3-grid">'+possible.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
+if(watch.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--text3)">Watch List<span class="tier-count">'+watch.length+'</span></div><div class="r3-grid">'+watch.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
 html+='</div>';
-html+='<button class="r3-show-more" id="r3MoreBtn" onclick="expandR3()">Show '+moreTotal+' more candidates →</button>';
+html+='<button class="r3-show-more" onclick="document.getElementById(\''+cid+'More\').style.display=\'block\';this.style.display=\'none\'">Show '+moreTotal+' more candidates →</button>';
 }
+return html;
 }
-document.getElementById('r3Preview').innerHTML=html;
+document.getElementById('r3Preview').innerHTML=buildHtml('r3S');
+document.getElementById('r3PreviewFull').innerHTML=buildHtml('r3F');
 }
 
-function expandR3(){
-document.getElementById('r3MoreWrap').style.display='block';
-document.getElementById('r3MoreBtn').style.display='none';
+function switchView(view){
+document.getElementById('vOverview').className='view-btn'+(view==='overview'?' active':'');
+document.getElementById('vR3').className='view-btn'+(view==='r3'?' active':'');
+document.getElementById('overviewWrap').style.display=view==='overview'?'block':'none';
+document.getElementById('r3FullWrap').style.display=view==='r3'?'block':'none';
 }
 
 function openProject(pid){
