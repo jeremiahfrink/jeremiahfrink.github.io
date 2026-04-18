@@ -2310,7 +2310,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.5,
       "round2_judged_by": [
-        "AI26AAU7"
+        "AI26AAU7",
+        "AI26T6MD",
+        "AI263SHA"
       ],
       "round2_scores": [
         {
@@ -2328,6 +2330,38 @@
           "advance_recommended": true,
           "comments_panel": "The project does not mention or name a specific United Nations Sustainable Development Goal (SDG) that the project connects to however, the goal of the project is clearly SDG related!",
           "comments_student": "You have created a thoughtful and exceptionally strong project! Your team demonstrated real courage and commitment by changing your initial focus to address a problem you personally witnessed. Kudos! Keep focusing on your mission to use technology to strengthen human bonds. You are all incredibly talented innovators!"
+        },
+        {
+          "judge_id": "AI26T6MD",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "The project demonstrates a strong empathy-to-design connection, with a clear evolution from initial accessibility ideas to a thoughtful, human-centered solution grounded in real experiences with older adults, strengthening its alignment to purpose and impact. It also shows compelling conceptual innovation through the integration of robotics, personalization, and emotional support, and while the AI component is foundational (rule-based and interview-driven), it is appropriate for the team’s level and clearly applied with intention. Although stronger evidence of real-world testing and iteration would further elevate the work, the design is sufficiently developed and clearly communicated to demonstrate feasibility and user value. Overall, the project meets and, in several areas, exceeds Phase 1 expectations and presents a strong case for advancement, with the potential to be competitive in Phase 2 with further refinement around validation, scalability, and ethical depth.",
+          "comments_student": "Your project shows genuine empathy and a thoughtful response to a real issue affecting older adults, especially those experiencing memory loss and loneliness. ORBI is a creative and meaningful solution that demonstrates how technology can support dignity, safety, and emotional well-being. To strengthen your work even further, consider testing your design with real users or experts and showing how their feedback improves your solution. You could also deepen your explanation of how privacy, safety, and accessibility are ensured as your idea grows into a real-world application."
+        },
+        {
+          "judge_id": "AI263SHA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 25,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": "This is a great problem worth solving. I commend you for thinking outside of the box to help people hold onto to their identity through their memories."
         }
       ],
       "country": "Mexico",
@@ -2593,7 +2627,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
       "round2_judged_by": [
-        "AI26B9KU"
+        "AI26B9KU",
+        "AI26R2KF"
       ],
       "round2_scores": [
         {
@@ -2611,6 +2646,22 @@
           "advance_recommended": false,
           "comments_panel": "It was not clear which UNSDG was selected, even though is aligned well with SDG 4: Quality Education.  Would have liked to see more evidence in Collaboration and Process portion.",
           "comments_student": "Great goal and solution.  I had fun exploring your tool."
+        },
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": false,
+          "comments_panel": "I almost said yes for the Top 3 question.  As I will explain to the team, I love the general concept, but I think for this tool to really have an impact it should be engaged automatically as users are viewing content rather than needing the user to so explicitly identify the information and ask for the analysis.",
+          "comments_student": "I loved the general idea of your project, but I think there is an additional step you could take that would really enhance its impact.  Specifically, as described, the app requires the user to first be suspicious of some content, then to upload that content for analysis.  It's the first step I worry about ... users scrolling social media feeds do not have their critical minds engaged and besides, even if they did see something off, would they go through the steps ir just accept it and scroll on?\n\nWhat if you process happened automatically, perhaps even as users try to upload content to some platform.  That content is analyzed, and the results are posted WITH the post.  Now users could see instantly whether it is trustworthy or not ... and heck, people might be less likely to post the untrustworthy when they know others will see that right away.\n\nSo as described, I thought you idea might have some impact.  But if you could make it just happen automatically (either on the posting side or on the viewing side) it could change the world of social media."
         }
       ],
       "country": "United States",
@@ -2974,7 +3025,8 @@
       "r1_display_score": 23.5,
       "round2_judged_by": [
         "AI26SDY7",
-        "AI26TUYL"
+        "AI26TUYL",
+        "AI26POVR"
       ],
       "round2_scores": [
         {
@@ -3008,6 +3060,22 @@
           "advance_recommended": true,
           "comments_panel": "\"Ecosteps\" is a standout project due to its holistic approach to climate education. The team’s ability to translate complex environmental data into an interactive AI-driven experience shows a high level of maturity and technical skill.",
           "comments_student": "Congratulations on developing \"Ecosteps\"! Your project is a powerful reminder of how technology can inspire individual responsibility toward the planet. The way you combined real-life decision-making with AI feedback is very impressive. Keep exploring how AI can be used for social and environmental good!"
+        },
+        {
+          "judge_id": "AI26POVR",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 23,
+          "advance_recommended": false,
+          "comments_panel": "Passionate group and good teamwork. The product has. A very elementary school feel to it, but the vocabulary used is not for elementary so I think it struggles to find its place.  The graphics were great.",
+          "comments_student": "I really like the introduction video it showed a lot a work went into this product. My suggestion would be to make sure taylor it to a specific market of people or make it adaptable."
         }
       ],
       "country": "Philippines",
@@ -3084,8 +3152,27 @@
       "meets_round1": true,
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI269729"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI269729",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
+        }
+      ],
       "country": "Philippines",
       "region": "Fujian Province listed but school is Philippine",
       "stage": "Round 2",
@@ -4191,7 +4278,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.5,
       "round2_judged_by": [
-        "AI26R2KF"
+        "AI26R2KF",
+        "AI26D5BM"
       ],
       "round2_scores": [
         {
@@ -4209,6 +4297,22 @@
           "advance_recommended": true,
           "comments_panel": "I think they understated the potential impacting of allowing deaf and hearing peoples to interact directly as they have never been able to before.  This could reduce barriers big time and have a positive impact on many.",
           "comments_student": "You've chosen a fantastic problem, and your solution could be revolutionary for deaf peoples.  Suddenly they can interact with the hearing, what doors might this open for them?  It also allows the hearing to connect better with deaf people, and connection is the path to equity and inclusion.  Very innovative and so potentially impactful.  Great work."
+        },
+        {
+          "judge_id": "AI26D5BM",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "The iHear project is one of the strongest projects I’ve evaluated in terms of hardware and software integration. This team has established a flawless connection to the Sustainable Development Goals (SDGs); they have directly linked the project to SDG 3 (Good Health and Well-being) and SDG 10 (Reduced Inequalities). Instead of designing expensive smart glasses from the start, they produced a cost-effective and accessible physical prototype using an ESP32 camera and an Arduino Uno, which fully deserves top marks in the ‘Design Quality’ and ‘Innovation’ criteria. Adding three physical mode buttons to the device that allow switching between numbers, letters, and words to prevent the AI from confusing similar symbols and to improve translation accuracy is an excellent example of analytical problem-solving. Additionally, the task distribution among the 6-person team (coding, design, documentation) is very clearly documented and demonstrates strong teamwork. Under the ‘Responsible and Ethical AI’ criterion, they only need to provide a bit more detail regarding the privacy of camera data; however, overall, this is a project with a very high social impact that more than deserves to advance to Round 2 (Website Highlights).",
+          "comments_student": "I would like to wholeheartedly congratulate the entire iHear team (Brianna, Alithia, Christine, Shena, Calvin, and Lalo) on this wonderful and meaningful project! Your goal of breaking down communication barriers for people with hearing impairments through Filipino Sign Language (FSL), and the way you’ve so meaningfully aligned this vision with the UN’s SDG 3 and SDG 10 goals, is truly inspiring. Developing an accessible physical prototype using an Arduino, an ESP32 camera, and an LCD screen instead of expensive smart glasses demonstrates just how strong your design thinking skills are. In particular, your idea of adding three different mode buttons (numbers, letters, words) to the design to prevent AI from misinterpreting signs and to improve accuracy is an incredibly innovative engineering solution. Your team’s task distribution (front-end/back-end coding, prototyping) and your ability to overcome challenges like time constraints through effective communication are a wonderful example of collaboration. If you include details in your documentation about how you ensure the security and privacy of the image data the camera reads in your future developments, your project will be completely flawless. We’re proud of all of you—you’ve done an amazing job!"
         }
       ],
       "country": "Philippines",
@@ -4457,7 +4561,8 @@
       "r1_display_score": 27.0,
       "round2_judged_by": [
         "AI26S33U",
-        "AI26J9TN"
+        "AI26J9TN",
+        "AI269729"
       ],
       "round2_scores": [
         {
@@ -4491,6 +4596,22 @@
           "advance_recommended": true,
           "comments_panel": "This submission stands out for its exceptional technical depth, clear problem definition, and strong real world applicability. The team developed a functional prototype integrating hardware, AI, and real time instruction delivery, supported by testing data and cost analysis. The innovation is significant, particularly in making wearable AI solutions affordable and scalable. While ethical AI considerations could be more explicitly addressed, the overall quality, rigour, and completeness make this project one of the strongest candidates for ISTE representation.",
           "comments_student": "Your project is outstanding. The level of technical depth, from hardware design to AI integration, is extremely impressive and well beyond typical expectations. You clearly identified a real world problem and developed a practical, scalable solution with strong evidence through testing and performance data. Your focus on affordability makes your innovation even more impactful. To improve further, consider discussing ethical aspects such as data privacy and bias in AI systems. Overall, this is an exceptional project and well done."
+        },
+        {
+          "judge_id": "AI269729",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Philippines",
@@ -4643,8 +4764,44 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26T6MD",
+        "AI26AAU7"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26T6MD",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "This project demonstrates a strong and timely focus on ethical AI decision-making, with clear alignment to responsible use, privacy, and bias considerations—an area of increasing importance in education and beyond. The team shows impressive initiative in independently developing a functional prototype using AI as a learning partner, reflecting both technical growth and thoughtful design. While the technical depth of the AI system itself could be further developed, the clarity of purpose, ethical grounding, and potential for scalable impact position this as a strong candidate for highlighted project status.",
+          "comments_student": "You’ve created a thoughtful and meaningful project that puts ethics and responsible AI use at the centre, which is both important and forward-thinking. Your ability to learn new technologies and build a working prototype that will support many during time of need, using tools like Gemini and Copilot shows strong initiative and problem-solving. The way you’ve designed your solution makes complex ethical ideas more accessible and engaging for users, which is a significant strength. As a next step, continuing to refine how your system works and gathering user feedback will help demonstrate the real-world impact of your innovation"
+        },
+        {
+          "judge_id": "AI26AAU7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "Repurposing mechanical energy from bicycles to charge batteries for medical \"lifelines,\" is an original idea to work on.",
+          "comments_student": "The team made a brilliant ethical choice by using AI for \"triage\" logic to prioritize life-saving medical needs over comfort. Well done!\nTry to include a feature to translate the page for English users when they use KINETIKA."
+        }
+      ],
       "country": "Mexico",
       "region": "Sinaloa",
       "stage": "Round 2",
@@ -4779,7 +4936,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [
-        "AI26C2IW"
+        "AI26C2IW",
+        "AI269729"
       ],
       "round2_scores": [
         {
@@ -4797,6 +4955,22 @@
           "advance_recommended": true,
           "comments_panel": "This project demonstrates a strong balance between educational purpose and responsible AI integration. The team clearly understands the challenges in music education and proposes a solution that is both practical and supportive of existing teaching structures.\n\nParticularly notable is the team’s awareness of AI limitations and commitment to accuracy and human oversight, which reflects a mature and ethical approach to technology use. While the concept builds on existing tools, the thoughtful integration and focus on engagement make it a valuable contribution.\n\nRecommended to move forward, as the project shows strong potential for impact with further development in differentiation, scalability, and user validation.",
           "comments_student": "Your project shows a strong understanding of the challenges in music education and presents a thoughtful solution that supports both students and teachers. Your focus on making learning more engaging and accessible is clear, and your use of AI as a support tool demonstrates maturity and responsibility.\n\nYour attention to accuracy and human oversight is especially impressive and reflects a strong understanding of how AI should be used in education.\n\nTo strengthen your project further, focus on clearly showing how your platform works in real situations, how it can grow beyond one context, and what makes it unique compared to existing music learning tools. Including user testing or feedback would also make your solution even stronger.\n\nOverall, this is a well-developed project with clear potential to support and improve music learning experiences."
+        },
+        {
+          "judge_id": "AI269729",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
@@ -5553,7 +5727,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.0,
       "round2_judged_by": [
-        "AI26RI5W"
+        "AI26RI5W",
+        "AI26AAU7",
+        "AI26T6MD"
       ],
       "round2_scores": [
         {
@@ -5571,6 +5747,38 @@
           "advance_recommended": false,
           "comments_panel": "I believe this project has a broader impact than the team considered. I don't think their app should be limited to children in hospitals and can actually be applied to any student interested in hearing stories and learning to read in K-6.  My biggest concern is that if AI is generating stories there can be a lot of bias in the stories they write that will just perpetuate stereotypes. For example, will every story that features a teacher have a female teacher. If there is a police officer will it always be male? Will stories for boys be about sports and stories for girls be about princesses?  There is excellent evidence that the team asked for, received and implemented feedback. I love the feature that the user can put their own name into the story. When I tested the app there were some mistakes and incorrect feedback on the quizzes. It accepted wrong answers several times so there needs to be more tuning of the app before it is ready for public use.",
           "comments_student": "This is a good idea and I think you can make this project more broad than you intended. While I understand your interest in helping children confined to a hospital, this app could be used by children at home that want to hear a story or practice their reading skills. I don't think there is anything that confines it to a hospital setting. I love how you incorporated feedback from some stakeholders and the added feature of being able to put their own name into the story is great. When I tested the app and the quiz feature I was told several answers that were incorrect were correct so there needs to be some refinement to the AI model to ensure that it is more accurate when grading student work. My biggest concern is that the AI model will output stories that perpetuate bias and stereotype. For example, will the stories perpetuate the idea that elementary teachers are females, police officers are male, firefighters are male, or nurses are female. I like that there were different skills to focus on and the back-end design that incorporates standards and skills is great. Keep refining this platform and I think you could have something that students will enjoy!"
+        },
+        {
+          "judge_id": "AI26AAU7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": false,
+          "comments_panel": "While a specific UN SDG is not explicitly named by number, the project focuses on educational equity and addressing the \"healthcare-education intersection\".\nIt shows potential for longevity through \"infinite content generation\" that a standard app cannot provide, however, the design needs more alteration to make it fit for lower grade levels or pre-readers. \nThe project idea is not completely novice, it is a replication of existing projects but with more focus on hospitalized audience.",
+          "comments_student": "The solution includes several accessibility features, such as a \"read-aloud\" function and \"bolding words to support reading difficulties\". My suggestion, is to tailor the design or the way you respond to questions in the app to work for Pre-readers. Have you checked Storybook features in Gemini? Or Canva AI gamified quizzes and games? What can you change to make it more interactive and user friendly for kids?"
+        },
+        {
+          "judge_id": "AI26T6MD",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "This project demonstrates a strong, human-centered foundation with a clearly defined and meaningful problem space—supporting hospitalized children through personalized, AI-driven learning experiences. The integration of adaptive storytelling, embedded assessment, and accessibility features reflects thoughtful design and a creative application of AI that aligns well with the Challenge criteria. While technical depth and validation evidence are still emerging, the concept shows strong potential for impact, particularly in bridging education and healthcare contexts. Given its originality, clarity of purpose, and alignment to equity-focused outcomes, this submission warrants consideration for advancement to the final phase. With further development, it could represent a compelling example of AI used for inclusive and student-centered innovation.",
+          "comments_student": "Your project demonstrates a strong and thoughtful approach to ethics and privacy, alongside a clear commitment to supporting learners in meaningful ways. The intuitive design and engaging, personalized storytelling create a highly accessible experience that can be especially powerful for neurodiverse learners, helping to sustain focus while building important academic skills. The way you’ve integrated learning within the narrative shows strong potential for both engagement and skill development. As a next step, consider beginning to collect data and more user feedback to demonstrate this impact more explicitly including how using your tools supports the development of foundational literacy skills. Doing so will further strengthen your solution and elevate its potential for broader adoption and recognition."
         }
       ],
       "country": "United States",
@@ -6029,7 +6237,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [
-        "AI26R7JP"
+        "AI26R7JP",
+        "AI26R2KF",
+        "AI269729"
       ],
       "round2_scores": [
         {
@@ -6046,6 +6256,38 @@
           "total": 28,
           "advance_recommended": true,
           "comments_panel": "I was not able to open the prototype link but definitely give this project 100% on creativity and innovation based on all the other evidence provided.",
+          "comments_student": ""
+        },
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": false,
+          "comments_panel": "Interesting, but we already have relatively easy screening tests now no?  This doesn't seem as much of a creative rethinking of how to attack some problem.",
+          "comments_student": "Hey team, very interesting pitch.  The tool you describe could indeed have a positive impact on many, which is cool.  I had two things for you to consider.  First, there already exists other tools now that allow for quick screening, I would have liked to see a more direct comparison around how your approach is superior (I assume its cheaper and faster but I wasn't sure you were comparing with the most recent quick screening approaches).  Second, let's say it is now cheaper for someone in a developing country to detect the cancer, will they be able to afford the cancer treatment?  If not, are we just making them aware?  I know, this is a hard issue to solve for!  Anyway, very interesting, thank you!"
+        },
+        {
+          "judge_id": "AI269729",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "",
           "comments_student": ""
         }
       ],
@@ -6201,7 +6443,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 24.5,
       "round2_judged_by": [
-        "AI26TUYL"
+        "AI26TUYL",
+        "AI26POVR"
       ],
       "round2_scores": [
         {
@@ -6219,6 +6462,22 @@
           "advance_recommended": true,
           "comments_panel": "Prescripto is an outstanding example of practical AI application. The team identified a specific, high-friction problem in clinical settings and used a suite of AI tools to build a credible solution. Their technical workflow is modern and efficient, and the resulting prototype demonstrates a clear understanding of UI/UX in a professional context.",
           "comments_student": "Excellent work on Prescripto! Your ability to use different AI platforms like ChatGPT, Grok, and Claude for specific stages of your project shows a very high level of technical maturity. You’ve addressed a real pain point in the healthcare system with a solution that is both professional and patient-friendly. The clarity of your demo video and the personal motivation behind your project truly stand out. Keep pushing the boundaries of how AI can improve everyday life!"
+        },
+        {
+          "judge_id": "AI26POVR",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 25,
+          "advance_recommended": false,
+          "comments_panel": "I think this project is the start to a project that could be a finalist. There are a lot of red flags when giving medical advice and with only the general prompts used it and no access to the model it is hard to move this one forward.",
+          "comments_student": "This is such an amazing idea and would really help so many people.  You were very thoughtful about the product you choose and really have a powerful\nIdea here."
         }
       ],
       "country": "Philippines",
@@ -6620,7 +6879,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 28.0,
       "round2_judged_by": [
-        "AI26RI5W"
+        "AI26RI5W",
+        "AI26T6MD"
       ],
       "round2_scores": [
         {
@@ -6638,6 +6898,22 @@
           "advance_recommended": false,
           "comments_panel": "The idea is not fully formed. It's a good idea to gamify learning, but is limited right now. There are flashcards to help learn but not much else. Gamifying learning is not a new or novel idea or application of AI. Additionally, there is no evidence that they got feedback from experts or from peers as to how this would make learning better, more effective or more fun for them. There was no mention of how the project addresses ethical use or privacy.",
           "comments_student": "The idea to gamify learning is great, but not necessarily new. I'd love to see more evidence of something novel about how students are learning the information. Flash cards and quizzes can be helpful, but only for some learning. I'd like to see some more choices for how students could learn new information. I'd also like to see how you tested your prototype with peers and how you incorporated their feedback into your project refinement. I'd also like to know more about how you are ensuring privacy for users. This idea has great potential; I encourage you to keep working on it and think about more ways to gamify learning in other ways. Your video was really cute and stood out for its creativity and production. Nice job!"
+        },
+        {
+          "judge_id": "AI26T6MD",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "While the project is engaging and well-positioned conceptually, it lacks sufficient clarity and depth in explaining how the AI actually functions within the platform. Much of the described functionality (content summarization, flashcards, adaptive questioning) appears similar to existing tools such as NotebookLM, with limited differentiation or evidence of novel AI implementation. The gamification layer is compelling in narrative form, but the mechanics, user flow, and integration with the AI system are not clearly demonstrated or validated. I also had difficulty accessing and navigating the submission prototype.  As a result, despite its strengths, it does not yet meet the level of technical transparency, originality, and evidence required to advance to the final round.",
+          "comments_student": "Your project presents a creative and engaging vision for transforming studying into an interactive and motivating experience, and your storytelling is a clear strength. To strengthen your submission, focus on more clearly explaining how your AI works, what makes it different from existing tools, and how it adapts to learners in a unique way. Providing concrete examples, walkthroughs, or user testing evidence would help others better understand and trust your solution. Further clarity on how the gamification elements function in practice and support learning outcomes will also strengthen your overall impact."
         }
       ],
       "country": "Philippines",
@@ -7113,7 +7389,8 @@
       "r1_display_score": 21.5,
       "round2_judged_by": [
         "AI26SDY7",
-        "AI26ES1V"
+        "AI26ES1V",
+        "AI26POVR"
       ],
       "round2_scores": [
         {
@@ -7147,6 +7424,22 @@
           "advance_recommended": true,
           "comments_panel": "This project is unique because it uses voice commands in a closed system and does not give agentic AI access to the user's device. It is well-developed and tested.",
           "comments_student": "Your passion for this challenge is evident and the application is well researched and developed. Great job!"
+        },
+        {
+          "judge_id": "AI26POVR",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "This is such a wonderful, thoughtfully designed, and well-planned idea with clear real-world application. It is evident that you considered not only how the project works, but also how it could be used in authentic settings beyond the classroom. This is the kind of work that truly stands out because it solves a problem and has immediate relevance. There are absolutely schools and classrooms that could begin using something like this right away. It also feels very clear that a great deal of time, effort, and attention to detail went into every aspect of this project, from the initial concept through execution. The level of care and commitment you demonstrated is impressive. Well done.",
+          "comments_student": "To the team who created this project, you should be very proud of what you have accomplished. You took an idea and developed it into something meaningful, practical, and usable in real-world settings. That is not easy to do. Your work shows strong collaboration, thoughtful problem solving, and a clear understanding of your audience and purpose. The depth of effort behind the scenes is noticeable, and it reflects your dedication and persistence. Projects like this go beyond simply completing an assignment. They demonstrate creativity, initiative, and the ability to make an impact. Keep pushing yourselves in this way. It will serve you well in anything you choose to pursue."
         }
       ],
       "country": "India",
@@ -7562,8 +7855,27 @@
       "meets_round1": false,
       "advanced_to_round2": true,
       "r1_display_score": 20.5,
-      "round2_judged_by": [],
-      "round2_scores": [],
+      "round2_judged_by": [
+        "AI26D5BM"
+      ],
+      "round2_scores": [
+        {
+          "judge_id": "AI26D5BM",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "The Slouth project is one of the most inspiring projects I have evaluated based on the criteria of Innovation, Creativity, and Collaboration. The team’s decision to analyze current market conditions, abandon their initial idea for a music education app, and pivot toward a productivity app is an excellent example of process management. In particular, the fact that team member Johann was able to develop a gamified app using the AI coding assistant “Lovable” despite having no coding knowledge is a tremendous example of AI literacy. Liam’s management of the testing processes and Jessie’s handling of funding and feedback demonstrate excellent teamwork and division of labor. The app’s ability to gamify ordinary real-life tasks by creating endless mysteries through AI ensures the project’s longevity. However, in accordance with the evaluation criteria, I had to deduct points under the “Social Issue and SDG Connection” criterion; although the issue of productivity was addressed, there was no direct reference to the United Nations Sustainable Development Goals (SDGs). Despite these minor shortcomings, the team’s determination and the product they created are commendable. I’m giving them a chance for the second round. Their attention to AI ethics is commendable.",
+          "comments_student": "Great job, Liam, Johann, and Jessie!\nInstead of getting stuck on the competitive hurdles you faced with your initial music app idea and giving up, your strategic decision to pivot to an amazing productivity app like ‘Slouth’ is a tremendous example of perseverance and teamwork. The fact that Johann built such an innovative and gamified app using the AI coding assistant ‘Lovable’ despite having no coding experience is the very embodiment of the Innovation and Creativity criteria! Your idea of positioning AI not just as a tool, but as a game creator that offers users endless content through puzzle-solving mechanics is incredibly clever and effective. Your division of labor (Jessie handling funding and idea development, Liam handling testing and scenario planning) functioned like a professional tech startup. I have a small suggestion to make your project even more unbeatable in future presentations: If you directly incorporate into your text which of the United Nations Sustainable Development Goals (e.g., SDG 4: Quality Education or SDG 8: Decent Work) your wonderful vision serves, your project will be completely flawless. Congratulations on your innovative approach and wonderful collaboration."
+        }
+      ],
       "country": "Philippines",
       "region": "Metro Manila (likely)",
       "stage": "Round 2",
@@ -8101,7 +8413,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 22.0,
       "round2_judged_by": [
-        "AI262T01"
+        "AI262T01",
+        "AI26AAU7",
+        "AI263SHA"
       ],
       "round2_scores": [
         {
@@ -8119,6 +8433,38 @@
           "advance_recommended": false,
           "comments_panel": "This project has heart. It is clear that these young women want to help others. The use of AI is evident and their attempt to centralize information is evident.",
           "comments_student": "This project has heart. It is clear that your team wants to help others. The use of AI is evident and your attempt to centralize information is evident. One concern is that if an individual is experiencing food insecurity, you may want to consider that they may not have internet access, or a phone, to use your app. Keep this in mind as you develop your platform."
+        },
+        {
+          "judge_id": "AI26AAU7",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "Although it doesn't explicitly name a specific SDG, the work is meaningfully connected to the global goals by focusing on the core issue of resource and food security.\nBy simplifying the search, the app saves time and reduces stress for individuals and families seeking critical support.",
+          "comments_student": "Creative problem-solving and design thinking approaches"
+        },
+        {
+          "judge_id": "AI263SHA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
@@ -8824,7 +9170,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
       "round2_judged_by": [
-        "AI26B9KU"
+        "AI26B9KU",
+        "AI26R2KF"
       ],
       "round2_scores": [
         {
@@ -8842,6 +9189,22 @@
           "advance_recommended": false,
           "comments_panel": "Did not make UNSDG evident, although fits well with UNSDGs #4 & #10.",
           "comments_student": "I loved the story of your journey through this project.  Keep going! You are truly full of heart."
+        },
+        {
+          "judge_id": "AI26R2KF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "I didn't really understand the relevance of the 7 words (or where they came from) and I didn't totally get how this was innovative.  If it's not about reading braille, if its just about having stories read to you, can't conversational AI systems do that already?",
+          "comments_student": "Thank you for your work and for you desire to help visually impaired people to access stories.  That is a noble goal.  There were some things I didn't completely understand.  Specifically, are the seven words generated just to \"seed\" different stories?  Would it not be possible now for a visually impaired student to just ask Gemini to read them stories?  Maybe even real novels, poems or books rather than ones made up by AI?  I feel there is more to your idea I maybe did not understand well.  Overall though, a great goal and it looks like you did some fantastic work!"
         }
       ],
       "country": "China",
@@ -9256,7 +9619,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [
-        "AI26C2IW"
+        "AI26C2IW",
+        "AI269729"
       ],
       "round2_scores": [
         {
@@ -9274,6 +9638,22 @@
           "advance_recommended": false,
           "comments_panel": "This project stands out for its authentic problem identification and strong connection to real community needs. The team demonstrates initiative by engaging with stakeholders and grounding their idea in lived experience. While the concept is promising, further development is needed in technical design, ethical AI integration, and scalability planning to reach a higher level of impact and innovation.",
           "comments_student": "Your project presents a meaningful and well-researched solution to a real challenge faced by many students. Your personal experience, combined with input from organizations and school staff, makes your work authentic and impactful.\n\nTo strengthen your project further, focus on clearly explaining how your platform works in practice, especially how users interact with it and how AI is used responsibly. Developing your prototype with more detail, testing, and user feedback will also help bring your idea closer to a real-world solution.\n\nOverall, this is a strong foundation with great potential to grow into something truly impactful."
+        },
+        {
+          "judge_id": "AI269729",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Italy",
@@ -9695,7 +10075,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [
-        "AI26SDY7"
+        "AI26SDY7",
+        "AI26POVR"
       ],
       "round2_scores": [
         {
@@ -9713,6 +10094,22 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": "Thank you for your submission with research and student data from Hawai'i and across the globe. The team clearly set out to tackle the math deficits by creating an AI for personalized guidance. Quality education, UNSDG 4, was never clearly outlined in the team story. However, the \"Connection to Community Problem & SDG\" section was clearly labeled as a statewide problem creating a community problem. Thank you for submitting!"
+        },
+        {
+          "judge_id": "AI26POVR",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 24,
+          "advance_recommended": false,
+          "comments_panel": "This student has a great tool that can be used for simple math problems.  I think this can be used to enmity kids for sure, but I think there are better tools out there as a conduit for entering the problems. Chat is limited in how you enter problems so there is a certain math knowledge needed to input the data which is holding it back for me.",
+          "comments_student": "The research supporting this project is great and something that seems like it is really needed. A consideration would be to find a platform you could hand write a problem and AI could identify the problem, as math problems are not always easy to type into ChatGPT."
         }
       ],
       "country": "United States",
@@ -9839,7 +10236,7 @@
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 16, 2026 at 8:36 PM ET",
+  "data_as_of": "April 18, 2026 at 4:37 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
