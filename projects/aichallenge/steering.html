@@ -129,6 +129,27 @@ tr:hover td{background:rgba(124,77,255,.04)}
 .r3-card-tag{display:inline-block;font-size:.65rem;font-weight:600;padding:.1rem .45rem;border-radius:3px;margin-left:.4rem;text-transform:uppercase;letter-spacing:.03em}
 .r3-show-more{background:var(--card2);border:1px solid var(--border);color:var(--text2);padding:.55rem 1.2rem;border-radius:6px;font-family:inherit;font-size:.82rem;font-weight:500;cursor:pointer;width:100%;text-align:center;transition:all .15s;margin-top:.5rem}
 .r3-show-more:hover{border-color:var(--purple);color:var(--r2)}
+/* ACCORDION */
+.proc-intro{padding:1.5rem;font-size:.92rem;color:var(--text2);line-height:1.7;border-bottom:1px solid var(--border)}
+.proc-step{border-bottom:1px solid var(--border)}
+.proc-step:last-child{border-bottom:none}
+.proc-step-head{padding:1.1rem 1.5rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:background .15s}
+.proc-step-head:hover{background:rgba(77,208,225,.04)}
+.proc-step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0}
+.proc-step-title{flex:1}
+.proc-step-title h3{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.15rem}
+.proc-step-title .proc-sub{font-size:.78rem;color:var(--text3)}
+.proc-arrow{font-size:.8rem;color:var(--text3);transition:transform .2s;flex-shrink:0}
+.proc-step.open .proc-arrow{transform:rotate(90deg)}
+.proc-step-body{display:none;padding:0 1.5rem 1.3rem 4rem;font-size:.88rem;color:var(--text2);line-height:1.75}
+.proc-step.open .proc-step-body{display:block}
+.proc-step-body p{margin-bottom:.75rem}
+.proc-step-body ul{margin:0 0 .75rem 1.2rem}
+.proc-step-body li{margin-bottom:.35rem}
+.proc-highlight{background:rgba(255,213,79,.08);border:1px solid rgba(255,213,79,.2);border-radius:8px;padding:1rem;margin:.75rem 0}
+.proc-highlight p{margin-bottom:.4rem}
+.proc-highlight p:last-child{margin-bottom:0}
+.proc-stat{display:inline-block;background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:.3rem .8rem;font-size:.82rem;font-weight:600;color:var(--text);margin-right:.5rem;margin-bottom:.3rem}
 /* VIEW TOGGLE */
 .view-toggle{background:var(--card);border-bottom:1px solid var(--border);padding:.75rem 2rem;text-align:center}
 .view-toggle-inner{display:inline-flex;background:var(--card2);border-radius:8px;padding:.25rem;gap:.25rem}
@@ -214,57 +235,143 @@ tr:hover td{background:rgba(124,77,255,.04)}
 <div id="processWrap" style="display:none">
 <div class="section">
 <div class="section-head"><h2>Judging Process & Methodology</h2></div>
-<div style="padding:1.5rem;font-size:.9rem;color:var(--text);line-height:1.8;max-width:900px">
 
-<h3 style="color:var(--lteal);font-size:1.1rem;margin-bottom:.75rem">Overview</h3>
-<p style="margin-bottom:1rem">The ISTE + ASCD AI Innovator Challenge 2026 received 118 submissions from student teams across 21 countries. Through a structured, multi-round evaluation process involving 42 judges, we identified 10 recommended finalists for Round 3 consideration, along with 10 alternates and 5 additional mentions.</p>
-
-<h3 style="color:var(--lteal);font-size:1.1rem;margin:1.5rem 0 .75rem">Initial Screening</h3>
-<p style="margin-bottom:1rem">All 118 submissions were reviewed for completeness and accessibility. Five submissions were removed during initial screening because they did not meet basic submission requirements — missing required artifacts, broken or inaccessible links, or failure to respond to requests for corrected materials. The remaining 113 projects moved into Round 1 judging.</p>
-
-<h3 style="color:var(--lteal);font-size:1.1rem;margin:1.5rem 0 .75rem">Round 1 — Ready to Share</h3>
-<p style="margin-bottom:.75rem">Each of the 113 qualifying projects was assigned to 2 independent judges. Judges evaluated submissions across 7 rubric dimensions, each scored on a 1–4 scale, for a maximum score of 28:</p>
-<ul style="margin:0 0 1rem 1.5rem;color:var(--text2)">
-<li>Connection to Community Problem & SDG</li><li>Impact, Relevance & Longevity</li><li>Responsible & Ethical Use of AI</li>
-<li>Innovation & Creativity</li><li>Design Quality & Accessibility</li><li>Collaboration & Process</li><li>Presentation & Communication</li>
-</ul>
-<p style="margin-bottom:.75rem">After scoring, we conducted a thorough review:</p>
-<ul style="margin:0 0 1rem 1.5rem;color:var(--text2)">
-<li>Verified each project had been scored by its full set of assigned judges</li>
-<li>Identified significant scoring discrepancies between judges (gaps of 6+ points)</li>
-<li>Reviewed judge scoring patterns for evaluators consistently far above or below the field average</li>
-<li>Checked for criteria-level flags — any dimension rated 1 by either judge, or rated 2 by both</li>
-<li>Manually reviewed borderline cases near the advancement threshold</li>
-</ul>
-<p style="margin-bottom:1rem">For advancement, we required: a minimum average of 20/28, no dimension rated 1 by either judge, no dimension rated 2 by both, and both judges recommending advancement. We were intentionally generous with borderline cases when scoring discrepancies or a single harsh evaluator appeared to be the deciding factor. <strong style="color:var(--text)">66 projects advanced to Round 2</strong>, representing 15 countries.</p>
-
-<h3 style="color:var(--lteal);font-size:1.1rem;margin:1.5rem 0 .75rem">Round 2 — Website Highlights & Finalist Recommendation</h3>
-<p style="margin-bottom:.75rem">Each of the 66 advancing projects was assigned to <strong style="color:var(--text)">3 independent judges</strong> — an increase from 2 in Round 1. No judge who scored a project in Round 1 was assigned that same project in Round 2, ensuring fresh perspectives.</p>
-<p style="margin-bottom:.75rem">Following Round 2 scoring, we analyzed:</p>
-<ul style="margin:0 0 1rem 1.5rem;color:var(--text2)">
-<li>Judge consensus — whether all 3 judges recommended finalist status</li>
-<li>Scoring gaps, especially disagreements of 6+ points</li>
-<li>Cross-round score shifts — investigating whether changes reflected judge calibration or genuine quality signals</li>
-<li>Whether low-scoring judges showed a broader pattern of harsh scoring or a legitimate critique of that specific project</li>
-<li>Combined scoring weighting Round 2 at 60% and Round 1 at 40%</li>
-</ul>
-
-<h3 style="color:var(--gold);font-size:1.1rem;margin:1.5rem 0 .75rem">Finalist Selection Criteria</h3>
-<div style="background:rgba(255,213,79,.08);border:1px solid rgba(255,213,79,.2);border-radius:8px;padding:1rem;margin-bottom:1rem">
-<p style="margin-bottom:.5rem"><strong style="color:var(--gold)">Round 3 Finalists (10 projects):</strong> R2 average ≥ 25/28 with unanimous recommendation from all 3 judges. One project was included with a R2 average just below 25 because it achieved unanimous recommendation — the only project outside the initial group with full consensus.</p>
-<p style="margin-bottom:.5rem"><strong style="color:var(--r2)">Alternates (10 projects):</strong> R2 average ≥ 25/28 with majority recommendation (2 of 3 judges). In several cases, the dissenting judge still scored 24–26 but set a higher personal bar for "finalist." These are quality concerns about selectivity, not project quality.</p>
-<p><strong style="color:var(--lteal)">Mentions (5 projects):</strong> Combined weighted score ≥ 23 with majority recommendation, but R2 averages below 25. Quality work that performed well across both rounds.</p>
+<div class="proc-intro">
+The ISTE + ASCD AI Innovator Challenge 2026 received <strong style="color:var(--text)">118 submissions</strong> from student teams across <strong style="color:var(--text)">21 countries</strong>. Through a structured, multi-round evaluation process involving <strong style="color:var(--text)">42 judges</strong>, we identified <strong style="color:var(--gold)">10 recommended finalists</strong> for Round 3, along with 10 alternates and 5 additional mentions.<br><br>
+<span class="proc-stat">118 Submitted</span>
+<span class="proc-stat">113 Scored</span>
+<span class="proc-stat">66 Round 2</span>
+<span class="proc-stat" style="border-color:rgba(255,213,79,.4);color:var(--gold)">10 Finalists</span>
+<br><br>Click each step below to expand details.
 </div>
 
-<h3 style="color:var(--lteal);font-size:1.1rem;margin:1.5rem 0 .75rem">Process Integrity</h3>
-<ul style="margin:0 0 1rem 1.5rem;color:var(--text2)">
-<li><strong style="color:var(--text)">Judge anonymity</strong> — Only anonymized judge codes were used; identities kept separate from all shared portals</li>
-<li><strong style="color:var(--text)">Fresh eyes for Round 2</strong> — No judge evaluated the same project in both rounds</li>
-<li><strong style="color:var(--text)">Scoring pattern monitoring</strong> — Judges with very low variance or extreme averages were flagged and their impact reviewed</li>
-<li><strong style="color:var(--text)">Discrepancy review</strong> — All large scoring gaps individually examined for calibration issues vs. genuine differences</li>
-</ul>
-
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#00ACC122;color:var(--lteal)">1</div>
+<div class="proc-step-title"><h3>Initial Screening</h3><div class="proc-sub">118 submissions → 113 qualified</div></div>
+<div class="proc-arrow">▶</div>
 </div>
+<div class="proc-step-body">
+<p>All 118 submissions were reviewed for completeness and accessibility. Five submissions were removed because they did not meet basic submission requirements:</p>
+<ul>
+<li>Missing required artifacts (pitch video, digital product)</li>
+<li>Broken or inaccessible links</li>
+<li>Failure to respond to requests for corrected materials</li>
+</ul>
+<p>The remaining <strong style="color:var(--text)">113 projects</strong> moved into Round 1 judging.</p>
+</div>
+</div>
+
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#00ACC122;color:var(--lteal)">2</div>
+<div class="proc-step-title"><h3>Round 1 — Ready to Share</h3><div class="proc-sub">113 projects × 2 judges each → 66 advanced</div></div>
+<div class="proc-arrow">▶</div>
+</div>
+<div class="proc-step-body">
+<p>Each of the 113 qualifying projects was assigned to <strong style="color:var(--text)">2 independent judges</strong>. Judges evaluated submissions across 7 rubric dimensions, each scored 1–4, for a maximum of 28:</p>
+<ul>
+<li>Connection to Community Problem & SDG</li>
+<li>Impact, Relevance & Longevity</li>
+<li>Responsible & Ethical Use of AI</li>
+<li>Innovation & Creativity</li>
+<li>Design Quality & Accessibility</li>
+<li>Collaboration & Process</li>
+<li>Presentation & Communication</li>
+</ul>
+<p>Judges also indicated whether they felt each submission should advance to Round 2.</p>
+<p><strong style="color:var(--text)">Advancement criteria:</strong></p>
+<ul>
+<li>Minimum average score of 20 out of 28</li>
+<li>No rubric dimension rated 1 by either judge</li>
+<li>No dimension rated 2 by both judges</li>
+<li>Both judges recommending advancement</li>
+</ul>
+<p>We were intentionally generous with borderline cases when scoring discrepancies or a single harsh evaluator appeared to be the deciding factor.</p>
+<p><strong style="color:var(--text)">66 projects advanced to Round 2</strong>, representing 15 countries.</p>
+</div>
+</div>
+
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#7C4DFF22;color:var(--r2)">3</div>
+<div class="proc-step-title"><h3>Round 1 Review & Quality Checks</h3><div class="proc-sub">Scoring patterns, discrepancies & judge calibration</div></div>
+<div class="proc-arrow">▶</div>
+</div>
+<div class="proc-step-body">
+<p>Before advancing projects, we conducted a thorough review of Round 1 scoring:</p>
+<ul>
+<li><strong style="color:var(--text)">Completion verification</strong> — Confirmed each project had been scored by its full set of assigned judges</li>
+<li><strong style="color:var(--text)">Scoring discrepancies</strong> — Identified projects where judges differed by 6 or more points and investigated each case</li>
+<li><strong style="color:var(--text)">Judge pattern analysis</strong> — Reviewed evaluators who were consistently scoring far above or below the field average (overall average: 21.7/28)</li>
+<li><strong style="color:var(--text)">Criteria-level flags</strong> — Checked for any rubric dimension rated 1 by either judge, or rated 2 by both judges</li>
+<li><strong style="color:var(--text)">Borderline review</strong> — Projects scoring between 18–21 were manually reviewed, especially where one harsh judge appeared to be the deciding factor</li>
+</ul>
+</div>
+</div>
+
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#7C4DFF22;color:var(--r2)">4</div>
+<div class="proc-step-title"><h3>Round 2 — Website Highlights & Finalist Recommendation</h3><div class="proc-sub">66 projects × 3 judges each</div></div>
+<div class="proc-arrow">▶</div>
+</div>
+<div class="proc-step-body">
+<p>For Round 2, each of the 66 advancing projects was assigned to <strong style="color:var(--text)">3 independent judges</strong> — an increase from 2 in Round 1 to provide stronger signal for finalist decisions.</p>
+<p><strong style="color:var(--text)">No judge who scored a project in Round 1 was assigned that same project in Round 2</strong>, ensuring fresh perspectives on every submission.</p>
+<p>Judges used the same 7-dimension rubric and were additionally asked whether they would recommend each project as a finalist to represent ISTE at ISTELive 2026.</p>
+</div>
+</div>
+
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#7C4DFF22;color:var(--r2)">5</div>
+<div class="proc-step-title"><h3>Round 2 Analysis</h3><div class="proc-sub">Consensus, gaps, cross-round patterns & judge calibration</div></div>
+<div class="proc-arrow">▶</div>
+</div>
+<div class="proc-step-body">
+<p>Following Round 2 scoring, we analyzed:</p>
+<ul>
+<li><strong style="color:var(--text)">Judge consensus</strong> — Whether all 3 judges recommended finalist status</li>
+<li><strong style="color:var(--text)">Scoring gaps</strong> — Disagreements of 6 or more points between judges on the same project</li>
+<li><strong style="color:var(--text)">Cross-round shifts</strong> — Projects with significant score changes between Round 1 and Round 2, investigating whether shifts reflected judge calibration differences or genuine quality signals</li>
+<li><strong style="color:var(--text)">Low-scorer investigation</strong> — Whether judges who scored a project notably lower were part of a broader pattern of harsh scoring, or representing a legitimate critical evaluation</li>
+<li><strong style="color:var(--text)">Combined scoring</strong> — Weighted Round 2 at 60% and Round 1 at 40%, reflecting that Round 2 represents the most recent and focused evaluation</li>
+</ul>
+</div>
+</div>
+
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#FFD54F22;color:var(--gold)">6</div>
+<div class="proc-step-title"><h3>Finalist Selection Criteria</h3><div class="proc-sub">How the three tiers were determined</div></div>
+<div class="proc-arrow">▶</div>
+</div>
+<div class="proc-step-body">
+<div class="proc-highlight">
+<p><strong style="color:var(--gold)">Round 3 Finalists (10 projects)</strong><br>R2 average ≥ 25/28 with unanimous recommendation from all 3 judges. One project was included with a R2 average just below 25 because it achieved unanimous recommendation — the only project outside the initial group with full consensus. The committee felt that unanimous agreement to advance carried significant weight.</p>
+<p><strong style="color:var(--r2)">Alternates (10 projects)</strong><br>R2 average ≥ 25/28 with majority recommendation (2 of 3 judges). In several cases, the dissenting judge still scored the project 24–26 but set a higher personal bar for what constitutes a "finalist." These reflect selectivity in the evaluation, not concerns about project quality. These projects would be well-suited for recognition on the ISTE + ASCD website and could be considered if the committee wishes to expand the finalist pool.</p>
+<p><strong style="color:var(--lteal)">Mentions (5 projects)</strong><br>Combined weighted score ≥ 23 with majority recommendation, but R2 averages below 25. Quality work that performed well across both rounds and merits recognition.</p>
+</div>
+</div>
+</div>
+
+<div class="proc-step" onclick="this.classList.toggle('open')">
+<div class="proc-step-head">
+<div class="proc-step-num" style="background:#1B5E2033;color:var(--green)">✓</div>
+<div class="proc-step-title"><h3>Process Integrity</h3><div class="proc-sub">Safeguards applied throughout both rounds</div></div>
+<div class="proc-arrow">▶</div>
+</div>
+<div class="proc-step-body">
+<ul>
+<li><strong style="color:var(--text)">Judge anonymity</strong> — Only anonymized judge codes were used throughout. Judge identities were kept separate from all shared portals and reports.</li>
+<li><strong style="color:var(--text)">Fresh eyes for Round 2</strong> — No judge evaluated the same project in both rounds, preventing anchoring bias from prior scores.</li>
+<li><strong style="color:var(--text)">Scoring pattern monitoring</strong> — Judges whose scoring showed very low variance (e.g., scoring every project nearly identically) or extreme averages (consistently 5+ points above or below the field average) were flagged and their impact on specific projects was reviewed.</li>
+<li><strong style="color:var(--text)">Discrepancy review</strong> — All projects with large scoring gaps between judges were individually examined to determine whether the gap reflected a genuine difference of opinion or a calibration issue with a specific evaluator.</li>
+</ul>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -347,19 +454,21 @@ if(av!==bv)return av-bv;
 return(b.avg_score||0)-(a.avg_score||0);
 });
 const t=document.getElementById('mainTable');
-t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Project Name</th><th>Team</th><th>Country</th><th>Region</th><th>R1 Avg</th><th>Stage</th><th>R2 Status</th></tr>';
+t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Project Name</th><th>Team</th><th>Country</th><th>Region</th><th>R1 Avg</th><th>R2 Avg</th><th>Stage</th><th>R2 Status</th></tr>';
 t.querySelector('tbody').innerHTML=rows.map(p=>{
 const st=getStage(p);
 const sb=st==='Round 3'?'badge-r3':st==='Round 2'?'badge-r2':st==='Round 1'?'badge-r1':'badge-screen';
 const avg=p.avg_score!=null?p.avg_score:'—';
+const r2s=p.round2_scores||[];
+const r2avg=r2s.length?(r2s.reduce((a,b)=>a+b.total,0)/r2s.length).toFixed(1):'—';
 let r2Status='—';
 if(p.advanced_to_round2){
-  const n=(p.round2_scores||[]).length;
+  const n=r2s.length;
   if(n===0)r2Status='<span class="badge badge-screen">Not Scored</span>';
   else if(n<3)r2Status='<span class="badge" style="background:#F57F1722;color:#FFB74D;border:1px solid #F57F1744">Partial</span>';
   else r2Status='<span class="badge badge-green">Complete</span>';
 }
-return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><span class="badge '+sb+'">'+st+'</span></td><td>'+r2Status+'</td></tr>'
+return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><strong>'+r2avg+'</strong></td><td><span class="badge '+sb+'">'+st+'</span></td><td>'+r2Status+'</td></tr>'
 }).join('');
 }
 
