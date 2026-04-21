@@ -896,9 +896,9 @@
       ],
       "country": "United States",
       "region": "California",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI107": {
       "id": "ISTE26AI107",
@@ -1232,9 +1232,9 @@
       ],
       "country": "North Macedonia",
       "region": "Karbinci",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI110": {
       "id": "ISTE26AI110",
@@ -2563,9 +2563,9 @@
       ],
       "country": "United States",
       "region": "Virginia",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI123": {
       "id": "ISTE26AI123",
@@ -2883,9 +2883,9 @@
       ],
       "country": "Philippines",
       "region": "La Union",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI126": {
       "id": "ISTE26AI126",
@@ -5580,9 +5580,9 @@
       ],
       "country": "Mexico",
       "region": "Sinaloa",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "Advanced by committee review",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI155": {
       "id": "ISTE26AI155",
@@ -7816,9 +7816,9 @@
       ],
       "country": "Saudi Arabia",
       "region": "Eastern Province",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI177": {
       "id": "ISTE26AI177",
@@ -8357,9 +8357,9 @@
       ],
       "country": "Philippines",
       "region": "Metro Manila",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI182": {
       "id": "ISTE26AI182",
@@ -8745,9 +8745,9 @@
       ],
       "country": "India",
       "region": "Delhi",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI185": {
       "id": "ISTE26AI185",
@@ -10918,9 +10918,9 @@
       ],
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI208": {
       "id": "ISTE26AI208",
@@ -11047,9 +11047,9 @@
       ],
       "country": "India",
       "region": "Delhi",
-      "stage": "Round 2",
+      "stage": "Round 3",
       "advancement_note": "",
-      "advanced_to_round3": false
+      "advanced_to_round3": true
     },
     "ISTE26AI209": {
       "id": "ISTE26AI209",
@@ -12050,7 +12050,7 @@
       "advanced_to_round3": false
     }
   },
-  "data_as_of": "April 21, 2026 at 6:07 AM ET",
+  "data_as_of": "April 21, 2026 at 6:44 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
