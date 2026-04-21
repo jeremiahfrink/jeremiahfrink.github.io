@@ -1132,7 +1132,8 @@
       "r1_display_score": 26.0,
       "round2_judged_by": [
         "AI267RSA",
-        "AI26DY2S"
+        "AI26DY2S",
+        "AI26XVQS"
       ],
       "round2_scores": [
         {
@@ -1166,6 +1167,22 @@
           "advance_recommended": true,
           "comments_panel": "This team identified a real, documented health crisis in their own community and built something to address it. The local health report data, the visit to Kežovica Spa, the conversation with a rehabilitation specialist, these are not things most student teams do. They went out, talked to people, and let what they found shape what they built. That foundation makes the whole project credible.\nThe Micro:bit hardware system is the standout piece. Four physical devices, each targeting a different area of the spine, communicating via radio signals to a central data table — that is a real system architecture. The ML model training using accelerometer data to distinguish correct from incorrect movement is technically sound and genuinely innovative at this level. The human-in-the-loop approach to bias reduction, training on diverse body types, shows they thought carefully about who would actually use this.\nThe PictoBlox application is where the project falls short of its own ambitions. What is presented in the brochure as an AI-powered personalized feedback system is, in practice, a block-based interface that displays exercise photos and plays audio descriptions. The face recognition login is a nice touch but the core interaction is simpler than the documentation suggests. There is also a bug where the say and speak blocks fire simultaneously, creating overlapping audio — something that should have been caught in testing. The application layer reads as middle school level compared to the sophistication of the hardware work.\nThe 10-day longitudinal study and the 40-student survey are real evidence of impact. Not many teams produce data like this. Recommended for the finalist stage.",
           "comments_student": "You started this project the right way. You looked at your community, found a real problem backed by actual health data, and went and talked to a doctor about it. That matters more than most teams realize. A lot of projects start with a solution and work backward. You started with the people who are affected.\nThe physical devices are impressive. Training a machine learning model to recognize correct and incorrect exercise form using Micro:bit sensors, then linking four separate devices to a central data table via radio, that is not a simple thing to build. The fact that it works, and that you have 10 days of data showing improvement across three students, means you built something real.\nBe honest about the app, though. The PictoBlox side of the project is much simpler than your brochure describes. Showing exercise photos and playing audio instructions is useful, but it is not the same as AI-driven personalized recommendations. There is also a sound bug, the text and voice outputs play at the same time and overlap. Fix that before your next demonstration. When you present this, show the hardware. That is your strongest work and it should be front and center.\nOne more thing: your pitch video has audio but it does not show the system working live. A 30-second clip of someone wearing the device, doing an exercise, and seeing the Micro:bit respond would be more convincing than any amount of text on screen. You have something worth showing. Show it properly."
+        },
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "I wasn't able to actually launch the program that runs this solution so can't speak to its viability. The students seemed to do a lot of good work though in terms of research and iterating to solve a real problem. So hopefully the rest of the judges were able to investigate the technical viability of this entry.",
+          "comments_student": "What an interesting idea! Congratulations, team, on designing such an interesting solution to a real problem and collaborating effectively to do so."
         }
       ],
       "country": "North Macedonia",
@@ -1672,7 +1689,8 @@
       "r1_display_score": 24.0,
       "round2_judged_by": [
         "AI267RSA",
-        "AI26IV85"
+        "AI26IV85",
+        "AI26XVQS"
       ],
       "round2_scores": [
         {
@@ -1706,6 +1724,22 @@
           "advance_recommended": true,
           "comments_panel": "Well organized synopsis, great video presentation, and enjoyed interacting with the app.",
           "comments_student": "Well organized synopsis, great video presentation, and enjoyed interacting with the app. Practical solutions, great job."
+        },
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "The solution is an intelligent assistant that can be used for fitness questions but it's not specific to that purpose. You can ask it anything. It does appear that the team iterated with different technical options, but it's not clear what they learned in each iteration, nor did they consult experts or explain their design thinking process.",
+          "comments_student": ""
         }
       ],
       "country": "Mexico",
@@ -4306,7 +4340,8 @@
       "r1_display_score": 21.5,
       "round2_judged_by": [
         "AI268RZE",
-        "AI26IV85"
+        "AI26IV85",
+        "AI26XVQS"
       ],
       "round2_scores": [
         {
@@ -4340,6 +4375,22 @@
           "advance_recommended": true,
           "comments_panel": "Appreciate the community conscious approach. When will playlab become public for general use?",
           "comments_student": "Review student use of spell-checker and draft review before submitting documents. Will the app link be shared and how will the community know this resource is available?"
+        },
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 1,
+            "Presentation & Communication": 3
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "I tried using it for my area and it could only deliver results from northern VA. If this team had made more clear what their process was, how they selected the tech they used, how they iterated and the connection to the UNSDG, they would have scored better.",
+          "comments_student": "This is an interesting idea and worth pursuing as an app that people can use nationally. Definitely worth iterating on this app to scale and implement. Good initial effort!"
         }
       ],
       "country": "United States",
@@ -5129,7 +5180,8 @@
       "r1_display_score": 20.5,
       "round2_judged_by": [
         "AI26T6MD",
-        "AI26AAU7"
+        "AI26AAU7",
+        "AI263SHA"
       ],
       "round2_scores": [
         {
@@ -5163,6 +5215,22 @@
           "advance_recommended": true,
           "comments_panel": "Repurposing mechanical energy from bicycles to charge batteries for medical \"lifelines,\" is an original idea to work on.",
           "comments_student": "The team made a brilliant ethical choice by using AI for \"triage\" logic to prioritize life-saving medical needs over comfort. Well done!\nTry to include a feature to translate the page for English users when they use KINETIKA."
+        },
+        {
+          "judge_id": "AI263SHA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 28,
+          "advance_recommended": true,
+          "comments_panel": "I loved the team work and their pitch video was one of nicest I have seen this round.",
+          "comments_student": ""
         }
       ],
       "country": "Mexico",
@@ -6583,7 +6651,8 @@
       "r1_display_score": 22.5,
       "round2_judged_by": [
         "AI26F8CY",
-        "AI26R7JP"
+        "AI26R7JP",
+        "AI26KQ5Z"
       ],
       "round2_scores": [
         {
@@ -6617,6 +6686,22 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26KQ5Z",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 23,
+          "advance_recommended": true,
+          "comments_panel": "PASSION is the only project in my batch that explicitly names, displays, and substantively explains its SDG connections (SDG 4 and SDG 10), earning a 4 on Criterion 1. The Team Story articulates why equity matters to the project: students lacking resources are most pressured to imitate others' impressive projects, leading to burnout rather than learning. Design Quality also earned a 4 based on the strongest iteration evidence in the batch: the team describes specific early feedback (responses too lengthy or incomplete), the actions they took (refined prompts, reinforced guardrails, switched LLMs), and the outcome (clearer summaries, more practical guidance). The app's structured intake form with mixed input types (text fields, checkboxes, dropdowns) and the Google Doc export feature reflect thoughtful UX design for the target audience. The app is live, immediately usable, and clearly documented. Built on Playlab, so the technical lift is lighter than custom-coded projects (Criterion 4). Video is voiceover only, no on-camera presence (Criterion 7). Recommended for finals.",
+          "comments_student": "PASSION stands out in two areas that many submissions missed. You are the only team that named your UN SDGs, explained why they matter, and connected them directly to your project's purpose. That connection between educational equity and passion project access is well-reasoned and clearly communicated. Your iteration process is also the most specific we reviewed: identifying that early responses were incomplete, refining prompts, switching LLMs, and describing the improved outcome shows exactly the kind of test-and-learn cycle judges want to see.\nThe structured intake form (mixing text inputs, checkboxes, and dropdowns) and the Google Doc export show practical design thinking about how students will actually use the tool. Two areas to strengthen for future presentations: consider appearing on camera in your pitch video, and expand your Responsible AI discussion to address specific risks or limitations of AI-generated project recommendations."
         }
       ],
       "country": "United States",
@@ -8944,7 +9029,8 @@
       "advanced_to_round2": true,
       "r1_display_score": 25.0,
       "round2_judged_by": [
-        "AI26IV85"
+        "AI26IV85",
+        "AI26XVQS"
       ],
       "round2_scores": [
         {
@@ -8962,6 +9048,22 @@
           "advance_recommended": true,
           "comments_panel": "Great representation and engineering problem to address. Nicely organized arduino prototype, appreciate the code for review. I can see the architecture and construction workforce becoming digitized using prototypes like this.",
           "comments_student": "Great representation and engineering problem to address. Nicely organized arduino prototype, appreciate the code for review. I can see the architecture and construction workforce becoming digitized using prototypes like this. Love the accountability with each role."
+        },
+        {
+          "judge_id": "AI26XVQS",
+          "criteria": {
+            "Connection to Community Problem & SDG": 1,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 12,
+          "advance_recommended": false,
+          "comments_panel": "I found this project and presentation confusing. It was not clear to me that the students involved truly understood the subject matter or how their problem/solution worked. In addition, there's not evidence of how to scale the solution, it's broader application and how it would affect a community.",
+          "comments_student": ""
         }
       ],
       "country": "United Arab Emirates",
@@ -9022,7 +9124,8 @@
       "r1_display_score": 22.0,
       "round2_judged_by": [
         "AI26F8CY",
-        "AI2663L7"
+        "AI2663L7",
+        "AI26KQ5Z"
       ],
       "round2_scores": [
         {
@@ -9056,6 +9159,22 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26KQ5Z",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "SocialWellBeing earned the strongest AI ethics score (4 on Criterion 3) based on an exceptionally detailed and transparent AI use disclosure. The team names four AI tools with specific purposes, draws an explicit boundary between AI as \"accelerator\" versus decision-maker, and builds privacy protections directly into the product (photo verification with no face recognition, no identity tracking, no data storage; MBTI assessments framed as non-diagnostic). The concept of using AI to guide socially withdrawn individuals back into real-world interaction, rather than deeper into screens, reflects genuine creative thinking (Criterion 4). The Team Story clearly defines three complementary roles and connects the problem to personal experience (Criterion 6). No SDG named (Criterion 1). Video is voiceover only, no team members on camera (Criterion 7).Two concerns for the panel's consideration. First, the YouTube title reads \"İntel Skills For İnnovation-SociallWellBeing\" and the video was uploaded January 31, 2026, roughly six weeks before other submissions. This suggests the project may have been originally developed for an Intel education program. The panel should determine whether this constitutes a cross-submission concern under Challenge rules. Second, the prototype is hosted on Manus.space with a \"Made with Manus\" badge, meaning an AI agent assisted in building the application. The team is transparent about this in their disclosure, but it raises questions about the degree of student-built implementation versus AI-generated output that the panel may want to weigh.I am recommending this project move forward based on the strength of the concept, the AI ethics framework, and the team's thoughtful design, but I want these concerns visible to the panel.",
+          "comments_student": "Your AI use disclosure is the most detailed and transparent we reviewed. Naming each tool, explaining its specific purpose, and drawing a clear line between AI assistance and human decision-making is exactly the level of thoughtfulness judges look for. The privacy protections built into your product (no face recognition, no identity tracking, no data storage for photo verification) show you took ethical design seriously at the feature level, not just in a written statement.\nThe concept of guiding socially withdrawn individuals back into real-world interaction through small, achievable, rewarded actions is creative and psychologically sound. Your Team Story effectively shows how three distinct skill sets complement each other.\nTwo areas to strengthen: name your specific UN SDG(s) (SDG 3 is a clear fit for this project), and consider appearing on camera in your pitch video. The narration is emotionally compelling, but judges connect more deeply when they see the team behind the work, especially for a project rooted in personal experience with social isolation."
         }
       ],
       "country": "Turkey",
@@ -10372,7 +10491,8 @@
       "r1_display_score": 23.0,
       "round2_judged_by": [
         "AI262T01",
-        "AI26IEBZ"
+        "AI26IEBZ",
+        "AI263SHA"
       ],
       "round2_scores": [
         {
@@ -10406,6 +10526,22 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": "This shows creativity and ingenuity.  One thing to think about is more detail on how users can and will use it in their kitchens.  The setup wasn't as clear until I saw the website.  This can truly be impactful and I see it being applicable in multiple areas, countries, and types of kitchens."
+        },
+        {
+          "judge_id": "AI263SHA",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "",
+          "comments_student": "Great project and great cause!"
         }
       ],
       "country": "India",
@@ -11334,7 +11470,7 @@
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 20, 2026 at 2:12 PM ET",
+  "data_as_of": "April 21, 2026 at 3:41 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
