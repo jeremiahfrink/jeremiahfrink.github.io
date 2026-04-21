@@ -1,4 +1,4 @@
-<!-- Updated: April 16, 2026 — Added Round 3 Preview with tiered candidates, R2 progress, comments in modal -->
+<!-- Updated: April 21, 2026 — Round 3 Finalists view, Recognized with Distinction tier, removed Under Review, added R3 badges -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,6 +67,7 @@ tr:hover td{background:rgba(124,77,255,.04)}
 .pid-link{color:var(--lteal);cursor:pointer;font-weight:600}.pid-link:hover{text-decoration:underline}
 .badge{display:inline-block;padding:.15rem .55rem;border-radius:50px;font-size:.7rem;font-weight:600}
 .badge-r2{background:#7C4DFF22;color:var(--r2);border:1px solid #7C4DFF44}
+.badge-r3{background:#FFD54F22;color:var(--gold);border:1px solid #FFD54F44}
 .badge-r1{background:#00ACC122;color:var(--lteal);border:1px solid #00ACC144}
 .badge-screen{background:#37474F44;color:#90A4AE;border:1px solid #546E7A55}
 .badge-green{background:#1B5E2033;color:var(--green);border:1px solid #2E7D3255}
@@ -158,7 +159,7 @@ tr:hover td{background:rgba(124,77,255,.04)}
 <div class="view-toggle">
 <div class="view-toggle-inner">
 <button class="view-btn active" id="vOverview" onclick="switchView('overview')">Overview</button>
-<button class="view-btn" id="vR3" onclick="switchView('r3')">Round 3 Preview</button>
+<button class="view-btn" id="vR3" onclick="switchView('r3')">Round 3 Finalists</button>
 </div>
 </div>
 
@@ -179,7 +180,7 @@ tr:hover td{background:rgba(124,77,255,.04)}
 </div>
 
 <div class="section" id="r3SectionSmall">
-<div class="section-head"><h2>Round 3 Preview — Finalist Candidates</h2><span style="font-size:.78rem;color:var(--text3);margin-left:.5rem">(preliminary — R2 scoring in progress)</span></div>
+<div class="section-head"><h2>Round 3 Finalists</h2></div>
 <div id="r3Preview" style="padding:1rem 1.3rem"></div>
 </div>
 
@@ -204,7 +205,7 @@ tr:hover td{background:rgba(124,77,255,.04)}
 
 <div id="r3FullWrap" style="display:none">
 <div class="section">
-<div class="section-head"><h2>Round 3 Preview — Finalist Candidates</h2><span style="font-size:.78rem;color:var(--text3);margin-left:.5rem">(preliminary — R2 scoring in progress)</span></div>
+<div class="section-head"><h2>Round 3 Finalists</h2></div>
 <div id="r3PreviewFull" style="padding:1rem 1.3rem"></div>
 </div>
 </div>
@@ -243,23 +244,21 @@ const total=ps.length;
 const scored=ps.filter(p=>p.scores&&p.scores.length>0).length;
 const r2=ps.filter(p=>p.advanced_to_round2).length;
 const r2Complete=ps.filter(p=>p.advanced_to_round2&&(p.round2_scores||[]).length>=3).length;
-const r2Partial=ps.filter(p=>p.advanced_to_round2&&(p.round2_scores||[]).length>0&&(p.round2_scores||[]).length<3).length;
-const r2Pct=r2?Math.round(((r2Complete*3)+(ps.filter(p=>p.advanced_to_round2).reduce((s,p)=>s+Math.min((p.round2_scores||[]).length,3),0)-(r2Complete*3)))/(r2*3)*100):0;
 const r2Subs=ps.filter(p=>p.advanced_to_round2).reduce((s,p)=>s+(p.round2_scores||[]).length,0);
-const review=ps.filter(p=>p.round2_status==='review').length;
-const r3Trending=ps.filter(p=>p.advanced_to_round2&&classifyR3(p)&&(classifyR3(p).tier==='strong'||classifyR3(p).tier==='strong_r1'||classifyR3(p).tier==='likely')).length;
+const r2Pct=r2?Math.round(r2Subs/(r2*3)*100):0;
+const r3Count=ps.filter(p=>p.advanced_to_round3).length;
+const r3Label=r3Count>0?r3Count:'TBD';
+const r3Sub=r3Count>0?'Finalists':'Selection Pending';
 document.getElementById('funnel').innerHTML=
 '<div class="funnel-card" style="border-top-color:var(--teal)"><div class="label">Submitted</div><div class="val" style="color:var(--lteal)">'+total+'</div><div class="label">Projects</div></div>'+
 '<div class="funnel-card" style="border-top-color:var(--green)"><div class="label">Scored (R1)</div><div class="val" style="color:var(--green)">'+scored+'</div><div class="label">By 2+ Judges</div></div>'+
-'<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">Round 2</div><div class="val" style="color:var(--r2)">'+r2+'</div><div class="label">Advancing</div></div>'+
-'<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">R2 Progress</div><div class="val" style="color:var(--r2);font-size:1.5rem">'+r2Subs+' / '+(r2*3)+'</div><div class="label">'+r2Pct+'% — '+r2Complete+' Complete</div></div>'+
-'<div class="funnel-card" style="border-top-color:var(--amber)"><div class="label">Under Review</div><div class="val" style="color:var(--amber)">'+review+'</div><div class="label">Pending</div></div>'+
-'<div class="funnel-card" style="border-top-color:var(--gold)"><div class="label">Round 3</div><div class="val" style="color:var(--gold)">TBD</div><div class="label">'+r3Trending+' Trending</div></div>';
+'<div class="funnel-card" style="border-top-color:var(--purple)"><div class="label">Round 2</div><div class="val" style="color:var(--r2)">'+r2+'</div><div class="label">'+r2Complete+' of '+r2+' Complete</div></div>'+
+'<div class="funnel-card" style="border-top-color:var(--gold)"><div class="label">Round 3</div><div class="val" style="color:var(--gold)">'+r3Label+'</div><div class="label">'+r3Sub+'</div></div>';
 }
 
 function renderFilters(){
-const stages=['all','Round 2','Round 1','Initial Screening'];
-const sLabels=['All','Round 2','Round 1','Screening'];
+const stages=['all','Round 3','Round 2','Round 1','Initial Screening'];
+const sLabels=['All','Round 3','Round 2','Round 1','Screening'];
 document.getElementById('stageFilter').innerHTML=stages.map((v,i)=>'<button class="'+(i===0?'active':'')+'" data-f="'+v+'">'+sLabels[i]+'</button>').join('');
 document.getElementById('stageFilter').addEventListener('click',e=>{if(!e.target.dataset.f)return;stageF=e.target.dataset.f;document.querySelectorAll('#stageFilter button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderTable()});
 
@@ -271,23 +270,29 @@ document.getElementById('countryFilter').innerHTML=chtml;
 document.getElementById('countryFilter').addEventListener('click',e=>{if(!e.target.dataset.f)return;countryF=e.target.dataset.f;document.querySelectorAll('#countryFilter button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderTable()});
 }
 
+function getStage(p){
+if(p.advanced_to_round3)return'Round 3';
+return p.stage||'Unknown';
+}
+
 function renderTable(){
 const search=document.getElementById('searchBox').value.toLowerCase();
 let rows=Object.values(D.projects);
-if(stageF!=='all')rows=rows.filter(p=>p.stage===stageF);
+if(stageF!=='all')rows=rows.filter(p=>getStage(p)===stageF);
 if(countryF!=='all')rows=rows.filter(p=>p.country===countryF);
 if(search)rows=rows.filter(p=>(p.id+' '+p.project_name+' '+p.team_name+' '+p.country).toLowerCase().includes(search));
 rows.sort((a,b)=>{
-const so={'Round 2':0,'Round 1':1,'Initial Screening':2};
-const av=so[a.stage]==null?9:so[a.stage];
-const bv=so[b.stage]==null?9:so[b.stage];
+const so={'Round 3':0,'Round 2':1,'Round 1':2,'Initial Screening':3};
+const av=so[getStage(a)]==null?9:so[getStage(a)];
+const bv=so[getStage(b)]==null?9:so[getStage(b)];
 if(av!==bv)return av-bv;
 return(b.avg_score||0)-(a.avg_score||0);
 });
 const t=document.getElementById('mainTable');
 t.querySelector('thead').innerHTML='<tr><th>Project ID</th><th>Project Name</th><th>Team</th><th>Country</th><th>Region</th><th>R1 Avg</th><th>Stage</th><th>R2 Status</th></tr>';
 t.querySelector('tbody').innerHTML=rows.map(p=>{
-const sb=p.stage==='Round 2'?'badge-r2':p.stage==='Round 1'?'badge-r1':'badge-screen';
+const st=getStage(p);
+const sb=st==='Round 3'?'badge-r3':st==='Round 2'?'badge-r2':st==='Round 1'?'badge-r1':'badge-screen';
 const avg=p.avg_score!=null?p.avg_score:'—';
 let r2Status='—';
 if(p.advanced_to_round2){
@@ -296,7 +301,7 @@ if(p.advanced_to_round2){
   else if(n<3)r2Status='<span class="badge" style="background:#F57F1722;color:#FFB74D;border:1px solid #F57F1744">Partial</span>';
   else r2Status='<span class="badge badge-green">Complete</span>';
 }
-return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><span class="badge '+sb+'">'+p.stage+'</span></td><td>'+r2Status+'</td></tr>'
+return'<tr><td><span class="pid-link" onclick="openProject(\''+p.id+'\')">'+p.id+'</span></td><td style="white-space:normal;max-width:240px">'+esc(p.project_name)+'</td><td style="white-space:normal;max-width:150px">'+esc(p.team_name)+'</td><td>'+esc(p.country||'—')+'</td><td style="white-space:normal">'+esc(p.region||'—')+'</td><td><strong>'+avg+'</strong></td><td><span class="badge '+sb+'">'+st+'</span></td><td>'+r2Status+'</td></tr>'
 }).join('');
 }
 
@@ -367,7 +372,6 @@ return parts.join(' · ');
 }
 
 function topSort(a,b){
-// Prioritize: 2+ R2 judges with high avg > 1 R2 judge > R1 only
 const aR2=a.r2avg||0,bR2=b.r2avg||0;
 const aR1=a.p.avg_score||0,bR1=b.p.avg_score||0;
 const aScore=aR2*2+(a.r2n>=2?5:0)+(a.r2n>=3?3:0)+aR1*0.3;
@@ -375,53 +379,80 @@ const bScore=bR2*2+(b.r2n>=2?5:0)+(b.r2n>=3?3:0)+bR1*0.3;
 return bScore-aScore;
 }
 
-function renderR3Preview(){
-const all=Object.values(D.projects).filter(p=>p.advanced_to_round2);
-const candidates=[];
-all.forEach(p=>{
-  const c=classifyR3(p);if(!c)return;
-  const r2=p.round2_scores||[];
-  const r2avg=r2.length?(r2.reduce((a,b)=>a+b.total,0)/r2.length):null;
-  candidates.push({p,tier:c.tier,label:c.label,sort:c.sort,r2avg,r2n:r2.length});
-});
-
-const strong=candidates.filter(c=>c.tier==='strong'||c.tier==='strong_r1');
-strong.sort(topSort);
-const top15=strong.slice(0,15);
-const moreStrong=strong.slice(15);
-const likely=candidates.filter(c=>c.tier==='likely');
-const possible=candidates.filter(c=>c.tier==='possible');
-const watch=candidates.filter(c=>c.tier==='watch');
-
-function cardHtml(c,showReason){
+function r3CardHtml(c,showReason){
 const p=c.p;const r2str=c.r2avg!=null?c.r2avg.toFixed(1):'—';
 const r2label=c.r2n>0?c.r2n+'/3 judges':'Awaiting R2';
-const tagColor=c.tier==='strong'||c.tier==='strong_r1'?'background:#FFD54F33;color:#FFD54F':c.tier==='likely'?'background:#B388FF33;color:#B388FF':c.tier==='possible'?'background:#4DD0E133;color:#4DD0E1':'background:#546E7A44;color:#90A4AE';
-let h='<div class="r3-card tier-'+(c.tier==='strong_r1'?'strong':c.tier)+'" onclick="openProject(\''+p.id+'\')">'+
-'<div class="r3-card-id">'+p.id+'<span class="r3-card-tag" style="'+tagColor+'">'+c.label+'</span></div>'+
+const r2scores=p.round2_scores||[];
+const recCount=r2scores.filter(s=>s.advance_recommended).length;
+const recLabel=r2scores.length>0?recCount+'/'+r2scores.length+' recommend':'';
+const isFinalist=p.advanced_to_round3;
+const tierCls=isFinalist?'tier-strong':c.tier==='strong'||c.tier==='strong_r1'?'tier-strong':c.tier==='likely'?'tier-likely':c.tier==='possible'?'tier-possible':'tier-watch';
+const tagColor=isFinalist?'background:#FFD54F33;color:#FFD54F':c.tier==='strong'||c.tier==='strong_r1'?'background:#FFD54F33;color:#FFD54F':c.tier==='likely'?'background:#B388FF33;color:#B388FF':'background:#4DD0E133;color:#4DD0E1';
+const tagLabel=isFinalist?'Finalist':c.label;
+const country=p.country?esc(p.country)+(p.region?', '+esc(p.region):''):'';
+let h='<div class="r3-card '+tierCls+'" onclick="openProject(\''+p.id+'\')">'+
+'<div class="r3-card-id">'+p.id+'<span class="r3-card-tag" style="'+tagColor+'">'+tagLabel+'</span></div>'+
 '<div class="r3-card-name">'+esc(p.project_name)+'</div>'+
-'<div class="r3-card-scores"><span>R1: <strong>'+(p.avg_score||'—')+'</strong>/28</span><span>R2: <strong>'+r2str+'</strong>/28</span><span style="color:var(--text3)">'+r2label+'</span></div>';
-if(showReason)h+='<div style="font-size:.72rem;color:var(--text3);margin-top:.35rem;line-height:1.4">'+r3Reason(c)+'</div>';
+(country?'<div style="font-size:.72rem;color:var(--text3);margin-top:.1rem">'+country+'</div>':'')+
+'<div class="r3-card-scores"><span>R1: <strong>'+(p.avg_score||'—')+'</strong>/28</span><span>R2: <strong>'+r2str+'</strong>/28</span>'+(recLabel?'<span style="color:'+(recCount===r2scores.length?'var(--green)':'var(--amber)')+'">'+recLabel+'</span>':'')+'</div>';
+if(showReason&&!isFinalist)h+='<div style="font-size:.72rem;color:var(--text3);margin-top:.35rem;line-height:1.4">'+r3Reason(c)+'</div>';
 h+='</div>';return h;
 }
 
+function renderR3Preview(){
+const all=Object.values(D.projects).filter(p=>p.advanced_to_round2);
+
+// Confirmed R3 finalists
+const finalists=all.filter(p=>p.advanced_to_round3).map(p=>{
+const r2=p.round2_scores||[];
+const r2avg=r2.length?(r2.reduce((a,b)=>a+b.total,0)/r2.length):null;
+return{p,tier:'finalist',label:'Finalist',sort:999,r2avg,r2n:r2.length};
+});
+finalists.sort(topSort);
+
+// Recognized with Distinction: strong R2 performers NOT in R3
+const distinction=[];
+all.forEach(p=>{
+if(p.advanced_to_round3)return;
+const c=classifyR3(p);if(!c)return;
+if(c.tier==='strong'||c.tier==='strong_r1'||c.tier==='likely'){
+const r2=p.round2_scores||[];
+const r2avg=r2.length?(r2.reduce((a,b)=>a+b.total,0)/r2.length):null;
+distinction.push({p,tier:c.tier,label:c.label,sort:c.sort,r2avg,r2n:r2.length});
+}});
+distinction.sort(topSort);
+
 function buildHtml(cid){
 let html='';
-if(top15.length===0)return'<div style="text-align:center;padding:2rem;color:var(--text3)">Not enough Round 2 data yet to identify finalist candidates. Check back as more judges submit scores.</div>';
-html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">Top Candidates<span class="tier-count">'+top15.length+' projects showing strongest signal</span></div>';
-html+='<div class="r3-grid">'+top15.map(c=>cardHtml(c,true)).join('')+'</div></div>';
-const moreTotal=moreStrong.length+likely.length+possible.length+watch.length;
-if(moreTotal>0){
-html+='<div id="'+cid+'More" style="display:none">';
-if(moreStrong.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">More Strong Candidates<span class="tier-count">'+moreStrong.length+'</span></div><div class="r3-grid">'+moreStrong.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
-if(likely.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--r2)">Likely Finalists<span class="tier-count">'+likely.length+'</span></div><div class="r3-grid">'+likely.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
-if(possible.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--teal)">Possible Contenders<span class="tier-count">'+possible.length+'</span></div><div class="r3-grid">'+possible.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
-if(watch.length>0){html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--text3)">Watch List<span class="tier-count">'+watch.length+'</span></div><div class="r3-grid">'+watch.map(c=>cardHtml(c,false)).join('')+'</div></div>';}
+
+// Finalists section
+if(finalists.length>0){
+html+='<div class="r3-tier"><div class="r3-tier-head" style="color:var(--gold)">Round 3 Finalists<span class="tier-count">'+finalists.length+' projects</span></div>';
+html+='<div class="r3-grid">'+finalists.map(c=>r3CardHtml(c,false)).join('')+'</div></div>';
+}else{
+html+='<div style="text-align:center;padding:1.5rem;color:var(--text3);font-style:italic;border-bottom:1px solid #253245;margin-bottom:1rem">Finalists will appear here once selected.</div>';
+}
+
+// Recognized with Distinction
+if(distinction.length>0){
+const top15=distinction.slice(0,15);
+const more=distinction.slice(15);
+html+='<div class="r3-tier" '+(finalists.length>0?'id="'+cid+'Dist" style="display:none"':'')+'>'+
+'<div class="r3-tier-head" style="color:var(--r2)">Recognized with Distinction<span class="tier-count">'+distinction.length+' projects — strong Round 2 performers</span></div>';
+html+='<div class="r3-grid">'+top15.map(c=>r3CardHtml(c,true)).join('')+'</div>';
+if(more.length>0){
+html+='<div id="'+cid+'DistMore" style="display:none"><div class="r3-grid" style="margin-top:.65rem">'+more.map(c=>r3CardHtml(c,false)).join('')+'</div></div>';
+html+='<button class="r3-show-more" style="margin-top:.5rem" onclick="document.getElementById(\''+cid+'DistMore\').style.display=\'block\';this.style.display=\'none\'">Show '+more.length+' more →</button>';
+}
 html+='</div>';
-html+='<button class="r3-show-more" onclick="document.getElementById(\''+cid+'More\').style.display=\'block\';this.style.display=\'none\'">Show '+moreTotal+' more candidates →</button>';
+
+if(finalists.length>0){
+html+='<button class="r3-show-more" id="'+cid+'DistBtn" onclick="document.getElementById(\''+cid+'Dist\').style.display=\'block\';this.style.display=\'none\'">Show Recognized with Distinction ('+distinction.length+' projects) →</button>';
+}
 }
 return html;
 }
+
 document.getElementById('r3Preview').innerHTML=buildHtml('r3S');
 document.getElementById('r3PreviewFull').innerHTML=buildHtml('r3F');
 }
@@ -439,8 +470,9 @@ document.getElementById('mPid').textContent=pid;
 document.getElementById('mTitle').textContent=p.project_name;
 document.getElementById('mTeam').textContent=p.team_name;
 
-const sb=p.stage==='Round 2'?'badge-r2':p.stage==='Round 1'?'badge-r1':'badge-screen';
-let infoHtml='<span class="modal-info-pill badge '+sb+'">'+p.stage+'</span>';
+const st=getStage(p);
+const sb=st==='Round 3'?'badge-r3':st==='Round 2'?'badge-r2':st==='Round 1'?'badge-r1':'badge-screen';
+let infoHtml='<span class="modal-info-pill badge '+sb+'">'+st+'</span>';
 if(p.avg_score!=null)infoHtml+='<span style="font-weight:600">R1 Avg: '+p.avg_score+'/28</span>';
 const r2sc=p.round2_scores||[];
 if(r2sc.length>0){const r2a=(r2sc.reduce((a,b)=>a+b.total,0)/r2sc.length).toFixed(1);infoHtml+='<span style="font-weight:600;color:var(--r2)">R2 Avg: '+r2a+'/28</span>';}
