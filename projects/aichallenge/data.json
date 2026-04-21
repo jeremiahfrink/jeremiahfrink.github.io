@@ -367,7 +367,9 @@
     "AI26L4XP": [],
     "AI26R2KF": [],
     "AI26Z7MC": [],
-    "AI26JOF2": []
+    "AI26JOF2": [],
+    "AI262BD8": [],
+    "AI26K3VP": []
   },
   "projects": {
     "ISTE26AI101": {
@@ -442,7 +444,8 @@
       "country": "Saudi Arabia",
       "region": "Asir Region",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI102": {
       "id": "ISTE26AI102",
@@ -500,7 +503,8 @@
       "country": "Saudi Arabia",
       "region": "Eastern Province",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI103": {
       "id": "ISTE26AI103",
@@ -575,7 +579,8 @@
       "country": "China",
       "region": "Beijing",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI104": {
       "id": "ISTE26AI104",
@@ -630,7 +635,8 @@
       "r1_display_score": 25.0,
       "round2_judged_by": [
         "AI26N2LP",
-        "AI26L4XP"
+        "AI26L4XP",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -664,12 +670,29 @@
           "advance_recommended": false,
           "comments_panel": "Thank you for reviewing our project. We hope it brings value and positive impact",
           "comments_student": "Great job on a creative and impactful project"
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 14,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI105": {
       "id": "ISTE26AI105",
@@ -744,7 +767,8 @@
       "country": "Philippines",
       "region": "Laguna",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI106": {
       "id": "ISTE26AI106",
@@ -873,7 +897,8 @@
       "country": "United States",
       "region": "California",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI107": {
       "id": "ISTE26AI107",
@@ -948,7 +973,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI108": {
       "id": "ISTE26AI108",
@@ -1021,7 +1047,8 @@
       "r1_display_score": 24.5,
       "round2_judged_by": [
         "AI262SR5",
-        "AI2663L7"
+        "AI2663L7",
+        "AI262BD8"
       ],
       "round2_scores": [
         {
@@ -1055,12 +1082,29 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI262BD8",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 2,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 18,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United Arab Emirates",
       "region": "Abu Dhabi",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI109": {
       "id": "ISTE26AI109",
@@ -1189,7 +1233,8 @@
       "country": "North Macedonia",
       "region": "Karbinci",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI110": {
       "id": "ISTE26AI110",
@@ -1262,7 +1307,8 @@
       "r1_display_score": 24.0,
       "round2_judged_by": [
         "AI26S33U",
-        "AI26J9TN"
+        "AI26J9TN",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -1296,12 +1342,29 @@
           "advance_recommended": false,
           "comments_panel": "The project addresses a highly relevant and important issue and is grounded in a strong personal and contextual narrative. However, the submission lacks technical clarity, detailed explanation of the AI component, and evidence of testing or validation. The innovation, while valuable, is not clearly differentiated from existing smart grid solutions. The project would benefit from more structured documentation, clearer system explanation, and demonstration of measurable impact.",
           "comments_student": "You chose a very important and meaningful problem, and your personal connection to power outages makes your project authentic and engaging. Your idea of using AI and IoT to prevent blackouts has strong potential and reflects good technical direction. To take your project to the next level, focus on clearly explaining how your system works, especially the role of AI, and include evidence of testing or results. Keep building this project as it has great potential."
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 1,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 18,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "India",
       "region": "Delhi",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI111": {
       "id": "ISTE26AI111",
@@ -1355,7 +1418,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 26.0,
       "round2_judged_by": [
-        "AI26RI5W"
+        "AI26RI5W",
+        "AI26JOF2",
+        "AI26K3VP"
       ],
       "round2_scores": [
         {
@@ -1373,12 +1438,45 @@
           "advance_recommended": true,
           "comments_panel": "This project hits on all the guidelines in the rubric and has potential to have a really positive impact on agronomists. There is clear evidence of collaboration and an understanding of how AI can work with agriculture to have a helpful impact.",
           "comments_student": "Great job! This project not only addresses an important problem in agriculture but also demonstrates a way that AI can help solve it. You demonstrate collaboration with experts and how you considered safety and ethics. I think this project can have worldwide impact for farmers to help prevent diseases in plants before they can be detected by the human eye."
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 1,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 4
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "Although a strong idea and concept, the actual use of AI is only in developing a web page. There is no evidence that the solution was actually created beyond concept. The idea of using drone images to identify sick or needy plants is something that already exists in many parts of the world. There story itself says that they had the idea and spent several hours of coding to then have what they showed us. This is a solid class project but not one ready for the main stage.",
+          "comments_student": "This was a very interesting idea. The connection to the needs of our world and specifically to your area is strong. I am excited to see what such thoughtful students will be able to actually create and implement in the future."
+        },
+        {
+          "judge_id": "AI26K3VP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "New Jersey",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI112": {
       "id": "ISTE26AI112",
@@ -1506,7 +1604,8 @@
       "country": "Philippines",
       "region": "Pangasinan",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI113": {
       "id": "ISTE26AI113",
@@ -1578,7 +1677,8 @@
       "r1_display_score": 26.0,
       "round2_judged_by": [
         "AI26D5BM",
-        "AI265DWQ"
+        "AI265DWQ",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -1612,12 +1712,29 @@
           "advance_recommended": false,
           "comments_panel": "This idea currently exists in multiple formats so it is not exactly novel",
           "comments_student": "Interesting attempt"
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "Minnesota",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI114": {
       "id": "ISTE26AI114",
@@ -1746,7 +1863,8 @@
       "country": "Mexico",
       "region": "Coahuila",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI115": {
       "id": "ISTE26AI115",
@@ -1801,7 +1919,8 @@
       "r1_display_score": 23.0,
       "round2_judged_by": [
         "AI26RI5W",
-        "AI26S33U"
+        "AI26S33U",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -1835,12 +1954,29 @@
           "advance_recommended": false,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Saudi Arabia",
       "region": "Eastern Province",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI116": {
       "id": "ISTE26AI116",
@@ -1915,7 +2051,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI117": {
       "id": "ISTE26AI117",
@@ -2026,7 +2163,8 @@
       "country": "United States",
       "region": "Ohio",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI118": {
       "id": "ISTE26AI118",
@@ -2102,7 +2240,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI119": {
       "id": "ISTE26AI119",
@@ -2160,7 +2299,8 @@
       "country": "Canada",
       "region": "British Columbia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI120": {
       "id": "ISTE26AI120",
@@ -2236,7 +2376,8 @@
       "country": "Canada",
       "region": "Ontario",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI121": {
       "id": "ISTE26AI121",
@@ -2294,7 +2435,8 @@
       "country": "United States",
       "region": "New Jersey",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI122": {
       "id": "ISTE26AI122",
@@ -2422,7 +2564,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI123": {
       "id": "ISTE26AI123",
@@ -2498,7 +2641,8 @@
       "country": "United States",
       "region": "New Jersey",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI124": {
       "id": "ISTE26AI124",
@@ -2627,7 +2771,8 @@
       "country": "Mexico",
       "region": "Mexico City (CDMX)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI125": {
       "id": "ISTE26AI125",
@@ -2739,7 +2884,8 @@
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI126": {
       "id": "ISTE26AI126",
@@ -2811,7 +2957,8 @@
       "r1_display_score": 20.5,
       "round2_judged_by": [
         "AI268RZE",
-        "AI26N2LP"
+        "AI26N2LP",
+        "AI262BD8"
       ],
       "round2_scores": [
         {
@@ -2845,12 +2992,29 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI262BD8",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 2
+          },
+          "total": 17,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "Arkansas",
       "stage": "Round 2",
-      "advancement_note": "Advanced by committee review"
+      "advancement_note": "Advanced by committee review",
+      "advanced_to_round3": false
     },
     "ISTE26AI127": {
       "id": "ISTE26AI127",
@@ -2905,7 +3069,8 @@
       "r1_display_score": 20.5,
       "round2_judged_by": [
         "AI26B9KU",
-        "AI26R2KF"
+        "AI26R2KF",
+        "AI26JOF2"
       ],
       "round2_scores": [
         {
@@ -2939,12 +3104,29 @@
           "advance_recommended": false,
           "comments_panel": "I almost said yes for the Top 3 question.  As I will explain to the team, I love the general concept, but I think for this tool to really have an impact it should be engaged automatically as users are viewing content rather than needing the user to so explicitly identify the information and ask for the analysis.",
           "comments_student": "I loved the general idea of your project, but I think there is an additional step you could take that would really enhance its impact.  Specifically, as described, the app requires the user to first be suspicious of some content, then to upload that content for analysis.  It's the first step I worry about ... users scrolling social media feeds do not have their critical minds engaged and besides, even if they did see something off, would they go through the steps ir just accept it and scroll on?\n\nWhat if you process happened automatically, perhaps even as users try to upload content to some platform.  That content is analyzed, and the results are posted WITH the post.  Now users could see instantly whether it is trustworthy or not ... and heck, people might be less likely to post the untrustworthy when they know others will see that right away.\n\nSo as described, I thought you idea might have some impact.  But if you could make it just happen automatically (either on the posting side or on the viewing side) it could change the world of social media."
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "In general, this is a basic checker. We have seen other ideas like this in the past. The benefit of this group is 1 int heir presentation approach...compelling and 2- the product seems to do a very good job. I was able to 'break it' a few times but overall, the logic seems to represent the various sources I provided and does a good job of being a learning coach.",
+          "comments_student": "This is such a needed project in today's world. I really liked the way your tool didn't just rate my resource but gave context and shared what the tool was 'thinking' and why it was saying what it did. Responses were short but clear. I was able to 'break it' a few times where it couldn't generate the graph but those types of glitches happen when innovating."
         }
       ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI128": {
       "id": "ISTE26AI128",
@@ -2999,7 +3181,8 @@
       "r1_display_score": 24.0,
       "round2_judged_by": [
         "AI26S33U",
-        "AI26J9TN"
+        "AI26J9TN",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -3033,12 +3216,29 @@
           "advance_recommended": false,
           "comments_panel": "This project demonstrates a strong connection to community needs and global challenges such as food security and climate change. The alignment with SDG Zero Hunger is clear and meaningful. However, the submission lacks detailed explanation of the AI model, sufficient evidence of testing, and differentiation from existing drought prediction tools. While the narrative and intent are strong, the technical execution and documentation do not reach finalist level expectations.",
           "comments_student": "Your project shows a deep sense of care for your community and a strong understanding of how local problems connect to global challenges. Using AI to support farmers and address drought is a powerful and meaningful idea. To strengthen your project, try to explain more clearly how your AI works and include more examples of testing or results. Adding more technical detail and evidence will make your solution even stronger. You have a great foundation so keep developing it."
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "Texas",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI129": {
       "id": "ISTE26AI129",
@@ -3113,7 +3313,8 @@
       "country": "South Korea",
       "region": "Gyeonggi-do",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI130": {
       "id": "ISTE26AI130",
@@ -3171,7 +3372,8 @@
       "country": "Taiwan",
       "region": "Hsinchu / New Taipei City",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI131": {
       "id": "ISTE26AI131",
@@ -3230,7 +3432,8 @@
       "country": "Unknown",
       "region": "Unknown",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI132": {
       "id": "ISTE26AI132",
@@ -3358,7 +3561,8 @@
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI133": {
       "id": "ISTE26AI133",
@@ -3431,7 +3635,8 @@
       "r1_display_score": 27.0,
       "round2_judged_by": [
         "AI269729",
-        "AI26M1AS"
+        "AI26M1AS",
+        "AI26JOF2"
       ],
       "round2_scores": [
         {
@@ -3465,12 +3670,29 @@
           "advance_recommended": true,
           "comments_panel": "This team provided some of the most robust evidence of user testing in the entire competition. They gathered feedback from international students, teachers, and parents and used that data to redesign their \"Old Version\" into the highly polished \"New Version\".\n\nRather than just using AI to build a tool, they built a tool about the ethical use of AI. Their \"AI Reality Check\" quiz and multilingual accessibility features prove they have a profound understanding of what it means to be responsible digital citizens.\n\nNoted Technical Limitations (For Future Consideration): While the educational framework is outstanding, testing the app revealed that the AI backend relies on a model with a knowledge cutoff of 2023. This is highly problematic for a social media truth-seeking tool, which requires the ability to cross-reference live, real-time data to debunk current events. Furthermore, the industry is increasingly finding that automated \"AI text detectors\" are notoriously unreliable and prone to false positives. Despite these technical limitations of their chosen API, their strong focus on digital literacy and education makes this a standout project, and I still give it my highest recommendation for advancement to Round 3.",
           "comments_student": "What you did well: Your project is an absolute triumph! Your team demonstrated a brilliant division of labor between Archi, Jun, and Andrew, and your ability to weave together multiple AI tools (ChatGPT, Magic School AI, Canva AI, and Thunkable) into one seamless application is incredibly impressive. We were blown away by your dedication to accessibility and inclusion. Adding text-to-speech and multilingual support (English, Chinese, and Spanish) proves that you truly understand user-centered design. Furthermore, grounding your work in the UNESCO AI Ethics framework and gathering feedback from teachers and students shows a highly professional development process. You should be incredibly proud!\n\nAreas for Growth (Live Data Integration): During our testing of your \"AI Truth Scan\" feature, we noticed that the AI stated its knowledge was only current up to 2023. Because social media moves at lightning speed, a truth-seeking app needs to be able to analyze current events! In your next iteration, look into integrating a \"live search\" or web-browsing API into your Thunkable backend. This will allow your virtual assistant, EVA, to search the live internet to verify if a breaking news story is actually true.\n\nAreas for Growth (The Limits of Detection): As you plan your future improvements ,like adding photo and video analysis, keep in mind that automated AI content detectors (for both text and images) are often incorrect and can falsely flag real human content as AI-generated. Because of this, continue leaning heavily into the educational side of your app. Teach your users how to spot fake news and deepfakes themselves, rather than just relying on the AI Truth Scan to give them a definitive answer.\n\nKeep up the outstanding work. You are well on your way to becoming leaders in the tech industry!"
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": false,
+          "comments_panel": "I really liked the problem they were trying to solve. The quiz with the badge and the stories and poems were nice touches. The concern is the idea overall that AI can detect AI is problematic and has been disproven to be reliable. I don't want us to be promoting a tool that says we can do something we can't.",
+          "comments_student": "You have identified a real problem in our society. The idea of a quiz with a badge was really nice. You might want to consider having a variety of questions that swap in so there is not just one path through. However, taking it multiple times does help the end user learn the concepts which is a positive approach. I enjoyed the stories and additional creative content. It was actually compelling what you created. The Truth scan was not consistently correct. I do worry about that as AI detectors have been shown to be problematic. I wonder if you could have the analysis of the items you are looking at which would help the user learn  to look but not say it is or it is not AI. This way you are teaching the end user without providing a false idea."
         }
       ],
       "country": "Philippines",
       "region": "Fujian Province listed but school is Philippine",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI134": {
       "id": "ISTE26AI134",
@@ -3547,7 +3769,8 @@
       "country": "Philippines",
       "region": "Cavite",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI135": {
       "id": "ISTE26AI135",
@@ -3622,7 +3845,8 @@
       "country": "Tunisia",
       "region": "Sidi Bouzid",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI136": {
       "id": "ISTE26AI136",
@@ -3681,7 +3905,8 @@
       "country": "Mexico",
       "region": "Coahuila",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI137": {
       "id": "ISTE26AI137",
@@ -3756,7 +3981,8 @@
       "country": "Philippines",
       "region": "Batangas",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI138": {
       "id": "ISTE26AI138",
@@ -3832,7 +4058,8 @@
       "country": "Mexico",
       "region": "Mexico City (CDMX)",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI139": {
       "id": "ISTE26AI139",
@@ -3905,7 +4132,9 @@
       "r1_display_score": 25.0,
       "round2_judged_by": [
         "AI26S33U",
-        "AI26J9TN"
+        "AI26J9TN",
+        "AI26JOF2",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -3939,12 +4168,45 @@
           "advance_recommended": true,
           "comments_panel": "This submission demonstrates excellent alignment with real world needs, particularly in addressing systemic barriers for immigrant and low income communities (sharing their personal experience was a nice add on). The team shows strong understanding of user centred design, accessibility, and ethical AI considerations such as privacy and bias mitigation. While the innovation lies more in integration than invention, the execution is polished and impactful. It stands out in communication and usability, making it a strong candidate for public facing representation.",
           "comments_student": "Your project is incredibly meaningful and thoughtfully designed. The way you addressed a real challenge faced by immigrant families shows empathy, awareness, and purpose. Your use of AI to simplify complex systems into clear, step by step guidance is especially impressive, and the multilingual and accessibility features make your solution truly inclusive. To elevate your project even further, consider pushing the innovation beyond integration, perhaps by adding predictive or adaptive features. Overall, this is a powerful and impactful solution that reflects both technical skill and social responsibility."
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 26,
+          "advance_recommended": true,
+          "comments_panel": "Although not super flashy, this really hits the core of what this program is about: Real issue, addresses differences and is sensitive, uses AI responsibly and is something that works and could have real impact. I really appreciated that they had Simple English as one of the language choices as immigrants was one of their use cases and that they had the important aspect of saying don't put in your PII data.",
+          "comments_student": "You have done an excellent job capturing the core goals of this program. Your project addresses a real issue with sensitivity and demonstrates responsible AI use in a highly functional tool. I want to specifically highlight your user-centric design choices: including a 'Simple English' option shows a deep understanding of your target demographic, and explicitly warning users to protect their PII shows excellent attention to data privacy. This is a highly effective and meaningful project."
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 4,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 27,
+          "advance_recommended": true,
+          "comments_panel": "These students were great! When I saw the canva flier I thought it was going to be a lower end project. What they created was great AND they thought about how to make this truly accessible to their community.",
+          "comments_student": "Great job, team! You delivered a high-quality project that is both functional and deeply thoughtful. I was so impressed to see how you prioritized community accessibility; adding 'Simple English' and clear PII warnings shows you’re thinking about the real people using your tech. You’ve captured the core of this program perfectly: using AI responsibly to solve real problems. Keep it up!"
         }
       ],
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI140": {
       "id": "ISTE26AI140",
@@ -4002,7 +4264,8 @@
       "country": "Canada",
       "region": "Alberta",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI141": {
       "id": "ISTE26AI141",
@@ -4077,7 +4340,8 @@
       "country": "Philippines",
       "region": "Davao (likely)",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI142": {
       "id": "ISTE26AI142",
@@ -4136,7 +4400,8 @@
       "country": "India",
       "region": "Delhi",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI143": {
       "id": "ISTE26AI143",
@@ -4175,7 +4440,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Initial Screening",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI144": {
       "id": "ISTE26AI144",
@@ -4230,7 +4496,8 @@
       "r1_display_score": 24.0,
       "round2_judged_by": [
         "AI2663L7",
-        "AI265DWQ"
+        "AI265DWQ",
+        "AI26K3VP"
       ],
       "round2_scores": [
         {
@@ -4264,12 +4531,29 @@
           "advance_recommended": false,
           "comments_panel": "This is a great idea, seems to improve on existing ones and collating multiple currently existing functions into one",
           "comments_student": "Very interesting, wonder if they could include the option of where to get these ingredients based on prices in people's area. Not everyone can farm to table but they would appreciate the price comparison"
+        },
+        {
+          "judge_id": "AI26K3VP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 2
+          },
+          "total": 18,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Philippines",
       "region": "Batangas",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI145": {
       "id": "ISTE26AI145",
@@ -4397,7 +4681,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI146": {
       "id": "ISTE26AI146",
@@ -4436,7 +4721,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Initial Screening",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI147": {
       "id": "ISTE26AI147",
@@ -4476,7 +4762,8 @@
       "country": "United States",
       "region": "New Jersey",
       "stage": "Initial Screening",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI148": {
       "id": "ISTE26AI148",
@@ -4605,7 +4892,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI149": {
       "id": "ISTE26AI149",
@@ -4733,7 +5021,8 @@
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI150": {
       "id": "ISTE26AI150",
@@ -4805,7 +5094,8 @@
       "r1_display_score": 24.5,
       "round2_judged_by": [
         "AI26B9KU",
-        "AI26J9TN"
+        "AI26J9TN",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -4839,12 +5129,29 @@
           "advance_recommended": true,
           "comments_panel": "This is a conceptually innovative submission. The team redefines chess as a tool for social and emotional development, particularly for learners with ASD, and introduces measurable social KPI's, which is a novel and compelling idea. The system level thinking, scalability, and structured approach to inclusion are exceptional. While the project would benefit from clearer evidence of real world testing and deeper discussion of ethical AI considerations, its originality and vision make it a standout candidate.",
           "comments_student": "Your project is truly inspiring. Transforming chess into a tool for inclusion and social development shows deep creativity and empathy. The idea of measuring social growth through structured KPI's is especially innovative and demonstrates advanced thinking beyond typical student projects. Your system design and strategic thinking are very impressive. To strengthen your work even further, consider including more real world testing with users and reflecting on ethical considerations of AI. Overall, this is a standout project with the potential to make a meaningful difference in education."
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "This is a fun idea. I am not sure if they took it down but the latest round, the link is now not available. This is also a submission to another competition that they didn't change anything to submit to us (including saying that it was for the Blue Ocean Strategy Competition)",
+          "comments_student": ""
         }
       ],
       "country": "Taiwan",
       "region": "Taipei / New Taipei / Nantou",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI151": {
       "id": "ISTE26AI151",
@@ -4899,11 +5206,12 @@
       "r1_display_score": 16.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "United States",
       "region": "New Jersey",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI152": {
       "id": "ISTE26AI152",
@@ -5032,7 +5340,8 @@
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI153": {
       "id": "ISTE26AI153",
@@ -5086,7 +5395,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 21.0,
       "round2_judged_by": [
-        "AI26B9KU"
+        "AI26B9KU",
+        "AI26JOF2",
+        "AI262BD8"
       ],
       "round2_scores": [
         {
@@ -5104,12 +5415,45 @@
           "advance_recommended": true,
           "comments_panel": "I feel like this presentation payed attention to the ciritia and tried to address all aspects of it.  They were particularly strong in criterion #6: Collaboration.",
           "comments_student": "Great goal and solution.  You did a good job of meeting all criterion."
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": false,
+          "comments_panel": "Creative idea. It only searches its own database even though it did say it looked through Google images as well. I pulled a number of images right from google and it didn't detect them. The overlay with a watermark is nice idea nad 'registering' it on the site is also a good idea to have if everyone would join in. There is an aspect to scale that they will need to figure out if this were to truly grow. The core concept is solid although the technology itself is inconsistent at this point.",
+          "comments_student": "You have certainly identified an issue that needs to be addressed. Your solution, if implemented widely, would allow us to establish a way to address the concerns that many artists have. I was able to trick the detector when using Google images. It didn't seem to find them on Google. The number of images 'out there' may just be too many. Thank you for being so thoughtful of the creative and artist community and the solutions we need to put in place to address this important issue."
+        },
+        {
+          "judge_id": "AI262BD8",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 22,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI154": {
       "id": "ISTE26AI154",
@@ -5237,7 +5581,8 @@
       "country": "Mexico",
       "region": "Sinaloa",
       "stage": "Round 2",
-      "advancement_note": "Advanced by committee review"
+      "advancement_note": "Advanced by committee review",
+      "advanced_to_round3": false
     },
     "ISTE26AI155": {
       "id": "ISTE26AI155",
@@ -5292,11 +5637,12 @@
       "r1_display_score": 17.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Mexico",
       "region": "Coahuila",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI156": {
       "id": "ISTE26AI156",
@@ -5425,7 +5771,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI157": {
       "id": "ISTE26AI157",
@@ -5553,7 +5900,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI158": {
       "id": "ISTE26AI158",
@@ -5683,7 +6031,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI159": {
       "id": "ISTE26AI159",
@@ -5812,7 +6161,8 @@
       "country": "Indonesia",
       "region": "Jakarta (likely)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI160": {
       "id": "ISTE26AI160",
@@ -5887,7 +6237,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI161": {
       "id": "ISTE26AI161",
@@ -6016,7 +6367,8 @@
       "country": "Philippines",
       "region": "Cavite",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI162": {
       "id": "ISTE26AI162",
@@ -6074,7 +6426,8 @@
       "country": "Taiwan",
       "region": "Hsinchu / Taipei",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI163": {
       "id": "ISTE26AI163",
@@ -6149,7 +6502,8 @@
       "country": "Philippines",
       "region": "Tarlac",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI164": {
       "id": "ISTE26AI164",
@@ -6207,7 +6561,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI165": {
       "id": "ISTE26AI165",
@@ -6335,7 +6690,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI166": {
       "id": "ISTE26AI166",
@@ -6393,7 +6749,8 @@
       "country": "Philippines",
       "region": "Metro Manila (Quezon City)",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI167": {
       "id": "ISTE26AI167",
@@ -6469,7 +6826,8 @@
       "country": "India",
       "region": "Delhi",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI168": {
       "id": "ISTE26AI168",
@@ -6580,7 +6938,8 @@
       "country": "Kosovo",
       "region": "",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI169": {
       "id": "ISTE26AI169",
@@ -6708,7 +7067,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI170": {
       "id": "ISTE26AI170",
@@ -6763,11 +7123,12 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Taiwan / Canada",
       "region": "Taipei / British Columbia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI171": {
       "id": "ISTE26AI171",
@@ -6896,7 +7257,8 @@
       "country": "United Arab Emirates",
       "region": "Dubai",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI172": {
       "id": "ISTE26AI172",
@@ -7008,7 +7370,8 @@
       "country": "India",
       "region": "Chandigarh",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI173": {
       "id": "ISTE26AI173",
@@ -7136,7 +7499,8 @@
       "country": "Philippines",
       "region": "",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI174": {
       "id": "ISTE26AI174",
@@ -7208,11 +7572,12 @@
       "r1_display_score": 15.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "United States",
       "region": "Florida",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI175": {
       "id": "ISTE26AI175",
@@ -7284,7 +7649,8 @@
       "r1_display_score": 23.0,
       "round2_judged_by": [
         "AI268RZE",
-        "AI26IV85"
+        "AI26IV85",
+        "AI26K3VP"
       ],
       "round2_scores": [
         {
@@ -7318,12 +7684,29 @@
           "advance_recommended": false,
           "comments_panel": "Very unique idea. Can be impactful, but only applies to specific organizations that can operate on real-time data.",
           "comments_student": "Very unique idea. Can be impactful, but only applies to specific organizations that can operate on real-time data. Great concept, keep growing the idea."
+        },
+        {
+          "judge_id": "AI26K3VP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Singapore",
       "region": "",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI176": {
       "id": "ISTE26AI176",
@@ -7434,7 +7817,8 @@
       "country": "Saudi Arabia",
       "region": "Eastern Province",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI177": {
       "id": "ISTE26AI177",
@@ -7563,7 +7947,8 @@
       "country": "Philippines",
       "region": "Cebu",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI178": {
       "id": "ISTE26AI178",
@@ -7618,7 +8003,8 @@
       "r1_display_score": 28.0,
       "round2_judged_by": [
         "AI26RI5W",
-        "AI26T6MD"
+        "AI26T6MD",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -7652,12 +8038,29 @@
           "advance_recommended": false,
           "comments_panel": "While the project is engaging and well-positioned conceptually, it lacks sufficient clarity and depth in explaining how the AI actually functions within the platform. Much of the described functionality (content summarization, flashcards, adaptive questioning) appears similar to existing tools such as NotebookLM, with limited differentiation or evidence of novel AI implementation. The gamification layer is compelling in narrative form, but the mechanics, user flow, and integration with the AI system are not clearly demonstrated or validated. I also had difficulty accessing and navigating the submission prototype.  As a result, despite its strengths, it does not yet meet the level of technical transparency, originality, and evidence required to advance to the final round.",
           "comments_student": "Your project presents a creative and engaging vision for transforming studying into an interactive and motivating experience, and your storytelling is a clear strength. To strengthen your submission, focus on more clearly explaining how your AI works, what makes it different from existing tools, and how it adapts to learners in a unique way. Providing concrete examples, walkthroughs, or user testing evidence would help others better understand and trust your solution. Further clarity on how the gamification elements function in practice and support learning outcomes will also strengthen your overall impact."
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 2,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 18,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI179": {
       "id": "ISTE26AI179",
@@ -7713,7 +8116,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI180": {
       "id": "ISTE26AI180",
@@ -7785,7 +8189,8 @@
       "r1_display_score": 25.5,
       "round2_judged_by": [
         "AI26L4XP",
-        "AI26M1AS"
+        "AI26M1AS",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -7819,12 +8224,29 @@
           "advance_recommended": false,
           "comments_panel": "This project has an incredibly noble goal and a beautiful user interface. However, when dealing with medical applications, user safety must be the absolute highest priority. While the team briefly flashed text in their video stating they used Philippine DOH guidelines, their written documentation entirely fails to address how they are mitigating the severe hallucination risks of using an open-ended generative AI chatbot (the ChatGPT API) for medical questions. Furthermore, their team story lacks evidence of deep collaboration with actual medical professionals to verify their data. Because the ethical risks of AI in healthcare are not thoroughly addressed, I must score Ethical Use of AI as a 2, preventing the project from advancing.",
           "comments_student": "What you did well: Your project is phenomenal, and your dedication to addressing the healthcare accessibility crisis in the Philippines is deeply inspiring! You took a complex, deeply personal problem and built a beautifully designed, highly functional prototype. We were incredibly impressed by your use of the Teachable Machine to scan and identify local flora, and your user interface is clean, modern, and accessible. Your team clearly worked incredibly hard alongside Sir Mark and Sir Francis to bring this vision to life!\n\nAreas for Growth (The Prototype and AI Ethics): When dealing with healthcare and medicine, user safety is the absolute highest priority. While your Teachable Machine scanner is fantastic, the \"ReAi\" chatbot introduces a major safety risk. Because AI chatbots can sometimes \"hallucinate\" or make up facts, giving users an open chat box to ask medical questions can be dangerous. In your next iteration, we highly recommend programming a strict \"system prompt\" into the backend of your chatbot. You should train the AI so that it politely refuses to diagnose illnesses or prescribe treatments.\n\nAreas for Growth (Collaboration): Moving forward with any healthcare-related projects, it is absolutely essential to thoroughly document your collaboration with certified medical professionals. Having your app rigorously tested and verified by real doctors or botanists and detailing that exact process in your written project story is what will elevate your creation from a fantastic classroom prototype into a trustworthy, real-world medical tool. You have built a deeply impactful application with incredible potential, and we are so incredibly proud of your hard work!"
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 4,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Philippines",
       "region": "Aklan",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI181": {
       "id": "ISTE26AI181",
@@ -7936,7 +8358,8 @@
       "country": "Philippines",
       "region": "Metro Manila",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI182": {
       "id": "ISTE26AI182",
@@ -8064,7 +8487,8 @@
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI183": {
       "id": "ISTE26AI183",
@@ -8192,7 +8616,8 @@
       "country": "Mexico",
       "region": "Puebla",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI184": {
       "id": "ISTE26AI184",
@@ -8321,7 +8746,8 @@
       "country": "India",
       "region": "Delhi",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI185": {
       "id": "ISTE26AI185",
@@ -8396,7 +8822,8 @@
       "country": "India",
       "region": "Delhi",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI186": {
       "id": "ISTE26AI186",
@@ -8525,7 +8952,8 @@
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI187": {
       "id": "ISTE26AI187",
@@ -8636,7 +9064,8 @@
       "country": "Bulgaria",
       "region": "Burgas",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI188": {
       "id": "ISTE26AI188",
@@ -8708,11 +9137,12 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Mexico",
       "region": "Coahuila",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI189": {
       "id": "ISTE26AI189",
@@ -8784,7 +9214,8 @@
       "r1_display_score": 20.5,
       "round2_judged_by": [
         "AI26D5BM",
-        "AI265DWQ"
+        "AI265DWQ",
+        "AI262BD8"
       ],
       "round2_scores": [
         {
@@ -8818,12 +9249,29 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": "Very creative"
+        },
+        {
+          "judge_id": "AI262BD8",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 4,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 21,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "Philippines",
       "region": "Metro Manila (likely)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI190": {
       "id": "ISTE26AI190",
@@ -8898,7 +9346,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI191": {
       "id": "ISTE26AI191",
@@ -8954,11 +9403,12 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Saudi Arabia",
       "region": "Asir Region",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI192": {
       "id": "ISTE26AI192",
@@ -9031,7 +9481,8 @@
       "r1_display_score": 25.0,
       "round2_judged_by": [
         "AI26IV85",
-        "AI26XVQS"
+        "AI26XVQS",
+        "AI26K3VP"
       ],
       "round2_scores": [
         {
@@ -9065,12 +9516,29 @@
           "advance_recommended": false,
           "comments_panel": "I found this project and presentation confusing. It was not clear to me that the students involved truly understood the subject matter or how their problem/solution worked. In addition, there's not evidence of how to scale the solution, it's broader application and how it would affect a community.",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26K3VP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United Arab Emirates",
       "region": "Abu Dhabi",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI193": {
       "id": "ISTE26AI193",
@@ -9181,7 +9649,8 @@
       "country": "Turkey",
       "region": "İzmir",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI194": {
       "id": "ISTE26AI194",
@@ -9254,11 +9723,12 @@
       "r1_display_score": 15.5,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI195": {
       "id": "ISTE26AI195",
@@ -9313,11 +9783,12 @@
       "r1_display_score": 17.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI196": {
       "id": "ISTE26AI196",
@@ -9356,7 +9827,8 @@
       "country": "United States",
       "region": "Pennsylvania",
       "stage": "Initial Screening",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI197": {
       "id": "ISTE26AI197",
@@ -9484,7 +9956,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI198": {
       "id": "ISTE26AI198",
@@ -9595,7 +10068,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI199": {
       "id": "ISTE26AI199",
@@ -9667,11 +10141,12 @@
       "r1_display_score": 19.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI200": {
       "id": "ISTE26AI200",
@@ -9800,7 +10275,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI201": {
       "id": "ISTE26AI201",
@@ -9928,7 +10404,8 @@
       "country": "Mexico",
       "region": "Mexico City (CDMX) / Estado de México",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI202": {
       "id": "ISTE26AI202",
@@ -9983,11 +10460,12 @@
       "r1_display_score": 14.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Kenya",
       "region": "Siaya County",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI203": {
       "id": "ISTE26AI203",
@@ -10062,7 +10540,8 @@
       "country": "China",
       "region": "Beijing",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI204": {
       "id": "ISTE26AI204",
@@ -10118,11 +10597,12 @@
       "r1_display_score": 22.0,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Philippines",
       "region": "La Union",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI205": {
       "id": "ISTE26AI205",
@@ -10194,11 +10674,12 @@
       "r1_display_score": 13.5,
       "round2_judged_by": [],
       "round2_scores": [],
-      "round2_status": "review",
+      "round2_status": null,
       "country": "Bulgaria",
       "region": "Burgas",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI206": {
       "id": "ISTE26AI206",
@@ -10253,7 +10734,8 @@
       "r1_display_score": 26.0,
       "round2_judged_by": [
         "AI26B9KU",
-        "AI26R2KF"
+        "AI26R2KF",
+        "AI26K3VP"
       ],
       "round2_scores": [
         {
@@ -10287,12 +10769,29 @@
           "advance_recommended": false,
           "comments_panel": "I didn't really understand the relevance of the 7 words (or where they came from) and I didn't totally get how this was innovative.  If it's not about reading braille, if its just about having stories read to you, can't conversational AI systems do that already?",
           "comments_student": "Thank you for your work and for you desire to help visually impaired people to access stories.  That is a noble goal.  There were some things I didn't completely understand.  Specifically, are the seven words generated just to \"seed\" different stories?  Would it not be possible now for a visually impaired student to just ask Gemini to read them stories?  Maybe even real novels, poems or books rather than ones made up by AI?  I feel there is more to your idea I maybe did not understand well.  Overall though, a great goal and it looks like you did some fantastic work!"
+        },
+        {
+          "judge_id": "AI26K3VP",
+          "criteria": {
+            "Connection to Community Problem & SDG": 2,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 2,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 3
+          },
+          "total": 19,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "China",
       "region": "Beijing",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI207": {
       "id": "ISTE26AI207",
@@ -10420,7 +10919,8 @@
       "country": "Philippines",
       "region": "Metro Manila (Makati)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI208": {
       "id": "ISTE26AI208",
@@ -10548,7 +11048,8 @@
       "country": "India",
       "region": "Delhi",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI209": {
       "id": "ISTE26AI209",
@@ -10623,7 +11124,8 @@
       "country": "United States",
       "region": "Virginia",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI210": {
       "id": "ISTE26AI210",
@@ -10698,7 +11200,8 @@
       "country": "Tunisia",
       "region": "Sidi Bouzid",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI211": {
       "id": "ISTE26AI211",
@@ -10826,7 +11329,8 @@
       "country": "Italy",
       "region": "Lazio (Rome)",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI213": {
       "id": "ISTE26AI213",
@@ -10882,7 +11386,8 @@
       "r1_display_score": 20.5,
       "round2_judged_by": [
         "AI267RSA",
-        "AI26DY2S"
+        "AI26DY2S",
+        "AI262BD8"
       ],
       "round2_scores": [
         {
@@ -10916,12 +11421,29 @@
           "advance_recommended": true,
           "comments_panel": "The team presents a well-researched and clearly articulated solution to a genuine problem in music education. Their process of verifying AI-generated content against established music theory resources demonstrates responsible and thoughtful implementation. The sheet music photo-to-feedback feature stands out as genuinely creative. Scores were moderated on impact longevity and collaboration due to limited evidence of external user testing and sustainability planning beyond the prototype stage. The live product has incomplete lesson modules in both instruments which affected the design score. Overall a strong submission that meets the Round 2 threshold.",
           "comments_student": "Renyn and Elijah, you built something real here and that is worth recognizing. Legatto addresses a problem that music teachers see every year and you explained it clearly and honestly in your video. The research backing was solid and using an NIH reference to open your argument was a smart choice.\nThe sheet music photo feature is the heart of your project and it works well as a concept. It is the kind of idea that makes someone think why did no one do this before. Your decision to verify AI outputs against trusted music theory sources before relying on them shows a level of responsibility that many adult developers skip.\nFor your next version, finishing the piano and guitar lesson modules would make a big difference. Judges look at the live product and incomplete sections raise questions even when the rest is strong. Also consider stating your connection to UN SDG 4 Quality Education explicitly in your narrative. Your project fits it perfectly but you never say it directly.\nYou did good work. Keep going with this."
+        },
+        {
+          "judge_id": "AI262BD8",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 2,
+            "Presentation & Communication": 3
+          },
+          "total": 20,
+          "advance_recommended": false,
+          "comments_panel": "",
+          "comments_student": ""
         }
       ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI214": {
       "id": "ISTE26AI214",
@@ -10997,7 +11519,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 1",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI215": {
       "id": "ISTE26AI215",
@@ -11070,7 +11593,8 @@
       "r1_display_score": 22.5,
       "round2_judged_by": [
         "AI26YYHJ",
-        "AI262SR5"
+        "AI262SR5",
+        "AI26JOF2"
       ],
       "round2_scores": [
         {
@@ -11104,12 +11628,29 @@
           "advance_recommended": true,
           "comments_panel": "",
           "comments_student": ""
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 23,
+          "advance_recommended": true,
+          "comments_panel": "Fun idea for using AI to help collect information. It doesn't really hit a core issue of the need for healthy lunches that students will want to eat. It captures their preferences only. The menu generation idea was a good thought too. Overall, a solid project.",
+          "comments_student": "I love that you took something that you were concerned about and looked to address it. The use of AI to capture feedback and to develop a menu based on student interests was a solid idea. I really loved how much fun you had creating the video too! I wonder if there is a way to have some learning happen as the students are providing their input. I also did wonder what was the criteria you had programmed into the menu generation. You mentioned what those were which was good, but how did you train your menu generator on those?\nOverall, I really appreciated your work."
         }
       ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI216": {
       "id": "ISTE26AI216",
@@ -11238,7 +11779,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI217": {
       "id": "ISTE26AI217",
@@ -11350,7 +11892,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI218": {
       "id": "ISTE26AI218",
@@ -11390,7 +11933,8 @@
       "country": "United States",
       "region": "Hawaii",
       "stage": "Initial Screening",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     },
     "ISTE26AI219": {
       "id": "ISTE26AI219",
@@ -11445,7 +11989,9 @@
       "advanced_to_round2": true,
       "r1_display_score": 27.0,
       "round2_judged_by": [
-        "AI26B9KU"
+        "AI26B9KU",
+        "AI26JOF2",
+        "AI26W4NF"
       ],
       "round2_scores": [
         {
@@ -11463,15 +12009,48 @@
           "advance_recommended": false,
           "comments_panel": "Digital Product/Prototype link did not work.  Project did not address UNSDG.",
           "comments_student": "Great goal.  I like that your app supports learning."
+        },
+        {
+          "judge_id": "AI26JOF2",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 3,
+            "Responsible & Ethical Use of AI": 3,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 3,
+            "Collaboration & Process": 3,
+            "Presentation & Communication": 4
+          },
+          "total": 22,
+          "advance_recommended": true,
+          "comments_panel": "Overall, they have done a nice 'tutor' tool that looks to leverage AI benefit without it becoming a 'short cut' Much of the technology seems to be a layer on top of existing Gemini abilities. However, they did a good job with that extra layer.",
+          "comments_student": "Great job on this project! You successfully built a clever and effective layer on top of Gemini's capabilities. I especially loved that you designed the tool to be a true learning aid rather than an easy shortcut. Really solid work!"
+        },
+        {
+          "judge_id": "AI26W4NF",
+          "criteria": {
+            "Connection to Community Problem & SDG": 3,
+            "Impact, Relevance & Longevity": 4,
+            "Responsible & Ethical Use of AI": 4,
+            "Innovation & Creativity": 3,
+            "Design Quality & Accessibility": 2,
+            "Collaboration & Process": 4,
+            "Presentation & Communication": 4
+          },
+          "total": 24,
+          "advance_recommended": true,
+          "comments_panel": "This was a good project from what I could tell. The one issue is that I couldn't get into the project itself to use it as it looks like they ran out of tokens.",
+          "comments_student": "This is a really great idea. We need something like this. It is the first tutor that feels like it was built for actual students and not what people thing students should want. Thank you for your hard work."
         }
       ],
       "country": "United States",
       "region": "Hawaii",
       "stage": "Round 2",
-      "advancement_note": ""
+      "advancement_note": "",
+      "advanced_to_round3": false
     }
   },
-  "data_as_of": "April 21, 2026 at 3:53 AM ET",
+  "data_as_of": "April 21, 2026 at 6:07 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
@@ -11605,9 +12184,13 @@
       "ISTE26AI139",
       "ISTE26AI150",
       "ISTE26AI110",
-      "ISTE26AI153",
-      "ISTE26AI111",
-      "ISTE26AI219"
+      "ISTE26AI219",
+      "ISTE26AI104",
+      "ISTE26AI113",
+      "ISTE26AI115",
+      "ISTE26AI128",
+      "ISTE26AI178",
+      "ISTE26AI180"
     ],
     "AI26J9TN": [
       "ISTE26AI139",
@@ -11734,26 +12317,27 @@
       "ISTE26AI175"
     ],
     "AI26JOF2": [
-      "ISTE26AI104",
-      "ISTE26AI108",
       "ISTE26AI111",
-      "ISTE26AI113",
-      "ISTE26AI115",
-      "ISTE26AI126",
       "ISTE26AI127",
-      "ISTE26AI128",
       "ISTE26AI133",
-      "ISTE26AI144",
       "ISTE26AI153",
-      "ISTE26AI175",
-      "ISTE26AI178",
-      "ISTE26AI180",
-      "ISTE26AI189",
-      "ISTE26AI192",
-      "ISTE26AI206",
-      "ISTE26AI213",
       "ISTE26AI215",
-      "ISTE26AI219"
+      "ISTE26AI219",
+      "ISTE26AI139"
+    ],
+    "AI262BD8": [
+      "ISTE26AI126",
+      "ISTE26AI189",
+      "ISTE26AI153",
+      "ISTE26AI213",
+      "ISTE26AI108"
+    ],
+    "AI26K3VP": [
+      "ISTE26AI206",
+      "ISTE26AI192",
+      "ISTE26AI144",
+      "ISTE26AI175",
+      "ISTE26AI111"
     ]
   }
 }
