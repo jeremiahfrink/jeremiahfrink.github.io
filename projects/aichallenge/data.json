@@ -366,7 +366,8 @@
     "AI26J9TN": [],
     "AI26L4XP": [],
     "AI26R2KF": [],
-    "AI26Z7MC": []
+    "AI26Z7MC": [],
+    "AI26JOF2": []
   },
   "projects": {
     "ISTE26AI101": {
@@ -11470,7 +11471,7 @@
       "advancement_note": ""
     }
   },
-  "data_as_of": "April 21, 2026 at 3:41 AM ET",
+  "data_as_of": "April 21, 2026 at 3:53 AM ET",
   "round2_assignments": {
     "AI26N2LP": [
       "ISTE26AI177",
@@ -11489,9 +11490,7 @@
     "AI26Z7MC": [
       "ISTE26AI177",
       "ISTE26AI117",
-      "ISTE26AI207",
-      "ISTE26AI180",
-      "ISTE26AI219"
+      "ISTE26AI207"
     ],
     "AI26M1AS": [
       "ISTE26AI149",
@@ -11523,13 +11522,7 @@
       "ISTE26AI106",
       "ISTE26AI113"
     ],
-    "AI26Q884": [
-      "ISTE26AI108",
-      "ISTE26AI189",
-      "ISTE26AI144",
-      "ISTE26AI215",
-      "ISTE26AI113"
-    ],
+    "AI26Q884": [],
     "AI2663L7": [
       "ISTE26AI108",
       "ISTE26AI181",
@@ -11600,13 +11593,7 @@
       "ISTE26AI171",
       "ISTE26AI152"
     ],
-    "AI26V3HG": [
-      "ISTE26AI219",
-      "ISTE26AI133",
-      "ISTE26AI127",
-      "ISTE26AI153",
-      "ISTE26AI206"
-    ],
+    "AI26V3HG": [],
     "AI26B9KU": [
       "ISTE26AI219",
       "ISTE26AI150",
@@ -11619,7 +11606,8 @@
       "ISTE26AI150",
       "ISTE26AI110",
       "ISTE26AI153",
-      "ISTE26AI111"
+      "ISTE26AI111",
+      "ISTE26AI219"
     ],
     "AI26J9TN": [
       "ISTE26AI139",
@@ -11635,13 +11623,7 @@
       "ISTE26AI128",
       "ISTE26AI152"
     ],
-    "AI26UAZN": [
-      "ISTE26AI104",
-      "ISTE26AI115",
-      "ISTE26AI178",
-      "ISTE26AI128",
-      "ISTE26AI111"
-    ],
+    "AI26UAZN": [],
     "AI26RI5W": [
       "ISTE26AI115",
       "ISTE26AI178",
@@ -11738,12 +11720,7 @@
       "ISTE26AI192",
       "ISTE26AI109"
     ],
-    "AI26RCJR": [
-      "ISTE26AI213",
-      "ISTE26AI126",
-      "ISTE26AI192",
-      "ISTE26AI175"
-    ],
+    "AI26RCJR": [],
     "AI26IV85": [
       "ISTE26AI145",
       "ISTE26AI114",
@@ -11755,6 +11732,28 @@
       "ISTE26AI126",
       "ISTE26AI161",
       "ISTE26AI175"
+    ],
+    "AI26JOF2": [
+      "ISTE26AI104",
+      "ISTE26AI108",
+      "ISTE26AI111",
+      "ISTE26AI113",
+      "ISTE26AI115",
+      "ISTE26AI126",
+      "ISTE26AI127",
+      "ISTE26AI128",
+      "ISTE26AI133",
+      "ISTE26AI144",
+      "ISTE26AI153",
+      "ISTE26AI175",
+      "ISTE26AI178",
+      "ISTE26AI180",
+      "ISTE26AI189",
+      "ISTE26AI192",
+      "ISTE26AI206",
+      "ISTE26AI213",
+      "ISTE26AI215",
+      "ISTE26AI219"
     ]
   }
 }
