@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth Science Vocabulary Self-Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B3A5B; --navy-deep:#122941; --teal:#0F7B8A; --teal-soft:#E3F0F2;
+    --orange:#C9531B; --orange-soft:#FBEFE7; --red:#8A1F1F; --red-soft:#F7E9E9;
+    --paper:#F7F5F0; --ink:#21262B; --line:#DCD6CB; --card:#FFFFFF;
+    --shadow: 0 1px 2px rgba(27,58,91,.06), 0 8px 24px rgba(27,58,91,.09);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans',sans-serif; color:var(--ink); background:var(--paper);
+    background-image: radial-gradient(rgba(27,58,91,.045) 1px, transparent 1px);
+    background-size: 22px 22px;
+    min-height:100vh; line-height:1.55;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:28px 20px 80px;}
+
+  /* ---------- header ---------- */
+  header{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-bottom:18px; border-bottom:3px solid var(--navy); margin-bottom:26px;}
+  .brand h1{font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.5rem,4vw,2.1rem); color:var(--navy); letter-spacing:-.02em;}
+  .brand p{color:var(--teal); font-weight:700; font-size:.82rem; text-transform:uppercase; letter-spacing:.14em; margin-top:2px;}
+  .header-actions{display:flex; gap:10px;}
+
+  /* ---------- buttons ---------- */
+  .btn{font-family:'DM Sans',sans-serif; font-weight:700; font-size:.9rem; border:none; border-radius:10px; padding:10px 18px; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease;}
+  .btn:active{transform:scale(.97);}
+  .btn-navy{background:var(--navy); color:#fff;}
+  .btn-navy:hover{background:var(--navy-deep);}
+  .btn-ghost{background:transparent; color:var(--navy); border:2px solid var(--navy);}
+  .btn-ghost:hover{background:var(--navy); color:#fff;}
+  .btn-orange{background:var(--orange); color:#fff;}
+  .btn-orange:hover{filter:brightness(.93);}
+  .btn[disabled]{opacity:.45; cursor:not-allowed;}
+
+  /* ---------- home: stats strip ---------- */
+  .strip{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:26px;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow);}
+  .stat .num{font-family:'Fraunces',serif; font-weight:900; font-size:1.7rem; line-height:1.1;}
+  .stat .lbl{font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#6b7480; margin-top:2px;}
+  .stat.n-total .num{color:var(--navy);} .stat.n-got .num{color:var(--teal);}
+  .stat.n-shaky .num{color:var(--orange);} .stat.n-review .num{color:var(--red);}
+
+  /* ---------- topic cards ---------- */
+  .topics{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px;}
+  .topic{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow); cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; position:relative; overflow:hidden; text-align:left;}
+  .topic:hover{transform:translateY(-3px); box-shadow:0 4px 8px rgba(27,58,91,.08), 0 14px 34px rgba(27,58,91,.14);}
+  .topic .tnum{font-family:'Fraunces',serif; font-weight:900; font-size:.8rem; color:var(--orange); letter-spacing:.08em;}
+  .topic h3{font-size:1.02rem; font-weight:700; color:var(--navy); margin:2px 0 10px; line-height:1.3;}
+  .meter{height:8px; background:#EDEAE2; border-radius:99px; overflow:hidden; display:flex;}
+  .meter span{height:100%; display:block;}
+  .m-got{background:var(--teal);} .m-shaky{background:var(--orange);} .m-review{background:var(--red);}
+  .topic .tmeta{display:flex; justify-content:space-between; font-size:.76rem; color:#6b7480; margin-top:8px; font-weight:500;}
+  .topic.done::after{content:'✓'; position:absolute; top:12px; right:14px; width:24px; height:24px; border-radius:50%; background:var(--teal); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:.8rem;}
+
+  .home-cta{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap;}
+
+  /* ---------- study view ---------- */
+  .study-top{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:16px;}
+  .study-top h2{font-family:'Fraunces',serif; font-weight:700; color:var(--navy); font-size:1.15rem;}
+  .progress{height:10px; background:#EDEAE2; border-radius:99px; overflow:hidden; margin-bottom:26px;}
+  .progress div{height:100%; background:linear-gradient(90deg,var(--teal),var(--navy)); width:0%; transition:width .25s ease; border-radius:99px;}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:22px; padding:44px 36px;
+    box-shadow:var(--shadow); text-align:center; min-height:330px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+    animation:cardIn .25s ease;
+  }
+  @keyframes cardIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;}}
+  .card .term{font-family:'Fraunces',serif; font-weight:900; font-size:clamp(1.6rem,5vw,2.4rem); color:var(--navy); letter-spacing:-.01em;}
+  .card .def{font-size:1.08rem; color:var(--ink); max-width:560px; border-top:2px solid var(--teal); padding-top:18px; animation:cardIn .2s ease;}
+  .card .hint{font-size:.82rem; color:#8a93a0; font-weight:500;}
+  .rate{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
+  .rate .btn{min-width:128px; padding:13px 18px; font-size:.95rem;}
+  .b-got{background:var(--teal); color:#fff;} .b-got:hover{filter:brightness(.92);}
+  .b-shaky{background:var(--orange); color:#fff;} .b-shaky:hover{filter:brightness(.92);}
+  .b-review{background:var(--red); color:#fff;} .b-review:hover{filter:brightness(.92);}
+  .keys{margin-top:14px; font-size:.78rem; color:#8a93a0; text-align:center;}
+  .keys kbd{background:#fff; border:1px solid var(--line); border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-family:inherit; font-weight:700;}
+
+  /* ---------- report ---------- */
+  .report h2{font-family:'Fraunces',serif; font-weight:900; color:var(--navy); font-size:1.6rem; margin-bottom:4px;}
+  .report .sub{color:#6b7480; margin-bottom:22px;}
+  .verdict{border-radius:16px; padding:18px 22px; margin-bottom:24px; font-size:1rem; box-shadow:var(--shadow); border:1px solid var(--line); background:var(--card);}
+  .verdict strong{color:var(--navy);}
+  .verdict .focus{color:var(--red); font-weight:700;}
+  table{width:100%; border-collapse:collapse; background:var(--card); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); font-size:.92rem;}
+  th{background:var(--navy); color:#fff; text-align:left; padding:11px 14px; font-size:.78rem; text-transform:uppercase; letter-spacing:.08em;}
+  th.c, td.c{text-align:center;}
+  td{padding:10px 14px; border-top:1px solid #EFECE5;}
+  tr.weak td{background:var(--red-soft);}
+  tr.warn td{background:var(--orange-soft);}
+  td .bar{height:7px; border-radius:99px; background:#EDEAE2; overflow:hidden; display:flex; min-width:90px;}
+  .pill{display:inline-block; min-width:30px; padding:2px 8px; border-radius:99px; font-weight:700; font-size:.82rem; color:#fff; text-align:center;}
+  .p-got{background:var(--teal);} .p-shaky{background:var(--orange);} .p-review{background:var(--red);} .p-zero{background:#C9CFD6;}
+  .review-list{margin-top:26px;}
+  .review-list h3{font-family:'Fraunces',serif; color:var(--navy); font-size:1.15rem; margin-bottom:10px;}
+  details{background:var(--card); border:1px solid var(--line); border-radius:12px; margin-bottom:8px; box-shadow:var(--shadow);}
+  summary{cursor:pointer; padding:12px 16px; font-weight:700; color:var(--navy); list-style:none; display:flex; justify-content:space-between; align-items:center;}
+  summary::after{content:'+'; font-family:'Fraunces',serif; font-size:1.2rem; color:var(--orange);}
+  details[open] summary::after{content:'–';}
+  details .terms{padding:0 16px 14px;}
+  details .t{padding:8px 0; border-top:1px dashed var(--line); font-size:.92rem;}
+  details .t b{color:var(--navy);}
+  details .t .tag{font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding:1px 7px; border-radius:99px; color:#fff; margin-left:6px; vertical-align:1px;}
+  .report-actions{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
+  .exp-actions{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
+  .hidden{display:none !important;}
+
+  @media (max-width:640px){
+    .strip{grid-template-columns:repeat(2,1fr);}
+    .card{padding:30px 18px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .header-actions, .report-actions, .keys{display:none !important;}
+    .wrap{max-width:100%; padding:0;}
+    details{page-break-inside:avoid;}
+    details summary::after{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Earth Science Vocabulary Self-Check</h1>
+      <p>Physical Setting Regents · New York State</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" id="navHome">Topics</button>
+      <button class="btn btn-navy" id="navReport">Report</button>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section id="viewHome">
+    <div class="strip">
+      <div class="stat n-total"><div class="num" id="stTotal">0</div><div class="lbl">Terms rated</div></div>
+      <div class="stat n-got"><div class="num" id="stGot">0</div><div class="lbl">Got it</div></div>
+      <div class="stat n-shaky"><div class="num" id="stShaky">0</div><div class="lbl">Shaky</div></div>
+      <div class="stat n-review"><div class="num" id="stReview">0</div><div class="lbl">Review</div></div>
+    </div>
+    <div class="topics" id="topicGrid"></div>
+    <div class="home-cta">
+      <button class="btn btn-navy" id="studyAll">Study everything not yet rated</button>
+      <button class="btn btn-orange" id="studyMarked">Re-drill shaky and review terms</button>
+    </div>
+  </section>
+
+  <!-- STUDY -->
+  <section id="viewStudy" class="hidden">
+    <div class="study-top">
+      <h2 id="studyTitle"></h2>
+      <button class="btn btn-ghost" id="quitStudy">End session</button>
+    </div>
+    <div class="progress"><div id="progFill"></div></div>
+    <div class="card" id="card"></div>
+    <p class="keys">Keyboard: <kbd>Space</kbd> show definition · <kbd>1</kbd> got it · <kbd>2</kbd> shaky · <kbd>3</kbd> review</p>
+  </section>
+
+  <!-- REPORT -->
+  <section id="viewReport" class="hidden report"></section>
+</div>
+
+<script>
+const SECTIONS = [{"name":"Measurement, Models, and Inference","terms":[["Classification","Grouping objects or events by shared properties."],["Cyclic change","A change that repeats in a regular, predictable pattern."],["Density","The amount of mass in a given volume. Mass divided by volume."],["Direct relationship","As one variable increases, the other also increases."],["Dynamic equilibrium","A balance maintained by opposing processes that offset each other."],["Inference","A conclusion or interpretation drawn from observations."],["Interface","A boundary where two regions or materials meet."],["Inverse relationship","As one variable increases, the other decreases."],["Mass","The amount of matter in an object, measured in grams."],["Matter","Anything that has mass and takes up space."],["Model","A representation used to study something too large, small, or abstract to observe directly."],["Observation","Information gathered directly through the senses or instruments."],["Percent deviation","How far a measured value is from the accepted value, as a percent."],["Prediction","A statement of what is expected to happen, based on patterns."],["Profile","A side view or cross section showing change along a line."],["Rate of change","How fast a value changes over time. Change in value divided by time."],["Variable","A factor that can change in an experiment or measurement."],["Volume","The amount of space an object occupies."],["Weight","The pull of gravity on an object's mass."]]},{"name":"Earth's Shape, Coordinates, and Mapping","terms":[["Altitude (of Polaris)","The angle of the North Star above the horizon, equal to the observer's latitude in the Northern Hemisphere."],["Benchmark","A marked point of known exact elevation on a map."],["Contour interval","The elevation difference between two side by side contour lines."],["Contour line","A line joining points of equal elevation."],["Coordinate system","A grid such as latitude and longitude used to locate points."],["Depression","A low area, shown on maps by hachured contour lines."],["Elevation","Height above sea level."],["Equator","The zero degree line of latitude, halfway between the poles."],["Field","A region where a measurable value exists at every point."],["Gradient","The rate a field value changes over distance."],["Hachure","Short tick marks on a contour line that point into a depression."],["Index contour","A heavier, labeled contour line marking a round elevation value."],["Isobar","A line connecting points of equal air pressure."],["Isoline","A line connecting points of equal value in a field."],["Isotherm","A line connecting points of equal temperature."],["Latitude","Angular distance north or south of the equator."],["Longitude","Angular distance east or west of the Prime Meridian."],["Meridian","A line of longitude running from pole to pole."],["Oblate spheroid","A near sphere slightly flattened at the poles. Earth's true shape."],["Polaris","The North Star, used to find latitude and true north."],["Prime Meridian","The zero degree line of longitude, through Greenwich, England."],["Sea level","The average surface level of the ocean, the zero point for elevation."],["Topographic map","A map that shows elevation and surface features with contour lines."]]},{"name":"Minerals","terms":[["Calcite","A common carbonate mineral that fizzes in acid, the main mineral in limestone and marble."],["Cleavage","The tendency of a mineral to break along flat, even surfaces."],["Color","A mineral property, but the least reliable for identification."],["Compound","A substance made of two or more elements chemically combined."],["Crystal","A solid with atoms arranged in a repeating geometric pattern."],["Element","A pure substance made of one kind of atom."],["Feldspar","The most abundant mineral group in Earth's crust."],["Fracture","Irregular breakage of a mineral, not along flat planes."],["Galena","A dense lead mineral with a metallic luster and cubic cleavage."],["Hardness","A mineral's resistance to being scratched."],["Halite","Rock salt, a mineral that tastes salty and has cubic cleavage."],["Luster","How a mineral surface reflects light, such as metallic or glassy."],["Mica","A mineral group that splits into thin, flat sheets."],["Mineral","A naturally occurring, inorganic, crystalline solid with a definite composition."],["Mohs scale","A 1 to 10 scale that ranks mineral hardness."],["Quartz","A hard, glassy silicate mineral with no cleavage."],["Silicate","A mineral built from silicon and oxygen, the most common mineral group."],["Streak","The color of a mineral's powder, found by rubbing it on a tile."]]},{"name":"Rocks and the Rock Cycle","terms":[["Basalt","A dark, fine grained, mafic extrusive igneous rock."],["Bedding","The layering seen in sedimentary rock."],["Cementation","The gluing together of sediments by minerals to form rock."],["Clastic","Sedimentary rock made of broken rock and mineral fragments."],["Coal","A sedimentary rock formed from compressed plant matter."],["Compaction","The squeezing of sediments by the weight of layers above."],["Conglomerate","A clastic rock of rounded pebbles cemented together."],["Contact metamorphism","Rock change caused by heat from nearby magma."],["Extrusive","Igneous rock cooled quickly at the surface, with small crystals or glass."],["Felsic","Light colored, lower density igneous rock rich in silicon and aluminum."],["Foliation","Banding or layering in metamorphic rock caused by pressure."],["Gabbro","A dark, coarse grained, mafic intrusive igneous rock."],["Gneiss","A banded metamorphic rock formed under high heat and pressure."],["Granite","A light, coarse grained, felsic intrusive igneous rock."],["Igneous rock","Rock formed by the cooling and crystallizing of magma or lava."],["Intrusive","Igneous rock cooled slowly underground, with large crystals."],["Lava","Molten rock that has reached Earth's surface."],["Mafic","Dark colored, higher density igneous rock rich in iron and magnesium."],["Magma","Molten rock beneath Earth's surface."],["Marble","A nonfoliated metamorphic rock formed from limestone."],["Metamorphic rock","Rock changed by heat and pressure without melting."],["Metamorphism","The process of changing rock through heat and pressure."],["Nonfoliated","Metamorphic rock with no banding, such as marble or quartzite."],["Obsidian","A dark, glassy igneous rock that cooled very fast."],["Pumice","A light, frothy volcanic rock full of gas holes that can float."],["Quartzite","A hard nonfoliated metamorphic rock formed from sandstone."],["Regional metamorphism","Rock change over a wide area from heat and pressure during mountain building."],["Rock","A naturally formed solid made of one or more minerals."],["Rock cycle","The set of processes that change rocks from one type to another."],["Sandstone","A clastic sedimentary rock made of cemented sand grains."],["Schist","A foliated metamorphic rock with visible flaky minerals."],["Sediment","Loose pieces of weathered rock and mineral."],["Sedimentary rock","Rock formed from compacted and cemented sediments or precipitates."],["Shale","A clastic sedimentary rock made of compacted clay, splitting into thin layers."],["Slate","A fine grained foliated metamorphic rock formed from shale."],["Texture","The size and arrangement of grains or crystals in a rock."],["Vesicular","A rock texture full of small holes left by gas bubbles."]]},{"name":"Weathering, Erosion, and Deposition","terms":[["Abrasion","The wearing down of rock by grinding and friction during transport."],["Alluvial fan","A fan shaped deposit where a stream slows on flat land."],["Chemical weathering","Breakdown that changes the rock's chemical makeup."],["Delta","A deposit of sediment where a river enters a lake or ocean."],["Deposition","The settling and dropping of transported sediment."],["Drumlin","A streamlined hill of glacial sediment shaped by ice flow."],["Erosion","The transport of weathered material by water, wind, ice, or gravity."],["Erratic","A boulder carried far from its source by a glacier."],["Floodplain","Flat land beside a river that floods and receives sediment."],["Frost action","Repeated freezing and thawing of water in cracks that splits rock."],["Glacier","A large moving mass of ice that erodes and deposits sediment."],["Graded bedding","A deposit sorted with the largest particles at the bottom."],["Loess","A deposit of fine, wind blown silt."],["Mass movement","The downhill movement of rock and soil under gravity."],["Meander","A looping bend in a stream."],["Moraine","A ridge of unsorted sediment deposited by a glacier."],["Outwash","Sorted sediment deposited by meltwater flowing from a glacier."],["Oxidation","Chemical weathering in which minerals react with oxygen, forming rust."],["Physical weathering","Mechanical breakup of rock without changing its chemistry."],["Residual soil","Soil that forms in place from the bedrock below it."],["Runoff","Water that flows over the surface, a major agent of erosion."],["Sand dune","A mound or ridge of wind deposited sand."],["Sorting","The separating of sediment by size, shape, or density during transport."],["Stream velocity","The speed of stream water, which sets the size of particles it can carry."],["Striations","Scratches in bedrock left by rocks dragged by a glacier."],["Till","Unsorted sediment deposited directly by a glacier."],["Transported soil","Soil carried from elsewhere and not formed from the local bedrock."],["Weathering","The breakdown of rock at or near Earth's surface."]]},{"name":"Earth's Interior and Plate Tectonics","terms":[["Asthenosphere","The soft, partly molten upper mantle on which plates move."],["Continental crust","The thicker, less dense, granitic crust under continents."],["Continental drift","The idea that continents have slowly moved over time."],["Convection current","A circular flow driven by heating and cooling that moves the plates."],["Convergent boundary","Where plates collide."],["Crust","The thin, outer rocky layer of Earth."],["Divergent boundary","Where plates pull apart and new crust forms."],["Earthquake","A shaking of the ground caused by sudden movement along a fault."],["Epicenter","The point on the surface directly above an earthquake's focus."],["Fault","A crack in rock along which movement has occurred."],["Focus","The point underground where an earthquake begins."],["Hot spot","A fixed region of rising mantle heat that creates volcanoes."],["Inner core","The solid, dense center of Earth."],["Lithosphere","The rigid crust and upper mantle, broken into plates."],["Mantle","The thick layer below the crust where convection occurs."],["Mid ocean ridge","An underwater mountain chain where new ocean crust forms."],["Moho","The boundary between the crust and the mantle."],["Oceanic crust","The thinner, denser, basaltic crust under oceans."],["Orogeny","A period of mountain building."],["Outer core","The liquid layer that generates Earth's magnetic field."],["P wave","A fast seismic wave that travels through solids and liquids."],["Plate","A large slab of lithosphere that moves over the mantle."],["Plate tectonics","The theory that Earth's surface is made of moving plates."],["S wave","A slower seismic wave that travels only through solids."],["Seafloor spreading","The creation of new ocean crust at a mid ocean ridge."],["Seismic wave","An energy wave that travels through Earth from an earthquake."],["Seismograph","An instrument that records earthquake waves."],["Shadow zone","A region where S waves do not arrive, showing the outer core is liquid."],["Subduction","The sinking of a denser plate beneath another at a convergent boundary."],["Transform boundary","Where plates slide past one another."],["Trench","A deep ocean valley at a subduction zone."]]},{"name":"Geologic History","terms":[["Absolute dating","Finding the actual numeric age of a rock."],["Carbon-14","A radioactive isotope with a short half life, used to date recent once living material."],["Cenozoic","The most recent era, the age of mammals."],["Correlation","Matching rock layers of the same age across different locations."],["Cross-cutting","A feature that cuts through rock is younger than the rock it cuts."],["Decay product","The new stable element formed when a radioactive isotope decays."],["Era","A major division of geologic time, made of periods."],["Extinction","The complete dying out of a species."],["Fossil","Preserved remains or traces of past life."],["Geologic time scale","The full record of Earth's history divided into eras and periods."],["Half life","The time for half of a radioactive sample to decay."],["Inclusion","A rock fragment trapped inside another rock, and older than it."],["Index fossil","A widespread, short lived fossil used to match rock ages."],["Isotope","A form of an element used in radioactive dating."],["Mass extinction","The dying out of many species in a short span of geologic time."],["Mesozoic","The era of the dinosaurs, between the Paleozoic and Cenozoic."],["Original horizontality","Sediment layers form flat, so tilted layers were disturbed later."],["Outcrop","An exposure of bedrock at the surface."],["Paleozoic","An early era of ancient life, ending in a great extinction."],["Radioactive decay","The breakdown of an unstable element into another over time."],["Relative dating","Placing events in order without exact ages."],["Superposition","In undisturbed layers, older rock lies below younger rock."],["Unconformity","A buried erosion surface that represents missing time."],["Uranium-238","A radioactive isotope with a long half life, used to date very old rock."]]},{"name":"Landscapes","terms":[["Bedrock structure","The arrangement of rock layers, flat or distorted, that shapes a region."],["Drainage pattern","The arrangement of streams across a landscape."],["Dynamic equilibrium","A balance between uplift and leveling forces in a landscape."],["Escarpment","A long steep cliff or slope between two flatter areas."],["Landscape region","An area with similar elevation, bedrock, and surface features."],["Lowland","A low elevation region, often on weaker rock."],["Mountain","A high region with tilted, faulted, or igneous and metamorphic rock."],["Plain","A broad, flat, low elevation region."],["Plateau","A high region built on flat lying sedimentary rock."],["Uplift","The raising of land by tectonic forces."]]},{"name":"The Water Cycle and Groundwater","terms":[["Aquifer","A permeable layer of rock or sediment that holds and transmits groundwater."],["Capillarity","The rise of water through small spaces against gravity."],["Condensation","The change of water vapor into liquid water."],["Drainage basin","The whole area of land that drains into one river system."],["Evaporation","The change of liquid water into vapor."],["Evapotranspiration","The combined water loss from evaporation and transpiration."],["Impermeable","Not allowing water to pass through easily."],["Infiltration","The soaking of water into the ground."],["Permeability","How easily water moves through a material."],["Porosity","The percent of open space in a material."],["Precipitation","Water falling from clouds as rain, snow, sleet, or hail."],["Recharge","The refilling of groundwater by infiltration."],["Runoff","Water that flows over the surface instead of soaking in."],["Saturation","The state of being completely filled with water."],["Stream discharge","The volume of water flowing past a point in a stream over time."],["Transpiration","The release of water vapor from plants."],["Water budget","An accounting of water gained and lost in a region over a year."],["Water cycle","The continuous movement of water among land, air, and oceans."],["Water table","The top of the zone where the ground is fully saturated."],["Watershed","The land area that drains into a particular stream or river."],["Zone of saturation","The underground region where all spaces are filled with water."]]},{"name":"Weather","terms":[["Air mass","A large body of air with uniform temperature and moisture."],["Air pressure","The weight of the atmosphere pressing on a surface."],["Anemometer","An instrument that measures wind speed."],["Anticyclone","A high pressure system with sinking air and fair weather."],["Barometer","An instrument that measures air pressure."],["Cold front","A boundary where cold air pushes under warm air, bringing brief storms."],["Condensation nuclei","Tiny particles on which water vapor condenses to form clouds."],["Continental air mass","A dry air mass that forms over land."],["Coriolis effect","The deflection of moving air and water due to Earth's rotation."],["Cyclone","A low pressure system with rising air and stormy weather."],["Dewpoint","The temperature at which air becomes saturated and condensation begins."],["Dry-bulb temperature","The normal air temperature reading on a psychrometer."],["Front","The boundary between two different air masses."],["High pressure","A region of sinking, dry air associated with fair weather."],["Hurricane","A large, powerful low pressure storm formed over warm tropical ocean water."],["Isobar","A line connecting points of equal air pressure."],["Jet stream","A fast, high ribbon of wind that steers weather systems."],["Low pressure","A region of rising air associated with clouds and precipitation."],["Maritime air mass","A moist air mass that forms over water."],["Occluded front","A front where a cold front overtakes a warm front."],["Ozone","A gas in the stratosphere that absorbs harmful ultraviolet rays."],["Polar air mass","A cold air mass that forms at high latitudes."],["Prevailing wind","The usual wind direction for a region."],["Psychrometer","A tool with a dry bulb and a wet bulb used to find humidity."],["Relative humidity","How close the air is to being saturated, as a percent."],["Station model","A coded weather symbol showing conditions at one location."],["Stationary front","A front where two air masses meet but neither advances."],["Stratosphere","The atmospheric layer above the troposphere, holding the ozone layer."],["Thunderstorm","A storm with lightning, thunder, heavy rain, and strong winds."],["Tornado","A violent, rotating column of air reaching the ground."],["Tropical air mass","A warm air mass that forms at low latitudes."],["Troposphere","The lowest atmospheric layer, where weather occurs."],["Warm front","A boundary where warm air slides over cold air, bringing steady precipitation."],["Wet-bulb temperature","A cooled thermometer reading used with the dry bulb to find humidity."],["Wind vane","An instrument that shows wind direction."]]},{"name":"Climate","terms":[["Arid","A dry climate with little precipitation."],["Climate","The long term pattern of temperature and precipitation in a place."],["Continental climate","An inland climate with hot summers and cold winters."],["Humid","A climate with high moisture and ample precipitation."],["Leeward","The sheltered, drier side of a mountain."],["Maritime climate","A coastal climate with mild, even temperatures."],["Ocean current","A continuous flow of ocean water that moves heat around the globe."],["Orographic effect","The rising of air over mountains, causing rain on the windward side."],["Rain shadow","The dry leeward side of a mountain."],["Specific heat","The energy needed to raise a material's temperature. Water's is very high."],["Windward","The side of a mountain facing the wind, usually wetter."]]},{"name":"Energy, Heat, and Insolation","terms":[["Absorption","The taking in of energy by a surface."],["Albedo","The fraction of sunlight a surface reflects."],["Angle of insolation","The angle of the sun above the horizon, which sets energy intensity."],["Conduction","Heat transfer through direct contact."],["Convection","Heat transfer by the movement of a fluid."],["Duration of insolation","The length of time the sun shines, longer in summer."],["Electromagnetic spectrum","The full range of energy waves, from radio to gamma."],["Frequency","The number of waves passing a point each second."],["Greenhouse effect","The trapping of heat by gases that absorb infrared energy."],["Greenhouse gas","A gas such as carbon dioxide or water vapor that traps heat."],["Infrared","Energy waves longer than visible light, felt as heat."],["Insolation","Incoming solar radiation, the energy that heats Earth."],["Latent heat","Energy absorbed or released when matter changes phase."],["Radiation","Energy transfer by waves, including through empty space."],["Reflection","The bouncing of energy off a surface."],["Refraction","The bending of waves as they pass between materials."],["Reradiation","Energy that Earth absorbs and gives off again, often as infrared."],["Scattering","The redirecting of light in many directions by particles."],["Sublimation","The change of a solid directly into a gas."],["Temperature lag","The delay between peak insolation and peak temperature."],["Ultraviolet","Energy waves shorter than visible light, capable of causing sunburn."],["Visible light","The part of the spectrum the human eye can see."],["Wavelength","The distance between wave peaks. Shorter means higher energy."]]},{"name":"Astronomy","terms":[["Aphelion","The point in an orbit farthest from the sun, where a planet moves slowest."],["Apparent motion","The motion of the sun and stars across the sky caused by Earth's rotation."],["Asteroid","A small rocky body orbiting the sun, mostly between Mars and Jupiter."],["Axis","The imaginary line through Earth's poles around which it rotates."],["Big Bang","The theory that the universe expanded from a single point."],["Comet","An icy body that grows a glowing tail when near the sun."],["Doppler effect","The change in observed wavelength when a source moves toward or away."],["Eccentricity","A measure of how stretched an orbit is."],["Eclipse","When one body passes into the shadow of another."],["Ellipse","An oval shaped orbit with the sun at one focus."],["Equinox","A day of equal daylight and darkness, when the sun rises due east."],["Foucault pendulum","A swinging pendulum that proves Earth rotates."],["Galaxy","A vast system of stars, gas, and dust held together by gravity."],["Geocentric","An old model with Earth at the center of the universe."],["Gibbous","A moon phase that is more than half but not fully lit."],["Heliocentric","The model with the sun at the center of the solar system."],["Jovian planet","A large, low density outer gas giant."],["Light year","The distance light travels in one year."],["Luminosity","The true brightness of a star."],["Lunar eclipse","When Earth's shadow falls on the full moon."],["Main sequence","The stable stage in which most stars, including the sun, spend their lives."],["Meteor","The streak of light from a space rock burning in the atmosphere."],["Meteorite","A space rock that survives and lands on Earth's surface."],["Nebula","A cloud of gas and dust where stars form."],["Neap tide","A small tidal range that occurs at the quarter moon phases."],["Nuclear fusion","The joining of light nuclei in stars that releases energy."],["Orbit","The path of one body around another in space."],["Parallelism","Earth's axis staying pointed the same way throughout its orbit."],["Perihelion","The point in an orbit closest to the sun, where a planet moves fastest."],["Phase","The portion of the moon's lit side that we can see."],["Red shift","The lengthening of light waves from objects moving away, evidence of expansion."],["Revolution","The orbit of Earth around the sun, taking one year."],["Rotation","The spin of Earth on its axis, causing day and night."],["Solar eclipse","When the new moon blocks the sun from view."],["Solstice","The day of longest or shortest daylight, around June 21 and December 21."],["Spring tide","A large tidal range that occurs at new and full moon."],["Terrestrial planet","A small, rocky, dense inner planet."],["Tide","The rise and fall of ocean water caused mainly by the moon's gravity."],["Tilt","The 23.5 degree lean of Earth's axis that causes the seasons."],["Waning","The shrinking of the lit part of the moon after full moon."],["Waxing","The growing of the lit part of the moon toward full moon."]]}];
+
+// ---------- state ----------
+const KEY = 'esvc-ratings-v1';
+let memoryStore = {};
+function loadRatings(){
+  try{ const raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : {}; }
+  catch(e){ return memoryStore; }
+}
+function saveRatings(r){
+  try{ localStorage.setItem(KEY, JSON.stringify(r)); }
+  catch(e){ memoryStore = r; }
+}
+let ratings = loadRatings(); // id -> 'got' | 'shaky' | 'review'
+const idOf = (si, ti) => si + ':' + ti;
+
+// flat list helper
+function allTerms(){
+  const out = [];
+  SECTIONS.forEach((s, si) => s.terms.forEach((t, ti) => out.push({si, ti, term:t[0], def:t[1], id:idOf(si,ti)})));
+  return out;
+}
+
+// ---------- views ----------
+const vHome = document.getElementById('viewHome');
+const vStudy = document.getElementById('viewStudy');
+const vReport = document.getElementById('viewReport');
+function show(view){
+  [vHome,vStudy,vReport].forEach(v=>v.classList.add('hidden'));
+  view.classList.remove('hidden');
+  window.scrollTo({top:0});
+}
+
+// ---------- home ----------
+function counts(filterSi){
+  let got=0, shaky=0, review=0, rated=0, total=0;
+  allTerms().forEach(t=>{
+    if(filterSi !== undefined && t.si !== filterSi) return;
+    total++;
+    const r = ratings[t.id];
+    if(r){ rated++; if(r==='got')got++; else if(r==='shaky')shaky++; else review++; }
+  });
+  return {got,shaky,review,rated,total};
+}
+function renderHome(){
+  const c = counts();
+  document.getElementById('stTotal').textContent = c.rated + ' / ' + c.total;
+  document.getElementById('stGot').textContent = c.got;
+  document.getElementById('stShaky').textContent = c.shaky;
+  document.getElementById('stReview').textContent = c.review;
+
+  const grid = document.getElementById('topicGrid');
+  grid.innerHTML = '';
+  SECTIONS.forEach((s, si)=>{
+    const c = counts(si);
+    const card = document.createElement('button');
+    card.className = 'topic' + (c.rated===c.total && c.total>0 ? ' done':'');
+    const pct = v => c.total ? (v/c.total*100) : 0;
+    card.innerHTML =
+      '<div class="tnum">TOPIC ' + (si+1) + '</div>' +
+      '<h3>' + s.name + '</h3>' +
+      '<div class="meter">' +
+        '<span class="m-got" style="width:' + pct(c.got) + '%"></span>' +
+        '<span class="m-shaky" style="width:' + pct(c.shaky) + '%"></span>' +
+        '<span class="m-review" style="width:' + pct(c.review) + '%"></span>' +
+      '</div>' +
+      '<div class="tmeta"><span>' + c.total + ' terms</span><span>' + c.rated + ' rated</span></div>';
+    card.onclick = ()=> startSession({si});
+    grid.appendChild(card);
+  });
+}
+
+// ---------- study session ----------
+let queue = [], qPos = 0, revealed = false, sessionLabel = '';
+function startSession(opts){
+  // opts: {si} topic, {unratedOnly:true} all unrated, {markedOnly:true} shaky+review
+  let pool = allTerms();
+  if(opts.si !== undefined){
+    pool = pool.filter(t=>t.si===opts.si);
+    sessionLabel = 'Topic ' + (opts.si+1) + ': ' + SECTIONS[opts.si].name;
+  } else if(opts.unratedOnly){
+    pool = pool.filter(t=>!ratings[t.id]);
+    sessionLabel = 'All unrated terms';
+  } else if(opts.markedOnly){
+    pool = pool.filter(t=>ratings[t.id]==='shaky' || ratings[t.id]==='review');
+    sessionLabel = 'Shaky and review terms';
+  }
+  if(pool.length===0){ alert('Nothing to study in that set right now. Nice work!'); return; }
+  // shuffle
+  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
+  queue = pool; qPos = 0; revealed = false;
+  document.getElementById('studyTitle').textContent = sessionLabel;
+  show(vStudy);
+  renderCard();
+}
+function renderCard(){
+  const fill = document.getElementById('progFill');
+  fill.style.width = (qPos/queue.length*100) + '%';
+  const card = document.getElementById('card');
+  if(qPos >= queue.length){
+    const c = sessionCounts();
+    card.innerHTML =
+      '<div class="term" style="font-size:1.8rem">Session complete</div>' +
+      '<div class="def">You rated ' + queue.length + ' terms: ' +
+      '<span class="pill p-got">' + c.got + '</span> got it, ' +
+      '<span class="pill p-shaky">' + c.shaky + '</span> shaky, ' +
+      '<span class="pill p-review">' + c.review + '</span> to review.</div>' +
+      '<div class="rate">' +
+        '<button class="btn btn-navy" onclick="goReport()">See full report</button>' +
+        '<button class="btn btn-ghost" onclick="goHome()">Back to topics</button>' +
+      '</div>';
+    fill.style.width = '100%';
+    return;
+  }
+  const t = queue[qPos];
+  if(!revealed){
+    card.innerHTML =
+      '<div class="hint">' + (qPos+1) + ' of ' + queue.length + '</div>' +
+      '<div class="term">' + t.term + '</div>' +
+      '<div class="hint">Say the definition out loud, then check yourself.</div>' +
+      '<button class="btn btn-navy" onclick="reveal()">Show definition</button>';
+  } else {
+    card.innerHTML =
+      '<div class="hint">' + (qPos+1) + ' of ' + queue.length + '</div>' +
+      '<div class="term">' + t.term + '</div>' +
+      '<div class="def">' + t.def + '</div>' +
+      '<div class="rate">' +
+        '<button class="btn b-got" onclick="rate(\'got\')">✓ Got it</button>' +
+        '<button class="btn b-shaky" onclick="rate(\'shaky\')">~ Shaky</button>' +
+        '<button class="btn b-review" onclick="rate(\'review\')">✗ Review</button>' +
+      '</div>';
+  }
+}
+let sessionLog = [];
+function sessionCounts(){
+  const c = {got:0,shaky:0,review:0};
+  sessionLog.forEach(r=>c[r]++);
+  return c;
+}
+function reveal(){ revealed = true; renderCard(); }
+function rate(r){
+  const t = queue[qPos];
+  ratings[t.id] = r;
+  saveRatings(ratings);
+  sessionLog.push(r);
+  qPos++; revealed = false;
+  renderCard();
+}
+function goHome(){ sessionLog=[]; renderHome(); show(vHome); }
+function goReport(){ sessionLog=[]; renderReport(); show(vReport); }
+
+// keyboard
+document.addEventListener('keydown', e=>{
+  if(vStudy.classList.contains('hidden') || qPos>=queue.length) return;
+  if(e.code==='Space'){ e.preventDefault(); if(!revealed) reveal(); }
+  if(revealed){
+    if(e.key==='1') rate('got');
+    if(e.key==='2') rate('shaky');
+    if(e.key==='3') rate('review');
+  }
+});
+
+// ---------- report ----------
+function renderReport(){
+  const overall = counts();
+  const rows = SECTIONS.map((s,si)=>({si, name:s.name, ...counts(si)}));
+  // weakness score: review counts double, normalized by terms actually rated (min 5 rated to flag)
+  rows.forEach(r=>{ r.score = r.rated >= 5 ? (r.review*2 + r.shaky) / r.rated : 0; });
+  const ranked = [...rows].filter(r=>r.rated>0).sort((a,b)=>b.score-a.score);
+  const weak = ranked.filter(r=>r.score>=0.35).slice(0,3);
+  const warn = ranked.filter(r=>r.score>=0.18 && r.score<0.35).slice(0,3);
+
+  let verdict;
+  if(overall.rated===0){
+    verdict = '<strong>No terms rated yet.</strong> Pick a topic and work through it, then come back here for the summary.';
+  } else if(weak.length===0 && warn.length===0){
+    verdict = '<strong>Strong across the board so far.</strong> ' + overall.rated + ' of ' + overall.total + ' terms rated with no topic showing a significant weak spot. Keep going until every topic is complete.';
+  } else {
+    verdict = '<strong>Focus areas identified.</strong> Based on the ratings so far, the topics that need the most attention are: ' +
+      (weak.length? '<span class="focus">' + weak.map(w=>w.name).join(', ') + '</span>' : '') +
+      (weak.length && warn.length ? ', followed by ' : '') +
+      (warn.length? warn.map(w=>w.name).join(', ') : '') +
+      '. In NotebookLM, select the matching unit files and generate focused review for these first.';
+  }
+
+  let html = '<h2>Summary Report</h2>' +
+    '<div class="sub">' + overall.rated + ' of ' + overall.total + ' terms rated · ' +
+    '<span class="pill p-got">' + overall.got + '</span> got it · ' +
+    '<span class="pill p-shaky">' + overall.shaky + '</span> shaky · ' +
+    '<span class="pill p-review">' + overall.review + '</span> review</div>' +
+    '<div class="verdict">' + verdict + '</div>';
+
+  html += '<table><thead><tr><th>Topic</th><th class="c">Rated</th><th class="c">✓</th><th class="c">~</th><th class="c">✗</th><th>Mastery</th></tr></thead><tbody>';
+  rows.forEach(r=>{
+    const cls = r.score>=0.35 && r.rated>0 ? 'weak' : (r.score>=0.18 && r.rated>0 ? 'warn' : '');
+    const pct = v => r.total ? (v/r.total*100) : 0;
+    html += '<tr class="'+cls+'">' +
+      '<td><b>'+(r.si+1)+'.</b> '+r.name+'</td>' +
+      '<td class="c">'+r.rated+'/'+r.total+'</td>' +
+      '<td class="c"><span class="pill '+(r.got? 'p-got':'p-zero')+'">'+r.got+'</span></td>' +
+      '<td class="c"><span class="pill '+(r.shaky? 'p-shaky':'p-zero')+'">'+r.shaky+'</span></td>' +
+      '<td class="c"><span class="pill '+(r.review? 'p-review':'p-zero')+'">'+r.review+'</span></td>' +
+      '<td><div class="bar">' +
+        '<span class="m-got" style="width:'+pct(r.got)+'%"></span>' +
+        '<span class="m-shaky" style="width:'+pct(r.shaky)+'%"></span>' +
+        '<span class="m-review" style="width:'+pct(r.review)+'%"></span>' +
+      '</div></td></tr>';
+  });
+  html += '</tbody></table>';
+
+  // restudy export: shaky first, then not known
+  const shakyT = allTerms().filter(t=>ratings[t.id]==='shaky');
+  const reviewT = allTerms().filter(t=>ratings[t.id]==='review');
+  if(shakyT.length || reviewT.length){
+    html += '<div class="review-list"><h3>Restudy list for audio and video tools</h3>' +
+      '<div class="sub" style="margin-bottom:12px">Shaky terms first, then terms he did not know, grouped by topic. Copy or download this list and add it to NotebookLM or another tool as a source to generate explanations in context.</div>';
+    const block = (label, cls, list) => {
+      if(!list.length) return '';
+      let h = '<details open><summary>' + label + ' <span style="font-weight:500;color:#6b7480;font-size:.85rem">' + list.length + ' term' + (list.length>1?'s':'') + '</span></summary><div class="terms">';
+      SECTIONS.forEach((s,si)=>{
+        const m = list.filter(t=>t.si===si);
+        if(!m.length) return;
+        h += '<div class="t" style="border-top:2px solid var(--line)"><b style="color:var(--teal)">' + s.name + '</b></div>';
+        m.forEach(t=>{ h += '<div class="t"><b>' + t.term + '</b><span class="tag ' + cls + '">' + (cls==='p-shaky'?'shaky':'not known') + '</span><br>' + t.def + '</div>'; });
+      });
+      return h + '</div></details>';
+    };
+    html += block('Part 1: Shaky terms', 'p-shaky', shakyT);
+    html += block('Part 2: Terms not known', 'p-review', reviewT);
+    html += '<div class="report-actions" style="margin-top:14px">' +
+      '<button class="btn btn-navy" onclick="copyExport(this)">Copy restudy list</button>' +
+      '<button class="btn btn-ghost" onclick="downloadExport()">Download as .md file</button>' +
+    '</div></div>';
+  }
+
+  html += '<div class="report-actions">' +
+    '<button class="btn btn-orange" onclick="startSession({markedOnly:true})">Re-drill these terms</button>' +
+    '<button class="btn btn-ghost" onclick="window.print()">Print or save as PDF</button>' +
+    '<button class="btn btn-ghost" onclick="resetAll()">Reset all progress</button>' +
+  '</div>';
+
+  vReport.innerHTML = html;
+}
+function resetAll(){
+  if(!confirm('Erase all ratings and start over?')) return;
+  ratings = {}; saveRatings(ratings);
+  renderReport(); renderHome();
+}
+
+// ---------- restudy export ----------
+function buildExportMd(){
+  const shaky = allTerms().filter(t=>ratings[t.id]==='shaky');
+  const review = allTerms().filter(t=>ratings[t.id]==='review');
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  let md = '# Earth Science Regents: Personal Restudy List\n\n';
+  md += '_Generated ' + today + ' from a vocabulary self-check. These are the specific terms this student could not fully define, in priority order. When creating explanations, audio, or video from this list, explain each term in context, connect it to related ideas in its topic, and where relevant name the Earth Science Reference Tables page that goes with it._\n\n';
+  if(shaky.length){
+    md += '## Part 1: Terms the student was shaky on (' + shaky.length + ')\n\n';
+    SECTIONS.forEach((s,si)=>{
+      const m = shaky.filter(t=>t.si===si);
+      if(!m.length) return;
+      md += '### ' + s.name + '\n\n';
+      m.forEach(t=>{ md += '- **' + t.term + '**: ' + t.def + '\n'; });
+      md += '\n';
+    });
+  }
+  if(review.length){
+    md += '## Part 2: Terms the student did not know (' + review.length + ')\n\n';
+    SECTIONS.forEach((s,si)=>{
+      const m = review.filter(t=>t.si===si);
+      if(!m.length) return;
+      md += '### ' + s.name + '\n\n';
+      m.forEach(t=>{ md += '- **' + t.term + '**: ' + t.def + '\n'; });
+      md += '\n';
+    });
+  }
+  if(!review.length && !shaky.length) md += '_No shaky or unknown terms right now. Every rated term is marked Got it._\n';
+  return md;
+}
+function downloadExport(){
+  const md = buildExportMd();
+  const blob = new Blob([md], {type:'text/markdown'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Earth Science Restudy List.md';
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function copyExport(btn){
+  const md = buildExportMd();
+  const done = ()=>{ const old = btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=old, 1600); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(md).then(done).catch(()=>fallbackCopy(md, done));
+  } else fallbackCopy(md, done);
+}
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ alert('Copy failed. Use the download button instead.'); }
+  ta.remove();
+}
+
+// ---------- nav ----------
+document.getElementById('navHome').onclick = goHome;
+document.getElementById('navReport').onclick = goReport;
+document.getElementById('quitStudy').onclick = goHome;
+document.getElementById('studyAll').onclick = ()=>startSession({unratedOnly:true});
+document.getElementById('studyMarked').onclick = ()=>startSession({markedOnly:true});
+
+renderHome();
+</script>
+</body>
+</html>
