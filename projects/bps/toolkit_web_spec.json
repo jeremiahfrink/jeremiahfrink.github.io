@@ -1,0 +1,1218 @@
+{
+  "meta": {
+    "title": "Buffalo Public Schools — Bringing AI into Your Classroom (Teacher Toolkit)",
+    "subtitle": "Rolling Out Student AI Use in Your Classroom",
+    "platform": "MagicSchool via Clever (district-approved student AI tool)",
+    "audience": "Classroom teachers participating in the student AI-use pilot",
+    "source_document": "BPS_AI_Teacher_Toolkit_Spring_2026_v2.docx (now includes full appendix resource content)",
+    "premise": "A guided build that ends in two finished artifacts — plus a complete, self-contained resource library (the appendix resources are now fully written into the document, not placeholders).",
+    "outputs_produced": [
+      "Classroom Implementation Plan (the teacher's filled-in decisions)",
+      "Student Use Kit (the student-facing pieces: expectations page, OK/NOT-OK list, disclosure method, assignment block)"
+    ]
+  },
+  "design_decisions_to_confirm": {
+    "where_it_saves": {
+      "question": "Throwaway prototype in a Claude Artifact, or a page you will actually host?",
+      "notes": "localStorage persists a teacher's entries across sessions but is BLOCKED inside Claude Artifacts. If built as an Artifact, use in-session React state (or the artifact storage API). If hosted, localStorage is fine. Recommendation: build hosted (localStorage) so a teacher can leave and come back."
+    },
+    "what_copy_button_copies": {
+      "question": "Copy as rich text/HTML (pastes into Word with headings/structure intact) or plain text (simpler, flattens formatting)?",
+      "recommendation": "Rich text/HTML so the Implementation Plan + Student Use Kit paste into Word cleanly. Provide a plain-text fallback."
+    },
+    "expansion_pattern": "Each step shows the core TASK first (what to DO). 'Additional support' (reference content: district guidelines, OK/NOT-OK options, scripts, routines, examples, lesson details) lives in collapsible 'Here to help — use as needed' panels, collapsed by default."
+  },
+  "ui_model": {
+    "field_types": {
+      "check": "single checkbox (an action the teacher confirms)",
+      "pick_one": "choose exactly one option (radio)",
+      "pick_many": "choose any that apply (checkboxes)",
+      "write_in": "free-text input; label is the prompt, value flows into the copy output",
+      "reference": "read-only expandable support content; not collected"
+    },
+    "save_model": "Every input has a stable id; values persist (localStorage if hosted). A progress checklist mirrors the 6 build steps.",
+    "copy_targets": [
+      {
+        "id": "implementation_plan",
+        "label": "Copy my Implementation Plan",
+        "builds_from": "all write_in + pick_one/pick_many across steps"
+      },
+      {
+        "id": "student_use_kit",
+        "label": "Copy my Student Use Kit",
+        "builds_from": "2.2A expectations + OK/NOT-OK + 2.2B disclosure method + assignment block"
+      },
+      {
+        "id": "assignment_block",
+        "label": "Copy the assignment AI block",
+        "builds_from": "2.2B copy/paste block selections"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "id": "start_here",
+      "title": "Bringing AI into Your Classroom",
+      "kind": "orientation",
+      "bps_expectation": "AI can do a lot of good in your classroom, but it's not something to just throw in. AI use comes with real impacts and implications, so being ready matters. For that reason, Buffalo Public Schools asks each teacher to have a ready-to-run plan before students begin using it.",
+      "intro": "This is a step-by-step guide for completing the items below. You don't need to read it cover to cover — work the sections in order, and by the end you'll have two finished things: your Classroom Implementation Plan and a classroom-ready Student Use Kit. You don't need to be an AI expert. Everything here is district-approved.",
+      "what_it_isnt": "This is not training on the instructional or pedagogical side of AI — it won't teach you how to use AI well in your teaching, and it isn't a technical how-to for the tools. You'll develop your AI literacy through district supports. This walks you through developing what you need: your own plan and student-ready materials.",
+      "readiness_checklist": {
+        "heading": "What you should have ready before first student use (non-negotiables)",
+        "items": [
+          {
+            "id": "ready_perms",
+            "type": "check",
+            "label": "Permissions and family communication are established (contract / letters / opt-in process)."
+          },
+          {
+            "id": "ready_plan",
+            "type": "check",
+            "label": "Your Classroom Implementation Plan."
+          },
+          {
+            "id": "ready_minilesson",
+            "type": "check",
+            "label": "The student mini-lesson you'll use before first use."
+          },
+          {
+            "id": "ready_disclosure",
+            "type": "check",
+            "label": "The student disclosure tool you'll use."
+          },
+          {
+            "id": "ready_integrity",
+            "type": "check",
+            "label": "The academic integrity response steps you'll follow if concerns arise."
+          }
+        ]
+      }
+    },
+    {
+      "id": "s1",
+      "title": "Getting Ready as a Teacher",
+      "kind": "step",
+      "section": "1",
+      "purpose": "Get yourself ready before any students use AI: confirm the non-negotiables, set the language you'll use with students, and gather your pre-use items.",
+      "done_when": "You've completed the Before You Begin checklist (A–D), picked your support phrases, and gathered what to have ready.",
+      "teacher_role": [
+        "You set the rules for the assignment. Students follow your directions.",
+        "You stay in the center of decisions. AI can support thinking but doesn't replace student work or your judgment.",
+        "Students are responsible for what they submit. AI can be wrong, biased, or misleading."
+      ],
+      "task": {
+        "heading": "Before You Begin checklist",
+        "groups": [
+          {
+            "label": "A) Tools and privacy (non-negotiable)",
+            "items": [
+              {
+                "id": "s1a1",
+                "type": "check",
+                "label": "I will only allow student AI use through district-approved tools (MagicSchool via Clever)."
+              },
+              {
+                "id": "s1a2",
+                "type": "check",
+                "label": "I will remind students not to enter personal information (name, student ID, address, etc.)."
+              },
+              {
+                "id": "s1a3",
+                "type": "check",
+                "label": "I understand AI tools can produce errors ('hallucinations') and students must check carefully."
+              }
+            ]
+          },
+          {
+            "label": "B) Expectations and transparency (non-negotiable)",
+            "items": [
+              {
+                "id": "s1b1",
+                "type": "check",
+                "label": "I can explain what transparent AI use looks like for students (how they disclose/label it)."
+              },
+              {
+                "id": "s1b2",
+                "type": "check",
+                "label": "I understand the district's student AI usage scale and will set the allowed level for each assignment."
+              }
+            ]
+          },
+          {
+            "label": "C) Academic integrity (be ready for real life)",
+            "items": [
+              {
+                "id": "s1c1",
+                "type": "check",
+                "label": "I know what to do if I suspect inappropriate AI use (student conversation first; focus on process and expectations)."
+              },
+              {
+                "id": "s1c2",
+                "type": "check",
+                "label": "I will treat most early missteps as teachable moments while still following district expectations."
+              }
+            ]
+          },
+          {
+            "label": "D) Equity and learning (keep students at the center)",
+            "items": [
+              {
+                "id": "s1d1",
+                "type": "check",
+                "label": "I will use AI in ways that support student thinking and access (not shortcuts or replacement)."
+              },
+              {
+                "id": "s1d2",
+                "type": "check",
+                "label": "I will look for over-reliance and help students practice verification, reasoning, and reflection."
+              }
+            ]
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Phrases to Support Students (reusable lines)",
+          "type": "reference",
+          "items": [
+            "AI can help you think, but it can't think for you.",
+            "You are responsible for everything you turn in — even if AI helped.",
+            "If you use AI, you must be transparent (explain) about how you used it.",
+            "Check carefully: AI can sound confident and still be wrong.",
+            "Never put private information into the tool."
+          ]
+        }
+      ],
+      "resources": []
+    },
+    {
+      "id": "s2_1",
+      "title": "2.1 Pilot Requirements: Permissions and Family Communication",
+      "kind": "step",
+      "section": "2",
+      "intro": "Before students use AI in the classroom, a few pieces of documentation are needed to ensure consistent rollout, keep families informed, and protect both students and staff.",
+      "task": {
+        "heading": "Complete before any student AI use",
+        "items": [
+          {
+            "id": "s21_1",
+            "type": "check",
+            "label": "Confirm you have the required documents (Student Contract, Parent Letter, BPS Family Letter) and note where you'll access them."
+          },
+          {
+            "id": "s21_2",
+            "type": "check",
+            "label": "Decide how you'll collect permissions (paper, digital, both) and where you'll store them."
+          },
+          {
+            "id": "s21_3",
+            "type": "check",
+            "label": "Decide when and how you'll send the family communication (date, method, language/translation needs)."
+          },
+          {
+            "id": "s21_4",
+            "type": "check",
+            "label": "Confirm your opt-in process: what form you use, who approves, and how you'll confirm your class is listed."
+          },
+          {
+            "id": "s21_5",
+            "type": "check",
+            "label": "Plan your permission follow-up routine (reminders, tracking returns, what to do for non-returns)."
+          },
+          {
+            "id": "s21_who",
+            "type": "write_in",
+            "label": "Who handles this / by when:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "2.1A What needs to be ready",
+          "type": "reference",
+          "items": [
+            "Student contract — you have it and know how you'll collect and store it.",
+            "Parent letter (tool-specific) — ready to send to participating families.",
+            "BPS family letter (district framing) — ready to send to participating families.",
+            "Opt-in form exists and is available; approval path is clear; a tracking list shows which classes are opted in; it's clear who can opt a class in."
+          ]
+        },
+        {
+          "title": "2.1B Process note",
+          "type": "reference",
+          "items": [
+            "For the pilot you manage collecting signed contracts and confirming your class is documented as opted in. (See Notes: permissions may move to a school/district-level process.)"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.1",
+          "name": "Standard letters and contracts (Student Contract, Parent Letter, BPS Family Letter)",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_2",
+      "title": "2.2 Establishing Classroom Expectations",
+      "kind": "step_group",
+      "section": "2",
+      "intro": "Two things: (1) adopt the district's General AI Usage Guidelines as the foundation, and (2) translate them into clear classroom expectations you'll teach, post, and reinforce.",
+      "outcome": "Create one Classroom AI Expectations page you can post or share with students and reference all year.",
+      "substeps": [
+        "s2_2A",
+        "s2_2B",
+        "s2_2C",
+        "s2_2D"
+      ]
+    },
+    {
+      "id": "s2_2A",
+      "title": "2.2A General Classroom Expectations (Always True)",
+      "kind": "substep",
+      "parent": "s2_2",
+      "task": {
+        "heading": "Create your 'always true' expectations",
+        "items": [
+          {
+            "id": "s22a1",
+            "type": "check",
+            "label": "Choose the 3–5 classroom expectations you'll teach and repeat (based on district guidelines)."
+          },
+          {
+            "id": "s22a2",
+            "type": "check",
+            "label": "Add one 'Always remember' routine you'll use every time (e.g., approved tool → check carefully → protect privacy)."
+          },
+          {
+            "id": "s22a3",
+            "type": "check",
+            "label": "Create your 'AI is OK for / NOT OK for' list (pick from options below, adjust for your grade/content)."
+          },
+          {
+            "id": "s22a4",
+            "type": "check",
+            "label": "Decide how students will see this and when you'll introduce it."
+          },
+          {
+            "id": "s22a_how",
+            "type": "write_in",
+            "label": "How students will see it (poster / slide / handout / LMS / my own):"
+          },
+          {
+            "id": "s22a_when",
+            "type": "write_in",
+            "label": "When I'll introduce it:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "District-wide guidelines (your foundation — point to them, don't reprint)",
+          "type": "reference",
+          "items": [
+            "Critical Evaluation — assume errors/bias; verify with trusted sources",
+            "Human Judgment & Responsibility — AI supports decisions; doesn't replace them",
+            "Privacy & Data Security — never input confidential/PII unless vetted and protected",
+            "Ethical & Responsible Use — no harmful, discriminatory, or inappropriate content; respect IP",
+            "Transparency & Citation — be transparent; cite AI use as required",
+            "Purposeful & Approved Use — approved tools; no shortcuts that replace meaningful work",
+            "Support & Continuous Learning — ask for help; keep learning"
+          ]
+        },
+        {
+          "title": "'Always remember' (teach 3, repeat often)",
+          "type": "reference",
+          "items": [
+            "1. Use approved tools only (student use = MagicSchool via Clever).",
+            "2. Check carefully (AI can be wrong even when it sounds confident).",
+            "3. Protect your privacy (no names, IDs, addresses, or personal details)."
+          ]
+        }
+      ],
+      "ok_not_ok": {
+        "instructions": "Use this as a menu to make expectations concrete (keep general here, get specific per assignment in 2.2B).",
+        "ok_label": "AI is OK for…",
+        "ok": [
+          "Brainstorming ideas, topics, approaches",
+          "Outlining or planning (organizing what you'll write/do)",
+          "Clarifying directions or vocabulary (teacher-approved)",
+          "Generating practice questions or study supports (teacher-approved)",
+          "Giving feedback on a draft you already wrote (clarity, structure, tone)",
+          "Helping you revise your work (you decide what to keep)",
+          "Translating or simplifying language supports when allowed and appropriate"
+        ],
+        "not_ok_label": "AI is NOT OK for…",
+        "not_ok": [
+          "Writing the final product instead of you (unless the teacher explicitly says otherwise)",
+          "Completing 'No AI' assignments or assessments",
+          "Submitting AI output as original thinking (no copy/paste as your work)",
+          "Skipping the required reading/problem-solving by asking for 'just the answer'",
+          "Using AI without following your teacher's directions for that assignment",
+          "Using unapproved tools/accounts for schoolwork",
+          "Entering personal/confidential information",
+          "Creating harmful, harassing, discriminatory, or inappropriate content"
+        ]
+      },
+      "resources": [
+        {
+          "id": "2.2A-1",
+          "name": "General AI Usage Guidelines – BPS",
+          "status": "included"
+        },
+        {
+          "id": "2.2A-2",
+          "name": "Rules of the Road – Student Version",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_2B",
+      "title": "2.2B Per-Assignment Expectations (What I Say for This Assignment)",
+      "kind": "substep",
+      "parent": "s2_2",
+      "task": {
+        "heading": "Build what you'll paste into assignments",
+        "items": [
+          {
+            "id": "s22b1",
+            "type": "check",
+            "label": "Decide how you'll state AI permission (No AI / limited / allowed with conditions) using the district scale."
+          },
+          {
+            "id": "s22b2",
+            "type": "check",
+            "label": "Decide IF students must disclose AI use (default is yes when AI is allowed)."
+          },
+          {
+            "id": "s22b3",
+            "type": "check",
+            "label": "Decide HOW students disclose (one consistent method)."
+          },
+          {
+            "id": "s22b4",
+            "type": "check",
+            "label": "Copy and save your assignment directions block so you can reuse it."
+          },
+          {
+            "id": "s22b5",
+            "type": "check",
+            "label": "Apply the block to one upcoming assignment (test it once before wider use)."
+          }
+        ]
+      },
+      "disclosure_method": {
+        "prompt": "One simple default, plus a checklist when more detail is needed:",
+        "default": {
+          "id": "s22b_label",
+          "type": "pick_many",
+          "label": "Default — the 'I used AI to ___' label (students check what applies):",
+          "options": [
+            "brainstorm or get ideas",
+            "plan or outline",
+            "understand the directions or vocabulary",
+            "practice or study",
+            "get feedback on work I'd already done",
+            "other: ____"
+          ]
+        },
+        "when_more_detail": "When you want more detail (larger assignments): students complete the AI Use Checklist (Appendix 2.2B-3) and add one sentence — 'What I changed after using AI.'"
+      },
+      "copy_paste_block": {
+        "title": "Assignment AI block (drop into any assignment; check what applies)",
+        "fields": [
+          {
+            "id": "asg_name",
+            "type": "write_in",
+            "label": "Assignment & date:"
+          },
+          {
+            "id": "asg_allowed",
+            "type": "pick_one",
+            "label": "AI Allowed:",
+            "options": [
+              "No AI",
+              "Planning / Ideas",
+              "Collaboration / Drafting",
+              "Full AI (with permission)"
+            ]
+          },
+          {
+            "id": "asg_disclose",
+            "type": "pick_one",
+            "label": "AI Disclosure:",
+            "options": [
+              "Not needed",
+              "Required if AI is used"
+            ]
+          },
+          {
+            "id": "asg_how",
+            "type": "pick_one",
+            "label": "How to disclose:",
+            "options": [
+              "Quick label",
+              "Checklist (when required)"
+            ]
+          },
+          {
+            "id": "asg_submit",
+            "type": "pick_many",
+            "label": "What to submit if AI is used:",
+            "options": [
+              "Checklist",
+              "2–3 sentence explanation",
+              "Prompts/output (if requested)",
+              "Verification notes"
+            ]
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "The three decisions for every assignment",
+          "type": "reference",
+          "items": [
+            "IF AI is allowed — No AI / limited / allowed with conditions",
+            "IF students must disclose — almost always 'yes' when AI is allowed",
+            "HOW students disclose — what tool, what they submit, where they label it"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.2B-1",
+          "name": "BPS Student Tools (usage scale language)",
+          "status": "included"
+        },
+        {
+          "id": "2.2B-2",
+          "name": "BPS Student AI Usage Scale",
+          "status": "included"
+        },
+        {
+          "id": "2.2B-3",
+          "name": "AI Student Checklists – Student Version",
+          "status": "included"
+        }
+      ],
+      "disclosure_when": "Students don't disclose on every small task. Expect disclosure on larger assignments where you've allowed AI use. Student-friendly: 'When AI is allowed on a bigger assignment, you tell us how you used it.'"
+    },
+    {
+      "id": "s2_2C",
+      "title": "2.2C When Things Go Wrong (Response Playbook)",
+      "kind": "substep",
+      "parent": "s2_2",
+      "intro": "A consistent playbook for the moments teachers worry about: AI gives bad output, students misuse it, or expectations are unclear.",
+      "task": {
+        "heading": "Create your response playbook",
+        "items": [
+          {
+            "id": "s22c1",
+            "type": "check",
+            "label": "Review the common scenarios (Appendix 2.2C-1): wrong output, bias, over-reliance, no disclosure, no-AI violation."
+          },
+          {
+            "id": "s22c2",
+            "type": "check",
+            "label": "Pick two scenarios that might occur in your classroom."
+          },
+          {
+            "id": "s22c_sc1",
+            "type": "write_in",
+            "label": "Scenario 1:"
+          },
+          {
+            "id": "s22c_sc2",
+            "type": "write_in",
+            "label": "Scenario 2:"
+          },
+          {
+            "id": "s22c_do",
+            "type": "write_in",
+            "label": "For each: What I do immediately:"
+          },
+          {
+            "id": "s22c_say",
+            "type": "write_in",
+            "label": "What I say:"
+          },
+          {
+            "id": "s22c_next",
+            "type": "write_in",
+            "label": "What the student must do next:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Conversation-first meeting (when you suspect misuse)",
+          "type": "reference",
+          "items": [
+            "Walk me through the process of creating your assignment.",
+            "What technology tools did you use, and how did you use them?",
+            "Show me drafts, outlines, prompts/output, or other evidence of your process.",
+            "Explain what AI use was permissible for this assignment."
+          ]
+        },
+        {
+          "title": "Decision path",
+          "type": "reference",
+          "items": [
+            "No violation → document learning and move on.",
+            "Level 1 → teacher-led response (redo, revise disclosure/citation, reteach expectations).",
+            "Level 2 → administrator-led response (per Code of Conduct)."
+          ]
+        },
+        {
+          "title": "Escalate or log when",
+          "type": "reference",
+          "items": [
+            "A privacy or safety concern occurs (PII entered, harmful content, harassment)",
+            "A pattern emerges (multiple students misusing the same way)",
+            "You need clarity on expectations for a new type of assignment",
+            "The tool behaves unexpectedly or access/settings are a problem"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.2C-1",
+          "name": "Academic Integrity Response – When You Suspect Misuse/Cheating",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_2D",
+      "title": "2.2D What I Will Model (with Students)",
+      "kind": "substep",
+      "parent": "s2_2",
+      "intro": "Show students what good AI use looks like. When teachers model, students copy the habits.",
+      "task": {
+        "heading": "Plan your first modeling demo",
+        "items": [
+          {
+            "id": "s22d_routine",
+            "type": "pick_one",
+            "label": "Choose the modeling routine you'll start with:",
+            "options": [
+              "Routine A — 'Improve the Prompt'",
+              "Routine B — 'Check Carefully'",
+              "Routine C — 'AI Says / I Say'",
+              "My own routine"
+            ]
+          },
+          {
+            "id": "s22d_own",
+            "type": "write_in",
+            "label": "My own routine:"
+          },
+          {
+            "id": "s22d_show",
+            "type": "write_in",
+            "label": "Demo plan — what I'll show on screen:"
+          },
+          {
+            "id": "s22d_say",
+            "type": "write_in",
+            "label": "What I'll say (2–3 key lines):"
+          },
+          {
+            "id": "s22d_after",
+            "type": "write_in",
+            "label": "What students do right after (2–3 min):"
+          },
+          {
+            "id": "s22d_prompt",
+            "type": "write_in",
+            "label": "My first example prompt + topic:"
+          },
+          {
+            "id": "s22d_submit",
+            "type": "pick_one",
+            "label": "What students submit after the model:",
+            "options": [
+              "Improved prompt",
+              "Verification note",
+              "Revision + disclosure"
+            ]
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Four habits worth modeling",
+          "type": "reference",
+          "items": [
+            "1. Prompt with intention — clear prompts keep the student in charge.",
+            "2. Check carefully — verification is part of the work.",
+            "3. Revise (don't use the first output) — first response is a draft.",
+            "4. Disclose AI use — 'Here's how I used it and what I changed.'"
+          ]
+        },
+        {
+          "title": "Routine A: Improve the Prompt",
+          "type": "reference",
+          "items": [
+            "Project a vague prompt; show the weak AI response; ask what's missing.",
+            "Revise using RTF (Role–Task–Format); compare the improved output.",
+            "Example — Bad: 'Explain the Civil War.' Improved: Role='helpful Social Studies tutor'; Task='3 causes with simple explanations and a check question'; Format='bullets; end by reminding me to verify with notes/textbook.'",
+            "Student task (2 min): take a vague prompt and improve it the same way."
+          ]
+        },
+        {
+          "title": "Routine B: Check Carefully",
+          "type": "reference",
+          "items": [
+            "Project a short AI answer with 2–3 factual claims; ask which to verify first.",
+            "Verify with an approved source; revise one sentence; reflect on what changed.",
+            "Example — 'List 3 key facts about the Erie Canal's impact on Buffalo'; verify one with a class source.",
+            "Student reflection: 'I checked ___ using ___. I changed ___ because ___.'"
+          ]
+        },
+        {
+          "title": "Routine C: AI Says / I Say",
+          "type": "reference",
+          "items": [
+            "Ask AI for an explanation; students write their own next to it.",
+            "Students identify: one thing AI did well, one it missed, one improvement they made; submit their improved version with a disclosure note.",
+            "Example prompt — 'Explain why we need evidence to support a claim.'"
+          ]
+        },
+        {
+          "title": "Scripts you can say (pick one, reuse)",
+          "type": "reference",
+          "items": [
+            "AI can help you think, but it can't think for you. Your job is to decide what to keep, what to change, and why.",
+            "We don't trust AI yet — we check carefully. Verification is part of the assignment.",
+            "If you used AI at any point, you disclose it. That's normal here."
+          ]
+        },
+        {
+          "title": "What students submit after the model",
+          "type": "reference",
+          "items": [
+            "Improved prompt (their version)",
+            "One verification note (what they checked, where)",
+            "One revision (what they changed and why)",
+            "Disclosure (checklist or short label)"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.2D-1",
+          "name": "RTF Prompt Template (Expanded, Fixed)",
+          "status": "included"
+        },
+        {
+          "id": "2.2D-2",
+          "name": "BPS Student Tools (links to 2.2B-1)",
+          "status": "included"
+        },
+        {
+          "id": "2.2D-3",
+          "name": "AI Student Checklists (links to 2.2B-3)",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_3",
+      "title": "2.3 How I Will Roll It Out to Students",
+      "kind": "step_group",
+      "section": "2",
+      "intro": "Plan the first student experience so it's predictable, safe, and focused on learning.",
+      "task": {
+        "heading": "Plan your Day 0 / Day 1 experience",
+        "items": [
+          {
+            "id": "s23_1",
+            "type": "check",
+            "label": "Decide how much foundation before first use (one lesson / two lessons / full week-one sequence)."
+          },
+          {
+            "id": "s23_2",
+            "type": "check",
+            "label": "Select the specific mini-lesson(s) you'll run."
+          },
+          {
+            "id": "s23_3",
+            "type": "check",
+            "label": "Plan your first student-use activity (2.3B)."
+          }
+        ]
+      },
+      "substeps": [
+        "s2_3A",
+        "s2_3B"
+      ],
+      "resources": [
+        {
+          "id": "2.3A-1",
+          "name": "BPS AI Lessons – Titles and Feedback Notes",
+          "status": "included"
+        },
+        {
+          "id": "2.3A-2",
+          "name": "RTF Prompt Template",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_3A",
+      "title": "2.3A Mini-Lesson Menu — Pick What You Need",
+      "kind": "substep",
+      "parent": "s2_3",
+      "task": {
+        "heading": "Choose your launch sequence",
+        "items": [
+          {
+            "id": "s23a_opt",
+            "type": "pick_one",
+            "label": "Rollout option:",
+            "options": [
+              "One mini-lesson (fastest safe start)",
+              "Two mini-lessons (recommended for a pilot)",
+              "Week-one sequence (fuller build)",
+              "My own plan"
+            ]
+          },
+          {
+            "id": "s23a_own",
+            "type": "write_in",
+            "label": "My own plan:"
+          },
+          {
+            "id": "s23a_lessons",
+            "type": "pick_many",
+            "label": "Lesson(s) you'll use:",
+            "options": [
+              "Lesson 1: AI or Not",
+              "Lesson 3: What is AI and where do we see it?",
+              "Lesson 4: Benefits and Risks of AI",
+              "Lesson 7: AI In Your Learning",
+              "Lesson 8: Welcome to AI Prompting",
+              "Other"
+            ]
+          },
+          {
+            "id": "s23a_other",
+            "type": "write_in",
+            "label": "Other lesson:"
+          },
+          {
+            "id": "s23a_handout",
+            "type": "write_in",
+            "label": "What I'll hand out / display:"
+          },
+          {
+            "id": "s23a_practice",
+            "type": "write_in",
+            "label": "My practice moment (prompt → revise → disclose):"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Option 1 — One mini-lesson (15–20 min)",
+          "type": "reference",
+          "items": [
+            "Cover: what AI is for in this class; rules we always follow; transparency routine; prompting basics (RTF); one tiny practice.",
+            "By the end students can: state the 3 rules, use a simple RTF prompt, complete the disclosure routine.",
+            "Anchor: 'Welcome to AI Prompting' + a short disclosure step."
+          ]
+        },
+        {
+          "title": "Option 2 — Two mini-lessons",
+          "type": "reference",
+          "items": [
+            "Day 1: What AI is and where we see it (discuss first; 'AI can be confident and wrong' moment).",
+            "Day 2: Welcome to AI Prompting + disclosure routine (RTF practice; checklist practice)."
+          ]
+        },
+        {
+          "title": "Option 3 — Week-one sequence",
+          "type": "reference",
+          "items": [
+            "AI or Not → What is AI / where → Benefits and risks → Welcome to AI Prompting → AI in your learning.",
+            "Always include a short routine where students practice disclosure."
+          ]
+        }
+      ],
+      "resources": []
+    },
+    {
+      "id": "s2_3B",
+      "title": "2.3B First Student-Use Example",
+      "kind": "substep",
+      "parent": "s2_3",
+      "intro": "The first real use. Goal isn't a perfect product — it's practicing prompt → decide → revise → disclose.",
+      "task": {
+        "heading": "Plan the first real student use",
+        "items": [
+          {
+            "id": "s23b_act",
+            "type": "write_in",
+            "label": "My first activity (planning/questions/outline — NOT final product):"
+          },
+          {
+            "id": "s23b_level",
+            "type": "pick_one",
+            "label": "AI-allowed level for this activity:",
+            "options": [
+              "No AI",
+              "Planning / Ideas",
+              "Collaboration / Drafting",
+              "Full AI (with permission)"
+            ]
+          },
+          {
+            "id": "s23b_notallowed",
+            "type": "write_in",
+            "label": "Not allowed for this activity:"
+          },
+          {
+            "id": "s23b_disc",
+            "type": "pick_one",
+            "label": "Disclosure method required:",
+            "options": [
+              "Checklist",
+              "Label on work",
+              "Submission comment",
+              "My own"
+            ]
+          },
+          {
+            "id": "s23b_dir_for",
+            "type": "write_in",
+            "label": "Directions — what AI is for today:"
+          },
+          {
+            "id": "s23b_dir_self",
+            "type": "write_in",
+            "label": "What students must do themselves:"
+          },
+          {
+            "id": "s23b_dir_submit",
+            "type": "write_in",
+            "label": "What they must submit:"
+          },
+          {
+            "id": "s23b_dir_disc",
+            "type": "write_in",
+            "label": "How they disclose:"
+          },
+          {
+            "id": "s23b_close",
+            "type": "write_in",
+            "label": "2-minute closing reflection question:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Ready activity: 'Better Questions / Better Planning'",
+          "type": "reference",
+          "items": [
+            "Students use MagicSchool to generate ideas/questions/outline (not the final product), pick the best 2–3, improve in their own words, then disclose.",
+            "Say: 'AI is allowed for planning and idea generation.' / 'You choose what to use. You revise it. You own it.' / 'If you use AI, you disclose it.'",
+            "Submit: revised questions/outline (their words) + disclosure + 2–3 sentence 'how I used AI and what I changed.'"
+          ]
+        },
+        {
+          "title": "Three grade-band examples",
+          "type": "reference",
+          "items": [
+            "K–5: kid-friendly definitions + sentence frames; students write 2 original sentences; mark 'AI Planning/Ideas' + 'AI helped me by ___.'",
+            "6–8: 'explain it two ways,' compare and improve; checklist + 2–3 sentences on what changed.",
+            "9–12: outline + counterclaim planning (AI doesn't write the final); own thesis + one class-sourced evidence; 'what I used / changed / verified.'"
+          ]
+        },
+        {
+          "title": "Closing reflection prompts",
+          "type": "reference",
+          "items": [
+            "One way AI helped my thinking today was…",
+            "One way I had to check carefully was…",
+            "One rule I need to remember next time is…"
+          ]
+        }
+      ],
+      "resources": []
+    },
+    {
+      "id": "s2_4",
+      "title": "2.4 What You Will Do Next",
+      "kind": "step_group",
+      "section": "2",
+      "intro": "After the first rollout, the goal isn't 'more AI' — it's more purposeful use: small, repeatable routines that support learning and keep student thinking at the center.",
+      "gate": {
+        "heading": "Before you expand into anything new, run it through these four questions:",
+        "questions": [
+          "Is this supporting student thinking, or replacing it?",
+          "Is disclosure clear and routine?",
+          "Is there at least one 'check carefully' move built in?",
+          "Can I explain the purpose in one sentence?"
+        ],
+        "instruction": "Then identify one move in each of the three areas below.",
+        "picks": [
+          {
+            "id": "s24_pick1",
+            "type": "check",
+            "label": "One teacher thought-partner prompt for planning."
+          },
+          {
+            "id": "s24_pick2",
+            "type": "check",
+            "label": "One place to embed AI with your students."
+          },
+          {
+            "id": "s24_pick3",
+            "type": "check",
+            "label": "One way to strengthen an assignment."
+          }
+        ]
+      },
+      "substeps": [
+        "s2_4A",
+        "s2_4B",
+        "s2_4C"
+      ]
+    },
+    {
+      "id": "s2_4A",
+      "title": "2.4A One Way to Use AI for Your Own Planning",
+      "kind": "substep",
+      "parent": "s2_4",
+      "intro": "Sometimes the fastest support is using AI as a thought partner to improve your own draft — not to author it. Pick one way you'll use it on your own work.",
+      "task": {
+        "heading": "Choose your one planning use",
+        "items": [
+          {
+            "id": "s24a_t1",
+            "type": "check",
+            "label": "Pick one teacher thought-partner prompt you'll reuse (clarity tester / readiness audit / scenario stress-test / alignment check)."
+          },
+          {
+            "id": "s24a_t2",
+            "type": "check",
+            "label": "Use it once on a draft assignment or your classroom expectations page."
+          },
+          {
+            "id": "s24a_use",
+            "type": "write_in",
+            "label": "My one planning use:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Good ways to use AI on your own planning",
+          "type": "reference",
+          "items": [
+            "Clarity tester — 'What might confuse a busy teacher or student here?'",
+            "Rollout readiness check — 'What's missing before students use this?'",
+            "Scenario stress-test — 'Where could this break down?'",
+            "Alignment check — 'Do these two documents conflict?'"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.4E-1",
+          "name": "Teacher AI Use Working Document ('AI as a Quality Coach' prompts)",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_4B",
+      "title": "2.4B One Place to Embed It With Students",
+      "kind": "substep",
+      "parent": "s2_4",
+      "intro": "Embed AI into work you already teach, in small ways — especially if you're in a scripted curriculum or tight pacing. Pick one place and one repeatable routine.",
+      "task": {
+        "heading": "Choose your one embed point",
+        "items": [
+          {
+            "id": "s24b_t1",
+            "type": "check",
+            "label": "Choose one unit or lesson you already teach and decide where AI fits: before / during / after."
+          },
+          {
+            "id": "s24b_t2",
+            "type": "check",
+            "label": "Decide what students must submit for it (their thinking + disclosure)."
+          },
+          {
+            "id": "s24b_where",
+            "type": "write_in",
+            "label": "Unit/lesson + where AI fits:"
+          },
+          {
+            "id": "s24b_submit",
+            "type": "write_in",
+            "label": "What students submit:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Easy embed points (that don't change your whole lesson)",
+          "type": "reference",
+          "items": [
+            "Before — brainstorming, questions, outline, predictions",
+            "During — clarifying vocabulary, identifying key ideas, generating examples to critique",
+            "After — revision feedback, reflection, practice questions, study-guide creation"
+          ]
+        },
+        {
+          "title": "A simple routine you can reuse — Plan → Do → Reflect",
+          "type": "reference",
+          "items": [
+            "Plan — 'What's the task? What's allowed?'",
+            "Do — AI use stays inside your expectations",
+            "Reflect — students disclose and describe what they changed"
+          ]
+        },
+        {
+          "title": "Good first picks",
+          "type": "reference",
+          "items": [
+            "Quick checks / exit tickets · vocabulary and language supports (especially for MLLs) · 'AI says / I say' thinking-partner routines · student-friendly rubrics or checklists · text adaptation / scaffolds (teacher-controlled)"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.4A-1",
+          "name": "Classroom AI Starters (K–5 or 6–12)",
+          "status": "included"
+        },
+        {
+          "id": "2.4B-1",
+          "name": "BPS Student Tools and AI Student Checklists",
+          "status": "included"
+        }
+      ]
+    },
+    {
+      "id": "s2_4C",
+      "title": "2.4C One Way to Strengthen an Assignment",
+      "kind": "substep",
+      "parent": "s2_4",
+      "intro": "When AI becomes part of ongoing work, you'll want a few default guardrails you can reuse across assignments — so you're not improvising every time. Pick a couple and apply them to one real assignment.",
+      "task": {
+        "heading": "Add guardrails to one real assignment",
+        "items": [
+          {
+            "id": "s24c_t1",
+            "type": "check",
+            "label": "Choose 2–3 guardrails you'll use consistently (checkpoints, process evidence, reflection, verification)."
+          },
+          {
+            "id": "s24c_t2",
+            "type": "check",
+            "label": "Apply those guardrails to one real assignment you'll run this month."
+          },
+          {
+            "id": "s24c_guards",
+            "type": "write_in",
+            "label": "My 2–3 guardrails:"
+          },
+          {
+            "id": "s24c_asg",
+            "type": "write_in",
+            "label": "Assignment I'll apply them to:"
+          }
+        ]
+      },
+      "reference": [
+        {
+          "title": "Reliable guardrails teachers use",
+          "type": "reference",
+          "items": [
+            "Checkpoints (outline → draft → revise)",
+            "Process evidence (notes, planning, conferencing)",
+            "Required reflection (what changed and why)",
+            "Verification step (check one claim / cite one source)",
+            "Short oral explanation or conference ('tell me why you chose this')"
+          ]
+        },
+        {
+          "title": "What this looks like in practice",
+          "type": "reference",
+          "items": [
+            "You keep the assignment the same.",
+            "You add 2–3 guardrails and a disclosure routine.",
+            "Students still do the thinking; AI supports the work."
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "2.4C-1",
+          "name": "Teacher AI Use Working Document (quality checklist + improvement prompts)",
+          "status": "included"
+        }
+      ]
+    }
+  ],
+  "resources_index": {
+    "status": "All appendix resources are now fully written into the document (extract their content into the searchable library).",
+    "written_in_document": [
+      "Student Contract",
+      "Parent Letter (Tool-Specific)",
+      "BPS Family Letter (District Framing)",
+      "General AI Usage Guidelines — BPS",
+      "Rules of the Road — Student Version",
+      "BPS Student Tools",
+      "BPS Student AI Usage Scale",
+      "AI Student Checklists — Student Version",
+      "Academic Integrity Response (When You Suspect Misuse/Cheating)",
+      "RTF Prompt Template",
+      "BPS AI Lessons — Titles and Feedback Notes",
+      "RTF Prompt Template (Expanded, Fixed)",
+      "Classroom AI Starters — Elementary Edition (K–5)",
+      "Classroom AI Starters — Secondary Edition (6–12)",
+      "Teacher AI Use Working Document",
+      "BPS AI Educator Competencies",
+      "K–12 AI Competency Progression (Students)"
+    ],
+    "pending_future": [
+      "AI-resistant assignment examples packet (noted under 2.4C as a possible later addition)"
+    ]
+  },
+  "output_template": {
+    "student_use_kit": {
+      "title": "Student Use Kit (paste into Word / share with students)",
+      "assembled_from": [
+        "Classroom AI Expectations (3–5 chosen, from s22a1)",
+        "'Always remember' routine (s22a2)",
+        "AI is OK for / NOT OK for list (s22a3 selections from 2.2A ok_not_ok)",
+        "How/when students see it (s22a_how, s22a_when)",
+        "Disclosure method (s22b_method)",
+        "Reusable Assignment AI block (2.2B copy_paste_block fields)"
+      ]
+    },
+    "implementation_plan": {
+      "title": "Classroom Implementation Plan (teacher record)",
+      "assembled_from": "Every write_in + pick_one/pick_many value across s1–s2_4, grouped by step, with step titles as headings and the teacher's entries beneath. Unfilled fields show as blanks so the teacher can finish by hand."
+    },
+    "format_note": "When copy format = rich text: step titles → H2/H3, task items → bullet list, write-ins → 'Label: value', pick lists → 'Label: chosen option(s)'. Provide a plain-text fallback with the same structure."
+  },
+  "build_guide": {
+    "page_modes": [
+      "Browse & Search — a searchable repository of the toolkit + every appendix resource (resources are now full content, so they live IN the page, not as external links).",
+      "Walk Me Through It — the guided build defined by steps[], collecting inputs and producing the copy-to-Word outputs."
+    ],
+    "content_source": "This spec defines the WALKTHROUGH structure and fields. The full APPENDIX RESOURCE CONTENT now lives in the .docx — the build should extract each appendix resource (text under 'Appendix Resources') into the searchable library. Attach the .docx to the build chat for that extraction.",
+    "search": "Client-side filter over step text + resource content. No backend.",
+    "still_pending_resources": "The document notes an 'AI-resistant assignment examples' packet may be added later (lives under 2.4C). Treat as optional/future."
+  }
+}
