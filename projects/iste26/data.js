@@ -23,28 +23,28 @@ const DAYS = [
     expo:"Closed",
     mainstage:"Opening Mainstage · 3:00–4:30 PM",
     lunch:"",
-    meetings:"12:00–5:00 PM",
+    meetings:"12:00–5:00 PM", meetStart:"12:00", meetEnd:"17:00",
     note:"" },
   { key:"mon", tab:"Mon", full:"Monday, June 29", date:"2026-06-29",
     roomHours:"8:00 AM–5:00 PM",
     expo:"9:00 AM–5:00 PM",
     mainstage:"",
     lunch:"11:30 AM–12:30 PM",
-    meetings:"9:00 AM–5:00 PM",
+    meetings:"9:00 AM–5:00 PM", meetStart:"09:00", meetEnd:"17:00",
     note:"" },
   { key:"tue", tab:"Tue", full:"Tuesday, June 30", date:"2026-06-30",
     roomHours:"8:00 AM–5:00 PM",
     expo:"9:30 AM–5:00 PM",
     mainstage:"Tuesday Mainstage · 8:15–9:30 AM",
     lunch:"12:30–1:00 PM",
-    meetings:"9:00 AM–5:00 PM",
+    meetings:"9:00 AM–5:00 PM", meetStart:"09:00", meetEnd:"17:00",
     note:"Character Day — wear your theme-park gear" },
   { key:"wed", tab:"Wed", full:"Wednesday, July 1", date:"2026-07-01",
     roomHours:"8:00 AM–2:00 PM",
     expo:"8:30 AM–1:00 PM",
     mainstage:"Closing Mainstage · 1:15–2:30 PM",
     lunch:"",
-    meetings:"9:00 AM–2:00 PM",
+    meetings:"9:00 AM–2:00 PM", meetStart:"09:00", meetEnd:"14:00",
     note:"" },
 ];
 
@@ -56,6 +56,14 @@ const STREAMS = {
   "partner":    { short:"Partner",    label:"Partner Event",       color:"#7A4FBF" },
   "iste":       { short:"ISTE",       label:"ISTE Program",        color:"#5A6B7C" },
 };
+
+/* --- Spaces = the columns in the laptop grid + the "By room" groups on phone.
+   Each space owns one or more streams. --- */
+const SPACES = [
+  { key:"main",   label:"Main Stage",      sub:"W306AB",                 streams:["dell-room"] },
+  { key:"oneone", label:"1:1 Room",        sub:"Hyatt Gulf",             streams:["dell-hyatt"], showMeetings:true },
+  { key:"around", label:"Around the Show", sub:"Partner · ISTE · Events", streams:["partner","iste","dell-event"], light:true },
+];
 
 /* --- Team names: power the "my sessions" quick-pick chips. --- */
 const TEAM = ["Jeremiah","Nekia","Katina","Marlo","Matt","Gerri","Snow","Keya"];
@@ -251,6 +259,12 @@ const SCHEDULE = [
     where:"Tin Roof, Orlando", who:"Google for Education",
     desc:"", link:{label:"Register", url:"#"} },
 
+  { id:"tu-canam", day:"tue", start:"17:30", end:"19:30", time:"5:30–7:30 PM",
+    title:"35th Can/Am Reception · ISTE 2026", stream:"partner",
+    where:"Hyatt Regency Orlando · Lounge and Patio", who:"Hosted by MindShare Learning Technology",
+    desc:"",
+    link:{label:"Register on Eventbrite", url:"https://www.eventbrite.com/e/35th-canam-reception-iste-2026-tickets-1989605123483"} },
+
   /* ---------- WEDNESDAY, JULY 1 ---------- */
   { id:"we-expo", day:"wed", start:"08:30", end:"13:00", time:"8:30 AM–1:00 PM",
     title:"Expo / Solutions Hub open", stream:"iste",
@@ -280,13 +294,12 @@ const VENUES = [
 ];
 
 /* --- Key contacts. Add a phone/email in 'detail' as you get them. --- */
+/* Contact detail intentionally blank for now — add phone/email later if wanted. */
 const CONTACTS = [
-  { name:"Kelsey", role:"On-site escalation — first call if something breaks", detail:"[ add Kelsey's cell ]" },
+  { name:"Kelsey", role:"On-site escalation — first call if something breaks", detail:"" },
   { name:"April Silva", role:"Customer meetings (with Lucy Howland)", detail:"" },
   { name:"Lucy Howland", role:"Customer meetings", detail:"" },
   { name:"Jennifer Hebert", role:"CxO Dinner host (Sun)", detail:"" },
-  { name:"Katina", role:"Logics / \"Meet Michelle\" connection", detail:"" },
-  { name:"Jeremiah Okal-Frink", role:"Intel Skills for Innovation meetup (Sun)", detail:"jeremiah.frink@dell.com · 585.298.8236" },
 ];
 
 /* --- Key links --- */
