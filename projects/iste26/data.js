@@ -85,7 +85,7 @@ const SCHEDULE = [
     title:"ISTE Women's High Tea Party", stream:"partner",
     where:"Ritz-Carlton Orlando, Grande Lakes · Napoli", who:"Hosted by ClassLink · Dell · MagicSchool",
     desc:"Co-hosted reception. Dell is a named host alongside ClassLink and MagicSchool.",
-    link:{label:"Landing page", url:"#"} },
+    link:{label:"Event landing page", url:"https://www.classlink.com/events/iste-2026-tea-social"} },
 
   { id:"su-build", day:"sun", start:"13:00", end:"14:30", time:"1:00–2:30 PM",
     title:"Build It Here. Launch It There: Design Your Next Student Program", stream:"dell-room",
@@ -109,7 +109,7 @@ const SCHEDULE = [
   { id:"su-msreception", day:"sun", start:"18:00", end:"20:00", time:"6:00–8:00 PM",
     title:"Microsoft Partner Reception", stream:"partner",
     where:"The Hampton Social · 9101 International Dr", who:"Microsoft",
-    desc:"", link:{label:"Register", url:"#"} },
+    desc:"", link:{label:"Register", url:"https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4rSEX_WUiFLul-y1nHxAChUMTNUTFU2V1VFUjhSRDA4WDFTSVdQSzNQTy4u"} },
 
   { id:"su-cxo", day:"sun", start:"18:30", end:"20:30", time:"6:30–8:30 PM",
     title:"CxO Dinner", stream:"partner",
@@ -120,7 +120,7 @@ const SCHEDULE = [
   { id:"mo-pancakes", day:"mon", start:"08:00", end:"09:30", time:"8:00–9:30 AM",
     title:"Microsoft EDU Partner Breakfast — \"Products & Pancakes!\"", stream:"partner",
     where:"Microsoft Partner Room · 309AB", who:"Microsoft",
-    desc:"", link:{label:"Register", url:"#"} },
+    desc:"", link:{label:"Register", url:"https://forms.office.com/r/ZqDgQ94kzH"} },
 
   { id:"mo-ms1", day:"mon", start:"08:30", end:"09:30", time:"8:30–9:30 AM",
     title:"Microsoft 1", stream:"dell-room",
@@ -257,7 +257,7 @@ const SCHEDULE = [
   { id:"tu-google-social", day:"tue", start:"17:00", end:"19:30", time:"5:00–7:30 PM",
     title:"Google for Education After School Partner Social — 90s-themed mixer", stream:"partner",
     where:"Tin Roof, Orlando", who:"Google for Education",
-    desc:"", link:{label:"Register", url:"#"} },
+    desc:"", link:{label:"Register", url:"https://notifications.googleapis.com/email/redirect?t=AFG8qyXgsJh_yir_DjBR36dQwH0BVW8ULLjF6xBMYGA5jwUW5ofecI-5bK6upPekdwGQzzfBDCJi09T_lNwa92CAAxSEGqDkn91JAhkkhy0oF7jIRg4ACLuYq7_kg8tCrkiV6gYhTMfLlrUmpymMbBcqzTmjB97hjT25GPfTDeIPEcpXiuFzzOXq14z3zQ9U7YiLJOi01N9hywWAV6K_N7eXJx5zXYsOTgnJ3tfxkUvUrqW8TvaukgehE5WIAGjcJ3V7ACK2X92i1gehZn-HfoBVx75YNg-OCHLF0efcz4P2TozXb_cd_W5L6f4aGMt0Og&r=eJwFwUEKwCAMBMAXaaCHHvoblUUD1kiy2O93ZpA7HhGPs_OnHN2sT-Rmr-BgMWQX54KnhonqhWorFSYNYurBdf-IvhoL&s=ALHZ2r6e-D9IB2patUAXIFVy4Pq__"} },
 
   { id:"tu-canam", day:"tue", start:"17:30", end:"19:30", time:"5:30–7:30 PM",
     title:"35th Can/Am Reception · ISTE 2026", stream:"partner",
@@ -281,16 +281,26 @@ const SCHEDULE = [
     where:"OCCC West", who:"", desc:"Conference closing keynote.", link:null },
 ];
 
+/* --- Dell at ISTE — at-a-glance facts for the Logistics page. --- */
+const PRESENCE = [
+  { l:"Sponsorship", v:"Gold Sponsor" },
+  { l:"Vendor partner", v:"Microsoft" },
+  { l:"Our room", v:"W306AB · OCCC West" },
+  { l:"1:1 meetings", v:"Hyatt Gulf · book via Jiffle" },
+  { l:"Customer event", v:"EPCOT Mexico Vista · Mon 8–10 PM" },
+  { l:"Dates", v:"June 28 – July 1, 2026" },
+];
+
 /* --- Venues --- */
 const VENUES = [
   { name:"Sponsor Room — W306AB",
     where:"Orange County Convention Center · West Building",
     hours:"Mon & Tue 8:00 AM–5:00 PM · Wed 8:00 AM–2:00 PM · Sun closed (special event)",
-    note:"Our hub — main stage, device showcase, and drop-in customer conversations." },
+    note:"Our hub — a main stage for thought-leadership sessions, a curated K-12 product and solutions showcase, and a drop-in zone for customer conversations." },
   { name:"Meeting Room — Hyatt Gulf",
     where:"Hyatt Regency Orlando · Gulf Conference Room · Conference Level (cap. 20)",
     hours:"Sun 12–5 · Mon 9–5 · Tue 9–5 · Wed 9–2",
-    note:"One-on-one district meetings (book via Jiffle), plus the Future of Education think tank and the Google advisory session." },
+    note:"One-on-one district meetings (book via Jiffle, which opens June 1 — all requests reviewed before approval), plus the Future of Education think tank and the Google advisory session." },
 ];
 
 /* --- Key contacts. Add a phone/email in 'detail' as you get them. --- */
