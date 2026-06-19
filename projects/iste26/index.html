@@ -185,6 +185,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .sheet .m-close{width:100%; margin-top:10px; border:0; background:none; color:var(--gray); font-weight:600; font-size:13px; padding:8px}
 
 /* LOGISTICS */
+.factgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.lfact .l{font-family:var(--disp); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--gray)}
+.lfact .v{font-size:13.5px; font-weight:600; margin-top:3px; color:var(--ink); line-height:1.35}
+.mydayfilter{display:flex; gap:6px; margin:14px 4px 4px}
+.dchip{flex:1; border:1px solid var(--line); background:var(--surface); border-radius:10px; padding:8px 0; font-family:var(--disp); font-weight:600; font-size:12px; color:var(--gray)}
+.dchip.on{background:var(--navy); color:#fff; border-color:var(--navy)}
 .lblock{margin-bottom:10px}
 .venue .name{font-family:var(--disp); font-weight:600; font-size:15px; color:var(--navy)}
 .venue .where{font-size:13px; color:var(--ink); margin-top:3px}
@@ -333,7 +339,7 @@ const K={name:"iste26_name",saved:"iste26_saved",checked:"iste26_checked",notes:
 let state={
   name:store.get(K.name,""), saved:new Set(store.get(K.saved,[])), checked:new Set(store.get(K.checked,[])),
   notes:store.get(K.notes,{}), custom:store.get(K.custom,[]),
-  day:"sun", streamOff:new Set(), mineOnly:false, view:"grid", search:""
+  day:"sun", streamOff:new Set(), mineOnly:false, view:"grid", search:"", myDay:"all"
 };
 function persist(){store.set(K.name,state.name);store.set(K.saved,[...state.saved]);store.set(K.checked,[...state.checked]);store.set(K.notes,state.notes);store.set(K.custom,state.custom);}
 
@@ -555,13 +561,13 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.con
 /* LOGISTICS */
 function renderLog(){
   const el=document.getElementById("s-log");
+  const facts=`<div class="card pad"><div class="factgrid">${PRESENCE.map(p=>`<div class="lfact"><div class="l">${esc(p.l)}</div><div class="v">${esc(p.v)}</div></div>`).join("")}</div></div>`;
   const venues=VENUES.map(v=>`<div class="card pad venue lblock"><div class="name">${esc(v.name)}</div><div class="where">📍 <a href="${mapsLink(v.where)}" target="_blank" rel="noopener">${esc(v.where)}</a></div><div class="hours">${esc(v.hours)}</div><div class="note">${esc(v.note)}</div></div>`).join("");
   const contacts=`<div class="card pad">${CONTACTS.map(c=>`<div class="contact"><div><div class="n">${esc(c.name)}</div><div class="r">${esc(c.role)}</div></div>${c.detail?`<div class="d">${detailHTML(c.detail)}</div>`:""}</div>`).join("")}</div>`;
   const links=`<div class="card pad">${LINKS.map(l=>`<a class="linkrow" href="${l.url}" target="_blank" rel="noopener"><span class="dot"></span><span><span class="lk">${esc(l.label)}</span>${l.note?`<br><span class="nt">${esc(l.note)}</span>`:""}</span><span class="go">↗</span></a>`).join("")}</div>`;
   const g=MEETING_GUIDE;
   const guide=`<div class="card pad"><details class="guide"><summary>Customer meetings — quick guidance</summary><h4>Why schedule one</h4><ul>${g.why.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><h4>When to postpone</h4><ul>${g.postpone.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><h4>Bring to the request</h4><ul>${g.bring.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div class="ct">${esc(g.contact)}</div></details></div>`;
-  const notes=NOTES.length?`<div class="section-title">Good to know</div><div class="card pad">${NOTES.map(n=>`<div class="note-line">${esc(n)}</div>`).join("")}</div>`:"";
-  el.innerHTML=`<div class="section-title">Venues</div>${venues}<div class="section-title">Meetings</div>${guide}<div class="section-title">Key contacts</div>${contacts}<div class="section-title">Links</div>${links}${notes}`;
+  el.innerHTML=`<div class="section-title">Dell at ISTE</div>${facts}<div class="section-title">Venues</div>${venues}<div class="section-title">Meetings</div>${guide}<div class="section-title">Key contacts</div>${contacts}<div class="section-title">Links</div>${links}`;
 }
 
 /* MY SHOW */
@@ -579,21 +585,27 @@ function renderMy(){
   const tl=timeline();
   const dayOpts=`<option value="">No date</option>`+DAYS.map(d=>`<option value="${d.key}">${d.tab} ${d.date.slice(8)}</option>`).join("");
 
-  let body="",anything=false;
+  const hasContent=savedEntries().length>0||state.custom.length>0;
+  let body="",shown=false;
   DAYS.forEach(d=>{
+    if(state.myDay!=="all"&&state.myDay!==d.key)return;
     const sess=savedEntries().filter(e=>e.day===d.key);
     const cust=state.custom.filter(c=>c.day===d.key);
     if(!sess.length&&!cust.length)return;
-    anything=true;
+    shown=true;
     const rows=[];
     sess.forEach(e=>rows.push({sort:m(e.start),html:sessRow(e,tl)}));
     cust.forEach(c=>rows.push({sort:c.start?m(c.start):99999,html:todoRow(c,tl)}));
     rows.sort((a,b)=>a.sort-b.sort);
     body+=`<div class="mygroup">${d.full}</div>`+rows.map(r=>r.html).join("");
   });
-  const noday=state.custom.filter(c=>!c.day);
-  if(noday.length){anything=true;body+=`<div class="mygroup">No date</div>`+noday.map(c=>todoRow(c,tl)).join("");}
-  if(!anything)body=`<div class="my-empty">Nothing here yet.<br>Open <strong>Schedule</strong> and tap the ☆ on any session to add it — or add your own meetings and to-dos below with a day and time to build your full run-of-show.</div>`;
+  if(state.myDay==="all"){
+    const noday=state.custom.filter(c=>!c.day);
+    if(noday.length){shown=true;body+=`<div class="mygroup">No date</div>`+noday.map(c=>todoRow(c,tl)).join("");}
+  }
+  if(!hasContent)body=`<div class="my-empty">Nothing here yet.<br>Open <strong>Schedule</strong> and tap the ☆ on any session to add it — or add your own meetings and to-dos below with a day and time to build your full run-of-show.</div>`;
+  else if(!shown)body=`<div class="my-empty">Nothing saved for ${esc(dayMeta(state.myDay).full)}.</div>`;
+  const dayfilter=hasContent?`<div class="mydayfilter"><button class="dchip ${state.myDay==="all"?"on":""}" data-md="all">All</button>${DAYS.map(d=>`<button class="dchip ${state.myDay===d.key?"on":""}" data-md="${d.key}">${d.tab}</button>`).join("")}</div>`:"";
 
   el.innerHTML=`<div class="card myhead">
     <div class="hi">${hi}</div><div class="sub">Your run-of-show: saved sessions, your own meetings and to-dos, notes, and check-offs. Kept on this device.</div>
@@ -602,6 +614,7 @@ function renderMy(){
       <div class="addbox"><input id="addtitle" placeholder="e.g. Meet Michelle from Logics"></div>
       <div class="addmeta"><select id="addday">${dayOpts}</select><input id="addtime" type="time"><button id="addbtn">Add</button></div>
     </div></div>
+    ${dayfilter}
     ${body}
     <div class="my-actions"><button id="printbtn" class="primary">Save / Print run-of-show</button><button id="copybtn">Copy as text</button><button id="syncbtn">Move to another device</button></div>
     <div class="sync" id="syncpanel" style="display:none"></div>`;
@@ -620,6 +633,7 @@ function renderMy(){
     const cc=it.querySelector("[data-act='cchk']");if(cc)cc.onclick=()=>{const c=state.custom.find(x=>x.id===cid);c.done=!c.done;persist();renderMy();};
     const cd=it.querySelector("[data-act='cdel']");if(cd)cd.onclick=()=>{state.custom=state.custom.filter(x=>x.id!==cid);persist();renderMy();updateMyCount();};
   });
+  el.querySelectorAll("[data-md]").forEach(b=>b.onclick=()=>{state.myDay=b.dataset.md;renderMy();});
   document.getElementById("copybtn").onclick=copyList;
   document.getElementById("printbtn").onclick=()=>window.print();
   document.getElementById("syncbtn").onclick=toggleSync;
