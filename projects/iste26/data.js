@@ -117,6 +117,12 @@ const SCHEDULE = [
     desc:"", link:{label:"Contact Jennifer Hebert", url:"#"} },
 
   /* ---------- MONDAY, JUNE 29 ---------- */
+  { id:"mo-logics", day:"mon", start:"07:30", end:"08:30", time:"7:30–8:30 AM",
+    title:"Meet with Logics Academy (Partner)", stream:"partner",
+    where:"", who:"The team",
+    desc:"Breakfast meeting with Logics Academy. Location TBD — see Katina.",
+    link:{label:"See Katina", url:"#"} },
+
   { id:"mo-pancakes", day:"mon", start:"08:00", end:"09:30", time:"8:00–9:30 AM",
     title:"Microsoft EDU Partner Breakfast — \"Products & Pancakes!\"", stream:"partner",
     where:"Microsoft Partner Room · 309AB", who:"Microsoft",
@@ -324,6 +330,8 @@ const LINKS = [
     url:"https://dell.sharepoint.com/:u:/s/NAFieldExperiential9/IQAXP2M8TD34S6UqefxQuR-2Aa2EXDTyxe3VktTsUfVfb70" },
   { label:"ISTE internal site (SharePoint)", note:"Bookmark this",
     url:"https://dell.sharepoint.com/sites/na-sled-marketing/SitePages/ISTE-2026.aspx" },
+  { label:"Dell Attendee Sheet", note:"Who's coming from Dell",
+    url:"https://dell-my.sharepoint.com/:x:/r/personal/lucy_howland_dell_com/Documents/ISTE%20Dell%20Attendee%20Tracking.xlsx?d=wa2378854a61a4046bc6eb90ae8fb3412&csf=1&web=1&e=aNUgBg&nav=MTVfe0NDNkIyNTc3LTQ3NkItNDAzRi05RTIzLTQwQ0JDNDgxNEYzOH0" },
   { label:"ISTE program search (full session catalog)", note:"",
     url:"https://conference.iste.org/2026/program/search" },
 ];
