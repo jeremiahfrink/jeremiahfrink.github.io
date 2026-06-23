@@ -129,9 +129,9 @@ const SCHEDULE = [
     desc:"", link:{label:"Register", url:"https://forms.office.com/r/ZqDgQ94kzH"} },
 
   { id:"mo-ms1", day:"mon", start:"08:30", end:"09:30", time:"8:30–9:30 AM",
-    title:"Microsoft 1", stream:"dell-room",
-    where:"W306AB", who:"Gerri",
-    desc:"Session details to be finalized.", link:null },
+    title:"Pull Back the Curtain on AI in Your District", stream:"dell-room",
+    where:"W306AB", who:"Geri Gillespy (Msft) / Jeremiah",
+    desc:"What does it actually take to make AI work across a district? This session goes behind the scenes to explore the connected systems thinking that turns AI potential into real outcomes for staff and students. Using Microsoft as the foundation, we'll look at how intentional platform connections reduce silos and unlock better experiences across operations, leadership, and learning. Come ready to rethink how all the pieces fit together.", link:null },
 
   { id:"mo-expo", day:"mon", start:"09:00", end:"17:00", time:"9:00 AM–5:00 PM",
     title:"Expo / Solutions Hub open", stream:"iste",
@@ -210,9 +210,9 @@ const SCHEDULE = [
     where:"OCCC West", who:"", desc:"Exhibit hall open.", link:null },
 
   { id:"tu-ms2", day:"tue", start:"10:00", end:"11:00", time:"10:00–11:00 AM",
-    title:"Microsoft 2", stream:"dell-room",
-    where:"W306AB", who:"Gerri",
-    desc:"Session details to be finalized.", link:null },
+    title:"Start with the Learner and Let the Tools Follow", stream:"dell-room",
+    where:"W306AB", who:"Geri Gillespy (Msft) / Jeremiah",
+    desc:"Great AI integration in schools starts with one question: who are we really designing for? This session centers the learner and explores how educators and instructional coaches can use Microsoft tools and resources to support teaching, reflection, and differentiation. Every student in the room belongs here, including those with diverse learning needs and those who need additional support. Expect practical ideas, honest conversation, and strategies you can bring back to your classroom and team right away.", link:null },
 
   { id:"tu-google", day:"tue", start:"10:00", end:"11:00", time:"10:00–11:00 AM",
     title:"Empowering Excellence: Navigating the Google Ecosystem for K12 Success", stream:"dell-hyatt",
