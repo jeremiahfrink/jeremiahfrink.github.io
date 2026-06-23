@@ -143,7 +143,7 @@ const SCHEDULE = [
     desc:"Move beyond AI hype to real, responsible impact. Discover how districts are implementing AI across leadership, learning, technology, professional learning, and trust. Walk away with concrete use cases, patterns, and resources to make AI work practically, sustainably, and in a human-centered way for your context.",
     link:null },
 
-  { id:"mo-cyber", day:"mon", start:"10:30", end:"11:30", time:"10:30–11:30 AM",
+  { id:"mo-cyber", day:"mon", start:"14:30", end:"15:30", time:"2:30–3:30 PM",
     title:"Cybersecurity 101 for Schools: Protecting Systems, Students, and Staff", stream:"dell-room",
     where:"W306AB", who:"Marlo",
     desc:"New to cybersecurity? Start here with practical, beginner-friendly strategies to protect your school or district. Learn the essentials of password management, multi-factor authentication, and security updates to strengthen cyber wellness, safeguard student data, and create a safer digital environment.",
@@ -182,7 +182,7 @@ const SCHEDULE = [
     where:"W306AB", who:"Jeremiah, Marlo, Tom Kane",
     desc:"Media introduction with the Integrate This! Podcast.", link:null },
 
-  { id:"mo-vibe", day:"mon", start:"14:30", end:"15:30", time:"2:30–3:30 PM",
+  { id:"mo-vibe", day:"mon", start:"10:30", end:"11:30", time:"10:30–11:30 AM",
     title:"The Vibe Coding Superintendent", stream:"dell-room",
     where:"W306AB", who:"Matt",
     desc:"What happens when a district starts asking \"What if?\" and builds applications that help. Explore how vibe coding is in reach of anyone in the district, and hear how one superintendent used the skill to impact his district.",
