@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build It Here. Launch It There — Sprint Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#00447C;--blue:#0672CB;--ink:#16202B;--slate:#5A6B7C;
+  --paper:#FFFFFF;--mist:#EEF3F8;--fog:#F6F9FC;--line:#D8E1EA;
+  --open:#0672CB;--frame:#00447C;--ideate:#0D2155;--prototype:#0B7C84;--testc:#3F205C;--share:#0672CB;
+  --display:'Archivo',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+  --maxw:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-0.015em}
+
+/* top bar + tab nav */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 22px}
+.brandmark{font-family:var(--display);font-weight:800;font-size:15px;color:var(--navy);white-space:nowrap}
+.brandmark span{color:var(--blue)}
+.phasenav{display:flex;gap:3px;margin-left:auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.phasenav button{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--slate);padding:6px 10px;border-radius:7px;border:none;background:none;cursor:pointer;white-space:nowrap}
+.phasenav button:hover{background:var(--mist);color:var(--navy)}
+.phasenav button.active{color:#fff}
+.bp-btn{font-family:var(--display);font-weight:700;font-size:12.5px;color:#fff;background:var(--navy);padding:7px 13px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.bp-btn:hover{background:#003463}
+.bp-btn .dot{width:7px;height:7px;border-radius:50%;background:#7fd1d8;display:none}
+.bp-btn.has .dot{display:inline-block}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* hero (only on intro) */
+.hero{background:linear-gradient(160deg,#00305A 0%,#00447C 55%,#0a5aa0 100%);color:#fff;padding:54px 0 48px}
+.hero .eyebrow{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#9ec7ec;margin-bottom:15px}
+.hero h1{font-weight:900;font-size:clamp(34px,6vw,60px);color:#fff;max-width:15ch}
+.hero .sub{font-size:clamp(16px,2vw,19px);color:#d7e7f6;margin-top:16px;max-width:56ch}
+.hero .meta{margin-top:22px;display:flex;gap:9px;flex-wrap:wrap}
+.hero .meta span{font-family:var(--mono);font-size:12px;color:#bcd8f1;border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:5px 12px}
+.hero .start{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero .start button{font-family:var(--display);font-weight:700;font-size:15px;color:#06243f;background:#fff;border:none;border-radius:10px;padding:13px 22px;cursor:pointer}
+.hero .start button.ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.hero .howto{margin-top:24px;font-size:14px;color:#cfe3f5;max-width:64ch;border-left:3px solid #0a5aa0;padding-left:15px}
+
+/* phase stage */
+#stage{min-height:60vh;padding:42px 0 10px}
+.phase-head{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap}
+.phase-tab{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:5px 11px;border-radius:6px}
+.phase-mode{font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+.phase-step{font-family:var(--mono);font-size:11.5px;color:var(--slate);margin-left:auto;letter-spacing:.05em}
+#stage h2{font-weight:800;font-size:clamp(27px,4vw,40px);margin:13px 0 0;color:var(--ink)}
+#stage .lede{font-size:17.5px;color:#34414f;margin:13px 0 6px;max-width:64ch}
+.prompt-q{font-family:var(--display);font-weight:600;font-size:19px;color:var(--navy);margin:22px 0 4px;max-width:60ch}
+
+.block{margin-top:26px}
+.block-label{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:13px;display:flex;align-items:center;gap:9px}
+.block-label::before{content:"";width:18px;height:2px;background:currentColor;display:inline-block}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps li{background:var(--fog);border:1px solid var(--line);border-radius:11px;padding:13px 16px;font-size:16px}
+.steps li b{color:var(--navy)}
+.narrow{font-size:12px;color:var(--slate);font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;margin-right:8px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:15px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:19px}
+.card h4{font-size:18px;color:var(--ink);margin-bottom:4px}
+.card .role{font-size:13.5px;color:var(--slate);margin-bottom:11px}
+.card p{margin:0 0 11px;font-size:14.5px}.card p.role{margin-bottom:0}
+.card .meta-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.tag{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:20px;background:var(--mist);color:var(--navy);border:1px solid var(--line)}
+.tag.lane{background:#eaf4ff;color:var(--blue)}
+
+.ladder{width:100%;border-collapse:collapse;font-size:14.5px;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+.ladder th{font-family:var(--display);text-align:left;background:var(--navy);color:#fff;font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;padding:10px 13px;font-weight:700}
+.ladder td{padding:11px 13px;border-top:1px solid var(--line);vertical-align:top}
+.ladder tr:nth-child(even) td{background:var(--fog)}.ladder td:first-child{font-weight:600;color:var(--navy)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.minicard{background:var(--fog);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+.minicard h4{font-size:16px;color:var(--navy);margin-bottom:7px}
+.minicard ul{margin:0;padding-left:17px;font-size:14px;color:#36424f}.minicard ul li{margin:4px 0}
+
+.prompt{background:#0c1f33;border:1px solid #1d3850;border-radius:13px;overflow:hidden;margin-bottom:13px}
+.prompt-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 16px;border-bottom:1px solid #1d3850}
+.prompt-top .name{font-family:var(--display);font-weight:700;font-size:14px;color:#9ec7ec}
+.copy{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#cfe3f5;background:#16314b;border:1px solid #2b4a66;border-radius:7px;padding:6px 11px;cursor:pointer;white-space:nowrap}
+.copy:hover{background:#1d3d5a;color:#fff}.copy.done{background:#0b7c84;border-color:#0b7c84;color:#fff}
+.prompt pre{margin:0;padding:15px 16px;font-family:var(--mono);font-size:12px;line-height:1.62;color:#dce8f3;white-space:pre-wrap;word-break:break-word}
+.prompt pre b{color:#7fd1d8;font-weight:600}
+.guardrail{font-size:13.5px;color:#7a5410;background:#fff6e9;border:1px solid #f0dcb8;border-radius:10px;padding:11px 14px;margin-top:4px}
+.guardrail b{color:#9a6a16}
+
+.checks{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.checks li{display:flex;gap:13px;align-items:flex-start;background:var(--fog);border:1px solid var(--line);border-radius:11px;padding:13px 16px}
+.checks .k{font-family:var(--display);font-weight:800;font-size:15px;color:#fff;background:var(--testc);border-radius:7px;padding:4px 11px;white-space:nowrap;flex-shrink:0}
+.checks .t{font-size:15.5px}
+
+.proto{display:grid;gap:10px;counter-reset:p}
+.proto .row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--fog);border:1px solid var(--line);border-radius:11px;padding:12px 16px}
+.proto .n{counter-increment:p;font-family:var(--display);font-weight:800;color:var(--testc);font-size:17px}.proto .n::before{content:counter(p)}
+.proto .time{font-family:var(--mono);font-size:12px;color:var(--slate)}
+
+.snap{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:15px}
+.snapcard{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--paper);display:flex;flex-direction:column}
+.snapcard .scale{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--prototype);font-weight:600;margin-bottom:8px}
+.snapcard h4{font-size:18px;margin-bottom:8px}.snapcard p{font-size:14px;margin:0 0 13px;color:#35424f}
+.snapcard .go{margin-top:auto;font-family:var(--display);font-weight:700;font-size:13px;color:var(--blue)}
+
+.links{display:grid;gap:8px;margin-top:6px}
+.links a{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;background:var(--fog);border:1px solid var(--line);border-radius:10px;padding:11px 15px;color:var(--navy)}
+.links a:hover{background:var(--mist);text-decoration:none;border-color:#b9cee0}.links a::before{content:"\2192";color:var(--blue);font-weight:700}
+.links .note{font-size:12px;color:var(--slate);font-family:var(--mono);margin-left:auto}
+
+details.deeper{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+details.deeper>summary{list-style:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--blue);padding:13px 16px;display:flex;align-items:center;gap:10px;background:#fbfdff}
+details.deeper>summary::-webkit-details-marker{display:none}
+details.deeper>summary::before{content:"+";font-family:var(--mono);font-weight:600;font-size:16px;color:var(--blue);width:18px;text-align:center}
+details.deeper[open]>summary{border-bottom:1px solid var(--line);background:var(--mist)}
+details.deeper[open]>summary::before{content:"\2013"}
+details.deeper>summary .cnt{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--slate);margin-left:auto;text-transform:uppercase;letter-spacing:.04em}
+.deeper-body{padding:18px 18px 20px}
+.deeper-body h5{font-family:var(--display);font-weight:700;font-size:15px;color:var(--navy);margin:18px 0 8px}.deeper-body h5:first-child{margin-top:0}
+.deeper-body p{font-size:14.5px;margin:0 0 10px}.deeper-body .small{font-size:13px;color:var(--slate)}
+.dtable{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 14px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.dtable th{background:var(--mist);color:var(--navy);text-align:left;font-family:var(--display);font-size:12px;text-transform:uppercase;letter-spacing:.03em;padding:9px 12px;font-weight:700}
+.dtable td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}.dtable td:first-child{font-weight:600;color:var(--navy);width:30%}
+.deeper-body ul{margin:4px 0 12px;padding-left:18px;font-size:14px}.deeper-body ul li{margin:5px 0}
+.tip{font-size:13px;color:#36424f;background:var(--fog);border-left:3px solid var(--prototype);padding:8px 13px;border-radius:0 8px 8px 0;margin:6px 0 12px}
+.role{font-size:13.5px;color:var(--slate)}
+
+/* prev/next bar */
+.pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;border-top:1px solid var(--line);padding-top:20px}
+.pager button{font-family:var(--display);font-weight:700;font-size:14px;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:12px 18px;cursor:pointer;max-width:48%;text-align:left}
+.pager button:hover{background:var(--mist);border-color:#b9cee0}
+.pager button .lab{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate)}
+.pager button:disabled{opacity:.35;cursor:default}
+.pager .next{text-align:right;color:#fff;background:var(--navy);border-color:var(--navy)}
+.pager .next:hover{background:#003463}.pager .next .lab{color:#9ec7ec}
+
+/* blueprint drawer */
+.scrim{position:fixed;inset:0;background:rgba(8,20,33,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(540px,100%);background:linear-gradient(170deg,#06243f,#00447C);color:#fff;z-index:70;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(0,0,0,.25)}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:22px 24px 16px;border-bottom:1px solid rgba(255,255,255,.14)}
+.drawer-head .eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9ec7ec}
+.drawer-head h3{color:#fff;font-size:24px;margin:6px 0 4px}
+.drawer-head p{font-size:13.5px;color:#cfe3f5;margin:0}
+.drawer-x{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.12);border:none;color:#fff;width:32px;height:32px;border-radius:8px;font-size:18px;cursor:pointer}
+.drawer-x:hover{background:rgba(255,255,255,.22)}
+.drawer-body{flex:1;overflow-y:auto;padding:18px 24px 8px}
+.bpf{margin-bottom:16px}
+.bpf .bpf-top{display:flex;align-items:baseline;gap:8px;margin-bottom:3px}
+.bpf .num{font-family:var(--mono);font-size:11px;color:#7fd1d8;font-weight:600}
+.bpf label{font-family:var(--display);font-weight:700;font-size:14.5px;color:#fff}
+.bpf .hint{font-size:12px;color:#9ec7ec;margin:0 0 7px}
+.bpf .ta-wrap{position:relative}
+.bpf textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;font-family:var(--body);font-size:14px;line-height:1.5;padding:11px 12px 11px;resize:vertical;min-height:62px}
+.bpf textarea:focus{outline:none;border-color:#7fd1d8;background:rgba(255,255,255,.1)}
+.bpf textarea::placeholder{color:#6f93b3}
+.bpf .fcopy{margin-top:6px;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#cfe3f5;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:7px;padding:5px 10px;cursor:pointer}
+.bpf .fcopy:hover{background:rgba(255,255,255,.18)}.bpf .fcopy.done{background:#0b7c84;border-color:#0b7c84;color:#fff}
+.drawer-foot{padding:16px 24px 22px;border-top:1px solid rgba(255,255,255,.14);display:grid;gap:10px}
+.drawer-foot .copyall{font-family:var(--display);font-weight:700;font-size:14.5px;color:#06243f;background:#7fd1d8;border:none;border-radius:10px;padding:13px;cursor:pointer}
+.drawer-foot .copyall:hover{background:#9bdde3}.drawer-foot .copyall.done{background:#bdeaee}
+.drawer-foot .row2{display:flex;gap:10px}
+.drawer-foot .submit{flex:1;text-align:center;font-family:var(--display);font-weight:700;font-size:13.5px;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:11px;cursor:pointer}
+.drawer-foot .submit:hover{background:rgba(255,255,255,.18);text-decoration:none}
+.drawer-foot .reset{font-family:var(--mono);font-size:11px;color:#9ec7ec;background:none;border:none;cursor:pointer;text-decoration:underline}
+.drawer-foot .formnote{font-size:11px;color:#7fa8cf;font-family:var(--mono);text-align:center}
+
+footer{background:var(--ink);color:#9fb0c0;padding:30px 0;margin-top:14px;font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer b{color:#cfe3f5;font-family:var(--display)}
+
+@media(max-width:720px){.grid2{grid-template-columns:1fr}.ladder,.dtable{font-size:12.5px}.brandmark{font-size:13px}.pager button{max-width:48%}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <button class="brandmark" id="home" style="border:none;background:none;cursor:pointer;padding:0">Build It Here. <span>Launch It There.</span></button>
+  <nav class="phasenav" id="nav"></nav>
+  <button class="bp-btn" id="openbp">The Blueprint <span class="dot"></span></button>
+</div></div>
+
+<!-- intro / hero -->
+<header class="hero" id="intro"><div class="wrap">
+  <div class="eyebrow">Dell Technologies &nbsp;·&nbsp; K&ndash;12 Education &nbsp;·&nbsp; Design Sprint Companion</div>
+  <h1>Design a student program your school can actually launch.</h1>
+  <p class="sub">Your team has 90 minutes to design something real. Move through the phases, pick up the tools and examples at each step, and build your one-page Blueprint as you go.</p>
+  <div class="meta"><span>90 minutes</span><span>educator design teams</span><span>built to think</span><span>student-run is the goal</span></div>
+  <div class="start"><button id="begin">Start with Open &rarr;</button><button class="ghost" id="openbp2">Open the Blueprint</button></div>
+  <p class="howto">One phase at a time. Each gives you the question to wrestle with, the tools that belong there, and the part of the Blueprint you are building. Open <b>Go deeper</b> anywhere you want the full resource. Your Blueprint travels with you, reachable from the top of any phase.</p>
+</div></header>
+
+<main class="wrap"><div id="stage" style="display:none"></div></main>
+
+<footer><div class="wrap">
+  <span><b>Build It Here. Launch It There.</b> &nbsp; Dell Technologies · K&ndash;12 Education</span>
+  <span>ISTELive 26 · Design Sprint Companion</span>
+</div></footer>
+
+<!-- blueprint drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <button class="drawer-x" id="closebp" aria-label="Close">&times;</button>
+    <div class="eyebrow">The destination</div>
+    <h3>Your one-page Blueprint</h3>
+    <p>Fill it as you build. Copy any field on its own, or copy the whole thing into a Google Doc or the submission form.</p>
+  </div>
+  <div class="drawer-body" id="bpbody"></div>
+  <div class="drawer-foot">
+    <button class="copyall" id="copyall">Copy the whole Blueprint</button>
+    <div class="row2">
+      <a class="submit" id="submit" href="#" data-dell-link target="_blank" rel="noopener">Open the submission form</a>
+    </div>
+    <div class="formnote" id="formnote">Submission form link to be added.</div>
+    <button class="reset" id="reset">Clear all fields</button>
+  </div>
+</aside>
+
+<script src="data.js"></script>
+<script>
+const SKEY="bih_blueprint_v1";
+let bp = {};
+try{ bp = JSON.parse(localStorage.getItem(SKEY)||"{}"); }catch(e){ bp = {}; }
+function save(){ try{ localStorage.setItem(SKEY, JSON.stringify(bp)); }catch(e){} updateBpBadge(); }
+
+const nav=document.getElementById('nav');
+const stage=document.getElementById('stage');
+const intro=document.getElementById('intro');
+
+// build nav
+PHASES.forEach((p,i)=>{
+  const b=document.createElement('button');
+  b.textContent=p.tab; b.dataset.i=i;
+  b.addEventListener('click',()=>show(i));
+  nav.appendChild(b);
+});
+
+function show(i){
+  const p=PHASES[i];
+  intro.style.display='none';
+  stage.style.display='block';
+  const c=getComputedStyle(document.documentElement).getPropertyValue(p.color).trim();
+  stage.innerHTML=`
+    <div class="phase-head">
+      <span class="phase-tab" style="background:${c}">${p.tab}</span>
+      <span class="phase-mode">${p.mode}</span>
+      <span class="phase-step">${String(i+1).padStart(2,'0')} / ${String(PHASES.length).padStart(2,'0')}</span>
+    </div>
+    <h2>${p.title}</h2>
+    <p class="lede">${p.lede}</p>
+    ${p.body}
+    <div class="pager">
+      ${i>0?`<button class="prev" onclick="show(${i-1})"><span class="lab">Previous</span>${PHASES[i-1].tab}</button>`:`<button disabled><span class="lab">Start</span>&nbsp;</button>`}
+      ${i<PHASES.length-1?`<button class="next" onclick="show(${i+1})"><span class="lab">Next</span>${PHASES[i+1].tab} &rarr;</button>`:`<button class="next" onclick="openDrawer()"><span class="lab">Finish</span>Submit your Blueprint &rarr;</button>`}
+    </div>`;
+  [...nav.children].forEach((b,bi)=>{
+    b.classList.toggle('active', bi===i);
+    b.style.background = bi===i ? c : '';
+  });
+  wirePromptCopies();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function wirePromptCopies(){
+  stage.querySelectorAll('.copy').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const el=document.getElementById(btn.dataset.target);
+      copy(el?el.innerText:'', btn);
+    });
+  });
+}
+function copy(txt,btn){
+  navigator.clipboard.writeText(txt).then(()=>{
+    if(!btn)return; const o=btn.textContent; btn.textContent='Copied'; btn.classList.add('done');
+    setTimeout(()=>{btn.textContent=o;btn.classList.remove('done')},1400);
+  }).catch(()=>{});
+}
+
+document.getElementById('begin').addEventListener('click',()=>show(0));
+document.getElementById('home').addEventListener('click',()=>{stage.style.display='none';intro.style.display='block';[...nav.children].forEach(b=>{b.classList.remove('active');b.style.background='';});window.scrollTo({top:0,behavior:'smooth'});});
+
+/* ---- blueprint drawer ---- */
+const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim'), bpbody=document.getElementById('bpbody');
+function buildBp(){
+  bpbody.innerHTML = BLUEPRINT_FIELDS.map(f=>`
+    <div class="bpf">
+      <div class="bpf-top"><span class="num">${f.num}</span><label for="bp_${f.key}">${f.title}</label></div>
+      <p class="hint">${f.hint}</p>
+      <div class="ta-wrap"><textarea id="bp_${f.key}" data-key="${f.key}" placeholder="${f.placeholder}">${(bp[f.key]||'').replace(/</g,'&lt;')}</textarea></div>
+      <button class="fcopy" data-fkey="${f.key}">Copy this field</button>
+    </div>`).join('');
+  bpbody.querySelectorAll('textarea').forEach(ta=>{
+    ta.addEventListener('input',()=>{ bp[ta.dataset.key]=ta.value; save(); });
+  });
+  bpbody.querySelectorAll('.fcopy').forEach(btn=>{
+    btn.addEventListener('click',()=>{ copy(bp[btn.dataset.fkey]||'', btn); });
+  });
+}
+function blueprintText(){
+  let out="BUILD IT HERE. LAUNCH IT THERE\nProgram Blueprint\n";
+  BLUEPRINT_FIELDS.forEach((f,i)=>{
+    out += `\n${i+1}. ${f.title.toUpperCase()}\n${(bp[f.key]||'').trim()||'(not yet filled)'}\n`;
+  });
+  return out;
+}
+function openDrawer(){ drawer.classList.add('open'); scrim.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+function closeDrawer(){ drawer.classList.remove('open'); scrim.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
+document.getElementById('openbp').addEventListener('click',openDrawer);
+document.getElementById('openbp2').addEventListener('click',openDrawer);
+document.getElementById('closebp').addEventListener('click',closeDrawer);
+scrim.addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+document.getElementById('copyall').addEventListener('click',e=>copy(blueprintText(), e.target));
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Clear all Blueprint fields?')){ bp={}; save(); buildBp(); }
+});
+function updateBpBadge(){
+  const any=BLUEPRINT_FIELDS.some(f=>(bp[f.key]||'').trim());
+  document.getElementById('openbp').classList.toggle('has',any);
+}
+buildBp(); updateBpBadge();
+</script>
+</body>
+</html>
