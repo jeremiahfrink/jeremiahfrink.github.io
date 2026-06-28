@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build It Here. Launch It There — Sprint Companion</title>
+<title>Build It Here. Launch It There — Student Program Sprint Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,6 +34,13 @@ h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:
 .bp-btn:hover{background:#003463}
 .bp-btn .dot{width:7px;height:7px;border-radius:50%;background:#7fd1d8;display:none}
 .bp-btn.has .dot{display:inline-block}
+.res-btn{font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--navy);background:#fff;padding:7px 13px;border-radius:8px;border:1px solid var(--line);cursor:pointer;white-space:nowrap}
+.res-btn:hover{background:var(--mist);border-color:#b9cee0}
+.res-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.res-back{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--slate);background:none;border:none;cursor:pointer;padding:0;margin-bottom:16px}
+.res-back:hover{color:var(--blue)}
+.resmark{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:6px}
+.res-view details.deeper{margin-top:10px}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
 
@@ -74,6 +81,7 @@ h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:
 .card .role{font-size:13.5px;color:var(--slate);margin-bottom:11px}
 .card p{margin:0 0 11px;font-size:14.5px}.card p.role{margin-bottom:0}
 .card .meta-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.card-link{display:inline-block;margin-top:13px;font-family:var(--display);font-weight:700;font-size:13px;color:var(--blue)}
 .tag{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:20px;background:var(--mist);color:var(--navy);border:1px solid var(--line)}
 .tag.lane{background:#eaf4ff;color:var(--blue)}
 
@@ -217,12 +225,13 @@ footer b{color:#cfe3f5;font-family:var(--display)}
 <div class="topbar"><div class="topbar-inner">
   <button class="brandmark" id="home" style="border:none;background:none;cursor:pointer;padding:0">Build It Here. <span>Launch It There.</span></button>
   <nav class="phasenav" id="nav"></nav>
+  <button class="res-btn" id="openres">Resources</button>
   <button class="bp-btn" id="openbp">The Blueprint <span class="dot"></span></button>
 </div></div>
 
 <!-- intro / hero -->
 <header class="hero" id="intro"><div class="wrap">
-  <div class="eyebrow">Dell Technologies &nbsp;·&nbsp; K&ndash;12 Education &nbsp;·&nbsp; Design Sprint Companion</div>
+  <div class="eyebrow">Dell Technologies &nbsp;·&nbsp; K&ndash;12 Education &nbsp;·&nbsp; Student Program Sprint Guide</div>
   <h1>Design a student program your school can actually launch.</h1>
   <p class="sub">Your team has 90 minutes to design something real. Move through the phases, pick up the tools and examples at each step, and build your one-page Blueprint as you go.</p>
   <div class="meta"><span>90 minutes</span><span>educator design teams</span><span>built to think</span><span>student-run is the goal</span></div>
@@ -239,7 +248,7 @@ footer b{color:#cfe3f5;font-family:var(--display)}
 
 <footer><div class="wrap">
   <span><b>Build It Here. Launch It There.</b> &nbsp; Dell Technologies · K&ndash;12 Education</span>
-  <span>ISTELive 26 · Design Sprint Companion</span>
+  <span>ISTELive 26 · Student Program Sprint Guide</span>
 </div></footer>
 
 <!-- blueprint drawer -->
@@ -281,8 +290,10 @@ PHASES.forEach((p,i)=>{
   nav.appendChild(b);
 });
 
+let currentPhase=0;
 function show(i){
   const p=PHASES[i];
+  currentPhase=i;
   intro.style.display='none';
   stage.style.display='block';
   const c=getComputedStyle(document.documentElement).getPropertyValue(p.color).trim();
@@ -304,6 +315,7 @@ function show(i){
     b.classList.toggle('active', bi===i);
     b.style.background = bi===i ? c : '';
   });
+  document.getElementById('openres').classList.remove('active');
   wirePromptCopies();
   stage.querySelectorAll('.bp-jump').forEach(b=>b.addEventListener('click',()=>openDrawerTo(b.dataset.bpfield)));
   window.scrollTo({top:0,behavior:'smooth'});
@@ -325,7 +337,29 @@ function copy(txt,btn){
 }
 
 document.getElementById('begin').addEventListener('click',()=>show(0));
-document.getElementById('home').addEventListener('click',()=>{stage.style.display='none';intro.style.display='block';[...nav.children].forEach(b=>{b.classList.remove('active');b.style.background='';});window.scrollTo({top:0,behavior:'smooth'});});
+document.getElementById('home').addEventListener('click',()=>{stage.style.display='none';intro.style.display='block';[...nav.children].forEach(b=>{b.classList.remove('active');b.style.background='';});document.getElementById('openres').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});});
+
+/* ---- resources view ---- */
+const resBtn=document.getElementById('openres');
+function showResources(){
+  intro.style.display='none';
+  stage.style.display='block';
+  stage.style.setProperty('--phase', getComputedStyle(document.documentElement).getPropertyValue('--navy').trim());
+  let html=`<button class="res-back" id="resback">&larr; Back to the sprint</button>
+    <div class="resmark">Resources</div>
+    <h2>The resource shelf</h2>
+    <p class="lede">Take-home references for when you build the real thing back home. The sprint runs fine without these. Reach for them when you need them.</p>`;
+  (typeof RESOURCES!=='undefined'?RESOURCES:[]).forEach(cat=>{
+    const links=cat.links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label}${l.note?`<span class="note">${l.note}</span>`:''}</a>`).join('');
+    html+=`<details class="deeper"${cat.open?' open':''}><summary>${cat.title}<span class="cnt">${cat.links.length} link${cat.links.length>1?'s':''}</span></summary><div class="deeper-body">${cat.note?`<p>${cat.note}</p>`:''}<div class="links">${links}</div></div></details>`;
+  });
+  stage.innerHTML=`<div class="res-view">${html}</div>`;
+  document.getElementById('resback').addEventListener('click',()=>show(currentPhase));
+  [...nav.children].forEach(b=>{b.classList.remove('active');b.style.background='';});
+  resBtn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+resBtn.addEventListener('click',showResources);
 
 /* ---- blueprint drawer ---- */
 const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim'), bpbody=document.getElementById('bpbody');
