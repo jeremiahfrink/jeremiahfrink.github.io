@@ -135,6 +135,35 @@ details.deeper>summary .cnt{font-family:var(--mono);font-weight:400;font-size:11
 .tip{font-size:13px;color:#36424f;background:var(--fog);border-left:3px solid var(--prototype);padding:8px 13px;border-radius:0 8px 8px 0;margin:6px 0 12px}
 .role{font-size:13.5px;color:var(--slate)}
 
+/* ---- three modes: reference / action / blueprint ---- */
+.mtag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:5px}
+.mtag.ref{background:var(--mist);color:var(--slate);border:1px solid var(--line)}
+.callout{border-radius:14px;overflow:hidden;margin-top:6px}
+.callout-head{display:flex;align-items:center;gap:10px;padding:13px 18px}
+.callout-head .ico{width:19px;height:19px;flex-shrink:0;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.callout .verb{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.03em;text-transform:uppercase}
+.callout .callout-sub{font-family:var(--mono);font-size:11.5px;margin-left:auto;text-align:right}
+.callout-body{padding:2px 18px 18px}
+.callout-body .steps li{background:#fff}
+.callout.action{background:var(--fog);border:1px solid var(--line);border-left:4px solid var(--phase,var(--navy))}
+.callout.action .ico,.callout.action .verb{color:var(--phase,var(--navy));stroke:var(--phase,var(--navy))}
+.callout.action .callout-sub{color:var(--phase,var(--navy))}
+.callout.capture{background:#f0fafb;border:1px solid #bfe6e9;border-left:4px solid var(--prototype)}
+.callout.capture .ico,.callout.capture .verb{color:var(--prototype);stroke:var(--prototype)}
+.callout.capture .callout-sub{color:#3f8a90}
+.callout.capture .callout-body .steps li{background:#fff;border-color:#cfe9eb}
+.cap-lead{font-family:var(--display);font-weight:600;font-size:16px;color:var(--navy);margin:2px 0 10px}
+.bp-jump{margin-top:13px;font-family:var(--display);font-weight:700;font-size:13.5px;color:#fff;background:var(--prototype);border:none;border-radius:9px;padding:11px 17px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.bp-jump:hover{background:#0a6d74}
+.bp-jump.sm{margin-top:0;padding:5px 11px;font-size:12px;vertical-align:baseline;gap:5px}
+.bpf.flash textarea{animation:flashf 1.3s ease}
+@keyframes flashf{0%{box-shadow:0 0 0 0 rgba(127,209,216,.95);border-color:#7fd1d8}100%{box-shadow:0 0 0 7px rgba(127,209,216,0)}}
+/* intro legend */
+.legend{margin-top:24px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;font-size:13px;color:#cfe3f5;font-family:var(--mono);letter-spacing:.01em}
+.legend .leg{display:flex;align-items:center;gap:8px}
+.legend .lg-dot{width:13px;height:13px;border-radius:4px;display:inline-block}
+.legend .lg-dot.ref{background:#8ba6bf}.legend .lg-dot.act{background:#5fa8e6}.legend .lg-dot.cap{background:#7fd1d8}
+
 /* prev/next bar */
 .pager{display:flex;justify-content:space-between;gap:12px;margin:36px 0 10px;border-top:1px solid var(--line);padding-top:20px}
 .pager button{font-family:var(--display);font-weight:700;font-size:14px;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:12px 18px;cursor:pointer;max-width:48%;text-align:left}
@@ -199,6 +228,11 @@ footer b{color:#cfe3f5;font-family:var(--display)}
   <div class="meta"><span>90 minutes</span><span>educator design teams</span><span>built to think</span><span>student-run is the goal</span></div>
   <div class="start"><button id="begin">Start with Open &rarr;</button><button class="ghost" id="openbp2">Open the Blueprint</button></div>
   <p class="howto">One phase at a time. Each gives you the question to wrestle with, the tools that belong there, and the part of the Blueprint you are building. Open <b>Go deeper</b> anywhere you want the full resource. Your Blueprint travels with you, reachable from the top of any phase.</p>
+  <div class="legend">
+    <span class="leg"><span class="lg-dot ref"></span>Reference &middot; read it</span>
+    <span class="leg"><span class="lg-dot act"></span>Action &middot; do it together</span>
+    <span class="leg"><span class="lg-dot cap"></span>Blueprint &middot; write it down</span>
+  </div>
 </div></header>
 
 <main class="wrap"><div id="stage" style="display:none"></div></main>
@@ -252,6 +286,7 @@ function show(i){
   intro.style.display='none';
   stage.style.display='block';
   const c=getComputedStyle(document.documentElement).getPropertyValue(p.color).trim();
+  stage.style.setProperty('--phase', c);
   stage.innerHTML=`
     <div class="phase-head">
       <span class="phase-tab" style="background:${c}">${p.tab}</span>
@@ -270,6 +305,7 @@ function show(i){
     b.style.background = bi===i ? c : '';
   });
   wirePromptCopies();
+  stage.querySelectorAll('.bp-jump').forEach(b=>b.addEventListener('click',()=>openDrawerTo(b.dataset.bpfield)));
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -316,6 +352,14 @@ function blueprintText(){
   return out;
 }
 function openDrawer(){ drawer.classList.add('open'); scrim.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+function openDrawerTo(key){
+  openDrawer();
+  setTimeout(()=>{
+    const ta=document.getElementById('bp_'+key); if(!ta)return;
+    const f=ta.closest('.bpf'); if(f){ f.scrollIntoView({block:'center'}); f.classList.remove('flash'); void f.offsetWidth; f.classList.add('flash'); }
+    ta.focus();
+  },320);
+}
 function closeDrawer(){ drawer.classList.remove('open'); scrim.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
 document.getElementById('openbp').addEventListener('click',openDrawer);
 document.getElementById('openbp2').addEventListener('click',openDrawer);
