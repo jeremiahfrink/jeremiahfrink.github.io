@@ -588,6 +588,10 @@ const RESOURCES = [
     { label:"Design Thinking for 11th Graders", url:"https://oercommons.org/authoring/61491-design-thinking-for-11th-graders/view", note:"full classroom example" },
     { label:"Engineering Design Process", url:"https://www.teachengineering.org/k12engineering/designprocess", note:"alternative framework" },
     { label:"What is Project-Based Learning?", url:"https://www.pblworks.org/what-is-pbl", note:"alternative framework" },
+    { label:"Design Thinking: A Problem-Solving Framework", url:"https://www.youtube.com/watch?v=kfBa2AdjRB4", note:"short video" },
+    { label:"13 Principles of Good Learning in Games, Applied to Teaching", url:"https://wisc.pb.unizin.org/goodlearningprinciples/", note:"game-based design" },
+    { label:"PBLWorks Project Library", url:"https://my.pblworks.org/", note:"borrowable projects" },
+    { label:"The Remix Lab", url:"https://impactedvisors.org/assets/Remix.html", note:"adapt an activity" },
   ]},
   { title:"Understanding your users \u00b7 empathy and define", links:[
     { label:"Empathy Mapping", url:"https://www.interaction-design.org/literature/article/empathy-mapping-the-first-step-in-design-thinking", note:"tool" },
@@ -595,6 +599,8 @@ const RESOURCES = [
     { label:"Writing good empathy questions", url:"https://www.mural.co/blog/design-thinking-empathize", note:"how-to" },
     { label:"Empathy interview techniques", url:"https://webdesign.tutsplus.com/techniques-of-empathy-interviews-in-design-thinking--cms-31219a", note:"how-to" },
     { label:"Students Are Using AI Already", url:"https://www.edsurge.com/news/2024-03-19-students-are-using-ai-already-here-s-what-they-think-adults-should-know", note:"student voice" },
+    { label:"Inquiry to Impact \u00b7 Student Guide", url:"https://datadunkers.ca/mfnss/Inquiry-to-impact%20Student%20Guide.html", note:"student inquiry" },
+    { label:"Listening to Multiple Viewpoints", url:"https://drive.google.com/file/d/1Of4utIIFXaNfkzJ_lpJKVL171FeFuRr0/view?usp=drive_link", note:"perspective-taking" },
   ]},
   { title:"Prototyping and testing", links:[
     { label:"Rapid Prototyping for Beginners", url:"https://www.freecodecamp.org/news/a-beginners-guide-to-rapid-prototyping-71e8722c17df/", note:"freeCodeCamp" },
@@ -607,5 +613,6 @@ const RESOURCES = [
     { label:"ISTE Standards for Students", url:"https://iste.org/standards/students", note:"alignment" },
     { label:"ISTE Digital Citizenship", url:"https://iste.org/digital-citizenship", note:"alignment" },
     { label:"Intel Skills for Innovation", url:"https://skillsforinnovation.intel.com/landing/index.html", note:"ready projects" },
+    { label:"Innovative Designer Progression Explorer", url:"https://impactedvisors.org/assets/iste-innovative-designer-explorer.html", note:"ISTE Innovative Designer" },
   ]},
 ];
