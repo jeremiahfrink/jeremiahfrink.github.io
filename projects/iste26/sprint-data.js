@@ -85,6 +85,25 @@ const PHASES = [
     lede: `With four models in hand and a sharp outcome on the table, this is a constrained choice, not a blank brainstorm. Adapting is not the lesser path. A sharp version of a proven program beats a shaky original, and shrinking is a win.`,
     body: `<div class="block"><div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg><span class="verb">Decide: pick your move</span><span class="callout-sub">~5 min</span></div><div class="callout-body"><ul class="steps"><li><b>Adapt</b> one of the four. Adopt it as is, remix two, or shrink one to a single challenge.</li><li>Or <b>invent</b> your own to serve your outcome.</li><li>Use the scale ladder and adaptation grid below to shape the choice.</li></ul></div></div></div>
 <div class="block">
+<div class="block-label"><span class="mtag ref">Reference</span>Ways to generate ideas · if you’re inventing</div>
+<p class="role" style="margin-bottom:10px">Adapting a launch pad? Skip this. Inventing your own? These beat a blank-page brainstorm.</p>
+<details class="deeper"><summary>Go deeper: five ways to generate ideas<span class="cnt">beyond brainstorming</span></summary>
+<div class="deeper-body">
+<ul>
+<li><b>Brainwriting</b> — everyone writes ideas silently, then passes the page on to build on. Surfaces quiet voices and moves fast.</li>
+<li><b>SCAMPER</b> — remix an existing idea by asking: Substitute, Combine, Adapt, Modify, Put to another use, Eliminate, Reverse.</li>
+<li><b>Worst possible idea</b> — design the worst program you can, then flip what makes it bad to find what good looks like.</li>
+<li><b>Mind mapping</b> — put the problem in the center and branch outward; surfaces unexpected connections.</li>
+<li><b>Reverse brainstorming</b> — ask “how could we make this worse?” then invert the answers.</li>
+</ul>
+<div class="links">
+<a href="https://www.indeed.com/career-advice/career-development/idea-generation-techniques-besides-brainstorming" target="_blank" rel="noopener">18 idea-generation techniques<span class="note">beyond brainstorming</span></a>
+<a href="https://www.teamly.com/blog/ideation-techniques/" target="_blank" rel="noopener">11 ideation techniques<span class="note">with how-tos</span></a>
+</div>
+</div>
+</details>
+</div>
+<div class="block">
 <div class="block-label"><span class="mtag ref">Reference</span>The scale ladder · pick the size that fits your outcome</div>
 <table class="ladder">
 <tr><th>Program type</th><th>What it is</th><th>A real example</th></tr>
@@ -341,6 +360,7 @@ const PHASES = [
 <div class="snapcard"><div class="scale">club → course · career</div><h4>Student-run help desk</h4><p>Burlington High School's "genius bar," one of the nation's first, and Bethlehem CSD's lobby help desk where students are the first line of IT support and earn certifications.</p><a class="go" href="https://bhshelpdesk.com" rel="noopener" target="_blank">bhshelpdesk.com →</a></div>
 <div class="snapcard"><div class="scale">club / cohort · esports</div><h4>NASEF scholastic esports</h4><p>Free, state-approved curriculum where students run the club, serve on committees, and explore career pathways from analytics to event management. UC Irvine documented STEM gains.</p><a class="go" href="https://www.nasef.org" rel="noopener" target="_blank">nasef.org →</a></div>
 <div class="snapcard"><div class="scale">project · community data</div><h4>The MFNERC data story</h4><p>A culturally grounded data project with the Manitoba First Nations Education Resource Centre. The model for small, local, identity-relevant student inquiry.</p><a class="go" data-dell-link="" href="#">add link →</a></div>
+<div class="snapcard"><div class="scale">cohort · AI · national</div><h4>ISTE AI Innovator Challenge</h4><p>Student teams design a responsible solution with generative AI through a design sprint, then pitch it in a three-minute video. A national challenge with a 15-lesson studio and ready-made rubrics.</p><a class="go" href="https://iste-ascd.org/ai-innovator" rel="noopener" target="_blank">iste-ascd.org →</a></div>
 </div>
 </div>
 <div class="block">
@@ -554,4 +574,38 @@ const BLUEPRINT_FIELDS = [
     hint: `The very next thing you will do.`,
     placeholder: `On Monday I will…`
   },
+];
+
+
+const RESOURCES = [
+  { title:"Facilitator quick links", open:true, note:"Handy to pull up live during the session.", links:[
+    { label:"Data Dunkers \u00b7 Overview", url:"https://www.wevideo.com/view/3578548266", note:"video" },
+    { label:"Data Dunkers \u00b7 In action", url:"https://www.wevideo.com/view/3909445586", note:"video" },
+  ]},
+  { title:"Design process and frameworks", links:[
+    { label:"From Problems to Possibilities: Design Thinking in the Classroom", url:"https://mackinlearning.com/from-problems-to-possibilities-design-thinking-in-the-classroom/", note:"primer" },
+    { label:"The Design Thinking Process", url:"https://www.youtube.com/watch?v=_r0VX-aU_T8", note:"short video" },
+    { label:"Design Thinking for 11th Graders", url:"https://oercommons.org/authoring/61491-design-thinking-for-11th-graders/view", note:"full classroom example" },
+    { label:"Engineering Design Process", url:"https://www.teachengineering.org/k12engineering/designprocess", note:"alternative framework" },
+    { label:"What is Project-Based Learning?", url:"https://www.pblworks.org/what-is-pbl", note:"alternative framework" },
+  ]},
+  { title:"Understanding your users \u00b7 empathy and define", links:[
+    { label:"Empathy Mapping", url:"https://www.interaction-design.org/literature/article/empathy-mapping-the-first-step-in-design-thinking", note:"tool" },
+    { label:"Teaching Empathy Through Design Thinking", url:"https://www.edutopia.org/blog/teaching-empathy-through-design-thinking-rusul-alrubail", note:"Edutopia" },
+    { label:"Writing good empathy questions", url:"https://www.mural.co/blog/design-thinking-empathize", note:"how-to" },
+    { label:"Empathy interview techniques", url:"https://webdesign.tutsplus.com/techniques-of-empathy-interviews-in-design-thinking--cms-31219a", note:"how-to" },
+    { label:"Students Are Using AI Already", url:"https://www.edsurge.com/news/2024-03-19-students-are-using-ai-already-here-s-what-they-think-adults-should-know", note:"student voice" },
+  ]},
+  { title:"Prototyping and testing", links:[
+    { label:"Rapid Prototyping for Beginners", url:"https://www.freecodecamp.org/news/a-beginners-guide-to-rapid-prototyping-71e8722c17df/", note:"freeCodeCamp" },
+    { label:"Design Sprints for Education", url:"https://edtech-class.com/2023/06/16/introducing-students-to-design-thinking-using-a-design-sprint/", note:"facilitation" },
+    { label:"Prototype and Test in Design Thinking", url:"https://www.interaction-design.org/literature/article/stage-4-in-the-design-thinking-process-prototype", note:"primer" },
+    { label:"Gallery Walk protocol", url:"https://pz.harvard.edu/sites/default/files/Gallery-Walk.pdf", note:"Harvard Project Zero" },
+  ]},
+  { title:"Themes and standards to anchor a program", links:[
+    { label:"UN Sustainable Development Goals", url:"https://sdgs.un.org/goals", note:"challenge themes" },
+    { label:"ISTE Standards for Students", url:"https://iste.org/standards/students", note:"alignment" },
+    { label:"ISTE Digital Citizenship", url:"https://iste.org/digital-citizenship", note:"alignment" },
+    { label:"Intel Skills for Innovation", url:"https://skillsforinnovation.intel.com/landing/index.html", note:"ready projects" },
+  ]},
 ];
