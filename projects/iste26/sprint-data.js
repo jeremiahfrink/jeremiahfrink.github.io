@@ -5,8 +5,9 @@ const PHASES = [
     mode: `set the stakes · pick your launch pad · ~11 min`,
     title: `You are here to design, not to listen.`,
     lede: `In the next 90 minutes your team builds a student program your school could actually run, the kind of thing students could be doing next semester. You are building a program, not buying a product. The boldest ideas earn Dell support to pilot for real.`,
-    body: `<div class="block">
-<div class="block-label">Four launch pads · adopt, remix, shrink, or beat</div>
+    body: `<div class="block"><div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="verb">Form your team</span><span class="callout-sub">~3 min</span></div><div class="callout-body"><ul class="steps"><li>Get into a team of <b>3 to 4</b>, then pick a name and a notetaker.</li><li>Skim the four launch pads below and notice which could fit your students. You will choose your move in Ideate.</li></ul></div></div></div>
+<div class="block">
+<div class="block-label"><span class="mtag ref">Reference</span>Four launch pads · adopt, remix, shrink, or beat</div>
 <div class="cards">
 <div class="card"><h4>Student TechCrew</h4><div class="role">student-run · service · career-facing</div><p>Students earn certification and run a help desk, supporting peers and staff with their devices.</p><p class="role">Grows: troubleshooting, customer service, career readiness.</p><div class="meta-row"><span class="tag">scale: club → course</span><span class="tag lane">lane: tech</span></div></div>
 <div class="card"><h4>Girls Who Game</h4><div class="role">team challenge · confidence · STEM</div><p>Teams take on game-based design challenges that build confidence and STEM problem-solving.</p><p class="role">Grows: collaboration, creativity, leadership.</p><div class="meta-row"><span class="tag">scale: club / cohort</span><span class="tag lane">lane: esports / coding</span></div></div>
@@ -22,7 +23,7 @@ const PHASES = [
     title: `Start with the student, and the future they are walking into.`,
     lede: `Before you design a single thing, ground in a real learner and the world they are heading into. Open wide and fast, then close onto one sharp outcome the whole design answers to.`,
     body: `<div class="block">
-<div class="block-label">It already exists · the future is the present</div>
+<div class="block-label"><span class="mtag ref">Reference</span>It already exists · the future is the present</div>
 <ul class="steps">
 <li><b>AI is already an everyday study partner.</b> Not coming. In your students' pockets, on tonight's homework.</li>
 <li><b>AI agents now do multi-step work, not just chat.</b> They book, research, and operate software start to finish.</li>
@@ -31,7 +32,7 @@ const PHASES = [
 </ul>
 </div>
 <div class="block">
-<div class="block-label">Futures signals · the world they will meet</div><details class="deeper"><summary>Go deeper: the four futures signals<span class="cnt">futures read</span></summary><div class="deeper-body"><p>A quick read on the world your students are walking into. Use it to sharpen who they need to become.</p><div class="grid2">
+<div class="block-label"><span class="mtag ref">Reference</span>Futures signals · the world they will meet</div><details class="deeper"><summary>Go deeper: the four futures signals<span class="cnt">futures read</span></summary><div class="deeper-body"><p>A quick read on the world your students are walking into. Use it to sharpen who they need to become.</p><div class="grid2">
 <div class="minicard"><h4>Work is being rewritten</h4><ul><li>People work alongside AI, not instead of it.</li><li>The decisive skill is knowing when to use the tools and when to lean on human judgment.</li></ul></div>
 <div class="minicard"><h4>Knowing is not enough</h4><ul><li>Information is everywhere; the edge is asking good questions and checking what comes back.</li><li>Data and evidence shape everyday decisions.</li></ul></div>
 <div class="minicard"><h4>Careers are projects, not titles</h4><ul><li>Students will reinvent their work repeatedly.</li><li>Collaboration, communication, and agency travel across every path.</li></ul></div>
@@ -39,12 +40,13 @@ const PHASES = [
 </div></div></details>
 </div>
 <div class="block">
-<div class="block-label">Guiding questions · broad, then narrow</div>
+<div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="verb">Ask yourselves</span><span class="callout-sub">broad, then narrow · talk it out</span></div><div class="callout-body">
 <ul class="steps">
 <li><span class="narrow">broad</span>What world are your students walking into? Name one thing that will be true of work, learning, or life that they will have to meet.</li>
 <li><span class="narrow">broad</span>Picture one real student. A face, not a category. What do they already make, do, or care about, and where do they struggle?</li>
 <li><span class="narrow">narrow</span>Hold that student next to that future. What is the one thing they need to grow in themselves that they do not have yet?</li>
 </ul>
+</div></div>
 <details class="deeper"><summary>Go deeper: ground your goals and your realities<span class="cnt">framing method</span></summary>
 <div class="deeper-body">
 <p>The strongest programs are shaped around your classroom before a single activity is chosen. Pause on three questions: what do I want students to gain, how does this connect to what I already teach, and what real-world constraints will shape my plan.</p>
@@ -62,13 +64,18 @@ const PHASES = [
 <p class="small">These three steps feed your outcome line directly: the goal becomes "students can / are becoming," the realities become your constraint.</p>
 </div>
 </details>
-<p class="prompt-q">Define the outcome: the sharp line everything answers to.</p>
+</div>
+<div class="block">
+<div class="callout capture"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M9 14l2 2 4-4"/></svg><span class="verb">Capture &rarr; Blueprint</span><span class="callout-sub">Section 1 · your outcome</span></div><div class="callout-body">
+<p class="cap-lead">Define the outcome, the sharp line everything answers to.</p>
 <ul class="steps">
 <li>By the end of this program, our students can <b>______</b> and are becoming <b>______</b>.</li>
 <li>The one constraint we will design around: <b>______</b></li>
 <li>We will know it is working when we see <b>______</b></li>
 </ul>
-<p class="role" style="margin-top:10px">This is Blueprint section 1. Could that line be any school's outcome? If yes, it is not done. Make it yours.</p>
+<p class="role">Could that line be any school's outcome? If yes, it is not done. Make it yours.</p>
+<button class="bp-jump" data-bpfield="outcome">Write it in the Blueprint &rarr;</button>
+</div></div>
 </div>`
   },
   {
@@ -76,8 +83,9 @@ const PHASES = [
     mode: `pick your move · ~12 min`,
     title: `Two ways to go: adapt an existing program, or invent your own.`,
     lede: `With four models in hand and a sharp outcome on the table, this is a constrained choice, not a blank brainstorm. Adapting is not the lesser path. A sharp version of a proven program beats a shaky original, and shrinking is a win.`,
-    body: `<div class="block">
-<div class="block-label">The scale ladder · pick the size that fits your outcome</div>
+    body: `<div class="block"><div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg><span class="verb">Decide: pick your move</span><span class="callout-sub">~5 min</span></div><div class="callout-body"><ul class="steps"><li><b>Adapt</b> one of the four. Adopt it as is, remix two, or shrink one to a single challenge.</li><li>Or <b>invent</b> your own to serve your outcome.</li><li>Use the scale ladder and adaptation grid below to shape the choice.</li></ul></div></div></div>
+<div class="block">
+<div class="block-label"><span class="mtag ref">Reference</span>The scale ladder · pick the size that fits your outcome</div>
 <table class="ladder">
 <tr><th>Program type</th><th>What it is</th><th>A real example</th></tr>
 <tr><td>One-shot challenge</td><td>Hours to a day, a single sitting</td><td>An afternoon data day; a one-day device-repair clinic; an AI prompt-a-thon</td></tr>
@@ -111,7 +119,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">The adaptation grid · reshape a launch pad to fit your students</div>
+<div class="block-label"><span class="mtag ref">Reference</span>The adaptation grid · reshape a launch pad to fit your students</div>
 <div class="grid2">
 <div class="minicard"><h4>Age &amp; grade</h4><ul><li>Younger: shorter activities, simpler materials, more movement.</li><li>Older: extended challenges, deeper analysis, project work.</li></ul></div>
 <div class="minicard"><h4>Subject lens</h4><ul><li>Lean into the subject that connects most naturally.</li><li>You do not have to cover every lens.</li></ul></div>
@@ -170,7 +178,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">Program as building blocks · you do not need them all</div>
+<div class="block-label"><span class="mtag ref">Reference</span>Program as building blocks · you do not need them all</div>
 <div class="cards">
 <div class="card"><h4>Orientation</h4><p>Set the stage. A quick hook that shows the topic is everywhere and gets students in.</p></div>
 <div class="card"><h4>Core challenge</h4><p>The active engagement. The hands-on work where students do the real thing.</p></div>
@@ -190,7 +198,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">AI as a partner to think with · you steer, it drafts</div>
+<div class="block-label"><span class="mtag ref">Reference</span>AI as a partner to think with · you steer, it drafts</div>
 <p class="role" style="margin:-2px 0 12px">Four ready prompts. Copy one, fill the bracketed parts with your own context, then go back and forth until it fits your students.</p>
 <div class="prompt">
 <div class="prompt-top"><span class="name">Adapt an activity for your students</span><button class="copy" data-target="p1">Copy</button></div>
@@ -231,17 +239,17 @@ const PHASES = [
 ### Target: <b>[grade level]</b> students who have mastered the basic concept and are ready for independent, high-interest challenges.</pre>
 </div>
 <div class="guardrail"><b>Keep it a conversation.</b> Review every suggestion with your own judgment, push back, and keep what is yours. Never share student names or any personally identifiable information with an AI tool.</div>
-<p class="prompt-q" style="margin-top:22px">Name it (Blueprint section 2)</p>
-<ul class="steps"><li><b>[Name]</b> is a <b>[scale]</b> program where students <b>[do what]</b> so they can <b>[outcome]</b>.</li></ul>
-</div>`
+</div>
+<div class="block"><div class="callout capture"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M9 14l2 2 4-4"/></svg><span class="verb">Capture &rarr; Blueprint</span><span class="callout-sub">Section 2 · name + concept</span></div><div class="callout-body"><p class="cap-lead">Name it, then say what it is in one line.</p><ul class="steps"><li><b>[Name]</b> is a <b>[scale]</b> program where students <b>[do what]</b> so they can <b>[outcome]</b>.</li></ul><button class="bp-jump" data-bpfield="concept">Write it in the Blueprint &rarr;</button></div></div></div>`
   },
   {
     id: "prototype", tab: "Prototype", color: "--prototype",
     mode: `build to think · ~25 min · the heart`,
     title: `Make something they can react to.`,
     lede: `A prototype is anything a person can interact with. You are not writing a plan, you are making a rough thing someone can respond to. The act of building surfaces the design and changes it, so capture on the Blueprint as you go and let the plan move.`,
-    body: `<div class="block">
-<div class="block-label">The prototype menu · pick the one form that tests your scariest unknown</div>
+    body: `<div class="block"><div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span class="verb">Sketch a prototype</span><span class="callout-sub">build to think · rough &amp; fast · ~10 min</span></div><div class="callout-body"><ul class="steps"><li>Pick <b>one</b> form from the menu below that tests your scariest unknown.</li><li>Make it rough. Minutes and cents, not polish. If the build shows the plan will not work, change the plan.</li></ul></div></div></div>
+<div class="block">
+<div class="block-label"><span class="mtag ref">Reference</span>The prototype menu · pick the one form that tests your scariest unknown</div>
 <div class="grid2">
 <div class="minicard"><h4>Would anyone want this?</h4><ul><li>A recruitment brochure or flyer with a real "sign up here"</li><li>A landing page outline: headline, who it is for, one call to action</li><li>A pitch poster</li></ul></div>
 <div class="minicard"><h4>What is the experience? <span style="color:var(--prototype)">(start here)</span></h4><ul><li>A storyboard of one student's journey, panel by panel <b>(default)</b></li><li>A mock interview with a "graduate," filmed or role-played</li><li>A short "in action" scene the team acts out</li></ul></div>
@@ -265,8 +273,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">Build the Blueprint · capture as you go</div>
-<p style="font-size:16px;max-width:64ch">Two passes keep the room together. First what students do and who leads, then what it takes to run and your first move. The fields and copy tools live in <a href="#blueprint">The Blueprint</a> below.</p>
+<div class="callout capture"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M9 14l2 2 4-4"/></svg><span class="verb">Capture &rarr; Blueprint</span><span class="callout-sub">Sections 3 to 5 · the build</span></div><div class="callout-body"><p class="cap-lead">As you build, capture the program. Two passes: what students do and who leads, then what it takes to run.</p><ul class="steps"><li><b>What students actually do</b>, week to week or across the afternoon. <button class="bp-jump sm" data-bpfield="activities">Section 3 &rarr;</button></li><li><b>Who runs it, and how students lead.</b> <button class="bp-jump sm" data-bpfield="leads">Section 4 &rarr;</button></li><li><b>What it takes to run it</b>: places, people, hardware, software, time. <button class="bp-jump sm" data-bpfield="resources">Section 5 &rarr;</button></li></ul></div></div>
 <details class="deeper"><summary>Go deeper: what it takes to actually run it<span class="cnt">run-it checklist</span></summary>
 <div class="deeper-body">
 <p>Your resources section gets real here. This is what running it actually asks for, before, during, and after.</p>
@@ -296,7 +303,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">If your program is a student inquiry project</div>
+<div class="block-label"><span class="mtag ref">Reference</span>If your program is a student inquiry project</div>
 <p style="font-size:16px;max-width:64ch">Some teams will design a project where students chase their own questions. That work has its own arc.</p>
 <details class="deeper"><summary>Go deeper: the project cycle, Ask to Share<span class="cnt">coaching guide</span></summary>
 <div class="deeper-body">
@@ -319,7 +326,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">Real programs, real schools · proof it can be done</div>
+<div class="block-label"><span class="mtag ref">Reference</span>Real programs, real schools · proof it can be done</div>
 <div class="snap">
 <div class="snapcard"><div class="scale">one-shot · AI</div><h4>Day of AI</h4><p>Free, age-appropriate AI literacy from MIT RAISE, run in 30-minute to one-hour blocks. Students explore how AI works and create with it, as designers, not just users.</p><a class="go" href="https://dayofai.org" rel="noopener" target="_blank">dayofai.org →</a></div>
 <div class="snapcard"><div class="scale">club → course · career</div><h4>Student-run help desk</h4><p>Burlington High School's "genius bar," one of the nation's first, and Bethlehem CSD's lobby help desk where students are the first line of IT support and earn certifications.</p><a class="go" href="https://bhshelpdesk.com" rel="noopener" target="_blank">bhshelpdesk.com →</a></div>
@@ -328,7 +335,7 @@ const PHASES = [
 </div>
 </div>
 <div class="block">
-<div class="block-label">What good looks like · assessment</div>
+<div class="block-label"><span class="mtag ref">Reference</span>What good looks like · assessment</div>
 <div class="minicard" style="background:var(--fog)">
 <h4>Assessment is about growth, not grades</h4>
 <p style="font-size:14.5px;color:#36424f;margin:0">Capture what students can do, how they persist, and the insight they reach. Lead with performance and reflection over tests.</p>
@@ -369,16 +376,15 @@ const PHASES = [
     title: `Put it in front of another team. Show, don't tell.`,
     lede: `Pair with the team next to you and trade feedback both ways. The goal is a design that survives someone else's eyes, not a polished pitch.`,
     body: `<div class="block">
-<div class="block-label">The critical-friend protocol</div>
-<div class="proto">
+<div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg><span class="verb">Critique with another team</span><span class="callout-sub">show, don't tell · trade both ways</span></div><div class="callout-body"><div class="proto">
 <div class="row"><span class="n"></span><span>Show, don't tell. The maker team shows the prototype and says almost nothing. The friend reacts to what they see.</span><span class="time">~1 min</span></div>
 <div class="row"><span class="n"></span><span>Warm. What is working, what is strong, what lands.</span><span class="time">~1–2 min</span></div>
 <div class="row"><span class="n"></span><span>Cool, through the green-light lens below. Name what is not yet a clear yes.</span><span class="time">~2–3 min</span></div>
 <div class="row"><span class="n"></span><span>Leave them one sharp "I wonder…" the team has to answer next.</span><span class="time">~1 min</span></div>
-</div>
+</div></div></div>
 </div>
 <div class="block">
-<div class="block-label">The four green-light checks · the feedback lens</div>
+<div class="block-label"><span class="mtag ref">Reference</span>The four green-light checks · the feedback lens</div>
 <ul class="checks">
 <li><span class="k">Real?</span><span class="t">It solves a problem your students or school actually have.</span></li>
 <li><span class="k">Theirs?</span><span class="t">Students are the point, not the prop. Real skills, real voice, and where you can, they help run it.</span></li>
@@ -388,7 +394,7 @@ const PHASES = [
 <p class="role" style="margin-top:10px">"Theirs?" is the one most programs fail. If you pulled the students out, would it still be your program? It should not be.</p>
 </div>
 <div class="block">
-<div class="block-label">A simple, transparent rubric · growth over polish</div>
+<div class="block-label"><span class="mtag ref">Reference</span>A simple, transparent rubric · growth over polish</div>
 <p style="font-size:15.5px;max-width:64ch">If you want one lens for the whole thing, share it before you build and keep it single-point.</p>
 <details class="deeper"><summary>Go deeper: the five-dimension rubric<span class="cnt">single-point criteria</span></summary>
 <div class="deeper-body">
@@ -410,21 +416,22 @@ const PHASES = [
     mode: `act on the feedback · ~6 min`,
     title: `Make one change that matters.`,
     lede: `You do not have time to rebuild, and you should not. Pick the one or two changes that most improve your program, starting with the "I wonder" your friend left you. Update your prototype and your Blueprint.`,
-    body: `<div class="block">
+    body: `<div class="block"><div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg><span class="verb">Revise</span><span class="callout-sub">one change that matters · ~6 min</span></div><div class="callout-body">
 <ul class="steps">
 <li><b>Answer the question.</b> What is the smallest change that addresses your friend's "I wonder"?</li>
 <li><b>Update the Blueprint.</b> Change the field the feedback touched, not the whole thing.</li>
 <li><b>Name it for what it is.</b> Revising after feedback is the skill, not a sign the first idea was wrong. It is the whole game.</li>
 </ul>
-</div>`
+</div></div></div>`
   },
   {
     id: "share", tab: "Share", color: "--share",
     mode: `spotlight + commit · ~7 min`,
     title: `Spotlight a few, then everyone commits.`,
     lede: `The deep feedback already happened with your critical friend, so this is light. Read the room: lightning pitches if the group is small, pair-shares or a gallery walk if it is large, so every team is seen without burning the clock.`,
-    body: `<div class="block">
-<div class="block-label">Showcase formats · pick one or two</div>
+    body: `<div class="block"><div class="callout action"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98"/><path d="M15.41 6.51l-6.82 3.98"/></svg><span class="verb">Spotlight, then commit</span><span class="callout-sub">read the room · ~7 min</span></div><div class="callout-body"><ul class="steps"><li>A few teams share: your name and the one line, about 60 seconds each.</li><li>Pick a format below that fits your group size, then everyone commits.</li></ul></div></div></div>
+<div class="block">
+<div class="block-label"><span class="mtag ref">Reference</span>Showcase formats · pick one or two</div>
 <div class="cards">
 <div class="card"><h4>Lightning talks</h4><p>60–90 seconds: the question, one visual, the team's number-one move.</p></div>
 <div class="card"><h4>Gallery walk</h4><p>Post a one-pager and a sketch; peers circulate with "I notice / I wonder / next step."</p></div>
@@ -453,12 +460,7 @@ const PHASES = [
 </details>
 </div>
 <div class="block">
-<div class="block-label">Commit and submit</div>
-<ul class="steps">
-<li><b>Your first move back home.</b> Not a 30-day plan, the very next thing: book the room, pitch my principal, email the three teachers I need.</li>
-<li><b>Drop your Blueprint in the pilot pool.</b> The Dell Education Team reviews every submission, and selected programs get support to launch a real pilot.</li>
-</ul>
-<div class="links"><a data-dell-link="" href="#">Submit your Blueprint to the pilot pool<span class="note">add form link</span></a></div>
+<div class="callout capture"><div class="callout-head"><svg class="ico" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M9 14l2 2 4-4"/></svg><span class="verb">Capture &rarr; Blueprint</span><span class="callout-sub">Section 6 · your first move</span></div><div class="callout-body"><p class="cap-lead">Name your first move, then submit.</p><ul class="steps"><li><b>Your first move back home.</b> Not a 30-day plan, the very next thing: book the room, pitch my principal, email the three teachers I need.</li><li><b>Drop your Blueprint in the pilot pool.</b> The Dell Education Team reviews every submission, and selected programs get support to launch a real pilot.</li></ul><button class="bp-jump" data-bpfield="firstmove">Write your first move &rarr;</button><div class="links" style="margin-top:12px"><a data-dell-link="" href="#">Submit your Blueprint to the pilot pool<span class="note">add form link</span></a></div></div></div>
 </div>`
   },
 ];
