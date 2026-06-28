@@ -9,9 +9,9 @@ const PHASES = [
 <div class="block">
 <div class="block-label"><span class="mtag ref">Reference</span>Four launch pads · adopt, remix, shrink, or beat</div>
 <div class="cards">
-<div class="card"><h4>Student TechCrew</h4><div class="role">student-run · service · career-facing</div><p>Students earn certification and run a help desk, supporting peers and staff with their devices.</p><p class="role">Grows: troubleshooting, customer service, career readiness.</p><div class="meta-row"><span class="tag">scale: club → course</span><span class="tag lane">lane: tech</span></div></div>
-<div class="card"><h4>Girls Who Game</h4><div class="role">team challenge · confidence · STEM</div><p>Teams take on game-based design challenges that build confidence and STEM problem-solving.</p><p class="role">Grows: collaboration, creativity, leadership.</p><div class="meta-row"><span class="tag">scale: club / cohort</span><span class="tag lane">lane: esports / coding</span></div></div>
-<div class="card"><h4>Data Dunkers</h4><div class="role">data + play · grades 5–12</div><p>Students dig into real NBA and WNBA data with notebooks to find and tell data stories. Drops into a math class.</p><p class="role">Grows: data literacy, coding, storytelling.</p><div class="meta-row"><span class="tag">scale: one-shot → course</span><span class="tag lane">lane: data</span></div></div>
+<div class="card"><h4>Student TechCrew</h4><div class="role">student-run · service · career-facing</div><p>Students earn certification and run a help desk, supporting peers and staff with their devices.</p><p class="role">Grows: troubleshooting, customer service, career readiness.</p><div class="meta-row"><span class="tag">scale: club → course</span><span class="tag lane">lane: tech</span></div><a class="card-link" href="https://www.dell.com/en-us/lp/student-tech-crew" target="_blank" rel="noopener">Explore the program &rarr;</a></div>
+<div class="card"><h4>Girls Who Game</h4><div class="role">team challenge · confidence · STEM</div><p>Teams take on game-based design challenges that build confidence and STEM problem-solving.</p><p class="role">Grows: collaboration, creativity, leadership.</p><div class="meta-row"><span class="tag">scale: club / cohort</span><span class="tag lane">lane: esports / coding</span></div><a class="card-link" href="https://www.dell.com/en-us/lp/dt/girls-who-game" target="_blank" rel="noopener">Explore the program &rarr;</a></div>
+<div class="card"><h4>Data Dunkers</h4><div class="role">data + play · grades 5–12</div><p>Students dig into real NBA and WNBA data with notebooks to find and tell data stories. Drops into a math class.</p><p class="role">Grows: data literacy, coding, storytelling.</p><div class="meta-row"><span class="tag">scale: one-shot → course</span><span class="tag lane">lane: data</span></div><a class="card-link" href="https://datadunkers.ca/" target="_blank" rel="noopener">Explore the program &rarr;</a></div>
 <div class="card"><h4>Localized Builds</h4><div class="role">your community · your need</div><p>Short, local design challenges or maker builds tied to a real need in your own school or town.</p><p class="role">Grows: design thinking, problem solving, student agency.</p><div class="meta-row"><span class="tag">scale: one-shot / short</span><span class="tag lane">lane: maker</span></div></div>
 </div>
 <p class="role" style="margin-top:13px">Each one runs at more than one scale. You will choose how to use them in Ideate. Invent your own is always on the table.</p>
@@ -106,6 +106,7 @@ const PHASES = [
 <tr><td>Club or cohort</td><td>Voluntary, ongoing engagement</td><td>Across the year</td><td>Student ownership, leadership, and community over time.</td></tr>
 <tr><td>Project / course</td><td>Older students, capstones</td><td>Weeks to months</td><td>Independent inquiry, student-driven analysis, and applied projects.</td></tr>
 </table>
+<p class="tip">What students walk away with shifts by format: one-shot gives the full arc start to finish; a unit builds deeper skills through repetition; a hack-a-thon builds teamwork and fast iteration; embedded lessons build steady skills over time; a club or cohort builds ownership and leadership; a project builds independent, student-driven inquiry.</p>
 <h5>Quick guide</h5>
 <ul>
 <li>Short on time? → One-shot.</li>
@@ -193,6 +194,14 @@ const PHASES = [
 <ul><li>The hands-on task where students collect, build, or make the real thing.</li><li>A problem-solving challenge that rewards persistence and teamwork.</li><li>A first "aha" where the tool or concept clicks.</li></ul>
 <h5>Reflection &amp; extension (deepen the impact)</h5>
 <ul><li>A short pitch or recommendation backed by what students made.</li><li>A reflection that connects the work to goals or personal growth.</li><li>An extension for fast finishers or a connection to careers and community.</li></ul>
+<h5>Ready activities you can borrow</h5>
+<ul>
+<li><b>Data in everyday life</b> — students brainstorm where data already shows up for them (playlists, scores, weather, views), then turn it into questions worth chasing. <a href="https://docs.google.com/document/d/1YkTE-1TnGjiwf6dErO4zzm4H2L5to7MC8curlqqi0-4/edit" target="_blank" rel="noopener">activity doc &rarr;</a></li>
+<li><b>Line-up and noticing data</b> — a no-tech icebreaker: students line up by a trait, then read what the line shows about data. <a href="https://docs.google.com/document/d/1Ui7c2PI0s7KUY7SQ4z2TU4xnpv7MEzH8wejXjdCC1go/edit?usp=sharing" target="_blank" rel="noopener">activity doc &rarr;</a></li>
+<li><b>Student data pitch</b> — teams turn their data into a short, evidence-backed recommendation and pitch it.</li>
+<li><b>Explore your data with AI</b> — students ask an AI tool what patterns it sees in their dataset, then check its answers for accuracy and bias. Builds data and AI literacy at once.</li>
+<li><b>Beat the AI</b> — students predict an outcome, compare it against an AI&#39;s prediction, and discuss who was closer and why.</li>
+</ul>
 <p class="tip">One strong orientation plus one core challenge is already a complete program. Add reflection and extension when time and goals allow.</p>
 </div>
 </details>
@@ -333,6 +342,49 @@ const PHASES = [
 <div class="snapcard"><div class="scale">club / cohort · esports</div><h4>NASEF scholastic esports</h4><p>Free, state-approved curriculum where students run the club, serve on committees, and explore career pathways from analytics to event management. UC Irvine documented STEM gains.</p><a class="go" href="https://www.nasef.org" rel="noopener" target="_blank">nasef.org →</a></div>
 <div class="snapcard"><div class="scale">project · community data</div><h4>The MFNERC data story</h4><p>A culturally grounded data project with the Manitoba First Nations Education Resource Centre. The model for small, local, identity-relevant student inquiry.</p><a class="go" data-dell-link="" href="#">add link →</a></div>
 </div>
+</div>
+<div class="block">
+<div class="block-label"><span class="mtag ref">Reference</span>Challenges and hack-a-thons · run one, or borrow one</div>
+<p style="font-size:16px;max-width:64ch">A challenge is one of the most flexible shapes a program can take. Two ways to run it. A <b>real-world challenge</b> is a single class or multi-day sprint around a theme you set. A <b>hack-a-thon</b> is a time-boxed event where teams dive into open data and pitch what they find. Themes can be sports, health, environment, or social impact, anchored by a question students care about, like "which strategy gives us the best chance?" or "how can data help our school cut waste?"</p>
+<p class="prompt-q" style="margin-top:18px">Ready-made challenges you can open and try</p>
+<p class="role" style="margin:-4px 0 10px">Each opens in your browser. Good to look at for structure, or to hand to students.</p>
+<div class="links">
+<a href="https://colab.research.google.com/github/Data-Dunkers/lessons/blob/main/challenges/open-data-intro.ipynb" target="_blank" rel="noopener">Open Data<span class="note">use your own city&#39;s open data</span></a>
+<a href="https://colab.research.google.com/github/Data-Dunkers/lessons/blob/main/challenges/gapminder.ipynb" target="_blank" rel="noopener">Gapminder<span class="note">global development data</span></a>
+<a href="https://colab.research.google.com/github/Data-Dunkers/lessons/blob/main/challenges/data-challenges.ipynb" target="_blank" rel="noopener">Data Challenges<span class="note">simplified: pets, Pok&eacute;mon, music</span></a>
+<a href="https://colab.research.google.com/github/Data-Dunkers/lessons/blob/main/challenges/music-intro.ipynb" target="_blank" rel="noopener">Music<span class="note">Spotify data</span></a>
+<a href="https://colab.research.google.com/github/callysto/hackathon/blob/master/HackathonNotebooks/Pets/pets-intro.ipynb" target="_blank" rel="noopener">Pets<span class="note">beginner-friendly</span></a>
+<a href="https://colab.research.google.com/github/Data-Dunkers/lessons/blob/main/challenges/pokemon-intro.ipynb" target="_blank" rel="noopener">Pok&eacute;mon<span class="note">beginner-friendly</span></a>
+<a href="https://colab.research.google.com/github/Data-Dunkers/lessons/blob/main/challenges/baseball-pitch-introduction.ipynb" target="_blank" rel="noopener">Baseball Pitches<span class="note">sports analytics</span></a>
+<a href="https://www.impactedvisors.org/assets/Puzzle-Breakdown.html" target="_blank" rel="noopener">A challenge, solved step by step<span class="note">walkthrough</span></a>
+</div>
+<details class="deeper"><summary>Go deeper: bigger challenge collections<span class="cnt">notebook libraries</span></summary>
+<div class="deeper-body">
+<p>Open-ended collections to pull a challenge from, or remix into your own.</p>
+<div class="links">
+<a href="https://github.com/callysto/hackathon/blob/master/SustainabilityOnMars/CuriosityTrack/challenge-0.ipynb" target="_blank" rel="noopener">Bringing Pets to Mars<span class="note">sustainability scenario</span></a>
+<a href="https://github.com/callysto/Indigenous-culture-through-math-and-code" target="_blank" rel="noopener">Indigenous Culture through Math and Code</a>
+<a href="https://github.com/callysto/curriculum-notebooks" target="_blank" rel="noopener">Curriculum Notebooks Collection</a>
+<a href="https://github.com/callysto/interesting-problems" target="_blank" rel="noopener">Interesting Problems</a>
+<a href="https://github.com/callysto/data-viz-of-the-week" target="_blank" rel="noopener">Data Visualization Examples</a>
+</div>
+</div>
+</details>
+<details class="deeper"><summary>Go deeper: more challenges and hack-a-thons out there<span class="cnt">beyond this guide</span></summary>
+<div class="deeper-body">
+<p>Free, mostly K&ndash;12-friendly programs students can enter, or that you can model your own challenge on.</p>
+<div class="links">
+<a href="https://www.kaggle.com/" target="_blank" rel="noopener">Kaggle<span class="note">open datasets, beginner competitions, free courses</span></a>
+<a href="https://www.drivendata.org/competitions/" target="_blank" rel="noopener">DrivenData<span class="note">data challenges with real social impact</span></a>
+<a href="https://skewthescript.org/data-science-challenge" target="_blank" rel="noopener">Skew The Script: Data Science Challenge<span class="note">free, classroom-ready, intro to R</span></a>
+<a href="https://globalyouth.wharton.upenn.edu/competitions/data-science/" target="_blank" rel="noopener">Wharton HS Data Science Competition<span class="note">free, team-based, sports analytics</span></a>
+<a href="https://live.stemfellowship.org/big-data-and-ai-inquiry-and-experiential-learning/big-data-courses/high-school-big-data-challenge-2/" target="_blank" rel="noopener">STEM Fellowship HS Data Challenge<span class="note">no coding required, sustainability</span></a>
+<a href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener">NASA Space Apps Challenge<span class="note">global hackathon, open NASA data</span></a>
+<a href="https://www.mlh.com/high-school-administrator-hackathon-guide" target="_blank" rel="noopener">Major League Hacking<span class="note">league, plus a guide to running a hackathon</span></a>
+<a href="https://hackclub.com/" target="_blank" rel="noopener">Hack Club<span class="note">nonprofit network and HS hackathon directory</span></a>
+</div>
+</div>
+</details>
 </div>
 <div class="block">
 <div class="block-label"><span class="mtag ref">Reference</span>What good looks like · assessment</div>
