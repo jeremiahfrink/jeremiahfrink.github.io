@@ -18,6 +18,7 @@
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9px; }
   input:focus, select:focus, textarea:focus { border-color: #6366f1 !important; box-shadow: 0 0 0 3px rgba(99,102,241,.1); outline: none; }
+  @media print { .no-print { display: none !important; } body { background: #fff; } }
 </style>
 </head>
 <body>
@@ -517,6 +518,12 @@ function TaskManager({ user }) {
   const [starred, setStarred] = useState({});
   const [hideCompleted, setHideCompleted] = useState(true);
   const [showArchived, setShowArchived] = useState(false);
+  const [hiddenProjects, setHiddenProjects] = useState({}); // ephemeral: { project: true } = hidden from "All" view
+  const [projPanelOpen, setProjPanelOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState({}); // ephemeral: { TaskID: true } = selected for bulk edit
+  const [bulkDate, setBulkDate] = useState("");
+  const [bulkShift, setBulkShift] = useState("");
+  const [pwModal, setPwModal] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
   const [loadError, setLoadError] = useState(null);
@@ -593,7 +600,7 @@ function TaskManager({ user }) {
   const filtered = useMemo(() => {
     let f;
     if (projectFilter === "All") {
-      f = tasks.filter(t => t.Archived !== "yes");
+      f = tasks.filter(t => t.Archived !== "yes" && !hiddenProjects[t.Project]);
     } else if (isArchivedProject[projectFilter]) {
       f = tasks.filter(t => t.Project === projectFilter);
     } else {
@@ -608,7 +615,7 @@ function TaskManager({ user }) {
       });
     }
     return f;
-  }, [tasks, projectFilter, sortCol, sortDir, view, isArchivedProject]);
+  }, [tasks, projectFilter, sortCol, sortDir, view, isArchivedProject, hiddenProjects]);
 
   const activeTasks = useMemo(() => filtered.filter(t => t.Status !== "Done"), [filtered]);
   const stats = useMemo(() => {
@@ -781,6 +788,38 @@ function TaskManager({ user }) {
   function toggleStar(id) {
     setStarred(prev => { var n = Object.assign({}, prev); if (n[id]) delete n[id]; else n[id] = true; return n; });
   }
+
+  // Timezone-safe date shift for "YYYY-MM-DD" strings (avoids UTC/local off-by-one).
+  function shiftDateStr(str, days) {
+    if (!str) return str;
+    var p = String(str).split("-");
+    if (p.length !== 3) return str;
+    var d = new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+    if (isNaN(d.getTime())) return str;
+    d.setDate(d.getDate() + days);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  const selectedCount = useMemo(() => Object.keys(selectedIds).filter(k => selectedIds[k]).length, [selectedIds]);
+  function toggleSelect(id) {
+    setSelectedIds(prev => { var n = Object.assign({}, prev); if (n[id]) delete n[id]; else n[id] = true; return n; });
+  }
+  function clearSelection() { setSelectedIds({}); }
+  function bulkSetDate(dateStr) {
+    if (!dateStr) return;
+    setTasks(prev => prev.map(t => selectedIds[t.TaskID] ? { ...t, "Due Date": dateStr } : t));
+  }
+  function bulkShiftDate(days) {
+    if (!days) return;
+    setTasks(prev => prev.map(t => selectedIds[t.TaskID] ? { ...t, "Due Date": shiftDateStr(t["Due Date"], days) } : t));
+  }
+  function bulkClearDate() {
+    setTasks(prev => prev.map(t => selectedIds[t.TaskID] ? { ...t, "Due Date": "" } : t));
+  }
+  function toggleProjectHidden(p) {
+    setHiddenProjects(prev => { var n = Object.assign({}, prev); if (n[p]) delete n[p]; else n[p] = true; return n; });
+  }
+  const hiddenCount = Object.keys(hiddenProjects).filter(k => hiddenProjects[k]).length;
   function starredFirst(taskList) {
     return [...taskList].sort(function(a, b) {
       var sa = starred[a.TaskID] ? 0 : 1, sb = starred[b.TaskID] ? 0 : 1;
@@ -800,6 +839,18 @@ function TaskManager({ user }) {
   }
 
   const btnBase = { border: "none", borderRadius: 10, padding: "8px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "inherit", transition: "all .15s" };
+
+  // Rows shown in List view (respects hide-completed + current filter), used for both display and select-all.
+  const listRows = starredFirst(hideCompleted ? filtered.filter(t => t.Status !== "Done") : filtered);
+  const allSelected = listRows.length > 0 && listRows.every(t => selectedIds[t.TaskID]);
+  function toggleSelectAll() {
+    setSelectedIds(prev => {
+      var n = Object.assign({}, prev);
+      if (allSelected) listRows.forEach(t => delete n[t.TaskID]);
+      else listRows.forEach(t => n[t.TaskID] = true);
+      return n;
+    });
+  }
 
   if (!loaded) {
     return (
@@ -825,7 +876,7 @@ function TaskManager({ user }) {
     <div style={{ fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif", background: "#f8f9fc", minHeight: "100vh", color: "#1e293b" }}>
 
       {/* Header */}
-      <div style={{ background: "#fff", borderBottom: "1.5px solid #f1f5f9", padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 50, flexWrap: "wrap", gap: 10 }}>
+      <div className="no-print" style={{ background: "#fff", borderBottom: "1.5px solid #f1f5f9", padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 50, flexWrap: "wrap", gap: 10 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <h1 style={{ margin: 0, fontSize: 20, fontWeight: 800, color: "#0f172a", letterSpacing: "-0.02em" }}>
             <span style={{ color: "#6366f1" }}>▪</span> Task Manager
@@ -842,9 +893,37 @@ function TaskManager({ user }) {
           {tasks.length > 0 && <button onClick={handleExport} style={{ ...btnBase, background: "#f1f5f9", color: "#475569" }}><IconDownload size={15} /> Export</button>}
           <button onClick={handleTemplate} style={{ ...btnBase, background: "#f1f5f9", color: "#475569" }}><IconFileText size={15} /></button>
           <button onClick={() => setNoteOpen(!noteOpen)} style={{ ...btnBase, background: noteOpen ? "#eef2ff" : "#f1f5f9", color: noteOpen ? "#4f46e5" : "#475569" }}><IconStickyNote size={15} /></button>
+          <div style={{ position: "relative" }}>
+            <button onClick={() => setProjPanelOpen(o => !o)} title="Show or hide projects" style={{ ...btnBase, background: (projPanelOpen || hiddenCount > 0) ? "#eef2ff" : "#f1f5f9", color: (projPanelOpen || hiddenCount > 0) ? "#4f46e5" : "#475569" }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              {hiddenCount > 0 && <span style={{ background: "#4f46e5", color: "#fff", borderRadius: 8, fontSize: 10, fontWeight: 700, padding: "1px 6px" }}>{hiddenCount}</span>}
+            </button>
+            {projPanelOpen && (
+              <div style={{ position: "absolute", right: 0, top: "calc(100% + 6px)", background: "#fff", border: "1.5px solid #e2e8f0", borderRadius: 12, boxShadow: "0 16px 32px rgba(15,23,42,.12)", padding: 12, width: 240, zIndex: 60 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#334155" }}>Show projects</span>
+                  {hiddenCount > 0 && <button onClick={() => setHiddenProjects({})} style={{ background: "none", border: "none", color: "#4f46e5", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Show all</button>}
+                </div>
+                <div style={{ maxHeight: 240, overflow: "auto", display: "flex", flexDirection: "column", gap: 2 }}>
+                  {activeProjects.length === 0 && <span style={{ fontSize: 13, color: "#94a3b8", padding: "4px 2px" }}>No projects yet.</span>}
+                  {activeProjects.map(p => (
+                    <label key={p} style={{ display: "flex", alignItems: "center", gap: 9, padding: "6px 4px", borderRadius: 8, cursor: "pointer", fontSize: 13, color: "#1e293b" }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#f8f9fc"} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                      <input type="checkbox" checked={!hiddenProjects[p]} onChange={() => toggleProjectHidden(p)} style={{ width: 15, height: 15, accentColor: "#4f46e5", cursor: "pointer" }} />
+                      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p}</span>
+                    </label>
+                  ))}
+                </div>
+                <p style={{ fontSize: 11, color: "#94a3b8", margin: "8px 2px 0", lineHeight: 1.4 }}>Unchecked projects are hidden from the All view — useful right before printing (Ctrl/⌘+P). This resets on reload.</p>
+              </div>
+            )}
+          </div>
           <button onClick={() => setModal({ mode: "add" })} style={{ ...btnBase, background: "#4f46e5", color: "#fff" }}><IconPlus size={16} /> Add Task</button>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginLeft: 4, paddingLeft: 12, borderLeft: "1.5px solid #f1f5f9" }}>
             <span title={user.email || ""} style={{ fontSize: 12, color: "#94a3b8", fontWeight: 600, maxWidth: 160, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{user.email}</span>
+            <button onClick={() => setPwModal(true)} title="Set a password for mobile sign-in" style={{ ...btnBase, background: "#f1f5f9", color: "#475569", padding: "8px 12px" }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </button>
             <button onClick={() => { if (confirm("Sign out?")) auth.signOut(); }} title="Sign out" style={{ ...btnBase, background: "#f1f5f9", color: "#475569", padding: "8px 12px" }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             </button>
@@ -903,15 +982,34 @@ function TaskManager({ user }) {
           {/* LIST VIEW */}
           {view === "list" && (
             <div>
-              <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 10 }}>
+              <div className="no-print" style={{ display: "flex", justifyContent: "flex-end", marginBottom: 10 }}>
                 <button onClick={() => setHideCompleted(!hideCompleted)} style={{ background: hideCompleted ? "#eef2ff" : "#f1f5f9", color: hideCompleted ? "#4f46e5" : "#64748b", border: "none", borderRadius: 8, padding: "5px 14px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 6, transition: "all .15s" }}>
                   <IconCheck size={13} /> {hideCompleted ? "Completed hidden" : "Showing completed"}
                 </button>
               </div>
+              {selectedCount > 0 && (
+                <div className="no-print" style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", background: "#eef2ff", border: "1.5px solid #c7d2fe", borderRadius: 12, padding: "10px 14px", marginBottom: 10 }}>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "#3730a3" }}>{selectedCount} selected</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <input type="date" value={bulkDate} onChange={e => setBulkDate(e.target.value)} style={{ border: "1.5px solid #c7d2fe", borderRadius: 8, padding: "5px 8px", fontSize: 13, fontFamily: "inherit", color: "#1e293b", background: "#fff" }} />
+                    <button onClick={() => bulkSetDate(bulkDate)} disabled={!bulkDate} style={{ ...btnBase, padding: "6px 12px", fontSize: 12, background: bulkDate ? "#4f46e5" : "#e2e8f0", color: bulkDate ? "#fff" : "#94a3b8", cursor: bulkDate ? "pointer" : "default" }}>Set date</button>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <input type="number" value={bulkShift} onChange={e => setBulkShift(e.target.value)} placeholder="± days" style={{ width: 80, border: "1.5px solid #c7d2fe", borderRadius: 8, padding: "5px 8px", fontSize: 13, fontFamily: "inherit", color: "#1e293b", background: "#fff" }} />
+                    <button onClick={() => { var n = parseInt(bulkShift, 10); if (!isNaN(n)) bulkShiftDate(n); }} disabled={!bulkShift} style={{ ...btnBase, padding: "6px 12px", fontSize: 12, background: bulkShift ? "#4f46e5" : "#e2e8f0", color: bulkShift ? "#fff" : "#94a3b8", cursor: bulkShift ? "pointer" : "default" }}>Shift</button>
+                  </div>
+                  <button onClick={bulkClearDate} style={{ ...btnBase, padding: "6px 12px", fontSize: 12, background: "#fff", color: "#475569", border: "1.5px solid #e2e8f0" }}>Clear dates</button>
+                  <button onClick={clearSelection} style={{ ...btnBase, padding: "6px 12px", fontSize: 12, background: "none", color: "#64748b" }}>Deselect all</button>
+                  <span style={{ fontSize: 11, color: "#818cf8", flexBasis: "100%", margin: 0 }}>Shift moves each selected task's due date by that many days (negative pulls earlier). Tasks with no date are left unchanged.</span>
+                </div>
+              )}
               <div style={{ background: "#fff", borderRadius: 14, border: "1.5px solid #f1f5f9", overflow: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, minWidth: 740 }}>
                   <thead>
                     <tr style={{ background: "#f8f9fc" }}>
+                      <th className="no-print" style={{ width: 34, padding: "12px 4px", textAlign: "center" }}>
+                        <input type="checkbox" checked={allSelected} onChange={toggleSelectAll} title="Select all shown" style={{ width: 15, height: 15, accentColor: "#4f46e5", cursor: "pointer" }} />
+                      </th>
                       <th style={{ width: 36, padding: "12px 4px" }}></th>
                       <th style={{ width: 40, padding: "12px 8px" }}></th>
                       {[["Project", 130], ["Task", null], ["Priority", 90], ["Time Estimate", 140], ["Due Date", 110], ["Status", 120]].map(([col, w]) => (
@@ -924,14 +1022,19 @@ function TaskManager({ user }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {starredFirst(hideCompleted ? filtered.filter(t => t.Status !== "Done") : filtered).map(t => {
+                    {listRows.map(t => {
                       const pc = getProjectColor(t.Project || "");
                       const isDone = t.Status === "Done";
                       const isStar = !!starred[t.TaskID];
+                      const isSel = !!selectedIds[t.TaskID];
+                      const restBg = isSel ? "#eef2ff" : (isStar ? "#fffdf5" : "transparent");
                       return (
-                        <tr key={t.TaskID} style={{ borderTop: "1px solid #f1f5f9", transition: "background .1s", opacity: isDone ? 0.5 : 1, cursor: "pointer", background: isStar ? "#fffdf5" : "transparent" }}
-                          onMouseEnter={e => e.currentTarget.style.background = isStar ? "#fffbeb" : "#fafbff"}
-                          onMouseLeave={e => e.currentTarget.style.background = isStar ? "#fffdf5" : "transparent"}>
+                        <tr key={t.TaskID} style={{ borderTop: "1px solid #f1f5f9", transition: "background .1s", opacity: isDone ? 0.5 : 1, cursor: "pointer", background: restBg }}
+                          onMouseEnter={e => e.currentTarget.style.background = isSel ? "#e0e7ff" : (isStar ? "#fffbeb" : "#fafbff")}
+                          onMouseLeave={e => e.currentTarget.style.background = restBg}>
+                          <td className="no-print" onClick={e => e.stopPropagation()} style={{ padding: "10px 4px", textAlign: "center" }}>
+                            <input type="checkbox" checked={isSel} onChange={() => toggleSelect(t.TaskID)} style={{ width: 15, height: 15, accentColor: "#4f46e5", cursor: "pointer" }} />
+                          </td>
                           <td style={{ padding: "10px 4px", textAlign: "center" }}>
                             <div onClick={e => { e.stopPropagation(); toggleStar(t.TaskID); }} style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                               <IconStar size={15} color={isStar ? "#f59e0b" : "#d1d5db"} filled={isStar} />
@@ -952,8 +1055,8 @@ function TaskManager({ user }) {
                         </tr>
                       );
                     })}
-                    {(hideCompleted ? filtered.filter(t => t.Status !== "Done") : filtered).length === 0 && (
-                      <tr><td colSpan={8} style={{ padding: 40, textAlign: "center", color: "#94a3b8" }}>No tasks found for this filter.</td></tr>
+                    {listRows.length === 0 && (
+                      <tr><td colSpan={9} style={{ padding: 40, textAlign: "center", color: "#94a3b8" }}>No tasks found for this filter.</td></tr>
                     )}
                   </tbody>
                 </table>
@@ -1176,8 +1279,9 @@ function TaskManager({ user }) {
       )}
 
       {/* Scratchpad Panel */}
-      {noteOpen && <div onClick={() => setNoteOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.15)", zIndex: 900 }} />}
-      <div style={{
+      {pwModal && <PasswordLinkModal user={user} onClose={() => setPwModal(false)} />}
+      {noteOpen && <div className="no-print" onClick={() => setNoteOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,.15)", zIndex: 900 }} />}
+      <div className="no-print" style={{
         position: "fixed", top: 0, right: 0, height: "100vh", width: 340, maxWidth: "90vw",
         background: "#fff", boxShadow: noteOpen ? "-8px 0 24px rgba(0,0,0,.1)" : "none",
         transform: noteOpen ? "translateX(0)" : "translateX(100%)",
@@ -1211,6 +1315,79 @@ function TaskManager({ user }) {
             onBlur={e => e.target.style.borderColor = "#e2e8f0"}
           />
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---- Set / link a password so the account can sign in with email+password (reliable on mobile) ---- */
+function PasswordLinkModal({ user, onClose }) {
+  const hasPassword = (user.providerData || []).some(p => p.providerId === "password");
+  const [pw, setPw] = useState("");
+  const [pw2, setPw2] = useState("");
+  const [err, setErr] = useState("");
+  const [ok, setOk] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  async function submit() {
+    setErr("");
+    if (pw.length < 6) { setErr("Password must be at least 6 characters."); return; }
+    if (pw !== pw2) { setErr("The two passwords don't match."); return; }
+    setBusy(true);
+    try {
+      if (hasPassword) {
+        await auth.currentUser.updatePassword(pw);
+      } else {
+        const cred = firebase.auth.EmailAuthProvider.credential(user.email, pw);
+        await auth.currentUser.linkWithCredential(cred);
+      }
+      setOk(true);
+    } catch (e) {
+      if (e.code === "auth/requires-recent-login") setErr("For security this needs a fresh login. Sign out, sign back in with Google, then try again right away.");
+      else if (e.code === "auth/email-already-in-use") setErr("A separate password account already exists for this email.");
+      else if (e.code === "auth/weak-password") setErr("Use at least 6 characters.");
+      else setErr(e.message || "Couldn't set the password.");
+    }
+    setBusy(false);
+  }
+
+  const inputStyle = { width: "100%", padding: "11px 13px", border: "1.5px solid #e2e8f0", borderRadius: 10, fontSize: 14, fontFamily: "inherit", color: "#1e293b", background: "#fafbff", outline: "none", boxSizing: "border-box" };
+
+  return (
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(15,23,42,.35)", zIndex: 950, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: "#fff", borderRadius: 18, border: "1.5px solid #f1f5f9", boxShadow: "0 24px 48px rgba(15,23,42,.18)", padding: 28, width: "100%", maxWidth: 400, fontFamily: "'DM Sans', sans-serif" }}>
+        {ok ? (
+          <div>
+            <div style={{ width: 48, height: 48, borderRadius: 14, background: "#dcfce7", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 style={{ margin: "0 0 8px", fontSize: 19, fontWeight: 800, color: "#0f172a" }}>Password set</h2>
+            <p style={{ margin: "0 0 20px", fontSize: 14, color: "#475569", lineHeight: 1.5 }}>
+              On your phone, sign in with <b>{user.email}</b> and the password you just chose. It's the same account — all your tasks will be there.
+            </p>
+            <button onClick={onClose} style={{ width: "100%", background: "#4f46e5", color: "#fff", border: "none", borderRadius: 10, padding: "12px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Done</button>
+          </div>
+        ) : (
+          <div>
+            <h2 style={{ margin: "0 0 6px", fontSize: 19, fontWeight: 800, color: "#0f172a" }}>{hasPassword ? "Change your password" : "Set a password for mobile"}</h2>
+            <p style={{ margin: "0 0 18px", fontSize: 14, color: "#64748b", lineHeight: 1.5 }}>
+              {hasPassword ? "Update the password used for email sign-in." : "This adds a password to your current account so you can sign in on your phone with email + password — no Google popup needed. Same account, same tasks."}
+            </p>
+            <div style={{ marginBottom: 10 }}>
+              <label style={{ fontSize: 12, fontWeight: 600, color: "#94a3b8" }}>Email</label>
+              <input value={user.email || ""} readOnly style={{ ...inputStyle, marginTop: 4, background: "#f1f5f9", color: "#64748b" }} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <input type="password" placeholder="New password (min 6 characters)" value={pw} autoComplete="new-password" onChange={e => setPw(e.target.value)} style={inputStyle} />
+              <input type="password" placeholder="Confirm password" value={pw2} autoComplete="new-password" onChange={e => setPw2(e.target.value)} onKeyDown={e => { if (e.key === "Enter") submit(); }} style={inputStyle} />
+            </div>
+            {err && <div style={{ marginTop: 12, background: "#fef2f2", border: "1px solid #fecaca", color: "#b91c1c", borderRadius: 8, padding: "8px 12px", fontSize: 13, fontWeight: 500, lineHeight: 1.4 }}>{err}</div>}
+            <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
+              <button onClick={onClose} style={{ flex: 1, background: "#f1f5f9", color: "#475569", border: "none", borderRadius: 10, padding: "12px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Cancel</button>
+              <button onClick={submit} disabled={busy} style={{ flex: 1, background: "#4f46e5", color: "#fff", border: "none", borderRadius: 10, padding: "12px", fontSize: 14, fontWeight: 700, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1, fontFamily: "inherit" }}>{busy ? "Saving…" : (hasPassword ? "Update" : "Set password")}</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1259,11 +1436,17 @@ function SignIn() {
     } catch (e) { setErr(friendlyError(e.code)); }
     setBusy(false);
   }
+  useEffect(() => {
+    // Complete a redirect-based Google sign-in and surface any error it returned.
+    auth.getRedirectResult().catch(e => setErr(friendlyError(e.code)));
+  }, []);
+
   async function doGoogle() {
     setBusy(true); setErr("");
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
-      await auth.signInWithPopup(provider);
+      provider.setCustomParameters({ prompt: "select_account" });
+      await auth.signInWithRedirect(provider); // redirects away; nothing after this runs
     } catch (e) { setErr(friendlyError(e.code)); setBusy(false); }
   }
 
