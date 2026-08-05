@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visioning Day · Design-and-Build Studio</title>
+<style>
+  :root{
+    --ink:#1E2A33;
+    --ink-soft:#4A5860;
+    --paper:#F6F8F5;
+    --card:#FFFFFF;
+    --primary:#14557B;
+    --primary-deep:#0C3A56;
+    --accent:#Dda21e;
+    --accent-soft:#FBF3DC;
+    --line:#D9DED9;
+    --good:#2E7D57;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.5;
+    padding-bottom:92px;
+  }
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}
+  h1,h2,h3,.display{font-family:Georgia,"Times New Roman",serif;line-height:1.2}
+
+  /* Header */
+  header{
+    background:var(--primary-deep);color:#fff;
+    padding:12px 16px;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  header .brand{font-family:Georgia,serif;font-size:1.05rem;font-weight:bold}
+  header .brand small{display:block;font-family:ui-monospace,Menlo,monospace;font-size:.6rem;letter-spacing:.14em;opacity:.75;font-weight:normal}
+  header .spacer{flex:1}
+  .grouptag{
+    font-family:ui-monospace,Menlo,monospace;font-size:.72rem;letter-spacing:.05em;
+    background:rgba(255,255,255,.12);padding:5px 10px;border-radius:6px;max-width:44vw;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .headbtn{
+    background:none;border:1px solid rgba(255,255,255,.4);color:#fff;
+    font-size:.75rem;padding:6px 10px;border-radius:6px;cursor:pointer;
+  }
+  .headbtn:hover{background:rgba(255,255,255,.12)}
+
+  /* Step rail */
+  .rail{
+    display:flex;gap:4px;justify-content:center;align-items:center;
+    padding:12px 16px 4px;flex-wrap:wrap;
+  }
+  .rail .dot{
+    width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:ui-monospace,Menlo,monospace;font-size:.7rem;
+    border:2px solid var(--line);color:var(--ink-soft);background:#fff;
+    padding:0;cursor:pointer;
+  }
+  .rail .dot:disabled{cursor:default;opacity:.55}
+  .rail .dot.done{background:var(--primary);border-color:var(--primary);color:#fff}
+  .rail .dot.now{border-color:var(--accent);background:var(--accent);color:var(--ink);font-weight:bold}
+  .rail .bar{width:12px;height:2px;background:var(--line)}
+  .railcap{text-align:center;font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase;padding-bottom:8px}
+
+  main{max-width:720px;margin:0 auto;padding:8px 16px 24px}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px;margin-bottom:16px;
+  }
+  .eyebrow{
+    font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--primary);margin-bottom:6px;
+  }
+  h2{font-size:1.45rem;margin-bottom:10px;color:var(--primary-deep)}
+  h3{font-size:1.05rem;margin:16px 0 6px;color:var(--primary-deep)}
+  p{margin-bottom:10px}
+  p:last-child{margin-bottom:0}
+  .soft{color:var(--ink-soft);font-size:.92rem}
+  ul.plain{list-style:none}
+  ul.plain li{padding:6px 0;border-bottom:1px dashed var(--line)}
+  ul.plain li:last-child{border-bottom:none}
+
+  /* Choice cards */
+  .choice{
+    display:block;width:100%;text-align:left;cursor:pointer;
+    background:var(--card);border:2px solid var(--line);border-radius:var(--radius);
+    padding:16px;margin-bottom:12px;font:inherit;color:inherit;
+  }
+  .choice:hover{border-color:var(--primary)}
+  .choice.sel{border-color:var(--primary);background:#EEF4F8;box-shadow:0 0 0 1px var(--primary)}
+  .choice .ct{font-family:Georgia,serif;font-weight:bold;font-size:1.05rem;color:var(--primary-deep)}
+  .choice .cd{font-size:.92rem;color:var(--ink-soft);margin-top:4px}
+  .choice .cue{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.06em;color:var(--good);margin-top:8px;display:block}
+  .platform{font-style:italic;color:var(--primary)}
+
+  /* Forms */
+  label.f{display:block;font-weight:600;font-size:.9rem;margin:14px 0 4px}
+  label.f small{display:block;font-weight:normal;color:var(--ink-soft)}
+  input[type=text],textarea{
+    width:100%;padding:10px 12px;font:inherit;font-size:.95rem;
+    border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);
+  }
+  input[type=text]:focus,textarea:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+  textarea{min-height:64px;resize:vertical}
+  .statement-line{display:flex;flex-direction:column;gap:2px;margin-bottom:14px}
+  .statement-line .lead{font-family:Georgia,serif;font-size:1.05rem;color:var(--primary-deep)}
+
+  .check{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+  .check:last-child{border-bottom:none}
+  .check input{width:20px;height:20px;margin-top:2px;accent-color:var(--primary);flex-shrink:0}
+  .check span{font-size:.94rem}
+
+  /* Collapsible */
+  details{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:12px}
+  details summary{
+    cursor:pointer;padding:14px 16px;font-weight:600;color:var(--primary-deep);
+    list-style:none;display:flex;justify-content:space-between;align-items:center;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-family:ui-monospace,Menlo,monospace;color:var(--primary)}
+  details[open] summary::after{content:"–"}
+  details .inner{padding:0 16px 16px}
+
+  .flourish{
+    border:2px solid var(--accent);background:var(--accent-soft);
+    border-radius:var(--radius);padding:16px;margin-bottom:12px;
+  }
+  .flourish .eyebrow{color:#96700c}
+
+  .pin{
+    background:var(--primary-deep);color:#fff;border-radius:var(--radius);
+    padding:14px 16px;margin-bottom:14px;
+  }
+  .pin .eyebrow{color:var(--accent)}
+  .pin .pt{font-family:Georgia,serif;font-size:1.1rem;font-weight:bold}
+  .pin .ps{font-size:.88rem;opacity:.85;margin-top:4px}
+
+  /* Radios */
+  .radiorow{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .radiorow button{
+    font:inherit;font-size:.86rem;padding:8px 14px;border-radius:999px;cursor:pointer;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+  .radiorow button.sel{background:var(--primary);border-color:var(--primary);color:#fff}
+
+  /* Nav buttons */
+  .nav{display:flex;gap:10px;justify-content:space-between;margin-top:4px}
+  .btn{
+    font:inherit;font-weight:600;cursor:pointer;border-radius:8px;
+    padding:12px 22px;min-height:46px;border:none;
+  }
+  .btn.primary{background:var(--primary);color:#fff}
+  .btn.primary:hover{background:var(--primary-deep)}
+  .btn.primary:disabled{background:#9FB4C0;cursor:not-allowed}
+  .btn.ghost{background:none;border:1.5px solid var(--line);color:var(--ink-soft)}
+  .btn.ghost:hover{border-color:var(--ink-soft)}
+  .gatehint{font-size:.82rem;color:#A05A00;margin-top:8px;display:none}
+
+  /* Sticky footer */
+  .foot{
+    position:fixed;bottom:0;left:0;right:0;z-index:40;
+    background:#fff;border-top:2px solid var(--primary-deep);
+    display:flex;gap:10px;padding:12px 16px;justify-content:center;
+  }
+  .foot a{
+    flex:1;max-width:340px;text-align:center;text-decoration:none;
+    font-weight:600;font-size:.92rem;padding:12px 10px;border-radius:8px;min-height:46px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .foot a.res{border:2px solid var(--primary);color:var(--primary)}
+  .foot a.share{background:var(--accent);color:var(--ink)}
+
+  /* Modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(14,30,40,.55);z-index:60;display:none;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.open{display:flex}
+  .modal{background:#fff;border-radius:12px;max-width:560px;width:100%;max-height:85vh;overflow:auto;padding:24px 22px}
+  .modal h2{margin-bottom:6px}
+
+  /* Placard */
+  .placard{
+    background:#fff;border:1px solid var(--line);border-top:6px solid var(--primary-deep);
+    border-radius:4px;padding:26px 24px;margin-bottom:16px;
+    box-shadow:0 3px 14px rgba(20,50,70,.10);
+  }
+  .placard .peyebrow{font-family:ui-monospace,Menlo,monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+  .placard h3.ptitle{font-size:1.5rem;margin:8px 0 2px;color:var(--ink)}
+  .placard .pmeta{font-family:ui-monospace,Menlo,monospace;font-size:.7rem;letter-spacing:.08em;color:var(--primary);margin-bottom:14px}
+  .placard .q{font-family:ui-monospace,Menlo,monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:14px}
+  .placard .a{font-size:.98rem;margin-top:2px}
+  .placard .rtag{
+    display:inline-block;margin-top:16px;font-family:ui-monospace,Menlo,monospace;font-size:.7rem;
+    letter-spacing:.1em;text-transform:uppercase;background:var(--accent-soft);border:1px solid var(--accent);
+    padding:5px 12px;border-radius:999px;color:#6d5104;
+  }
+  .copiedmsg{color:var(--good);font-size:.85rem;font-weight:600;display:none;margin-top:8px}
+
+  @media (max-width:520px){
+    .rail .dot{width:22px;height:22px;font-size:.62rem}
+    .rail .bar{width:6px}
+    .nav{flex-direction:row}
+    header .brand{font-size:.95rem}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .card,.placard{animation:rise .25s ease}
+    @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  }
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">AI Visioning Day<small>DESIGN-AND-BUILD STUDIO</small></div>
+  <div class="spacer"></div>
+  <div class="grouptag" id="hdrGroup" style="display:none"></div>
+  <button class="headbtn" id="btnPresent">What you'll present</button>
+  <button class="headbtn" id="btnReset" title="Clear this device and start over">Start over</button>
+</header>
+
+<div class="rail" id="rail" aria-hidden="true"></div>
+<div class="railcap" id="railcap"></div>
+
+<main id="app"></main>
+
+<div class="foot">
+  <a class="res" href="https://padlet.com/edvisor/bps-visioning-day-2026-fzzmxlrhfa81mnrc" target="_blank" rel="noopener">BPS Resources</a>
+  <a class="share" href="https://drive.google.com/drive/folders/1cb54tATKL9l-Vc7HT7ja_RUwGE5S8shS" target="_blank" rel="noopener">Share Your Artifact</a>
+</div>
+
+<div class="modal-bg" id="presentModal" role="dialog" aria-modal="true" aria-label="What you'll present">
+  <div class="modal">
+    <div class="eyebrow">At the end of the studio</div>
+    <h2>What you'll present</h2>
+    <p>Your group will do two things:</p>
+    <p><strong>1. Upload your artifact</strong> to the shared Drive folder using the <em>Share Your Artifact</em> button below. Name your file <span class="mono">GroupName_ProjectTitle</span>. Upload your Report-Out Card as a second file.</p>
+    <p><strong>2. Give a two-minute report-out</strong> answering:</p>
+    <ul class="plain">
+      <li>What we created.</li>
+      <li>Who it helps.</li>
+      <li>How AI strengthened the work.</li>
+      <li>What we deliberately kept human, social, physical, or offline.</li>
+      <li>What we learned.</li>
+      <li>What we need in order to be successful this year.</li>
+    </ul>
+    <p class="soft" style="margin-top:10px">This page builds your Report-Out Card for you at the final step from what you enter along the way.</p>
+    <div style="text-align:right;margin-top:14px"><button class="btn primary" id="btnCloseModal">Close</button></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ---------- Spec ---------- */
+const SPEC = {
+  configs: [
+    {id:"building", label:"Building team", desc:"People from the same school working together.", section:"A"},
+    {id:"role", label:"Role-based group", desc:"People who share a role: counselors, coaches, ITCs, librarians, and others.", section:null},
+    {id:"content", label:"Content-area team", desc:"Teachers from the same subject or grade band.", section:"B"},
+    {id:"student", label:"Student team", desc:"A group of students, with adult support nearby.", section:"C"},
+    {id:"mixed", label:"Mixed stakeholder team", desc:"Students and adults, or several roles, working together.", section:"D"},
+    {id:"challenge", label:"Shared need or challenge group", desc:"People from different places who care about the same problem.", section:"D"}
+  ],
+  roleRoute: [
+    {id:"A", label:"Mostly leadership, building, or department work", desc:"Our shared work looks like planning, communication, data, and supporting staff."},
+    {id:"B", label:"Mostly classroom and instructional work", desc:"Our shared work looks like lessons, assignments, feedback, and students."}
+  ],
+  sections: {
+    A:{name:"Administrators and Building Teams"},
+    B:{name:"Teachers and Content-Area Teams"},
+    C:{name:"Student Teams"},
+    D:{name:"Cross-Role and Whole-Building Teams"}
+  },
+  categories: [
+    {id:"resource", label:"Create an AI-Enhanced Resource",
+     desc:"Create or improve a resource that another person or group can use.",
+     cue:"Is this us? We want to make a thing others can pick up and use."},
+    {id:"workflow", label:"Develop an AI-Enabled Workflow",
+     desc:"Design and test a repeatable process in which AI supports multiple steps of real work. The product is not simply a prompt. It is a process another person could follow.",
+     cue:"Is this us? We want to make a repeatable process."},
+    {id:"tool", label:"Create an AI Support Tool",
+     desc:"Create a prototype AI-supported tool that helps someone perform a recurring task, locate information, develop thinking, or make sense of approved resources.",
+     cue:"Is this us? We want to build something that helps someone do a task.",
+     cLabel:"Create an AI Support Kit",
+     cDesc:"Students cannot build custom chatbots or notebooks, so this category creates things that work inside or alongside the district-approved tools students actually have: prompt kits, branching experiences, card sets, and tool blueprints.",
+     dNote:"In mixed teams, a staff member builds and owns the tool account. Students contribute design, testing, and critique."}
+  ],
+  projects: {
+    A: {
+      resource: [
+        {id:"a-r1", t:"Building Priority Opportunity Guide", d:"Select an existing priority such as literacy, attendance, belonging, family engagement, MTSS, school climate, instructional feedback, or student agency. Create a guide showing where AI may support the priority, what AI could make easier or newly possible, where AI would not be appropriate, what human work remains essential, and possible first applications."},
+        {id:"a-r2", t:"Portrait of a Graduate Connection Guide", d:"Create a staff-facing resource connecting graduate competencies to student experiences, classroom practices, evidence of learning, possible AI-supported opportunities, and the risks of allowing AI to counterfeit the competency."},
+        {id:"a-r3", t:"Building AI Literacy Launch Kit", d:"Create a short staff learning experience containing an opening activity, AI literacy scenarios, discussion questions, practical examples, reflection, and follow-up resources. AI can generate possible scenarios, simulate staff reactions, and adapt the kit for different readiness levels."},
+        {id:"a-r4", t:"Family AI Information Kit", d:"Create a family guide, FAQ, presentation, event resource, talking points, or multilingual versions. AI can help identify likely concerns, simulate skeptical questions, and adapt the language for accessibility. Humans verify accuracy and preserve the district's voice."},
+        {id:"a-r5", t:"Safe Data Inquiry Guide", d:"Create a practical resource explaining what questions AI may help explore, what information should never be entered, how to de-identify or use sample data, what AI may identify, what leaders still need to interpret, and how to avoid confusing correlation with cause."}
+      ],
+      workflow: [
+        {id:"a-w1", t:"Building Priority Workflow", d:"A repeatable process for defining a building priority, identifying the current need, providing context and constraints, asking AI to generate possible supports, reviewing possibilities from student, teacher, family, and leader perspectives, identifying risks, and selecting and revising one useful approach."},
+        {id:"a-w2", t:"Meeting-to-Action Workflow", d:"A process using AI to support agenda preparation, background summaries, discussion questions, note organization, identification of decisions, action items, follow-up communication, and different summaries for different audiences. Humans remain responsible for interpretation, decisions, and accountability."},
+        {id:"a-w3", t:"Building Data Inquiry Workflow", d:"A safe process for defining a useful leadership question, identifying appropriate non-sensitive data, clarifying what AI can and cannot infer, asking AI to identify patterns, challenging the initial interpretation, adding human and local context, and determining possible actions."},
+        {id:"a-w4", t:"Leadership Communication Adaptation Workflow", d:"Start with one approved core message and use AI to develop staff, student, family, and board versions, check consistency, identify possible misunderstandings, revise tone and detail, and create presentation, email, and brief-message versions."},
+        {id:"a-w5", t:"Decision Preparation Workflow", d:"Use AI to help leaders clarify a decision, generate options, establish criteria, identify tradeoffs, simulate stakeholder reactions, surface unintended consequences, and prepare a decision brief. AI supports the preparation. Humans make the decision."}
+      ],
+      tool: [
+        {id:"a-t1", t:"Building Priority Chatbot", p:"MagicSchool custom tool or NotebookLM", d:"A chatbot grounded in approved building and district resources that helps staff understand the priority, locate relevant materials, explore possible applications, and identify questions for discussion. It does not evaluate staff or make building decisions."},
+        {id:"a-t2", t:"Building Resource Vault", p:"NotebookLM or Copilot Notebook", d:"A collection containing Buffalo toolkits, building plans (including the SEP), professional learning, guidance, approved examples, and meeting resources. Users can ask questions across approved documents to locate and make sense of existing information."},
+        {id:"a-t3", t:"Staff and Family AI FAQ Assistant", p:"MagicSchool custom tool or NotebookLM", d:"A tool grounded in Buffalo guidance that answers common questions and links users back to approved resources. The group chooses its primary audience, staff or families, and defines when an issue requires human or district-level clarification."},
+        {id:"a-t4", t:"Stakeholder Perspective Simulator", p:"MagicSchool custom tool, Copilot, or Gemini with a saved prompt", d:"A tool that examines an idea from the perspectives of a student, teacher, family member, special educator, counselor, administrator, or community member. The simulator surfaces considerations. It does not claim to authentically represent every person in the group."},
+        {id:"a-t5", t:"Building Data Question Coach", p:"MagicSchool custom tool or a tested reusable prompt", d:"A tool that helps leaders improve broad questions, identify needed information, recognize privacy concerns, separate evidence from assumptions, and decide whether AI is appropriate."}
+      ]
+    },
+    B: {
+      resource: [
+        {id:"b-r1", t:"Student AI Onboarding Resource", d:"Create a lesson, presentation, activity, or guide for students receiving MagicSchool or other approved AI access. AI can help generate scenarios, examples and non-examples, images, practice prompts, and likely student questions."},
+        {id:"b-r2", t:"Task Beneath the Task Redesign", d:"Take an existing assignment and create a revised version based on what students are meant to learn, what AI can now complete, what must remain with the student, what evidence of thinking is needed, and where AI may deepen the experience."},
+        {id:"b-r3", t:"AI Use Expectations Guide", d:"Create clear guidance describing encouraged AI use, allowed use with disclosure, limited use, student-only work, and required evidence, along with a student-facing way to document what AI was asked to do, what was used, rejected, changed, and verified."},
+        {id:"b-r4", t:"Content-Specific AI Literacy Lesson", d:"Create an AI literacy experience embedded in ELA, social studies, mathematics, science, world languages, arts, health, physical education, CTE, or another subject. The AI literacy should support the content rather than replace it."},
+        {id:"b-r5", t:"AI Verification Toolkit", d:"Create materials helping students verify claims, sources, citations, calculations, images, explanations, and summaries. AI can generate intentionally flawed examples for students to investigate."},
+        {id:"b-r6", t:"Human, AI, and Human-With-AI Comparison Activity", d:"Create an activity comparing the same task completed without AI, by AI, and by a person using AI intentionally. Students evaluate quality, reasoning, originality, efficiency, and ownership."}
+      ],
+      workflow: [
+        {id:"b-w1", t:"Assignment Redesign Workflow", d:"A process for giving the current assignment to AI, examining what AI can complete, naming the intended learning, determining what should remain student-owned, redesigning the task, adding evidence of thinking, and testing the new task."},
+        {id:"b-w2", t:"Feedback Workflow", d:"A process for reviewing student work, using AI to organize observations or draft possibilities, applying teacher knowledge, connecting feedback to criteria, identifying a manageable next step, and checking tone and clarity."},
+        {id:"b-w3", t:"Differentiation Workflow", d:"A process for clarifying the common learning goal, identifying access barriers, using AI to generate supports, reviewing whether rigor was preserved, adapting format, language, examples, or scaffolds, and checking for equity and accuracy."},
+        {id:"b-w4", t:"Research and Inquiry Workflow", d:"A student process for developing a question, using AI for background exploration, identifying keywords and subquestions, locating real sources, verifying claims, comparing perspectives, and creating student-owned conclusions."},
+        {id:"b-w5", t:"Writing and Revision Workflow", d:"A process in which students begin with their own thinking, draft, use AI for feedback, questions, or counterarguments, evaluate the suggestions, revise intentionally, and explain AI's role."},
+        {id:"b-w6", t:"Substitute Planning Workflow", d:"A process using existing routines and materials to produce a run of show, materials, directions, troubleshooting, backup activities, and behavior supports. A practical entry point for participants new to AI workflows."}
+      ],
+      tool: [
+        {id:"b-t1", t:"Assignment Tuner and Task Coach", p:"MagicSchool custom tool or a tested reusable prompt", d:"A tool that reviews an assignment for clarity, cognitive load, time, scaffolds, equity, what AI can already complete, and what learning is visible, and coaches the teacher through what students should learn, what must remain practiced, and what evidence is needed."},
+        {id:"b-t2", t:"Student Help Desk With Guardrails", p:"MagicSchool custom tool or student room", d:"A classroom-specific assistant grounded in directions, help ladders, exemplars, norms, and approved resources. It provides tiered hints but not final answers."},
+        {id:"b-t3", t:"Study Coach With Guardrails", p:"MagicSchool custom tool or student room", d:"A tool grounded in approved materials that generates practice, asks questions, provides hints, identifies uncertainty, and helps create a study plan."},
+        {id:"b-t4", t:"Course or Unit Notebook", p:"NotebookLM or Copilot Notebook", d:"A collection based on curriculum, standards, course documents, approved readings, slides, labs, and teacher materials."},
+        {id:"b-t5", t:"Rubric-to-Feedback Assistant", p:"MagicSchool custom tool or a tested reusable prompt", d:"A tool grounded in rubrics, success criteria, and teacher feedback examples. It produces concise feedback that teachers review and personalize."},
+        {id:"b-t6", t:"Discussion Simulator", p:"MagicSchool custom tool or student room", d:"A tool that represents different perspectives so students can prepare for a debate, seminar, presentation, interview, or difficult conversation."}
+      ]
+    },
+    C: {
+      resource: [
+        {id:"c-r1", t:"Student AI Survival Guide", d:"Create peer advice about using AI without losing thinking, protecting privacy, checking accuracy, maintaining voice, knowing when not to use AI, and asking people for help. Students first ask AI for advice and then critique what it misunderstands or misses. Build in Canva, Slides, or as a zine or video."},
+        {id:"c-r2", t:"Grades 7-12 AI Welcome Resource", d:"Create a student-designed orientation for peers receiving AI access. Possible formats include a video, slides, mini-challenge, infographic, guide, or interactive activity."},
+        {id:"c-r3", t:"What Adults Should Know About Students and AI", d:"Create recommendations for teachers, leaders, or district decision-makers based on student experience, covering topics such as clear expectations, meaningful assignments, fair disclosure, access, equity, support, and human connection. AI can generate what it thinks adults should know. Students correct and expand it."},
+        {id:"c-r4", t:"AI Mythbusters", d:"Investigate claims such as: AI is always accurate, AI is objective, AI understands you, AI use is always cheating, AI can replace teachers, and AI makes everyone more creative. Present findings as a Canva series, poster set, or short video."},
+        {id:"c-r5", t:"Protect Your Voice Resource", d:"Create examples and advice showing how students can use AI while keeping their ideas, their language, their culture, their perspective, and their ownership."}
+      ],
+      workflow: [
+        {id:"c-w1", t:"Should I Use AI? Workflow", d:"A student decision process asking: What is the task? What am I supposed to learn? Is AI allowed? Would AI help or bypass the learning? What should I do myself? What should I disclose? Produce it as a visual flowchart or decision poster."},
+        {id:"c-w2", t:"Human vs. AI vs. Human-With-AI Workflow", d:"Complete or examine the same task in three ways and compare quality, originality, reasoning, time, ownership, and learning. Document the process so other classes can repeat it."},
+        {id:"c-w3", t:"Solve a School Problem Workflow", d:"Students identify a real issue, gather student perspectives, use approved AI to generate possibilities, critique the options, develop a prototype, and pitch a student-owned solution, identifying what people must do to make it real."},
+        {id:"c-w4", t:"AI Stress-Test Workflow", d:"Students select what they want to test in a district-approved chatbot, design prompts, compare outputs, identify errors, bias, or inconsistency, and explain what the failures reveal. Document the method so other students can run their own stress test."}
+      ],
+      tool: [
+        {id:"c-t1", t:"Peer AI Use Prompt Kit", d:"A set of tested, copy-ready prompts that peers paste into a district-approved chatbot to get coaching-style support: What are you trying to learn? What is allowed? What must you do yourself? What will you verify? What should you disclose? Test each prompt, refine it, and package the kit as a Canva quick-reference card or one-pager."},
+        {id:"c-t2", t:"AI Ethics Branching Scenario Experience", d:"A choose-your-own-path experience built with linked Canva pages or Slides, covering situations such as assignments, privacy, deepfakes, peer pressure, AI-generated images, bias, AI advice, and dependence. AI helps generate and complicate the scenarios. You make them realistic and build the branches."},
+        {id:"c-t3", t:"Study Coach Prompt Card Set", d:"Cards containing tested prompts that turn an approved chatbot into a study coach: ask me questions, give hints not answers, quiz me, help me plan. Each card includes guardrail reminders about verifying answers and knowing when to ask a person instead."},
+        {id:"c-t4", t:"Tool Blueprint and Pitch", d:"Design the full specification for an AI support tool you wish existed: name, audience, need, role, knowledge sources, inputs, outputs, tone, guardrails, privacy, and escalation. Pitch the blueprint to staff or district leaders who have the access to build it. The design thinking is your product; the build is the handoff."}
+      ]
+    },
+    D: {
+      resource: [
+        {id:"d-r1", t:"AI Can Help, Humans Must Lead: Multiple-Audience Edition", d:"Create connected versions for students, teachers, administrators, and families explaining what AI can support, what AI cannot own, what humans must continue to do, and what schools should protect. AI supports adaptation. The team ensures the messages remain consistent."},
+        {id:"d-r2", t:"Building AI Literacy Launch Kit (Coordinated Edition)", d:"Create a coordinated launch containing a student activity, staff activity, family communication, discussion scenarios, shared language, and follow-up resources."},
+        {id:"d-r3", t:"Student-Staff AI Scenario Deck", d:"Create shared scenarios designed to reveal differences in student and staff perspectives. AI helps generate and complicate situations."},
+        {id:"d-r4", t:"Protect, Extend, Reconsider Guide", d:"Identify one school experience to protect, one experience AI can extend, and one activity that should be reconsidered because AI changed the underlying task."}
+      ],
+      workflow: [
+        {id:"d-w1", t:"Student AI Onboarding Workflow", d:"A process connecting student introduction, AI literacy activity, family communication, classroom reinforcement, feedback collection, and revision."},
+        {id:"d-w2", t:"Concern-to-Resource Workflow", d:"A process for identifying a recurring concern, gathering student, staff, and family perspectives, asking AI to generate possible supports, creating a resource, testing it, and revising it."},
+        {id:"d-w3", t:"School Challenge Design Workflow", d:"A cross-role process for defining a need, gathering perspectives, generating options, stress-testing ideas, building a prototype, gathering feedback, and revising."},
+        {id:"d-w4", t:"Ready This Year Workflow", d:"Use the Agency Map categories (already happening, ready to try, further down the road, requires district attention) to select one immediate opportunity and create a supporting process or resource."}
+      ],
+      tool: [
+        {id:"d-t1", t:"Building AI Resource Navigator", p:"MagicSchool custom tool or NotebookLM, staff-built", d:"A chatbot or notebook directing students, staff, and families to district guidance, Buffalo toolkits, training, examples, student resources, and family resources, helping users identify the resource, workflow, or training most relevant to their need."},
+        {id:"d-t2", t:"Student-Staff Scenario Simulator", p:"MagicSchool custom tool, staff-built; students design and stress-test the scenarios", d:"A chatbot allowing users to explore the same AI situation from multiple roles."},
+        {id:"d-t3", t:"Human Flourishing Reviewer", p:"MagicSchool custom tool or a tested reusable prompt, staff-built", d:"A shared tool that asks questions about whether an AI use supports or weakens thinking, relationships, creativity, agency, belonging, equity, privacy, and human experience. It should ask questions rather than issue a score."},
+        {id:"d-t4", t:"School Challenge Collaborator", p:"MagicSchool custom tool or a tested reusable prompt, staff-built", d:"A guided tool helping mixed teams define a challenge, consider perspectives, identify constraints, and develop options."}
+      ]
+    }
+  },
+  criteria: [
+    "Addresses a real need, responsibility, priority, or opportunity.",
+    "Has a clearly identified audience.",
+    "Connects to work we already need to do.",
+    "Uses AI for a meaningful and identifiable purpose.",
+    "Builds from existing Buffalo resources when appropriate.",
+    "Preserves human judgment, responsibility, relationships, and ownership.",
+    "Uses approved, de-identified, sample, or non-sensitive information.",
+    "Is usable, testable, shareable, or revisable after today.",
+    "Makes clear where AI helps and where it should not be used.",
+    "Identifies what additional support or development may be needed."
+  ],
+  toolReqs: [
+    ["Name","What is the tool called?"],
+    ["Audience","Who is intended to use it?"],
+    ["Need","What problem does it help address?"],
+    ["Role","Is it an assistant, coach, critic, simulator, navigator, analyzer, or vault?"],
+    ["Knowledge","What approved documents or resources should ground it?"],
+    ["Inputs","What information will the user provide?"],
+    ["Process","What questions or steps should it guide?"],
+    ["Outputs","What will it produce?"],
+    ["Tone","How should it communicate?"],
+    ["Guardrails","What should it never do?"],
+    ["Clarifying behavior","When should it ask questions before responding?"],
+    ["Human responsibility","What decisions remain with the user?"],
+    ["Privacy","What information should not be entered?"],
+    ["Escalation","When should it direct the user to a teacher, leader, counselor, family member, or other human?"]
+  ],
+  toolTests: [
+    "A typical request.",
+    "An incomplete request.",
+    "A confusing request.",
+    "A request containing information that should not be entered.",
+    "A request asking the tool to exceed its intended role.",
+    "A request from a skeptical or frustrated user.",
+    "A situation in which AI is not the appropriate support."
+  ],
+  flourish: [
+    "Does the AI use strengthen learning, creativity, agency, judgment, or connection?",
+    "Could it remove productive struggle or important practice?",
+    "Could it replace relationships, discussion, movement, hands-on experience, or time away from technology?",
+    "Does it help people flourish, or only complete work faster?"
+  ],
+  lens: [
+    {h:"Purpose", qs:["What real need does this address?","Is AI connected to that need, or has AI become the activity itself?","Is the product more useful because AI was involved?"]},
+    {h:"Human Thinking and Ownership", qs:["What must the person still understand?","What decisions must remain human?","Is the user still responsible for the final result?"]},
+    {h:"Learning and Human Flourishing", qs:["Does the AI use strengthen learning, creativity, agency, judgment, or connection?","Could it remove productive struggle or replace relationships, discussion, movement, or hands-on experience?"]},
+    {h:"AI Literacy", qs:["What needs to be verified?","Could the output include bias or missing perspectives?","Is the role of AI transparent?"]},
+    {h:"Privacy and Safety", qs:["Does the work avoid PII and sensitive data?","Are only approved materials being used?","Does the tool know when to defer to a person?"]},
+    {h:"Equity and Access", qs:["Who benefits? Who could be excluded?","Are accessibility and developmental appropriateness considered?"]}
+  ],
+  readiness: ["Ready to use","Ready to test","Needs further development","Needs district review"]
+};
+
+/* ---------- State ---------- */
+const KEY = "bps_studio_v1";
+let memStore = null;
+function loadState(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){ if(memStore) return memStore; }
+  return null;
+}
+function saveState(){
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }
+  catch(e){ memStore = JSON.parse(JSON.stringify(S)); }
+}
+function freshState(){
+  return {
+    step:1, maxStep:1, groupName:"", config:null, roleRoute:null, section:null,
+    category:null, projectId:null, custom:{title:"",desc:""},
+    st:{creating:"",audience:"",sothat:""},
+    checks:new Array(SPEC.criteria.length).fill(false),
+    toolForm:{}, toolTests:new Array(SPEC.toolTests.length).fill(false),
+    done:{aiHelped:"",humansStill:"",careful:"",learned:"",need:""},
+    readiness:null
+  };
+}
+let S = loadState() || freshState();
+if(!S.checks || S.checks.length !== SPEC.criteria.length) S.checks = new Array(SPEC.criteria.length).fill(false);
+if(!S.toolTests || S.toolTests.length !== SPEC.toolTests.length) S.toolTests = new Array(SPEC.toolTests.length).fill(false);
+if(!S.maxStep) S.maxStep = S.step || 1;
+
+/* ---------- Helpers ---------- */
+const app = document.getElementById("app");
+const STEPNAMES = ["Who we are","The frame","Kind of work","Choose project","Commit","Build","Review & wrap","Report-out card"];
+function esc(s){ return String(s||"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function sectionOf(){
+  if(S.config === "role") return S.roleRoute;
+  const c = SPEC.configs.find(x=>x.id===S.config);
+  return c ? c.section : null;
+}
+function catLabel(){
+  const cat = SPEC.categories.find(c=>c.id===S.category);
+  if(!cat) return "";
+  return (S.category==="tool" && sectionOf()==="C") ? cat.cLabel : cat.label;
+}
+function currentProject(){
+  if(S.projectId === "custom") return {t: S.custom.title || "Our own project", d: S.custom.desc, custom:true};
+  const sec = sectionOf();
+  if(!sec || !S.category) return null;
+  return SPEC.projects[sec][S.category].find(p=>p.id===S.projectId) || null;
+}
+function go(n){ S.step = n; S.maxStep = Math.max(S.maxStep||1, n); saveState(); render(); window.scrollTo({top:0}); }
+
+/* ---------- Rail ---------- */
+function drawRail(){
+  const rail = document.getElementById("rail");
+  rail.innerHTML = "";
+  for(let i=1;i<=8;i++){
+    const d = document.createElement("button");
+    d.type = "button";
+    d.className = "dot" + (i<S.step?" done": i===S.step?" now":"");
+    d.textContent = i;
+    d.setAttribute("aria-label","Go to step "+i+": "+STEPNAMES[i-1]);
+    if(i <= (S.maxStep||1)){ d.onclick = ()=>go(i); } else { d.disabled = true; }
+    rail.appendChild(d);
+    if(i<8){ const b=document.createElement("div"); b.className="bar"; rail.appendChild(b); }
+  }
+  document.getElementById("railcap").textContent = "Step " + S.step + " of 8 · " + STEPNAMES[S.step-1];
+  const hg = document.getElementById("hdrGroup");
+  if(S.groupName){ hg.style.display="block"; hg.textContent = S.groupName; } else hg.style.display="none";
+}
+
+/* ---------- Nav builder ---------- */
+function navRow(backStep, nextLabel, nextFn, nextDisabled){
+  const wrap = document.createElement("div"); wrap.className="nav";
+  const back = document.createElement("button"); back.className="btn ghost"; back.textContent="Back";
+  if(backStep===null){ back.style.visibility="hidden"; } else back.onclick=()=>go(backStep);
+  const next = document.createElement("button"); next.className="btn primary"; next.textContent=nextLabel;
+  next.disabled = !!nextDisabled; next.onclick = nextFn;
+  wrap.appendChild(back); wrap.appendChild(next);
+  return {wrap, next};
+}
+
+/* ---------- Steps ---------- */
+function render(){
+  drawRail();
+  app.innerHTML = "";
+  ({1:step1,2:step2,3:step3,4:step4,5:step5,6:step6,7:step7,8:step8})[S.step]();
+}
+
+function step1(){
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 1</div><h2>Who we are</h2>
+    <label class="f" for="gname">Group name<small>Pick something you'll recognize on the gallery wall.</small></label>
+    <input type="text" id="gname" maxlength="60" value="${esc(S.groupName)}" placeholder="For example: Lafayette Literacy Team">
+    <p class="soft" style="margin-top:6px">Your answers save on this device only. Use one device for your group and keep it handy through the report-out.</p>
+    <h3 style="margin-top:20px">Which best describes your group?</h3>
+    <div id="cfgList"></div>
+    <div id="roleFollow"></div>`;
+  app.appendChild(c);
+
+  const list = c.querySelector("#cfgList");
+  SPEC.configs.forEach(cfg=>{
+    const b = document.createElement("button");
+    b.className = "choice" + (S.config===cfg.id?" sel":"");
+    b.innerHTML = `<span class="ct">${esc(cfg.label)}</span><span class="cd">${esc(cfg.desc)}</span>`;
+    b.onclick = ()=>{ S.config = cfg.id; if(cfg.id!=="role") S.roleRoute=null; saveState(); render(); };
+    list.appendChild(b);
+  });
+
+  if(S.config === "role"){
+    const rf = c.querySelector("#roleFollow");
+    rf.innerHTML = `<h3>One more question: what does your shared work look like?</h3>`;
+    SPEC.roleRoute.forEach(r=>{
+      const b = document.createElement("button");
+      b.className = "choice" + (S.roleRoute===r.id?" sel":"");
+      b.innerHTML = `<span class="ct">${esc(r.label)}</span><span class="cd">${esc(r.desc)}</span>`;
+      b.onclick = ()=>{ S.roleRoute = r.id; saveState(); render(); };
+      rf.appendChild(b);
+    });
+  }
+
+  const ready = !!(S.config && (S.config!=="role" || S.roleRoute));
+  const {wrap} = navRow(null, "Continue", ()=>{
+    S.groupName = document.getElementById("gname").value.trim();
+    if(!S.groupName){ alert("Give your group a name first."); return; }
+    saveState(); go(2);
+  }, !ready);
+  app.appendChild(wrap);
+}
+
+function step2(){
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 2</div><h2>The frame</h2>
+    <p><strong>Use AI throughout, but do not give AI responsibility for your thinking.</strong> You will generate, question, verify, revise, and decide. AI contributes. Your group owns the result.</p>
+    <p><strong>The goal:</strong> a useful first version of a resource, a workflow, or a support tool. A prototype that can be tested and improved is a success. Perfection is not expected. Moving a real piece of work forward is.</p>
+    <h3>The endpoint, stated now so it is never a surprise</h3>
+    <p>At the end of the studio, your group will:</p>
+    <ul class="plain">
+      <li><strong>1.</strong> Upload your artifact to the shared Drive folder (the <em>Share Your Artifact</em> button below), named <span class="mono">GroupName_ProjectTitle</span>, with your Report-Out Card as a second file.</li>
+      <li><strong>2.</strong> Give a two-minute report-out answering: what we created, who it helps, how AI strengthened the work, what we deliberately kept human, what we learned, and what we need to be successful this year.</li>
+    </ul>
+    <p class="soft">This page builds your Report-Out Card for you at the final step. The <em>What you'll present</em> button at the top shows these expectations any time.</p>`;
+  app.appendChild(c);
+  const {wrap} = navRow(1, "Continue", ()=>go(3), false);
+  app.appendChild(wrap);
+}
+
+function step3(){
+  const sec = sectionOf();
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 3 · ${esc(SPEC.sections[sec].name)}</div>
+    <h2>What kind of work?</h2>
+    <p class="soft">Choose the shape of the thing you will make. You'll pick the specific project next.</p>
+    <div id="catList"></div>`;
+  app.appendChild(c);
+  const list = c.querySelector("#catList");
+  SPEC.categories.forEach(cat=>{
+    const isC = sec==="C" && cat.id==="tool";
+    const label = isC ? cat.cLabel : cat.label;
+    const desc = isC ? cat.cDesc : cat.desc;
+    const note = (sec==="D" && cat.id==="tool") ? `<span class="cd" style="margin-top:6px"><em>${esc(cat.dNote)}</em></span>` : "";
+    const b = document.createElement("button");
+    b.className = "choice" + (S.category===cat.id?" sel":"");
+    b.innerHTML = `<span class="ct">${esc(label)}</span><span class="cd">${esc(desc)}</span>${note}<span class="cue">${esc(cat.cue)}</span>`;
+    b.onclick = ()=>{ if(S.category!==cat.id){ S.category=cat.id; S.projectId=null; } saveState(); render(); };
+    list.appendChild(b);
+  });
+  const {wrap} = navRow(2, "Continue", ()=>go(4), !S.category);
+  app.appendChild(wrap);
+}
+
+function step4(){
+  const sec = sectionOf();
+  const projects = SPEC.projects[sec][S.category];
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 4 · ${esc(catLabel())}</div>
+    <h2>Choose your project</h2>
+    <p class="soft">Pick the one your group will build. Talk it through before you tap. If you'd rather see the choices meant for a different group type, tap step 1 above and change who you are.</p>
+    <div id="projList"></div>`;
+  app.appendChild(c);
+  const list = c.querySelector("#projList");
+  projects.forEach(p=>{
+    const b = document.createElement("button");
+    b.className = "choice" + (S.projectId===p.id?" sel":"");
+    const plat = p.p ? ` <span class="platform">(${esc(p.p)})</span>` : "";
+    b.innerHTML = `<span class="ct">${esc(p.t)}${plat}</span><span class="cd">${esc(p.d)}</span>`;
+    b.onclick = ()=>{ S.projectId = p.id; saveState(); render(); };
+    list.appendChild(b);
+  });
+  // Open build card
+  const ob = document.createElement("button");
+  ob.className = "choice" + (S.projectId==="custom"?" sel":"");
+  ob.innerHTML = `<span class="ct">Propose our own project</span><span class="cd">Your group has a real need not listed here. Define it yourself. It must still meet every project criterion you'll see on the build screen.</span>`;
+  ob.onclick = ()=>{ S.projectId = "custom"; saveState(); render(); };
+  list.appendChild(ob);
+  if(S.projectId === "custom"){
+    const box = document.createElement("div");
+    box.innerHTML = `
+      <label class="f" for="cTitle">Project title</label>
+      <input type="text" id="cTitle" maxlength="80" value="${esc(S.custom.title)}">
+      <label class="f" for="cDesc">What will you make?</label>
+      <textarea id="cDesc">${esc(S.custom.desc)}</textarea>`;
+    list.appendChild(box);
+    box.querySelector("#cTitle").addEventListener("input", e=>{ S.custom.title=e.target.value; saveState(); });
+    box.querySelector("#cDesc").addEventListener("input", e=>{ S.custom.desc=e.target.value; saveState(); });
+  }
+  const ready = S.projectId && (S.projectId!=="custom" || true);
+  const {wrap} = navRow(3, "Continue", ()=>{
+    if(S.projectId==="custom" && !S.custom.title.trim()){ alert("Give your project a title first."); return; }
+    go(5);
+  }, !ready);
+  app.appendChild(wrap);
+}
+
+function step5(){
+  const p = currentProject();
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 5 · Commit</div>
+    <h2>The project statement</h2>
+    <p class="soft">Fill in all three blanks as a group. This is the one gate on this page: the conversation it forces is the point.</p>
+    <div class="pin"><div class="eyebrow">Your project</div><div class="pt">${esc(p.t)}</div></div>
+    <div class="statement-line"><span class="lead">We are creating</span>
+      <input type="text" id="stC" value="${esc(S.st.creating)}" placeholder="what, specifically"></div>
+    <div class="statement-line"><span class="lead">for</span>
+      <input type="text" id="stA" value="${esc(S.st.audience)}" placeholder="who will use it"></div>
+    <div class="statement-line"><span class="lead">so that</span>
+      <input type="text" id="stS" value="${esc(S.st.sothat)}" placeholder="the difference it makes"></div>
+    <p class="gatehint" id="gate">Fill in all three blanks to continue.</p>`;
+  app.appendChild(c);
+  ["stC","stA","stS"].forEach(id=>{
+    c.querySelector("#"+id).addEventListener("input", ()=>{
+      S.st.creating = c.querySelector("#stC").value;
+      S.st.audience = c.querySelector("#stA").value;
+      S.st.sothat = c.querySelector("#stS").value;
+      saveState();
+      nav.next.disabled = !gateOK();
+    });
+  });
+  function gateOK(){ return S.st.creating.trim() && S.st.audience.trim() && S.st.sothat.trim(); }
+  const nav = navRow(4, "Commit and build", ()=>{
+    if(!gateOK()){ document.getElementById("gate").style.display="block"; return; }
+    go(6);
+  }, !gateOK());
+  app.appendChild(nav.wrap);
+}
+
+function step6(){
+  const p = currentProject();
+  const isTool = S.category==="tool" && sectionOf()!=="C";
+  const isKit = S.category==="tool" && sectionOf()==="C";
+
+  const pin = document.createElement("div"); pin.className="pin";
+  pin.innerHTML = `<div class="eyebrow">Building</div><div class="pt">${esc(p.t)}</div>
+    <div class="ps">We are creating ${esc(S.st.creating)} for ${esc(S.st.audience)} so that ${esc(S.st.sothat)}.</div>`;
+  app.appendChild(pin);
+
+  const intro = document.createElement("div"); intro.className="card";
+  intro.innerHTML = `<div class="eyebrow">Step 6</div><h2>Build</h2>
+    <p><strong>Go build. The real work happens in your tools, not on this page.</strong> Open your approved AI tools and the <strong>BPS Resources</strong> button below and get started.</p>
+    <p class="soft">Keep this page open in a tab. Come back to it to check yourself as you go, and return for the last two steps when you're wrapping up. Nothing below is a form you owe anyone; it's there to make your work better.</p>`;
+  app.appendChild(intro);
+
+  // Criteria checklist
+  const d1 = document.createElement("details"); d1.open = true;
+  d1.innerHTML = `<summary>Project checklist · every project should</summary><div class="inner" id="crit"></div>`;
+  app.appendChild(d1);
+  const crit = d1.querySelector("#crit");
+  SPEC.criteria.forEach((txt,i)=>{
+    const l = document.createElement("label"); l.className="check";
+    l.innerHTML = `<input type="checkbox" ${S.checks[i]?"checked":""}><span>${esc(txt)}</span>`;
+    l.querySelector("input").addEventListener("change", e=>{ S.checks[i]=e.target.checked; saveState(); });
+    crit.appendChild(l);
+  });
+
+  // Tool builders
+  if(isTool || isKit){
+    const d2 = document.createElement("details");
+    d2.innerHTML = `<summary>${isKit?"Blueprint your kit · define each part":"Define your tool · common requirements"}</summary><div class="inner" id="tform"><p class="soft">${isKit?"Use the parts that fit what you're making. The Tool Blueprint and Pitch project uses all of them.":"These are working notes to help your group think. Fill in what helps; skip what doesn't."} Everything you write here is included when you copy your Report-Out Card at the end, so nothing gets retyped.</p></div>`;
+    app.appendChild(d2);
+    const tf = d2.querySelector("#tform");
+    SPEC.toolReqs.forEach(([k,q])=>{
+      const w = document.createElement("div");
+      w.innerHTML = `<label class="f">${esc(k)}<small>${esc(q)}</small></label><textarea data-k="${esc(k)}">${esc(S.toolForm[k]||"")}</textarea>`;
+      w.querySelector("textarea").addEventListener("input", e=>{ S.toolForm[k]=e.target.value; saveState(); });
+      tf.appendChild(w);
+    });
+
+    const d3 = document.createElement("details");
+    d3.innerHTML = `<summary>Test it · try each of these</summary><div class="inner" id="ttests"></div>`;
+    app.appendChild(d3);
+    const tt = d3.querySelector("#ttests");
+    SPEC.toolTests.forEach((txt,i)=>{
+      const l = document.createElement("label"); l.className="check";
+      l.innerHTML = `<input type="checkbox" ${S.toolTests[i]?"checked":""}><span>${esc(txt)}</span>`;
+      l.querySelector("input").addEventListener("change", e=>{ S.toolTests[i]=e.target.checked; saveState(); });
+      tt.appendChild(l);
+    });
+  }
+
+  // Flourishing peer test
+  const fl = document.createElement("div"); fl.className="flourish";
+  fl.innerHTML = `<div class="eyebrow">Midway peer test</div>
+    <p><strong>When another group visits your table, hand them these questions.</strong> Their honest answers are a gift. Take notes.</p>
+    <ul class="plain">${SPEC.flourish.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>`;
+  app.appendChild(fl);
+
+  const {wrap} = navRow(5, "We're wrapping up", ()=>go(7), false);
+  app.appendChild(wrap);
+}
+
+function step7(){
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 7</div><h2>Review and wrap</h2>
+    <p class="soft">First check your work against the review lens, then polish your statement and answer the wrap-up questions. Your answers become your Report-Out Card.</p>
+    <h3>Review lens</h3><div id="lens"></div>
+    <h3 style="margin-top:22px">Polish your project statement</h3>
+    <p class="soft">This prints on your card exactly as written. Sharpen it now that the work exists.</p>
+    <div class="statement-line"><span class="lead">We are creating</span>
+      <input type="text" id="pC" value="${esc(S.st.creating)}"></div>
+    <div class="statement-line"><span class="lead">for</span>
+      <input type="text" id="pA" value="${esc(S.st.audience)}"></div>
+    <div class="statement-line"><span class="lead">so that</span>
+      <input type="text" id="pS" value="${esc(S.st.sothat)}"></div>
+    <h3 style="margin-top:22px">Wrap-up</h3><div id="wrapf"></div>
+    <h3 style="margin-top:18px">How ready is it?</h3>
+    <div class="radiorow" id="readyRow"></div>`;
+  app.appendChild(c);
+
+  [["pC","creating"],["pA","audience"],["pS","sothat"]].forEach(([id,k])=>{
+    c.querySelector("#"+id).addEventListener("input", e=>{ S.st[k]=e.target.value; saveState(); });
+  });
+
+  const lens = c.querySelector("#lens");
+  SPEC.lens.forEach(g=>{
+    const d = document.createElement("details");
+    d.innerHTML = `<summary>${esc(g.h)}</summary><div class="inner"><ul class="plain">${g.qs.map(q=>`<li>${esc(q)}</li>`).join("")}</ul></div>`;
+    lens.appendChild(d);
+  });
+
+  const wrapf = c.querySelector("#wrapf");
+  const fields = [
+    ["aiHelped","AI helped us…","How did AI genuinely strengthen the work?"],
+    ["humansStill","Humans still needed to…","What thinking, judgment, or work stayed with people?"],
+    ["careful","We were careful about…","Privacy, bias, verification, voice, anything you watched for."],
+    ["learned","What we learned","The honest version, including what surprised you."],
+    ["need","What we need to be successful this year","Support, time, access, guidance, or district attention."]
+  ];
+  fields.forEach(([k,label,hint])=>{
+    const w = document.createElement("div");
+    w.innerHTML = `<label class="f">${esc(label)}<small>${esc(hint)}</small></label><textarea>${esc(S.done[k]||"")}</textarea>`;
+    w.querySelector("textarea").addEventListener("input", e=>{ S.done[k]=e.target.value; saveState(); });
+    wrapf.appendChild(w);
+  });
+
+  const rr = c.querySelector("#readyRow");
+  SPEC.readiness.forEach(r=>{
+    const b = document.createElement("button");
+    b.textContent = r;
+    b.className = S.readiness===r ? "sel" : "";
+    b.onclick = ()=>{ S.readiness = r; saveState(); render(); };
+    rr.appendChild(b);
+  });
+
+  const {wrap} = navRow(6, "Build our Report-Out Card", ()=>{
+    const allEmpty = !Object.values(S.done).some(v => v && v.trim());
+    if(allEmpty && !confirm("Your wrap-up answers are empty, so the card will have blanks. Build it anyway?")) return;
+    go(8);
+  }, false);
+  app.appendChild(wrap);
+}
+
+function step8(){
+  const p = currentProject();
+  const sec = sectionOf();
+  const answers = [
+    ["What we created", `${S.st.creating || "—"} (project: ${p.t})`],
+    ["Who it helps", S.st.audience || "—"],
+    ["How AI strengthened the work", S.done.aiHelped || "—"],
+    ["What we deliberately kept human", [S.done.humansStill, S.done.careful ? "We were careful about " + S.done.careful : ""].filter(Boolean).join(" ") || "—"],
+    ["What we learned", S.done.learned || "—"],
+    ["What we need to be successful this year", S.done.need || "—"]
+  ];
+
+  const c = document.createElement("div"); c.className="card";
+  c.innerHTML = `<div class="eyebrow">Step 8</div><h2>Your Report-Out Card</h2>
+    <p class="soft">Read from this during the gallery walk. Then copy it, paste it into a doc, and upload it to Drive alongside your artifact.</p>`;
+  app.appendChild(c);
+
+  const pl = document.createElement("div"); pl.className="placard";
+  pl.innerHTML = `
+    <div class="peyebrow">BPS AI Visioning Day · Gallery Walk</div>
+    <h3 class="ptitle">${esc(p.t)}</h3>
+    <div class="pmeta">${esc(S.groupName)} · ${esc(SPEC.sections[sec].name)} · ${esc(catLabel())}</div>
+    <div class="a"><em>We are creating ${esc(S.st.creating)} for ${esc(S.st.audience)} so that ${esc(S.st.sothat)}.</em></div>
+    ${answers.map(([q,a])=>`<div class="q">${esc(q)}</div><div class="a">${esc(a)}</div>`).join("")}
+    ${S.readiness?`<span class="rtag">${esc(S.readiness)}</span>`:""}`;
+  app.appendChild(pl);
+
+  const bpFilled = SPEC.toolReqs.filter(([k])=>S.toolForm[k] && S.toolForm[k].trim());
+  if(bpFilled.length){
+    const bp = document.createElement("details");
+    bp.innerHTML = `<summary>Your tool blueprint · included when you copy</summary>
+      <div class="inner">${bpFilled.map(([k])=>`<div class="q" style="font-family:ui-monospace,Menlo,monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:12px">${esc(k)}</div><div>${esc(S.toolForm[k])}</div>`).join("")}</div>`;
+    app.appendChild(bp);
+  }
+
+  const act = document.createElement("div"); act.className="card";
+  act.innerHTML = `
+    <h3 style="margin-top:0">Finish in two moves</h3>
+    <p><strong>1. Copy the card</strong>, paste it into a doc, and save it.</p>
+    <p><strong>2. Upload both files</strong> with the <em>Share Your Artifact</em> button below: your artifact named <span class="mono">${esc((S.groupName||"GroupName").replace(/\s+/g,""))}_${esc(p.t.replace(/\s+/g,""))}</span> and your Report-Out Card.</p>
+    <button class="btn primary" id="btnCopy">Copy card</button>
+    <span class="copiedmsg" id="copied">Copied. Paste it into a doc.</span>`;
+  app.appendChild(act);
+
+  document.getElementById("btnCopy").onclick = ()=>{
+    const lines = [
+      "BPS AI VISIONING DAY · REPORT-OUT CARD",
+      p.t,
+      S.groupName + " · " + SPEC.sections[sec].name + " · " + catLabel(),
+      "",
+      "We are creating " + S.st.creating + " for " + S.st.audience + " so that " + S.st.sothat + ".",
+      ""
+    ];
+    answers.forEach(([q,a])=>{ lines.push(q.toUpperCase()); lines.push(a); lines.push(""); });
+    if(S.readiness) lines.push("READINESS: " + S.readiness);
+    if(bpFilled.length){
+      lines.push(""); lines.push("---"); lines.push("TOOL BLUEPRINT"); lines.push("");
+      bpFilled.forEach(([k])=>{ lines.push(k.toUpperCase()); lines.push(S.toolForm[k].trim()); lines.push(""); });
+    }
+    const text = lines.join("\n");
+    const done = ()=>{ const m=document.getElementById("copied"); m.style.display="inline"; };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
+    } else fallbackCopy(text, done);
+  };
+  function fallbackCopy(text, done){
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); done(); }catch(e){ alert("Select the card text and copy it manually."); }
+    document.body.removeChild(ta);
+  }
+
+  const {wrap} = navRow(7, "Done", ()=>{ window.scrollTo({top:0}); }, false);
+  wrap.querySelector(".btn.primary").style.visibility="hidden";
+  app.appendChild(wrap);
+}
+
+/* ---------- Global buttons ---------- */
+document.getElementById("btnPresent").onclick = ()=>document.getElementById("presentModal").classList.add("open");
+document.getElementById("btnCloseModal").onclick = ()=>document.getElementById("presentModal").classList.remove("open");
+document.getElementById("presentModal").addEventListener("click", e=>{ if(e.target.id==="presentModal") e.currentTarget.classList.remove("open"); });
+document.getElementById("btnReset").onclick = ()=>{
+  if(confirm("Clear everything this group entered on this device and start over?")){
+    S = freshState();
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    memStore = null;
+    saveState(); render();
+  }
+};
+
+render();
+</script>
+</body>
+</html>
