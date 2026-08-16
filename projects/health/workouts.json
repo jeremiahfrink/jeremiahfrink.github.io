@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "workouts": [
+    {
+      "id": "row-steady-v1",
+      "name": "Steady Row",
+      "category": "cardio",
+      "target": "30\u201345 min easy/moderate",
+      "description": "Continuous rowing at a conversational aerobic effort. Useful when cycling or outdoor running is unavailable."
+    },
+    {
+      "id": "swim-steady-v1",
+      "name": "Steady Swim",
+      "category": "cardio",
+      "target": "30\u201345 min easy/moderate",
+      "description": "Continuous or interval-based easy swimming with generous rest as needed. Focus on sustainable effort and technique."
+    },
+    {
+      "id": "row-swim-combo-v1",
+      "name": "Row + Swim Combo",
+      "category": "cardio",
+      "target": "20\u201330 min row + 20\u201330 min swim",
+      "description": "A low-impact mixed aerobic session that works well for travel or island weekends."
+    },
+    {
+      "id": "elliptical-v1",
+      "name": "Elliptical Aerobic",
+      "category": "cardio",
+      "target": "35\u201350 min easy/moderate",
+      "description": "Steady low-impact aerobic work. Keep resistance and cadence at a sustainable level."
+    },
+    {
+      "id": "indoor-bike-v1",
+      "name": "Indoor Bike",
+      "category": "cardio",
+      "target": "45\u201375 min easy/moderate",
+      "description": "Indoor substitute for an outdoor bike day. Keep most of the session conversational."
+    },
+    {
+      "id": "hike-v1",
+      "name": "Long Hike / Adventure Walk",
+      "category": "endurance",
+      "target": "60\u2013120+ min",
+      "description": "Sustained walking or hiking can replace a long low-impact endurance day when terrain and conditions are appropriate."
+    },
+    {
+      "id": "treadmill-incline-v1",
+      "name": "Incline Treadmill Walk",
+      "category": "cardio",
+      "target": "30\u201350 min moderate",
+      "description": "Brisk incline walking for aerobic work with less impact than running. Adjust grade to keep effort controlled."
+    },
+    {
+      "id": "travel-fullbody-v1",
+      "name": "Travel Full-Body Strength",
+      "category": "strength",
+      "target": "25\u201335 min",
+      "description": "A simplified full-body session using available dumbbells, bodyweight, or hotel-gym machines while preserving squat, hinge, push, and pull patterns."
+    }
+  ]
+}
