@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#173f4f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>14-Day Fitness Guide</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <style>
+    :root{
+      --ink:#15242a;--muted:#64737a;--line:#dce4e7;--paper:#f5f7f7;--card:#fff;
+      --accent:#173f4f;--accent2:#dcebee;--good:#1f6b4f;--warn:#8b5a12;--shadow:0 2px 12px rgba(20,40,48,.07);
+    }
+    *{box-sizing:border-box} html{background:var(--paper)} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);padding-bottom:86px}
+    button,input,textarea{font:inherit} button{cursor:pointer}
+    .app{max-width:720px;margin:0 auto}.top{position:sticky;top:0;z-index:5;background:rgba(245,247,247,.96);backdrop-filter:blur(12px);padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;justify-content:space-between;align-items:end;gap:12px}.brand h1{font-size:20px;margin:0}.brand small{color:var(--muted)}
+    main{padding:14px 14px 28px}.datebar{display:grid;grid-template-columns:42px 1fr 42px;gap:8px;align-items:center;margin-bottom:12px}.datebar button,.ghost{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px;color:var(--ink)}
+    .datecenter{text-align:center}.datecenter strong{display:block;font-size:18px}.datecenter span{font-size:12px;color:var(--muted)}
+    .todaybtn{display:block;margin:6px auto 0;border:0;background:none;color:var(--accent);font-weight:700;font-size:12px}
+    .hero{background:var(--accent);color:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}.hero .eyebrow{font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.08em}.hero h2{margin:4px 0 3px;font-size:23px}.hero p{margin:0;opacity:.88;font-size:14px}
+    .section{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow)}
+    .sectionHead{display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid var(--line)}.sectionHead.checkable{cursor:pointer;min-height:58px}.sectionHead h3{margin:0;font-size:17px;flex:1}.sectionHead small{display:block;color:var(--muted);font-weight:400;margin-top:2px}
+    .check{width:26px;height:26px;accent-color:var(--good)}.required{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent2);padding:4px 7px;border-radius:20px}
+    .activity{border-top:1px solid #eef2f3}.activity:first-child{border-top:0}.activity summary{list-style:none;padding:12px 14px;display:flex;gap:12px;align-items:center}.activity summary::-webkit-details-marker{display:none}.activity .name{font-weight:700;flex:1}.dose{font-weight:700;color:var(--accent);font-size:13px;text-align:right}.chev{font-size:17px;color:var(--muted);transform:rotate(0deg)}details[open] .chev{transform:rotate(90deg)}
+    .detailsBody{padding:0 14px 14px;color:#3f5057;font-size:14px;line-height:1.45}.detailsBody p{margin:0 0 9px}.video{display:inline-block;text-decoration:none;border:1px solid var(--accent);color:var(--accent);padding:7px 10px;border-radius:9px;font-weight:700;margin:2px 6px 0 0;background:white}
+    .miniNote{padding:11px 14px;background:#f8fafb;color:var(--muted);font-size:13px;line-height:1.4}
+    .breakrow{display:flex;align-items:center;gap:10px;padding:14px;flex-wrap:wrap}.counter{display:flex;align-items:center;gap:6px;margin-left:auto}.counter button{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:white;font-size:20px}.counter button:disabled{opacity:.35;cursor:default}.count{min-width:30px;text-align:center;font-weight:800}.deskToggle{border:1px solid var(--line);background:white;color:var(--muted);padding:9px 11px;border-radius:10px;font-weight:800}.deskToggle.active{border-color:var(--accent);background:var(--accent2);color:var(--accent)}
+    .loggrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px}.field label{display:block;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:5px}.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:white}.wide{grid-column:1/-1}.feel{display:flex;gap:7px}.feel button{flex:1;border:1px solid var(--line);background:white;padding:9px 6px;border-radius:10px}.feel button.active{background:var(--accent2);border-color:var(--accent);color:var(--accent);font-weight:800}
+    .fallback{background:#fffaf0;border:1px solid #ead9b8;border-radius:14px;padding:12px 14px;margin:12px 0}.fallback summary{font-weight:800}.fallback p{margin:8px 0 0;color:#5f523c;line-height:1.4;font-size:14px}
+    .workoutChoice{padding:11px 14px;background:#f8fafb;border-bottom:1px solid var(--line);font-size:13px}.workoutChoice strong{display:block;margin-bottom:2px}.choiceActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.choiceBtn{border:1px solid var(--line);background:white;color:var(--accent);padding:8px 10px;border-radius:9px;font-weight:800}.choiceBtn.alt{background:var(--accent2);border-color:var(--accent)}
+    .altEditor{padding:12px 14px;border-bottom:1px solid var(--line);background:#fbfcfc}.altGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.altGrid .wide{grid-column:1/-1}.library{margin-top:10px}.libraryItem{border:1px solid var(--line);background:white;border-radius:10px;padding:10px;margin:7px 0}.libraryItem strong{display:block}.libraryItem small{color:var(--muted)}.tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;background:#edf2f3;color:var(--muted);padding:3px 6px;border-radius:20px;margin-top:5px}.versionTag{font-size:10px;color:var(--muted);font-weight:700}
+    .planCard{background:white;border:1px solid var(--line);border-radius:14px;margin:9px 0;padding:12px;box-shadow:var(--shadow)}.planTop{display:flex;gap:8px;justify-content:space-between}.planTop strong{font-size:16px}.planTop span{font-size:12px;color:var(--muted)}.planCols{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.pill{background:#f1f5f6;border-radius:10px;padding:9px;font-size:13px}.pill b{display:block;font-size:11px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+    .historyItem{background:white;border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}.historyTop{display:flex;justify-content:space-between;gap:10px}.marks{font-size:13px;color:var(--muted);margin-top:6px}.historyItem p{margin:7px 0 0;font-size:14px;color:#415157}.empty{text-align:center;color:var(--muted);padding:35px 10px}
+    .dataCard{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}.dataCard h3{margin:0 0 5px}.dataCard p{color:var(--muted);font-size:14px;line-height:1.45}.actions{display:flex;flex-wrap:wrap;gap:8px}.primary{border:0;background:var(--accent);color:white;padding:10px 12px;border-radius:10px;font-weight:800}.secondary{border:1px solid var(--line);background:white;padding:10px 12px;border-radius:10px;font-weight:800}.danger{border:1px solid #c96b6b;background:white;color:#9b3030;padding:10px 12px;border-radius:10px;font-weight:800}
+    .bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:10;padding:7px max(8px,env(safe-area-inset-left)) calc(7px + env(safe-area-inset-bottom))}.nav{max-width:720px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.nav button{border:0;background:none;padding:10px 4px;color:var(--muted);font-weight:700}.nav button.active{color:var(--accent);background:var(--accent2);border-radius:10px}
+    .hidden{display:none!important}.notice{font-size:12px;color:var(--muted);line-height:1.4;padding:4px 2px}.tiny{font-size:11px;color:var(--muted)}
+    @media(min-width:600px){main{padding:18px}.planCols{grid-template-columns:1fr 1fr 1fr}.hero{padding:20px}.sectionHead{padding:16px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="top"><div class="brand"><div><h1>14-Day Fitness Guide</h1><small>Saturday-start repeatable cycle</small></div><small id="saveStatus">Saved locally</small></div></header>
+  <main>
+    <section id="todayView"></section>
+    <section id="planView" class="hidden"></section>
+    <section id="historyView" class="hidden"></section>
+    <section id="dataView" class="hidden"></section>
+  </main>
+</div>
+<nav class="bottom"><div class="nav">
+  <button data-view="today" class="active">Today</button>
+  <button data-view="plan">14-Day Plan</button>
+  <button data-view="history">History</button>
+  <button data-view="data">Data</button>
+</div></nav>
+<script>
+const V = {
+  catCow:'https://www.youtube.com/watch?v=1Y0YjXS9sKI',
+  hip9090:'https://www.youtube.com/watch?v=m51AZSXMvEA',
+  worldGreatest:'https://www.youtube.com/watch?v=tCwUnHRi7jY',
+  hipFlexor:'https://www.youtube.com/watch?v=IBo1OB2CczQ',
+  hamSweep:'https://www.youtube.com/watch?v=2lb31WYCn6M',
+  ankleRock:'https://www.youtube.com/watch?v=QmqVoWqXe8w',
+  squat:'https://www.youtube.com/watch?v=MeIiIdhvXT4',
+  deadBug:'https://www.youtube.com/watch?v=GbSC02oU3To',
+  birdDog:'https://www.youtube.com/watch?v=xEDnlOxeJH4',
+  sidePlank:'https://www.youtube.com/watch?v=qbuqsJ9CuQA',
+  bridge:'https://www.youtube.com/watch?v=WtilA9IJX1c',
+  pallof:'https://www.youtube.com/watch?v=lcVTzIaqkPE',
+  curlup:'https://www.youtube.com/watch?v=A7HH8DivGB0',
+  reverseCrunch:'https://www.youtube.com/watch?v=tz1J8DJ5Ypc',
+  heelTaps:'https://www.youtube.com/watch?v=Xxv-9mA3qLc',
+  bridgeMarch:'https://www.youtube.com/watch?v=RESEoAnLEmk',
+  openBook:'https://www.youtube.com/watch?v=OW6YHlxY6JI',
+  threadNeedle:'https://www.youtube.com/watch?v=SkQhKf74nZk',
+  wallSlides:'https://www.youtube.com/watch?v=Eaj_NG5_hIo',
+  doorway:'https://www.youtube.com/watch?v=HJFlfcl6GLw',
+  sideReach:'https://www.youtube.com/shorts/Vko-SJok-fk',
+  figure4:'https://www.youtube.com/watch?v=2VE_NLcNMvQ',
+  calf:'https://www.youtube.com/watch?v=mafo7o7OnFo',
+  childSide:'https://www.youtube.com/watch?v=YTAwpiX2Dsg',
+  legPress:'https://www.youtube.com/watch?v=K5n2vg3oZa4',
+  chestPress:'https://www.youtube.com/watch?v=sqNwDkUU_Ps',
+  row:'https://www.youtube.com/watch?v=7BkgqzC6WsM',
+  rdl:'https://www.youtube.com/watch?v=Q_D4Ba_7pgo',
+  shoulderPress:'https://www.youtube.com/watch?v=qEwKCR5JCog',
+  splitSquat:'https://www.youtube.com/watch?v=qW5OGJ62ZjY',
+  stepUp:'https://www.youtube.com/watch?v=mmeSrU2nu8Q',
+  triceps:'https://www.youtube.com/watch?v=i14hrj7l7CI',
+  lat:'https://www.youtube.com/watch?v=SALxEARiMkw',
+  incline:'https://www.youtube.com/watch?v=hChjZQhX1Ls',
+  oneRow:'https://www.youtube.com/watch?v=nYFjVJqMmM8',
+  biceps:'https://m.youtube.com/watch?v=TlLkt8VNWfM',
+  running:'https://www.youtube.com/watch?v=u5EMsxkfswA',
+  cycling:'https://www.youtube.com/watch?v=L0-6OFLL2BE'
+};
+const ex=(name,dose,cue,video=[])=>({name,dose,cue,video:Array.isArray(video)?video:[video]});
+const foundations={
+  'Mobility A':[
+    ex('Cat-Cow','6–8 slow reps','On hands and knees, gently alternate rounding and extending the spine. Move comfortably rather than forcing either end position.',V.catCow),
+    ex('90/90 Hip Switches','6–10 total','Sit with knees bent and rotate both knees side to side. Hands behind you for support are fine. Keep the movement controlled.',V.hip9090),
+    ex("World’s Greatest Stretch",'4–6 / side','Step into a runner’s lunge, bring the inside hand toward the floor, then rotate the chest and opposite arm upward. Keep the front foot planted.',V.worldGreatest),
+    ex('Dynamic Hip-Flexor Lunge + Reach','6 / side','From a split stance or half-kneel, gently shift the pelvis forward while staying tall, reach overhead, then come back out. Do not force the low back.',V.hipFlexor),
+    ex('Hamstring Sweeps','8 / side','Place one heel slightly forward with toes up, soften the other knee, hinge at the hips and sweep the hands toward the forward foot. Return and repeat.',V.hamSweep),
+    ex('Ankle Rocks','10 / side','Keep the heel down and guide the knee forward over the toes until you meet comfortable ankle resistance, then rock back.',V.ankleRock),
+    ex('Bodyweight Squat','8–12','Feet comfortable and stable. Sit down between the hips, keep knees tracking with the feet, then stand tall. Use only a pain-free depth.',V.squat)
+  ],
+  'Mobility B':[
+    ex('Cat-Cow','6–8 reps','Gently move the spine through a comfortable range.',V.catCow),
+    ex('Open Book Rotation','6–8 / side','Lie on your side with knees bent. Keep the knees together while rotating the upper arm and chest open. Let the movement come mainly from the upper back.',V.openBook),
+    ex('Thread the Needle','6 / side','From hands and knees, slide one arm underneath the other, then reverse and rotate it upward. Move slowly through the upper back.',V.threadNeedle),
+    ex('Wall Slides','8–12','Stand facing or backed to a wall depending on the variation. Keep ribs controlled while sliding the arms upward without shrugging.',V.wallSlides),
+    ex('Dynamic Doorway Chest Opener','5–6 slow pulses / side','Place the forearm on a doorway, gently turn into a mild chest/shoulder stretch, then come back out. Keep this moving rather than holding deeply before exercise.',V.doorway),
+    ex('Dynamic Hip-Flexor Shift','6 slow shifts / side','Use a half-kneeling or split stance. Lightly tuck the pelvis, shift forward until the front of the rear hip lengthens, then return. Keep the motion controlled.',V.hipFlexor),
+    ex('Standing Side Reach','5 slow / side','Reach one arm overhead and lengthen through the side of the body. Keep it gentle and avoid collapsing into the low back.',V.sideReach)
+  ],
+  'Core A':[
+    ex('Dead Bug','2 × 6–10 / side','Lie on your back, brace gently and slowly extend opposite arm and leg without allowing the low back to lift or arch.',V.deadBug),
+    ex('Bird Dog','2 × 6–10 / side','From hands and knees, extend opposite arm and leg while keeping hips and trunk quiet. Reach long rather than high.',V.birdDog),
+    ex('Front Plank','2 × 20–45 sec','Brace the trunk and maintain a straight line from shoulders through hips. Stop before the low back begins to sag.','https://www.youtube.com/watch?v=ASdvN_XEl_c'),
+    ex('Side Plank','2 × 15–35 sec / side','Elbow under shoulder. Lift the hips while keeping the trunk long. Use a knees-bent version if needed.',V.sidePlank),
+    ex('Glute Bridge','2 × 10–15','Drive through the feet and squeeze the glutes to raise the hips. Finish with the body in a straight line without over-arching.',V.bridge),
+    ex('Pallof Press OR Bear Plank','2 × 8–12 / side OR 2 × 15–30 sec','If you have a band/cable, use a Pallof press and resist rotation. If not, use a bear plank: hands and knees under you, lift knees slightly and hold a quiet, braced trunk.',[V.pallof,'https://www.youtube.com/results?search_query=bear+plank+exercise+physical+therapy']),
+    ex('90/90 Hip Switches','6–8 total','Finish with controlled hip rotation. Hands behind you for support are fine.',V.hip9090),
+    ex('Dynamic Hip-Flexor Lunge + Reach','4 / side','Gently shift into the hip, reach overhead, then come back out. Keep it dynamic.',V.hipFlexor)
+  ],
+  'Core B':[
+    ex('Modified Curl-Up','2 × 8–12','One knee bent and one leg straight. Brace, then raise head and shoulders only slightly while maintaining a neutral low back. Think stiffness, not a big crunch.',V.curlup),
+    ex('Reverse Crunch','2 × 8–12','Bring bent knees toward the torso and use the abs to gently roll the pelvis upward. Avoid swinging or using momentum.',V.reverseCrunch),
+    ex('Heel Taps','2 × 8–12 / side','With hips and knees bent, brace the abdomen and slowly lower one heel toward the floor without losing trunk control.',V.heelTaps),
+    ex('Side Plank','2 × 15–35 sec / side','Keep shoulder, ribs and hips stacked. Shorten the hold before form breaks down.',V.sidePlank),
+    ex('Dead Bug','2 × 6–10 / side','Slow, controlled opposite-arm/opposite-leg movement while maintaining abdominal tension.',V.deadBug),
+    ex('Glute Bridge March','2 × 6–10 / side','Hold the bridge, then lift one foot slightly at a time without allowing the pelvis to drop or rotate.',V.bridgeMarch),
+    ex('Open Book Rotation','6 / side','Finish with gentle upper-back rotation while keeping the knees together.',V.openBook),
+    ex('90/90 Hip Switches','6–8 total','Controlled hip rotation to finish the session.',V.hip9090)
+  ],
+  'Weekend Mobility':[
+    ex('Easy Walk / March','5 min','Warm the body before the longer flexibility holds. Walk briskly, march in place, or begin with a very easy spin before returning to the stretches.',[]),
+    ex('Cat-Cow','8 reps','Slow, comfortable spinal movement.',V.catCow),
+    ex('90/90 Hip Switches','8–10 total','Controlled hip rotation, using the hands for support if useful.',V.hip9090),
+    ex('Hip-Flexor Stretch','30–45 sec / side','Stay tall and gently shift until you feel the front of the hip lengthen.',V.hipFlexor),
+    ex('Hamstring Stretch','30–45 sec / side','Use a comfortable standing or seated position. Hinge from the hips and stop at gentle tension.','https://www.youtube.com/shorts/sctiIx9iWFQ'),
+    ex('Figure-Four / Glute Stretch','30–45 sec / side','Cross one ankle over the opposite thigh and gently draw the legs toward you or hinge forward until the glute stretches.',V.figure4),
+    ex('Open Book Rotation','8 / side','Keep knees together and rotate through the upper back.',V.openBook),
+    ex('Doorway Chest Stretch','30–45 sec / side','Open the chest gently without forcing the shoulder.',V.doorway),
+    ex('Calf Stretch','30–45 sec / side','Rear heel down, rear knee straight, lean forward until the upper calf stretches.',V.calf),
+    ex("Child’s Pose + Side Reach",'30 sec each direction','Sit hips toward heels, reach arms forward, then walk hands gently to one side to lengthen the opposite side of the trunk.',V.childSide)
+  ]
+};
+const strengthA=[
+  ex('Leg Press or Goblet Squat','3 × 8–12','Choose one. For leg press, keep hips/back supported and use a comfortable depth. For goblet squat, hold one dumbbell close to the chest and keep the torso controlled.',[V.legPress,V.squat]),
+  ex('Dumbbell or Machine Chest Press','3 × 8–12','Set the shoulders comfortably back and down. Lower with control, then press without bouncing or forcing the shoulder forward.',[V.chestPress,'https://www.youtube.com/watch?v=f3Ai0EBA4nQ']),
+  ex('Seated Cable Row','3 × 8–12','Sit tall, draw the handle toward the lower ribs/upper abdomen and finish by squeezing the shoulder blades without leaning back for momentum.',V.row),
+  ex('Dumbbell Romanian Deadlift','2 × 8–12','Soft knees, push hips backward, keep weights close to the legs and maintain a neutral spine. Stand by driving the hips forward, not by leaning back.',V.rdl),
+  ex('Dumbbell or Machine Shoulder Press','2 × 8–12','Brace the trunk and press overhead through a comfortable path. Avoid excessive low-back arching.',V.shoulderPress),
+  ex('Split Squat or Step-Up','2 × 8–10 / side','Choose the version that feels stable. Keep the working knee tracking with the foot and control the lowering phase.',[V.splitSquat,V.stepUp]),
+  ex('Optional Cable Triceps Pressdown','2 × 10–15','Keep elbows near the sides and extend the elbows without swinging the shoulders or torso.',V.triceps)
+];
+const strengthB=[
+  ex('Romanian Deadlift','3 × 8–12','Hinge at the hips with a neutral spine. Stop the descent when hamstrings are loaded and your back position would otherwise change.',V.rdl),
+  ex('Lat Pulldown','3 × 8–12','Sit tall with a slight backward torso angle and pull the bar toward the upper chest while driving elbows down. Do not yank behind the neck.',V.lat),
+  ex('Leg Press or Squat Variation','2 × 8–12','Use a stable, pain-free range and controlled tempo.',[V.legPress,V.squat]),
+  ex('Incline Dumbbell or Machine Chest Press','2 × 8–12','Keep shoulder blades supported, lower under control and press without excessively flaring the elbows.',V.incline),
+  ex('Seated Row or One-Arm Dumbbell Row','2 × 8–12','Pull with the back while keeping the trunk stable. Avoid twisting to finish the rep.',[V.row,V.oneRow]),
+  ex('Step-Up or Supported Single-Leg Work','2 × 8–10 / side','Use a height that lets you control both the ascent and descent. Push through the working leg rather than bouncing off the trailing foot.',V.stepUp),
+  ex('Optional Dumbbell/Cable Biceps Curl','2 × 10–15','Keep elbows relatively quiet and curl without using torso momentum.',V.biceps)
+];
+const workouts={
+  bike60:[ex('Bike Ride','60–90 min','Keep this mostly easy to moderate. You should be able to carry on a conversation. The goal is aerobic endurance without the impact of another run.',V.cycling)],
+  longRun:[ex('Long Easy Run','5–6 miles','Run at a conversational effort. This is endurance work, not a pace test. Shorten the run if your legs feel unusually heavy or your running form deteriorates.',V.running)],
+  easyRun:[ex('Easy Run','3–4 miles','Comfortable aerobic pace. You should finish feeling like you could have continued.',V.running)],
+  bikeShort:[ex('Bike Ride','35–50 min','Easy to moderate steady aerobic effort. Keep cadence comfortable and avoid turning it into a hard interval session.',V.cycling)],
+  longBike:[ex('Long Bike / Endurance Activity','75–105 min','Mostly easy to moderate. A hike or similar sustained aerobic activity can substitute. Fuel/hydrate appropriately for duration and conditions.',V.cycling)],
+  qualityRun:[ex('Quality Run','3–4 miles total','Include warm-up and cool-down. Rotate controlled hills, a moderate tempo segment, or an easy run. Do not make every quality day maximal.',V.running)],
+  flexAerobic:[ex('Easy Run OR Bike','Run 3–4 mi or Bike ~40 min','Choose based on how your legs feel and what equipment/time you have. Keep the session aerobic and controlled.',[V.running,V.cycling])],
+  strengthA:strengthA,
+  strengthB:strengthB
+};
+const PLAN={id:'base-summer-2026-v1',name:'Base 14-Day Plan',version:'Summer 2026 v1'};
+const FOUNDATION_VERSION={
+  'Mobility A':'Mobility A v1','Mobility B':'Mobility B v1','Core A':'Core A v1','Core B':'Core B v1','Weekend Mobility':'Weekend Mobility v1'
+};
+const WORKOUT_VERSION={
+  bike60:'Endurance Bike v1',longRun:'Long Easy Run v1',easyRun:'Easy Run v1',bikeShort:'Aerobic Bike v1',longBike:'Long Bike / Endurance v1',qualityRun:'Quality Run v1',flexAerobic:'Aerobic Flex v1',strengthA:'Strength A v1',strengthB:'Strength B v1'
+};
+const cycle=[
+  {label:'Saturday 1',foundation:'Mobility A',fTime:'~10 min',workoutKey:'bike60',workout:'Bike',wTarget:'60–90 min',intent:'Easy/moderate endurance'},
+  {label:'Sunday 1',foundation:'Mobility B',fTime:'~10–15 min',workoutKey:'longRun',workout:'Long Run',wTarget:'5–6 miles',intent:'Easy/conversational'},
+  {label:'Monday 1',foundation:'Core A',fTime:'15–20 min',workoutKey:'strengthA',workout:'Strength A',wTarget:'35–45 min',intent:'Squat + push emphasis'},
+  {label:'Tuesday 1',foundation:'Mobility A',fTime:'~15 min',workoutKey:'easyRun',workout:'Easy Run',wTarget:'3–4 miles',intent:'Aerobic base'},
+  {label:'Wednesday 1',foundation:'Core B',fTime:'15–20 min',workoutKey:'strengthB',workout:'Strength B',wTarget:'35–45 min',intent:'Hinge + pull emphasis'},
+  {label:'Thursday 1',foundation:'Mobility B',fTime:'~15 min',workoutKey:'bikeShort',workout:'Bike',wTarget:'35–50 min',intent:'Aerobic + lower impact'},
+  {label:'Friday 1',foundation:'Core A',fTime:'~15 min',workoutKey:'strengthA',workout:'Strength A',wTarget:'30–40 min',intent:'Keep hard leg volume lower before Saturday'},
+  {label:'Saturday 2',foundation:'Mobility A',fTime:'~10 min',workoutKey:'longRun',workout:'Long Run',wTarget:'5–6 miles',intent:'Endurance; progress gradually'},
+  {label:'Sunday 2',foundation:'Weekend Mobility',fTime:'20–25 min',workoutKey:'longBike',workout:'Long Bike / Adventure',wTarget:'75–105 min',intent:'Long low-impact aerobic day'},
+  {label:'Monday 2',foundation:'Core B',fTime:'15–20 min',workoutKey:'strengthB',workout:'Strength B',wTarget:'35–45 min',intent:'Full-body strength'},
+  {label:'Tuesday 2',foundation:'Mobility A',fTime:'12–15 min',workoutKey:'qualityRun',workout:'Quality Run',wTarget:'3–4 miles total',intent:'Controlled hills/tempo or easy'},
+  {label:'Wednesday 2',foundation:'Core A',fTime:'15–20 min',workoutKey:'strengthA',workout:'Strength A',wTarget:'35–45 min',intent:'Full-body strength'},
+  {label:'Thursday 2',foundation:'Mobility B',fTime:'~15 min',workoutKey:'flexAerobic',workout:'Easy Run OR Bike',wTarget:'3–4 mi / ~40 min',intent:'Choose based on legs and travel'},
+  {label:'Friday 2',foundation:'Core B',fTime:'~15 min',workoutKey:'strengthB',workout:'Strength B',wTarget:'30–40 min',intent:'Controlled lower body before weekend'}
+];
+const snacks=[
+  ex('Desk Reset','3–5 min','Walk 60 seconds; 8–10 squats; 5–6 standing hip-flexor reaches per side; 6–8 thoracic rotations per side; 8–10 wall slides or shoulder-blade squeezes.',[V.hipFlexor,V.wallSlides]),
+  ex('Standing / Presenter Reset','3–5 min','Walk briskly 60–90 seconds; 10 calf raises; 8 ankle rocks per side; 6 reverse lunges or split-stance shifts per side; 5 gentle side reaches per side; reset shoulder position.',[V.ankleRock,V.sideReach]),
+  ex('Quick Strength Reset','3–5 min','8–12 squats; 8–12 counter/wall push-ups; optional 20–30 second plank only if it is not a hard Core day; 10 calf raises; finish with easy walking.',V.squat)
+];
+const KEY='fitnessGuide14Day_2026_v2';
+const LEGACY_KEYS=['fitnessGuide14Day_2026_v1'];
+const defaultState={settings:{anchor:'2026-08-15'},logs:{}};
+let state=load(); let selectedDate=localDateString(new Date()); let alternateEditorOpen=false; let alternateLibrary=null;
+function blankLog(){return {foundation:false,workout:false,breaks:0,movementNA:false,feeling:'',duration:'',distance:'',note:'',sleepHours:'',snoozeMinutes:'',calories:'',waterOz:'',planId:'',planName:'',planVersion:'',foundationPlan:'',foundationVersion:'',scheduledWorkoutId:'',scheduledWorkoutName:'',scheduledWorkoutVersion:'',scheduledWorkoutTarget:'',actualWorkoutMode:'planned',actualWorkoutId:'',actualWorkoutName:'',actualWorkoutTarget:''}}
+function normalizeLog(l={}){return {...blankLog(),...l,breaks:Number(l.breaks)||0,movementNA:!!l.movementNA,actualWorkoutMode:l.actualWorkoutMode==='alternate'?'alternate':'planned'}}
+function load(){try{let raw=localStorage.getItem(KEY);if(!raw){for(const k of LEGACY_KEYS){raw=localStorage.getItem(k);if(raw)break}}const x=raw?JSON.parse(raw):null;if(!x||!x.logs)return structuredClone(defaultState);const loaded={...defaultState,...x,settings:{...defaultState.settings,...x.settings},logs:Object.fromEntries(Object.entries(x.logs).map(([d,l])=>[d,normalizeLog(l)]))};if(loaded.settings.anchor==='2026-08-08' && Object.keys(loaded.logs).length===0)loaded.settings.anchor='2026-08-15';return loaded}catch(e){return structuredClone(defaultState)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state)); const s=document.getElementById('saveStatus'); if(s){s.textContent='Saved locally';s.style.opacity='1';setTimeout(()=>s.style.opacity='.65',700)}}
+function localDateString(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
+function parseDate(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12)}
+function fmtDate(s){return parseDate(s).toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
+function cycleIndex(s){const a=Date.UTC(...state.settings.anchor.split('-').map((v,i)=>i===1?Number(v)-1:Number(v)));const d=Date.UTC(...s.split('-').map((v,i)=>i===1?Number(v)-1:Number(v)));const diff=Math.floor((d-a)/86400000);return ((diff%14)+14)%14}
+function snapshotPlan(log,date){const i=cycleIndex(date),d=cycle[i];if(!log.planId){log.planId=PLAN.id;log.planName=PLAN.name;log.planVersion=PLAN.version;log.foundationPlan=d.foundation;log.foundationVersion=FOUNDATION_VERSION[d.foundation]||d.foundation;log.scheduledWorkoutId=d.workoutKey;log.scheduledWorkoutName=d.workout;log.scheduledWorkoutVersion=WORKOUT_VERSION[d.workoutKey]||d.workout;log.scheduledWorkoutTarget=d.wTarget;}if(!log.actualWorkoutName&&log.actualWorkoutMode!=='alternate'){log.actualWorkoutId=log.scheduledWorkoutId;log.actualWorkoutName=log.scheduledWorkoutName;log.actualWorkoutTarget=log.scheduledWorkoutTarget;}return log}
+function logFor(s){if(!state.logs[s])state.logs[s]=blankLog();else state.logs[s]=normalizeLog(state.logs[s]);return snapshotPlan(state.logs[s],s)}
+function actualWorkoutLabel(log){return log.actualWorkoutMode==='alternate'?(log.actualWorkoutName||'Alternate workout'):log.scheduledWorkoutName}
+Object.entries(state.logs).forEach(([d,l])=>snapshotPlan(l,d));save();
+
+function esc(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function activityHTML(a){const vids=a.video.filter(Boolean);return `<details class="activity"><summary><span class="name">${esc(a.name)}</span><span class="dose">${esc(a.dose)}</span><span class="chev">›</span></summary><div class="detailsBody"><p>${esc(a.cue)}</p>${vids.map((u,i)=>`<a class="video" href="${u}" target="_blank" rel="noopener">${vids.length>1?'Video '+(i+1):'Watch video'}</a>`).join('')}</div></details>`}
+function alternateEditorHTML(log){return `<div class="altEditor"><div class="altGrid"><div class="field wide"><label>Alternate workout</label><input id="altName" value="${esc(log.actualWorkoutMode==='alternate'?log.actualWorkoutName:'')}" placeholder="e.g. Row 30 min + Swim 20 min"></div><div class="field wide"><label>Target / duration</label><input id="altTarget" value="${esc(log.actualWorkoutMode==='alternate'?log.actualWorkoutTarget:'')}" placeholder="e.g. 50 min easy/moderate"></div></div><div class="choiceActions"><button class="primary" id="saveAlternate">Use This Workout</button><button class="secondary" id="browseAlternates">Browse Alternates</button><button class="secondary" id="cancelAlternate">Cancel</button></div><div id="alternateLibrary" class="library"></div></div>`}
+async function loadAlternateLibrary(){const box=document.getElementById('alternateLibrary');if(!box)return;box.innerHTML='<div class="tiny">Loading alternates…</div>';try{if(!alternateLibrary){const r=await fetch('./workouts.json',{cache:'no-cache'});if(!r.ok)throw Error('load');alternateLibrary=await r.json()}box.innerHTML=alternateLibrary.workouts.map(w=>`<div class="libraryItem"><strong>${esc(w.name)}</strong><small>${esc(w.target||'')}</small><div class="tag">${esc(w.category||'alternate')}</div><p class="tiny">${esc(w.description||'')}</p><button class="choiceBtn" data-alt-id="${esc(w.id)}">Choose</button></div>`).join('');box.querySelectorAll('[data-alt-id]').forEach(b=>b.onclick=()=>{const w=alternateLibrary.workouts.find(x=>x.id===b.dataset.altId);document.getElementById('altName').value=w.name;document.getElementById('altTarget').value=w.target||'';document.getElementById('altName').dataset.libraryId=w.id})}catch(e){box.innerHTML='<div class="tiny">Could not load workouts.json. You can still type an alternate above.</div>'}}
+function renderToday(){const idx=cycleIndex(selectedDate),day=cycle[idx],log=logFor(selectedDate);const foundation=foundations[day.foundation],work=workouts[day.workoutKey];const usingAlt=log.actualWorkoutMode==='alternate';
+ document.getElementById('todayView').innerHTML=`
+ <div class="datebar"><button id="prevDay">‹</button><div class="datecenter"><strong>${fmtDate(selectedDate)}</strong><span>Cycle day ${idx+1} of 14</span><button class="todaybtn" id="jumpToday">Go to today</button></div><button id="nextDay">›</button></div>
+ <div class="hero"><div class="eyebrow">${day.label}</div><h2>${day.foundation} + ${day.workout}</h2><p>${day.intent}</p></div>
+ <div class="section"><label class="sectionHead checkable"><input id="foundationDone" class="check" type="checkbox" ${log.foundation?'checked':''}><div><h3>Foundation <span class="required">Required</span></h3><small>${day.foundation} · ${day.fTime}</small></div></label>${foundation.map(activityHTML).join('')}<div class="miniNote">${day.foundation==='Weekend Mobility'?'Weekend Mobility begins with 5 minutes of easy movement before longer holds. Keep all stretches comfortable and avoid forcing range.':'Before a run, bike ride or strength session, keep mobility controlled and mostly dynamic. Longer static holds fit better after training or later in the day.'}</div></div>
+ <div class="section"><label class="sectionHead checkable"><input id="workoutDone" class="check" type="checkbox" ${log.workout?'checked':''}><div><h3>Workout <span class="required">Required</span></h3><small>${usingAlt?esc(log.actualWorkoutName||'Alternate workout'):day.workout} · ${usingAlt?esc(log.actualWorkoutTarget||'custom'):day.wTarget}</small></div></label><div class="workoutChoice"><strong>${usingAlt?'Alternate workout':'Scheduled workout'} <span class="versionTag">${usingAlt?'':'· '+esc(log.scheduledWorkoutVersion)}</span></strong>${usingAlt?`<span>Originally scheduled: ${esc(log.scheduledWorkoutName)} · ${esc(log.scheduledWorkoutTarget)}</span>`:`<span>${esc(PLAN.name)} · ${esc(PLAN.version)}</span>`}<div class="choiceActions"><button class="choiceBtn ${usingAlt?'alt':''}" id="alternateBtn">${usingAlt?'Change Alternate':'Use Alternate'}</button>${usingAlt?'<button class="choiceBtn" id="plannedBtn">Use Planned</button>':''}</div></div>${alternateEditorOpen?alternateEditorHTML(log):''}${usingAlt?`<div class="miniNote"><strong>Actual workout:</strong> ${esc(log.actualWorkoutName||'Alternate workout')}${log.actualWorkoutTarget?' · '+esc(log.actualWorkoutTarget):''}</div>`:work.map(activityHTML).join('')}<div class="miniNote">For strength: generally finish most sets with about 2–3 good repetitions still possible. On Friday, reduce demanding leg volume if needed so Saturday stays strong.</div></div>
+ <div class="section"><div class="sectionHead"><div><h3>Throughout the Day</h3><small>Log movement breaks, or mark the day not applicable</small></div></div><div class="breakrow"><div><strong>Movement breaks</strong><div class="tiny">Useful after roughly 60–120 minutes of prolonged sitting/standing, or whenever stiffness builds.</div></div><button id="notDeskBtn" class="deskToggle ${log.movementNA?'active':''}">No Desk Day</button><div class="counter"><button id="breakMinus" ${log.movementNA?'disabled':''}>−</button><span id="breakCount" class="count">${log.movementNA?'N/A':(log.breaks||0)}</span><button id="breakPlus" ${log.movementNA?'disabled':''}>+</button></div></div>${snacks.map(activityHTML).join('')}</div>
+ <div class="section"><div class="sectionHead"><div><h3>Daily Health</h3><small>Optional context for sleep, snooze, food and hydration</small></div></div><div class="loggrid"><div class="field"><label>Sleep (hours)</label><input id="sleepHours" inputmode="decimal" type="number" min="0" max="24" step="0.1" value="${esc(log.sleepHours)}" placeholder="e.g. 7.5"></div><div class="field"><label>Snooze (minutes)</label><input id="snoozeMinutes" inputmode="numeric" type="number" min="0" step="1" value="${esc(log.snoozeMinutes)}" placeholder="e.g. 10"></div><div class="field"><label>Calories</label><input id="calories" inputmode="numeric" type="number" min="0" step="1" value="${esc(log.calories)}" placeholder="optional"></div><div class="field"><label>Water (oz)</label><input id="waterOz" inputmode="decimal" type="number" min="0" step="1" value="${esc(log.waterOz)}" placeholder="optional"></div></div><div class="miniNote">These are tracking fields only. They do not affect workout completion or score the day.</div></div>
+ <div class="section"><div class="sectionHead"><div><h3>Quick Log</h3><small>Optional, but useful when reviewing patterns</small></div></div><div class="loggrid"><div class="field wide"><label>How did your body feel?</label><div class="feel">${['Good','Okay','Rough'].map(x=>`<button data-feel="${x}" class="${log.feeling===x?'active':''}">${x}</button>`).join('')}</div></div><div class="field"><label>Workout minutes</label><input id="duration" inputmode="numeric" value="${esc(log.duration)}" placeholder="e.g. 45"></div><div class="field"><label>Distance (miles)</label><input id="distance" inputmode="decimal" value="${esc(log.distance)}" placeholder="optional"></div><div class="field wide"><label>Quick note</label><textarea id="note" rows="3" placeholder="How did it go? Back/legs? Anything to change next cycle?">${esc(log.note)}</textarea></div></div></div>
+ <details class="fallback"><summary>Crazy day? Use the Minimum Foundation</summary><p>About 10 minutes: 1 minute of Cat-Cow/Open Book movement, 2 sets of Dead Bug, 2 short front or side planks, 1 set of Glute Bridges, then 3–4 minutes of hip-flexor, hamstring, chest and upper-back mobility. Do this before bed rather than trying to double up tomorrow.</p></details>
+ <div class="notice">Training guidance is general, not diagnosis or treatment. Stop a movement for sharp or escalating pain, radiating pain, numbness/tingling, new weakness, or an exercise that repeatedly aggravates your back.</div>`;
+ bindToday();
+}
+function bindToday(){
+ const changeDay=n=>{const d=parseDate(selectedDate);d.setDate(d.getDate()+n);selectedDate=localDateString(d);renderToday()};
+ document.getElementById('prevDay').onclick=()=>changeDay(-1);document.getElementById('nextDay').onclick=()=>changeDay(1);document.getElementById('jumpToday').onclick=()=>{selectedDate=localDateString(new Date());renderToday()};
+ const log=logFor(selectedDate);document.getElementById('foundationDone').onchange=e=>{log.foundation=e.target.checked;save()};document.getElementById('workoutDone').onchange=e=>{log.workout=e.target.checked;save()};
+ document.getElementById('alternateBtn').onclick=()=>{alternateEditorOpen=!alternateEditorOpen;renderToday()};
+ const plannedBtn=document.getElementById('plannedBtn');if(plannedBtn)plannedBtn.onclick=()=>{log.actualWorkoutMode='planned';log.actualWorkoutId=log.scheduledWorkoutId;log.actualWorkoutName=log.scheduledWorkoutName;log.actualWorkoutTarget=log.scheduledWorkoutTarget;alternateEditorOpen=false;save();renderToday()};
+ const saveAlt=document.getElementById('saveAlternate');if(saveAlt)saveAlt.onclick=()=>{const n=document.getElementById('altName').value.trim();if(!n){alert('Give the alternate workout a short name.');return}log.actualWorkoutMode='alternate';log.actualWorkoutId=document.getElementById('altName').dataset.libraryId||'custom';log.actualWorkoutName=n;log.actualWorkoutTarget=document.getElementById('altTarget').value.trim();alternateEditorOpen=false;save();renderToday()};
+ const browse=document.getElementById('browseAlternates');if(browse)browse.onclick=loadAlternateLibrary;const cancel=document.getElementById('cancelAlternate');if(cancel)cancel.onclick=()=>{alternateEditorOpen=false;renderToday()};
+ document.getElementById('notDeskBtn').onclick=()=>{log.movementNA=!log.movementNA;if(log.movementNA)log.breaks=0;save();renderToday()};
+ document.getElementById('breakMinus').onclick=()=>{if(log.movementNA)return;log.breaks=Math.max(0,(log.breaks||0)-1);document.getElementById('breakCount').textContent=log.breaks;save()};document.getElementById('breakPlus').onclick=()=>{log.movementNA=false;log.breaks=(log.breaks||0)+1;document.getElementById('breakCount').textContent=log.breaks;save()};
+ document.querySelectorAll('[data-feel]').forEach(b=>b.onclick=()=>{log.feeling=b.dataset.feel;save();renderToday()});
+ ['duration','distance','note','sleepHours','snoozeMinutes','calories','waterOz'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{log[id]=e.target.value;save()}));
+}
+function renderPlan(){document.getElementById('planView').innerHTML=`<div class="hero"><div class="eyebrow">${PLAN.name} · ${PLAN.version}</div><h2>Repeat every 14 days</h2><p>Saturday is Day 1 by design. The cycle repeats after Friday 2. Scheduled workouts may be replaced with logged alternates without changing the underlying plan.</p></div>${cycle.map((d,i)=>`<div class="planCard"><div class="planTop"><strong>Day ${i+1}: ${d.label}</strong><span>${d.intent}</span></div><div class="planCols"><div class="pill"><b>Foundation</b>${d.foundation}<br>${d.fTime}</div><div class="pill"><b>Workout</b>${d.workout}<br>${d.wTarget}</div><div class="pill"><b>Throughout day</b>Movement breaks as needed</div></div></div>`).join('')}<div class="notice">The cycle matters more than exact calendar perfection. Do not double missed workouts. Resume the sequence or make a sensible swap while avoiding consecutive hard days on the same tissues.</div>`}
+function renderHistory(){const entries=Object.entries(state.logs).map(([d,l])=>[d,normalizeLog(l)]).filter(([d,l])=>l.foundation||l.workout||l.breaks||l.movementNA||l.feeling||l.duration||l.distance||l.note||l.sleepHours||l.snoozeMinutes||l.calories||l.waterOz||l.actualWorkoutMode==='alternate').sort((a,b)=>b[0].localeCompare(a[0]));document.getElementById('historyView').innerHTML=`<div class="hero"><div class="eyebrow">Local history</div><h2>${entries.length} logged day${entries.length===1?'':'s'}</h2><p>Each logged day preserves the plan and workout version that was active at the time.</p></div>${entries.length?entries.map(([date,l0])=>{const l=snapshotPlan(l0,date);const d=cycle[cycleIndex(date)];const health=[l.sleepHours?`Sleep ${esc(l.sleepHours)} h`:'',l.snoozeMinutes!==''?`Snooze ${esc(l.snoozeMinutes)} min`:'',l.calories?`${esc(l.calories)} cal`:'',l.waterOz?`Water ${esc(l.waterOz)} oz`:''].filter(Boolean).join(' · ');return `<div class="historyItem"><div class="historyTop"><strong>${fmtDate(date)}</strong><span class="tiny">${esc(d.label)}</span></div><div class="marks">Foundation: ${l.foundation?'Done':'Not checked'} · Workout: ${l.workout?'Done':'Not checked'} · ${l.movementNA?'Movement: Not a Desk Day':'Breaks: '+(l.breaks||0)}${l.feeling?' · '+esc(l.feeling):''}${l.duration?' · '+esc(l.duration)+' min':''}${l.distance?' · '+esc(l.distance)+' mi':''}</div>${health?`<div class="tiny" style="margin-top:6px"><strong>Daily health:</strong> ${health}</div>`:''}<div class="tiny" style="margin-top:6px">${esc(l.planName)} · ${esc(l.planVersion)}<br>Scheduled: ${esc(l.scheduledWorkoutVersion||l.scheduledWorkoutName)}${l.actualWorkoutMode==='alternate'?`<br><strong>Actual: ${esc(l.actualWorkoutName)}</strong>${l.actualWorkoutTarget?' · '+esc(l.actualWorkoutTarget):''}`:''}</div>${l.note?`<p>${esc(l.note)}</p>`:''}</div>`}).join(''):'<div class="empty">No workout or health history yet.</div>'}`}
+function renderData(){document.getElementById('dataView').innerHTML=`
+ <div class="hero"><div class="eyebrow">Backup and analysis</div><h2>Your data belongs to you</h2><p>Workout completion, notes, movement breaks and optional daily-health metrics are stored only in this browser unless you export them.</p></div>
+ <div class="dataCard"><h3>Export</h3><p>Use CSV for spreadsheets/analysis. Use JSON as a complete backup that can be imported later.</p><div class="actions"><button class="primary" id="csvBtn">Export CSV</button><button class="secondary" id="jsonBtn">Export JSON Backup</button></div></div>
+ <div class="dataCard"><h3>Restore</h3><p>Import a JSON backup created by this app. Existing local logs will be replaced by the imported backup.</p><input id="importFile" type="file" accept="application/json" /></div>
+ <div class="dataCard"><h3>Plan version</h3><p><strong>${PLAN.name} · ${PLAN.version}</strong><br>Logged days snapshot this version plus the scheduled and actual workout. The optional alternate-workout library lives in <code>workouts.json</code> and loads only when you tap Browse Alternates.</p></div>
+ <div class="dataCard"><h3>Cycle start</h3><p>The app uses this Saturday as the anchor for the repeating 14-day sequence. Change it only if you intentionally restart the rhythm on a different Saturday.</p><div class="field"><label>Cycle anchor</label><input id="anchorDate" type="date" value="${state.settings.anchor}"></div></div>
+ <div class="dataCard"><h3>Training references</h3><p>The plan uses current general guidance: dynamic movement before training, regular aerobic activity, and resistance training at least twice weekly. Individual back symptoms can require tailored advice.</p><div class="actions"><a class="video" target="_blank" rel="noopener" href="https://www.hss.edu/health-library/move-better/static-dynamic-stretching">HSS stretching</a><a class="video" target="_blank" rel="noopener" href="https://acsm.org/resistance-training-guidelines-update-2026/">ACSM strength</a><a class="video" target="_blank" rel="noopener" href="https://www.heart.org/en/healthy-living/exercise-and-physical-activity/fitness-basics/aha-recs-for-physical-activity-in-adults">AHA activity</a></div></div>
+ <div class="dataCard"><h3>Local storage</h3><p>Clearing browser/site data can erase local history. Export a JSON backup periodically if you want to protect it.</p><button class="danger" id="clearBtn">Clear all local fitness data</button></div>`;
+ document.getElementById('csvBtn').onclick=exportCSV;document.getElementById('jsonBtn').onclick=exportJSON;document.getElementById('anchorDate').onchange=e=>{if(parseDate(e.target.value).getDay()!==6){alert('The cycle anchor must be a Saturday.');e.target.value=state.settings.anchor;return;}state.settings.anchor=e.target.value;save();renderData()};document.getElementById('clearBtn').onclick=()=>{if(confirm('Clear all locally stored workout history and reset the cycle anchor?')){state=structuredClone(defaultState);save();renderData()}};
+ document.getElementById('importFile').onchange=importJSON;
+}
+function download(name,text,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+function exportJSON(){download(`fitness-backup-${localDateString(new Date())}.json`,JSON.stringify({version:4,exportedAt:new Date().toISOString(),...state},null,2),'application/json')}
+function csvQ(v){v=String(v??'');return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+function exportCSV(){const head=['date','cycle_day','cycle_label','plan_id','plan_name','plan_version','foundation_plan','foundation_version','scheduled_workout_id','scheduled_workout_name','scheduled_workout_version','scheduled_workout_target','actual_workout_mode','actual_workout_id','actual_workout_name','actual_workout_target','foundation_done','workout_done','movement_status','movement_breaks','sleep_hours','snooze_minutes','calories','water_oz','feeling','duration_minutes','distance_miles','note'];const lines=[head.join(',')];Object.entries(state.logs).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([date,l0])=>{const i=cycleIndex(date),d=cycle[i],l=snapshotPlan(normalizeLog(l0),date);lines.push([date,i+1,d.label,l.planId,l.planName,l.planVersion,l.foundationPlan,l.foundationVersion,l.scheduledWorkoutId,l.scheduledWorkoutName,l.scheduledWorkoutVersion,l.scheduledWorkoutTarget,l.actualWorkoutMode,l.actualWorkoutId,l.actualWorkoutName,l.actualWorkoutTarget,l.foundation?'yes':'no',l.workout?'yes':'no',l.movementNA?'not_desk_day':'tracked',l.movementNA?'':(l.breaks||0),l.sleepHours||'',l.snoozeMinutes!==''?l.snoozeMinutes:'',l.calories||'',l.waterOz||'',l.feeling||'',l.duration||'',l.distance||'',l.note||''].map(csvQ).join(','))});download(`fitness-history-${localDateString(new Date())}.csv`,lines.join('\n'),'text/csv')}
+function importJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.logs||!x.settings)throw Error();if(confirm('Replace local fitness history with this backup?')){state={settings:{...defaultState.settings,...x.settings},logs:Object.fromEntries(Object.entries(x.logs).map(([d,l])=>[d,normalizeLog(l)]))};save();renderData();alert('Backup restored.')}}catch(err){alert('That file does not look like a valid fitness-app backup.')}};r.readAsText(f)}
+function show(view){['today','plan','history','data'].forEach(v=>{document.getElementById(v+'View').classList.toggle('hidden',v!==view);document.querySelector(`[data-view="${v}"]`).classList.toggle('active',v===view)});if(view==='today')renderToday();if(view==='plan')renderPlan();if(view==='history')renderHistory();if(view==='data')renderData();window.scrollTo({top:0,behavior:'instant'})}
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>show(b.dataset.view));
+renderToday();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body>
+</html>
