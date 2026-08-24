@@ -16,6 +16,7 @@ REFRESH_SHORT = "8/25/26"
 
 STATES = [
     ("State_Profile_Connecticut", "Connecticut", "connecticut", "CT"),
+    ("State_Profile_Delaware", "Delaware", "delaware", "DE"),
     ("State_Profile_Maine", "Maine", "maine", "ME"),
     ("State_Profile_Maryland", "Maryland", "maryland", "MD"),
     ("State_Profile_Massachusetts", "Massachusetts", "massachusetts", "MA"),
@@ -27,12 +28,11 @@ STATES = [
     ("State_Profile_RhodeIsland", "Rhode Island", "rhode-island", "RI"),
     ("State_Profile_Vermont", "Vermont", "vermont", "VT"),
     ("State_Profile_Virginia", "Virginia", "virginia", "VA"),
+    ("State_Profile_WestVirginia", "West Virginia", "west-virginia", "WV"),
 ]
 DEVELOPING = [
-    ("Delaware", "delaware", "DE"),
     ("New York City", "new-york-city", "NYC"),
     ("Washington, DC", "washington-dc", "DC"),
-    ("West Virginia", "west-virginia", "WV"),
 ]
 ALL_JURIS = sorted(
     [(n, s, a, "complete") for (_f, n, s, a) in STATES] +
@@ -52,7 +52,7 @@ MAP_ABBR = {v: k for k, v in [(a, s) for (_n, s, a, _st) in
 ABBR_BY_SLUG = {s: a for (n, s, a, st) in ALL_JURIS}
 NAME_BY_SLUG = {s: n for (n, s, a, st) in ALL_JURIS}
 STATUS_BY_SLUG = {s: st for (n, s, a, st) in ALL_JURIS}
-DEV_MAP = {"Delaware", "WestVirginia", "DC"}
+DEV_MAP = {"DC"}
 LABELED = {"Maine", "NewHampshire", "Vermont", "NewYork", "Pennsylvania", "Ohio",
            "Virginia", "WestVirginia", "Massachusetts"}
 LABEL_NUDGE = {"Maine": (2, 8), "NewHampshire": (1, 8), "Vermont": (-2, -4),
@@ -571,7 +571,7 @@ open(os.path.join(OUT, "index.html"), "w").write(
 
 # ---------------------------------------------------------------- matrix page
 mx = subprocess.run(["pandoc", "-f", "markdown", "-t", "html", "--wrap=none",
-                     os.path.join(UP, "Cross_State_Matrix.md")],
+                     os.path.join(UP, "Cross_State_Matrix__1_.md")],
                     capture_output=True, text=True, check=True).stdout
 ms = BeautifulSoup(mx, "lxml")
 mb = ms.body or ms
