@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-12 Education Strategy Hub | Dell Technologies</title>
+<style>
+  :root {
+    --navy: #00447C;
+    --blue: #0672CB;
+    --gray: #5A6B7C;
+    --amber: #E07B27;
+    --ink: #1e2a35;
+    --paper: #ffffff;
+    --wash: #f4f7fa;
+    --line: #d9e1e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  h1, h2, h3 {
+    font-family: "Arial Nova Light", "Arial Nova", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  a { color: var(--blue); }
+  a:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+  .hero { background: var(--navy); color: #fff; padding: 48px 24px 42px; }
+  .hero-inner { max-width: 960px; margin: 0 auto; }
+  .hero .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #9fc3e8; margin-bottom: 12px; }
+  .hero h1 { font-size: 38px; margin-bottom: 8px; }
+  .hero p.sub { font-size: 18px; color: #cfe0f2; max-width: 640px; }
+  .hero .rule { width: 64px; height: 4px; background: var(--amber); margin: 18px 0 0; }
+
+  nav { position: sticky; top: 0; background: var(--paper); border-bottom: 1px solid var(--line); z-index: 10; }
+  nav .nav-inner { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; padding: 0 16px; }
+  nav a { display: block; padding: 13px 12px; font-size: 14px; text-decoration: none; color: var(--gray); border-bottom: 3px solid transparent; }
+  nav a:hover { color: var(--navy); border-bottom-color: var(--blue); }
+
+  main { max-width: 960px; margin: 0 auto; padding: 8px 24px 64px; }
+  section { padding-top: 44px; }
+  section + section { margin-top: 12px; border-top: 1px solid var(--line); }
+  .section-eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+  section h2 { font-size: 28px; color: var(--navy); margin-bottom: 14px; }
+  section p { margin-bottom: 13px; max-width: 740px; }
+
+  /* Team grid */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 20px 0 6px; }
+  .team-card { border: 1px solid var(--line); border-top: 4px solid var(--blue); padding: 16px 18px; background: #fff; }
+  .team-card.you { border-top-color: var(--amber); background: var(--wash); }
+  .team-card .name { font-weight: bold; color: var(--navy); font-size: 17px; }
+  .team-card .region { color: var(--gray); font-size: 14px; margin-top: 2px; }
+  .team-card .states { color: var(--navy); font-size: 12.5px; letter-spacing: .02em; margin-top: 6px; }
+  .team-card .contact { font-size: 14px; margin-top: 8px; color: var(--gray); }
+  .team-note { font-size: 14px; color: var(--gray); max-width: 740px; }
+
+  .map-wrap { margin: 22px 0 6px; max-width: 960px; }
+  .map-wrap img { width: 100%; height: auto; border: 1px solid var(--line); display: block; }
+  .map-cap { font-size: 13px; color: var(--gray); margin-top: 6px; }
+
+  /* Strategist expandables */
+  details.strategist { border: 1px solid var(--line); margin-bottom: 10px; background: #fff; max-width: 760px; }
+  details.strategist[open] { border-left: 4px solid var(--amber); }
+  details.strategist summary { cursor: pointer; padding: 14px 18px; font-size: 17px; font-weight: bold; color: var(--navy); list-style-position: inside; }
+  details.strategist summary .reg { font-weight: normal; color: var(--gray); font-size: 15px; }
+  details.strategist summary:hover { background: var(--wash); }
+  details.strategist summary::marker { color: var(--amber); }
+  details.strategist .d-body { padding: 2px 22px 18px; }
+  details.strategist .d-body p { margin-bottom: 11px; max-width: 700px; font-size: 15px; }
+  .placeholder-note { font-size: 13px; color: var(--gray); font-style: italic; }
+
+  /* Strategist section */
+  .strategist-flex { display: grid; grid-template-columns: 1fr; gap: 8px; max-width: 740px; }
+  ul.plain { list-style: none; margin: 4px 0 14px; max-width: 740px; }
+  ul.plain li { padding-left: 22px; position: relative; margin-bottom: 9px; }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--blue); }
+
+  /* Resource tiles */
+  .tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 20px 0 6px; }
+  a.tile { display: block; border: 1px solid var(--line); border-left: 4px solid var(--amber); background: var(--wash); padding: 18px 20px; text-decoration: none; color: var(--ink); }
+  a.tile:hover { border-left-color: var(--navy); background: #eef4f9; }
+  a.tile .tile-title { font-family: "Arial Nova Light", "Arial Nova", Arial, sans-serif; font-weight: 300; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+  a.tile .tile-desc { font-size: 14px; color: var(--ink); }
+  a.tile.pending { border-left-color: var(--gray); opacity: .75; }
+  a.tile.pending .tile-title { color: var(--gray); }
+  .pending-tag { display: inline-block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--gray); padding: 2px 8px; margin-bottom: 8px; }
+
+  .contact-block { background: var(--navy); color: #fff; padding: 24px 26px; max-width: 740px; margin: 20px 0 4px; }
+  .contact-block p { margin-bottom: 6px; }
+  .contact-block a { color: #9fc3e8; }
+
+  footer { border-top: 1px solid var(--line); padding: 20px 24px 36px; max-width: 960px; margin: 0 auto; font-size: 13px; color: var(--gray); }
+
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 29px; }
+    section h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Dell Technologies</p>
+    <h1>K-12 Education Strategy</h1>
+    <p class="sub">Your strategists, the resources they've built, and how to put both to work in your territory.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<nav aria-label="Page sections">
+  <div class="nav-inner">
+    <a href="#team">The Team</a>
+    <a href="#strategist">Meet the Strategists</a>
+    <a href="#resources">Resources &amp; Events</a>
+    <a href="#contact">Get in Touch</a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="team">
+    <p class="section-eyebrow">The Team</p>
+    <h2>Find your strategist</h2>
+    <p>Every region has a K-12 Education Strategist: a career educator who works alongside your accounts at no cost to the district. Find yours below and loop them in early. They're at their best when they're part of the plan, not a late add.</p>
+
+    <!-- ================================================================
+         TEAM ROSTER - from the K-12 BDM Alignment map.
+         All emails confirmed from the team distribution list.
+         ================================================================ -->
+    <div class="team-grid">
+      <div class="team-card you">
+        <p class="name">Jeremiah Frink</p>
+        <p class="region">Northeast</p>
+        <p class="states">ME &middot; VT &middot; NH &middot; MA &middot; CT &middot; RI &middot; NY &middot; NJ &middot; PA &middot; MD &middot; DE &middot; DC &middot; VA &middot; WV</p>
+        <p class="contact"><a href="mailto:jeremiah.frink@dell.com">jeremiah.frink@dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Marlo Gaddis</p>
+        <p class="region">Central</p>
+        <p class="states">ND &middot; SD &middot; NE &middot; KS &middot; MN &middot; IA &middot; MO &middot; WI &middot; IL &middot; MI &middot; IN &middot; OH &middot; KY &middot; TN &middot; NC &middot; SC</p>
+        <p class="contact"><a href="mailto:Marlo.Gaddis@dell.com">Marlo.Gaddis@dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Kendall Latham</p>
+        <p class="region">Southeast</p>
+        <p class="states">AL &middot; FL &middot; GA &middot; LA &middot; MS</p>
+        <p class="contact"><a href="mailto:Kendall.Latham1@dell.com">Kendall.Latham1@dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Nekia Becerra</p>
+        <p class="region">Texarkana</p>
+        <p class="states">AR &middot; NM &middot; OK &middot; TX</p>
+        <p class="contact"><a href="mailto:Nekia.Becerra@Dell.com">Nekia.Becerra@Dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Matt Dascoli</p>
+        <p class="region">West</p>
+        <p class="states">AK &middot; WA &middot; OR &middot; CA &middot; NV &middot; ID &middot; UT &middot; AZ &middot; MT &middot; WY &middot; CO</p>
+        <p class="contact"><a href="mailto:Matt.Dascoli@Dell.com">Matt.Dascoli@Dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Katina Papulkas</p>
+        <p class="region">Canada</p>
+        <p class="states">All provinces and territories</p>
+        <p class="contact"><a href="mailto:Katina.Papulkas@dell.com">Katina.Papulkas@dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Jennifer Hebert</p>
+        <p class="region">Team Leader</p>
+        <p class="states">K-12 Education Strategy Team</p>
+        <p class="contact"><a href="mailto:Jennifer.Hebert@dell.com">Jennifer.Hebert@dell.com</a></p>
+      </div>
+      <div class="team-card">
+        <p class="name">Jamila Cowan</p>
+        <p class="region">K-12 Partnerships</p>
+        <p class="states">Liaison to Strategic Partnerships and Dell Giving</p>
+        <p class="contact"><a href="mailto:Jamila.Cowan@dell.com">Jamila.Cowan@dell.com</a></p>
+      </div>
+    </div>
+    <!-- ============== END TEAM ROSTER ============== -->
+
+    <div class="map-wrap">
+      <img src="k12-bdm-map.png" alt="K-12 BDM Alignment map showing the six strategist regions across the United States and Canada: Northeast, Central, Southeast, Texarkana, West, and Canada, plus the K-12 Partnerships liaison (Jamila Cowan).">
+      <p class="map-cap">K-12 BDM Alignment, Public Sector Strategy Team. The colors match each strategist's region above.</p>
+    </div>
+
+    <p class="team-note">Not sure which region an account falls under? Ask any of us and we'll route you.</p>
+  </section>
+
+  <section id="strategist">
+    <p class="section-eyebrow">The People</p>
+    <h2>Meet the strategists</h2>
+    <p>Open yours. Same structure for everyone: who they are, and the moments to bring them in.</p>
+
+    <details class="strategist" open>
+      <summary>Jeremiah Frink <span class="reg">&middot; Northeast</span></summary>
+      <div class="d-body">
+        <p>Before Dell I spent my career on the district side of the table: teacher, instructional coach, administrator, and executive director over technology and instruction, including nine years as a director at a BOCES/RIC in New York. I hold a PhD in Teaching, Curriculum and Change and serve on the ISTE+ASCD National Faculty.</p>
+        <p><strong>Good moments to bring me in:</strong> a district wants an AI strategy conversation and a product deck won't land; instructional leaders will be in the room; an account is stalled and a listening-first engagement could restart it; a funding claim needs checking; a tech plan or RFP should be answered in the district's own language; a regional conference play needs shaping.</p>
+        <p><strong>What I don't do, on purpose:</strong> I don't close, and I won't pitch into a listening meeting. Districts trust me because I'm not the one asking for the order, and that trust is what I bring to your accounts.</p>
+        <p><a href="mailto:jeremiah.frink@dell.com">jeremiah.frink@dell.com</a> &middot; 585-877-3351</p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Marlo Gaddis <span class="reg">&middot; Central</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Background: two or three sentences in Marlo's voice]</p>
+        <p class="placeholder-note">[Good moments to bring Marlo in]</p>
+        <p><a href="mailto:Marlo.Gaddis@dell.com">Marlo.Gaddis@dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Kendall Latham <span class="reg">&middot; Southeast</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Background: two or three sentences in Kendall's voice]</p>
+        <p class="placeholder-note">[Good moments to bring Kendall in]</p>
+        <p><a href="mailto:Kendall.Latham1@dell.com">Kendall.Latham1@dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Nekia Becerra <span class="reg">&middot; Texarkana</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Background: two or three sentences in Nekia's voice]</p>
+        <p class="placeholder-note">[Good moments to bring Nekia in]</p>
+        <p><a href="mailto:Nekia.Becerra@Dell.com">Nekia.Becerra@Dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Matt Dascoli <span class="reg">&middot; West</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Background: two or three sentences in Matt's voice]</p>
+        <p class="placeholder-note">[Good moments to bring Matt in]</p>
+        <p><a href="mailto:Matt.Dascoli@Dell.com">Matt.Dascoli@Dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Katina Papulkas <span class="reg">&middot; Canada</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Background: two or three sentences in Katina's voice]</p>
+        <p class="placeholder-note">[Good moments to bring Katina in]</p>
+        <p><a href="mailto:Katina.Papulkas@dell.com">Katina.Papulkas@dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Jennifer Hebert <span class="reg">&middot; Team Leader</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Role: leads the K-12 Education Strategy Team; when to route through Jennifer]</p>
+        <p><a href="mailto:Jennifer.Hebert@dell.com">Jennifer.Hebert@dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+
+    <details class="strategist">
+      <summary>Jamila Cowan <span class="reg">&middot; K-12 Partnerships</span></summary>
+      <div class="d-body">
+        <p class="placeholder-note">[Role: liaison to Strategic Partnerships and Dell Giving; when to route through Jamila]</p>
+        <p><a href="mailto:Jamila.Cowan@dell.com">Jamila.Cowan@dell.com</a> &middot; <span class="placeholder-note">[phone]</span></p>
+      </div>
+    </details>
+  </section>
+
+  <section id="resources">
+    <p class="section-eyebrow">Resources &amp; Events</p>
+    <h2>The toolkit</h2>
+    <p>Everything below is built for you to use directly. The first three are ready now; the rest link out to SharePoint and will light up as they're connected.</p>
+
+    <!-- ================================================================
+         LINK BLOCK - every link on this site lives here and only here.
+         To connect a pending tile: replace href="#" with the real URL
+         and delete the class "pending" and the pending-tag line.
+         ================================================================ -->
+    <div class="tile-grid">
+      <a class="tile" href="district-playbook.html">
+        <p class="tile-title">District Engagement Playbook</p>
+        <p class="tile-desc">Quick answers to the questions AEs ask: who decides, when money moves, what's top of mind, how to prep an intro meeting, and what funding claims to check.</p>
+      </a>
+      <a class="tile" href="conference-playbook.html">
+        <p class="tile-title">Regional Conference Playbook</p>
+        <p class="tile-desc">Driving a statewide or regional conference presence end to end, with the worksheets, templates, and idea catalogs one click in.</p>
+      </a>
+      <a class="tile" href="student-programs.html">
+        <p class="tile-title">Student Programs</p>
+        <p class="tile-desc">Girls Who Game, Student TechCrew, Data Dunkers, and Tech Career Circuit at a glance, with the official one-pagers to share.</p>
+      </a>
+      <a class="tile" href="intro-emails.html">
+        <p class="tile-title">Customer Intro Emails</p>
+        <p class="tile-desc">Four ready-to-adapt emails for introducing your strategist to district leaders, organized by audience and tone.</p>
+      </a>
+      <a class="tile" href="nys-boces-rics.html">
+        <p class="tile-title">NYS &amp; BOCES/RICs Explained</p>
+        <p class="tile-desc">How purchasing and contracts actually work through BOCES and RICs in New York, and the misconceptions that trip up deals.</p>
+      </a>
+      <a class="tile" href="https://www.impactedvisors.org/projects/ourdell/index.html">
+        <p class="tile-title">State-by-State Guide</p>
+        <p class="tile-desc">Jeremiah's guide to the territory, state by state: what's true on the ground and what to know before you engage.</p>
+      </a>
+      <a class="tile pending" href="#">
+        <span class="pending-tag">Link coming</span>
+        <p class="tile-title">District Document Examples</p>
+        <p class="tile-desc">The district-facing documents your strategist builds: crosswalks from a district's own plan to Dell support, plan reviews, AI field examples, and listening-session question sets.</p>
+      </a>
+      <a class="tile" href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">
+        <p class="tile-title">Presentations &amp; Session Materials</p>
+        <p class="tile-desc">The Understanding K-12 enablement series decks, Sessions 1 through 6, plus the Student Programs session. Dell sign-in required.</p>
+      </a>
+      <a class="tile pending" href="#">
+        <span class="pending-tag">Link coming</span>
+        <p class="tile-title">Team SharePoint</p>
+        <p class="tile-desc">The full shared library: working documents, templates, and everything that doesn't live on this site.</p>
+      </a>
+    </div>
+    <!-- ============== END LINK BLOCK ============== -->
+  </section>
+
+  <section id="contact">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2>Reach out</h2>
+    <p>Any outreach works, but the best asks include four things: the account, the timing, what the district has said, and what you need. That's everything we need to say yes quickly.</p>
+    <div class="contact-block">
+      <p><strong>Jeremiah Okal-Frink</strong> &middot; Northeast &amp; Mid-Atlantic</p>
+      <p><a href="mailto:jeremiah.frink@dell.com">jeremiah.frink@dell.com</a> &middot; 585-877-3351</p>
+      <p style="margin-top:10px; color:#cfe0f2; font-size:14px;">For other regions, use the team roster above.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Dell Technologies internal resource for account executives and district managers. K-12 Education Strategy Team.</p>
+</footer>
+
+</body>
+</html>
