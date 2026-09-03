@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>District Engagement Playbook | K-12 Education Strategy</title>
+<style>
+  :root {
+    --navy: #00447C; --blue: #0672CB; --gray: #5A6B7C; --amber: #E07B27;
+    --ink: #1e2a35; --paper: #ffffff; --wash: #f4f7fa; --line: #d9e1e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 16px; }
+  h1, h2, h3 { font-family: "Arial Nova Light", "Arial Nova", Arial, Helvetica, sans-serif; font-weight: 300; line-height: 1.2; }
+  a { color: var(--blue); }
+  a:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+  .topbar { background: var(--navy); color: #fff; padding: 14px 24px; }
+  .topbar .inner { max-width: 920px; margin: 0 auto; font-size: 14px; }
+  .topbar a { color: #9fc3e8; text-decoration: none; }
+  .topbar a:hover { text-decoration: underline; }
+
+  .hero { background: var(--navy); color: #fff; padding: 26px 24px 38px; }
+  .hero-inner { max-width: 920px; margin: 0 auto; }
+  .hero .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #9fc3e8; margin-bottom: 10px; }
+  .hero h1 { font-size: 34px; margin-bottom: 8px; }
+  .hero p.sub { font-size: 17px; color: #cfe0f2; max-width: 680px; }
+  .hero .rule { width: 64px; height: 4px; background: var(--amber); margin-top: 16px; }
+
+  main { max-width: 920px; margin: 0 auto; padding: 26px 24px 64px; }
+
+  h2.moment { font-size: 24px; color: var(--navy); margin: 30px 0 4px; }
+  p.moment-sub { font-size: 14px; color: var(--gray); margin-bottom: 12px; }
+
+  details { border: 1px solid var(--line); margin-bottom: 10px; background: #fff; }
+  details[open] { border-left: 4px solid var(--amber); }
+  summary { cursor: pointer; padding: 14px 18px; font-size: 18px; font-weight: bold; color: var(--navy); list-style-position: inside; font-family: Arial, sans-serif; }
+  summary:hover { background: var(--wash); }
+  summary::marker { color: var(--amber); }
+  .d-body { padding: 2px 22px 18px; }
+  .d-body p { margin-bottom: 11px; max-width: 720px; font-size: 15px; }
+
+  .quick { border-left: 4px solid var(--blue); background: var(--wash); padding: 10px 14px; margin: 6px 0 14px; max-width: 720px; }
+  .quick p { margin: 0; font-size: 15px; }
+  .quick .q-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); font-weight: bold; display: block; margin-bottom: 3px; }
+
+  table { border-collapse: collapse; width: 100%; max-width: 760px; margin: 10px 0 14px; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--wash); color: var(--navy); }
+  td.hot { background: #fdf3ea; }
+
+  /* Month strip */
+  .strip { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; max-width: 760px; margin: 8px 0 4px; }
+  .strip span { text-align: center; font-size: 12px; padding: 6px 0; background: var(--wash); color: var(--gray); border: 1px solid var(--line); }
+  .strip span.on { background: var(--blue); color: #fff; border-color: var(--blue); font-weight: bold; }
+  .strip span.peak { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: bold; }
+  .strip-label { font-size: 13px; color: var(--ink); margin: 2px 0 12px; max-width: 760px; }
+  .strip-label strong { color: var(--navy); }
+
+  ul.plain { list-style: none; margin: 4px 0 12px; max-width: 720px; }
+  ul.plain li { padding-left: 20px; position: relative; margin-bottom: 7px; font-size: 15px; }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: .5em; width: 7px; height: 7px; background: var(--blue); }
+
+  .warn { border-left: 4px solid var(--amber); background: var(--wash); padding: 10px 14px; margin: 10px 0; max-width: 720px; font-size: 14px; }
+  .warn p { margin: 0; }
+
+  .more { font-size: 13.5px; color: var(--gray); border-top: 1px dotted var(--line); padding-top: 8px; margin-top: 4px; max-width: 720px; }
+  .more em { color: var(--navy); font-style: normal; font-weight: bold; }
+
+  .strategist-cta { background: var(--navy); color: #fff; padding: 20px 24px; max-width: 760px; margin: 30px 0 0; }
+  .strategist-cta p { margin-bottom: 6px; font-size: 15px; }
+  .strategist-cta p:last-child { margin-bottom: 0; }
+  .strategist-cta a { color: #9fc3e8; }
+
+  footer { border-top: 1px solid var(--line); padding: 20px 24px 36px; max-width: 920px; margin: 0 auto; font-size: 13px; color: var(--gray); }
+  @media (max-width: 640px) { .hero h1 { font-size: 27px; } summary { font-size: 16px; } .strip span { font-size: 10px; } }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="inner"><a href="index.html">&larr; K-12 Education Strategy Hub</a></div></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Seller Resource &middot; Companion to the Enablement Series</p>
+    <h1>District Engagement Playbook</h1>
+    <p class="sub">Quick answers to the questions AEs actually ask, from who decides to what to say. Find your question, get the answer, get back to work. The live enablement sessions go deeper on every one of these.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<main>
+
+  <h2 class="moment">"I'm trying to understand a district"</h2>
+  <p class="moment-sub">Structure, people, and priorities: the map before the meeting.</p>
+
+  <details>
+    <summary>Who actually decides what in a district?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>The board governs, the superintendent and cabinet manage, and buildings adopt. Map every district contact on two axes: what they can decide (operations) and what they can spend (money). They are rarely the same people.</p></div>
+      <table>
+        <tr><th>Who</th><th>What they own</th><th>What they care about</th></tr>
+        <tr><td><strong>School board</strong></td><td>Policy, budget approval, hiring the superintendent. Governance, not management.</td><td>Community trust, defensibility, cost</td></tr>
+        <tr><td><strong>Superintendent</strong></td><td>Runs the district; the CEO</td><td>The strategic story, and whether it's board-defensible</td></tr>
+        <tr><td><strong>CFO / business official</strong></td><td>The money and the funding sources</td><td>Total cost, which pot pays, compliance</td></tr>
+        <tr><td><strong>Asst. supt. C&amp;I / CAO</strong></td><td>Curriculum, instruction, PD</td><td>Learning outcomes, educator capacity</td></tr>
+        <tr><td><strong>CTO / tech director</strong></td><td>Infrastructure, devices, systems</td><td>Security, manageability, support burden</td></tr>
+        <tr><td><strong>Principals &amp; coaches</strong></td><td>Building-level adoption</td><td>Whether it works in real classrooms</td></tr>
+        <tr><td><strong>Procurement</strong></td><td>How buying is allowed to happen</td><td>Bids, contracts, vehicles, thresholds</td></tr>
+      </table>
+      <div class="warn"><p><strong>The credibility line outsiders cross:</strong> pitching operational detail to a board member, or strategy to an operations person. Match the conversation to the authority.</p></div>
+      <p><strong>The adoption trap:</strong> a signed district contract is not classroom adoption. Principals, coaches, and teachers decide whether the thing actually gets used.</p>
+      <p class="more">For more detail: <em>Session 1 &middot; The Who</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What are BOCES, ESCs, IUs, and co-ops, and why do they keep coming up?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Educational Service Agencies: regional intermediaries between state and districts. They run shared services and, crucially, cooperative purchasing. Often the contract vehicle, the credibility channel, and the sell-once-reach-many aggregation point in a region.</p></div>
+      <table>
+        <tr><th>State</th><th>What they're called</th></tr>
+        <tr><td>New York</td><td>BOCES (and 12 RICs within them)</td></tr>
+        <tr><td>Pennsylvania</td><td>Intermediate Units (IUs)</td></tr>
+        <tr><td>Ohio</td><td>Educational Service Centers (ESCs)</td></tr>
+        <tr><td>Elsewhere</td><td>ESDs, AEAs, co-ops; names vary, function repeats</td></tr>
+      </table>
+      <p>New York's version has real contract mechanics that trip up deals. Full explainer: <a href="nys-boces-rics.html">NYS &amp; BOCES/RICs Explained</a>.</p>
+      <p class="more">For more detail: <em>Session 1 &middot; The Who</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do I find out what a district actually cares about?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>They publish it. Read their strategic plan, tech plan, and recent board agendas before any meeting; open the conversation from their commitments, not our portfolio.</p></div>
+      <table>
+        <tr><th>Look at</th><th>It tells you</th><th>Find it</th></tr>
+        <tr><td>Strategic plan</td><td>The 3-5 year priorities leadership is judged on</td><td>District website, usually under Board or About</td></tr>
+        <tr><td>Technology plan</td><td>Refresh cycles, infrastructure goals, digital learning direction</td><td>District or state ed department site</td></tr>
+        <tr><td>Board agendas &amp; minutes</td><td>What's live right now, what got approved, what got tabled</td><td>BoardDocs or the district site, updated monthly</td></tr>
+        <tr><td>Adopted budget</td><td>Where the money actually goes, and what got cut</td><td>Business office pages, spring adoption</td></tr>
+        <tr><td>Superintendent goals</td><td>What the board told its one employee to accomplish</td><td>Often in board minutes, early fall</td></tr>
+      </table>
+      <p>Then use their language back to them. A crosswalk from their plan to what we do reads like partnership because it is.</p>
+      <p class="more">For more detail: <em>Session 4 &middot; How We Show Up</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <h2 class="moment">"I'm timing my outreach"</h2>
+  <p class="moment-sub">The district calendar decides when doors open. Align to it instead of chasing it.</p>
+
+  <details>
+    <summary>When does the money actually move?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Budget development runs roughly November through February, boards adopt in spring, and the fiscal year opens July 1. If you show up in April with a new idea, you're a year late.</p></div>
+      <p class="strip-label"><strong>Budget development</strong> (the window where ideas get funded):</p>
+      <div class="strip">
+        <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span class="on">Nov</span><span class="peak">Dec</span><span class="peak">Jan</span><span class="on">Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+      </div>
+      <p class="strip-label"><strong>Device decisions</strong> land December through February, not spring. <strong>Academic and PD decisions</strong> lock by February or March, so those conversations happen summer through fall. <strong>POs concentrate</strong> in late summer and again before fiscal year close.</p>
+      <table>
+        <tr><th>Regional nuance</th><th>States</th></tr>
+        <tr><td>Earlier cycles</td><td>MD, DC, VA</td></tr>
+        <tr><td>Middle</td><td>PA, OH, DE, WV</td></tr>
+        <tr><td>Later</td><td>NY, NJ, New England</td></tr>
+      </table>
+      <p class="more">For more detail: <em>Session 2 &middot; District Cycle</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>When should I reach out, and about what?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Match the touch to the district's moment: vision conversations in summer, budget-shaping in fall, decision support in winter, delivery and relationships in spring.</p></div>
+      <table>
+        <tr><th>Window</th><th>What's happening for them</th><th>Your move</th></tr>
+        <tr><td>Jul-Aug</td><td>New fiscal year opens; new leaders start July 1; planning has room</td><td>Vision and planning conversations; welcome new leadership</td></tr>
+        <tr><td class="hot">Sep-Oct</td><td>Year underway; fall conference season; budget season approaching</td><td>Be visible at their events; surface ideas before budget opens</td></tr>
+        <tr><td class="hot">Nov-Feb</td><td>Budget development; device decisions; late-winter conferences</td><td>Support the case-building; quotes and options while it's shapeable</td></tr>
+        <tr><td>Mar-Apr</td><td>Board adoption; academics locked for next year</td><td>Stay close, don't push new ideas for this cycle</td></tr>
+        <tr><td>May-Jun</td><td>Close-out POs; next-year prep</td><td>Deliver well; plant next year's conversations</td></tr>
+      </table>
+      <div class="warn"><p><strong>The two clocks:</strong> Dell's H2 and the district's fiscal year don't line up. Territory owners run both plays at once: closing activity in one hand, next-season relationship building in the other.</p></div>
+      <p class="more">For more detail: <em>Session 2 &middot; District Cycle</em> and <em>Session 5 &middot; Your Account Set in 2H</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <h2 class="moment">"I'm walking into a conversation"</h2>
+  <p class="moment-sub">What's on their minds, and how to show up ready.</p>
+
+  <details>
+    <summary>What's top of mind for district leaders right now?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Six patterns from the field. Lead with any of these and you're in their conversation, not ours.</p></div>
+      <table>
+        <tr><th>Pattern</th><th>What it sounds like from them</th></tr>
+        <tr><td><strong>Budget still moving</strong></td><td>Dollars exist but move cautiously; funding sources are shifting under them post-ESSER</td></tr>
+        <tr><td><strong>AI in the governance phase</strong></td><td>Policy, guardrails, and adult readiness before student-facing tools; leadership wants a strategy conversation, not a product one</td></tr>
+        <tr><td><strong>Operational capacity gap</strong></td><td>Small teams carrying more systems than they can support</td></tr>
+        <tr><td><strong>Skilling demand</strong></td><td>Career pathways, credentials, and workforce readiness climbing the priority list</td></tr>
+        <tr><td><strong>Instruction-technology siloing</strong></td><td>Tech and academics planning separately, and feeling the cost of it</td></tr>
+        <tr><td><strong>Cybersecurity, matured</strong></td><td>Past the panic; now asking nuanced questions about posture, insurance, and recovery</td></tr>
+      </table>
+      <p>These refresh as the field moves. When a conversation goes deeper than a pattern, that's the moment to bring in your strategist.</p>
+      <p class="more">For more detail: <em>Session 3 &middot; Trends in K-12</em> and <em>Session 5 &middot; Your Account Set in 2H</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>How do I prepare for an intro meeting?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Read their published plans, know who's in the room and what they own, and bring questions built from their commitments. Questions do the listening; your prep does the impressing.</p></div>
+      <ul class="plain">
+        <li><strong>Their priorities:</strong> strategic plan and recent board minutes read, two or three of their own commitments pulled out to ask about</li>
+        <li><strong>The room:</strong> each attendee mapped to what they decide and care about (see the who-decides table above)</li>
+        <li><strong>Your state fluency:</strong> current initiatives, the data privacy law that governs them (in New York, expect Ed Law 2-d early), and how they're allowed to buy</li>
+        <li><strong>The two-minute standard:</strong> you can talk about what districts in this state are working on before any product word appears</li>
+        <li><strong>One thing of value to leave:</strong> an introduction, a field observation, a useful resource; something that matters in a year, not doughnuts</li>
+      </ul>
+      <div class="warn"><p><strong>The intro-meeting rule:</strong> if it was framed as a listening conversation, it stays one. The pitch waits for the meeting that's about the pitch.</p></div>
+      <p>Introducing your strategist? Ready-made emails: <a href="intro-emails.html">Customer Intro Emails</a>.</p>
+      <p class="more">For more detail: <em>Session 4 &middot; How We Show Up</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What funding might be in play, and what should I never assume?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Six pots: operational budget, capital and bonds, federal Titles, e-rate, competitive grants, and the procurement vehicle that governs how they're allowed to buy. When someone names a funding source, ask a clarifying question before you build a forecast on it.</p></div>
+      <table>
+        <tr><th>Pot</th><th>Pays for</th><th>Watch out</th></tr>
+        <tr><td>Operational budget</td><td>The everyday: staff, refresh, licenses</td><td>Built Nov-Feb; adopted in spring</td></tr>
+        <tr><td>Capital / bonds</td><td>Buildings and big infrastructure</td><td>Voter approval and long timelines in many states</td></tr>
+        <tr><td>Federal Titles</td><td>Targeted populations and programs</td><td>Compliance strings on every dollar</td></tr>
+        <tr><td>E-rate</td><td>On-premises network only</td><td class="hot">Never laptops, never hotspots (off-campus eligibility rescinded 2025)</td></tr>
+        <tr><td>Competitive grants</td><td>Specific initiatives</td><td>Slow, restricted, real work; no guaranteed Dell return</td></tr>
+        <tr><td>Procurement vehicles</td><td>Nothing; they're how buying is allowed</td><td>Contract-specific rules (see BOCES explainer)</td></tr>
+      </table>
+      <div class="warn"><p><strong>Field flag:</strong> "e-rate is paying for the devices" is almost always actually carrier, OEM, or cooperative contract pricing. Ask which contract; the answer tells you who the real customer is.</p></div>
+      <p class="more">For more detail: <em>Session 6 &middot; Money Flow in Q3</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <h2 class="moment">"I'm thinking about my whole territory"</h2>
+  <p class="moment-sub">From account-by-account to owning the ground.</p>
+
+  <details>
+    <summary>What does a territory owner ask that a visitor doesn't?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Four questions, held at once, each sharpening the others. The shift is from account records to a territory you actually understand.</p></div>
+      <table>
+        <tr><th>#</th><th>The question</th><th>It sharpens</th></tr>
+        <tr><td>1</td><td>Which districts do I actually understand, beyond the account record?</td><td>Where you can be useful, not just present</td></tr>
+        <tr><td>2</td><td>Where am I a partner to think with, not just a vendor?</td><td>Which relationships can deepen</td></tr>
+        <tr><td>3</td><td>What is true about my states: contracts, funding patterns, regional dynamics?</td><td>Which districts you can move in, and how</td></tr>
+        <tr><td>4</td><td>Where on the clock is each district: budget cycle, board rhythm, planning season?</td><td>When any of it can actually happen</td></tr>
+      </table>
+      <p class="more">For more detail: <em>Session 4 &middot; How We Show Up</em> and <em>Session 5 &middot; Your Account Set in 2H</em> in the <a href="https://dell-my.sharepoint.com/:f:/p/jeremiah_frink/IgBSmixD7OsXTrJIlgarWiECASn9BcpJaNrup3EY3GXk3dE?e=xVaL49">session folder</a> (Dell sign-in).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>When do I bring in my strategist?</summary>
+    <div class="d-body">
+      <div class="quick"><span class="q-label">Quick answer</span><p>Early, and especially when the conversation is strategic rather than transactional: AI strategy, instructional leaders in the room, a stalled account, a plan or RFP to speak to, a funding claim to check, or a conference play to shape.</p></div>
+      <p>Who yours is, and what a good ask looks like: <a href="index.html#team">the team roster</a> and <a href="index.html#strategist">how to engage</a> on the hub.</p>
+    </div>
+  </details>
+
+  <div class="strategist-cta">
+    <p><strong>This playbook is the quick-reference layer of the K-12 Seller Enablement Series.</strong> The live sessions carry the depth, the discussion, and the current field read.</p>
+    <p>Missing a question you needed answered? Tell your strategist; that's how this page grows.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>Dell Technologies internal resource. Built from the K-12 Seller Enablement Series (Education Strategy Team). <a href="index.html">Back to the hub</a></p>
+</footer>
+
+</body>
+</html>

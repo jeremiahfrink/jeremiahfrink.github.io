@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regional Conference Playbook | K-12 Education Strategy</title>
+<style>
+  :root {
+    --navy: #00447C; --blue: #0672CB; --gray: #5A6B7C; --amber: #E07B27;
+    --ink: #1e2a35; --paper: #ffffff; --wash: #f4f7fa; --line: #d9e1e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.65; font-size: 16px; }
+  h1, h2, h3 { font-family: "Arial Nova Light", "Arial Nova", Arial, Helvetica, sans-serif; font-weight: 300; line-height: 1.2; }
+  a { color: var(--blue); }
+  a:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+  .topbar { background: var(--navy); color: #fff; padding: 14px 24px; }
+  .topbar .inner { max-width: 900px; margin: 0 auto; font-size: 14px; }
+  .topbar a { color: #9fc3e8; text-decoration: none; }
+  .topbar a:hover { text-decoration: underline; }
+
+  .hero { background: var(--navy); color: #fff; padding: 26px 24px 40px; }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #9fc3e8; margin-bottom: 10px; }
+  .hero h1 { font-size: 34px; margin-bottom: 8px; }
+  .hero p.sub { font-size: 17px; color: #cfe0f2; max-width: 660px; }
+  .hero .rule { width: 64px; height: 4px; background: var(--amber); margin-top: 16px; }
+
+  main { max-width: 900px; margin: 0 auto; padding: 28px 24px 64px; }
+  .intro p { margin-bottom: 13px; max-width: 720px; }
+  .meta { font-size: 14px; color: var(--gray); margin-bottom: 20px; }
+
+  /* Playbook on a page */
+  .on-a-page { border: 1px solid var(--line); border-top: 4px solid var(--amber); background: var(--wash); padding: 22px 26px; margin: 8px 0 30px; }
+  .on-a-page h2 { font-size: 24px; color: var(--navy); margin-bottom: 6px; }
+  .on-a-page p.lede { font-size: 15px; color: var(--gray); margin-bottom: 14px; max-width: 660px; }
+  .on-a-page ol { list-style: none; counter-reset: step; max-width: 700px; }
+  .on-a-page ol li { counter-increment: step; position: relative; padding-left: 40px; margin-bottom: 10px; font-size: 15px; }
+  .on-a-page ol li::before {
+    content: counter(step); position: absolute; left: 0; top: 1px;
+    width: 26px; height: 26px; background: var(--navy); color: #fff;
+    font-size: 14px; font-weight: bold; text-align: center; line-height: 26px;
+  }
+  .on-a-page ol li a { font-weight: bold; text-decoration: none; color: var(--navy); }
+  .on-a-page ol li a:hover { text-decoration: underline; color: var(--blue); }
+  .on-a-page .tools-line { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 15px; max-width: 700px; }
+
+  details { border: 1px solid var(--line); margin-bottom: 12px; background: #fff; }
+  details[open] { border-left: 4px solid var(--amber); }
+  summary { cursor: pointer; padding: 16px 18px; font-family: "Arial Nova Light", "Arial Nova", Arial, sans-serif; font-weight: 300; font-size: 21px; color: var(--navy); list-style-position: inside; }
+  summary:hover { background: var(--wash); }
+  summary::marker { color: var(--amber); }
+  .d-body { padding: 4px 22px 20px; }
+  .d-body p { margin-bottom: 12px; max-width: 700px; }
+  .d-body h3 { font-size: 18px; color: var(--navy); font-weight: bold; font-family: Arial, sans-serif; margin: 18px 0 8px; }
+  ul.plain, ol.plain-num { margin: 4px 0 14px 0; max-width: 700px; }
+  ul.plain { list-style: none; }
+  ul.plain li { padding-left: 22px; position: relative; margin-bottom: 8px; }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--blue); }
+  ol.plain-num { padding-left: 24px; }
+  ol.plain-num li { margin-bottom: 8px; }
+
+  /* Bottom line boxes */
+  .bottom-line { border-left: 4px solid var(--amber); background: var(--wash); padding: 12px 16px; margin: 8px 0 18px; max-width: 700px; }
+  .bottom-line .bl-label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); font-weight: bold; margin-bottom: 4px; }
+  .bottom-line p { margin: 0; font-size: 15px; }
+
+  .contact-callout { border: 1px solid var(--line); border-left: 4px solid var(--navy); background: var(--wash); padding: 12px 16px; margin: 14px 0; max-width: 700px; font-size: 15px; }
+  .contact-callout strong { color: var(--navy); }
+  .rule-callout { border-left: 4px solid var(--amber); background: var(--wash); padding: 12px 16px; margin: 14px 0; max-width: 700px; font-size: 15px; }
+
+  table { border-collapse: collapse; width: 100%; max-width: 740px; margin: 12px 0 16px; font-size: 15px; }
+  th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--wash); color: var(--navy); }
+
+  .email-block { border: 1px solid var(--line); background: var(--wash); padding: 16px 20px; margin: 12px 0 18px; max-width: 700px; font-size: 15px; }
+  .email-block p { margin-bottom: 10px; }
+  .email-block p:last-child { margin-bottom: 0; }
+
+  .tools-banner { border: 1px solid var(--line); border-left: 4px solid var(--navy); background: var(--wash); padding: 16px 20px; margin: 24px 0 0; max-width: 740px; }
+  .tools-banner p { margin: 0; font-size: 15px; }
+
+  footer { border-top: 1px solid var(--line); padding: 20px 24px 36px; max-width: 900px; margin: 0 auto; font-size: 13px; color: var(--gray); }
+  @media (max-width: 560px) { .hero h1 { font-size: 27px; } summary { font-size: 18px; } .on-a-page { padding: 18px; } }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="inner"><a href="index.html">&larr; K-12 Education Strategy Hub</a> &nbsp;&middot;&nbsp; <a href="playbook-worksheets.html">Worksheets &amp; Templates</a></div></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Events &middot; Seller Resource</p>
+    <h1>Regional Conference Playbook</h1>
+    <p class="sub">A seller's guide to showing up at statewide and regional education conferences. Start with the map below; open a section when you're standing in it.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <p class="meta"><strong>Audience:</strong> Account Executives and District Managers (K-12 primary; built for adaptation to Higher Ed and SLG) &middot; <strong>Owner:</strong> Education Strategy Team &middot; <strong>Status:</strong> Working draft v2</p>
+  </div>
+
+  <div class="on-a-page">
+    <h2>The playbook on a page</h2>
+    <p class="lede">Nine moves, in order. If you only read this box, you have the model; each section below is the depth behind one move.</p>
+    <ol>
+      <li><a href="#s1">Define success first.</a> If this event went perfectly, what would we have twelve weeks later? Pick one or two outcomes; they drive everything.</li>
+      <li><a href="#s1">Gate the decision.</a> Evaluate the audience, your account overlap, the organizer, timing, and rough cost. Yes, no, or scout this year: all three are legitimate.</li>
+      <li><a href="#s2">Pick your rungs.</a> Presence is a ladder from a partner's booth to an annual organizer relationship. Most strong plays combine two or three rungs.</li>
+      <li><a href="#s3">Know what you add.</a> Strategists, programs, and theme sessions beat product pitches. The most remembered move: connecting districts to each other.</li>
+      <li><a href="#s4">Staff for the audience.</a> Coverage rotation, everyone briefed, and everyone able to hold a two-minute education conversation before any product word appears.</li>
+      <li><a href="#s5">Build the real budget.</a> The booth fee is not the number. Full cost picture, confirmed funding, and the who-needs-to-say-yes check before signing.</li>
+      <li><a href="#s6">Design for doing.</a> Visitors interact, they don't look. Book district meetings ahead of time. Conversation first, capture second.</li>
+      <li><a href="#s7">Work backward from the date.</a> Twelve-plus weeks of milestones, each with one owner. The timeline is in the worksheets.</li>
+      <li><a href="#s7">Follow through inside two weeks.</a> Personalized follow-up, leads in CRM tagged to the event, debrief, organizer thank-you. This is where presence becomes pipeline.</li>
+    </ol>
+    <p class="tools-line">The fill-in tools live on their own page: <a href="playbook-worksheets.html">Worksheets &amp; Templates</a> (evaluation, budget, timeline, contact directory, email templates, and two idea catalogs).</p>
+  </div>
+
+  <details>
+    <summary>Purpose: Why This Playbook Exists</summary>
+    <div class="d-body">
+      <span id="purpose"></span>
+      <p>Marketing owns national conferences and a select set of regional ones. Below that layer sits a rich landscape of statewide and regional events run by state associations, regional information centers, and regional service agencies. These are often where the decision-makers in your territory actually show up, and no one at corporate is going to run them for you.</p>
+      <p>This playbook is built so an AE can drive a regional conference presence end to end, with support from the DM, the Education Strategist, and the partner teams called out throughout: whether to be there, how to show up, what value you bring, who staffs it, what it really costs, what happens on site, and the follow-through that turns the investment into pipeline and relationship.</p>
+      <p>Two principles run through everything here:</p>
+      <ol class="plain-num">
+        <li><strong>Presence is not the goal. Relationship is.</strong> A booth no one remembers is an expense. The playbook keeps pushing you from "we were there" toward "we became part of what that community is doing."</li>
+        <li><strong>The thinking is yours.</strong> Worksheets and generative AI tools can accelerate the work, but the strategy, the relationships, and the judgment calls belong to you. The closing section covers how to use Dell SalesChat (DSC) once your thinking is done, not before.</li>
+      </ol>
+      <p>Callouts formatted like <strong>[CONTACT: Role Description]</strong> are placeholders for region-specific contacts. The <a href="playbook-worksheets.html#appendix-g">Contact Directory</a> lists every contact type so names can be filled in per region.</p>
+      <h3>If this is your first one</h3>
+      <p>Start small on purpose. A strong first-year pattern: join a channel partner's booth or attend one conference as a scout, work the worksheets, book a handful of district meetings, and treat the year as learning that earns next year's investment. The full ladder is there when you are ready for it. As for the time commitment: expect a few hours a week across roughly twelve weeks, concentrated in the final month. It is real work, and it is manageable alongside the territory.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 1: Deciding Where to Be</summary>
+    <div class="d-body">
+      <span id="s1"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>This section is a gate: define what success looks like, then decide invest, skip, or scout this year. Skipping is a legitimate strategic decision, and your Education Strategist belongs in the conversation before you commit, not after.</p>
+      </div>
+      <p>Not every conference deserves your presence, and skipping one is a legitimate strategic decision. This section is a gate: it should produce a clear yes, no, or "attend to scout, invest next year."</p>
+      <h3>Start with what success would look like</h3>
+      <p>Before evaluating any conference, answer this for yourself: if this event went perfectly, what would we have twelve weeks later? Pick the one or two that matter most; they drive every later decision.</p>
+      <ul class="plain">
+        <li><strong>Pipeline:</strong> qualified conversations with target or active districts</li>
+        <li><strong>Credibility:</strong> Dell seen as a serious K-12 education partner in this state or region, beyond the hardware narrative</li>
+        <li><strong>Retention:</strong> existing customers feel valued and connected</li>
+        <li><strong>Partner relationships:</strong> channel partners see Dell as an investment in their success</li>
+        <li><strong>Organizer relationship:</strong> the association or regional body sees Dell as an ongoing part of its community</li>
+        <li><strong>Content and learning:</strong> intelligence and material you will reuse across the territory the rest of the year</li>
+      </ul>
+      <h3>Evaluate the conference itself</h3>
+      <p>Use the criteria below (fill-in version: <a href="playbook-worksheets.html#appendix-d">Conference Evaluation Worksheet</a>):</p>
+      <ul class="plain">
+        <li><strong>Audience composition.</strong> Who actually attends: superintendents, CIOs/CTOs, curriculum leaders, lead educators, tech directors? Get the real answer from the organizer or a past attendee, not the marketing page. The audience determines what presence even makes sense.</li>
+        <li><strong>Territory and account overlap.</strong> How many of your active and target districts will be in the room? A modest conference dense with your accounts beats a large one with none.</li>
+        <li><strong>Organizer relationship.</strong> Who runs it: the statewide association, a RIC or regional service agency, a coalition? Is this an organization Dell should be in an ongoing relationship with regardless of this event?</li>
+        <li><strong>Timing.</strong> Where does this land in the district budget and decision cycle? A fall conference feeds spring purchasing conversations differently than a June event does.</li>
+        <li><strong>Competitive and partner landscape.</strong> Who is already there, at what level? Is a channel partner exhibiting whose presence you could join and strengthen?</li>
+        <li><strong>Cost versus goal.</strong> You will build the real number in Section 5. At the gate stage, a rough order of magnitude against your success definition is enough to keep going or stop.</li>
+      </ul>
+      <div class="contact-callout"><strong>[CONTACT: Education Strategist for your region]</strong> can help you read a conference's strategic fit, knows many of the organizing bodies, and may already have a relationship with the association or RIC running the event. Loop them in at the gate stage, not after you have committed.</div>
+      <h3>Finding out who will actually be there</h3>
+      <p>Two reliable routes, used together:</p>
+      <ul class="plain">
+        <li><strong>Ask your districts.</strong> The simplest and most overlooked move: ask the people in your accounts which conferences they attend and which they would recommend you be part of. Their answers tell you both where they will be and which events carry weight in their community.</li>
+        <li><strong>Request the pre-registration list.</strong> Once registered as a vendor or sponsor, ask the organizer whether they provide a pre-registration or attendee list, when you will receive it, and whether updated versions come as the event approaches. Ideally you get an early version for planning and a later one for meeting outreach. If lists are not provided, ask what they do offer: attendee counts by role, district lists from prior years, or the lead retrieval service.</li>
+      </ul>
+      <h3>The organizer relationship is the long game</h3>
+      <p>Hold one idea from the start: the most valuable outcome of a regional conference is often not the leads but becoming part of the organizing body's year. Associations and regional centers run programming year-round: leadership academies, focus groups, workshops, advocacy days. A one-time booth makes you a vendor; an ongoing relationship makes you a partner in their work. Keep this in view through Section 2, because it changes which presence options make sense.</p>
+      <p>Two unglamorous truths about how organizers experience sponsors. <strong>Being easy to work with is half the relationship:</strong> these events run on small staffs and volunteers, so the sponsor who meets deadlines, follows exhibitor rules, and treats their people well stands out, and the one who does not is remembered longer than any booth. <strong>Coming back matters more than arriving:</strong> the second and third years are when the organizer starts seeing you as part of their community, so treat the return decision as part of this year's plan.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 2: Deciding How to Show Up</summary>
+    <div class="d-body">
+      <span id="s2"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>Presence is a ladder, from joining a partner's booth up to an annual relationship with the organizer, and most strong plays combine two or three rungs. The non-negotiable: a session is education; the pitch stays outside the room.</p>
+      </div>
+      <p>Presence is a ladder, not a checkbox. Options below run roughly from lowest to highest investment and relationship depth. Most strong regional plays combine two or three rungs.</p>
+      <p><strong>A note on registering as a participant.</strong> Norms vary: some organizers welcome vendors as participants; others reserve participant registration for educators and expect vendors to come through sponsorship or exhibiting. The real concern is selling from a participant badge, which damages trust with the organizer and the community alike. Find out the expectation before you register, and if you attend as a participant, be there to learn and connect rather than to prospect. Every option below is a way of contributing to the event, and contribution is what builds standing.</p>
+      <h3>The ladder</h3>
+      <ol class="plain-num">
+        <li><strong>Join a channel partner's booth.</strong> Often the smartest entry point. A partner is already exhibiting; you join their space and bring added value to it: a strategist conversation, a device they could not otherwise show, content their booth would not otherwise have. This deepens the partner relationship and gives you presence at a fraction of the cost. The core question is what you add to <em>their</em> presence (see Section 3).</li>
+        <li><strong>Standard booth.</strong> The default, and often the least memorable. If you take a booth, Section 6 is what separates a booth people walk past from one they talk about.</li>
+        <li><strong>Enhanced booth or designed space.</strong> A larger footprint built as an experience: seating, demo stations, a conversation area. Dell has done this at national events; the pattern scales down.</li>
+        <li><strong>Speaking and thought leadership.</strong> A session slot, a panel seat, a keynote if the relationship supports it. Sessions built on themes with district voices embedded carry far more weight than product presentations, and submission deadlines often land months out, so check them at the gate stage. <strong>The non-negotiable rule:</strong> the session is education; the pitch stays outside the room. If attendees leave with something useful whether or not they ever buy from Dell, you did it right. A session that turns out to be a sales pitch burns trust with the audience and the organizer at once.</li>
+        <li><strong>Add-on sponsorships.</strong> Most conferences offer sponsorable moments: a breakfast, a reception, a session strand, an awards segment, charging stations, lanyards. Evaluate each the same way as everything else: does it advance your success definition, or is it just logo placement?</li>
+        <li><strong>Hosted adjacent event.</strong> Your own moment attached to the conference: an invite-driven leadership dinner, a customer reception, a pre-conference leadership session. Invite-driven means the audience composition is intentional, and save-the-dates must land before attendees finalize travel. <strong>Two cautions.</strong> Check the organizer's policy first: an off-site event during conference hours can look like pulling attendees away from the event they built, so schedule around their program and ideally get their blessing. And because district personnel are public sector employees, many states restrict the meals and gifts they can accept; confirm what is permissible through Dell's ethics and compliance resources before hosting.</li>
+        <li><strong>Annual or ongoing sponsorship.</strong> The top of the ladder: a year-round relationship with the organizing body covering the conference plus their other programming. This is where "vendor" becomes "part of the community." Usually earned after a year or two of showing up well at the lower rungs.</li>
+      </ol>
+      <h3>Choosing your rungs</h3>
+      <p>Match the ladder to three things: your success definition from Section 1, the audience composition, and the real budget from Section 5. A pipeline goal with a CTO-heavy audience points toward one-on-one meetings and a demo-forward space. A credibility goal with an educator-heavy audience points toward speaking and an interactive experience. An organizer-relationship goal points toward add-on sponsorship plus a conversation about the annual relationship.</p>
+      <div class="contact-callout"><strong>[CONTACT: Education Strategist for your region]</strong> should be in the conversation when you are choosing rungs, particularly for speaking submissions and any organizer-relationship play. <strong>[CONTACT: Channel Account Manager / Partner Lead]</strong> is your route into the partner-booth option and knows which partners are exhibiting where.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 3: The Value You Bring</summary>
+    <div class="d-body">
+      <span id="s3"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>Everyone at the event is silently asking what you add. Answer with strategic value (strategists, programs, theme sessions), operational value, and relationship value. The most remembered move a vendor makes: connecting districts to each other.</p>
+      </div>
+      <p>Whatever rung you choose, the question the organizer, the partner, and the attendee are all silently asking is the same: what do you add? Work through three lenses. Not every lens applies to every play; use what fits rather than forcing all three.</p>
+      <h3>Strategic and instructional value</h3>
+      <p>What expertise walks in the door with you?</p>
+      <ul class="plain">
+        <li>The Education Strategy team: field-level insight from conferences, districts, and research across the country, delivered in sessions or conversations rather than pitches</li>
+        <li>Signature programs (Student TechCrew, Girls Who Game, TechCareer Circuit, Data Dunkers): real programs districts can adopt, which give attendees something to take home beyond product</li>
+        <li>Session content built as themes with multiple district voices embedded, not standalone testimonials; a session about a problem districts share will always outdraw a session about Dell</li>
+      </ul>
+      <p><strong>The content factory principle.</strong> Whatever you build for this conference (a session, a demo narrative, a one-pager) should be built for reuse across the territory afterward. One conference's content becomes a quarter's worth of district conversations. Plan the reuse at creation time, not after.</p>
+      <h3>Operational value</h3>
+      <p>What makes the event or the partner's presence better because you are there?</p>
+      <ul class="plain">
+        <li>For a partner's booth: a device or demo they could not otherwise show, staffing depth, content, a strategist presence that elevates their conversations</li>
+        <li>For the organizer: a sponsored moment done well, a session that fills a program gap, help drawing leadership-level attendees</li>
+      </ul>
+      <h3>Relationship value</h3>
+      <p>What connections do you bring and build?</p>
+      <ul class="plain">
+        <li><strong>Connecting districts to each other.</strong> Introductions between districts working on similar problems are often the single most remembered thing a vendor does, because you gave the attendee the thing they actually came for: their peers. This can be as light as a hallway introduction or as designed as a facilitated conversation among districts working the same problem, with Dell as convener rather than presenter. Build at least one deliberate peer connection into every conference plan.</li>
+        <li>Follow-through: the vendor who actually follows up after the conference stands out more than the one with the biggest booth</li>
+        <li>For partners: co-presence at a regional event strengthens the partnership itself, which pays off well beyond this conference</li>
+      </ul>
+      <h3>Partner tiers</h3>
+      <p>Borrowing a distinction that has worked at national scale: treat <strong>invested partners</strong> (those co-funding, co-presenting, or hosting you in their space) differently from <strong>coordinating partners</strong> (those whose plans you simply want to align with). Invested partners get deep coordination: shared messaging, co-branded materials, joint follow-up. Coordinating partners get a conversation so you complement rather than collide. Either way, reach out early; partners lock their event plans months ahead.</p>
+      <div class="contact-callout"><strong>[CONTACT: Signature Programs Lead]</strong> can support program demos and student-program content. <strong>[CONTACT: Channel Account Manager / Partner Lead]</strong> owns the invested-partner coordination.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 4: Who Should Be There</summary>
+    <div class="d-body">
+      <span id="s4"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>Match people to the audience, run a coverage rotation so no one is tethered and the space is never empty, and brief everyone. The standard: anyone staffing the space can hold a two-minute education conversation before any product word appears.</p>
+      </div>
+      <p>Staffing is a strategic decision, not a headcount question. Match people to the audience and the goal.</p>
+      <ul class="plain">
+        <li><strong>AE, with DM support.</strong> The AE owns the plan and the account conversations; the DM brings the leadership-level relationship weight that superintendents and cabinet members respond to. The Education Strategist and the teams below round out the bench.</li>
+        <li><strong>Education Strategist.</strong> Essential when the audience is educator- or leadership-heavy, when you have a session slot, or when the play involves the organizer relationship. Instructional credibility cannot be faked by talking points.</li>
+        <li><strong>Services / Solutions.</strong> Bring technical depth when the audience skews CTO/CIO or when the demo requires it.</li>
+        <li><strong>Partner representatives.</strong> If you are in a partner's space or they are in yours, agree on who covers what.</li>
+      </ul>
+      <h3>Coverage planning</h3>
+      <p>Sketch a simple grid: booth or space coverage, session attendance (someone should be in the sessions your accounts attend), and scheduled meetings (see Section 6). No one should be tethered to the booth all day, and the booth should never be empty. A rotation with named blocks solves both.</p>
+      <h3>Prepare the people</h3>
+      <p>Everyone staffing the presence needs a short briefing before they are on the floor: the goal for this conference, the talking points by theme, the lead capture mechanics, key accounts attending, the schedule, and an escalation contact for problems. If you are in a partner's booth, the briefing runs both directions: you brief them on the Dell story, they brief you on theirs, and you agree on handoff language.</p>
+      <p>Two standards the briefing should set:</p>
+      <ul class="plain">
+        <li><strong>Everyone can hold an education conversation.</strong> Anyone staffing the space should be able to talk for two minutes about what districts in this state are working on before any product word appears. Attendees can tell within one exchange whether they are talking to someone who knows education or someone who knows a price list.</li>
+        <li><strong>Walk in knowing the state.</strong> Current initiatives and funding streams, the data privacy law that governs its districts (in New York, expect Ed Law 2-d to come up early), and above all how districts here can buy: the cooperative purchasing vehicles and state contracts that cover them. "What contract are you on?" is a question districts ask at booths, and answering on the spot reads as partnership. <strong>[CONTACT: Education Strategist for your region]</strong> is the briefing route for state fluency; contract specifics come through your own account resources.</li>
+      </ul>
+      <div class="rule-callout">Keep the briefing to two pages, or build it as a short PowerPoint instead; slides force one idea per page and short bullets, and many people prefer to consume it that way. Either way, build the template once and reuse it per event. People read two pages; they skim ten.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 5: The Real Cost Picture</summary>
+    <div class="d-body">
+      <span id="s5"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>The booth fee is rarely the real number. Build the full cost picture with the <a href="playbook-worksheets.html#appendix-c">Budget Worksheet</a>, confirm whose budget pays it, and run the who-needs-to-say-yes check before signing anything.</p>
+      </div>
+      <p>The sponsorship or booth fee is the visible number. It is rarely the real number. Commit only after you have built the full picture (<a href="playbook-worksheets.html#appendix-c">Budget Worksheet</a>).</p>
+      <h3>The full cost lines</h3>
+      <ul class="plain">
+        <li><strong>Fee:</strong> booth, sponsorship tier, or partner-booth contribution</li>
+        <li><strong>Space services:</strong> electric, internet, AV, furniture, carpet, cleaning. At many venues these are ordered separately from the booth fee and can rival it. Early-order deadlines matter; the same service can cost dramatically more ordered late (<a href="playbook-worksheets.html#appendix-f">deadline categories</a>).</li>
+        <li><strong>Freight and drayage:</strong> getting devices and materials there and back, and the venue's handling charges</li>
+        <li><strong>Devices and demo equipment:</strong> what you are showing and how it gets sourced, shipped, insured, and returned</li>
+        <li><strong>Collateral and signage:</strong> banners, tablecloths, info cards, leave-behinds. Anything custom-built should get a brand review from <strong>[CONTACT: Marketing Collateral Lead]</strong> before it prints; inconsistent brand presentation at regional events undercuts the credibility the presence is meant to build.</li>
+        <li><strong>Add-ons:</strong> dinner or reception sponsorships, program ads, lanyards</li>
+        <li><strong>Travel and time:</strong> lodging, travel, and the real cost of the days your team spends</li>
+        <li><strong>Execution support:</strong> if you use TechRally or similar event support, it reduces your lift substantially but adds real cost. The tradeoff is honest in both directions: your time has a cost too. Decide deliberately rather than by default.</li>
+      </ul>
+      <div class="contact-callout"><strong>[CONTACT: CSG / Client Solutions contact]</strong> is your route to demo devices: what can be borrowed from the seed unit pool, what ships from where, and lead times. Start this conversation early; device logistics have the longest lead time of anything in this section.<br><br><strong>[CONTACT: Marketing Collateral Lead]</strong> may have banners, tablecloths, and collateral already in inventory or on demand. Ask what exists before you buy anything.</div>
+      <h3>Where the money comes from</h3>
+      <p>Confirming the number is half the job; the other half is confirming whose budget pays it. Routes to work, usually in combination:</p>
+      <ul class="plain">
+        <li><strong>Marketing, as early as possible.</strong> Even when marketing is not running the event, put the request in front of them early. At minimum they know it is happening; at best they contribute funds, collateral, or execution support. Early also means before their budget cycle closes around you.</li>
+        <li><strong>Small commitments.</strong> Below roughly $500, a sponsorship or add-on can sometimes go on a credit card as a direct expense. Check with your DM before doing this; do not assume.</li>
+        <li><strong>Co-funding with a partner or another organization.</strong> A channel partner joining forces on the presence, or an invested partner (Section 3) contributing to a shared moment, changes the math substantially. Partner co-op or MDF funds may apply; ask <strong>[CONTACT: Channel Account Manager / Partner Lead]</strong>.</li>
+        <li><strong>Other internal teams.</strong> Money sometimes lives in teams whose goals your presence serves: channel and alliance teams, CSG, and business unit or segment teams. If the conference advances something they care about (a device launch, a partner motion, a segment push), ask. The worst answer is no.</li>
+      </ul>
+      <h3>Approvals and commitments</h3>
+      <p>Before you sign anything, run a quick who-needs-to-say-yes check:</p>
+      <ul class="plain">
+        <li><strong>Your DM.</strong> Budget, territory strategy fit, and any credit card expense route all go through them first.</li>
+        <li><strong>Marketing.</strong> Two reasons beyond funding: confirming the event is not already on their calendar (so you complement rather than duplicate), and brand review of anything custom.</li>
+        <li><strong>Legal.</strong> Sponsorship agreements, especially multi-year or annual commitments to an organizing body, may need contract review. Ask marketing what their threshold is for legal involvement and follow the same line.</li>
+        <li><strong>Channel team.</strong> If partner co-funding is involved, the partner agreement side needs their eyes.</li>
+        <li><strong>Ethics and compliance.</strong> For any hosted meal or event involving district personnel (Section 2, rung 6).</li>
+      </ul>
+      <p>None of this should take long; most of it is one conversation each. The point is that no one should be signing a commitment to a state association on Dell's behalf alone.</p>
+      <h3>Weighing cost against value</h3>
+      <p>With the real number in hand, return to your Section 1 success definition. A useful frame: what would this budget produce if spent instead on direct district engagement in the territory (dinners, workshops, travel to accounts)? If the conference does not beat that alternative, that is your answer. If it does, you now also have the number that tells you which rungs of the ladder you can actually afford.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 6: Designing the On-Site Experience</summary>
+    <div class="d-body">
+      <span id="s6"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>Design for what a visitor does, not what they see, and book district meetings before the event; that scheduled time is often the highest-value part of the conference. On capture: conversation first, capture second.</p>
+      </div>
+      <p>What happens when someone stops at your space is the whole game. K-12 attendees want to interact with technology, not look at it. Design for what you want a visitor to <em>do</em>, not just see.</p>
+      <h3>The experience toolkit</h3>
+      <ul class="plain">
+        <li><strong>Hands-on demos.</strong> Devices out, powered on, and set up for a visitor to actually use. A locked-down device on a stand is furniture.</li>
+        <li><strong>Interactive touchscreen experiences.</strong> If you have a large-format interactive display, build something a visitor drives themselves: an exploration of a signature program, a data visualization they can play with, a short guided experience.</li>
+        <li><strong>Demo loops and video.</strong> Content that runs unattended and earns a pause: signature programs in action, district stories. This holds the space when staff are in conversations.</li>
+        <li><strong>Self-guided exploration.</strong> Info cards and QR-linked resources so a visitor who does not want a conversation still leaves with something. Set the bar for takeaways deliberately: the best leave-behind has value whether or not the district ever buys anything (a planning template, a rubric, a useful one-pager beats a spec sheet every time).</li>
+        <li><strong>Structured conversation starters.</strong> A question on a sign, a quick poll, a "what is your district wrestling with?" board. Give staff a natural opening beyond "can I help you?"</li>
+      </ul>
+      <div class="rule-callout"><strong>Do not let devices sit there without a content story.</strong> What is on the screen matters more than what the screen is. For content ideas, loop in <strong>[CONTACT: Education Strategist for your region]</strong>, <strong>[CONTACT: Signature Programs Lead]</strong>, and <strong>[CONTACT: Marketing Collateral Lead]</strong>; between them there is almost always existing content that beats a default desktop.</div>
+      <h3>The meetings layer</h3>
+      <p>Some of the highest-value time at a regional conference happens away from the booth: scheduled one-on-one conversations with district leadership who are already attending. This takes a small system, built before the event:</p>
+      <ul class="plain">
+        <li>Identify which target and active districts will be there (registration lists, the organizer, your own outreach)</li>
+        <li>Reach out two to four weeks ahead to book specific times (<a href="playbook-worksheets.html#appendix-h">outreach email template</a>)</li>
+        <li>Reserve or identify a place to meet: a table in your space, a quiet corner, a coffee spot</li>
+        <li>Prepare a short brief per meeting: district context, current work, one or two questions worth asking</li>
+        <li>Capture outcomes the same day; memory does not survive a conference floor</li>
+      </ul>
+      <h3>Lead capture</h3>
+      <p>Decide before the event how every interaction gets captured: the conference's lead retrieval service, a simple form, or a disciplined manual log. Unify capture across the whole presence (booth, sessions, meetings, events) so follow-up starts from one list. The best experience design in the world is wasted if the follow-up list does not exist.</p>
+      <p>One standard for how capture happens: <strong>conversation first, capture second.</strong> Attendees can feel the difference between being talked with and being scanned, and they compare notes with each other about vendors. A badge scan should feel like the natural close of a real exchange ("I'd like to send you that template we talked about; can I scan you?"), never the opening move.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Section 7: Execution Timeline and Follow-Through</summary>
+    <div class="d-body">
+      <span id="s7"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>Work backward from the event date with one owner per milestone, and treat the two weeks after as worth more than the conference itself: personalized follow-up within one week, leads into CRM tagged to the event, a debrief, and the organizer thank-you.</p>
+      </div>
+      <h3>Work backward from the event date</h3>
+      <p>Every conference plan is a backward timeline from the event date. The generic version (fill-in template: <a href="playbook-worksheets.html#appendix-e">Backward-Planning Timeline</a>):</p>
+      <table>
+        <tr><th>Window</th><th>What happens</th></tr>
+        <tr><td>12+ weeks out</td><td>Gate decision (Section 1), rung selection (Section 2), speaking submissions if applicable, partner outreach, organizer conversation</td></tr>
+        <tr><td>8-12 weeks out</td><td>Budget locked (Section 5), booth/sponsorship committed, device request to CSG, save-the-date for any hosted event</td></tr>
+        <tr><td>4-8 weeks out</td><td>Collateral and content build, session materials, early-order deadlines for space services, meeting outreach to attending districts begins</td></tr>
+        <tr><td>2-4 weeks out</td><td>Staffing and coverage grid locked, staff briefing distributed, meetings booked, social plan drafted</td></tr>
+        <tr><td>Event week</td><td>Setup, briefing refresh, run the plan, capture everything same-day</td></tr>
+        <tr><td>1-2 weeks after</td><td>Follow-up sent, leads routed, debrief held, learnings and content routed to reuse</td></tr>
+      </table>
+      <h3>Making it known you are there</h3>
+      <p>Social presence is seller-owned at regional events, with marketing informed so they can amplify. The standing rule: <strong>every post gives the reader something, never just announces you.</strong> "We're at booth 214" helps no one. "Three things [State] district leaders told us today about their AI rollouts" helps everyone, and positions you as part of the conversation rather than an advertiser at it.</p>
+      <ul class="plain">
+        <li>Plan two or three posts before the event: what you are looking forward to learning, a session worth attending, a question you are bringing</li>
+        <li>During: share takeaways, quotes (with permission), and observations that an attendee or a district leader who could not attend would find useful</li>
+        <li><strong>Amplify the organizer, not just Dell.</strong> Celebrate their keynotes, share their content, help drive their registration in the weeks before. From the organizer's seat, the sponsor promoting <em>their</em> conference is a partner; the one only broadcasting their own booth number is renting space. This costs nothing and is noticed.</li>
+        <li>Use the conference hashtag plus any Dell education tags; engage with what others are posting rather than only broadcasting</li>
+        <li>After: one synthesis post ("what we heard") that doubles as follow-up content</li>
+        <li>Give <strong>[CONTACT: Marketing Social Lead]</strong> a heads-up on your plan; they may amplify or provide assets</li>
+      </ul>
+      <h3>Follow-through: where presence becomes pipeline</h3>
+      <p>The two weeks after the conference are worth more than the conference. Before the event ends, ownership should already be assigned:</p>
+      <ul class="plain">
+        <li><strong>Follow-up outreach</strong> within one week, personalized by what actually happened in the conversation, not a blast (<a href="playbook-worksheets.html#appendix-h">follow-up email template</a>)</li>
+        <li><strong>Lead routing</strong> into CRM with enough context to be usable. Tag every lead and opportunity to the conference as its source, and log the event itself as an activity. This is how the presence gets credit: when next year's budget conversation happens, the pipeline this conference generated should be visible in the system, not living in your memory.</li>
+        <li><strong>Debrief</strong> with everyone who staffed it: what worked, what we would change, whether this conference earns next year's investment and at what rung. Score the event against your Section 1 success definition with a few simple measures: conversations held, meetings completed, leads captured and routed, follow-ups sent, and the next step agreed with the organizer. Keep the same measures event to event so conferences become comparable over time.</li>
+        <li><strong>Content harvest:</strong> what built for this event gets reused across the territory, and what you learned feeds your regional narrative</li>
+        <li><strong>Organizer thank-you and next conversation.</strong> If the long game is the annual relationship, this is where it starts.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Closing: Using This Playbook with Dell SalesChat (DSC)</summary>
+    <div class="d-body">
+      <span id="closing"></span>
+      <div class="bottom-line">
+        <p class="bl-label">Bottom line</p>
+        <p>Do the thinking yourself first; then DSC can turn your completed worksheets into timelines, grids, and drafts quickly. The tool is for checklists and processes, not strategy, and your read wins over its output.</p>
+      </div>
+      <p>Work through the playbook and worksheets first, on your own. The strategy, the relationships, and the judgment are yours; that is the value you bring to the event, and no tool produces it for you.</p>
+      <p>Once your thinking is done, Dell SalesChat (DSC) or another approved internal generative AI tool can turn it into working plans quickly. The tool is for checklists, timelines, and processes, not for strategy.</p>
+      <h3>How to use it</h3>
+      <ol class="plain-num">
+        <li>Gather your inputs: this playbook, your completed <a href="playbook-worksheets.html#appendix-c">budget</a> and <a href="playbook-worksheets.html#appendix-d">evaluation</a> worksheets, the conference's website or exhibitor prospectus, and any partner or organizer details</li>
+        <li>Provide those to DSC and ask for what you need built: a customized backward timeline against your actual event date, a staffing coverage grid, a briefing document draft, a meeting-outreach email draft, a social post plan</li>
+        <li><strong>Review everything against your own logic and purposes before acting on it.</strong> Generative tools will be confidently wrong sometimes. If an output does not match your success definition or your read of the event, your read wins.</li>
+      </ol>
+      <p>A sample prompt to adapt:</p>
+      <div class="email-block">
+        <p>"I am planning our presence at [conference name] on [dates] in [city], run by [organizer]. Attached are our conference playbook, my completed evaluation and budget worksheets, and the conference prospectus. Our goals are [your one or two success definitions]. We are showing up as [your chosen rungs]. Build me a backward-planning timeline from the event date, a draft staffing coverage grid for [N] people, and a draft outreach email to districts we want to meet with."</p>
+      </div>
+    </div>
+  </details>
+
+  <div class="tools-banner">
+    <p><strong>Ready to work?</strong> The fill-in worksheets, timeline template, contact directory, email templates, and idea catalogs all live on the <a href="playbook-worksheets.html">Worksheets &amp; Templates page</a>.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>Dell Technologies internal resource. Regional Conference Playbook, working draft v2. <a href="index.html">Back to the hub</a></p>
+</footer>
+
+</body>
+</html>
