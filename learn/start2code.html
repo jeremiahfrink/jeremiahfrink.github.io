@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ONE VERB — challenge 01</title>
+<style>
+:root{
+  --p0:#000000; --p1:#1d2b53; --p2:#7e2553; --p3:#008751;
+  --p4:#ab5236; --p5:#5f574f; --p6:#c2c3c7; --p7:#fff1e8;
+  --p8:#ff004d; --p9:#ffa300; --p10:#ffec27; --p11:#00e436;
+  --p12:#29adff; --p13:#83769c; --p14:#ff77a8; --p15:#ffccaa;
+  --mono: ui-monospace,"SFMono-Regular","Cascadia Mono","Segoe UI Mono",Menlo,Consolas,monospace;
+  --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--p1);color:var(--p7);font-family:var(--sans);
+  font-size:17px;line-height:1.62;padding:74px 0 108px;-webkit-text-size-adjust:100%}
+p{margin:0 0 1em;max-width:62ch}
+a{color:var(--p12)}
+:focus-visible{outline:3px solid var(--p10);outline-offset:2px}
+.wrap{max-width:700px;margin:0 auto;padding:0 20px}
+
+.top{position:fixed;top:0;left:0;right:0;background:var(--p0);border-bottom:2px solid var(--p5);z-index:60}
+.topin{max-width:700px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:12px;background:var(--p1);border:2px solid var(--p5);padding:1px}
+.bar i{display:block;height:100%;background:var(--p11);width:0;transition:width .35s ease}
+.count{font-family:var(--mono);font-size:12px;color:var(--p6);white-space:nowrap}
+.iconbtn{font-family:var(--mono);font-size:15px;background:transparent;border:2px solid var(--p5);
+  color:var(--p7);padding:3px 9px;cursor:pointer;line-height:1.4}
+.iconbtn:hover{border-color:var(--p10);color:var(--p10)}
+.verbstrip{background:var(--p0);border-bottom:2px solid var(--p1);font-family:var(--mono);
+  font-size:12px;color:var(--p10);padding:6px 20px;max-width:700px;margin:0 auto;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:none}
+.verbstrip.on{display:block}
+
+.step{display:none;animation:in .18s ease-out}
+.step.on{display:block}
+@keyframes in{from{opacity:0}to{opacity:1}}
+
+.eyebrow{font-family:var(--mono);font-size:12px;color:var(--p13);margin:26px 0 6px}
+.eyebrow b{color:var(--p9);font-weight:700}
+h2{font-family:var(--mono);font-size:clamp(26px,6.4vw,36px);line-height:1.08;
+  letter-spacing:-.02em;margin:0 0 20px;color:var(--p10)}
+h3{font-family:var(--mono);font-size:17px;margin:26px 0 8px;color:var(--p7)}
+.lede{color:var(--p6);font-size:18px}
+
+.hero h2{font-size:clamp(44px,14vw,80px);margin-bottom:4px;letter-spacing:-.035em}
+.palette{display:flex;height:12px;margin:0 0 26px}
+.palette i{flex:1}
+.boot{font-family:var(--mono);font-size:13px;color:var(--p5);line-height:1.85;margin-bottom:24px}
+.boot b{color:var(--p6);font-weight:400}
+.tagline{font-family:var(--mono);font-size:15px;color:var(--p11);margin:0 0 30px}
+.cursor{display:inline-block;width:.55em;height:1.05em;background:var(--p11);
+  vertical-align:-.16em;animation:bl 1.1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+
+.why{border:2px solid var(--p11);background:var(--p0);padding:16px 18px;margin:22px 0;max-width:62ch}
+.why > b{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p11);display:block;margin-bottom:8px}
+.why p{color:var(--p7);margin-bottom:.8em}
+.why p:last-child{margin-bottom:0}
+
+.tip{border-left:4px solid var(--p12);background:var(--p0);padding:14px 16px;margin:22px 0;max-width:62ch}
+.tip > b{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p12);display:block;margin-bottom:6px}
+.tip p{margin:0 0 .7em;color:var(--p6);font-size:16px}
+.tip p:last-child{margin-bottom:0}
+
+.warn{border:2px solid var(--p8);background:var(--p0);padding:15px 17px;margin:22px 0;max-width:62ch}
+.warn > b{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p8);display:block;margin-bottom:6px}
+.warn p{margin:0 0 .7em}
+.warn p:last-child{margin-bottom:0}
+
+.joke{border:2px dashed var(--p9);background:var(--p0);padding:13px 16px;margin:22px 0;max-width:62ch}
+.joke > b{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p9);display:block;margin-bottom:6px}
+.joke p{margin:0 0 .5em;color:var(--p15);font-size:16px}
+.joke p:last-child{margin-bottom:0}
+
+details.dict{border:2px solid var(--p13);background:var(--p0);margin:14px 0;max-width:62ch}
+details.dict summary{font-family:var(--mono);font-size:13px;color:var(--p13);padding:10px 14px;
+  cursor:pointer;font-weight:700;list-style:none}
+details.dict summary::-webkit-details-marker{display:none}
+details.dict summary::before{content:"[+] ";color:var(--p14)}
+details.dict[open] summary::before{content:"[-] "}
+details.dict summary:hover{color:var(--p14)}
+details.dict .body{padding:0 14px 14px;color:var(--p6);font-size:16px}
+details.dict .body p{margin:0 0 .8em}
+details.dict .body p:last-child{margin-bottom:0}
+details.dict .body strong{color:var(--p15);font-family:var(--mono);font-size:.95em}
+
+pre{background:var(--p0);border:2px solid var(--p5);padding:15px;overflow-x:auto;
+  font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--p11);margin:18px 0}
+code{font-family:var(--mono);background:var(--p0);padding:1px 5px;font-size:.9em;color:var(--p15)}
+
+.links{margin:18px 0 0;padding:0;list-style:none;max-width:62ch}
+.links li{margin-bottom:3px}
+.links a{display:block;text-decoration:none;border:2px solid var(--p0);padding:9px 12px;
+  font-family:var(--mono);font-size:13px;color:var(--p12);background:var(--p0)}
+.links a:hover{border-color:var(--p12)}
+.links a em{font-style:normal;color:var(--p6);display:block;font-size:12px;margin-top:3px}
+.links a.play::before{content:"\25B6  ";color:var(--p11)}
+.links a.read::before{content:"\25A4  ";color:var(--p9)}
+.links a.get::before{content:"\2193  ";color:var(--p10)}
+
+.field{margin:16px 0;max-width:62ch}
+.field span.lbl{display:block;font-family:var(--mono);font-size:12px;color:var(--p13);margin-bottom:5px}
+input[type=text],textarea{width:100%;background:var(--p0);color:var(--p7);border:2px solid var(--p5);
+  font-family:var(--mono);font-size:15px;padding:10px;line-height:1.5}
+input[type=text]:focus,textarea:focus{border-color:var(--p12);outline:none}
+textarea{resize:vertical;min-height:86px}
+.verbin input{font-size:19px;color:var(--p10);border-color:var(--p10)}
+
+button{font-family:var(--mono);font-size:13px;font-weight:700;cursor:pointer;
+  background:var(--p5);color:var(--p7);border:2px solid var(--p5);padding:9px 14px}
+button:hover{background:var(--p6);color:var(--p0);border-color:var(--p6)}
+button.go{background:var(--p11);color:var(--p0);border-color:var(--p11)}
+button.go:hover{background:var(--p10);border-color:var(--p10)}
+button.quiet{background:transparent;color:var(--p6)}
+button.quiet:hover{background:transparent;color:var(--p10);border-color:var(--p10)}
+
+label.chk{display:flex;gap:11px;align-items:flex-start;cursor:pointer;font-family:var(--mono);
+  font-size:14px;color:var(--p6);margin:26px 0 0;border:2px solid var(--p5);padding:12px 14px;max-width:62ch}
+label.chk:hover{border-color:var(--p6)}
+label.chk input{margin:2px 0 0;accent-color:var(--p11);width:18px;height:18px;flex:none}
+label.chk.on{border-color:var(--p11);color:var(--p11)}
+
+.sealed{position:relative}
+.sealed .cover{position:absolute;inset:0;background:var(--p2);display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:8px;font-family:var(--mono);font-size:13px;
+  color:var(--p15);text-align:center;padding:16px}
+.sealed.open .cover{display:none}
+
+#vaultList{list-style:none;padding:0;margin:14px 0 0;max-width:62ch}
+#vaultList li{font-family:var(--mono);font-size:14px;background:var(--p0);border-left:3px solid var(--p14);
+  padding:9px 12px;margin-bottom:4px;display:flex;justify-content:space-between;gap:12px;color:var(--p15)}
+#vaultList button{padding:0 6px;background:none;border:none;color:var(--p5)}
+#vaultList button:hover{color:var(--p8);background:none}
+
+.freeze{background:var(--p12);color:var(--p0);padding:20px;margin:24px 0;max-width:62ch}
+.freeze b{font-family:var(--mono);display:block;font-size:20px;margin-bottom:8px}
+.freeze p{margin:0;color:var(--p0);font-weight:600}
+
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--p0);border-top:2px solid var(--p5);z-index:60}
+.navin{max-width:700px;margin:0 auto;padding:10px 20px;display:flex;gap:8px;align-items:center}
+.nav button,.nav a{font-family:var(--mono);font-size:13px;font-weight:700;text-decoration:none;
+  padding:11px 14px;border:2px solid var(--p5);color:var(--p7);background:transparent;cursor:pointer}
+.nav a.coach{color:var(--p14);border-color:var(--p14)}
+.nav button:hover,.nav a:hover{border-color:var(--p10);color:var(--p10);background:transparent}
+.nav a.coach:hover{background:var(--p14);color:var(--p0);border-color:var(--p14)}
+#nextBtn{margin-left:auto;background:var(--p5);border-color:var(--p5)}
+#nextBtn.ready{background:var(--p11);color:var(--p0);border-color:var(--p11)}
+#nextBtn.ready:hover{background:var(--p10);border-color:var(--p10);color:var(--p0)}
+.nav .lbl{display:inline}
+@media (max-width:520px){.nav .lbl{display:none}.navin{gap:6px}}
+
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:70;overflow-y:auto;display:none;padding:20px 0 40px}
+.ov.on{display:block}
+.ovin{max-width:700px;margin:0 auto;padding:0 20px}
+.ovhead{display:flex;align-items:center;gap:14px;margin:6px 0 22px}
+.ovhead h2{margin:0;font-size:26px}
+.ovhead button{margin-left:auto}
+#menuList{list-style:none;padding:0;margin:0}
+#menuList li{margin-bottom:2px}
+#menuList button{width:100%;text-align:left;background:transparent;border:2px solid var(--p1);
+  color:var(--p6);font-size:13px;padding:9px 12px;display:flex;gap:10px}
+#menuList button:hover{border-color:var(--p12);color:var(--p7);background:transparent}
+#menuList button.done{color:var(--p11)}
+#menuList button.here{border-color:var(--p10);color:var(--p10)}
+#menuList .tick{width:1.2em;flex:none}
+#menuList .dayhdr{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p9);margin:18px 0 6px}
+#timerBtn.run{color:var(--p10);border-color:var(--p10)}
+#timerBtn.up{color:var(--p0);background:var(--p8);border-color:var(--p8)}
+.savenote{font-family:var(--mono);font-size:11px;color:var(--p5);margin-top:10px}
+.dontopen a{color:var(--p5)}
+.dontopen a:hover{border-color:var(--p5);color:var(--p6)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="topin">
+    <button class="iconbtn" id="menuBtn" aria-label="All steps">&#9776;</button>
+    <div class="bar"><i id="barFill"></i></div>
+    <span class="count" id="count">1/24</span>
+  </div>
+  <div class="verbstrip" id="verbStrip"></div>
+</div>
+
+<main class="wrap" id="steps">
+
+<section class="step hero" data-day="0" data-title="Start here">
+  <div class="palette">
+    <i style="background:#000"></i><i style="background:#1d2b53"></i><i style="background:#7e2553"></i><i style="background:#008751"></i>
+    <i style="background:#ab5236"></i><i style="background:#5f574f"></i><i style="background:#c2c3c7"></i><i style="background:#fff1e8"></i>
+    <i style="background:#ff004d"></i><i style="background:#ffa300"></i><i style="background:#ffec27"></i><i style="background:#00e436"></i>
+    <i style="background:#29adff"></i><i style="background:#83769c"></i><i style="background:#ff77a8"></i><i style="background:#ffccaa"></i>
+  </div>
+  <div class="boot"><b>challenge 01</b><br>loading djcoder.p8<br>four years to learn to build games<br>this week is day one</div>
+  <h2>ONE VERB</h2>
+  <div class="tagline">&gt; three days. one screen. ship it.<span class="cursor"></span></div>
+  <p class="lede">You have built games before, DJCoder. Scratch, Minecraft, things that worked and things people played.</p>
+  <p>This is the same job with the training wheels off: real code, typed by you, in a real language, shipped to a real address that other people can open on their own phones.</p>
+  <p>Everything you already know still applies. A loop is still a loop. The only thing that changed is that you type it instead of dragging it.</p>
+  <p style="color:var(--p13)">Twenty-four steps. Hit Next.</p>
+</section>
+
+<section class="step" data-day="0" data-title="What am I actually doing?">
+  <div class="eyebrow"><b>SETUP</b> &nbsp;the brief</div>
+  <h2>What am I actually doing?</h2>
+  <p class="lede">You are going to pick one small piece of a game idea, build only that piece, put it in front of a stranger, and publish it. In three days.</p>
+  <p>Not a demo of your big idea. Not the first level of it. One piece, finished.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>Almost everyone who tries to make games quits in the same place. Not at the start, where it is exciting, and not at the end, where it is nearly done. They quit about a third of the way in, on something enormous they began in a burst of enthusiasm and cannot now finish.</p>
+    <p>The habit that prevents this is not talent and it is not discipline. It is the ability to look at a big idea and correctly identify the smallest version of it that is still worth playing. That is a skill, it is learnable, and it is the single most valuable thing a fourteen-year-old who wants to build games can practise.</p>
+    <p>So this week you practise it once, on purpose, with a hard deadline. Everything else here exists to support that.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: scope</summary>
+    <div class="body">
+      <p><strong>Scope</strong> means everything a project is going to include. When a team says "that is out of scope," they mean it is a fine idea that is not in this version.</p>
+      <p><strong>Scope creep</strong> is when the list quietly grows while you are working: one more enemy type, one more level, just a title screen. Nobody decides to do it. It happens one reasonable-sounding addition at a time, and it is the leading cause of death for games that never come out.</p>
+      <p>Professionals fight scope creep with written rules agreed before the work starts. That is exactly what two screens from now is.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c01"><span>Understood. Small thing, finished, in front of a person.</span></label>
+</section>
+
+<section class="step" data-day="0" data-title="Why we are going retro">
+  <div class="eyebrow"><b>SETUP</b> &nbsp;the machine</div>
+  <h2>Why we are going retro</h2>
+  <p class="lede">You are building on a pretend computer from 1987 that never existed.</p>
+  <p>PICO-8 is a <em>fantasy console</em>: an imaginary 8-bit machine with deliberately brutal limits. A screen 128 pixels square. Sixteen colors, and you do not get to pick them. A hard ceiling on how much code fits on a cartridge.</p>
+  <p>It is not nostalgia and it is not because you are a beginner. Those limits are doing a job.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>Give someone unlimited space and they build forever and finish nothing. Give them a cartridge that physically cannot hold their sprawling idea and something useful happens: they are forced to decide what the game actually <em>is</em>.</p>
+    <p>This is a real technique with a real name and studios use it on purpose. Some of the best games ever made were shaped by hardware that could not do what the designers originally wanted, and the workaround became the thing everybody remembers.</p>
+    <p>There is a sneakier benefit too. On a machine this size you can hold the entire thing in your head. Every pixel, every color, every function. That is not true of Unity or Unreal and it will never be true again. Learn what a whole computer feels like while a whole computer still fits in your brain.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: constraint-driven design</summary>
+    <div class="body">
+      <p><strong>Constraint-driven design</strong> is deliberately limiting your own options to force better decisions. Game jams do it with time. PICO-8 does it with hardware. Poets do it with sonnets.</p>
+      <p>It feels backwards until the first time you experience it: a blank page with infinite options is paralysing, and a page with three options is a puzzle you can actually solve.</p>
+    </div>
+  </details>
+  <div class="joke">
+    <b>&#9888; DAD JOKE DETECTED</b>
+    <p>PICO-8 gives you only sixteen colors. Some people call that a limitation.</p>
+    <p>I call it a palette cleanser.</p>
+  </div>
+  <label class="chk"><input type="checkbox" data-save="c02"><span>Got it. The limits are the feature.</span></label>
+</section>
+
+<section class="step" data-day="0" data-title="The rules">
+  <div class="eyebrow"><b>SETUP</b> &nbsp;the constraints</div>
+  <h2>The rules</h2>
+  <p>Four of them. They are not there to make it harder. They are there to make it possible.</p>
+  <div class="warn">
+    <b>THE FOUR</b>
+    <p><strong>One screen.</strong> No scrolling, no second room.</p>
+    <p><strong>One verb.</strong> More on what that means shortly.</p>
+    <p><strong>Rectangles are art.</strong> Colored boxes are a completely legal way to ship.</p>
+    <p><strong>Playable by another human</strong> without you sitting next to them.</p>
+  </div>
+  <h3>Banned this week</h3>
+  <p style="color:var(--p14)">Title screens. Menus. Saving. Multiple levels. Story text. A second playable character. Custom music. Anything that begins with the words "and then eventually."</p>
+  <p>If a banned thing is what makes your game good, that is genuinely good news and you should write it down. There is a Vault later for exactly this. It is not deleted. It is just not this week.</p>
+  <details class="dict">
+    <summary>DEV DICTIONARY: MVP and vertical slice</summary>
+    <div class="body">
+      <p>A <strong>minimum viable product</strong> (MVP) is the smallest thing you can build that still works and still proves the idea. Not a sketch, not a mockup: a real thing, just small.</p>
+      <p>A <strong>vertical slice</strong> is closer to what you are building. Instead of building all of level one badly, you build one narrow slice of the game all the way through to a finished state, so you can find out whether the thing is any fun before committing months to it.</p>
+      <p>Studios build vertical slices to show publishers. You are building one to show yourself.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c03"><span>Read the rules. Agreed to the rules.</span></label>
+</section>
+
+<section class="step" data-day="0" data-title="Get the machine">
+  <div class="eyebrow"><b>SETUP</b> &nbsp;install</div>
+  <h2>Get the machine</h2>
+  <p>PICO-8 is a one-time $15. It is yours, it works offline, and it never expires or asks you for a subscription.</p>
+  <ul class="links">
+    <li><a class="get" href="https://www.lexaloffle.com/pico-8.php" target="_blank" rel="noopener">Download PICO-8 <em>lexaloffle.com &middot; Windows, Mac, Linux, Raspberry Pi</em></a></li>
+  </ul>
+  <p style="margin-top:20px">Two things to open now and leave open all week. Working developers do not memorize this stuff. They keep the reference on screen and look up the same function for the eleventh time without embarrassment. Memorizing is not the skill. Knowing where to look is.</p>
+  <ul class="links">
+    <li><a class="read" href="https://www.lexaloffle.com/bbs/?tid=28207" target="_blank" rel="noopener">The cheat sheet <em>every command, one page</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico8-drawing-reference" target="_blank" rel="noopener">Drawing reference <em>a live cart showing what each drawing function actually does</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico8-color-reference" target="_blank" rel="noopener">Color reference <em>all sixteen, numbered</em></a></li>
+  </ul>
+  <label class="chk"><input type="checkbox" data-save="c04"><span>Installed. It boots. Reference tabs open.</span></label>
+</section>
+
+<section class="step" data-day="0" data-title="You already know this">
+  <div class="eyebrow"><b>SETUP</b> &nbsp;the translation</div>
+  <h2>You already know how to do this</h2>
+  <p class="lede">PICO-8 is Scratch with typing. Same ideas wearing different clothes.</p>
+  <pre>  when green flag clicked  ->  function _init()
+  forever                  ->  function _update()   (runs 30x a second, by itself)
+  if key pressed           ->  if btn(0) then       (0 1 2 3 = left right up down)
+  change x by 2            ->  x = x + 2
+  set score to 0           ->  score = 0
+  stamp the sprite         ->  rectfill() or spr(), inside function _draw()
+  if touching              ->  you write this one yourself. this is the hard part.</pre>
+  <p>The only genuinely new idea is that thinking and drawing are separate jobs. <code>_update()</code> works out what happened. <code>_draw()</code> puts it on the screen. That is the whole language barrier, and you just crossed it.</p>
+  <details class="dict">
+    <summary>DEV DICTIONARY: the game loop, frames, 30fps</summary>
+    <div class="body">
+      <p>A game is not a program that runs once. It is a program that runs the same few instructions over and over, thirty times every second, forever, until you quit.</p>
+      <p>Each pass is a <strong>frame</strong>. Thirty frames a second means every frame gets about 33 milliseconds to do its work. Miss that budget and the game stutters, which players feel instantly even when they cannot say why.</p>
+      <p>The <strong>game loop</strong> is that repeating cycle: read input, update the world, draw the world, repeat. PICO-8 hands it to you already built, as <code>_update</code> and <code>_draw</code>. Every engine you ever touch, all the way up to the ones running games on your console, is doing the same thing underneath.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c05"><span>The bridge makes sense.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="Play three games, name the verb">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;find the verb</div>
+  <h2>Play three tiny games and name the verb in each</h2>
+  <p class="lede">Every game is one verb, repeated. Everything else is decoration on top of it.</p>
+  <p>Mario is <em>jump</em>. Tetris is <em>rotate and drop</em>. Minecraft is <em>place and break</em>. Hades is <em>dash and strike</em>. The story, the art, the levels, the music: all of it exists to make one verb feel good enough that you will do it four hundred times without getting bored.</p>
+  <p>Five minutes each, no more. Then say out loud what your hands were doing. Not what the game was about.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>Your sense of how big a game has to be is broken, and for a good reason: you have only ever played finished ones made by dozens of people over years. That is your reference point, and measured against it everything you build will feel pathetic.</p>
+    <p>These four are complete, finished, real games, and they are tiny. Playing them resets your ruler. It is the difference between "my thing is embarrassing" and "my thing is the right size."</p>
+  </div>
+  <ul class="links">
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Bitesize_Games/5" target="_blank" rel="noopener">Nerdy Pong <em>about the smallest complete game there is</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Bitesize_Games/6" target="_blank" rel="noopener">Fishy <em>eat things smaller than you</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Bitesize_Games/2" target="_blank" rel="noopener">Fruit Drop <em>catch falling things</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Bitesize_Games/3" target="_blank" rel="noopener">Cells <em>grow by absorbing</em></a></li>
+    <li><a class="play" href="https://www.lexaloffle.com/bbs/?cat=7" target="_blank" rel="noopener">Or browse hundreds of real carts <em>play in the browser, then hit Code</em></a></li>
+  </ul>
+  <div class="field"><span class="lbl">game 1 &mdash; the verb is</span><input type="text" data-save="g1" placeholder="the player ..."></div>
+  <div class="field"><span class="lbl">game 2 &mdash; the verb is</span><input type="text" data-save="g2" placeholder="the player ..."></div>
+  <div class="field"><span class="lbl">game 3 &mdash; the verb is</span><input type="text" data-save="g3" placeholder="the player ..."></div>
+  <div class="tip">
+    <b>HOW PROFESSIONALS ACTUALLY WORK</b>
+    <p>Every cart on that site has a <strong>Code</strong> button underneath it. Click it. Read how somebody else solved the thing you are stuck on.</p>
+    <p>That is not cheating and it is not a shortcut. Reading other people's code is most of how working developers learn anything, and the ones who refuse to do it are slower, not purer. Steal the structure, then type it yourself so it goes into your hands.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: core loop</summary>
+    <div class="body">
+      <p>The <strong>core loop</strong> is the short cycle of actions a player repeats constantly: aim, shoot, reload. Mine, craft, build. Dash, strike, dodge.</p>
+      <p>Designers obsess over it, because if the core loop is boring for ten seconds it will be boring for ten hours, and no amount of story or art rescues it. "One verb" is the core loop stripped to its smallest possible version.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c11"><span>Played three. Named three verbs.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="Pitch it, then cut it">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;commit</div>
+  <h2>Pitch your game, then cut it to one sentence</h2>
+  <p>Record yourself pitching the whole concept for three minutes. All of it, out loud, no editing, no apologizing for the parts that are not figured out.</p>
+  <p>Then cut it down to one sentence, in this exact shape.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>Two reasons, and both are real.</p>
+    <p>First: you are much better at talking than writing, so we are using that. Say the messy version out loud where it is easy, and only then compress it. This is a legitimate professional method, not a workaround built for you. Plenty of developers talk a design through before writing a word of it.</p>
+    <p>Second, and this is the harder one: if you cannot say what your game is in a single sentence, you do not yet know what you are building. The sentence is not a summary of the work. It is the decision that makes the rest of the work possible, because from here on, every time you are unsure whether to add something, you check it against that sentence.</p>
+  </div>
+  <div class="field verbin"><span class="lbl">the one verb &mdash; this pins to the top of every screen from here</span>
+    <input type="text" id="verbInput" data-save="verb" placeholder="The player ______."></div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: the pitch and the design pillar</summary>
+    <div class="body">
+      <p>A <strong>pitch</strong> is how you explain a game to someone who decides whether it exists: a publisher, a studio head, a room of strangers at a games conference. Short, spoken, no slides needed.</p>
+      <p>A <strong>design pillar</strong> is a short statement a team agrees on and then uses to settle arguments. When somebody wants to add a feature, the pillar answers it: does this serve the pillar or not? Your one sentence is a design pillar with a team of one.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c12"><span>Pitched it out loud. Cut it to one sentence.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="Seal your criteria">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;define done</div>
+  <h2>Decide what "finished" means, then seal it</h2>
+  <p>Write three things that will be true if this week works. Specific and checkable.</p>
+  <p>Not "it is fun." Something you could actually verify, like <em>a person who has never seen it plays for two minutes without me explaining anything.</em></p>
+  <p>Then seal them. They stay covered until Day 3.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>Because criteria invented afterwards always get met, which makes them worth nothing.</p>
+    <p>If you decide on Day 3 what success looks like, you will, without any dishonesty at all, describe whatever you happened to build. Everybody does this. It feels like assessment and it is actually just narration.</p>
+    <p>Deciding beforehand, and then being unable to peek, is the only way to find out something true about your own work. It is going to be uncomfortable on Day 3, and that discomfort is the entire point of the exercise.</p>
+  </div>
+  <div class="sealed" id="sealBox">
+    <div class="field"><span class="lbl">criterion 1</span><input type="text" data-save="s1"></div>
+    <div class="field"><span class="lbl">criterion 2</span><input type="text" data-save="s2"></div>
+    <div class="field"><span class="lbl">criterion 3</span><input type="text" data-save="s3"></div>
+    <div class="cover"><div>&#128274; SEALED</div><div>opens on day 3</div></div>
+  </div>
+  <p style="margin-top:14px">
+    <button id="sealBtn" class="go">Seal them</button>
+    <button id="unsealBtn" class="quiet">It is Day 3, open them</button>
+  </p>
+  <details class="dict">
+    <summary>DEV DICTIONARY: acceptance criteria and definition of done</summary>
+    <div class="body">
+      <p>On real software teams, a task is not finished when the person who built it feels finished. It is finished when it meets its <strong>acceptance criteria</strong>: a short written list, agreed before anybody started, of what has to be true.</p>
+      <p>Teams also keep a shared <strong>definition of done</strong>, which usually includes boring things like "somebody else tested it" and "it is actually deployed, not sitting on my laptop."</p>
+      <p>Both exist for the same reason yours is sealed. Human beings are extremely good at deciding they are finished at exactly the moment they get tired.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c13"><span>Three criteria written and sealed.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="Draw it on paper">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;plan</div>
+  <h2>Draw the screen on paper</h2>
+  <p>One box for the screen. What is on it, what moves, what ends the game. Two minutes with a pencil.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>Changing a drawing costs four seconds. Changing code costs an hour, and it costs it after you have already become attached to what you built.</p>
+    <p>The rule that follows is one professionals live by: <em>make your mistakes in the cheapest material available.</em> Paper is the cheapest material there is. Board game designers prototype with index cards. Level designers block out whole levels in grey boxes before an artist touches anything. It is not being precious. It is being efficient about where you fail.</p>
+  </div>
+  <p>Also worth five minutes before you commit: how your verb should <em>feel</em>. There is more than one way to make a thing move, and each one changes the game completely.</p>
+  <ul class="links">
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Design/111" target="_blank" rel="noopener">Player movement types <em>grid, free, momentum, and what each does to the feel</em></a></li>
+  </ul>
+  <details class="dict">
+    <summary>DEV DICTIONARY: paper prototyping and greyboxing</summary>
+    <div class="body">
+      <p><strong>Paper prototyping</strong> is testing an idea with drawings and cut-out pieces before writing code. You can find out a mechanic is boring in ten minutes instead of ten days.</p>
+      <p><strong>Greyboxing</strong> (or blocking out) is building a level entirely from plain grey shapes with no art at all, purely to test whether the space plays well. Big-budget studios do this for months. The pretty version comes last, on purpose, because pretty things are painful to throw away.</p>
+      <p>Your colored rectangles this week are greyboxing. You are in good company.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c14"><span>Drew it. On actual paper.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="Type the starter cart">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;build</div>
+  <h2>Type the starter cartridge</h2>
+  <p>A blue square moves. It is not a game and it is not supposed to be. It is the floor you build on.</p>
+  <pre>function _init()
+ p={x=60,y=60,w=6,h=6,spd=2}
+end
+
+function _update()
+ if btn(0) then p.x-=p.spd end
+ if btn(1) then p.x+=p.spd end
+ if btn(2) then p.y-=p.spd end
+ if btn(3) then p.y+=p.spd end
+ p.x=mid(0,p.x,127-p.w)
+ p.y=mid(0,p.y,127-p.h)
+end
+
+function _draw()
+ cls(1)
+ rectfill(p.x,p.y,p.x+p.w,p.y+p.h,12)
+end</pre>
+  <div class="why">
+    <b>WHY YOU ARE TYPING IT AND NOT PASTING IT</b>
+    <p>There is no copy button on this page and that is deliberate.</p>
+    <p>Pasted code runs and teaches you nothing. Typed code makes you notice the parentheses, the <code>end</code> that closes the function, the difference between <code>p.x</code> and <code>x</code>. You will hit an error while typing it, and fixing that error is worth more than the whole rest of this screen.</p>
+    <p>By tomorrow you need to change this code confidently, and you cannot confidently change something you have never actually looked at.</p>
+  </div>
+  <p>Then break it on purpose before you build on it. Change <code>spd</code> to 8. Change it to 0.5. Change the <code>12</code> to any number from 0 to 15. Delete an <code>end</code> and read what it yells at you.</p>
+  <ul class="links">
+    <li><a class="play" href="https://mboffin.itch.io/pico8-basic-game-loop" target="_blank" rel="noopener">The game loop, as a playable cart <em>why _init, _update and _draw are separate</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico-8-using-buttons" target="_blank" rel="noopener">Buttons and movement <em>playable, heavily commented</em></a></li>
+  </ul>
+  <details class="dict">
+    <summary>DEV DICTIONARY: boilerplate</summary>
+    <div class="body">
+      <p><strong>Boilerplate</strong> is the setup code that is nearly identical at the start of every project. Nobody finds it interesting and everybody needs it.</p>
+      <p>Experienced developers keep a personal starter template and reuse it for years. Yours starts today: this is the first version of a file you may still be modifying in Grade 12.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c15"><span>Typed it. A square moves when I press the arrows.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="Make it do your verb">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;build</div>
+  <h2>Make it do your verb</h2>
+  <p>Now the square stops being a square that moves and becomes the thing your game is about. By the end of today, your verb happens when you press a button. That is where Day 1 ends.</p>
+  <ul class="links">
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/7" target="_blank" rel="noopener">Simple movement <em>the bare version</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/10" target="_blank" rel="noopener">Advanced movement <em>acceleration and friction: the difference between a square that slides and one that feels good</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico8-movement-with-inertia" target="_blank" rel="noopener">Movement with inertia <em>if your verb has momentum</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico8-gravity" target="_blank" rel="noopener">Gravity <em>if your verb is jump</em></a></li>
+  </ul>
+  <div class="tip">
+    <b>HOW PROFESSIONALS ACTUALLY WORK</b>
+    <p>Write it wrong, fast. Nobody gets it right in one pass, and the people who look like they do are just editing in private.</p>
+    <p>Get something running that is obviously bad, then fix one thing at a time. A blank screen you are still thinking about is worth less than a broken thing you can poke.</p>
+  </div>
+  <div class="field"><span class="lbl">what broke today, and what fixed it</span>
+    <textarea data-save="log1" placeholder="the bug log. this is the actual record of you learning something."></textarea></div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: iteration, and why the bug log matters</summary>
+    <div class="body">
+      <p><strong>Iteration</strong> means going round again: build, look at it, change it, look again. Games are not designed and then made. They are made badly and then improved, over and over, and how fast you can go round that circle largely determines how good the result is.</p>
+      <p>The bug log is not busywork and it is not for anyone else. Six months from now you will hit the same bug again and past-you will have left a note. Working developers keep exactly this, usually in commit messages and issue trackers, for exactly this reason.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c16"><span>My verb happens on screen when I press a button.</span></label>
+</section>
+
+<section class="step" data-day="1" data-title="End of Day 1">
+  <div class="eyebrow"><b>DAY 1</b> &nbsp;done</div>
+  <h2>That is Day 1</h2>
+  <p class="lede">You have a verb, a sealed definition of finished, and a thing on screen that responds to your hands.</p>
+  <p>That is ahead of where most people are after their first day, because most people spend day one designing and day two still designing.</p>
+  <div class="tip">
+    <b>HOW PROFESSIONALS ACTUALLY WORK</b>
+    <p>Before you close the laptop, save your cart under a new name. <code>verb1</code> today, <code>verb2</code> tomorrow, <code>verb3</code> after that.</p>
+    <p>This costs three seconds and it is the difference between a bad hour and a lost day. Real teams do this with a tool called version control, which keeps every version of every file forever so you can always get back to the last one that worked. You will learn it properly later. For now, rename the file.</p>
+  </div>
+  <div class="joke">
+    <b>&#9888; DAD JOKE DETECTED</b>
+    <p>A programmer's wife says: go to the store and get a loaf of bread, and if they have eggs, get a dozen.</p>
+    <p>He comes home with twelve loaves of bread.</p>
+  </div>
+  <label class="chk"><input type="checkbox" data-save="c17"><span>Saved under a new name. Closing the laptop.</span></label>
+</section>
+
+<section class="step" data-day="2" data-title="Something to touch">
+  <div class="eyebrow"><b>DAY 2</b> &nbsp;the hard part</div>
+  <h2>Give the verb something to touch</h2>
+  <p>Add one thing your verb acts on: something that reacts, breaks, collects, opens, or runs away. You now have an interaction instead of a rectangle.</p>
+  <p>Working out that two things are touching is the wall. Everybody hits it. It is arithmetic, so this is the part of the week that will feel like math, because it is math.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS THE SLOW WAY</b>
+    <p>In Scratch, "if touching" was one block. Somebody else wrote it and handed it to you working.</p>
+    <p>Today you write it. Not because being handed it would be cheating, but because collision is in literally every game ever made, and understanding it once, properly, at the level of "which edges have to cross," means you will never be confused by it again in any engine on any platform for the rest of your life.</p>
+    <p>Twenty minutes of confusion here is normal and expected. It is the most valuable twenty minutes in the three days.</p>
+  </div>
+  <p><strong>Start with the playable one.</strong> You can watch two boxes overlap while the code that detects it sits right there on the screen.</p>
+  <ul class="links">
+    <li><a class="play" href="https://mboffin.itch.io/pico8-overlap" target="_blank" rel="noopener">Checking for overlap <em>the single most useful link on this whole site</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Collision/92" target="_blank" rel="noopener">What collision actually is <em>read this second</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Collision/101" target="_blank" rel="noopener">Rect to rect <em>the one you will actually use</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Collision/97" target="_blank" rel="noopener">Boundary <em>keeping things on screen</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Collision/100" target="_blank" rel="noopener">Point to rect <em>if one thing is tiny</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Collision/103" target="_blank" rel="noopener">Circle to circle <em>if everything is round</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico8-pickups" target="_blank" rel="noopener">Pickups <em>if your verb is collecting</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico-8-projectiles" target="_blank" rel="noopener">Projectiles <em>if your verb is firing</em></a></li>
+  </ul>
+  <div class="warn">
+    <b>&#9888; DO THIS BEFORE YOU WRITE A SINGLE LINE</b>
+    <p>Draw two rectangles on paper. Slide one until they overlap. Point at which edges had to cross for that to become true.</p>
+    <p>Write those out as four comparisons in plain English first, then translate them into code. Going straight to code here is how people spend two hours on twenty minutes of work.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: hitbox, AABB, collision detection</summary>
+    <div class="body">
+      <p><strong>Collision detection</strong> is working out when two things in a game are touching. It sounds simple and it is an entire field of study.</p>
+      <p>A <strong>hitbox</strong> is the invisible shape used for that check, and it is usually not the same shape as the art. The player might be a detailed character while the hitbox is a plain rectangle slightly smaller than they look, because that feels fairer to players. Fighting games are obsessive about this.</p>
+      <p><strong>AABB</strong> stands for axis-aligned bounding box: a rectangle that never rotates, with sides parallel to the screen edges. It is the simplest and fastest kind of collision check, it is what you are about to write, and it is still doing heavy lifting in enormous commercial games today.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c21"><span>Two things can touch, and my game knows when they do.</span></label>
+</section>
+
+<section class="step" data-day="2" data-title="A way to lose">
+  <div class="eyebrow"><b>DAY 2</b> &nbsp;stakes</div>
+  <h2>Add a way to lose</h2>
+  <p>Exactly one thing that can end the run. One. Not a health system, not enemies plural, not a boss.</p>
+  <div class="why">
+    <b>WHY YOU ARE DOING THIS</b>
+    <p>A verb with no failure is a toy. Toys are fine and people put them down after ninety seconds.</p>
+    <p>The moment something can go wrong, every press of the button starts to matter, and the same mechanic you had five minutes ago becomes tense. You are not adding content here. You are adding <em>consequence</em>, and consequence is most of what separates a game from a screensaver.</p>
+  </div>
+  <ul class="links">
+    <li><a class="play" href="https://mboffin.itch.io/pico8-game-states" target="_blank" rel="noopener">Game states <em>how to have a game-over without building a menu. take the game-over idea, ignore the menu parts, those are banned</em></a></li>
+  </ul>
+  <details class="dict">
+    <summary>DEV DICTIONARY: fail state and game state</summary>
+    <div class="body">
+      <p>A <strong>fail state</strong> is any condition that ends the attempt: dying, running out of time, letting the last ball past. A <strong>win state</strong> is the opposite. Some games deliberately have neither, and designers argue about whether those count as games, which is a fun argument to have some other week.</p>
+      <p><strong>Game state</strong> is the bigger idea: which mode the game is currently in. Playing, paused, game over. Almost every game tracks this with a single variable, and almost every beginner discovers the need for it at the exact moment you are discovering it now.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c22"><span>I can lose.</span></label>
+</section>
+
+<section class="step" data-day="2" data-title="A reason to go again">
+  <div class="eyebrow"><b>DAY 2</b> &nbsp;the hook</div>
+  <h2>One reason to press restart</h2>
+  <p>Pick exactly one: a score, a timer, or something that gets faster. Not all three. Whichever one makes <em>you</em> want to go again.</p>
+  <div class="why">
+    <b>WHY ONLY ONE</b>
+    <p>Because with three you will never find out which one was doing the work.</p>
+    <p>This is a habit worth building early: change one thing, then look. If you change five things and the game gets better, you have learned nothing you can use next time. Scientists call it controlling your variables. Developers just call it not making your own life harder.</p>
+  </div>
+  <ul class="links">
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Bitesize_Games/5" target="_blank" rel="noopener">Nerdy Pong, again <em>for how a score gets tracked and drawn in a game this small</em></a></li>
+    <li><a class="play" href="https://mboffin.itch.io/ternary-operators" target="_blank" rel="noopener">Ternary operators <em>optional. if your if-statements are getting long and ugly</em></a></li>
+  </ul>
+  <label class="chk"><input type="checkbox" data-save="c23"><span>There is a reason to press restart.</span></label>
+</section>
+
+<section class="step" data-day="2" data-title="Twenty minutes of juice">
+  <div class="eyebrow"><b>DAY 2</b> &nbsp;feel</div>
+  <h2>Twenty minutes of polish. Set an actual timer.</h2>
+  <p>Only if the verb works. Pick <strong>one</strong> thing from this list. Any one of them makes a game feel twice as finished for almost no effort.</p>
+  <ul class="links">
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/11" target="_blank" rel="noopener">Screen shake <em>the best ratio of feel to effort in all of game development</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/14" target="_blank" rel="noopener">Particle effects</a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico-8-particles" target="_blank" rel="noopener">Particles, playable version</a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Audio/13" target="_blank" rel="noopener">One sound effect <em>sfx editor basics</em></a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/4" target="_blank" rel="noopener">Animating a sprite</a></li>
+    <li><a class="play" href="https://mboffin.itch.io/pico8-simple-animation" target="_blank" rel="noopener">Animation explained, playable</a></li>
+  </ul>
+  <div class="warn">
+    <b>&#9888; WHY THERE IS A TIMER ON THIS ONE</b>
+    <p>Polish is the most seductive way to lose a day, because it always feels like progress and it never is until the thing underneath works.</p>
+    <p>Twenty minutes. Real timer. Stop when it goes off, even mid-idea.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: juice, game feel, timeboxing</summary>
+    <div class="body">
+      <p><strong>Juice</strong> is the industry's actual word for the small responsive touches that make a game feel good: the screen shake on impact, the tiny pause when you land a hit, the particles, the sound. None of it changes the rules. All of it changes how the rules feel.</p>
+      <p><strong>Game feel</strong> is the broader study of that, and it is taken extremely seriously. Studios spend weeks on how a jump feels, tuning numbers a player will never consciously notice.</p>
+      <p><strong>Timeboxing</strong> means deciding in advance how long a task gets and stopping when the time is up, whether or not it is perfect. It is the standard defence against exactly the trap this screen is walking you past.</p>
+    </div>
+  </details>
+  <div class="field"><span class="lbl">what broke today, and what fixed it</span><textarea data-save="log2"></textarea></div>
+  <label class="chk"><input type="checkbox" data-save="c24"><span>Picked one. Did it. Stopped when the timer went.</span></label>
+</section>
+
+<section class="step" data-day="2" data-title="The Freeze and the Vault">
+  <div class="eyebrow"><b>DAY 2</b> &nbsp;lock it down</div>
+  <h2>The Freeze</h2>
+  <div class="freeze">
+    <b>&#10052; NO NEW FEATURES FROM HERE</b>
+    <p>Not one. Everything that occurs to you from now on goes in the Vault and stays there until this ships. With three days, a single new idea on Day 3 is the whole difference between shipping and not shipping.</p>
+  </div>
+  <div class="why">
+    <b>WHY THIS IS A REAL THING AND NOT ME BEING MEAN</b>
+    <p>Every studio does this before every release. There is a date, agreed in advance, after which nobody is allowed to add anything no matter how good it is, and the only work permitted is fixing what is already there.</p>
+    <p>They do it because a feature added late is a feature nobody has tested, and because without a hard line the list never stops growing. The freeze is not a sign the game is done. It is the thing that lets the game become done.</p>
+  </div>
+  <h3>The Vault</h3>
+  <p>Every good idea you are not allowed to build this week. It is not deleted, it is banked. The next game starts with a list that already exists, which is a much better place to start than a blank page.</p>
+  <div class="field"><span class="lbl">add an idea to the vault</span>
+    <input type="text" id="vaultInput" placeholder="type it and press enter"></div>
+  <ul id="vaultList"></ul>
+  <details class="dict">
+    <summary>DEV DICTIONARY: feature freeze, code freeze, backlog</summary>
+    <div class="body">
+      <p><strong>Feature freeze</strong>: the date after which no new features go in, only fixes. <strong>Code freeze</strong> comes later and is stricter still, when nothing changes at all except emergencies.</p>
+      <p>A <strong>backlog</strong> is the team's list of everything wanted but not being built right now. Healthy teams have long backlogs and are relaxed about it, because writing an idea down is what makes it safe to not do the idea today.</p>
+      <p>Your Vault is a backlog. Feeding it is a professional habit, not a consolation prize.</p>
+    </div>
+  </details>
+  <div class="joke">
+    <b>&#9888; DAD JOKE DETECTED</b>
+    <p>Why do coders always mix up Halloween and Christmas?</p>
+    <p>Because OCT 31 equals DEC 25.</p>
+  </div>
+  <label class="chk"><input type="checkbox" data-save="c25"><span>Frozen. Nothing new gets built from here.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Before the playtest">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;the long day</div>
+  <h2>Read this before you hand it to anybody</h2>
+  <p>Two short pieces on how a game teaches a player to play it without a tutorial. You are about to watch that fail in real time, and it makes far more sense if you know what you are looking at.</p>
+  <ul class="links">
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Design/105" target="_blank" rel="noopener">Onboarding principles</a></li>
+    <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Design/106" target="_blank" rel="noopener">Onboarding methods</a></li>
+  </ul>
+  <details class="dict">
+    <summary>DEV DICTIONARY: onboarding</summary>
+    <div class="body">
+      <p><strong>Onboarding</strong> is how a game teaches you to play it in the first minute. The best onboarding is invisible: the first room of a well-designed game is a lesson you never notice taking.</p>
+      <p>Watch for it from now on and you will not be able to stop seeing it. The opening of almost every good game is secretly a tutorial with the word "tutorial" carefully removed.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c31"><span>Read both.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Shut up and watch">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;the important one</div>
+  <h2>Hand it to a person. Then say absolutely nothing.</h2>
+  <p>Find someone who has not heard you talk about this game. Give them the controls. Then be completely silent for the entire time they play.</p>
+  <p>Not "you can jump." Not "oh, that part is broken." Not "wait, try it this way."</p>
+  <p>And every single time you desperately want to explain something, <strong>write down what it was.</strong></p>
+  <div class="why">
+    <b>WHY THIS IS THE MOST IMPORTANT HOUR OF THE WEEK</b>
+    <p>You do not get to stand next to people who play your game. Not on the internet, not on a store page, not ever. Whatever the game fails to explain by itself is a thing the player simply never finds out, and then they close the tab.</p>
+    <p>Every place they hesitate is a place your design failed to communicate. That is not their fault and it is not a comment on your intelligence. It is information, and it is information you literally cannot get any other way, because you already know how your game works and you can never un-know it.</p>
+    <p>The list of things you wanted to say is worth more than the game is.</p>
+  </div>
+  <div class="field"><span class="lbl">every time I wanted to explain something</span>
+    <textarea data-save="playtest" style="min-height:160px" placeholder="one line each. write them while it is happening, not afterwards."></textarea></div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: playtesting, and the curse of knowledge</summary>
+    <div class="body">
+      <p><strong>Playtesting</strong> is watching real people play, and it is a discipline with rules. The first rule everywhere is that the developer does not help. Some studios put the developer in a different room entirely, because the temptation is that strong.</p>
+      <p>The <strong>curse of knowledge</strong> is the reason. Once you know something, you cannot imagine not knowing it, so you genuinely cannot see what is confusing about your own work. This is not a flaw you can train away. It is why every creative field has some version of showing the work to a stranger and shutting up.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c32"><span>Someone played it. I said nothing. I have the list.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Fix exactly one thing">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;triage</div>
+  <h2>Fix exactly one thing</h2>
+  <p>The biggest one. Everything else on that list goes in the Vault.</p>
+  <div class="why">
+    <b>WHY ONLY ONE</b>
+    <p>Because you have hours, not days, and because a fix made in a hurry breaks two other things about a third of the time.</p>
+    <p>Choosing which problem matters most, and then deliberately not fixing the others, is a professional skill with a name. It feels like giving up. It is the opposite: it is the decision that gets the thing out of the door at all.</p>
+  </div>
+  <div class="field"><span class="lbl">the one thing I fixed</span><input type="text" data-save="onefix"></div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: triage, severity, known issues</summary>
+    <div class="body">
+      <p><strong>Triage</strong> comes from emergency medicine and means sorting problems by urgency when you cannot handle all of them. Before every release, teams sit down and go through the bug list deciding what gets fixed and what ships broken.</p>
+      <p><strong>Severity</strong> is how bad a bug is: does it crash the game, or is some text slightly the wrong color? Everything gets ranked.</p>
+      <p><strong>Known issues</strong> is the published list of bugs a team decided to ship with anyway. Every game you have ever played launched with one. Shipping something imperfect on purpose is normal and expected, and it is completely different from shipping something imperfect by accident.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c33"><span>Fixed one thing. Fixed only one thing.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Ship it">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;ship</div>
+  <h2>Put it on the internet</h2>
+  <p>Export to HTML, put it on your site, then open it on a phone that is not yours. It does not count until someone else's device can load it.</p>
+  <ul class="links">
+    <li><a class="read" href="https://www.lexaloffle.com/dl/docs/pico-8_manual.html" target="_blank" rel="noopener">The manual, section 3 <em>exporters, web applications, and uploading</em></a></li>
+  </ul>
+  <div class="field"><span class="lbl">the address where it lives</span><input type="text" data-save="url" placeholder="https://"></div>
+  <div class="why">
+    <b>WHY THIS STEP IS NOT OPTIONAL</b>
+    <p>A game on your hard drive is homework. A game at an address is a thing that exists.</p>
+    <p>The gap between those two is where most people's projects sit forever, and it is almost never a technical gap. Publishing means someone might not like it, and finished-and-public feels much more final than nearly-done-on-my-laptop. Crossing that gap is a habit, and the first crossing is the hard one.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: build, export, deploy, ship</summary>
+    <div class="body">
+      <p>A <strong>build</strong> is the packaged-up version of your project that an actual person can run, as opposed to the source you edit. <strong>Exporting</strong> is making one.</p>
+      <p><strong>Deploying</strong> is putting that build somewhere people can reach. <strong>Shipping</strong> is the whole thing, done, released.</p>
+      <p>"Ship it" is probably the most-used phrase in software, and "shipped" is the highest compliment available. Not clever. Not ambitious. Shipped.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c34"><span>It is on the internet. Someone else opened it.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="The post-mortem">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;the verdict</div>
+  <h2>Open the seal and tell the truth</h2>
+  <p>Go back to the criteria screen, open your sealed criteria, and read what Day-1 you decided "finished" meant.</p>
+  <p>Then record two minutes of yourself playing your own game and answering all three out loud.</p>
+  <p>Honestly. If one of them did not happen, say so, and say why you think it did not.</p>
+  <div class="why">
+    <b>WHY THE HONEST VERSION IS WORTH MORE</b>
+    <p>A verdict that admits you missed one is worth ten times a verdict that quietly moves the goalposts, and everybody can tell the difference, including you in a year.</p>
+    <p>There is a whole professional tradition of this. After a game ships, teams write up what went right, what went wrong, and what they would do differently, and the good ones are brutally frank. Developers publish them, give talks on them, and read each other's obsessively. The failures are the useful part. Nobody learns anything from a list of successes.</p>
+  </div>
+  <div class="field"><span class="lbl">did I meet them? which ones, and what happened to the ones I missed?</span>
+    <textarea data-save="verdict" style="min-height:130px"></textarea></div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: post-mortem and retrospective</summary>
+    <div class="body">
+      <p>A <strong>post-mortem</strong> is the written account of how a project actually went, published after it ships. The games industry has a long tradition of these and many of them are startlingly honest about disasters.</p>
+      <p>A <strong>retrospective</strong> is the smaller, more frequent version: a team meeting every couple of weeks asking what to keep doing, what to stop, and what to try next. The rule that makes them work is that you examine the process, not blame a person.</p>
+      <p>What you just recorded is a post-mortem. You will make many more.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c35"><span>Opened the seal. Recorded the verdict. Told the truth in it.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="What counts as winning">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;the end</div>
+  <h2>What counts as winning</h2>
+  <p class="lede">Not "it is good." It will not be good.</p>
+  <p>First things are not good, and anybody who tells you theirs was is either lying or has forgotten. That is not a low bar being offered to you kindly. It is just what is true, for everybody, always.</p>
+  <div class="warn">
+    <b>THE ACTUAL BAR</b>
+    <p>A stranger played it, and it is on the internet at the end of Day 3.</p>
+  </div>
+  <p>Almost nobody clears that, because almost everybody spends the time making the concept bigger instead of making a smaller thing exist.</p>
+  <p>The people who end up making games are not the ones with the best ideas. Everyone has ideas. They are the ones with a finished thing behind them, and then another one, and then another one, until one day the finished things are large.</p>
+  <p><strong>Get the first one behind you.</strong></p>
+  <h3>Export your work</h3>
+  <p>Everything you typed on this site, in one file, for the project record.</p>
+  <p><button class="go" id="exportBtn">Download my work</button> <button class="quiet" id="clearBtn">Clear everything</button></p>
+  <p class="savenote" id="saveNote"></p>
+  <label class="chk"><input type="checkbox" data-save="c36"><span>Challenge 01 complete.</span></label>
+</section>
+
+</main>
+
+<div class="nav">
+  <div class="navin">
+    <button id="backBtn">&larr;<span class="lbl"> Back</span></button>
+    <a class="coach" href="https://gemini.google.com/gem/1rtMTCxuCWrDVVlGYNSwBJh7ybAIVICJL?usp=sharing" target="_blank" rel="noopener">Coach</a>
+    <button id="stuckBtn">Stuck?</button>
+    <button id="nextBtn"><span class="lbl">Next </span>&rarr;</button>
+  </div>
+</div>
+
+<div class="ov" id="menuOv">
+  <div class="ovin">
+    <div class="ovhead"><h2>All steps</h2><button class="iconbtn" data-close="1">&#10005;</button></div>
+    <ul id="menuList"></ul>
+  </div>
+</div>
+
+<div class="ov" id="stuckOv">
+  <div class="ovin">
+    <div class="ovhead"><h2>Stuck?</h2><button class="iconbtn" data-close="1">&#10005;</button></div>
+    <p class="lede">Being stuck is not a sign anything has gone wrong. It is what the work is.</p>
+    <p>The only actual mistake is sitting in the same stuck place for forty minutes without changing your approach.</p>
+    <h3>Do these three things first, every time</h3>
+    <div class="tip">
+      <b>THE PROTOCOL</b>
+      <p><strong>1. Read the error and find the line number.</strong> PICO-8 tells you exactly which line it choked on. Go look at that line. Most of the time it is a missing <code>end</code>, a missing <code>then</code>, or a word spelled two different ways in two places.</p>
+      <p><strong>2. Undo the last thing you added.</strong> If it worked five minutes ago and does not now, the problem is in those five minutes. It is not somewhere mysterious. Comment lines out with <code>--</code> and put them back one at a time.</p>
+      <p><strong>3. Print the number.</strong> If something is behaving strangely you probably do not know what the value actually is. Put <code>print(p.x,4,4,7)</code> in your <code>_draw()</code> and watch it while you play. Half of all bugs become obvious the second you look at the number instead of guessing.</p>
+    </div>
+    <details class="dict">
+      <summary>DEV DICTIONARY: debugging, print debugging, rubber ducking</summary>
+      <div class="body">
+        <p><strong>Debugging</strong> is finding out why the thing is doing something other than what you told it. The name comes from an actual moth found inside a computer in 1947, which is true and which people have been delighted about ever since.</p>
+        <p><strong>Print debugging</strong> is what step 3 is: printing values to see what is really happening. It is unglamorous, universal, and used daily by people with twenty years of experience.</p>
+        <p><strong>Rubber duck debugging</strong> is explaining your problem out loud, line by line, to an object that cannot help you. Programmers keep actual rubber ducks on their desks for this. It works absurdly often, because the act of explaining forces you to check the assumption you skipped over. Given how good you are at talking, this one is going to work well for you.</p>
+      </div>
+    </details>
+    <div class="warn">
+      <b>&#9888; THE TWENTY MINUTE RULE</b>
+      <p>Stuck on the same thing for twenty minutes with no movement at all? Stop. Ask the Coach, go find Dad, or stand up and do something else for ten minutes.</p>
+      <p>Twenty minutes of stuck is productive struggle. Ninety minutes of stuck is losing a day you do not have. Correctly deciding something is beyond you and asking for help is a skill you are graded on, not a failure.</p>
+      <p style="margin-top:12px"><button id="timerBtn">Start 20:00</button></p>
+    </div>
+    <h3>When it is properly on fire</h3>
+    <ul class="links">
+      <li><a class="read" href="https://nerdyteachers.com/PICO-8/Guide" target="_blank" rel="noopener">The "how do I do X" index <em>organised by what you are trying to accomplish</em></a></li>
+      <li><a class="read" href="https://www.lexaloffle.com/dl/docs/pico-8_manual.html" target="_blank" rel="noopener">The full manual <em>searchable, everything</em></a></li>
+      <li><a class="read" href="https://pico-8.fandom.com/wiki/Pico-8_Wikia" target="_blank" rel="noopener">The community wiki <em>more verbose than the manual</em></a></li>
+      <li><a class="read" href="https://www.lexaloffle.com/bbs/?cat=7" target="_blank" rel="noopener">The forums <em>somebody has already had this exact problem</em></a></li>
+      <li><a class="read" href="https://github.com/pico-8/awesome-PICO-8" target="_blank" rel="noopener">The community's list of everything</a></li>
+    </ul>
+    <h3 style="margin-top:34px">Do not open these this week</h3>
+    <p style="color:var(--p6)">Not a joke. Every one is excellent and every one will eat all three days. Bookmark them for October.</p>
+    <ul class="links dontopen">
+      <li><a href="https://www.youtube.com/playlist?list=PLea8cjCua_P0qjjiG8G5FBgqwpqMU7rBk" target="_blank" rel="noopener">LazyDevs, Breakout Hero <em>seventy-eight videos. the best beginner series that exists and completely wrong for three days</em></a></li>
+      <li><a href="https://mboffin.itch.io/pico-8-top-down-adventure-game-tutorial" target="_blank" rel="noopener">Top-Down Adventure Tutorial <em>genuinely great, and it builds a scrolling map game, which breaks the one-screen rule on purpose</em></a></li>
+      <li><a href="https://mboffin.itch.io/gamedev-with-pico-8-issue1" target="_blank" rel="noopener">Game Development with PICO-8, Issue 1 <em>seventy-two pages. read it the week after you finish something</em></a></li>
+      <li><a href="https://nerdyteachers.com/PICO-8/Audio/93" target="_blank" rel="noopener">The audio course <em>two dozen lessons on PICO-8 music theory. spectacular. not now.</em></a></li>
+    </ul>
+    <div class="joke">
+      <b>&#9888; DAD JOKE DETECTED</b>
+      <p>How many programmers does it take to change a light bulb?</p>
+      <p>None. That is a hardware problem.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var mem = {}, KEY = "oneverb.v2";
+  var hasLS = (function(){
+    try{ var k="__t"; window.localStorage.setItem(k,"1"); window.localStorage.removeItem(k); return true; }
+    catch(e){ return false; }
+  })();
+  function readAll(){
+    if(!hasLS) return mem;
+    try{ return JSON.parse(window.localStorage.getItem(KEY) || "{}"); }catch(e){ return {}; }
+  }
+  function writeAll(o){
+    if(!hasLS){ mem = o; return; }
+    try{ window.localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+  }
+  var state = readAll();
+  function set(k,v){ state[k]=v; writeAll(state); note(); }
+  function get(k){ return state[k]; }
+
+  var noteEl = document.getElementById("saveNote");
+  function note(){
+    if(!noteEl) return;
+    noteEl.textContent = hasLS
+      ? "saved in this browser \u00b7 " + new Date().toLocaleTimeString()
+      : "this browser is not saving between visits. export before you close the tab.";
+  }
+
+  var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
+  var total = steps.length, cur = 0;
+  var barFill = document.getElementById("barFill");
+  var countEl = document.getElementById("count");
+  var nextBtn = document.getElementById("nextBtn");
+  var backBtn = document.getElementById("backBtn");
+
+  function show(i, skipScroll){
+    cur = Math.max(0, Math.min(total-1, i));
+    steps.forEach(function(s,n){ s.classList.toggle("on", n===cur); });
+    countEl.textContent = (cur+1) + "/" + total;
+    set("at", cur);
+    paintNav();
+    if(!skipScroll) window.scrollTo(0,0);
+  }
+  function doneCount(){
+    var n = 0;
+    steps.forEach(function(s){
+      var cb = s.querySelector("label.chk input");
+      if(cb && cb.checked) n++;
+    });
+    return n;
+  }
+  function paintBar(){
+    var boxes = document.querySelectorAll("label.chk input").length;
+    barFill.style.width = (boxes ? (doneCount()/boxes*100) : 0) + "%";
+  }
+  function paintNav(){
+    var cb = steps[cur].querySelector("label.chk input");
+    nextBtn.classList.toggle("ready", !cb || cb.checked);
+    nextBtn.style.visibility = (cur === total-1) ? "hidden" : "visible";
+    backBtn.style.visibility = (cur === 0) ? "hidden" : "visible";
+  }
+  nextBtn.addEventListener("click", function(){ show(cur+1); });
+  backBtn.addEventListener("click", function(){ show(cur-1); });
+
+  document.addEventListener("keydown", function(e){
+    var t = e.target.tagName;
+    if(t === "INPUT" || t === "TEXTAREA") return;
+    if(document.querySelector(".ov.on")){ if(e.key === "Escape") closeAll(); return; }
+    if(e.key === "ArrowRight") show(cur+1);
+    if(e.key === "ArrowLeft") show(cur-1);
+  });
+
+  var fields = document.querySelectorAll("[data-save]");
+  Array.prototype.forEach.call(fields, function(el){
+    var k = el.getAttribute("data-save"), stored = get(k);
+    if(el.type === "checkbox"){
+      if(stored === true) el.checked = true;
+      el.addEventListener("change", function(){
+        set(k, el.checked); paintChecks(); paintBar(); paintNav();
+      });
+    } else {
+      if(typeof stored === "string") el.value = stored;
+      el.addEventListener("input", function(){
+        set(k, el.value); if(k === "verb") paintVerb();
+      });
+    }
+  });
+  function paintChecks(){
+    Array.prototype.forEach.call(document.querySelectorAll("label.chk"), function(l){
+      l.classList.toggle("on", l.querySelector("input").checked);
+    });
+  }
+  function paintVerb(){
+    var v = (get("verb") || "").trim();
+    var strip = document.getElementById("verbStrip");
+    strip.textContent = v ? "\u25B8 " + v : "";
+    strip.classList.toggle("on", !!v);
+  }
+
+  var menuList = document.getElementById("menuList");
+  function paintMenu(){
+    menuList.innerHTML = "";
+    var lastDay = null;
+    steps.forEach(function(s,i){
+      var day = s.getAttribute("data-day");
+      if(day !== lastDay){
+        var h = document.createElement("li");
+        h.className = "dayhdr";
+        h.textContent = day === "0" ? "SETUP" : "DAY " + day;
+        menuList.appendChild(h);
+        lastDay = day;
+      }
+      var cb = s.querySelector("label.chk input");
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      if(cb && cb.checked) b.classList.add("done");
+      if(i === cur) b.classList.add("here");
+      var tick = document.createElement("span");
+      tick.className = "tick";
+      tick.textContent = (cb && cb.checked) ? "\u2713" : "\u00b7";
+      var txt = document.createElement("span");
+      txt.textContent = s.getAttribute("data-title");
+      b.appendChild(tick); b.appendChild(txt);
+      b.addEventListener("click", function(){ closeAll(); show(i); });
+      li.appendChild(b); menuList.appendChild(li);
+    });
+  }
+  function openOv(id){
+    paintMenu();
+    document.getElementById(id).classList.add("on");
+    document.body.style.overflow = "hidden";
+  }
+  function closeAll(){
+    Array.prototype.forEach.call(document.querySelectorAll(".ov"), function(o){ o.classList.remove("on"); });
+    document.body.style.overflow = "";
+  }
+  document.getElementById("menuBtn").addEventListener("click", function(){ openOv("menuOv"); });
+  document.getElementById("stuckBtn").addEventListener("click", function(){ openOv("stuckOv"); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-close]"), function(b){
+    b.addEventListener("click", closeAll);
+  });
+
+  var sealBox = document.getElementById("sealBox");
+  function paintSeal(){ sealBox.classList.toggle("open", get("sealed") !== true); }
+  document.getElementById("sealBtn").addEventListener("click", function(){ set("sealed", true); paintSeal(); });
+  document.getElementById("unsealBtn").addEventListener("click", function(){ set("sealed", false); paintSeal(); });
+
+  var vIn = document.getElementById("vaultInput"), vList = document.getElementById("vaultList");
+  function vault(){ return get("vault") || []; }
+  function paintVault(){
+    vList.innerHTML = "";
+    vault().forEach(function(txt,i){
+      var li = document.createElement("li");
+      var s = document.createElement("span"); s.textContent = txt;
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = "\u2715";
+      b.setAttribute("aria-label","remove " + txt);
+      b.addEventListener("click", function(){
+        var a = vault(); a.splice(i,1); set("vault",a); paintVault();
+      });
+      li.appendChild(s); li.appendChild(b); vList.appendChild(li);
+    });
+  }
+  vIn.addEventListener("keydown", function(e){
+    if(e.key === "Enter" && vIn.value.trim()){
+      var a = vault(); a.push(vIn.value.trim()); set("vault",a);
+      vIn.value = ""; paintVault();
+    }
+  });
+
+  var tBtn = document.getElementById("timerBtn"), tId = null, left = 0;
+  function fmt(s){ var m = Math.floor(s/60), r = s % 60; return m + ":" + (r < 10 ? "0" : "") + r; }
+  tBtn.addEventListener("click", function(){
+    if(tId){ clearInterval(tId); tId = null; tBtn.className = ""; tBtn.textContent = "Start 20:00"; return; }
+    left = 20 * 60; tBtn.className = "run"; tBtn.textContent = fmt(left);
+    tId = setInterval(function(){
+      left--;
+      if(left <= 0){
+        clearInterval(tId); tId = null;
+        tBtn.className = "up"; tBtn.textContent = "STOP. GO ASK SOMEONE.";
+        return;
+      }
+      tBtn.textContent = fmt(left);
+    }, 1000);
+  });
+
+  var LABELS = [
+    ["verb","THE ONE VERB"],["g1","Game 1, verb"],["g2","Game 2, verb"],["g3","Game 3, verb"],
+    ["s1","Success criterion 1"],["s2","Success criterion 2"],["s3","Success criterion 3"],
+    ["log1","Day 1 bug log"],["log2","Day 2 bug log"],
+    ["playtest","Playtest: every time I wanted to explain"],
+    ["onefix","The one thing I fixed"],["url","Where it lives"],
+    ["verdict","Post-mortem: my verdict against my own criteria"]
+  ];
+  document.getElementById("exportBtn").addEventListener("click", function(){
+    var L = ["# ONE VERB \u2014 Challenge 01",
+             "DJCoder \u00b7 exported " + new Date().toLocaleString(), ""];
+    LABELS.forEach(function(p){
+      var v = (get(p[0]) || "").trim();
+      if(v){ L.push("## " + p[1], v, ""); }
+    });
+    var vt = vault();
+    if(vt.length){
+      L.push("## The Vault \u2014 held for the next game");
+      vt.forEach(function(t){ L.push("- " + t); });
+      L.push("");
+    }
+    L.push("## Checklist");
+    steps.forEach(function(s){
+      var cb = s.querySelector("label.chk input");
+      if(!cb) return;
+      var day = s.getAttribute("data-day");
+      var tag = (day === "0") ? "Setup" : "Day " + day;
+      L.push((cb.checked ? "- [x] " : "- [ ] ") + tag + ": " + s.getAttribute("data-title"));
+    });
+    L.push("");
+    var blob = new Blob([L.join("\n")], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "oneverb-djcoder.md";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  });
+  document.getElementById("clearBtn").addEventListener("click", function(){
+    if(!window.confirm("Wipe everything on this site? Export first if you want to keep it.")) return;
+    state = {}; writeAll(state);
+    Array.prototype.forEach.call(fields, function(el){
+      if(el.type === "checkbox") el.checked = false; else el.value = "";
+    });
+    paintChecks(); paintVerb(); paintVault(); paintSeal(); paintBar(); show(0);
+  });
+
+  paintChecks(); paintVerb(); paintVault(); paintSeal(); paintBar(); paintMenu(); note();
+  var at = get("at");
+  show(typeof at === "number" ? at : 0, true);
+})();
+</script>
+</body>
+</html>
