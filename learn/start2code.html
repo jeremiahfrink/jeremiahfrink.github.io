@@ -170,6 +170,32 @@ label.chk.on{border-color:var(--p11);color:var(--p11)}
 #menuList .dayhdr{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p9);margin:18px 0 6px}
 #timerBtn.run{color:var(--p10);border-color:var(--p10)}
 #timerBtn.up{color:var(--p0);background:var(--p8);border-color:var(--p8)}
+
+.firstaid{border:2px solid var(--p10);background:var(--p0);padding:16px 18px;margin:24px 0;max-width:62ch}
+.firstaid > b{font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--p10);
+  display:block;margin-bottom:10px}
+.firstaid ol{margin:0 0 12px;padding-left:22px}
+.firstaid li{margin-bottom:9px;color:var(--p7)}
+.firstaid li strong{color:var(--p10)}
+.firstaid p{margin:0;color:var(--p6);font-size:16px}
+
+details.triage{border:2px solid var(--p5);background:var(--p0);margin:6px 0;max-width:62ch}
+details.triage > summary{font-family:var(--mono);font-size:15px;color:var(--p7);padding:15px 16px;
+  cursor:pointer;list-style:none;display:flex;gap:12px;align-items:flex-start;line-height:1.4}
+details.triage > summary::-webkit-details-marker{display:none}
+details.triage > summary .ic{flex:none;font-size:13px;line-height:1.5}
+details.triage > summary::after{content:"+";margin-left:auto;color:var(--p13);
+  font-size:20px;line-height:1;flex:none;padding-left:10px}
+details.triage[open] > summary::after{content:"\2212"}
+details.triage > summary:hover{color:var(--p10)}
+details.triage[open]{border-color:var(--p12)}
+details.triage[open] > summary{color:var(--p12);border-bottom:2px solid var(--p1)}
+details.triage > .body{padding:16px}
+details.triage > .body > p{color:var(--p6)}
+details.triage > .body > p strong{color:var(--p7)}
+details.triage > .body ol{padding-left:22px;color:var(--p6);max-width:62ch}
+details.triage > .body ol li{margin-bottom:8px}
+details.triage .dict{border-color:var(--p13);margin-top:16px}
 .savenote{font-family:var(--mono);font-size:11px;color:var(--p5);margin-top:10px}
 .dontopen a{color:var(--p5)}
 .dontopen a:hover{border-color:var(--p5);color:var(--p6)}
@@ -809,30 +835,141 @@ end</pre>
 <div class="ov" id="stuckOv">
   <div class="ovin">
     <div class="ovhead"><h2>Stuck?</h2><button class="iconbtn" data-close="1">&#10005;</button></div>
-    <p class="lede">Being stuck is not a sign anything has gone wrong. It is what the work is.</p>
+
+    <p class="lede">Good. That means you are working on something real.</p>
+    <p>Stuck is not a sign you are doing badly at this. It is what the job is, most days, for everybody who does it. The people you think of as good at programming are not people who do not get stuck. They are people who have got unstuck a few thousand more times than you have.</p>
     <p>The only actual mistake is sitting in the same stuck place for forty minutes without changing your approach.</p>
-    <h3>Do these three things first, every time</h3>
-    <div class="tip">
-      <b>THE PROTOCOL</b>
-      <p><strong>1. Read the error and find the line number.</strong> PICO-8 tells you exactly which line it choked on. Go look at that line. Most of the time it is a missing <code>end</code>, a missing <code>then</code>, or a word spelled two different ways in two places.</p>
-      <p><strong>2. Undo the last thing you added.</strong> If it worked five minutes ago and does not now, the problem is in those five minutes. It is not somewhere mysterious. Comment lines out with <code>--</code> and put them back one at a time.</p>
-      <p><strong>3. Print the number.</strong> If something is behaving strangely you probably do not know what the value actually is. Put <code>print(p.x,4,4,7)</code> in your <code>_draw()</code> and watch it while you play. Half of all bugs become obvious the second you look at the number instead of guessing.</p>
+
+    <div class="firstaid">
+      <b>&#9889; DO THESE THREE FIRST, EVERY SINGLE TIME</b>
+      <ol>
+        <li><strong>Find the line number.</strong> PICO-8 tells you which line it choked on. Go and look at that exact line.</li>
+        <li><strong>Undo the last thing you added.</strong> If it worked five minutes ago, the problem is in those five minutes. Comment lines out with <code>--</code> and add them back one at a time.</li>
+        <li><strong>Print the number.</strong> Put <code>print(p.x,4,4,7)</code> in your <code>_draw()</code> and watch it while you play. You probably do not actually know what the value is.</li>
+      </ol>
+      <p>That protocol alone solves most of what will happen to you this week. Run it before you do anything else on this page.</p>
     </div>
-    <details class="dict">
-      <summary>DEV DICTIONARY: debugging, print debugging, rubber ducking</summary>
+
+    <h3>Still stuck? Pick the one that sounds like you.</h3>
+    <p style="color:var(--p6)">Tap one to open it. They are different problems and they need different moves.</p>
+
+    <details class="triage">
+      <summary><span class="ic">&#128308;</span>It will not run at all. There is an error message.</summary>
       <div class="body">
-        <p><strong>Debugging</strong> is finding out why the thing is doing something other than what you told it. The name comes from an actual moth found inside a computer in 1947, which is true and which people have been delighted about ever since.</p>
-        <p><strong>Print debugging</strong> is what step 3 is: printing values to see what is really happening. It is unglamorous, universal, and used daily by people with twenty years of experience.</p>
-        <p><strong>Rubber duck debugging</strong> is explaining your problem out loud, line by line, to an object that cannot help you. Programmers keep actual rubber ducks on their desks for this. It works absurdly often, because the act of explaining forces you to check the assumption you skipped over. Given how good you are at talking, this one is going to work well for you.</p>
+        <p>Good news: this is the easiest kind of stuck, and the computer is actively telling you where the problem is. It is not being rude. It is being specific.</p>
+        <p><strong>The move:</strong> read the line number, go to that line, and look at the line above it too. Errors are often reported one line after the actual mistake, because that is where the computer finally realised something was wrong.</p>
+        <details class="dict">
+          <summary>What the common error messages actually mean</summary>
+          <div class="body">
+            <p><strong>syntax error</strong><br>Something is typed wrong. Usually a missing <code>then</code> after an <code>if</code>, a missing <code>end</code>, or an unclosed bracket. Count your brackets.</p>
+            <p><strong>'end' expected</strong><br>You opened a <code>function</code>, <code>if</code>, or <code>for</code> and never closed it. Every one of those needs its own <code>end</code>.</p>
+            <p><strong>attempt to index a nil value</strong><br>You asked for something inside a thing that does not exist. If you wrote <code>p.x</code> and there is no <code>p</code> yet, this is what you get. Check the spelling, and check that <code>_init()</code> actually created it.</p>
+            <p><strong>attempt to perform arithmetic on a nil value</strong><br>You did math on an empty variable. Almost always a typo: you set <code>speed</code> somewhere and used <code>spd</code> here.</p>
+            <p><strong>attempt to call a nil value</strong><br>You called a function that does not exist. Check the spelling of the function name against where you defined it.</p>
+            <p style="color:var(--p9)"><strong>Notice the pattern.</strong> Three of those five are spelling. Variable names are case-sensitive and the computer will not guess what you meant.</p>
+          </div>
+        </details>
+        <p style="margin-top:14px">Still not obvious? Paste the error and the line into the Coach and say what you expected that line to do.</p>
       </div>
     </details>
-    <div class="warn">
-      <b>&#9888; THE TWENTY MINUTE RULE</b>
-      <p>Stuck on the same thing for twenty minutes with no movement at all? Stop. Ask the Coach, go find Dad, or stand up and do something else for ten minutes.</p>
-      <p>Twenty minutes of stuck is productive struggle. Ninety minutes of stuck is losing a day you do not have. Correctly deciding something is beyond you and asking for help is a skill you are graded on, not a failure.</p>
-      <p style="margin-top:12px"><button id="timerBtn">Start 20:00</button></p>
+
+    <details class="triage">
+      <summary><span class="ic">&#128309;</span>It runs, but it does the wrong thing.</summary>
+      <div class="body">
+        <p>Harder than an error, because nothing is going to tell you where to look. You have to go find it.</p>
+        <p><strong>The move: stop guessing and start watching.</strong> Put <code>print()</code> statements in and see what the numbers are actually doing. Is the value what you think it is? Is that line even running? Print the word "here" inside the <code>if</code> and find out whether you ever get in there at all.</p>
+        <p><strong>Then narrow it.</strong> Comment out half your code with <code>--</code>. Does the problem still happen? Now you know which half it is in. Do it again. Four or five rounds of that will corner almost any bug, and it beats staring at all of it hoping to notice.</p>
+        <details class="dict">
+          <summary>DEV DICTIONARY: bisecting and the minimal repro</summary>
+          <div class="body">
+            <p><strong>Bisecting</strong> is what you just did: cut the search space in half, test, repeat. Programmers use it constantly, and there are tools that automate it across years of a project's history.</p>
+            <p>A <strong>minimal reproduction</strong> (a "minimal repro") is the smallest piece of code that still shows the bug. Stripping a problem down to a repro fixes it by itself surprisingly often, because the act of removing everything irrelevant is the act of finding out what is relevant.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <details class="triage">
+      <summary><span class="ic">&#128993;</span>I know what I want it to do. I do not know how to write it.</summary>
+      <div class="body">
+        <p>This is not a bug and you are not stuck in the frustrating sense. This is a lookup, and lookups are a normal part of every working day for every developer alive.</p>
+        <p><strong>The move:</strong> go to the index below, which is organised by what you are trying to accomplish rather than by command name. That is how you are thinking, so that is the right door.</p>
+        <ul class="links">
+          <li><a class="read" href="https://nerdyteachers.com/PICO-8/Guide" target="_blank" rel="noopener">The "how do I do X" index <em>start here</em></a></li>
+          <li><a class="read" href="https://www.lexaloffle.com/bbs/?tid=28207" target="_blank" rel="noopener">The cheat sheet <em>if you just need the command name</em></a></li>
+          <li><a class="play" href="https://www.lexaloffle.com/bbs/?cat=7" target="_blank" rel="noopener">Real carts, with a Code button under each <em>find a game that does the thing, read how</em></a></li>
+        </ul>
+        <div class="tip" style="margin-top:16px">
+          <b>HOW PROFESSIONALS ACTUALLY WORK</b>
+          <p>Nobody writes games from memory. The person sitting next to you at a studio has the docs open, a Stack Overflow tab, and somebody else's code they are reading for ideas.</p>
+          <p>Looking things up is not the thing you do until you get good. It is the thing being good looks like.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="triage">
+      <summary><span class="ic">&#128994;</span>I am staring at code and I do not understand what it means.</summary>
+      <div class="body">
+        <p><strong>The move: explain it out loud, one line at a time, to something that cannot help you.</strong> A wall. A pet. Your own reflection. Say what each line does before you move to the next one.</p>
+        <p>This sounds ridiculous and it works constantly, because the moment you have to say a line out loud you cannot skim past the part you were quietly assuming. You will hear yourself say something wrong. That is the bug.</p>
+        <p>Given how good you are at talking, this one is going to work unusually well for you. Use it before you use anything else.</p>
+        <details class="dict">
+          <summary>DEV DICTIONARY: rubber duck debugging</summary>
+          <div class="body">
+            <p>This has a name and the name is <strong>rubber duck debugging</strong>. Programmers keep actual rubber ducks on their desks and explain their code to them, unironically, in professional offices, in front of colleagues, who do not find it odd because they have their own duck.</p>
+            <p>The Coach works as a very expensive duck. Explaining your code to it, line by line, is one of the better uses of it, and better than asking it what is wrong.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <details class="triage">
+      <summary><span class="ic">&#128995;</span>It works, but it feels bad to play.</summary>
+      <div class="body">
+        <p>Then you do not have a bug, you have a design problem, and that is a completely different kind of work. It is also the more interesting kind.</p>
+        <p><strong>The move: change one number at a time and play it after each change.</strong> Speed. Gravity. How long a thing takes. How far you move per frame. Feel is almost never one big decision, it is fifteen small numbers, and the only way to find them is to keep touching one and playing.</p>
+        <p>If it feels floaty, things are probably too slow to start and too slow to stop. If it feels stiff, the opposite. If it feels unfair, your hitbox is probably bigger than it looks.</p>
+        <ul class="links">
+          <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/10" target="_blank" rel="noopener">Advanced movement <em>acceleration and friction, where most of "feel" lives</em></a></li>
+          <li><a class="read" href="https://nerdyteachers.com/PICO-8/Game_Mechanics/11" target="_blank" rel="noopener">Screen shake <em>the cheapest way to make an impact land</em></a></li>
+        </ul>
+        <p style="margin-top:14px;color:var(--p9)">Careful though. This is Day 2 work at the latest. After the Freeze, feel goes in the Vault with everything else.</p>
+      </div>
+    </details>
+
+    <details class="triage">
+      <summary><span class="ic">&#128308;</span>I have been at this forever and I want to quit.</summary>
+      <div class="body">
+        <p>Read this part properly, because it is the most likely one to be true and the one people skip.</p>
+        <p>That feeling is not information about whether you can do this. It is information about how long you have been sitting still while something did not work, which is a completely different fact. Everybody who builds things feels it. Most of them felt it this week.</p>
+        <p><strong>The move, in order:</strong></p>
+        <ol>
+          <li>Stand up. Leave the room. Ten minutes minimum, no screen.</li>
+          <li>Come back and read your one verb at the top of the page. Remind yourself what you are actually trying to build, because after ninety minutes of one bug you have usually forgotten.</li>
+          <li>Ask the Coach, or go find Dad. Out loud, to a person.</li>
+        </ol>
+        <p>The number of problems that solve themselves during the ten minutes away is genuinely absurd. Your brain keeps working on it and it works better when you are not glaring at it.</p>
+        <div class="warn" style="margin-top:18px">
+          <b>&#9888; THE TWENTY MINUTE RULE</b>
+          <p>Twenty minutes of stuck with no movement at all is your signal to change something. Not to try harder.</p>
+          <p>Twenty minutes of stuck is productive struggle and it is where the learning is. Ninety minutes of stuck is losing a day you do not have. Correctly deciding a thing is beyond you right now and asking for help is a skill you are graded on in this program, not a failure at it.</p>
+          <p style="margin-top:12px"><button id="timerBtn">Start 20:00</button></p>
+        </div>
+      </div>
+    </details>
+
+    <h3 style="margin-top:38px">How to ask a question that actually gets answered</h3>
+    <p>Worth learning now, because it works on the Coach, on Dad, and on every forum and colleague for the rest of your life. "It does not work" gets you nothing, from anybody, ever.</p>
+    <div class="tip">
+      <b>THE FOUR PARTS</b>
+      <p><strong>1. What I expected.</strong> "I expected the square to stop at the wall."</p>
+      <p><strong>2. What actually happened.</strong> "It goes straight through and disappears."</p>
+      <p><strong>3. What I already tried.</strong> "I printed p.x and it keeps going past 127."</p>
+      <p><strong>4. The smallest piece of code involved.</strong> Not the whole cart. The four lines you think are guilty.</p>
     </div>
-    <h3>When it is properly on fire</h3>
+    <p>Writing those four things out will solve the problem before you send it maybe a third of the time. That is not a waste of the effort. That is the technique working.</p>
+
+    <h3 style="margin-top:34px">When it is properly on fire</h3>
     <ul class="links">
       <li><a class="read" href="https://nerdyteachers.com/PICO-8/Guide" target="_blank" rel="noopener">The "how do I do X" index <em>organised by what you are trying to accomplish</em></a></li>
       <li><a class="read" href="https://www.lexaloffle.com/dl/docs/pico-8_manual.html" target="_blank" rel="noopener">The full manual <em>searchable, everything</em></a></li>
@@ -840,18 +977,24 @@ end</pre>
       <li><a class="read" href="https://www.lexaloffle.com/bbs/?cat=7" target="_blank" rel="noopener">The forums <em>somebody has already had this exact problem</em></a></li>
       <li><a class="read" href="https://github.com/pico-8/awesome-PICO-8" target="_blank" rel="noopener">The community's list of everything</a></li>
     </ul>
-    <h3 style="margin-top:34px">Do not open these this week</h3>
-    <p style="color:var(--p6)">Not a joke. Every one is excellent and every one will eat all three days. Bookmark them for October.</p>
-    <ul class="links dontopen">
-      <li><a href="https://www.youtube.com/playlist?list=PLea8cjCua_P0qjjiG8G5FBgqwpqMU7rBk" target="_blank" rel="noopener">LazyDevs, Breakout Hero <em>seventy-eight videos. the best beginner series that exists and completely wrong for three days</em></a></li>
-      <li><a href="https://mboffin.itch.io/pico-8-top-down-adventure-game-tutorial" target="_blank" rel="noopener">Top-Down Adventure Tutorial <em>genuinely great, and it builds a scrolling map game, which breaks the one-screen rule on purpose</em></a></li>
-      <li><a href="https://mboffin.itch.io/gamedev-with-pico-8-issue1" target="_blank" rel="noopener">Game Development with PICO-8, Issue 1 <em>seventy-two pages. read it the week after you finish something</em></a></li>
-      <li><a href="https://nerdyteachers.com/PICO-8/Audio/93" target="_blank" rel="noopener">The audio course <em>two dozen lessons on PICO-8 music theory. spectacular. not now.</em></a></li>
-    </ul>
+
+    <details class="triage" style="margin-top:34px">
+      <summary><span class="ic">&#9940;</span>Do not open these this week</summary>
+      <div class="body">
+        <p>Not a joke section. Every one of these is excellent and every one of them will eat all three days. Bookmark them for October.</p>
+        <ul class="links dontopen">
+          <li><a href="https://www.youtube.com/playlist?list=PLea8cjCua_P0qjjiG8G5FBgqwpqMU7rBk" target="_blank" rel="noopener">LazyDevs, Breakout Hero <em>seventy-eight videos. the best beginner series that exists and completely wrong for three days</em></a></li>
+          <li><a href="https://mboffin.itch.io/pico-8-top-down-adventure-game-tutorial" target="_blank" rel="noopener">Top-Down Adventure Tutorial <em>genuinely great, and it builds a scrolling map game, which breaks the one-screen rule on purpose</em></a></li>
+          <li><a href="https://mboffin.itch.io/gamedev-with-pico-8-issue1" target="_blank" rel="noopener">Game Development with PICO-8, Issue 1 <em>seventy-two pages. read it the week after you finish something</em></a></li>
+          <li><a href="https://nerdyteachers.com/PICO-8/Audio/93" target="_blank" rel="noopener">The audio course <em>two dozen lessons on PICO-8 music theory. spectacular. not now.</em></a></li>
+        </ul>
+      </div>
+    </details>
+
     <div class="joke">
       <b>&#9888; DAD JOKE DETECTED</b>
-      <p>How many programmers does it take to change a light bulb?</p>
-      <p>None. That is a hardware problem.</p>
+      <p>Why did the developer go broke?</p>
+      <p>He used up all his cache.</p>
     </div>
   </div>
 </div>
