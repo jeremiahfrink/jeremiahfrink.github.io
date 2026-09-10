@@ -21,6 +21,109 @@
       </div>
     </dialog>
 
+    <dialog id="help-dialog" class="dialog help-dialog">
+      <div class="dialog-head">
+        <h2>How to work with the AI</h2>
+        <button class="button ghost" data-close-help>Close</button>
+      </div>
+
+      <p class="dialog-lede">Not prompt tricks. Five moves that make the difference between a generic answer and a useful one, on any topic, with any model.</p>
+
+      <section class="help-rule">
+        <p class="help-rule-label">The one rule</p>
+        <p><strong>You are the designer. It is the assistant.</strong> If you cannot say why something is in the plan, it does not go in the plan. A room full of choices somebody else made is not your room, it is just a room you are standing in.</p>
+      </section>
+
+      <h3>The five moves</h3>
+
+      <details class="expander">
+        <summary>1. Give it something to work with</summary>
+        <div class="expander-body">
+          <p>A model has no eyes and no memory of your house. It produces the most likely useful answer given what you handed it. Hand it nothing and the most likely answer is an average of the internet.</p>
+          <p>Measurements, photos, what you actually do in the space, what cannot move. Facts beat clever wording every single time. If a response feels generic, do not rewrite the question. Add more facts.</p>
+        </div>
+      </details>
+
+      <details class="expander">
+        <summary>2. Make it ask you questions</summary>
+        <div class="expander-body">
+          <p>Left alone it will guess, because producing an answer is what it does. Tell it not to: <em>ask me one question at a time before you suggest anything, and if the answer could be found by measuring, tell me to go and measure.</em></p>
+          <p>This one line turns it from a machine that hands you a room into something closer to a person thinking alongside you.</p>
+        </div>
+      </details>
+
+      <details class="expander">
+        <summary>3. Ask what you are giving up</summary>
+        <div class="expander-body">
+          <p>These models drift towards agreeing with you. Say "I am thinking of a corner desk" and you will get a warm explanation of why corner desks are great.</p>
+          <p>Ask instead: <em>what do I give up with this?</em> Or harder: <em>argue against my idea. What would have to be true for this to be the wrong choice?</em></p>
+          <p>The answer to the second question is nearly always more useful than the agreement was. Make it a reflex. It works on every model, on every subject, for the rest of your life.</p>
+        </div>
+      </details>
+
+      <details class="expander">
+        <summary>4. Say no out loud</summary>
+        <div class="expander-body">
+          <p>"I do not like that, here is why" is not rude and it is not wasted effort. It is the fastest way to communicate taste, which is the one thing it genuinely cannot guess about you.</p>
+          <p>Rejecting three things clearly gets you further than accepting one thing vaguely.</p>
+        </div>
+      </details>
+
+      <details class="expander">
+        <summary>5. Check it against reality</summary>
+        <div class="expander-body">
+          <p>Everything it tells you about a size, a product, or whether two things fit together is a claim, not a fact. Generated images are worse: they will widen your room, float a desk with no legs, and put a lamp where there is no outlet.</p>
+          <p>This is not a bug you can prompt your way around. These systems generate what is <em>plausible</em>. Plausible and true are different things, and telling them apart is your job.</p>
+          <p>Tape measure beats picture. Product page beats summary. Every time.</p>
+        </div>
+      </details>
+
+      <h3>When it goes wrong</h3>
+
+      <details class="expander stuck">
+        <summary>It just agrees with everything I say</summary>
+        <div class="expander-body">
+          <p>Expected, not a malfunction. Say: <em>argue against this. What would have to be true for it to be a bad idea?</em> Or ask it for the strongest case for the option you did not pick.</p>
+        </div>
+      </details>
+
+      <details class="expander stuck">
+        <summary>It suggested something impossible</summary>
+        <div class="expander-body">
+          <p>Tell it exactly what is impossible and why, and it will usually correct course. Then treat everything else in that answer with a bit more suspicion, because one impossible thing rarely travels alone.</p>
+          <p>Also worth noticing: you caught it. That is the skill. Most people would not have.</p>
+        </div>
+      </details>
+
+      <details class="expander stuck">
+        <summary>The conversation has drifted somewhere strange</summary>
+        <div class="expander-body">
+          <p>Normal in a long chat. Paste your design challenge back in and ask it to check the current direction against it. Re-anchoring costs one message.</p>
+        </div>
+      </details>
+
+      <details class="expander stuck">
+        <summary>I cannot think of anything at all</summary>
+        <div class="expander-body">
+          <p>Go and sit in the actual room for three minutes doing nothing. Annoyances surface on their own, and almost every design in history started as somebody being irritated by something.</p>
+          <p>Write down the irritation. That is a starting point, and it is a better one than an inspiration photo.</p>
+        </div>
+      </details>
+
+      <details class="expander stuck">
+        <summary>Everything it gives me is boring and generic</summary>
+        <div class="expander-body">
+          <p>Almost always a context problem rather than a model problem. It does not know enough about your room to say anything that could only be about your room.</p>
+          <p>Give it the measurements, the door swing, the outlet positions, the thing that cannot move, and what you actually do in there. Watch the answers change.</p>
+        </div>
+      </details>
+
+      <section class="help-rule warn">
+        <p class="help-rule-label">Before you upload photos</p>
+        <p>Move or cover anything you would not want in a chat window: schoolwork with your details on it, letters, screens with accounts open, anything with your address. Once it is uploaded you cannot take it back out.</p>
+      </section>
+    </dialog>
+
     <script src="./app.js" defer></script>
   </body>
 </html>
