@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instructional Technology Coaches | Professional learning series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  LINKS STILL NEEDED. Search this file for: NEEDLINK
+  Each one is a visible placeholder on the page until you
+  replace the href and delete class="need".
+  ============================================================
+  Session 1   agenda, slides, station log form, capture board
+  Session 2   agenda, everything
+  Standing    Google changes sheet, staying sane notebook,
+              district AI guidelines, disclosure standard,
+              full resource list
+  Wired up    index.html            (this page)
+              s1-station.html       (Session 1 station rotation)
+              google-updates.html   (Google changes + idea sparks)
+              coach-sparks.html     (coach idea sparks)
+              the Google changes sheet, the idea spark doc
+  All four .html files sit in the same directory.
+  ============================================================
+-->
+
+<style>
+:root{
+  --navy:#12263F; --teal:#0E6E6E; --amber:#B45309; --berry:#8A2E4D;
+  --ink:#12263F; --paper:#F3F6F8; --muted:#5B6B7C;
+  --line:#D6DEE5; --soft:#E8EEF2;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+a{color:var(--navy)}
+
+/* ---- masthead ---- */
+.masthead{background:var(--navy);color:#fff;padding:38px 0 30px}
+.masthead h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:34px;
+  line-height:1.15;margin:0 0 6px;letter-spacing:-0.01em}
+.masthead p{color:#A9C0D6;font-size:15px;margin:0;max-width:60ch}
+
+/* ---- right now ---- */
+.now{background:#fff;border:1px solid var(--line);border-top:5px solid var(--amber);
+  margin:-1px 0 0;padding:22px 24px 24px}
+.now .when{font-size:13px;font-weight:700;color:var(--amber);margin:0 0 4px}
+.now h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:25px;margin:0 0 6px}
+.now .line{margin:0 0 16px;font-size:15px;color:var(--muted);max-width:62ch}
+.linkrow{display:flex;flex-wrap:wrap;gap:9px}
+
+/* ---- links & placeholders ---- */
+.lnk{display:inline-block;font-size:14px;font-weight:600;text-decoration:none;
+  padding:9px 16px;border:1px solid var(--navy);color:var(--navy);background:#fff;border-radius:2px}
+.lnk:hover{background:var(--navy);color:#fff}
+.lnk:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.lnk.primary{background:var(--navy);color:#fff}
+.lnk.primary:hover{background:#0B1A2C}
+.need{display:inline-block;font-size:14px;font-weight:500;padding:9px 16px;
+  border:1px dashed #B8863B;color:#8A6320;background:#FDF8EE;border-radius:2px;
+  text-decoration:none;cursor:default}
+.need::before{content:"Need the link: ";font-weight:700}
+
+/* ---- sections ---- */
+section{padding:34px 0 0}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.sec-head h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:24px;margin:0}
+.sec-head span{font-size:13px;color:var(--muted)}
+.sec-rule{height:3px;background:var(--navy);margin:10px 0 16px}
+.sec-intro{margin:0 0 18px;font-size:15px;color:var(--muted);max-width:64ch}
+
+/* ---- session rows ---- */
+.ses{background:#fff;border:1px solid var(--line);border-left:4px solid var(--line);margin-bottom:10px}
+.ses.done{border-left-color:var(--teal)}
+.ses.next{border-left-color:var(--amber)}
+.ses-top{display:flex;align-items:center;gap:16px;padding:15px 46px 15px 18px;
+  position:relative;cursor:pointer}
+.ses-top:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.ses-top::after{content:"";position:absolute;right:20px;top:50%;margin-top:-6px;width:9px;height:9px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .18s ease}
+.ses.open .ses-top::after{transform:rotate(-135deg);margin-top:-2px}
+.ses-date{flex:0 0 140px;font-size:14px;font-weight:700}
+.ses-date small{display:block;font-weight:500;font-size:12px;color:var(--muted);margin-top:1px}
+.ses-title{flex:1;min-width:200px}
+.ses-title b{display:block;font-size:15.5px;font-weight:600;line-height:1.3}
+.ses-title span{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+.ses-body{display:none;border-top:1px solid var(--soft);padding:16px 18px 18px;background:#FAFCFD}
+.ses.open .ses-body{display:block}
+.ses-body h4{font-size:12.5px;font-weight:700;color:var(--muted);margin:0 0 8px}
+.ses-body .agenda{margin:0 0 16px;padding-left:18px;font-size:14.5px}
+.ses-body .agenda li{margin-bottom:4px}
+.tbc{font-size:14.5px;color:var(--muted);margin:0}
+
+/* ---- access block ---- */
+.access{background:#fff;border:1px solid var(--line);border-left:4px solid var(--berry);padding:18px 20px}
+.access dl{margin:0;display:grid;grid-template-columns:210px 1fr;gap:10px 18px;font-size:14.5px}
+.access dt{font-weight:600}
+.access dd{margin:0;color:var(--muted)}
+.access .foot{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--soft)}
+
+/* ---- resource cards ---- */
+.res{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.rescard{background:#fff;border:1px solid var(--line);padding:15px 17px}
+.rescard b{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
+.rescard p{margin:0 0 11px;font-size:13.5px;color:var(--muted);line-height:1.45}
+
+/* ---- between / covered ---- */
+.between{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);padding:18px 20px}
+.between h4{font-size:12.5px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.between p{margin:0 0 14px;font-size:15px;max-width:62ch}
+.covered{background:#fff;border:1px solid var(--line);padding:6px 20px 14px}
+.covered ul{margin:12px 0 0;padding-left:18px;font-size:14.5px}
+.covered li{margin-bottom:5px}
+.covered .stamp{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:14px}
+
+footer{margin-top:44px;border-top:1px solid var(--line);padding:22px 0 60px;
+  font-size:13.5px;color:var(--muted)}
+
+@media (max-width:720px){
+  .masthead h1{font-size:27px}
+  .res{grid-template-columns:1fr}
+  .access dl{grid-template-columns:1fr;gap:3px 0}
+  .access dd{margin-bottom:8px}
+  .ses-top{flex-wrap:wrap;gap:6px}
+  .ses-date{flex:0 0 100%}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>Instructional Technology Coaches</h1>
+    <p>Everything from our sessions lives here. Bookmark this page rather than the individual links, because the links change and this address will not.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ RIGHT NOW ============ -->
+  <div class="now">
+    <p class="when">Today</p>
+    <h2>Session 1</h2>
+    <p class="line">What changed over the summer, what we can actually use on our license, and one thing you will try before we meet again.</p>
+    <div class="linkrow">
+      <a class="lnk primary" href="s1-station.html">Station rotation</a>
+      <a class="need" href="#">Session 1 agenda</a><!-- NEEDLINK -->
+      <a class="need" href="#">Session 1 slides</a><!-- NEEDLINK -->
+      <a class="need" href="#">Station log form</a><!-- NEEDLINK -->
+      <a class="lnk" href="google-updates.html">What changed in Google</a>
+    </div>
+  </div>
+
+  <!-- ============ SESSIONS ============ -->
+  <section>
+    <div class="sec-head"><h2>Our sessions</h2><span>Open a date for the agenda and everything handed out</span></div>
+    <div class="sec-rule"></div>
+
+    <article class="ses next">
+      <div class="ses-top">
+        <div class="ses-date">September 11<small>2026</small></div>
+        <div class="ses-title"><b>Getting oriented</b><span>What changed, what we can use, and what you will try</span></div>
+      </div>
+      <div class="ses-body">
+        <h4>What we did</h4>
+        <ul class="agenda">
+          <li>Where we are and what this series is</li>
+          <li>The broader world: AI beyond our district, and instructional screen use</li>
+          <li>What changed in Google over the summer, and what our license actually gives us</li>
+          <li>Station rotation: four stations, three rounds, one teacher of your own</li>
+          <li>What you will try before September 25</li>
+        </ul>
+        <h4>Links</h4>
+        <div class="linkrow">
+          <a class="lnk" href="s1-station.html">Station rotation</a>
+          <a class="need" href="#">Session 1 agenda</a><!-- NEEDLINK -->
+          <a class="need" href="#">Session 1 slides</a><!-- NEEDLINK -->
+          <a class="need" href="#">Station log form</a><!-- NEEDLINK -->
+          <a class="need" href="#">What the room captured</a><!-- NEEDLINK -->
+          <a class="lnk" href="google-updates.html">What changed in Google</a>
+          <a class="lnk" href="coach-sparks.html">Idea sparks for coaches</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ses">
+      <div class="ses-top">
+        <div class="ses-date">September 25<small>2026</small></div>
+        <div class="ses-title"><b>Bring back what you tried</b><span>What happened with a real teacher, and what it opened up</span></div>
+      </div>
+      <div class="ses-body">
+        <p class="tbc">Agenda goes up closer to the date.</p>
+        <h4>Links</h4>
+        <div class="linkrow">
+          <a class="need" href="#">Session 2 agenda</a><!-- NEEDLINK -->
+          <a class="need" href="#">Session 2 materials</a><!-- NEEDLINK -->
+        </div>
+      </div>
+    </article>
+
+    <article class="ses">
+      <div class="ses-top">
+        <div class="ses-date">Date to confirm<small>Session 3</small></div>
+        <div class="ses-title"><b>To be titled</b><span>Shaped by what comes back from the first two sessions</span></div>
+      </div>
+      <div class="ses-body"><p class="tbc">Nothing here yet.</p></div>
+    </article>
+
+    <article class="ses">
+      <div class="ses-top">
+        <div class="ses-date">Date to confirm<small>Session 4</small></div>
+        <div class="ses-title"><b>To be titled</b><span></span></div>
+      </div>
+      <div class="ses-body"><p class="tbc">Nothing here yet.</p></div>
+    </article>
+
+    <article class="ses">
+      <div class="ses-top">
+        <div class="ses-date">Date to confirm<small>Session 5</small></div>
+        <div class="ses-title"><b>To be titled</b><span></span></div>
+      </div>
+      <div class="ses-body"><p class="tbc">Nothing here yet.</p></div>
+    </article>
+
+    <article class="ses">
+      <div class="ses-top">
+        <div class="ses-date">Date to confirm<small>Session 6</small></div>
+        <div class="ses-title"><b>To be titled</b><span></span></div>
+      </div>
+      <div class="ses-body"><p class="tbc">Nothing here yet.</p></div>
+    </article>
+  </section>
+
+  <!-- ============ ACCESS ============ -->
+  <section>
+    <div class="sec-head"><h2>What we can and cannot use</h2><span>The question that comes up most</span></div>
+    <div class="sec-rule" style="background:var(--berry)"></div>
+    <div class="access">
+      <dl>
+        <dt>Our license</dt>
+        <dd>Google Workspace for Education Standard. We do not have Google AI Pro for Education, Education Plus, or the Teaching and Learning add-on, so a good deal of what Google announces does not reach us.</dd>
+
+        <dt>Gemini and Gemini Notebook</dt>
+        <dd>All staff. Students in grades 9 to 12 only. Below grade 9 the work happens on the teacher's side and students see the product.</dd>
+
+        <dt>Gems</dt>
+        <dd>Available to staff, and shareable with colleagues.</dd>
+
+        <dt>Adobe Express with Firefly</dt>
+        <dd>Open to students at every grade we serve. For most elementary and middle rooms this is the student creation tool.</dd>
+
+        <dt>Turned off here</dt>
+        <dd>Google Chat, and most of Google Meet.</dd>
+      </dl>
+      <div class="foot linkrow">
+        <a class="lnk" href="google-updates.html">Everything that changed, and whether it reaches us</a>
+        <a class="need" href="#">District AI guidelines</a><!-- NEEDLINK -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESOURCES ============ -->
+  <section>
+    <div class="sec-head"><h2>Resources and ideas for you</h2><span>Kept current between sessions</span></div>
+    <div class="sec-rule" style="background:var(--teal)"></div>
+    <p class="sec-intro">A few things worth having open. The full running list lives in a document that gets added to as we go.</p>
+    <div class="res">
+      <div class="rescard">
+        <b>What changed in Google, and what reaches us</b>
+        <p>Every change since March, sorted newest first, with a plain answer on whether our license covers it. Room to add what you have tried.</p>
+        <div class="linkrow"><a class="lnk" href="google-updates.html">Open</a></div>
+      </div>
+      <div class="rescard">
+        <b>The staying sane notebook</b>
+        <p>A Gemini Notebook you can copy and make your own. Also the demonstration of the copy feature that shipped in August.</p>
+        <div class="linkrow"><a class="need" href="#">Staying sane notebook</a><!-- NEEDLINK --></div>
+      </div>
+      <div class="rescard">
+        <b>District AI guidelines</b>
+        <p>What is approved, who can use what, and what has to be disclosed. The source for every policy line you see in our materials.</p>
+        <div class="linkrow"><a class="need" href="#">District AI guidelines</a><!-- NEEDLINK --></div>
+      </div>
+      <div class="rescard">
+        <b>Disclosure standard</b>
+        <p>How we say that AI was involved, in work we share with teachers, students, and families.</p>
+        <div class="linkrow"><a class="need" href="#">Disclosure standard</a><!-- NEEDLINK --></div>
+      </div>
+      <div class="rescard">
+        <b>Idea sparks for coaches</b>
+        <p>Moves that make the coaching work easier, each with a prompt you can paste and adapt. Grows from what coaches bring back.</p>
+        <div class="linkrow"><a class="lnk" href="coach-sparks.html">Open</a></div>
+      </div>
+      <div class="rescard">
+        <b>Add your own idea spark</b>
+        <p>Anything you work out that saves time or makes a conversation land better. We collect these in sessions and move them onto the coaches page.</p>
+        <div class="linkrow"><a class="lnk" href="https://docs.google.com/document/d/19q3-BVUJVJWwvHUBXT0eL7wwfLsSDbSvGZeQXDzGv54/edit?usp=sharing" target="_blank" rel="noopener">Open the doc</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BETWEEN SESSIONS ============ -->
+  <section>
+    <div class="sec-head"><h2>Between now and September 25</h2></div>
+    <div class="sec-rule" style="background:var(--teal)"></div>
+    <div class="between">
+      <h4>What you agreed to try</h4>
+      <p>One thing, with one real teacher. Not a pilot, not a rollout. The thing you picked at your station.</p>
+      <h4>What to bring back</h4>
+      <p>Which teacher, what you shared, what happened, and what students could do. Dead ends are worth more to the group than successes.</p>
+      <div class="linkrow">
+        <a class="need" href="#">Log what you tried</a><!-- NEEDLINK -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COVERED SO FAR ============ -->
+  <section>
+    <div class="sec-head"><h2>What we have covered so far</h2><span>Grows as we go</span></div>
+    <div class="sec-rule"></div>
+    <div class="covered">
+      <ul>
+        <li>What our license gives us, and why so much of what Google announces does not reach us</li>
+        <li>Who can use Gemini and Gemini Notebook, and what changes below grade 9</li>
+        <li>Copying and sharing a Gemini Notebook, new in August</li>
+        <li>Generating a rubric in Classroom from an assignment that already exists</li>
+        <li>Where AI shows up in coaching: thought partner, personalization, assistant</li>
+      </ul>
+      <p class="stamp">Last updated after Session 1</p>
+    </div>
+  </section>
+
+  <footer>
+    Instructional Technology Coach series. Maintained by Jeremiah Okal-Frink. If a link is broken or missing, say so and it gets fixed.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.ses'));
+  rows.forEach(function(r){
+    var top = r.querySelector('.ses-top');
+    top.setAttribute('role','button');
+    top.setAttribute('tabindex','0');
+    top.setAttribute('aria-expanded','false');
+    function toggle(){
+      var open = !r.classList.contains('open');
+      r.classList.toggle('open', open);
+      top.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    top.addEventListener('click', toggle);
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+  // Open the current session on load.
+  var first = document.querySelector('.ses.next');
+  if (first){ first.classList.add('open'); first.querySelector('.ses-top').setAttribute('aria-expanded','true'); }
+
+  // Placeholders are not clickable until they have a real href.
+  document.querySelectorAll('a.need').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); });
+  });
+})();
+</script>
+
+</body>
+</html>
