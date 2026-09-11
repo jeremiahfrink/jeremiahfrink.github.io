@@ -694,7 +694,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
   });
 
   // Replace with the real Google Form URLs before the session.
-  var FORMS = { station1:'#', station2:'#', station3:'#', station4:'#' };
+  var F = 'https://docs.google.com/forms/d/e/1FAIpQLSfYMdrhBV4u7Uv69kvpT8mRDOIMWrlERzVRyn5x9EI5Sbz9VA/viewform?usp=publish-editor';
+  var FORMS = { station1:F, station2:F, station3:F, station4:F };
   document.querySelectorAll('[data-form]').forEach(function(el){
     var k = el.getAttribute('data-form');
     if (FORMS[k] && FORMS[k] !== '#'){
