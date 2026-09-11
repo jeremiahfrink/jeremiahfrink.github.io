@@ -207,7 +207,7 @@ details.triage .dict{border-color:var(--p13);margin-top:16px}
   <div class="topin">
     <button class="iconbtn" id="menuBtn" aria-label="All steps">&#9776;</button>
     <div class="bar"><i id="barFill"></i></div>
-    <span class="count" id="count">1/24</span>
+    <span class="count" id="count">1/28</span>
   </div>
   <div class="verbstrip" id="verbStrip"></div>
 </div>
@@ -223,17 +223,17 @@ details.triage .dict{border-color:var(--p13);margin-top:16px}
   </div>
   <div class="boot"><b>challenge 01</b><br>loading djcoder.p8<br>four years to learn to build games<br>this week is day one</div>
   <h2>ONE VERB</h2>
-  <div class="tagline">&gt; three days. one screen. ship it.<span class="cursor"></span></div>
+  <div class="tagline">&gt; four days. one screen. ship it.<span class="cursor"></span></div>
   <p class="lede">You have built games before, DJCoder. Scratch, Minecraft, things that worked and things people played.</p>
   <p>This is the same job with the training wheels off: real code, typed by you, in a real language, shipped to a real address that other people can open on their own phones.</p>
   <p>Everything you already know still applies. A loop is still a loop. The only thing that changed is that you type it instead of dragging it.</p>
-  <p style="color:var(--p13)">Twenty-four steps. Hit Next.</p>
+  <p style="color:var(--p13)">Twenty-eight steps. Hit Next.</p>
 </section>
 
 <section class="step" data-day="0" data-title="What am I actually doing?">
   <div class="eyebrow"><b>SETUP</b> &nbsp;the brief</div>
   <h2>What am I actually doing?</h2>
-  <p class="lede">You are going to pick one small piece of a game idea, build only that piece, put it in front of a stranger, and publish it. In three days.</p>
+  <p class="lede">You are going to pick one small piece of a game idea, build only that piece, put it in front of somebody, and publish it. Inside a week.</p>
   <p>Not a demo of your big idea. Not the first level of it. One piece, finished.</p>
   <div class="why">
     <b>WHY YOU ARE DOING THIS</b>
@@ -555,7 +555,7 @@ end</pre>
     <b>WHY YOU ARE DOING THIS THE SLOW WAY</b>
     <p>In Scratch, "if touching" was one block. Somebody else wrote it and handed it to you working.</p>
     <p>Today you write it. Not because being handed it would be cheating, but because collision is in literally every game ever made, and understanding it once, properly, at the level of "which edges have to cross," means you will never be confused by it again in any engine on any platform for the rest of your life.</p>
-    <p>Twenty minutes of confusion here is normal and expected. It is the most valuable twenty minutes in the three days.</p>
+    <p>Twenty minutes of confusion here is normal and expected. It is the most valuable twenty minutes in the whole week.</p>
   </div>
   <p><strong>Start with the playable one.</strong> You can watch two boxes overlap while the code that detects it sits right there on the screen.</p>
   <ul class="links">
@@ -656,7 +656,7 @@ end</pre>
   <h2>The Freeze</h2>
   <div class="freeze">
     <b>&#10052; NO NEW FEATURES FROM HERE</b>
-    <p>Not one. Everything that occurs to you from now on goes in the Vault and stays there until this ships. With three days, a single new idea on Day 3 is the whole difference between shipping and not shipping.</p>
+    <p>Not one. Everything that occurs to you from now on goes in the Vault and stays there until this ships. With days this short, a single new idea from here is the whole difference between shipping and not shipping.</p>
   </div>
   <div class="why">
     <b>WHY THIS IS A REAL THING AND NOT ME BEING MEAN</b>
@@ -684,8 +684,218 @@ end</pre>
   <label class="chk"><input type="checkbox" data-save="c25"><span>Frozen. Nothing new gets built from here.</span></label>
 </section>
 
-<section class="step" data-day="3" data-title="Before the playtest">
-  <div class="eyebrow"><b>DAY 3</b> &nbsp;the long day</div>
+<section class="step" data-day="3" data-title="What actually happened">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;repair day</div>
+  <h2>You hit the hardest version of Day 2</h2>
+  <p class="lede">Before you touch anything, read this, because you are probably filing yesterday as "I was too slow." You were not.</p>
+  <div class="why">
+    <b>WHY YOUR VERB WAS MORE EXPENSIVE THAN THE OTHERS</b>
+    <p>Most verbs need <em>one</em> of something. Jump needs a platform. Catch needs one falling thing. Collect needs one coin. Day 2 was written for those, which is why it says add one thing your verb acts on.</p>
+    <p>Dodge is different, and not by a little. One red square is not a dodging game, it is a game about walking around a box. Your verb only exists once there are several, arriving at different times, which means the game has to keep a <em>list</em> of things and manage it while running. That is a genuinely different piece of programming from handling one thing, and nobody flagged it, including me.</p>
+    <p>In Scratch this was hidden from you. "Create clone of myself" is one block and Scratch keeps the list on your behalf. In Lua nobody keeps it for you. You build it.</p>
+    <p>So: you did not fail Day 2. You chose the verb whose smallest possible version costs the most, and you found that out by building it rather than by being warned about it. That is what the word scope means, and nobody has ever learned it from a warning.</p>
+  </div>
+  <div class="warn">
+    <b>&#9888; TODAY IS REPAIR, NOT REBUILD</b>
+    <p>The Freeze from Day 2 still holds. No new features, no new ideas, no starting again with a simpler game. You fix what is there and you ship what you have.</p>
+    <p>Starting over would feel productive today and would cost you the whole thing tomorrow.</p>
+  </div>
+  <details class="dict">
+    <summary>DEV DICTIONARY: scope, and estimating badly</summary>
+    <div class="body">
+      <p>Every developer alive is bad at estimating how long things take, and it is so consistent that it has a name: the <strong>planning fallacy</strong>. Professionals do not fix it by getting better at guessing. They fix it by building the risky part first and finding out early.</p>
+      <p>Which is what happened to you. You now know something specific and useful: a verb that needs many of something costs roughly double a verb that needs one. That is a real estimating rule and you own it because it cost you a day.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c31"><span>Read it. Today is repair, not rebuild.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Make it tell you">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;diagnose</div>
+  <h2>Stop staring at it. Make it tell you.</h2>
+  <p>Your symptom: the blue square vanishes and does not come back. Do not read the code looking for the mistake. You will read what you <em>meant</em> to write, because you are the person who wrote it.</p>
+  <div class="why">
+    <b>WHAT PROFESSIONALS ACTUALLY DO HERE</b>
+    <p>Nobody good debugs by reading harder. They make the program report on itself, and then they follow the report.</p>
+    <p>The reason is the same one you met on Day 3 of the game: you cannot see your own work clearly. You know what every line is supposed to do, so your eyes slide over the line that does something else. A number printed on screen has no opinion about what you intended.</p>
+    <p>This protocol is not a beginner's version of debugging. It is debugging. The tooling gets fancier and the idea never changes.</p>
+  </div>
+
+  <h3>Step 0. Save a copy first.</h3>
+  <p>Before you change anything, <code>save verb3.p8</code>. You are about to break things on purpose and you want the current state preserved.</p>
+
+  <h3>Step 1. Reproduce it on demand.</h3>
+  <p>Can you make the square vanish every single time, doing the same thing? If it only happens sometimes, work out what you are doing differently when it does. A bug you cannot reproduce is a bug you cannot fix, and finding the reliable steps is often most of the work.</p>
+
+  <h3>Step 2. Make the program talk.</h3>
+  <p>Put this line inside <code>_draw()</code> and run it:</p>
+  <pre>print(p.x.." "..p.y,4,4,7)</pre>
+  <p>Now play until the square disappears and watch those two numbers. There are exactly three things that can happen, and each one points somewhere completely different.</p>
+
+  <details class="triage">
+    <summary><span class="ic">&#128308;</span>The numbers appear, but they are way outside 0 to 127</summary>
+    <div class="body">
+      <p><strong>The square walked off the screen and nothing pulled it back.</strong> This is the most literal version of "I could not get it back," and it is the easiest to fix.</p>
+      <p>Look for these two lines in <code>_update()</code>:</p>
+      <pre>p.x=mid(0,p.x,127-p.w)
+p.y=mid(0,p.y,127-p.h)</pre>
+      <p>They are probably gone, or they moved somewhere that no longer runs, or the enemy code got written on top of them. <code>mid()</code> takes three numbers and returns the middle one, which is a compact way of saying "never below 0, never above 127."</p>
+    </div>
+  </details>
+
+  <details class="triage">
+    <summary><span class="ic">&#128309;</span>The numbers look normal, around 60 and 60, but there is no square</summary>
+    <div class="body">
+      <p><strong>It is being drawn and you cannot see it.</strong> Two usual causes.</p>
+      <p><em>Colour.</em> Your background is <code>cls(1)</code>, which is dark blue, and your player is colour <code>12</code>, which is light blue. One stray keystroke turning that 12 into a 1 makes the player perfectly invisible against the background. Change the player to <code>8</code> for a moment. If a red square appears where the blue one should be, that was it.</p>
+      <p><em>Draw order.</em> Everything in <code>_draw()</code> happens in the order you wrote it, and later things paint over earlier things. If <code>cls()</code> ended up <em>after</em> your player's <code>rectfill</code>, you are wiping the player every frame. If the enemy drawing loop is after it and something is drawn full-screen, same result.</p>
+    </div>
+  </details>
+
+  <details class="triage">
+    <summary><span class="ic">&#128993;</span>That line throws an error</summary>
+    <div class="body">
+      <p><strong><code>p</code> does not exist any more, and something ate it.</strong> The usual culprit in a dodge game is this:</p>
+      <pre>for p in all(reds) do</pre>
+      <p>Using <code>p</code> as the loop variable overwrites your player with an enemy, and from that moment on the player is gone. Nothing looks wrong. There is no error at the line that caused it.</p>
+      <p>Fix: name loop variables something else. <code>for r in all(reds) do</code>. Then check every other place you reused a name.</p>
+      <p>This has a name, <strong>variable shadowing</strong>, and it catches everybody at least once. Now it has caught you and it will not get you again.</p>
+    </div>
+  </details>
+
+  <h3>Step 3. If none of the three fit, cut the problem in half.</h3>
+  <p>Comment out the enemy code entirely with <code>--</code>. Does the player behave? Then the bug is in the enemies. Put half of it back. Repeat. Four or five rounds of halving corners almost any bug, and it beats staring at all of it hoping to notice.</p>
+
+  <div class="field"><span class="lbl">what the bug actually turned out to be, and what fixed it</span>
+    <textarea data-save="bugfound" placeholder="the symptom was... the cause was... the fix was..."></textarea></div>
+
+  <details class="dict">
+    <summary>DEV DICTIONARY: reproduce, print debugging, bisecting, shadowing</summary>
+    <div class="body">
+      <p><strong>Reproducing</strong> a bug means finding the reliable steps that trigger it. Every professional bug report starts with those steps, because a bug nobody can trigger on demand cannot be confirmed fixed.</p>
+      <p><strong>Print debugging</strong> is exactly what you just did. Unglamorous, universal, still used daily by people with twenty years of experience.</p>
+      <p><strong>Bisecting</strong> is halving the search space repeatedly. There are tools that automate this across years of a project's history, and they are doing what you just did by hand.</p>
+      <p><strong>Shadowing</strong> is when a name gets reused and quietly hides the original. It is the reason experienced programmers are fussy about naming things, which looks like pedantry until the first time it costs you a day.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c32"><span>Found it. I know what was actually happening.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Many of something">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;the missing piece</div>
+  <h2>The part nobody told you about: a list</h2>
+  <p class="lede">This is the piece your game needed and the site never taught. It is not your fault it was hard. It was missing.</p>
+  <div class="why">
+    <b>WHY THIS IS ITS OWN CONCEPT</b>
+    <p>Handling one thing is easy: give it a name, move it, draw it. Handling an unknown number of things that appear and disappear while the game runs is a different job, and it needs a structure that can grow and shrink.</p>
+    <p>In Lua that structure is a <strong>table</strong>. You will use tables in every game you ever write, for enemies, bullets, particles, pickups, and levels. Learning it today is not a detour from your dodge game. It is the single most reusable thing in this whole week.</p>
+  </div>
+
+  <h3>The four commands</h3>
+  <pre>reds={}            -- an empty list
+add(reds,thing)    -- put something in it
+del(reds,thing)    -- take something out
+for r in all(reds) -- do something to each one
+#reds              -- how many are in it right now</pre>
+
+  <h3>The pattern, working</h3>
+  <p>Red squares come in from the edges, cross the screen, and get removed when they leave. No player, no collision, no timer. Just the piece you were missing.</p>
+  <pre>function _init()
+ reds={}
+ t=0
+end
+
+function _update()
+ t+=1
+
+ -- every 30 frames, roughly once a second
+ if t%30==0 then
+  spawn()
+ end
+
+ -- move every red in the list
+ for r in all(reds) do
+  r.x+=r.dx
+  r.y+=r.dy
+
+  -- left the screen? take it out.
+  -- without this the list grows forever
+  -- and the game slowly chokes.
+  if r.x&lt;-8 or r.x&gt;136
+  or r.y&lt;-8 or r.y&gt;136 then
+   del(reds,r)
+  end
+ end
+end
+
+function _draw()
+ cls(1)
+ for r in all(reds) do
+  rectfill(r.x,r.y,r.x+r.w,r.y+r.h,8)
+ end
+ print("reds: "..#reds,4,4,7)
+end
+
+function spawn()
+ local side=flr(rnd(4))
+ local r={w=5,h=5,dx=0,dy=0}
+
+ if side==0 then
+  r.x=-8 r.y=rnd(128) r.dx=1+rnd(1)
+ elseif side==1 then
+  r.x=136 r.y=rnd(128) r.dx=-1-rnd(1)
+ elseif side==2 then
+  r.x=rnd(128) r.y=-8 r.dy=1+rnd(1)
+ else
+  r.x=rnd(128) r.y=136 r.dy=-1-rnd(1)
+ end
+
+ add(reds,r)
+end</pre>
+
+  <div class="warn">
+    <b>&#9888; HOW TO USE THIS, AND HOW NOT TO</b>
+    <p><strong>Do:</strong> type it into a fresh cart, run it, change the numbers until you understand what each one does. Then go back to <em>your</em> game and build the pattern in yourself.</p>
+    <p><strong>Do not:</strong> paste your game into this file, or this file into your game. The merging is where the learning is, and it is the part that makes the result still yours.</p>
+  </div>
+
+  <details class="dict">
+    <summary>DEV DICTIONARY: tables, object pools, and why del matters</summary>
+    <div class="body">
+      <p>A <strong>table</strong> in Lua is a list and a container of named values at the same time. Every red square here is a small table with x, y, w, h, dx and dy inside it, and they all live in one big table called <code>reds</code>.</p>
+      <p>Forgetting to <code>del()</code> things that leave the screen is one of the classic beginner bugs and it is a sneaky one, because nothing breaks. The list just grows, the game gets slower and slower, and you blame your computer. Professionals call the general problem a <strong>leak</strong>.</p>
+      <p>Big games avoid creating and destroying objects constantly with a trick called an <strong>object pool</strong>: make a hundred at the start, reuse them, never allocate again. You do not need it at this size. It is worth knowing the name.</p>
+    </div>
+  </details>
+  <label class="chk"><input type="checkbox" data-save="c33"><span>Red squares spawn, move, and leave. In my own game.</span></label>
+</section>
+
+<section class="step" data-day="3" data-title="Hard stop">
+  <div class="eyebrow"><b>DAY 3</b> &nbsp;lock it</div>
+  <h2>Ninety minutes, then whatever exists is the game</h2>
+  <p class="lede">A visible timer, agreed before you start, not called on you afterwards.</p>
+  <p>When it goes off, you stop building. If the full dodge game works, that ships. If you have one red square and no timer, <em>that</em> ships. Either way the thing that exists at that moment is the thing that goes on the internet tomorrow.</p>
+  <div class="why">
+    <b>WHY THIS IS A REAL PRACTICE AND NOT A PUNISHMENT</b>
+    <p>Shipping is a decision, not a state you arrive at. No game is ever finished. Every game you have played was taken away from its developers at a date agreed in advance, with a list of known problems still attached.</p>
+    <p>The moment a team says "this is the version that goes out" has a name: the <strong>release candidate</strong>. After it, nothing changes except emergencies. It always happens before anybody feels ready, and it happening is why the game exists at all.</p>
+    <p>Your ninety minutes is the same mechanism at your scale. It is not a judgement on how much you got done. It is the thing that turns a project into a released thing.</p>
+  </div>
+  <div class="tip">
+    <b>THE LAST THING TODAY, AND DO NOT SKIP IT</b>
+    <p>Type <code>save verb3.p8</code>, then put that file in Drive next to the others. Not Ctrl+S, which only saves to this browser.</p>
+    <p>Tomorrow's machine cannot see anything that is not in Drive. This one step is the difference between finishing and not.</p>
+  </div>
+  <div class="joke">
+    <b>&#9888; DAD JOKE DETECTED</b>
+    <p>Why did the programmer quit his job?</p>
+    <p>He did not get arrays.</p>
+  </div>
+  <label class="chk"><input type="checkbox" data-save="c34"><span>Stopped when the timer went. verb3.p8 is in Drive. This is the build that ships.</span></label>
+</section>
+
+<section class="step" data-day="4" data-title="Before the playtest">
+  <div class="eyebrow"><b>DAY 4</b> &nbsp;ship day</div>
   <h2>Read this before you hand it to anybody</h2>
   <p>Two short pieces on how a game teaches a player to play it without a tutorial. You are about to watch that fail in real time, and it makes far more sense if you know what you are looking at.</p>
   <ul class="links">
@@ -699,20 +909,25 @@ end</pre>
       <p>Watch for it from now on and you will not be able to stop seeing it. The opening of almost every good game is secretly a tutorial with the word "tutorial" carefully removed.</p>
     </div>
   </details>
-  <label class="chk"><input type="checkbox" data-save="c31"><span>Read both.</span></label>
+  <label class="chk"><input type="checkbox" data-save="c41"><span>Read both.</span></label>
 </section>
 
-<section class="step" data-day="3" data-title="Shut up and watch">
-  <div class="eyebrow"><b>DAY 3</b> &nbsp;the important one</div>
-  <h2>Hand it to a person. Then say absolutely nothing.</h2>
-  <p>Find someone who has not heard you talk about this game. Give them the controls. Then be completely silent for the entire time they play.</p>
-  <p>Not "you can jump." Not "oh, that part is broken." Not "wait, try it this way."</p>
+<section class="step" data-day="4" data-title="Hand it over, say nothing">
+  <div class="eyebrow"><b>DAY 4</b> &nbsp;the important one</div>
+  <h2>Hand it over. Then say absolutely nothing.</h2>
+  <p>Give them the controls and be completely silent for the entire time they play.</p>
+  <p>Not "you can move with the arrows." Not "oh, that part is broken." Not "wait, try it this way."</p>
   <p>And every single time you desperately want to explain something, <strong>write down what it was.</strong></p>
   <div class="why">
     <b>WHY THIS IS THE MOST IMPORTANT HOUR OF THE WEEK</b>
     <p>You do not get to stand next to people who play your game. Not on the internet, not on a store page, not ever. Whatever the game fails to explain by itself is a thing the player simply never finds out, and then they close the tab.</p>
     <p>Every place they hesitate is a place your design failed to communicate. That is not their fault and it is not a comment on your intelligence. It is information, and it is information you literally cannot get any other way, because you already know how your game works and you can never un-know it.</p>
     <p>The list of things you wanted to say is worth more than the game is.</p>
+  </div>
+  <div class="warn">
+    <b>&#9888; YOUR PLAYTESTER HAS HEARD ALL ABOUT THIS ALREADY</b>
+    <p>Which makes him a compromised tester, and it means the silence rule matters double today.</p>
+    <p>He already knows what the game is meant to do, so what he <em>says</em> is worth less than usual. What his hands do is worth exactly as much as ever. Watch where he hesitates, what he tries first, and whether he works out the goal without being told. Ignore the compliments entirely.</p>
   </div>
   <div class="field"><span class="lbl">every time I wanted to explain something</span>
     <textarea data-save="playtest" style="min-height:160px" placeholder="one line each. write them while it is happening, not afterwards."></textarea></div>
@@ -723,11 +938,11 @@ end</pre>
       <p>The <strong>curse of knowledge</strong> is the reason. Once you know something, you cannot imagine not knowing it, so you genuinely cannot see what is confusing about your own work. This is not a flaw you can train away. It is why every creative field has some version of showing the work to a stranger and shutting up.</p>
     </div>
   </details>
-  <label class="chk"><input type="checkbox" data-save="c32"><span>Someone played it. I said nothing. I have the list.</span></label>
+  <label class="chk"><input type="checkbox" data-save="c42"><span>Somebody played it. I said nothing. I have the list.</span></label>
 </section>
 
-<section class="step" data-day="3" data-title="Fix exactly one thing">
-  <div class="eyebrow"><b>DAY 3</b> &nbsp;triage</div>
+<section class="step" data-day="4" data-title="Fix exactly one thing">
+  <div class="eyebrow"><b>DAY 4</b> &nbsp;triage</div>
   <h2>Fix exactly one thing</h2>
   <p>The biggest one. Everything else on that list goes in the Vault.</p>
   <div class="why">
@@ -739,16 +954,16 @@ end</pre>
   <details class="dict">
     <summary>DEV DICTIONARY: triage, severity, known issues</summary>
     <div class="body">
-      <p><strong>Triage</strong> comes from emergency medicine and means sorting problems by urgency when you cannot handle all of them. Before every release, teams sit down and go through the bug list deciding what gets fixed and what ships broken.</p>
-      <p><strong>Severity</strong> is how bad a bug is: does it crash the game, or is some text slightly the wrong color? Everything gets ranked.</p>
+      <p><strong>Triage</strong> comes from emergency medicine and means sorting problems by urgency when you cannot handle all of them. Before every release, teams go through the bug list deciding what gets fixed and what ships broken.</p>
+      <p><strong>Severity</strong> is how bad a bug is: does it crash the game, or is some text slightly the wrong colour? Everything gets ranked.</p>
       <p><strong>Known issues</strong> is the published list of bugs a team decided to ship with anyway. Every game you have ever played launched with one. Shipping something imperfect on purpose is normal and expected, and it is completely different from shipping something imperfect by accident.</p>
     </div>
   </details>
-  <label class="chk"><input type="checkbox" data-save="c33"><span>Fixed one thing. Fixed only one thing.</span></label>
+  <label class="chk"><input type="checkbox" data-save="c43"><span>Fixed one thing. Fixed only one thing.</span></label>
 </section>
 
-<section class="step" data-day="3" data-title="Ship it">
-  <div class="eyebrow"><b>DAY 3</b> &nbsp;ship</div>
+<section class="step" data-day="4" data-title="Ship it">
+  <div class="eyebrow"><b>DAY 4</b> &nbsp;ship</div>
   <h2>Put it on the internet</h2>
   <p>Export to HTML, put it on your site, then open it on a phone that is not yours. It does not count until someone else's device can load it.</p>
   <ul class="links">
@@ -768,22 +983,24 @@ end</pre>
       <p>"Ship it" is probably the most-used phrase in software, and "shipped" is the highest compliment available. Not clever. Not ambitious. Shipped.</p>
     </div>
   </details>
-  <label class="chk"><input type="checkbox" data-save="c34"><span>It is on the internet. Someone else opened it.</span></label>
+  <label class="chk"><input type="checkbox" data-save="c44"><span>It is on the internet. Someone else opened it.</span></label>
 </section>
 
-<section class="step" data-day="3" data-title="The post-mortem">
-  <div class="eyebrow"><b>DAY 3</b> &nbsp;the verdict</div>
+<section class="step" data-day="4" data-title="The post-mortem">
+  <div class="eyebrow"><b>DAY 4</b> &nbsp;the verdict</div>
   <h2>Open the seal and tell the truth</h2>
   <p>Go back to the criteria screen, open your sealed criteria, and read what Day-1 you decided "finished" meant.</p>
-  <p>Then record two minutes of yourself playing your own game and answering all three out loud.</p>
-  <p>Honestly. If one of them did not happen, say so, and say why you think it did not.</p>
+  <p>Then record two minutes of yourself playing your own game and answering all three out loud. Honestly. If one of them did not happen, say so, and say why you think it did not.</p>
   <div class="why">
-    <b>WHY THE HONEST VERSION IS WORTH MORE</b>
+    <b>WHY YOURS IS GOING TO BE MORE INTERESTING THAN MOST</b>
     <p>A verdict that admits you missed one is worth ten times a verdict that quietly moves the goalposts, and everybody can tell the difference, including you in a year.</p>
-    <p>There is a whole professional tradition of this. After a game ships, teams write up what went right, what went wrong, and what they would do differently, and the good ones are brutally frank. Developers publish them, give talks on them, and read each other's obsessively. The failures are the useful part. Nobody learns anything from a list of successes.</p>
+    <p>You have something real to say this time, which most first post-mortems do not. You picked a verb that needed three hard things at once, you found out which one stopped you, and you know now what you would scope differently. That is a better outcome than a smooth week would have produced, and it is worth saying out loud rather than apologising for.</p>
+    <p>This is a whole professional tradition. Teams write up what went right, what went wrong, and what they would do differently, and the good ones are brutally frank. Developers publish them and read each other's obsessively. The failures are the useful part. Nobody learns anything from a list of successes.</p>
   </div>
   <div class="field"><span class="lbl">did I meet them? which ones, and what happened to the ones I missed?</span>
     <textarea data-save="verdict" style="min-height:130px"></textarea></div>
+  <div class="field"><span class="lbl">what would I scope differently next time?</span>
+    <textarea data-save="scopelesson" placeholder="next time, before I pick a verb, I will check whether..."></textarea></div>
   <details class="dict">
     <summary>DEV DICTIONARY: post-mortem and retrospective</summary>
     <div class="body">
@@ -792,29 +1009,28 @@ end</pre>
       <p>What you just recorded is a post-mortem. You will make many more.</p>
     </div>
   </details>
-  <label class="chk"><input type="checkbox" data-save="c35"><span>Opened the seal. Recorded the verdict. Told the truth in it.</span></label>
+  <label class="chk"><input type="checkbox" data-save="c45"><span>Opened the seal. Recorded the verdict. Told the truth in it.</span></label>
 </section>
 
-<section class="step" data-day="3" data-title="What counts as winning">
-  <div class="eyebrow"><b>DAY 3</b> &nbsp;the end</div>
+<section class="step" data-day="4" data-title="What counts as winning">
+  <div class="eyebrow"><b>DAY 4</b> &nbsp;the end</div>
   <h2>What counts as winning</h2>
   <p class="lede">Not "it is good." It will not be good.</p>
   <p>First things are not good, and anybody who tells you theirs was is either lying or has forgotten. That is not a low bar being offered to you kindly. It is just what is true, for everybody, always.</p>
   <div class="warn">
     <b>THE ACTUAL BAR</b>
-    <p>A stranger played it, and it is on the internet at the end of Day 3.</p>
+    <p>Somebody played it, and it is on the internet at the end of Day 4.</p>
   </div>
-  <p>Almost nobody clears that, because almost everybody spends the time making the concept bigger instead of making a smaller thing exist.</p>
+  <p>Almost nobody clears that, because almost everybody spends the time making the concept bigger instead of making a smaller thing exist. You spent a day finding out exactly how that happens, from the inside, which is the expensive way and the way that sticks.</p>
   <p>The people who end up making games are not the ones with the best ideas. Everyone has ideas. They are the ones with a finished thing behind them, and then another one, and then another one, until one day the finished things are large.</p>
   <p><strong>Get the first one behind you.</strong></p>
   <h3>Export your work</h3>
   <p>Everything you typed on this site, in one file, for the project record.</p>
   <p><button class="go" id="exportBtn">Download my work</button> <button class="quiet" id="clearBtn">Clear everything</button></p>
   <p class="savenote" id="saveNote"></p>
-  <label class="chk"><input type="checkbox" data-save="c36"><span>Challenge 01 complete.</span></label>
+  <label class="chk"><input type="checkbox" data-save="c46"><span>Challenge 01 complete.</span></label>
 </section>
 
-</main>
 
 <div class="nav">
   <div class="navin">
@@ -981,9 +1197,9 @@ end</pre>
     <details class="triage" style="margin-top:34px">
       <summary><span class="ic">&#9940;</span>Do not open these this week</summary>
       <div class="body">
-        <p>Not a joke section. Every one of these is excellent and every one of them will eat all three days. Bookmark them for October.</p>
+        <p>Not a joke section. Every one of these is excellent and every one of them will eat the whole week. Bookmark them for October.</p>
         <ul class="links dontopen">
-          <li><a href="https://www.youtube.com/playlist?list=PLea8cjCua_P0qjjiG8G5FBgqwpqMU7rBk" target="_blank" rel="noopener">LazyDevs, Breakout Hero <em>seventy-eight videos. the best beginner series that exists and completely wrong for three days</em></a></li>
+          <li><a href="https://www.youtube.com/playlist?list=PLea8cjCua_P0qjjiG8G5FBgqwpqMU7rBk" target="_blank" rel="noopener">LazyDevs, Breakout Hero <em>seventy-eight videos. the best beginner series that exists and completely wrong for this week</em></a></li>
           <li><a href="https://mboffin.itch.io/pico-8-top-down-adventure-game-tutorial" target="_blank" rel="noopener">Top-Down Adventure Tutorial <em>genuinely great, and it builds a scrolling map game, which breaks the one-screen rule on purpose</em></a></li>
           <li><a href="https://mboffin.itch.io/gamedev-with-pico-8-issue1" target="_blank" rel="noopener">Game Development with PICO-8, Issue 1 <em>seventy-two pages. read it the week after you finish something</em></a></li>
           <li><a href="https://nerdyteachers.com/PICO-8/Audio/93" target="_blank" rel="noopener">The audio course <em>two dozen lessons on PICO-8 music theory. spectacular. not now.</em></a></li>
@@ -1190,9 +1406,11 @@ end</pre>
     ["verb","THE ONE VERB"],["g1","Game 1, verb"],["g2","Game 2, verb"],["g3","Game 3, verb"],
     ["s1","Success criterion 1"],["s2","Success criterion 2"],["s3","Success criterion 3"],
     ["log1","Day 1 bug log"],["log2","Day 2 bug log"],
+    ["bugfound","Day 3 bug: symptom, cause, fix"],
     ["playtest","Playtest: every time I wanted to explain"],
     ["onefix","The one thing I fixed"],["url","Where it lives"],
-    ["verdict","Post-mortem: my verdict against my own criteria"]
+    ["verdict","Post-mortem: my verdict against my own criteria"],
+    ["scopelesson","What I would scope differently next time"]
   ];
   document.getElementById("exportBtn").addEventListener("click", function(){
     var L = ["# ONE VERB \u2014 Challenge 01",
