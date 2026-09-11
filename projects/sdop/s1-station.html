@@ -351,18 +351,21 @@ body{margin:0;background:var(--paper);color:var(--ink);
   <article class="act" data-tags="new nostudent">
     <div class="act-top">
       <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Assistant</span></div>
-      <p class="lead"><span class="lbl">Scenario:</span> You built something good in a notebook last spring. Two colleagues wanted it and you ended up rebuilding it twice, slightly differently each time.</p>
-      <p class="strat"><span class="lbl">Strategy:</span> Take a copy of something already built and make it yours, instead of starting over.</p>
+      <p class="lead"><span class="lbl">Scenario:</span> You answer the same six questions all week, in hallways, from memory, and you are not always sure you are right. Can these students use it. Why can she not do the thing Google announced. What does the policy actually say.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Put the answers somewhere that cites its sources, then add your own world to it.</p>
     </div>
     <div class="split">
       <div class="half"><h4>Build it once</h4>
-        <p>Take the copy of the staying sane notebook, then swap in your own sources: your schools, your curriculum, the questions you get every week.</p></div>
+        <p>Take a copy of the staying sane notebook. Our licence, who can use what, the policy, and the coaching moves are already in it.</p>
+        <p>Then add your world: the curricula you support, your buildings, your own visit notes with the names taken out.</p>
+        <p style="margin-top:10px"><a href="#" style="font-weight:600;color:#0E6E6E" data-notebook>Take your copy of the notebook</a><!-- NEEDLINK staying sane notebook --></p></div>
       <div class="half"><h4>What it buys you</h4>
-        <p>This is also the demonstration. Copying a shared notebook shipped in August and it is the most useful new thing on this page for anyone who supports a lot of people.</p></div>
+        <p>You stop answering from memory. Ask it a hallway question and the answer comes back with the document it came from, which is a different thing from being fairly sure.</p>
+        <p>It is also the demonstration. Copying a shared notebook shipped in August, and it is the most useful new thing on this page for anyone supporting a lot of people.</p></div>
     </div>
     <div class="act-foot">
-      <div class="fc"><b>You leave with</b>Your own copy, with at least one source that is yours.</div>
-      <div class="fc"><b>Watch out for</b>A copy does not stay in sync. From the moment you take it, it is yours alone.</div>
+      <div class="fc"><b>You leave with</b>Your own copy, with at least one source of yours already in it.</div>
+      <div class="fc"><b>Watch out for</b>A copy does not stay in sync. From the moment you take it, it is yours alone. Names out of anything you add.</div>
     </div>
     <div class="next"><b>Then what:</b> the same copy move is how you serve a whole grade team at once. <button class="goto" data-goto="s3">Station 3</button>.</div>
   </article>
@@ -749,6 +752,18 @@ body{margin:0;background:var(--paper);color:var(--ink);
   };
 
   window.SHOW = show;
+  // Staying sane notebook: paste the share URL here before the session.
+  var NOTEBOOK = '#';
+  document.querySelectorAll('[data-notebook]').forEach(function(a){
+    if (NOTEBOOK !== '#'){
+      a.setAttribute('href', NOTEBOOK);
+      a.setAttribute('target','_blank');
+      a.setAttribute('rel','noopener');
+    } else {
+      a.addEventListener('click', function(e){ e.preventDefault(); });
+    }
+  });
+
   show('s1');
 })();
 </script>
