@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Teaching and Learning Resource Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#12263F;--teal:#0E6E6E;--amber:#B45309;--berry:#8A2E4D;
+  --ink:#12263F;--paper:#F3F6F8;--muted:#5B6B7C;--line:#D6DEE5;--soft:#E8EEF2}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+a{color:var(--navy)}
+.masthead{background:var(--navy);color:#fff;padding:38px 0 32px}
+.masthead h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:35px;
+  line-height:1.14;margin:0 0 10px;letter-spacing:-0.01em}
+.masthead p{color:#A9C0D6;font-size:15px;margin:0 0 4px;max-width:68ch}
+.masthead .tally{color:#fff;font-size:14px;margin-top:16px;font-weight:600}
+.caution{background:#fff;border:1px solid var(--line);border-top:5px solid var(--berry);
+  margin-top:-1px;padding:16px 20px 17px;font-size:14.5px;line-height:1.5}
+.caution b{font-weight:600}
+.controls{padding:22px 0 4px;display:flex;justify-content:space-between;
+  align-items:flex-end;gap:16px;flex-wrap:wrap}
+.controls .lead{margin:0 0 10px;font-size:13.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:13.5px;font-weight:500;padding:7px 14px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:2px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.expander{font:inherit;font-size:13.5px;font-weight:500;background:none;border:0;padding:7px 0;
+  color:var(--ink);cursor:pointer;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.expander:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.areas{padding-top:14px}
+.area{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);margin-bottom:11px}
+.area-top{padding:16px 48px 16px 18px;position:relative;cursor:pointer}
+.area-top:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.area-top::after{content:"";position:absolute;right:20px;top:26px;width:10px;height:10px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .18s ease}
+.area.open .area-top::after{transform:rotate(-135deg);border-color:var(--accent)}
+.area-top h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:23px;margin:0 0 5px;
+  letter-spacing:-0.01em}
+.blurb{margin:0 0 7px;font-size:14.5px;color:var(--muted);max-width:70ch}
+.count{margin:0;font-size:12px;font-weight:700;color:var(--accent)}
+.area-body{display:none;border-top:1px solid var(--soft);background:#FAFCFD;padding:4px 18px 16px}
+.area.open .area-body{display:block}
+.sub{padding-top:15px}
+.sub h3{font-size:14px;font-weight:700;margin:0 0 4px;color:var(--ink)}
+.subblurb{margin:0 0 9px;font-size:13.5px;color:var(--muted);max-width:70ch}
+ul.res{list-style:none;margin:8px 0 0;padding:0}
+ul.res li{padding:7px 0 7px 15px;border-left:2px solid var(--soft);margin-bottom:3px}
+ul.res li a{font-size:15px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+ul.res li a:hover{border-bottom-color:var(--accent);color:var(--accent)}
+ul.res li a:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.rkind{display:inline-block;margin-left:9px;font-size:11px;font-weight:600;color:var(--muted);
+  background:var(--soft);padding:2px 7px;border-radius:2px;vertical-align:1px}
+.rdesc{display:block;margin-top:4px;font-size:13.5px;color:var(--muted);max-width:74ch;line-height:1.45}
+.empty{display:none;padding:20px;background:#fff;border:1px dashed var(--line);
+  font-size:14.5px;color:var(--muted);margin-bottom:12px}
+footer{margin-top:38px;border-top:1px solid var(--line);padding:22px 0 60px;
+  font-size:13.5px;color:var(--muted)}
+@media (max-width:720px){.masthead h1{font-size:27px}.controls{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>AI teaching and learning resource guide</h1>
+    <p>Direct resources for using and teaching about artificial intelligence, organised so you can move from foundational thinking and prompting into instructional use, feedback and assessment, AI literacy, responsible use, and district capacity building.</p>
+    <p class="tally">Seven topic areas &middot; 83 direct resources</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="caution">
+    <b>Before you share any of this.</b> Not every tool listed here is approved in every district. Check your own AI guidelines for what is permitted, who may use it, and at which grade levels, before passing a resource on to teachers or students.
+  </div>
+
+  <div class="controls">
+    <div>
+      <p class="lead">Filter by what kind of thing it is.</p>
+      <div class="chips">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">Everything</button>
+        <button class="chip" type="button" data-filter="doc" aria-pressed="false">Read or use (52)</button>
+        <button class="chip" type="button" data-filter="interactive" aria-pressed="false">Interactive (15)</button>
+        <button class="chip" type="button" data-filter="video" aria-pressed="false">Watch (7)</button>
+        <button class="chip" type="button" data-filter="prompt" aria-pressed="false">Prompts, Gems and notebooks (9)</button>
+      </div>
+    </div>
+    <button class="expander" type="button" id="expander" aria-expanded="false">Open all</button>
+  </div>
+
+  <div class="empty" id="empty">Nothing in this guide matches that filter. Clear it to see everything.</div>
+
+  <div class="areas">
+    <article class="area" style="--accent:#12263F">
+      <div class="area-top">
+        <h2>Educator centered AI use</h2>
+        <p class="blurb">Educator judgment, goals and context stay at the centre of every instructional decision.</p>
+        <p class="count">6 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>Educator at the centre</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/1eslPgTMrIiIy6uWwwjgjGW_kQEF-PcL-TOSGU847Rug/edit?usp=sharing" target="_blank" rel="noopener">Educator at the Center of Instructional Decisions</a><span class="rkind">Google Slides</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1e5pkljuT78fd7FRCLa6L5bjqy3PELelMzCvawBUbDvk/edit?usp=sharing" target="_blank" rel="noopener">Different Roles of AI</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="interactive"><a href="https://www.impactedvisors.org/assets/airole_explorer.html" target="_blank" rel="noopener">AI Role Explorer</a><span class="rkind">Interactive Guide</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Classroom integration</h3>
+        <ul class="res">
+          <li data-kind="video"><a href="https://drive.google.com/file/d/1EGXjd8QWkLwvvSAoE26-PqVp9DY8OEg5/view?usp=drive_link" target="_blank" rel="noopener">Integrating AI into the Classroom</a><span class="rkind">Google Drive Video</span></li>
+          <li data-kind="prompt"><a href="https://gemini.google.com/gem/1SdlNBh0BjHSWQsA6aSTGyl9iC9AVQjyu?usp=sharing" target="_blank" rel="noopener">AI Classroom Coach</a><span class="rkind">Gemini Gem</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Everyday administrative work</h3>
+        <ul class="res">
+          <li data-kind="interactive"><a href="https://www.impactedvisors.org/assets/admin_task_ai_helper.html" target="_blank" rel="noopener">Everyday Administrative Work with AI</a><span class="rkind">Interactive Guide</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+    <article class="area" style="--accent:#0E6E6E">
+      <div class="area-top">
+        <h2>Prompting and generative AI</h2>
+        <p class="blurb">From first prompts through to advanced technique and libraries you can borrow from.</p>
+        <p class="count">15 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>Prompting foundations</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/1qiP8XGxbpcfnP44QeFSH0_57uJHxWXGONaxE8OMtPDQ/edit?usp=drivesdk" target="_blank" rel="noopener">Prompting with AI</a><span class="rkind">Google Slides</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Try a prompt</h3>
+        <p class="subblurb">Pick a generative AI text tool, try a prompt, and have a conversation about what comes back. Check your own district guidelines before using any of these with teachers or students.</p>
+        <ul class="res">
+          <li data-kind="prompt"><a href="https://claude.ai/chats" target="_blank" rel="noopener">Claude</a><span class="rkind">AI Tool</span></li>
+          <li data-kind="prompt"><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a><span class="rkind">AI Tool</span></li>
+          <li data-kind="prompt"><a href="https://chat.openai.com/" target="_blank" rel="noopener">ChatGPT</a><span class="rkind">AI Tool</span></li>
+          <li data-kind="prompt"><a href="https://pi.ai/talk" target="_blank" rel="noopener">Inflection Pi AI</a><span class="rkind">AI Tool</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Next level prompting</h3>
+        <p class="subblurb">Advanced techniques, worked examples, and prompts ready to adapt.</p>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1nACq1zJwlJ4fPV0niYhMf4zJ0QCQ7gLE47WROz6HaAg/edit?usp=sharing" target="_blank" rel="noopener">Advanced Prompting Ideas for Educators</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1XKEGoEkAEqB6ywTXA3Xynejf5t2S3sPjpXsYbMQseoU/edit?usp=sharing" target="_blank" rel="noopener">Prompts to Try</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1sQl21TdbFPCB-7xPNMKBCKfKIi4ZX_Vc8SCzN11cK8I/edit?tab=t.0#heading=h.ltyp3w92vt8j" target="_blank" rel="noopener">Prompting Deep Dive</a><span class="rkind">Google Doc</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Prompt libraries and guides</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1-f8jMNt_90wgABARzwEE54pawSpdksaan3JxHcq00j0/edit?usp=sharing" target="_blank" rel="noopener">Creating Through Prompting</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="prompt"><a href="https://www.aiforeducation.io/prompt-library" target="_blank" rel="noopener">AI for Education Prompt Library</a><span class="rkind">Prompt Library</span></li>
+          <li data-kind="prompt"><a href="https://www.moreusefulthings.com/prompts" target="_blank" rel="noopener">More Useful Things Prompt Library</a><span class="rkind">Prompt Library</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1PpdF7Kctesa09IgmEkPrK2Q1-AhWE9lOxMPG5_SJd4w/" target="_blank" rel="noopener">Prompting for Teaching and Learning</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://drive.google.com/file/d/1D9lxOGgSRTfGukR6sFWQ6mbx_bWQ0KNX/view?usp=drive_link" target="_blank" rel="noopener">Monica Burns Prompt eBook</a><span class="rkind">PDF</span></li>
+          <li data-kind="doc"><a href="https://classtechtips.com/2024/10/24/winter-classroom-activities-2/" target="_blank" rel="noopener">Creating Winter Classroom Activities with AI</a><span class="rkind">Article</span></li>
+          <li data-kind="doc"><a href="https://drive.google.com/file/d/1mnfw_Y7FT2zvdLmFjN2d83MhXIMB8_o7/view?usp=drive_link" target="_blank" rel="noopener">Matt Miller&#x27;s Teacher Toolkit</a><span class="rkind">PDF</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+    <article class="area" style="--accent:#B45309">
+      <div class="area-top">
+        <h2>Instructional AI helpers</h2>
+        <p class="blurb">Three ways of working: the all purpose helper, the focused helper grounded in your own sources, and the automated helper you build once.</p>
+        <p class="count">20 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>The all purpose helper</h3>
+        <p class="subblurb">Using generative AI across instructional planning and assignment design.</p>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://www.impactedvisors.org/assets/UsingAIasaTeacher.html" target="_blank" rel="noopener">Thinking, Designing, and Planning with AI</a><span class="rkind">Teacher Guide</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.5d0mmkxw10fj" target="_blank" rel="noopener">Ideas for Elementary</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.pg769n7rg80m" target="_blank" rel="noopener">Ideas for Secondary</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.n9s6b04bj0gp" target="_blank" rel="noopener">Hack Your Assignment</a><span class="rkind">Google Doc</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Creating instructional resources</h3>
+        <ul class="res">
+          <li data-kind="video"><a href="https://drive.google.com/file/d/1ltmx6OXiHWAmanTESpu2IboVv6Bf0HAB/view?usp=drive_link" target="_blank" rel="noopener">Creating Instructional Resources</a><span class="rkind">Google Drive Video</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1eTC3XkmFzvSOj4vHT_I4zVw2RR7mudLUXkedppZ94Mo/edit?usp=sharing" target="_blank" rel="noopener">Ideas and Links for Creating Instructional Resources</a><span class="rkind">Google Doc</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>The focused helper</h3>
+        <p class="subblurb">Gemini Notebook resources for focused work with sources you choose. Gemini Notebook was called NotebookLM until July 2026.</p>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://ditchthattextbook.com/notebooklm/" target="_blank" rel="noopener">Gemini Notebook Quick Guide</a><span class="rkind">Guide</span></li>
+          <li data-kind="prompt"><a href="https://notebooklm.google.com/notebook/799abcd6-64a6-4caf-adc0-02da456de9a1" target="_blank" rel="noopener">Example Gemini Notebook</a><span class="rkind">Gemini Notebook</span></li>
+          <li data-kind="prompt"><a href="https://notebooklm.google.com/notebook/78a20fb3-c934-41c4-8b4e-77b1cf02c252" target="_blank" rel="noopener">Third Grade Gemini Notebook Example</a><span class="rkind">Gemini Notebook</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.hw7kamnsvkzj" target="_blank" rel="noopener">Elementary Gemini Notebook Idea Sparks</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.j5ncbhk1yhez" target="_blank" rel="noopener">Secondary Gemini Notebook Idea Sparks</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.baz1699vd09z" target="_blank" rel="noopener">English Idea Sparks: Teacher</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.iizvdp9qb1fz" target="_blank" rel="noopener">English Idea Sparks: Student</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.aj3aimwhyz3x" target="_blank" rel="noopener">Social Studies Idea Sparks: Teacher</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.xwzkv4t2zukx" target="_blank" rel="noopener">Social Studies Idea Sparks: Student</a><span class="rkind">Google Doc</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>The automated helper</h3>
+        <p class="subblurb">Designing AI helpers that take on recurring teacher or student tasks.</p>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.sfcc6vx9uz0i" target="_blank" rel="noopener">Gem Idea Sparks</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1Z871GpuPpCIgLfZjLVabMpY3dkb_E_03fnSLAg_Ny8k/edit?tab=t.0#heading=h.pf9m7maiugeq" target="_blank" rel="noopener">Design Guide: Automating a Teacher or Student Task</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/10_-slF0ptyoSG3CUZnRuiXnNwrTi2gVcMSOKUi72aaE/edit?tab=t.79np7qbuzkp3" target="_blank" rel="noopener">SubPlan Generator</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="video"><a href="https://www.youtube.com/watch?v=6LbzOrgUx5Q&amp;t=1s" target="_blank" rel="noopener">Understanding Chatbots</a><span class="rkind">YouTube</span></li>
+          <li data-kind="video"><a href="https://www.youtube.com/watch?v=-gsAAXShMPM&amp;t=1s" target="_blank" rel="noopener">Creating Chatbots</a><span class="rkind">YouTube</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+    <article class="area" style="--accent:#8A2E4D">
+      <div class="area-top">
+        <h2>Assessment and feedback</h2>
+        <p class="blurb">AI supported feedback with educator judgment and learning goals still in view.</p>
+        <p class="count">6 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>Feedback with AI</h3>
+        <ul class="res">
+          <li data-kind="video"><a href="https://drive.google.com/file/d/1dImuWGrnyLl-7-RyopMbmUTV_cjIPB5z/view?usp=drive_link" target="_blank" rel="noopener">Feedback and AI: Video 1</a><span class="rkind">Google Drive Video</span></li>
+          <li data-kind="video"><a href="https://drive.google.com/file/d/1celW5rcXDjLOELs3ZhkY69gfLvLzHGj5/view?usp=drive_link" target="_blank" rel="noopener">Feedback and AI: Video 2, Creating a Gem</a><span class="rkind">Google Drive Video</span></li>
+          <li data-kind="video"><a href="https://www.wevideo.com/view/3843266920" target="_blank" rel="noopener">Feedback and AI Overview</a><span class="rkind">Video</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1vIJevalMfqUYhB2_k31_K56-eNYxRts7YHlKnPyPf6Q/edit?usp=sharing" target="_blank" rel="noopener">Feedback and Assessment with AI Resources</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://ditchthattextbook.com/gems/" target="_blank" rel="noopener">How to Create Gemini Gems</a><span class="rkind">Guide</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Assignment design</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://gamma.app/docs/Developing-AI-Resistant-Assignments-3l1tgee8i8r6zqw" target="_blank" rel="noopener">Developing AI Resistant Assignments</a><span class="rkind">Gamma Presentation</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+    <article class="area" style="--accent:#3C3F78">
+      <div class="area-top">
+        <h2>AI literacy and responsible use</h2>
+        <p class="blurb">Activities, interactive tools, student guidelines, and the frameworks behind them.</p>
+        <p class="count">20 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>Activities and curricular resources</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://drive.google.com/drive/folders/15ySxK9FCPcdnw4DtroBTmvRcDwqd4TCX?usp=sharing" target="_blank" rel="noopener">ISTE AI Guides</a><span class="rkind">Google Drive Folder</span></li>
+          <li data-kind="doc"><a href="https://drive.google.com/drive/folders/1SDv4B6xV3lqCfm2SeUHP6_1XNIrJBesv?usp=drive_link" target="_blank" rel="noopener">ISTE Dig Cit Lessons</a><span class="rkind">Google Drive Folder</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/spreadsheets/d/191nh8_kNumjIrqEVV-bnqyHdIyq3GSx1NL1NfLzqXjM/edit?usp=sharing" target="_blank" rel="noopener">List of Curricular Resources</a><span class="rkind">Google Sheet</span></li>
+          <li data-kind="interactive"><a href="https://docs.google.com/forms/d/e/1FAIpQLSc_6TTBUBlshd0pfHHb8DkUqLUrTBUUuvHsU4Y62ULl7K1uRA/viewform?usp=dialog" target="_blank" rel="noopener">Is That OK? AI Use Reflection</a><span class="rkind">Google Form Activity</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/1LImv6y6jcrPsQJrJVv-LHYyXutVv-ddOnXRdNVDiPeU/edit?usp=sharing" target="_blank" rel="noopener">Safe and Ethical AI Use Scenarios</a><span class="rkind">Google Slides</span></li>
+          <li data-kind="doc"><a href="https://www.canva.com/design/DAGhuS1hJtQ/16tFOUV0kAyg67aFDSNtLg/edit" target="_blank" rel="noopener">Activities to Support Responsible AI Use</a><span class="rkind">Canva Resource</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Interactive AI literacy tools</h3>
+        <p class="subblurb">Short, hands on, and good for showing rather than explaining.</p>
+        <ul class="res">
+          <li data-kind="interactive"><a href="https://quickdraw.withgoogle.com/" target="_blank" rel="noopener">Quick Draw with Google</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://huggingface.co/spaces/society-ethics/DiffusionBiasExplorer" target="_blank" rel="noopener">Diffusion Bias Explorer</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://mostlikelymachine.artefactgroup.com/" target="_blank" rel="noopener">Most Likely Machine</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://magic-sketchpad.glitch.me/" target="_blank" rel="noopener">Magic Sketchpad</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://readalong.google.com" target="_blank" rel="noopener">Read Along</a><span class="rkind">Learning Tool</span></li>
+          <li data-kind="interactive"><a href="https://experiments.withgoogle.com/semi-conductor" target="_blank" rel="noopener">Semi-Conductor by Google Creative Lab</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://cocodataset.org/#explore" target="_blank" rel="noopener">COCO Dataset</a><span class="rkind">Dataset</span></li>
+          <li data-kind="interactive"><a href="https://whichfaceisreal.com/" target="_blank" rel="noopener">Which Face Is Real?</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://www.autodraw.com/" target="_blank" rel="noopener">AutoDraw</a><span class="rkind">Interactive</span></li>
+          <li data-kind="interactive"><a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">Teachable Machine</a><span class="rkind">Interactive</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Student guidelines and ethics</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/120B6dgjdqlgVAW6qgGrq1QTQzF8NpexGueLqwlcy0go/edit#slide=id.g2de47de721f_0_44" target="_blank" rel="noopener">AI Student Guideline Examples</a><span class="rkind">Google Slides</span></li>
+          <li data-kind="doc"><a href="https://www.teachai.org/media/ethics_flashcards" target="_blank" rel="noopener">AI Ethics Flashcards</a><span class="rkind">Website</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>AI literacy frameworks</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://ai4k12.org/gradeband-progression-charts/" target="_blank" rel="noopener">AI4K12 Five Big Ideas</a><span class="rkind">Framework</span></li>
+          <li data-kind="doc"><a href="https://kennedyhq.com/wp/2023/12/21/ai-literacy-framework/" target="_blank" rel="noopener">Kennedy HQ UNESCO Adapted Framework</a><span class="rkind">Framework</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+    <article class="area" style="--accent:#0E6E6E">
+      <div class="area-top">
+        <h2>Practice and application</h2>
+        <p class="blurb">Things to actually go and do, on your own or with a group.</p>
+        <p class="count">5 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>Activities to try</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/1wN7N3WLcO_3RIyL6maBKEwyfDwpkUhzY1aiCNdVL82g/edit#slide=id.g2ec99a1f958_0_10" target="_blank" rel="noopener">Micro Challenges to Try</a><span class="rkind">Google Slides</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1mnOh3R48AOu7PwOSBJU-J5ye3Vu3ddUZYrb--vTTmaY/edit?usp=sharing" target="_blank" rel="noopener">Educator Tasks to Try</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1PJwIQ9hyTQ7VvDzK6t9ue8mk0M1Tv91NEb4CacFgaCo/edit?usp=sharing" target="_blank" rel="noopener">AI Roles: Try It</a><span class="rkind">Google Doc</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/1twGgP1tcxhc_vQBIh5l3dEzW-Agx_Nhs3R9bO9rFPfM/edit?usp=sharing" target="_blank" rel="noopener">13 Uses of AI with Students</a><span class="rkind">Google Slides</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1A00YXghWb2gJD1gCMHWLldnl1X0HmJCNO8MNEI2RuKo/edit?usp=drive_link" target="_blank" rel="noopener">Try It with AI</a><span class="rkind">Google Doc</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+    <article class="area" style="--accent:#12263F">
+      <div class="area-top">
+        <h2>District capacity building</h2>
+        <p class="blurb">Examples for district planning, leadership, professional learning, classroom implementation and tool review. Each one is meant to be adapted to local goals, policy and readiness.</p>
+        <p class="count">11 resources</p>
+      </div>
+      <div class="area-body">
+      <div class="sub">
+        <h3>Governance and leadership</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1kX_xjbqGURkaqSB9fobOD-z1RHlSbGm2/edit?usp=drive_link" target="_blank" rel="noopener">Example AI Governance and Administrative Guidance</a><span class="rkind">Google Doc</span><span class="rdesc">A district governance model covering tool approval, data privacy, training, incident response, academic integrity, assessment, student use and family rights.</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1xNlKwJYA3AYb1xfHsj4QEsBujxDdKLRn/edit?usp=drive_link" target="_blank" rel="noopener">Example AI Leadership Toolkit</a><span class="rkind">Google Doc</span><span class="rdesc">A guided planning toolkit for assessing readiness, adopting governance, setting teacher expectations, planning support and preparing for difficult scenarios.</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0" target="_blank" rel="noopener">AI Task Force Toolkit</a><span class="rkind">Google Doc</span><span class="rdesc">A working structure for task force planning across governance, professional learning, instructional integration, community engagement and phased implementation.</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1bTo2fIDtb66F0OJIZCEnDRIbq9g0kkUe/edit?usp=drive_link" target="_blank" rel="noopener">Example District Scaling Plan</a><span class="rkind">Google Doc</span><span class="rdesc">A multiyear roadmap with minimum expectations, milestones, audiences and evidence for moving from awareness to responsible practice.</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>AI literacy and professional learning</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1EHhGYn1jVhKAOx8j5X116j9jkNFN06CS/edit?usp=drive_link" target="_blank" rel="noopener">AI Literate Educator Continuum</a><span class="rkind">Google Doc</span><span class="rdesc">Maps educator growth across four domains and three UNESCO based stages: Acquire, Deepen and Create.</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1d34wRvqEBXWonGZsBPCjKG28L4J06ylK/edit?usp=drive_link" target="_blank" rel="noopener">AI Literacy Framework for Teachers</a><span class="rkind">Google Doc</span><span class="rdesc">Organises professional learning topics and competencies so teacher development stays consistent across a district.</span></li>
+          <li data-kind="doc"><a href="https://docs.google.com/presentation/d/1a_ZmSG7CgT8SyujWGCodMOT_0UBMtkYq/edit?usp=sharing" target="_blank" rel="noopener">Basics of AI Presentation</a><span class="rkind">Google Slides</span><span class="rdesc">A 54 slide foundation deck for building shared understanding of AI and what it means for education.</span></li>
+          <li data-kind="interactive"><a href="https://datadunkers.ca/events/iste26.html" target="_blank" rel="noopener">AI Professional Learning Design Session</a><span class="rkind">Interactive Field Guide</span><span class="rdesc">A field guide for designing consistent AI professional learning: continuum, formats matrix, personas, resource mapping, workflow and session package.</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Classroom implementation</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/document/d/1ZUVuypiItNZV2SjNp_NncyjIST6QMZDh/edit?usp=drive_link" target="_blank" rel="noopener">Teacher AI Toolkit Document</a><span class="rkind">Google Doc</span><span class="rdesc">A guided build that helps teachers prepare a classroom implementation plan and student use materials before students begin using AI.</span></li>
+          <li data-kind="interactive"><a href="https://www.impactedvisors.org/projects/bps/toolkit-teacher.html" target="_blank" rel="noopener">Interactive Teacher AI Toolkit</a><span class="rkind">Interactive Guide</span><span class="rdesc">A browser based walkthrough with checklists, guided decisions and copyable implementation materials.</span></li>
+        </ul>
+      </div>
+      <div class="sub">
+        <h3>Tool review and planning</h3>
+        <ul class="res">
+          <li data-kind="doc"><a href="https://docs.google.com/spreadsheets/d/17gKqhIRPsW6FkQWU9XAm25Tru1m7zWvVxj4XvJ8thgY/edit?usp=sharing" target="_blank" rel="noopener">AI Tools in Education Comparison</a><span class="rkind">Google Sheet</span><span class="rdesc">A district planning inventory comparing tools by cost, audience, access, privacy, ease of use, category and classroom purpose.</span></li>
+        </ul>
+      </div>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    Maintained by Jeremiah Okal-Frink, Impact Edvisors. Gemini Notebook was called NotebookLM until July 2026; the older name still appears on some linked sites. If a link here is broken, say so and it gets fixed.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var areas = Array.prototype.slice.call(document.querySelectorAll('.area'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('ul.res li'));
+  var expander = document.getElementById('expander');
+  var empty = document.getElementById('empty');
+  var filter = 'all';
+
+  function setOpen(a, open){
+    a.classList.toggle('open', open);
+    a.querySelector('.area-top').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  areas.forEach(function(a){
+    var top = a.querySelector('.area-top');
+    top.setAttribute('role','button');
+    top.setAttribute('tabindex','0');
+    top.setAttribute('aria-expanded','false');
+    function toggle(){ setOpen(a, !a.classList.contains('open')); sync(); }
+    top.addEventListener('click', toggle);
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  function apply(){
+    var shown = 0;
+    items.forEach(function(li){
+      var ok = (filter === 'all') || (li.getAttribute('data-kind') === filter);
+      li.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    document.querySelectorAll('.sub').forEach(function(s){
+      var any = Array.prototype.slice.call(s.querySelectorAll('li'))
+                 .some(function(li){ return li.style.display !== 'none'; });
+      s.style.display = any ? '' : 'none';
+    });
+    areas.forEach(function(a){
+      var live = Array.prototype.slice.call(a.querySelectorAll('ul.res li'))
+                  .filter(function(li){ return li.style.display !== 'none'; });
+      a.style.display = live.length ? '' : 'none';
+      a.querySelector('.count').textContent =
+        live.length + (filter === 'all' ? ' resources' : ' matching');
+      if (filter !== 'all' && live.length) setOpen(a, true);
+    });
+    empty.style.display = shown === 0 ? 'block' : 'none';
+    sync();
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(o){ o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      filter = c.getAttribute('data-filter');
+      if (filter === 'all') areas.forEach(function(a){ setOpen(a, false); });
+      apply();
+    });
+  });
+
+  function visibleAreas(){ return areas.filter(function(a){ return a.style.display !== 'none'; }); }
+  function sync(){
+    var v = visibleAreas();
+    var allOpen = v.length > 0 && v.every(function(a){ return a.classList.contains('open'); });
+    expander.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+    expander.textContent = allOpen ? 'Close all' : 'Open all';
+  }
+  expander.addEventListener('click', function(){
+    var open = expander.getAttribute('aria-expanded') !== 'true';
+    visibleAreas().forEach(function(a){ setOpen(a, open); });
+    sync();
+  });
+
+  sync();
+})();
+</script>
+
+</body>
+</html>
