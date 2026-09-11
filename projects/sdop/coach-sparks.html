@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idea sparks for coaches | ITC series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#12263F;--teal:#0E6E6E;--amber:#B45309;--berry:#8A2E4D;--indigo:#3C3F78;
+  --ink:#12263F;--paper:#F3F6F8;--muted:#5B6B7C;--line:#D6DEE5;--soft:#E8EEF2}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+a{color:var(--navy)}
+.back{display:inline-block;font-size:13.5px;color:#A9C0D6;text-decoration:none;margin-bottom:14px}
+.back:hover{color:#fff}
+.masthead{background:var(--navy);color:#fff;padding:30px 0 28px}
+.masthead h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:33px;
+  line-height:1.15;margin:0 0 6px;letter-spacing:-0.01em}
+.masthead p{color:#A9C0D6;font-size:15px;margin:0;max-width:68ch}
+.rules{background:#fff;border:1px solid var(--line);border-top:5px solid var(--berry);
+  margin-top:-1px;padding:17px 22px 19px}
+.rules h2{font-size:15px;font-weight:600;margin:0 0 9px}
+.rules ol{margin:0;padding-left:20px}
+.rules li{font-size:14.5px;margin-bottom:6px;line-height:1.5}
+.rules li:last-child{margin-bottom:0}
+.rules b{font-weight:600}
+.filters{padding:22px 0 2px}
+.filters p{margin:0 0 10px;font-size:13.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:13.5px;font-weight:500;padding:7px 14px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:2px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.band{padding:34px 0 0}
+.band>h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:26px;margin:0}
+.band-rule{height:4px;background:var(--navy);margin:10px 0 12px}
+.band>.bsub{margin:0 0 20px;font-size:15px;color:var(--muted);max-width:68ch}
+.group{padding:14px 0 0}
+.group h3{font-size:14px;font-weight:700;color:var(--muted);margin:0 0 10px}
+.spark{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent,var(--navy));margin-bottom:9px}
+.spark-top{padding:13px 46px 13px 16px;position:relative;cursor:pointer}
+.spark-top:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.spark-top::after{content:"";position:absolute;right:18px;top:50%;margin-top:-6px;width:9px;height:9px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .18s ease}
+.spark.open .spark-top::after{transform:rotate(-135deg);margin-top:-2px}
+.spark-top h4{font-size:15.5px;font-weight:600;margin:6px 0 0;line-height:1.3}
+.spark-top p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:74ch}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:2px}
+.p-think{background:#E8EAF3;color:var(--indigo)}
+.p-build{background:#FDF0E0;color:var(--amber)}
+.p-work{background:#E2EFEF;color:var(--teal)}
+.p-coach{background:#F7E4EA;color:var(--berry)}
+.spark-body{display:none;border-top:1px solid var(--soft);padding:14px 16px 16px;background:#FAFCFD}
+.spark.open .spark-body{display:block}
+.spark-body h5{font-size:12px;font-weight:700;color:var(--muted);margin:0 0 7px;text-transform:none}
+.prompt{background:#fff;border:1px solid var(--line);padding:12px 14px;font-size:14.5px;
+  line-height:1.55;white-space:pre-wrap}
+.copy{font:inherit;font-size:13px;font-weight:600;margin-top:9px;padding:7px 14px;
+  border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:2px;cursor:pointer}
+.copy:hover{background:var(--navy);color:#fff}
+.copy:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.note{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
+.add{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+  padding:20px 22px;margin-top:34px}
+.add h3{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:21px;margin:0 0 6px}
+.add p{margin:0 0 15px;font-size:15px;color:var(--muted);max-width:68ch}
+.lnk{display:inline-block;font-size:14px;font-weight:600;text-decoration:none;
+  padding:10px 18px;border:1px solid var(--navy);color:var(--navy);background:#fff;border-radius:2px}
+.lnk:hover{background:var(--navy);color:#fff}
+.lnk:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+footer{margin-top:36px;border-top:1px solid var(--line);padding:22px 0 60px;font-size:13.5px;color:var(--muted)}
+@media (max-width:720px){.masthead h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="back" href="index.html">Back to the series page</a>
+    <h1>Idea sparks for coaches</h1>
+    <p>Two halves. Coaching moves, which are about the craft and mostly about what you ask rather than what you open. And technology for your own work, which is about the hours around the coaching. Nothing here is a classroom activity. Those live on the session pages.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="rules">
+    <h2>Two rules before you paste anything real</h2>
+    <ol>
+      <li><b>The public test.</b> Would you be comfortable with this becoming public? If not, take out the names and identifying details first. That applies to students, to teachers, and to anything evaluative.</li>
+      <li><b>Every response is a starting point.</b> Check what is missing, wrong, or unsupported before you act on it or hand it to anyone.</li>
+    </ol>
+  </div>
+
+  <section class="filters" aria-label="Filter sparks">
+    <p>Four kinds of help. Filter if you are after one in particular.</p>
+    <div class="chips">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">Everything</button>
+      <button class="chip" type="button" data-filter="think" aria-pressed="false">Think better</button>
+      <button class="chip" type="button" data-filter="build" aria-pressed="false">Build better</button>
+      <button class="chip" type="button" data-filter="work" aria-pressed="false">Work smarter</button>
+      <button class="chip" type="button" data-filter="coach" aria-pressed="false">Coach better</button>
+    </div>
+  </section>
+
+  <!-- ==================== BAND 1 ==================== -->
+  <div class="band">
+    <h2>Coaching moves</h2>
+    <div class="band-rule" style="background:var(--berry)"></div>
+    <p class="bsub">The craft. Most of these are about what you ask and what you decide, not about which tool is open. AI is the rehearsal partner, not the answer.</p>
+
+    <div class="group">
+      <h3>Deciding what to work on</h3>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Let it interview you first</h4>
+          <p>The smallest move with the biggest payoff. Give it the questions before you give it the work.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">I need to plan a session with a grade team. Do not draft anything yet. Ask me five questions about these teachers, what I have already tried with them, what success would look like, and what I cannot change. Summarize my direction back to me before you offer anything.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Separate what you saw from what you concluded</h4>
+          <p>Most observation notes mix evidence and judgment, and the judgment is what gets argued with.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here are my notes from a classroom visit. Split them into two lists: things I actually observed, and things I concluded or assumed. For anything in the second list, tell me what evidence would be needed to support it and whether my notes contain that evidence.</div>
+          <button class="copy" type="button">Copy prompt</button>
+          <p class="note">Names out first. It works fine with "the teacher" and "a student."</p></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Find the one thing to say</h4>
+          <p>You noticed nine things. Saying nine is the same as saying none.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is everything I noticed in a lesson. Rank them by which would most change student learning if it changed, not by which is easiest to fix or most visible. Tell me which one I should raise, which two can wait, and which are actually my preference rather than a problem.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Give it a process, not a problem</h4>
+          <p>For the strategy everybody agreed to and nobody is doing.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Help me think through why a strategy is not sticking in these classrooms. Use a root cause logic tree. Ask me for evidence before you move from a possible cause to a recommendation, and tell me plainly when my evidence is thin.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Plan the exit before you start the cycle</h4>
+          <p>Name what this teacher looks like when they no longer need you.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">I am starting a coaching cycle. Before we plan anything, help me describe what this teacher will be doing independently when the cycle is over, in observable terms. Then work backwards: what has to be true at the halfway point, and what would tell me I am creating dependence instead of capacity?</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+    </div>
+
+    <div class="group">
+      <h3>Conversations</h3>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Prep the visit before you walk in</h4>
+          <p>Find what you promised last time and never came back to.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here are my notes from my last two visits with this teacher. Do not summarize them. List what I said I would follow up on, what I never came back to, what has changed between the visits, and the one question I should open with this time.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Rehearse the follow-through conversation</h4>
+          <p>The one with the teacher who agreed to try something and then did not.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Coach me through a conversation with someone who agreed to try something and did not do it. Ask me one question at a time about the outcome I want, what I actually know versus assume about why, and how this looks from their side. Do not give me a script. When I have answered, challenge my opening line and tell me how it is likely to land.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Ask for options and pushback, never the best plan</h4>
+          <p>One recommendation is an answer. Two with costs is a conversation.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Give me two ways to approach this situation with a teacher. For each: what it prioritizes, what it costs, and where it is likely to break down. Then tell me what a skeptical twenty year veteran would say to both, and what I am missing.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Model the thinking, not the tool</h4>
+          <p>Use it in front of them, refuse the first answer, and say why out loud.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Work as my thought partner on this lesson. Do not give me a plan. Start by asking me what students need to be able to do and how I would know they got there. Push back if my answer is vague.</div>
+          <button class="copy" type="button">Copy prompt</button>
+          <p class="note">The output is not the point. The teacher watching you reject a plausible first answer is the point.</p></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Translate up</h4>
+          <p>What you see across classrooms is information a principal does not have.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is a pattern I am seeing across several classrooms, described without naming anyone. Help me turn it into something a principal can act on: what the pattern is, what it is costing, what I am asking for, and what I am not asking for. Keep it under 200 words and take out anything that reads as evaluating individual teachers.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+    </div>
+
+    <div class="group">
+      <h3>Checking your own thinking</h3>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Bring an advisory team to your own plan</h4>
+          <p>Four reviewers who will each hate something different about it.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Review this plan as four different people: a twenty year veteran who has watched initiatives come and go, a second year teacher who is overwhelmed, a building principal, and a student. Have each raise their strongest objection. Where do they disagree with each other, and what must I fix before Thursday?</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Pressure test it against a Tuesday in November</h4>
+          <p>Almost everything works in a planning meeting in September.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is what I am about to recommend to a teacher. Stress test it against a real Tuesday in November: a fire drill, two absences, no prep period, and a teacher who is tired. What breaks first, what is the minimum version that still works, and what am I assuming about their time that is probably wrong?</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Read your own session feedback honestly</h4>
+          <p>The kind comments are not the data.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is the feedback from a session I ran. Find the themes, the outliers, and the tensions between what different people said. Separate what people said they enjoyed from what they said they would use. No recommendations yet. Then give me three questions I should answer before I plan the next one.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Find out who you have not seen</h4>
+          <p>Coaching time drifts toward the people who ask for it.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is how my last six weeks were spent, by teacher and by building. Which people have I not been in front of, where is my time actually concentrated, and what does that pattern suggest about who is getting support and who is not? Do not tell me what to do about it yet.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="coach" style="--accent:#8A2E4D">
+        <div class="spark-top"><span class="pill p-coach">Coach better</span>
+          <h4>Write the summary while it is still true</h4>
+          <p>Otherwise you write it in June, from memory, and it is fiction.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here are my notes across a coaching cycle. Draft a short summary: what we set out to work on, what actually changed in practice, what the evidence for that is, and what is still open. Keep my voice. Mark anything you inferred rather than found in the notes.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+    </div>
+  </div>
+
+  <!-- ==================== BAND 2 ==================== -->
+  <div class="band">
+    <h2>Technology for your own work</h2>
+    <div class="band-rule" style="background:var(--teal)"></div>
+    <p class="bsub">Nothing here helps a teacher directly. It gives you back the hours to go help one, or it cleans up work that was never the job in the first place.</p>
+
+    <div class="group">
+      <h3>Time back</h3>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Never start with a blank page</h4>
+          <p>Hand over the mess. Organize first, interpret second.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here are my rough notes. Step one: transcribe and organize them exactly as written. Do not summarize or interpret yet. Then, step two: organize them into themes and flag anything unclear, contradictory, or based on an assumption rather than something I recorded.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Make the calendar import file</h4>
+          <p>Twenty visit dates typed once instead of twenty times.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is a list of dates, times, locations and titles. Produce a CSV I can import into Google Calendar using the exact column headers Google Calendar expects. Use my time zone. Do not add, merge or invent any event I did not list, and tell me if anything in my list is ambiguous.</div>
+          <button class="copy" type="button">Copy prompt</button>
+          <p class="note">Same move for a bulk list of PD sessions, observation windows, or a whole coaching cycle.</p></div>
+      </article>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Clean up the spreadsheet someone sent you</h4>
+          <p>Merged cells, three header rows, and a column of dates in four formats.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is some messy tabular data. Tell me what is wrong with it before you fix anything: inconsistent formats, duplicates, merged headers, missing values. Then give me a clean version with one header row and consistent formatting, and a short list of every change you made and anything you had to guess.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Get to the three lines you actually need</h4>
+          <p>For the forty page policy document somebody forwarded with "thoughts?"</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">I need to know three things from this document: what it requires me to do, what it changes from before, and what it is silent on. Answer only those three, cite where in the document each answer comes from, and say so plainly if the document does not address one of them.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Constraints before possibilities</h4>
+          <p>Especially if your week spans more than one building.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Before you build anything, make a constraint table for my coaching week: required, preferred, flexible, unknown. Flag any conflicts and label every assumption. Then turn each unknown into a question I need to answer before I schedule anything.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Turn a good prompt into a routine</h4>
+          <p>The second time you do something well, write down how.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">That worked. Turn what we just did into a repeatable process: name the steps, say where you should pause and ask me something, what criteria you use at each step, and what I decide rather than you. Write it so I could hand it to another coach.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="work" style="--accent:#0E6E6E">
+        <div class="spark-top"><span class="pill p-work">Work smarter</span>
+          <h4>Keep a decision log so you stop relitigating</h4>
+          <p>Three months later nobody remembers why, so the argument runs again.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">From these meeting notes, pull out every decision that was actually made. For each one give me: what was decided, who decided it, what the reasoning was, what was explicitly ruled out, and what was left open. Do not include anything that was only discussed.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+    </div>
+
+    <div class="group">
+      <h3>Things you build once</h3>
+
+      <article class="spark" data-tag="build" style="--accent:#B45309">
+        <div class="spark-top"><span class="pill p-build">Build better</span>
+          <h4>Turn a walkthrough into look-fors</h4>
+          <p>Make what you are noticing visible to the person being observed.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Help me build an informal look-fors checklist for classroom visits focused on the practice I am working on. Include what I would see students doing, what I would hear, and what would tell me it is not happening. One page. Add one reflection question I could ask in a debrief.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="build" style="--accent:#B45309">
+        <div class="spark-top"><span class="pill p-build">Build better</span>
+          <h4>Package it so it runs without you</h4>
+          <p>The test of a coaching resource is whether it survives your absence.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Write the guide for this: when to use it, what a teacher needs to prepare, the steps in order, what it will not do, and what still requires their own judgment. Write it for someone who was not in the room when I explained it.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="build" style="--accent:#B45309">
+        <div class="spark-top"><span class="pill p-build">Build better</span>
+          <h4>Fix the survey before you send it</h4>
+          <p>Most questions we write measure agreeableness.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here are the questions I am about to send to teachers. For each one, tell me what it will actually measure rather than what I intend it to measure, whether it leads toward a particular answer, and whether I would know what to do differently based on any possible response. Rewrite the three weakest ones.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="build" style="--accent:#B45309">
+        <div class="spark-top"><span class="pill p-build">Build better</span>
+          <h4>Draft the agenda for a meeting you are not running</h4>
+          <p>You are often the only person who knows what has to get decided.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Here is the context for a meeting I am attending but not leading. List the decisions that need to be made, the questions likely to come up, whose voice is missing, and where people are likely to disagree. Then give me the two things I should say and the one thing I should not.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="build" style="--accent:#B45309">
+        <div class="spark-top"><span class="pill p-build">Build better</span>
+          <h4>Build the case for your own time</h4>
+          <p>Coaching gets cut by people who cannot see what it produced.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">Help me make the case for protected coaching time to a building leader. Ask me what evidence I actually have before you write anything. Then draft the argument in their terms, not mine, and tell me the strongest counterargument and whether my evidence survives it.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+
+      <article class="spark" data-tag="think" style="--accent:#3C3F78">
+        <div class="spark-top"><span class="pill p-think">Think better</span>
+          <h4>Read the research article you will never finish</h4>
+          <p>The one that has been open in a tab since August.</p></div>
+        <div class="spark-body"><h5>Try this</h5>
+          <div class="prompt">From this article, tell me: the claim, what evidence it rests on, how strong that evidence is, who it studied and whether that resembles our students, and what it does not claim that people will assume it does. Then give me one sentence I could say to a teacher about it.</div>
+          <button class="copy" type="button">Copy prompt</button></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="add">
+    <h3>Add your own</h3>
+    <p>This list grows from what coaches actually work out. If you find something that saves you an hour or makes a conversation land better, write it down and it goes on this page. We collect them in sessions and add them here in between.</p>
+    <a class="lnk" href="https://docs.google.com/document/d/19q3-BVUJVJWwvHUBXT0eL7wwfLsSDbSvGZeQXDzGv54/edit?usp=sharing" target="_blank" rel="noopener">Add your idea spark</a>
+  </div>
+
+  <footer>
+    Coaching moves adapted from a set of leadership strategies. Updated after each session. Last update: Session 1, September 2026.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sparks = Array.prototype.slice.call(document.querySelectorAll('.spark'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
+  var bands  = Array.prototype.slice.call(document.querySelectorAll('.band'));
+
+  sparks.forEach(function(s){
+    var top = s.querySelector('.spark-top');
+    top.setAttribute('role','button');
+    top.setAttribute('tabindex','0');
+    top.setAttribute('aria-expanded','false');
+    function toggle(){
+      var open = !s.classList.contains('open');
+      s.classList.toggle('open', open);
+      top.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    top.addEventListener('click', toggle);
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click', function(){
+      var text = b.parentNode.querySelector('.prompt').textContent;
+      var done = function(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy prompt'; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done, function(){ b.textContent = 'Select and copy above'; });
+      } else {
+        var t = document.createElement('textarea');
+        t.value = text; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); done(); } catch(e){ b.textContent = 'Select and copy above'; }
+        document.body.removeChild(t);
+      }
+    });
+  });
+
+  function visible(el){ return el.style.display !== 'none'; }
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(o){ o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      var f = c.getAttribute('data-filter');
+      sparks.forEach(function(s){
+        s.style.display = (f === 'all' || s.getAttribute('data-tag') === f) ? '' : 'none';
+      });
+      groups.forEach(function(g){
+        g.style.display = Array.prototype.slice.call(g.querySelectorAll('.spark')).some(visible) ? '' : 'none';
+      });
+      bands.forEach(function(b){
+        b.style.display = Array.prototype.slice.call(b.querySelectorAll('.spark')).some(visible) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

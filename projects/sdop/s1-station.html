@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Station rotation | SDoP Instructional Technology Coaches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#12263F; --teal:#0E6E6E; --amber:#B45309; --berry:#8A2E4D;
+  --ink:#12263F; --paper:#F3F6F8; --muted:#5B6B7C;
+  --line:#D6DEE5; --soft:#E8EEF2; --accent:#12263F;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+.back{display:inline-block;font-size:13.5px;color:#A9C0D6;text-decoration:none;margin-bottom:14px}
+.back:hover{color:#fff}
+.back:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.masthead{background:var(--navy);color:#fff;padding:30px 0 28px}
+.masthead h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:33px;
+  line-height:1.15;margin:0 0 4px;letter-spacing:-0.01em}
+.masthead .sub{color:#A9C0D6;font-size:15px;margin:0 0 24px}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18)}
+.rule{background:var(--navy);padding:13px 15px}
+.rule b{display:block;font-size:14.5px;font-weight:600;margin-bottom:2px}
+.rule span{display:block;font-size:13px;color:#A9C0D6;line-height:1.45}
+
+/* ---- tabs ---- */
+.tabbar{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(18,38,63,.04)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1060px;margin:0 auto;padding:0 20px}
+.tab{appearance:none;font:inherit;text-align:left;cursor:pointer;background:#fff;
+  border:0;border-bottom:4px solid transparent;padding:14px 14px 11px;color:var(--muted);
+  display:flex;flex-direction:column;gap:2px}
+.tab .n{font-size:12.5px;font-weight:600;letter-spacing:.02em}
+.tab .t{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.25}
+.tab .c{font-size:12px;color:var(--muted)}
+.tab[aria-selected="true"]{background:#FBFDFE}
+.tab:hover{background:#F7FAFC}
+.tab:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+
+/* ---- filters ---- */
+.filters{padding:20px 0 2px}
+.filters p{margin:0 0 9px;font-size:13.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:13.5px;font-weight:500;padding:7px 14px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:2px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+/* ---- station panel ---- */
+.panel{padding:26px 0 10px}
+.panel[hidden]{display:none}
+.panel-head h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:26px;
+  margin:0 0 4px;letter-spacing:-0.01em}
+.panel-head .kicker{font-size:13px;color:var(--muted);margin:0 0 12px}
+.panel-rule{height:5px;margin:0 0 14px}
+.panel-intro{margin:0 0 22px;font-size:15px;color:var(--muted);max-width:64ch}
+
+/* ---- activity ---- */
+.act-top{cursor:pointer;position:relative;padding-right:48px}
+.act-top:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.act-top::after{content:"";position:absolute;right:20px;top:24px;width:9px;height:9px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .18s ease}
+.act.open .act-top::after{transform:rotate(-135deg);border-color:var(--accent)}
+.act:hover .act-top::after{border-color:var(--accent)}
+.act .split,.act .act-foot,.act .next{display:none}
+.act.open .split{display:grid}
+.act.open .act-foot{display:grid}
+.act.open .next{display:block}
+.act.open{border-left-width:6px}
+@media (prefers-reduced-motion:no-preference){
+  .act.open .split,.act.open .act-foot,.act.open .next{animation:reveal .16s ease-out}
+}
+@keyframes reveal{from{opacity:0}to{opacity:1}}
+.expander{font:inherit;font-size:13.5px;font-weight:500;background:none;border:0;padding:7px 0;
+  color:var(--ink);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.expander:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+.act{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);margin-bottom:16px}
+.act-top{padding:16px 18px 14px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.pill{font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:2px}
+.p-new{background:#FDF0E0;color:var(--amber)}
+.p-under{background:#E2EFEF;color:var(--teal)}
+.p-est{background:#EAEEF2;color:var(--muted)}
+.p-cat{background:#E8EAF3;color:#3C3F78}
+.p-gate{background:#F7E4EA;color:var(--berry)}
+.lead{margin:0 0 10px;font-size:16px;line-height:1.45}
+.lead .lbl{font-weight:700;color:var(--accent)}
+.strat{margin:0;font-size:15px;line-height:1.45;padding:10px 13px;background:#F7FAFC;
+  border-left:2px solid var(--soft)}
+.strat .lbl{font-weight:700;color:var(--accent)}
+
+.split{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--soft)}
+.half{padding:14px 18px 15px}
+.half:first-child{border-right:1px solid var(--soft)}
+.half h4{font-size:12.5px;font-weight:700;color:var(--muted);margin:0 0 6px}
+.half p{margin:0;font-size:14.5px;line-height:1.5}
+.half p+p{margin-top:7px}
+.fork{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--muted)}
+.fork b{color:var(--ink)}
+
+.act-foot{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--soft);background:#FAFCFD}
+.fc{padding:12px 18px;font-size:13.5px;line-height:1.45}
+.fc:first-child{border-right:1px solid var(--soft)}
+.fc b{display:block;font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:2px}
+
+.next{border-top:1px solid var(--soft);padding:12px 18px;font-size:14px;background:#fff}
+.next b{font-weight:700;color:var(--accent)}
+.goto{font:inherit;font-size:14px;font-weight:600;background:none;border:0;padding:0;
+  color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.goto:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+.log{display:inline-block;margin:8px 0 6px;font-size:14px;font-weight:600;
+  text-decoration:none;color:#fff;padding:11px 20px;border-radius:2px;background:var(--accent)}
+.log:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+.empty{display:none;padding:20px;background:#fff;border:1px dashed var(--line);
+  font-size:14.5px;color:var(--muted);margin-bottom:16px}
+.pagefoot{margin-top:40px;border-top:1px solid var(--line);padding:24px 0 60px;
+  font-size:14px;color:var(--muted)}
+.pagefoot h3{font-size:15px;color:var(--ink);margin:0 0 8px}
+.pagefoot ul{margin:0;padding-left:18px}
+.pagefoot li{margin-bottom:5px}
+
+@media (max-width:760px){
+  .rules{grid-template-columns:1fr}
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .tab .t{font-size:13.5px}
+  .split,.act-foot{grid-template-columns:1fr}
+  .half:first-child,.fc:first-child{border-right:none;border-bottom:1px solid var(--soft)}
+  .masthead h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="back" href="index.html">Back to the series page</a>
+    <h1>Four stations, three rounds, one teacher of your own</h1>
+    <p class="sub">Instructional Technology Coaches &middot; Session 1 &middot; Lab B</p>
+    <div class="rules">
+      <div class="rule"><b>Bring a teacher with you</b><span>Pick one real teacher you are working with now. Every scenario is about them, not about the tool.</span></div>
+      <div class="rule"><b>At least two stations</b><span>Three rounds. Stay for a second scenario if one is working. Move if it is not.</span></div>
+      <div class="rule"><b>Log every scenario</b><span>One short form each time. Anonymous, and it goes up on the board at your station.</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="tabbar">
+  <div class="tabs" role="tablist" aria-label="Stations">
+    <button class="tab" role="tab" id="t1" aria-controls="s1" aria-selected="true" data-station="s1" style="border-bottom-color:#12263F">
+      <span class="n">Station 1</span><span class="t">Preparing the lesson and the space</span><span class="c">5 scenarios &middot; thought partner</span>
+    </button>
+    <button class="tab" role="tab" id="t2" aria-controls="s2" aria-selected="false" data-station="s2">
+      <span class="n">Station 2</span><span class="t">Showing up better</span><span class="c">5 scenarios &middot; for you</span>
+    </button>
+    <button class="tab" role="tab" id="t3" aria-controls="s3" aria-selected="false" data-station="s3">
+      <span class="n">Station 3</span><span class="t">Building the resources</span><span class="c">5 scenarios &middot; assistant</span>
+    </button>
+    <button class="tab" role="tab" id="t4" aria-controls="s4" aria-selected="false" data-station="s4">
+      <span class="n">Station 4</span><span class="t">Engaging students</span><span class="c">5 scenarios &middot; personalization</span>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section class="filters" aria-label="Narrow the menu">
+  <p>Narrow the list if you want to. Nothing here needs a license or an account you do not already have.</p>
+  <div class="chips">
+    <button class="chip" type="button" data-filter="all" aria-pressed="true">Everything</button>
+    <button class="chip" type="button" data-filter="new" aria-pressed="false">New this summer</button>
+    <button class="chip" type="button" data-filter="nostudent" aria-pressed="false">No student accounts needed</button>
+    <button class="chip" type="button" data-filter="sitting" aria-pressed="false">Already sitting there unused</button>
+  </div>
+  <button class="expander" type="button" id="expander" aria-expanded="false">Open every scenario at this station</button>
+</section>
+
+<div class="empty" id="empty">Nothing at this station matches that filter. Try another station, or clear the filter.</div>
+
+<!-- ==================== STATION 1 ==================== -->
+<section class="panel" id="s1" role="tabpanel" aria-labelledby="t1" style="--accent:#12263F">
+  <div class="panel-head">
+    <h2>Preparing the lesson and the space</h2>
+    <p class="kicker">Thought partner</p>
+  </div>
+  <div class="panel-rule" style="background:#12263F"></div>
+  <p class="panel-intro">The curriculum is given. The shape of how it lands is not. Everything here happens before a resource exists.</p>
+
+  <article class="act" data-tags="under nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> The unit is set and the pacing guide says five days. The teacher knows that teaching it whole group will lose half the class by day two, and has never built stations before.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Find the arc of the unit before designing anything, then build the rotation around the places students actually stall.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Put the given unit into Gemini Notebook. Ask where the arc is, and where three different kinds of learner would lose it.</p>
+        <p>Do not ask it to build the rotation. Ask what the rotation has to solve.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Build the rotation out loud, in front of them. Let them pick which station is theirs to run and which one they want you to model.</p>
+        <div class="fork"><b>K&ndash;8:</b> you stay on the Notebook side. <b>9&ndash;12:</b> students can be handed the same Notebook to prepare with.</div></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>A rotation plan for one real lesson next week.</div>
+      <div class="fc"><b>Watch out for</b>Describe students by need, never by name. No student identifiers in the notebook.</div>
+    </div>
+    <div class="next"><b>Then what:</b> the stations need materials. <button class="goto" data-goto="s3">Station 3</button> is where you build them.</div>
+  </article>
+
+  <article class="act" data-tags="under nostudent sitting">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> A teacher's Classroom is one long scroll of undated posts. Students cannot find last week's work, families cannot see what the unit is, and the teacher has stopped trying.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Give the unit a structure in Classroom before adding one more thing to it.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Draft the topic structure and the sequence from the given curriculum, so you arrive with a proposal instead of a blank screen.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Tag standards and skills together. The tagging has to be theirs or it will not survive past October.</p>
+        <div class="fork">Standards and skills tagging has been sitting in Classroom all year. Almost nobody has opened it.</div></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One unit tagged and sequenced in a real Classroom.</div>
+      <div class="fc"><b>Watch out for</b>If you drive the tagging, it is your structure and they will abandon it.</div>
+    </div>
+    <div class="next"><b>Then what:</b> the assignment now has a home, so the rubric is worth generating. <button class="goto" data-goto="s3">Station 3</button>.</div>
+  </article>
+
+  <article class="act" data-tags="est nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-est">Established</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> A lesson has been taught the same way for three years and it is fine. Some classes get it and some do not, and the teacher cannot say why.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Name the three places the lesson loses students, then open the conversation with one of them.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Give Gemini the lesson as written. Ask where a student loses the thread. Push back on the generic answers until you get three that are specific to this content.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Open with one. Not three. One is a conversation, three is a critique.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One opening question you would actually use.</div>
+      <div class="fc"><b>Watch out for</b>The first answer is always generic. The value is in the third.</div>
+    </div>
+    <div class="next"><b>Then what:</b> you guessed where it breaks. <button class="goto" data-goto="s4">Station 4</button> tells you whether you guessed right.</div>
+  </article>
+
+  <article class="act" data-tags="under nostudent sitting">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> A teacher moved from fifth grade to second in August. They have the curriculum, a box of someone else's materials, and no idea what next Tuesday looks like.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Build one week, not one year, out of whatever was left behind.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Load the new grade's curriculum plus last year's leftovers into one Notebook. Mixed file types are fine now, slides and PDFs included.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Walk one week. A person who changed grades in August cannot hear a year plan in September.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One week, laid out, for someone currently underwater.</div>
+      <div class="fc"><b>Watch out for</b>Inherited materials often contain student work. Check before you upload anything.</div>
+    </div>
+    <div class="next"><b>Then what:</b> you will be back here every week. <button class="goto" data-goto="s2">Station 2</button> is how you stop re-establishing context each visit.</div>
+  </article>
+
+  <article class="act" data-tags="est nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-est">Established</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> The assessment comes with the curriculum. The teacher did not write it, cannot change it, and wants to know their students are ready for it.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Work backwards from the assessment to the skills and knowledge it actually requires, then compare that against what the pacing guide teaches.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Put a released or sample version of the assessment into Gemini. Work backwards item by item to what a student has to be able to do.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Lay that list next to the pacing guide and find what is assessed but never taught. Talk about the gap. The gap is where the coaching is.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>A named gap between what is assessed and what is paced.</div>
+      <div class="fc"><b>Watch out for</b>Secure assessments stay out of every AI tool. Use a released or sample version only.</div>
+    </div>
+    <div class="next"><b>Then what:</b> a named gap needs something to close it. <button class="goto" data-goto="s3">Station 3</button> is where you build it.</div>
+  </article>
+
+  <a class="log" href="#" data-form="station1">Log what you did at station 1</a>
+</section>
+
+<!-- ==================== STATION 2 ==================== -->
+<section class="panel" id="s2" role="tabpanel" aria-labelledby="t2" hidden style="--accent:#0E6E6E">
+  <div class="panel-head">
+    <h2>Showing up better</h2>
+    <p class="kicker">For you</p>
+  </div>
+  <div class="panel-rule" style="background:#0E6E6E"></div>
+  <p class="panel-intro">Nothing here produces something for a teacher. It produces time, or it produces you arriving better prepared. Both count. Pick this station if you are tired.</p>
+
+  <article class="act" data-tags="est nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-est">Established</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> You support eleven teachers across three buildings. By the time you have remembered what you agreed with the third one, the visit is half over.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Put one teacher's context somewhere it stays, so you arrive knowing instead of remembering.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Build it once</h4>
+        <p>A Gem holding the grade, the subject, the curriculum they are given, what they are good at, what worries them, and what you are working on together.</p></div>
+      <div class="half"><h4>What it buys you</h4>
+        <p>You stop re-explaining the same context every time you need to think about this person. Gems are shareable here, so a co-coach can use it too.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One Gem, for one teacher, usable Monday.</div>
+      <div class="fc"><b>Watch out for</b>Describe the role, not the person. Nothing evaluative you would not say to their face.</div>
+    </div>
+    <div class="next"><b>Then what:</b> use it to arrive with the lesson question already worked out. <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <article class="act" data-tags="under nostudent sitting">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> You have been assigned a chemistry teacher and your background is elementary literacy. You can talk about instruction all day, and you cannot ask a single question about their content.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Read the curriculum well enough to ask one real question, and be honest about what that is and is not.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Build it once</h4>
+        <p>Load the curriculum into Notebook. Run the quiz and the flashcards against yourself to find where you are thin.</p></div>
+      <div class="half"><h4>What it buys you</h4>
+        <p>You walk into a subject you do not know with a question that proves you read it. That is the whole credibility problem, in fifteen minutes.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One question for a teacher whose content is not yours.</div>
+      <div class="fc"><b>Watch out for</b>It makes you a credible reader, not a content expert. Say that to them out loud.</div>
+    </div>
+    <div class="next"><b>Then what:</b> now you can work backwards from their assessment. <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <article class="act" data-tags="new nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> You built something good in a notebook last spring. Two colleagues wanted it and you ended up rebuilding it twice, slightly differently each time.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Take a copy of something already built and make it yours, instead of starting over.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Build it once</h4>
+        <p>Take the copy of the staying sane notebook, then swap in your own sources: your schools, your curriculum, the questions you get every week.</p></div>
+      <div class="half"><h4>What it buys you</h4>
+        <p>This is also the demonstration. Copying a shared notebook shipped in August and it is the most useful new thing on this page for anyone who supports a lot of people.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>Your own copy, with at least one source that is yours.</div>
+      <div class="fc"><b>Watch out for</b>A copy does not stay in sync. From the moment you take it, it is yours alone.</div>
+    </div>
+    <div class="next"><b>Then what:</b> the same copy move is how you serve a whole grade team at once. <button class="goto" data-goto="s3">Station 3</button>.</div>
+  </article>
+
+  <article class="act" data-tags="est nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-est">Established</span><span class="pill p-cat">Thought partner</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> One teacher makes the same objection every time and it stops you every time. You have never had a good answer ready, only a defensive one.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Rehearse against the objection in private so the first time you say it well is not in front of them.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Build it once</h4>
+        <p>A Gem that makes their actual objection, in their actual wording. Not the polite version.</p></div>
+      <div class="half"><h4>What it buys you</h4>
+        <p>Somewhere to be wrong first. You arrive with a two minute answer that does not sound like a pitch.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>An answer you have already said out loud once.</div>
+      <div class="fc"><b>Watch out for</b>If the Gem convinces you the teacher is wrong, you built it badly. Make it argue well.</div>
+    </div>
+    <div class="next"><b>Then what:</b> arguments rarely win this. An artifact sometimes does. <button class="goto" data-goto="s3">Station 3</button>.</div>
+  </article>
+
+  <article class="act" data-tags="est nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-est">Established</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> You write the same three messages every week. The follow up after a visit, the scheduling one, and the one explaining the same tool to a different person.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Build the three once and stop starting from an empty box.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Build it once</h4>
+        <p>Name the three you actually send, not the three you think you should send. Build a Gem for each, or one Gem that handles all three.</p></div>
+      <div class="half"><h4>What it buys you</h4>
+        <p>Minutes, repeatedly. This is the least interesting item on the page and probably the highest return.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One message you will never write from scratch again.</div>
+      <div class="fc"><b>Watch out for</b>Anything going to families should still sound like you. Read it before you send it.</div>
+    </div>
+    <div class="next"><b>Then what:</b> spend the time you just saved on the teacher who needs it. Any station.</div>
+  </article>
+
+  <a class="log" href="#" data-form="station2">Log what you did at station 2</a>
+</section>
+
+<!-- ==================== STATION 3 ==================== -->
+<section class="panel" id="s3" role="tabpanel" aria-labelledby="t3" hidden style="--accent:#B45309">
+  <div class="panel-head">
+    <h2>Building the resources</h2>
+    <p class="kicker">Assistant</p>
+  </div>
+  <div class="panel-rule" style="background:#B45309"></div>
+  <p class="panel-intro">Something exists at the end of this station that did not exist before. Pick the one your teacher would actually use, not the one that shows off the most features.</p>
+
+  <article class="act" data-tags="new nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-new">New to us</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> The assignment exists and students complete it. Grading takes forever, feels inconsistent between classes, and students argue about the score because nobody can point at anything.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Generate a rubric from the assignment they already have, then cut it down together until it is something they would really use.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Generate the draft rubric in Classroom from their existing assignment. Bring a draft, not a demonstration.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Cut it together. Generated rubrics are always too long and too generous with criteria. The cutting is the coaching.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One rubric a teacher actually agreed to.</div>
+      <div class="fc"><b>Watch out for</b>A rubric nobody shortened is a rubric nobody uses. Four criteria beats nine.</div>
+    </div>
+    <div class="next"><b>Then what:</b> feedback needs something to point at. <button class="goto" data-goto="s4">Station 4</button>.</div>
+  </article>
+
+  <article class="act" data-tags="under nostudent sitting">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> A teacher has a rubric they have used for six years. It works. It lives on paper in a drawer, and it is not attached to anything students can see.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Digitize what already works instead of replacing it with something better.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Nothing. This one is a genuine walk up. Bring a phone.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Photograph the rubric. It comes back digital and attaches to the assignment. Nothing about their practice changed, which is exactly why it lands on a skeptic.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One paper artifact, now working in Classroom.</div>
+      <div class="fc"><b>Watch out for</b>Photograph the rubric, not a page of graded student work.</div>
+    </div>
+    <div class="next"><b>Then what:</b> the assignment now deserves a structured home. <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <article class="act" data-tags="new nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Personalization</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> The whole grade is assigned the same text. The reading range in those rooms is four years wide, and every teacher is solving it alone at nine at night.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Build the leveled set once, then share it as a copy so each teacher builds on top of it rather than starting over.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Build it once in Notebook against the text everyone is already assigned. Three levels, same content, same ideas.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Share the copy. Each teacher adds their own sources on top without touching yours.</p>
+        <div class="fork">This is the August capability, and it is the difference between helping one teacher and helping eleven.</div></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>A shareable notebook and a list of who gets it.</div>
+      <div class="fc"><b>Watch out for</b>Leveling is not tracking. Levels move with the student and no student gets labeled.</div>
+    </div>
+    <div class="next"><b>Then what:</b> in grades 9 to 12 students can copy it themselves. <button class="goto" data-goto="s4">Station 4</button>.</div>
+  </article>
+
+  <article class="act" data-tags="new nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> A teacher delivers the same ten minute introduction four times a day, and again individually for every student who was absent. It is the same ten minutes every time.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Record it once from the deck they already have, and get those ten minutes back for something else.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Find the explanation they repeat most. Usually it is the unit opener or the one procedure everyone forgets.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Record straight from Slides. No new tool, no new file to manage, and it is not AI, which matters for some of your teachers.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One recorded explanation that stops being taught live.</div>
+      <div class="fc"><b>Watch out for</b>Recording in a room with students in it is a different conversation. Record it empty.</div>
+    </div>
+    <div class="next"><b>Then what:</b> now students can respond to it rather than sit through it. <button class="goto" data-goto="s4">Station 4</button>.</div>
+  </article>
+
+  <article class="act" data-tags="under nostudent sitting">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> Families ask what the unit is about. The substitute has no idea. Students cannot say what they are working toward. The information exists, in a fifty page curriculum document.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Make the one page version, and decide who it is for before you make it.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Put the unit into Notebook and generate the infographic. There are ten styles now and most people have never opened the menu.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Decide the audience. For families, for the substitute, or for students is three different documents, not one document with three uses.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One page, with a named audience.</div>
+      <div class="fc"><b>Watch out for</b>Check the content before it goes out. A handsome infographic with a wrong date still has a wrong date.</div>
+    </div>
+    <div class="next"><b>Then what:</b> if you cannot get the unit onto one page, the unit structure is the problem. <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <a class="log" href="#" data-form="station3">Log what you did at station 3</a>
+</section>
+
+<!-- ==================== STATION 4 ==================== -->
+<section class="panel" id="s4" role="tabpanel" aria-labelledby="t4" hidden style="--accent:#8A2E4D">
+  <div class="panel-head">
+    <h2>Engaging students</h2>
+    <p class="kicker">Personalization and creation</p>
+  </div>
+  <div class="panel-rule" style="background:#8A2E4D"></div>
+  <p class="panel-intro">Students in grades 9 to 12 can use Gemini and Gemini Notebook directly. Below grade 9 they cannot, so the work happens on the teacher's side and students see the product. Both versions are here, and both are real coaching.</p>
+
+  <article class="act" data-tags="new">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Personalization</span><span class="pill p-gate">Grades 9&ndash;12</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> Students study by rereading the packet. It does not work, their scores say so, and nobody has ever taught them another way to prepare.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Give students the sources and let them build their own study materials, rather than handing them yours.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Seed a Notebook with the core content for the unit. Sources only. No study materials, because the building is the learning.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Students copy it and build their own set: flashcards, quizzes, the summary in whatever form helps them. Same content, their construction.</p>
+        <div class="fork"><b>K&ndash;8 version:</b> the teacher builds the set and students choose which format they use. The choosing is still theirs.</div></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>A seeded notebook and a plan for who copies it.</div>
+      <div class="fc"><b>Watch out for</b>Direct student use is grades 9 to 12 only. Below that the teacher drives. This is the line people get wrong.</div>
+    </div>
+    <div class="next"><b>Then what:</b> what they build tells you what they think matters. Take that back to <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <article class="act" data-tags="est">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-est">Established</span><span class="pill p-cat">Personalization</span><span class="pill p-gate">All grades</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> Every student turns in the same slide deck with different pictures. The assignment technically asked for creativity and reliably produced twenty six identical things.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Decide what has to be the student's own, then build the assignment around protecting that.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Build the assignment in Adobe Express. Decide what must be theirs: the script, the images, the sequence, the voice.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Students narrate over what they made. This is the one student creation tool open at every grade we serve, which makes it the most useful thing here for elementary coaches.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One assignment, ready to hand to a teacher.</div>
+      <div class="fc"><b>Watch out for</b>If a generated image does the thinking, the assignment is about prompting, not the content. Decide which you want.</div>
+    </div>
+    <div class="next"><b>Then what:</b> they made something. Respond to the moment, not the whole thing. See the feedback scenario below.</div>
+  </article>
+
+  <article class="act" data-tags="under nostudent sitting">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Personalization</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> Exit tickets get collected every day and read almost never. The teacher knows roughly how it went and cannot say which students need what tomorrow.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Find the pattern in what students wrote, and turn it into one grouping decision for tomorrow.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Strip the names. Put the responses into Notebook and ask what the class does not understand, not who.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Decide who gets what tomorrow. This is the scenario that connects a tool to an actual instructional decision, which is the whole point of the morning.</p></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One grouping decision you can defend.</div>
+      <div class="fc"><b>Watch out for</b>Names come out before anything goes in. If you cannot strip them quickly, skip this one today.</div>
+    </div>
+    <div class="next"><b>Then what:</b> the pattern shows where the lesson loses people. <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <article class="act" data-tags="new nostudent">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Assistant</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> Feedback on student work is a paragraph at the bottom. Students read the grade, skip the paragraph, and make the same mistake next time.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Put the comment at the moment it applies instead of at the end.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Find a student video already sitting in Drive, or record a short one yourself to practice on.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Comment at the timestamp. A student reading feedback at the second it applies is a different experience from a paragraph at the end.</p>
+        <div class="fork">Not AI, which makes it the safest thing on this page to hand to a nervous teacher.</div></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>One video carrying real timestamped feedback.</div>
+      <div class="fc"><b>Watch out for</b>Practice on your own video first. Do not learn this on a real student's work.</div>
+    </div>
+    <div class="next"><b>Then what:</b> comments land harder when they point at agreed criteria. <button class="goto" data-goto="s3">Station 3</button>.</div>
+  </article>
+
+  <article class="act" data-tags="under">
+    <div class="act-top">
+      <div class="pills"><span class="pill p-under">Available, underused</span><span class="pill p-cat">Thought partner</span><span class="pill p-gate">Grades 9&ndash;12</span></div>
+      <p class="lead"><span class="lbl">Scenario:</span> Students receive summaries of everything. They have never had to go into a source and find something out, and it shows the moment a question is not in the notes.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Give them the sources and the first question, then pay attention to what they ask next.</p>
+    </div>
+    <div class="split">
+      <div class="half"><h4>Before you go in</h4>
+        <p>Load the unit sources into a Notebook students can use. Write the one question you want them to start from.</p></div>
+      <div class="half"><h4>With them</h4>
+        <p>Students interrogate the sources instead of receiving a summary. The teacher watches what gets asked, which is better formative information than most exit tickets.</p>
+        <div class="fork"><b>K&ndash;8 version:</b> the class asks, the teacher types, everyone watches the answer come back with its citations. Same habit, teacher at the keyboard.</div></div>
+    </div>
+    <div class="act-foot">
+      <div class="fc"><b>You leave with</b>A student ready notebook and an opening question.</div>
+      <div class="fc"><b>Watch out for</b>Notebook answers only from the sources you give it, so the sources are the lesson. Choose them like you would choose a text.</div>
+    </div>
+    <div class="next"><b>Then what:</b> what students ask is better planning data than the pacing guide. <button class="goto" data-goto="s1">Station 1</button>.</div>
+  </article>
+
+  <a class="log" href="#" data-form="station4">Log what you did at station 4</a>
+</section>
+
+<footer class="pagefoot">
+  <h3>If you only remember three things</h3>
+  <ul>
+    <li>Everything here works on the license we actually have. Nothing on this page needs an upgrade.</li>
+    <li>Direct student use of Gemini and Gemini Notebook is grades 9 to 12. Adobe Express is open at every grade.</li>
+    <li>No student names, no student work, and no secure assessments go into any of these tools.</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var tabs   = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var acts   = Array.prototype.slice.call(document.querySelectorAll('.act'));
+  var empty  = document.getElementById('empty');
+  var COLORS = {s1:'#12263F', s2:'#0E6E6E', s3:'#B45309', s4:'#8A2E4D'};
+  var current = 's1', filter = 'all';
+
+  function show(id){
+    current = id;
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-station') === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.style.borderBottomColor = on ? COLORS[t.getAttribute('data-station')] : 'transparent';
+    });
+    panels.forEach(function(p){ p.hidden = (p.id !== id); });
+    applyFilter();
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+
+  function applyFilter(){
+    var panel = document.getElementById(current);
+    var shown = 0;
+    Array.prototype.slice.call(panel.querySelectorAll('.act')).forEach(function(a){
+      var tags = a.getAttribute('data-tags') || '';
+      var ok = (filter === 'all') || (tags.split(' ').indexOf(filter) > -1);
+      a.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    empty.style.display = shown === 0 ? 'block' : 'none';
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ SHOW(t.getAttribute('data-station')); });
+    t.addEventListener('keydown', function(e){
+      var i = tabs.indexOf(t), n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+      if (e.key === 'ArrowLeft')  n = tabs[(i-1+tabs.length) % tabs.length];
+      if (n){ e.preventDefault(); n.focus(); SHOW(n.getAttribute('data-station')); }
+    });
+  });
+
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(o){ o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      filter = c.getAttribute('data-filter');
+      applyFilter();
+    });
+  });
+
+  document.querySelectorAll('.goto').forEach(function(b){
+    b.addEventListener('click', function(){ SHOW(b.getAttribute('data-goto')); });
+  });
+
+  // Replace with the real Google Form URLs before the session.
+  var FORMS = { station1:'#', station2:'#', station3:'#', station4:'#' };
+  document.querySelectorAll('[data-form]').forEach(function(el){
+    var k = el.getAttribute('data-form');
+    if (FORMS[k] && FORMS[k] !== '#'){
+      el.setAttribute('href', FORMS[k]);
+      el.setAttribute('target','_blank');
+      el.setAttribute('rel','noopener');
+    }
+  });
+
+  // Scenario cards collapse to scenario + strategy; the detail opens on click.
+  function setOpen(act, open){
+    act.classList.toggle('open', open);
+    act.querySelector('.act-top').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  acts.forEach(function(a){
+    var top = a.querySelector('.act-top');
+    top.setAttribute('role','button');
+    top.setAttribute('tabindex','0');
+    top.setAttribute('aria-expanded','false');
+    function toggle(){ setOpen(a, !a.classList.contains('open')); syncExpander(); }
+    top.addEventListener('click', toggle);
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  var expander = document.getElementById('expander');
+  function visibleActs(){
+    return Array.prototype.slice.call(document.getElementById(current).querySelectorAll('.act'))
+      .filter(function(a){ return a.style.display !== 'none'; });
+  }
+  function syncExpander(){
+    var v = visibleActs();
+    var allOpen = v.length > 0 && v.every(function(a){ return a.classList.contains('open'); });
+    expander.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+    expander.textContent = allOpen ? 'Collapse every scenario' : 'Open every scenario at this station';
+  }
+  expander.addEventListener('click', function(){
+    var open = expander.getAttribute('aria-expanded') !== 'true';
+    visibleActs().forEach(function(a){ setOpen(a, open); });
+    syncExpander();
+  });
+
+  var _applyFilter = applyFilter;
+  applyFilter = function(){ _applyFilter(); syncExpander(); };
+
+  var _show = show;
+  show = function(id){
+    acts.forEach(function(a){ setOpen(a, false); });
+    _show(id);
+  };
+
+  window.SHOW = show;
+  show('s1');
+})();
+</script>
+
+</body>
+</html>

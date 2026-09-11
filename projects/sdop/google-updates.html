@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What changed in Google | ITC series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#12263F;--teal:#0E6E6E;--amber:#B45309;--berry:#8A2E4D;
+  --ink:#12263F;--paper:#F3F6F8;--muted:#5B6B7C;--line:#D6DEE5;--soft:#E8EEF2}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+a{color:var(--navy)}
+.back{display:inline-block;font-size:13.5px;color:#A9C0D6;text-decoration:none;margin-bottom:14px}
+.back:hover{color:#fff}
+.masthead{background:var(--navy);color:#fff;padding:30px 0 28px}
+.masthead h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:33px;
+  line-height:1.15;margin:0 0 6px;letter-spacing:-0.01em}
+.masthead p{color:#A9C0D6;font-size:15px;margin:0;max-width:66ch}
+.sheet{background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);
+  padding:20px 22px 22px;margin-top:-1px}
+.sheet h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:22px;margin:0 0 6px}
+.sheet p{margin:0 0 14px;font-size:14.5px;color:var(--muted);max-width:68ch}
+.lnk{display:inline-block;font-size:14px;font-weight:600;text-decoration:none;
+  padding:10px 18px;border:1px solid var(--navy);color:#fff;background:var(--navy);border-radius:2px}
+.lnk:hover{background:#0B1A2C}
+.lnk:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.lnk.ghost{background:#fff;color:var(--navy)}
+.lnk.ghost:hover{background:var(--navy);color:#fff}
+.linkrow{display:flex;flex-wrap:wrap;gap:9px}
+section{padding:32px 0 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.sec-head h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:25px;margin:0}
+.sec-rule{height:3px;background:var(--amber);margin:11px 0 8px}
+.sec-intro{margin:0 0 16px;font-size:15px;color:var(--muted);max-width:68ch}
+.expander{font:inherit;font-size:13.5px;font-weight:500;background:none;border:0;padding:6px 0;
+  color:var(--ink);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.expander:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.upd{background:#fff;border:1px solid var(--line);border-left:4px solid var(--amber);margin-bottom:10px}
+.upd.minor{border-left-color:var(--line)}
+.upd-top{padding:14px 46px 14px 17px;position:relative;cursor:pointer}
+.upd-top:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.upd-top::after{content:"";position:absolute;right:19px;top:50%;margin-top:-6px;width:9px;height:9px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .18s ease}
+.upd.open .upd-top::after{transform:rotate(-135deg);margin-top:-2px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.pill{font-size:11px;font-weight:700;padding:3px 8px;border-radius:2px}
+.p-aug{background:#FDF0E0;color:var(--amber)}
+.p-jul{background:#E2EFEF;color:var(--teal)}
+.p-tool{background:#E8EAF3;color:#3C3F78}
+.upd-top h3{font-size:16.5px;font-weight:600;margin:0 0 4px;line-height:1.3}
+.upd-top .oneline{margin:0;font-size:14.5px;color:var(--muted);max-width:74ch}
+.upd-body{display:none}
+.upd.open .upd-body{display:block}
+.what{border-top:1px solid var(--soft);padding:13px 17px;background:#FAFCFD;
+  font-size:14.5px;line-height:1.5;margin:0}
+.what b{font-weight:600}
+.lenses{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--soft)}
+.lens{padding:14px 16px 16px}
+.lens+.lens{border-left:1px solid var(--soft)}
+.lens h4{font-size:12.5px;font-weight:700;margin:0 0 3px}
+.lens .sub{font-size:11.5px;color:var(--muted);margin:0 0 9px}
+.lens ul{margin:0;padding-left:16px}
+.lens li{font-size:14px;line-height:1.5;margin-bottom:8px}
+.lens li:last-child{margin-bottom:0}
+.l-coach h4{color:var(--teal)}
+.l-teach h4{color:var(--amber)}
+.l-stud h4{color:var(--berry)}
+.add{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);
+  padding:20px 22px;margin-top:14px}
+.add h3{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:21px;margin:0 0 6px}
+.add p{margin:0 0 15px;font-size:15px;color:var(--muted);max-width:68ch}
+footer{margin-top:40px;border-top:1px solid var(--line);padding:22px 0 60px;font-size:13.5px;color:var(--muted)}
+@media (max-width:840px){.lenses{grid-template-columns:1fr}.lens+.lens{border-left:0;border-top:1px solid var(--soft)}}
+@media (max-width:720px){.masthead h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="back" href="index.html">Back to the series page</a>
+    <h1>What changed in Google, and what to do with it</h1>
+    <p>The full record lives in the sheet. Below it, idea sparks for the newest tools, seen three ways: what it does for you, what it does for a teacher, and what students can do with it. Sparks are starting points, not the complete list. We add to them each session.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="sheet">
+    <h2>The full record</h2>
+    <p>Every change since March, newest first, with a plain answer on whether our license reaches it. Two tabs: everything Google announced, and the shorter list of what we can actually use. Open columns at the end for logging what you tried.</p>
+    <div class="linkrow">
+      <a class="lnk" href="https://docs.google.com/spreadsheets/d/1whoyJKo-6807xn17w04hyYJnxOXsyD92dqoKZBkIp1I/edit?usp=sharing" target="_blank" rel="noopener">Open the changes sheet</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <h2>Shipped in July and August</h2>
+      <button class="expander" type="button" id="exp-main" aria-expanded="false">Open all</button>
+    </div>
+    <div class="sec-rule"></div>
+    <p class="sec-intro">Google announced a great deal more than this. Most of it needs Education Plus, the Teaching and Learning add-on, or Google AI Pro, none of which we have. These five are ours.</p>
+
+    <article class="upd">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Gemini Notebook</span></div>
+        <h3>Share a notebook so someone takes their own copy</h3>
+        <p class="oneline">Build once, then everyone gets their own version to grow. The most useful thing on this page.</p>
+      </div>
+      <div class="upd-body">
+        <p class="what">Sharing used to mean everyone worked inside yours. Now a person takes a copy: your sources come along, and everything they add afterward is theirs alone. <b>It does not stay in sync</b>, which is the whole point.</p>
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul>
+              <li>A new teacher orientation notebook, copied to every new hire, instead of the same forty minute conversation eleven times.</li>
+              <li>Your working notebook copied to a co-coach, so you stop maintaining parallel versions of the same thing.</li>
+              <li>A notebook per building with its schedules, staff and quirks. Copy the shell when you pick up a new site.</li>
+            </ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul>
+              <li>Build the leveled set once against the text a whole grade already teaches, then hand every teacher a copy to add their own material on top.</li>
+              <li>A department copies one unit notebook and each teacher tunes it to their own sections without touching anyone else's.</li>
+              <li>The teacher taking over a course mid year gets a copy rather than a box of files.</li>
+              <li>A co-teaching pair each copies the planning notebook, then compares what they each added.</li>
+            </ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">Grades 9 to 12 direct</p>
+            <ul>
+              <li>Seed it with the unit sources and nothing else. Students copy and build their own flashcards, quizzes and summaries. Same content, their construction.</li>
+              <li>A research project where everyone starts from the same vetted sources, so the argument is about thinking rather than who found a better website.</li>
+              <li>Each class period gets its own copy and the notebooks diverge by what each group asks. Compare them at the end.</li>
+              <li><b>K to 8:</b> the teacher builds the set and students choose which format they use.</li>
+            </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="upd">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Google Slides</span><span class="pill p-tool">Google Vids</span></div>
+        <h3>Record a presentation straight from Slides</h3>
+        <p class="oneline">Narrate over a deck, edit by transcript. Not AI, which matters for some of your teachers.</p>
+      </div>
+      <div class="upd-body">
+        <p class="what">Record narration over a deck you already have and get a video out. You edit by cutting the transcript rather than dragging a timeline. <b>No new tool, no new file to manage.</b></p>
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul>
+              <li>The thing you explain in every building. Record it, send the link, stop scheduling the fifth meeting.</li>
+              <li>Record your own session so people who could not attend are not permanently behind.</li>
+              <li>A two minute walkthrough attached to any resource you send, so it arrives with its own explanation.</li>
+              <li>Your update for a principal, recorded, so they watch it when they have four minutes rather than never.</li>
+            </ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul>
+              <li>The ten minute introduction delivered four times a day, and again for every absent student. Record once.</li>
+              <li>The procedure everyone forgets in October, recorded in September and posted where they can find it.</li>
+              <li>The back to school night presentation, recorded for families who could not come.</li>
+              <li>Sub plans that are actually usable, because the substitute hears the teacher explain the lesson.</li>
+            </ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">All grades</p>
+            <ul>
+              <li>Students narrate their own deck, so the assessment is what they can explain rather than what they arranged on a slide.</li>
+              <li>A student who freezes in front of a room records instead, and still has to do the thinking.</li>
+              <li>Group projects where each member records their own section, which makes contribution visible.</li>
+              <li>Students record an explanation in September and again in May against the same prompt.</li>
+            </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="upd">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Google Drive</span></div>
+        <h3>Comment on a video at the moment it applies</h3>
+        <p class="oneline">Feedback stops being a paragraph at the bottom.</p>
+      </div>
+      <div class="upd-body">
+        <p class="what">Timestamped comments on video in Drive. The note sits at the second it is about, so the reader lands on the moment instead of hunting for it.</p>
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul>
+              <li>Record a lesson with permission, then comment together at the three moments worth discussing. The video keeps you both looking at the same thing.</li>
+              <li>Annotate a model lesson at each move, so a teacher sees why and not just what.</li>
+              <li>Leave observation notes inside the video rather than in a document nobody opens twice.</li>
+              <li>Two coaches comment on the same clip independently, then compare what each of you noticed.</li>
+            </ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul>
+              <li>Feedback on a student presentation at the exact moment the argument falls apart.</li>
+              <li>A teacher records themselves once a marking period and comments on their own video before anyone else sees it.</li>
+              <li>Grade a performance task without rewatching the whole thing to find the moment again.</li>
+            </ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">All grades</p>
+            <ul>
+              <li>Peer review at timestamps, which forces students to point at something specific instead of writing "good job."</li>
+              <li>A student comments on their own recorded work before the teacher does. Then compare the two sets.</li>
+              <li>Music, theatre and PE: comment on the run rather than describing it afterward from memory.</li>
+              <li>A class annotates one shared video together as a close reading exercise.</li>
+            </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="upd">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Workspace Studio</span><span class="pill p-tool">Gemini Notebook</span></div>
+        <h3>Have a notebook feed itself</h3>
+        <p class="oneline">Point a flow at a folder and stop re-uploading.</p>
+      </div>
+      <div class="upd-body">
+        <p class="what">A Workspace Studio flow adds new files to a notebook automatically. Set it up once against a folder and anything dropped in from then on is already there.</p>
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul>
+              <li>A folder per curriculum you support, feeding a notebook you can question before any visit.</li>
+              <li>One notebook holding all district guidance, fed automatically, so you always answer from the current version.</li>
+              <li>Your own capture folder: screenshots, notes, articles, session materials. Searchable without you organizing it.</li>
+              <li>A folder where you drop every question a teacher asks you. By December you can see what the district actually needs.</li>
+            </ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul>
+              <li>A unit folder feeds the class notebook, so materials added mid unit appear without anyone maintaining it.</li>
+              <li>A running notebook of everything a course covered, which is worth a great deal in April.</li>
+              <li>A grade team folder where anyone can contribute and the shared notebook stays current.</li>
+            </ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">Grades 9 to 12 direct</p>
+            <ul>
+              <li>Students submit research sources to a folder and the class notebook grows into a shared collection they can all question.</li>
+              <li>A long project where the source set builds across weeks instead of being fixed on day one.</li>
+              <li><b>K to 8:</b> the teacher owns the folder and the class works from the projected notebook.</li>
+            </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="upd">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-jul">July</span><span class="pill p-tool">Gemini Notebook</span></div>
+        <h3>NotebookLM is now called Gemini Notebook</h3>
+        <p class="oneline">A rename. Nothing moved. It is here because it is what people notice first.</p>
+      </div>
+      <div class="upd-body">
+        <p class="what">Only the name changed. It is on this list because it is the change most likely to make someone think their tool disappeared, and because a rename is a free excuse to reintroduce something.</p>
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul>
+              <li>Update your own slides and handouts now, or spend three months correcting it in person.</li>
+              <li>Use the rename as the reason to go back to teachers who tried it eighteen months ago and moved on. They have not seen quizzes, flashcards, infographics or copying.</li>
+            </ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul>
+              <li>Anything handed out last year that says NotebookLM now says the wrong thing. Worth a pass.</li>
+              <li>A teacher who abandoned it when it only summarized should be shown what it does now.</li>
+            </ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">Grades 9 to 12 direct</p>
+            <ul>
+              <li>Nothing here, honestly. Fix the name on your materials and move on.</li>
+            </ul></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Also shipped, smaller</h2>
+      <button class="expander" type="button" id="exp-minor" aria-expanded="false">Open all</button>
+    </div>
+    <div class="sec-rule" style="background:var(--line)"></div>
+
+    <article class="upd minor">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Google Sheets</span></div>
+        <h3>Combo charts, 3D bar import, and Excel pivot tables</h3>
+        <p class="oneline">Two measures on one chart, and Excel files that stop needing a rebuild.</p>
+      </div>
+      <div class="upd-body">
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul><li>A combo chart is what you want when a data meeting needs participation and outcome in one picture.</li>
+                <li>If an office keeps something important in Excel and you have been rebuilding it every time, stop.</li></ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul><li>Assessment data arriving as Excel from a vendor now lands in Sheets with its pivot tables intact.</li></ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">All grades</p>
+            <ul><li>Students comparing two different measures in a science or social studies data set finally get one chart instead of two.</li></ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="upd minor">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Google Calendar</span></div>
+        <h3>Block invitations, and share availability without the details</h3>
+        <p class="oneline">Useful if your calendar is a shared punching bag.</p>
+      </div>
+      <div class="upd-body">
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul><li>Block invitations from anyone who keeps dropping meetings onto your coaching blocks.</li>
+                <li>Share your calendar so people see you are busy without seeing which teacher you are with.</li></ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul><li>A teacher can publish planning availability without exposing everything else on their calendar.</li></ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">All grades</p>
+            <ul><li>Not a student tool.</li></ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="upd minor">
+      <div class="upd-top">
+        <div class="pills"><span class="pill p-aug">August</span><span class="pill p-tool">Gmail</span></div>
+        <h3>A warning before you reply all on a BCC thread</h3>
+        <p class="oneline">Saves someone a very bad afternoon roughly once a year.</p>
+      </div>
+      <div class="upd-body">
+        <div class="lenses">
+          <div class="lens l-coach"><h4>For you as a coach</h4><p class="sub">Your own work</p>
+            <ul><li>Nothing to do, it is already on. Worth mentioning to anyone who sends district wide mail.</li></ul></div>
+          <div class="lens l-teach"><h4>For the teacher</h4><p class="sub">Design, develop, manage</p>
+            <ul><li>Relevant to anyone who BCCs families, which is most of them.</li></ul></div>
+          <div class="lens l-stud"><h4>With students</h4><p class="sub">All grades</p>
+            <ul><li>A real example for any lesson on digital communication.</li></ul></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <div class="add">
+    <h3>Add your own</h3>
+    <p>These are starting points, not approved uses. When you find something better, put it in the sheet. Open columns at the end of the second tab hold what you tried, what happened, and what students could do. The next version of this page is built from those.</p>
+    <div class="linkrow">
+      <a class="lnk ghost" href="https://docs.google.com/spreadsheets/d/1whoyJKo-6807xn17w04hyYJnxOXsyD92dqoKZBkIp1I/edit?usp=sharing" target="_blank" rel="noopener">Add your idea to the sheet</a>
+    </div>
+  </div>
+
+  <footer>
+    Updated after each session. Last update: Session 1, September 2026. Older updates move into the sheet rather than off it.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var upds = Array.prototype.slice.call(document.querySelectorAll('.upd'));
+  function setOpen(u, open){
+    u.classList.toggle('open', open);
+    u.querySelector('.upd-top').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  upds.forEach(function(u){
+    var top = u.querySelector('.upd-top');
+    top.setAttribute('role','button');
+    top.setAttribute('tabindex','0');
+    top.setAttribute('aria-expanded','false');
+    function toggle(){ setOpen(u, !u.classList.contains('open')); syncAll(); }
+    top.addEventListener('click', toggle);
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section'));
+  function wire(btnId, scope){
+    var btn = document.getElementById(btnId);
+    var items = Array.prototype.slice.call(scope.querySelectorAll('.upd'));
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      items.forEach(function(u){ setOpen(u, open); });
+      syncAll();
+    });
+    return { btn: btn, items: items };
+  }
+  var groups = [wire('exp-main', secs[0]), wire('exp-minor', secs[1])];
+  function syncAll(){
+    groups.forEach(function(g){
+      var allOpen = g.items.every(function(u){ return u.classList.contains('open'); });
+      g.btn.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+      g.btn.textContent = allOpen ? 'Close all' : 'Open all';
+    });
+  }
+  syncAll();
+})();
+</script>
+
+</body>
+</html>
