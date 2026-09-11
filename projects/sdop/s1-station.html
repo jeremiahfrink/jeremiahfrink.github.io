@@ -352,20 +352,21 @@ body{margin:0;background:var(--paper);color:var(--ink);
     <div class="act-top">
       <div class="pills"><span class="pill p-new">New in August</span><span class="pill p-cat">Assistant</span></div>
       <p class="lead"><span class="lbl">Scenario:</span> You answer the same six questions all week, in hallways, from memory, and you are not always sure you are right. Can these students use it. Why can she not do the thing Google announced. What does the policy actually say.</p>
-      <p class="strat"><span class="lbl">Strategy:</span> Put the answers somewhere that cites its sources, then add your own world to it.</p>
+      <p class="strat"><span class="lbl">Strategy:</span> Build the notebook that answers them, with citations. Then hand a copy to the person next to you.</p>
     </div>
     <div class="split">
       <div class="half"><h4>Build it once</h4>
-        <p>Take a copy of the staying sane notebook. Our licence, who can use what, the policy, and the coaching moves are already in it.</p>
-        <p>Then add your world: the curricula you support, your buildings, your own visit notes with the names taken out.</p>
-        <p style="margin-top:10px"><a href="#" style="font-weight:600;color:#0E6E6E" data-notebook>Take your copy of the notebook</a><!-- NEEDLINK staying sane notebook --></p></div>
-      <div class="half"><h4>What it buys you</h4>
-        <p>You stop answering from memory. Ask it a hallway question and the answer comes back with the document it came from, which is a different thing from being fairly sure.</p>
-        <p>It is also the demonstration. Copying a shared notebook shipped in August, and it is the most useful new thing on this page for anyone supporting a lot of people.</p></div>
+        <p>New notebook. Add the three starter sources from the folder below: what our licence covers, the coaching moves, and the district guidelines.</p>
+        <p>Then add your world. A curriculum you support, a schedule, your own visit notes with the names taken out. Two minutes of your material is what turns it from a handout into yours.</p>
+        <p style="margin-top:10px"><a href="https://drive.google.com/drive/folders/1cSUkcyxOukKPTFSGLn14W5hsjU0OpeT9?usp=sharing" target="_blank" rel="noopener" style="font-weight:600;color:#0E6E6E">Open the three starter sources</a></p></div>
+      <div class="half"><h4>Then share a copy</h4>
+        <p>Turn to whoever is next to you and share it, with copying allowed. They take a copy, add their own sources, and yours is untouched.</p>
+        <p>That is the August feature, proved on your own account rather than described on a slide. It is also how one build ends up serving a whole grade team.</p>
+        <div class="fork">Ask it something you were asked this week. The answer comes back with the document it came from, which is a different thing from being fairly sure.</div></div>
     </div>
     <div class="act-foot">
-      <div class="fc"><b>You leave with</b>Your own copy, with at least one source of yours already in it.</div>
-      <div class="fc"><b>Watch out for</b>A copy does not stay in sync. From the moment you take it, it is yours alone. Names out of anything you add.</div>
+      <div class="fc"><b>You leave with</b>Your own notebook, one source of yours in it, and a copy in someone else's hands.</div>
+      <div class="fc"><b>Watch out for</b>Drive sources only travel if the other person can already open that file. Copies do not stay in sync. Names out of anything you add.</div>
     </div>
     <div class="next"><b>Then what:</b> the same copy move is how you serve a whole grade team at once. <button class="goto" data-goto="s3">Station 3</button>.</div>
   </article>
@@ -752,18 +753,6 @@ body{margin:0;background:var(--paper);color:var(--ink);
   };
 
   window.SHOW = show;
-  // Staying sane notebook: paste the share URL here before the session.
-  var NOTEBOOK = '#';
-  document.querySelectorAll('[data-notebook]').forEach(function(a){
-    if (NOTEBOOK !== '#'){
-      a.setAttribute('href', NOTEBOOK);
-      a.setAttribute('target','_blank');
-      a.setAttribute('rel','noopener');
-    } else {
-      a.addEventListener('click', function(e){ e.preventDefault(); });
-    }
-  });
-
   show('s1');
 })();
 </script>
