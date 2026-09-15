@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry: Closing the Pool</title>
+<style>
+  :root{
+    --deep:#0B3C49; --water:#1B7F8C; --aqua:#5FC2C9;
+    --deck:#E4D9C3; --paper:#F1F6F7; --ink:#10262C; --muted:#5C7077;
+    --hint:#B4761A; --retry:#B8452C;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    padding:0 0 6rem 56px;
+  }
+  @media(max-width:480px){ body{padding-left:44px} #gauge{width:44px!important} }
+
+  #gauge{position:fixed;left:0;top:0;bottom:0;width:56px;background:var(--deck);border-right:1px solid #cdbfa4;z-index:5}
+  #fill{position:absolute;left:0;right:0;bottom:0;height:0%;
+    background:linear-gradient(180deg,var(--aqua),var(--water) 45%,var(--deep));
+    transition:height .7s cubic-bezier(.4,0,.2,1)}
+  #gauge .tick{position:absolute;left:0;right:0;height:1px;background:rgba(16,38,44,.22)}
+  #gauge .tick span{position:absolute;left:6px;top:-8px;font:600 10px/1 system-ui,sans-serif;color:var(--deep)}
+  #gaugeCount{position:absolute;left:0;right:0;top:14px;text-align:center;font:700 15px/1.1 system-ui,sans-serif;color:var(--deep);z-index:2}
+  #gaugeCount small{display:block;font:500 9px/1.3 system-ui,sans-serif;color:#6b5f49;margin-top:3px}
+
+  .wrap{max-width:640px;margin:0 auto;padding:3rem 1.5rem 0}
+
+  h1{font:400 2rem/1.15 Georgia,"Iowan Old Style",serif;margin:0 0 .4rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 1.6rem;max-width:54ch}
+
+  .given{background:#fff;border-left:4px solid var(--aqua);padding:.9rem 1.05rem;margin:0 0 1rem;border-radius:2px}
+  .given strong{display:block;margin-bottom:.35rem}
+  .given ul{margin:0;padding-left:1.1rem}
+  .given li{margin:.22rem 0}
+
+  .part{margin:2.8rem 0 1.1rem;padding-top:1.4rem;border-top:2px solid var(--water)}
+  .part[hidden]{display:none}
+  .part h2{font:400 1.35rem/1.3 Georgia,serif;margin:0 0 .4rem}
+  .part .why{margin:0;color:var(--muted);max-width:56ch}
+
+  .step{background:#fff;border:1px solid #d6e2e4;border-radius:3px;padding:1.1rem 1.15rem;margin:1rem 0}
+  .step[hidden]{display:none}
+  .step.locked{background:#EAF1F2;border-color:#cfdee0}
+  .step .q{font:400 1.08rem/1.45 Georgia,serif;margin:0 0 .5rem}
+  .step .note{font-size:.88rem;color:var(--muted);margin:0 0 .75rem}
+  .formula{font:600 1rem/1.4 ui-monospace,"SFMono-Regular",Menlo,monospace;
+    background:var(--paper);border-radius:3px;padding:.5rem .7rem;display:inline-block;margin:0 0 .8rem}
+  .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+  input[type=text]{font:500 1.05rem/1 system-ui,sans-serif;color:var(--ink);width:8.5rem;
+    padding:.6rem .7rem;border:1.5px solid #b9cdd0;border-radius:3px;background:#fff}
+  input[type=text]:focus{outline:3px solid var(--aqua);outline-offset:1px;border-color:var(--water)}
+  .unit{color:var(--muted);font-size:.95rem}
+  button{font:600 .95rem/1 system-ui,sans-serif;color:#fff;background:var(--water);
+    border:0;border-radius:3px;padding:.68rem 1.1rem;cursor:pointer}
+  button:hover{background:var(--deep)}
+  button:focus-visible{outline:3px solid var(--aqua);outline-offset:2px}
+  .msg{margin:.7rem 0 0;font-size:.95rem}
+  .msg.retry{color:var(--retry)}
+  .msg.hint{color:var(--hint)}
+  .done{display:flex;gap:.5rem;align-items:baseline;font-size:1rem;margin:0}
+  .done b{color:var(--water);font-size:1.15rem}
+  .done .label{color:var(--muted);font-size:.9rem}
+
+  #finish[hidden]{display:none}
+  #finish{margin-top:3rem;padding-top:1.6rem;border-top:2px solid var(--water)}
+  .answer{background:var(--deep);color:#E6F3F4;border-radius:3px;padding:1.05rem 1.15rem;margin:1rem 0}
+  .answer h3{font:400 1.05rem/1.3 Georgia,serif;margin:0 0 .5rem;color:var(--aqua)}
+  .answer p{margin:0;line-height:1.55}
+  .copybar{display:flex;gap:.6rem;align-items:center;margin-top:1rem;flex-wrap:wrap}
+  #copied[hidden]{display:none}
+  #copied{color:var(--water);font-size:.92rem}
+  .closer{margin-top:1.8rem;max-width:56ch}
+  .closer h3{font:400 1.1rem/1.3 Georgia,serif;margin:0 0 .4rem}
+  .closer p{margin:0 0 .7rem;color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){ #fill{transition:none} }
+</style>
+</head>
+<body>
+
+<div id="gauge" aria-hidden="true">
+  <div id="fill"></div>
+  <div id="gaugeCount">0/10<small>steps</small></div>
+</div>
+
+<div class="wrap">
+
+  <h1>Closing the pool</h1>
+  <p class="sub">Three things have to be ordered before the pool gets closed: the cord for the cover, the cover itself, and the chemicals. Each one needs a different measurement, and each one you have to work out yourself. Calculator is fine. Use 3.14 for pi.</p>
+
+  <div class="given">
+    <strong>What we measured</strong>
+    <ul>
+      <li>The pool is <strong>18 feet across</strong>, edge to edge, straight through the middle.</li>
+      <li>The water is <strong>4 feet deep</strong>.</li>
+      <li>The cover has to reach <strong>1 foot past the edge</strong>, all the way around, or it slides in.</li>
+    </ul>
+  </div>
+
+  <section class="part">
+    <h2>1. The cord</h2>
+    <p class="why">A cord runs around the outside edge of the cover and cinches underneath the rail. Order it too short and the cover comes off in the first storm. You need the distance around the cover.</p>
+  </section>
+
+  <div class="step" id="s1" data-min="20" data-max="20">
+    <p class="q">How far across is the cover, edge to edge?</p>
+    <p class="note">The pool is 18 feet across. The cover hangs 1 foot past the edge. Read that sentence twice before you answer.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 1 answer"><span class="unit">feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>The extra foot happens on both sides, not just one. There is a foot on the left end and a foot on the right end.</template>
+  </div>
+
+  <div class="step" id="s2" hidden data-min="62.7" data-max="62.9">
+    <p class="q">How long does the cord need to be to go all the way around the cover?</p>
+    <p class="formula">Distance around = pi &times; distance across</p>
+    <p class="note">The distance around a circle is called its circumference. Round to one decimal place.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 2 answer"><span class="unit">feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>You already know the cover is 20 feet across. Multiply 20 by 3.14.</template>
+  </div>
+
+  <section class="part" id="p2" hidden>
+    <h2>2. The cover and the air pillows</h2>
+    <p class="why">Under the cover go air pillows. They sit on the water so ice pushes in on them instead of out on the pool wall, and they keep rain and snow running off to the sides instead of pooling in the middle. How many you need depends on how much cover there is to hold up, so you need the area of the cover. Area needs a different measurement than circumference did.</p>
+  </section>
+
+  <div class="step" id="s3" hidden data-min="10" data-max="10">
+    <p class="q">The area formula does not use the distance across. It uses the distance from the center to the edge. What is that measurement for the cover?</p>
+    <p class="note">Center to edge is the radius. Edge to edge through the center is the diameter.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 3 answer"><span class="unit">feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>The radius is half the diameter. The cover is 20 feet across.</template>
+  </div>
+
+  <div class="step" id="s4" hidden data-min="313.5" data-max="314.5">
+    <p class="q">How much material is in the cover? Find its area.</p>
+    <p class="formula">Area = pi &times; radius &times; radius</p>
+    <p class="note">Square the radius first, then multiply by 3.14. Round to the nearest whole number.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 4 answer"><span class="unit">square feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>The radius is 10. Ten times ten is 100. Now multiply 100 by 3.14.</template>
+  </div>
+
+  <div class="step" id="s5" hidden data-min="2" data-max="2">
+    <p class="q">Our rule: one 4 foot by 4 foot air pillow for every 250 square feet of cover. How many pillows do we buy?</p>
+    <p class="note">Divide, then think about what the answer means. You are ordering a physical object.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 5 answer"><span class="unit">pillows</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>314 divided by 250 is about 1.26. Nobody sells a quarter of a pillow, and one is not enough. When you are buying real things, you round up.</template>
+  </div>
+
+  <section class="part" id="p3" hidden>
+    <h2>3. The chemicals</h2>
+    <p class="why">Closing chemicals are dosed by the gallon. Too little and the water turns green under the cover by March. Too much and you have wasted it. So you need to know how much water is actually in the pool, which means volume, not area.</p>
+    <p class="why" style="margin-top:.6rem">A round pool is a cylinder. Find the area of the circle on the bottom, then push it down through the depth.</p>
+  </section>
+
+  <div class="step" id="s6" hidden data-min="9" data-max="9">
+    <p class="q">Back to the pool itself now, not the cover. What is the pool's radius?</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 6 answer"><span class="unit">feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>The pool is 18 feet across. Same move you made in step 3, different circle.</template>
+  </div>
+
+  <div class="step" id="s7" hidden data-min="81" data-max="81">
+    <p class="q">Square that radius.</p>
+    <p class="note">Squaring means multiplying a number by itself.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 7 answer"><span class="unit">square feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>Nine times nine.</template>
+  </div>
+
+  <div class="step" id="s8" hidden data-min="254.2" data-max="254.5">
+    <p class="q">Finish the area of the pool floor. Multiply by pi.</p>
+    <p class="formula">Area = pi &times; radius &times; radius</p>
+    <p class="note">Round to two decimal places.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 8 answer"><span class="unit">square feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>Multiply 81 by 3.14.</template>
+  </div>
+
+  <div class="step" id="s9" hidden data-min="1016" data-max="1019">
+    <p class="q">Now push that floor down through the water. Multiply the floor area by the depth.</p>
+    <p class="formula">Volume = area of the floor &times; depth</p>
+    <p class="note">Round to the nearest whole number.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 9 answer"><span class="unit">cubic feet</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>Take 254.34 and multiply by 4.</template>
+  </div>
+
+  <div class="step" id="s10" hidden data-min="7580" data-max="7640">
+    <p class="q">Last one. The chemical label is written in gallons. Convert.</p>
+    <p class="formula">Gallons = cubic feet &times; 7.48</p>
+    <p class="note">One cubic foot of water is 7.48 gallons. Round to the nearest whole gallon.</p>
+    <div class="row"><input type="text" inputmode="decimal" aria-label="Step 10 answer"><span class="unit">gallons</span><button>Check</button></div>
+    <p class="msg" role="status"></p>
+    <template data-hint>Take about 1017 and multiply by 7.48.</template>
+  </div>
+
+  <section id="finish" hidden>
+    <h2 style="font:400 1.35rem/1.3 Georgia,serif;margin:0 0 .3rem">The order list</h2>
+    <p style="color:var(--muted);margin:0 0 .4rem">Copy this into your Daily Sheet.</p>
+    <div class="answer"><h3>The cord</h3><p id="a1"></p></div>
+    <div class="answer"><h3>The cover and pillows</h3><p id="a2"></p></div>
+    <div class="answer"><h3>The chemicals</h3><p id="a3"></p></div>
+    <div class="copybar">
+      <button id="copyBtn">Copy the order list</button>
+      <span id="copied" hidden>Copied.</span>
+    </div>
+
+    <div class="closer">
+      <h3>Two things to write in your notebook, in your own words</h3>
+      <p>1. You used three different measurements of the same circle: the distance across, the distance around, and the distance from the center to the edge. Each one answered a different question. Say which measurement went with which purchase, and why that one and not the others.</p>
+      <p>2. The cover is 20 feet across and the pool is 18 feet across. That is a difference of only 2 feet. But the cover is 314 square feet and the pool floor is 254 square feet, a difference of 60. Why did such a small change in width make such a large change in area?</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  var order=["s1","s2","s3","s4","s5","s6","s7","s8","s9","s10"];
+  var reveal={s2:"p2",s5:"p3"};
+  var vals={},tries={},done=0,total=order.length;
+
+  var gauge=document.getElementById("gauge");
+  for(var i=1;i<=4;i++){
+    var t=document.createElement("div");
+    t.className="tick"; t.style.bottom=(i*20)+"%";
+    t.innerHTML="<span>"+i+" ft</span>"; gauge.appendChild(t);
+  }
+
+  function advance(id){
+    if(reveal[id]) document.getElementById(reveal[id]).hidden=false;
+    var next=order[order.indexOf(id)+1];
+    if(next){
+      var el=document.getElementById(next);
+      el.hidden=false;
+      el.querySelector("input").focus({preventScroll:true});
+      el.scrollIntoView({behavior:"smooth",block:"center"});
+    } else { finish(); }
+  }
+
+  function lock(step,value){
+    var q=step.querySelector(".q").textContent;
+    var unit=step.querySelector(".unit").textContent;
+    step.classList.add("locked");
+    step.innerHTML='<p class="q">'+q+'</p><p class="done"><b>'+value+" "+unit+'</b><span class="label">correct</span></p>';
+    done++;
+    document.getElementById("gaugeCount").innerHTML=done+"/"+total+"<small>steps</small>";
+    document.getElementById("fill").style.height=Math.round(done/total*100)+"%";
+  }
+
+  function finish(){
+    document.getElementById("a1").textContent=
+      "The cover is "+vals.s1+" feet across, so the cord has to be at least "+vals.s2+" feet long.";
+    document.getElementById("a2").textContent=
+      "The cover has a radius of "+vals.s3+" feet and an area of "+vals.s4+
+      " square feet. At one pillow per 250 square feet, that is "+vals.s5+" air pillows.";
+    document.getElementById("a3").textContent=
+      "The pool floor is "+vals.s8+" square feet. At 4 feet deep the pool holds "+vals.s9+
+      " cubic feet of water, which is about "+vals.s10+" gallons. Dose the chemicals for "+vals.s10+" gallons.";
+    var f=document.getElementById("finish");
+    f.hidden=false;
+    f.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  order.forEach(function(id){
+    var step=document.getElementById(id);
+    tries[id]=0;
+    var input=step.querySelector("input"),
+        btn=step.querySelector("button"),
+        msg=step.querySelector(".msg"),
+        hint=step.querySelector("template[data-hint]").innerHTML,
+        min=parseFloat(step.dataset.min), max=parseFloat(step.dataset.max);
+
+    function check(){
+      var raw=input.value.replace(/[, $]/g,"").trim();
+      if(raw===""){ msg.className="msg retry"; msg.textContent="Put a number in the box."; return; }
+      var n=parseFloat(raw);
+      if(isNaN(n)){ msg.className="msg retry"; msg.textContent="That is not a number I can read. Digits only."; return; }
+      if(n>=min&&n<=max){ vals[id]=raw; lock(step,raw); advance(id); return; }
+      tries[id]++;
+      if(tries[id]>=2){ msg.className="msg hint"; msg.innerHTML="Not yet. Here is a nudge: "+hint; }
+      else { msg.className="msg retry"; msg.textContent="Not yet. Try again."; }
+      input.select();
+    }
+    btn.addEventListener("click",check);
+    input.addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); check(); }});
+  });
+
+  document.getElementById("copyBtn").addEventListener("click",function(){
+    var text="Closing the pool\n\nThe cord\n"+document.getElementById("a1").textContent+
+      "\n\nThe cover and pillows\n"+document.getElementById("a2").textContent+
+      "\n\nThe chemicals\n"+document.getElementById("a3").textContent+"\n";
+    var el=document.getElementById("copied");
+    function ok(){ el.hidden=false; setTimeout(function(){el.hidden=true;},2500); }
+    function fallback(){
+      var ta=document.createElement("textarea");
+      ta.value=text; ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); ok(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(ok,fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
