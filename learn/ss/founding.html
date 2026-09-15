@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Founding: ten days to build a world</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14284b;
+    --ink:#1e2a3a;
+    --teal:#0f7c86;
+    --teal-soft:#e2f1f2;
+    --amber:#d98a1f;
+    --amber-soft:#fbefd9;
+    --paper:#fbfaf6;
+    --line:#d9d6cd;
+    --muted:#5c6673;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.55}
+  h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+  a{color:var(--teal)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+  header.hero{background:var(--navy);color:#fff;padding:64px 0 48px}
+  header.hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:400;max-width:14ch}
+  header.hero p.lede{font-family:"Newsreader",Georgia,serif;font-size:1.35rem;max-width:34ch;margin:24px 0 0;opacity:.92}
+  header.hero .dates{margin-top:32px;font-size:.95rem;color:#c7d4ea}
+
+  nav.days{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+  nav.days ol{list-style:none;margin:0;padding:10px 24px;display:flex;gap:6px;overflow-x:auto;max-width:760px;margin:0 auto}
+  nav.days a{display:block;padding:6px 10px;border-radius:4px;text-decoration:none;color:var(--navy);font-weight:500;white-space:nowrap;font-size:.9rem}
+  nav.days a:hover{background:var(--teal-soft)}
+
+  section.intro{padding:56px 0 24px}
+  section.intro h2{font-size:2rem;margin-bottom:16px}
+  section.intro p{max-width:66ch}
+
+  .rules{margin:32px 0;padding:0;list-style:none;border-top:2px solid var(--navy)}
+  .rules li{padding:14px 0;border-bottom:1px solid var(--line);max-width:66ch}
+  .rules strong{font-family:"Newsreader",Georgia,serif;font-size:1.15rem;font-weight:600;display:block;margin-bottom:2px}
+
+  .docs{background:#fff;border:1px solid var(--line);padding:24px 28px;margin:32px 0}
+  .docs h3{font-size:1.4rem;margin-bottom:10px}
+  .docs table{width:100%;border-collapse:collapse;font-size:.95rem}
+  .docs td{padding:8px 0;border-top:1px solid var(--line);vertical-align:top}
+  .docs td:first-child{font-weight:700;width:34%;padding-right:12px}
+
+  .rhythm{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:32px 0}
+  .rhythm div{background:#fff;padding:16px 14px}
+  .rhythm b{display:block;font-family:"Newsreader",Georgia,serif;font-size:1.25rem;font-weight:600}
+  .rhythm span{display:block;color:var(--muted);font-size:.85rem;margin-top:2px}
+  .rhythm p{margin:8px 0 0;font-size:.9rem}
+  @media (max-width:640px){.rhythm{grid-template-columns:1fr}}
+
+  article.day{padding:56px 0 24px;border-top:1px solid var(--line);display:grid;grid-template-columns:96px 1fr;gap:0 28px}
+  article.day .num{font-family:"Newsreader",Georgia,serif;font-size:4.5rem;font-weight:400;line-height:.9;color:var(--navy);grid-row:1/span 20;position:sticky;top:64px;align-self:start}
+  article.day .num small{display:block;font-family:"Public Sans",sans-serif;font-size:.8rem;color:var(--muted);margin-top:10px;line-height:1.3}
+  article.day h2{font-size:2rem;margin-bottom:4px}
+  article.day .hours{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+  article.day p{max-width:64ch;margin:0 0 14px}
+  article.day ul{max-width:64ch;padding-left:20px;margin:0 0 14px}
+  article.day li{margin-bottom:8px}
+  @media (max-width:640px){
+    article.day{grid-template-columns:1fr}
+    article.day .num{position:static;font-size:3rem;margin-bottom:8px;grid-row:auto}
+  }
+
+  .block{margin:22px 0;padding:16px 0 4px 20px;border-left:4px solid var(--line)}
+  .block h3{font-size:1.3rem;margin-bottom:8px}
+  .block.watch{border-color:var(--navy)}
+  .block.build{border-color:var(--teal)}
+  .block.play{border-color:var(--amber);background:var(--amber-soft);padding:16px 20px 4px;margin-left:-4px;border-left-width:4px}
+  .block.close{border-color:var(--navy);border-left-style:double;border-left-width:6px}
+
+  .mark{display:inline-block;background:var(--teal-soft);color:var(--teal);font-weight:700;font-size:.8rem;padding:2px 8px;border-radius:3px;margin-right:6px;vertical-align:middle}
+
+  footer{background:var(--navy);color:#c7d4ea;padding:48px 0;margin-top:48px}
+  footer p{max-width:60ch;margin:0 0 12px}
+  footer h2{color:#fff;font-size:1.8rem;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>The Founding</h1>
+    <p class="lede">Ten days to build a world from nothing, then write its laws, then watch what breaks.</p>
+    <div class="dates">Tuesday, September 15 to Monday, September 28. Global History, all day, every day.</div>
+  </div>
+</header>
+
+<nav class="days" aria-label="Days">
+  <ol>
+    <li><a href="#day1">1 The Drop</a></li>
+    <li><a href="#day2">2 The Land</a></li>
+    <li><a href="#day3">3 The People</a></li>
+    <li><a href="#day4">4 Power</a></li>
+    <li><a href="#day5">5 Knowledge</a></li>
+    <li><a href="#day6">6 Food</a></li>
+    <li><a href="#day7">7 Memory</a></li>
+    <li><a href="#day8">8 The Portfolio</a></li>
+    <li><a href="#day9">9 The Charter</a></li>
+    <li><a href="#day10">10 Play Your World</a></li>
+  </ol>
+</nav>
+
+<div class="wrap">
+
+<section class="intro">
+  <h2>What you are doing</h2>
+  <p>Every society is a set of answers to a few questions nobody gets to skip: where does the food come from, who decides, who does the work nobody wants, what happens when someone breaks a rule, and what gets written down. On Day 1 you answer those out loud, fast, knowing nothing. Then you spend eight days building a world with the Oneschool course. On Day 9 you write that world's founding document. On Day 10 you find out what it cannot handle.</p>
+  <p>You will get things wrong. That is the point. Everything you make in these ten days stays on the record, and the rest of the year is history arguing with you about it.</p>
+
+  <ul class="rules">
+    <li><strong>Build the world first. Write the laws after.</strong> The Charter comes on Day 9, once you know what you built. Do not write rules early.</li>
+    <li><strong>Nobody is checking whether you are historically right.</strong> You have not been taught any history yet. You are being checked on whether you commit, and whether your world agrees with itself.</li>
+    <li><strong>Any genre you want.</strong> Fantasy, science fiction, something nobody has named. One limit: the region where your founding society lives runs on Earth rules for water, food, defense, and growth. If magic exists there, it costs something and somebody controls who gets to use it.</li>
+    <li><strong>Say it before you write it.</strong> A lot of the thinking happens out loud with the recorder running.</li>
+    <li><strong>From Day 9 on, nothing gets erased.</strong> Changes to the Charter are dated amendments in your handwriting. Struck clauses get one line through them and stay readable.</li>
+  </ul>
+
+  <div class="docs">
+    <h3>Where your work lives</h3>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:.95rem">Nothing gets typed into this site. This site tells you what to do. The work goes here.</p>
+    <table>
+      <tr><td>Lesson documents</td><td>One typed document per Oneschool lesson, Lesson 1 through Lesson 8, where you do the worksheet steps and the deliverable.</td></tr>
+      <tr><td>The Map</td><td>Heavy sheet, hand drawn on Day 2. Lives in the Founding folder.</td></tr>
+      <tr><td>The Portfolio</td><td>Built on Day 8 from everything above. Handed to Capstone on Day 10.</td></tr>
+      <tr><td>The Charter</td><td>One heavy sheet, handwritten on Day 9. Same folder as the Map. Comes out every unit for the rest of the year.</td></tr>
+      <tr><td>The Pattern Codex</td><td>One typed document, opened Day 9. Your predictions about how societies work, in a fixed format, kept all year.</td></tr>
+      <tr><td>Recordings</td><td>One folder. Every out loud task gets recorded and dropped here with the day number in the file name.</td></tr>
+    </table>
+  </div>
+
+  <h2 style="font-size:1.6rem">Days 1 through 8 run the same way</h2>
+  <div class="rhythm">
+    <div><b>Watch</b><span>30 min</span><p>The lesson video and worksheet. You read fast. Do not slow down.</p></div>
+    <div><b>Build</b><span>2 to 2.5 hours</span><p>The Oneschool deliverable, with the changes listed for that day. Go deep. This is the whole day.</p></div>
+    <div><b>Close</b><span>15 min</span><p>Deliverable saved in the right document. Recordings filed. Folder shut.</p></div>
+  </div>
+</section>
+
+<!-- DAY 1 -->
+<article class="day" id="day1">
+  <div class="num">1<small>Tue Sept 15</small></div>
+  <div>
+    <h2>The Drop</h2>
+    <p class="hours">About 3.5 hours. Morning on paper and out loud. Afternoon is Lesson 1.</p>
+    <p>You get a map with no names, no borders, no scale. Somewhere on it, you have to put people.</p>
+
+    <div class="block build">
+      <h3>Pick a site and defend it</h3>
+      <p>Mark where you would settle. Recorder on. Explain why. You will be pushed on water, food, defense, and what happens when there are three times as many of you. Then you get a second map. Decide again.</p>
+    </div>
+
+    <div class="block build">
+      <h3>The Five Decisions</h3>
+      <p>Out loud, timed, no looking anything up. Answer fast. This recording gets filed and you do not hear it again until Day 9.</p>
+      <ul>
+        <li>Where does water and food come from, and what happens in a bad year?</li>
+        <li>Who makes decisions, and how does the next person get the job?</li>
+        <li>Who does the work nobody wants, and why do they keep doing it?</li>
+        <li>What happens to someone who breaks a rule, and who decides that?</li>
+        <li>What gets written down, who can read it, and who keeps the copies?</li>
+      </ul>
+    </div>
+
+    <div class="block build">
+      <h3>The sealed verdict</h3>
+      <p>One question, five minutes, recorder on, no preparation. Then the recording is sealed and you will not hear it again until June. Nobody grades this. It only has to exist.</p>
+    </div>
+
+    <div class="block watch">
+      <h3>Afternoon: Lesson 1, The Spark That Births a World</h3>
+      <p>Watch the video. Read the worksheet. Open your Lesson 1 document.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Build the World Vision Page, with two changes</h3>
+      <ul>
+        <li><span class="mark">Step 3</span> The main conflict or tension has to be one of the Five Decisions going wrong. Not a villain. A decision.</li>
+        <li><span class="mark">Step 5</span> The society you founded this morning is named on the page as the founding people of this world. Other peoples can exist. This one is yours.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Recordings filed as Day 1. Lesson 1 document saved.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 2 -->
+<article class="day" id="day2">
+  <div class="num">2<small>Wed Sept 16</small></div>
+  <div>
+    <h2>The Land</h2>
+    <p class="hours">About 3 hours. Oneschool Lesson 2, Geography and Maps.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 2 video and worksheet. Short answers go in the Lesson 2 document. The map itself is on paper.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Draw the map, with four additions</h3>
+      <p>Hand drawn on the heavy sheet, labels in your italic hand. Three regions, two or three named places, a river or coast, a compass rose, a title. Plus:</p>
+      <ul>
+        <li>Your settlement from Day 1 goes on the map, with its river drawn from source to sea and the floodplain marked. A note in the margin says why this spot works.</li>
+        <li>Mark a second site you considered and rejected. Write the reason next to it.</li>
+        <li>Put a symbol for the storehouse in a place you could defend. Note who guards it.</li>
+        <li>Color the climate zones. The zone your founding society lives in has to match what you said about food on Day 1.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Map in the folder. Lesson 2 document saved.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 3 -->
+<article class="day" id="day3">
+  <div class="num">3<small>Thu Sept 17</small></div>
+  <div>
+    <h2>The People</h2>
+    <p class="hours">About 3 hours. Oneschool Lesson 3, People, Cultures, and Languages.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 3 video and worksheet. Lesson 3 document open.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Build the Culture Profile, with three changes</h3>
+      <p>The profile is for your founding society. The five words, five sayings, and the greeting are handwritten.</p>
+      <ul>
+        <li><span class="mark">Step 6</span> One of your five sayings has to carry a rule of your society inside it, the way the worksheet's Quechua example carries three laws in nine words.</li>
+        <li><span class="mark">Step 8</span> "What they value most" has to explain something specific: why people do the work nobody wants without being forced.</li>
+        <li><span class="mark">Step 8</span> "How they connect or conflict with others" names one specific neighboring people and says exactly what the friction is about. You will need this neighbor later.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Handwritten pages in the folder. Lesson 3 document saved.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 4 -->
+<article class="day" id="day4">
+  <div class="num">4<small>Fri Sept 18</small></div>
+  <div>
+    <h2>Power</h2>
+    <p class="hours">About 3 hours. Oneschool Lesson 4, Governments, Religions, and Power.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 4 video and worksheet. Lesson 4 document open.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Build the Codex of Power, with three changes</h3>
+      <ul>
+        <li><span class="mark">Step 6</span> Say how the next ruler gets the job, in enough detail that two people who both wanted it could not both point to your rule and claim it.</li>
+        <li><span class="mark">Step 6</span> One line, required: does the law bind the ruler? Yes or no, and what makes it true.</li>
+        <li><span class="mark">Step 5</span> Answer the conflict between power and belief for your world. Commit to an answer. You will find out later in the year what real rulers did about it.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Lesson 4 document saved. Weekend.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 5 -->
+<article class="day" id="day5">
+  <div class="num">5<small>Mon Sept 21</small></div>
+  <div>
+    <h2>Knowledge</h2>
+    <p class="hours">About 3 hours. Oneschool Lesson 5, Magic, Science, and Technology.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 5 video and worksheet. Lesson 5 document open.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Build the Magic Manifesto or Tech Codex, with three changes</h3>
+      <ul>
+        <li><span class="mark">Step 7</span> Add a required section: how information works in your world. How are records kept? Who can read them? Who holds the copies? What stops the person keeping the records from changing one?</li>
+        <li><span class="mark">Step 3</span> If your world has magic, write it up as a resource. Where it comes from, what it costs to use, who is allowed to use it, and how a person gets that permission. Magic with no cost and no gatekeeper gets sent back.</li>
+        <li><span class="mark">Step 2</span> Say whether your system is soft or hard, and why. Hard systems are game systems. Capstone will want this answer later.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Lesson 5 document saved.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 6 -->
+<article class="day" id="day6">
+  <div class="num">6<small>Tue Sept 22</small></div>
+  <div>
+    <h2>Food</h2>
+    <p class="hours">About 2.5 hours. Oneschool Lesson 6, Creatures, Flora, and Fauna.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 6 video and worksheet. Lesson 6 document open. Map on the desk.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Build one creature entry and one plant entry, with three changes</h3>
+      <ul>
+        <li><span class="mark">Step 7</span> One of your two entries has to be a species your founding society depends on to eat: a staple crop or a farmed animal. Its "cultural or mythic role" section is the plan for the year that species fails.</li>
+        <li><span class="mark">Step 6</span> Work out a rough number: how many people can the river valley on your map feed? Then say what happens at three times that number. That is the same question you got on Day 1.</li>
+        <li><span class="mark">Step 2</span> The fantasy creature can be anything you want. It lives in your world, but it does not enter the food web of your founding region unless you can say what it eats and what eats it.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Lesson 6 document saved.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 7 -->
+<article class="day" id="day7">
+  <div class="num">7<small>Wed Sept 23</small></div>
+  <div>
+    <h2>Memory</h2>
+    <p class="hours">About 3.5 hours. Oneschool Lesson 7, History, Legends, and Myths. The hardest day of the course.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 7 video and worksheet. Pay attention to the two excerpts in Step 2, the Ministry version and the elder's version. You are about to write both.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Build the Chronicle of Ages twice, and a mostly empty timeline</h3>
+      <ul>
+        <li><span class="mark">Step 6</span> First version: the official history, in the voice of your society's ruler or record keeper. It is a ruler explaining why he deserves to rule.</li>
+        <li><span class="mark">Step 6</span> Second version: the same events, told by the person your society is hardest on, the one doing the work nobody wants. Told years later. Written down by someone else.</li>
+        <li><span class="mark">Step 5</span> The timeline gets two eras named: the founding and now. Leave the rest blank. Every crisis this year will fill one in.</li>
+        <li><span class="mark">Step 1</span> "Which stories are silenced": name one specific rule or event the ruler's version leaves out, and say why.</li>
+      </ul>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Lesson 7 document saved.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 8 -->
+<article class="day" id="day8">
+  <div class="num">8<small>Thu Sept 24</small></div>
+  <div>
+    <h2>The Portfolio</h2>
+    <p class="hours">About 3 hours. Oneschool Lesson 8, Bringing It All Together.</p>
+
+    <div class="block watch">
+      <h3>Watch and read</h3>
+      <p>Lesson 8 video and worksheet.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Run the consistency check with everything open</h3>
+      <p>Map, Culture Profile, Codex of Power, Tech Codex, species entries, both Chronicles. Go through the Step 2 table. Every "no" gets fixed or gets written down as a known problem you are choosing to leave. You are allowed to leave things broken. You are not allowed to hide them.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Assemble the Portfolio</h3>
+      <p>Title page with the world's name and a short description. A crest or motto. The seven sections from the worksheet, plus one more:</p>
+      <ul>
+        <li><strong>Section 8: Silences and Amendments.</strong> For now it holds only your list of known problems. It fills up on Day 10 and keeps filling all year.</li>
+      </ul>
+    </div>
+
+    <div class="block build">
+      <h3>Present the world</h3>
+      <p>Fifteen minutes, recorder on. Walk someone through your world as if they have never heard of it. Start wherever you think the world starts.</p>
+      <p>Then five minutes on the worksheet's last question: what did you learn about yourself as a creator? That recording gets sealed next to the one from Day 1. Both stay closed until June.</p>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Portfolio saved. Recordings filed as Day 8.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 9 -->
+<article class="day" id="day9">
+  <div class="num">9<small>Fri Sept 25</small></div>
+  <div>
+    <h2>The Charter</h2>
+    <p class="hours">About 3.5 hours. No video. Today you write the founding document of the society inside your world.</p>
+
+    <div class="block build">
+      <h3>Playback</h3>
+      <p>Listen to your Five Decisions recording from Day 1 for the first time since you made it. Recorder on. Say what your world kept, what it dropped, and what it reversed.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Write the Charter</h3>
+      <p>One heavy sheet. Handwritten in your italic hand. No more than twelve numbered clauses. Every one of the Five Decisions has to be traceable to at least one clause. Every clause has to agree with the Portfolio, or you write the disagreement into Section 8. Name the society. Date it. Sign it.</p>
+      <p>Twelve is the limit, not the target. Brevity is the hard part.</p>
+      <p>From this moment on, nothing on the sheet is erased. Ever.</p>
+    </div>
+
+    <div class="block build">
+      <h3>The comparison</h3>
+      <p>Your Charter goes next to a real one, nearly 4,000 years old. You run five questions on the old one: who made this, when, for whom, why, and what is it trying to make you believe. Then one question about yourself: what problem did they anticipate that you did not? Three typed sentences.</p>
+    </div>
+
+    <div class="block build">
+      <h3>Open the Pattern Codex</h3>
+      <p>New typed document. Write three predictions, not facts. Each one takes the form: societies that do X will tend to end up with Y, because of Z. Draw them from your Charter and your Portfolio. Each prediction gets these fields, every time, all year:</p>
+      <ul>
+        <li>The prediction, with a short name</li>
+        <li>The mechanism, in your own words</li>
+        <li>Cases: leave empty for now</li>
+        <li>Current event sightings: leave empty</li>
+        <li>World engine note: how this would work as a game system</li>
+      </ul>
+      <p>Predictions get confirmed, complicated, or destroyed as the year goes. A prediction that survives untouched should worry you, not please you.</p>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Charter in the folder next to the Map. Codex saved. Recordings filed as Day 9. Weekend.</p>
+    </div>
+  </div>
+</article>
+
+<!-- DAY 10 -->
+<article class="day" id="day10">
+  <div class="num">10<small>Mon Sept 28</small></div>
+  <div>
+    <h2>Play Your World</h2>
+    <p class="hours">About 3 hours. Five cards. Charter on the desk. Pen ready.</p>
+    <p>Each card is a situation your society has to deal with. You get ten minutes, out loud, no research, no notes. You answer from the Charter as written. Not the Charter you wish you had written. If the Charter cannot handle it, you amend it on the spot, dated, in your hand.</p>
+
+    <div class="block play">
+      <h3>How each card runs</h3>
+      <ul>
+        <li>The situation is read to you once.</li>
+        <li>Ten minutes, recorder on. You will be pressed with three questions. Nobody will tell you if you are right.</li>
+        <li>Ten minutes typed: one new Codex prediction the card exposed, and one line in Section 8 saying what changed in the Charter and why. If nothing changed, write why it held.</li>
+      </ul>
+    </div>
+
+    <div class="block play">
+      <h3>Five cards, one at a time</h3>
+      <p>The first is a practice card and you get the answer right away. The other four you do not. Their answers come later in the year, from history, one unit at a time.</p>
+    </div>
+
+    <div class="block close">
+      <h3>Close</h3>
+      <p>Charter carrying its first amendments. Section 8 holding your first revision. Codex holding your first real predictions. Portfolio and Charter handed to Capstone. Recordings filed as Day 10.</p>
+      <p>Tomorrow a card gets issued from a different deck. You will not see that one coming either. Ten months of that.</p>
+    </div>
+  </div>
+</article>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <h2>After the ten days</h2>
+    <p>Your world is finished for now, and it is about to start losing arguments. Each unit this year opens with a crisis card and closes with the answer history already found. Every card that forces a change goes into the Charter as a dated amendment and onto the timeline as a named era.</p>
+    <p>In June you rebuild the whole thing knowing what you know then, and the two sealed recordings get opened. The rebuilt world is not the final product. The difference between it and this one is.</p>
+  </div>
+</footer>
+
+</body>
+</html>
