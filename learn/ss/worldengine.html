@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The World Engine: make your world playable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#14284b;--ink:#1e2a3a;--teal:#0f7c86;--teal-soft:#e2f1f2;--amber:#d98a1f;--amber-soft:#fbefd9;--paper:#fbfaf6;--line:#d9d6cd;--muted:#5c6673}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.55}
+  h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  header.hero{background:var(--navy);color:#fff;padding:56px 0 40px}
+  header.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:400}
+  header.hero p{font-family:"Newsreader",Georgia,serif;font-size:1.3rem;max-width:40ch;margin:20px 0 0;opacity:.92}
+  nav.bar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+  nav.bar .wrap{display:flex;gap:6px;align-items:center;padding:10px 24px;overflow-x:auto}
+  nav.bar a{padding:6px 10px;border-radius:4px;text-decoration:none;color:var(--navy);font-weight:500;white-space:nowrap;font-size:.9rem}
+  nav.bar a:hover{background:var(--teal-soft)}
+  nav.bar button{margin-left:auto;background:var(--amber);color:#fff;border:0;padding:8px 14px;border-radius:4px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
+  nav.bar button.ghost{background:transparent;color:var(--navy);border:1px solid var(--line);margin-left:0}
+  button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  section.intro{padding:48px 0 8px}
+  section.intro p{max-width:66ch}
+  .rules{margin:24px 0;padding:0;list-style:none;border-top:2px solid var(--navy)}
+  .rules li{padding:12px 0;border-bottom:1px solid var(--line);max-width:66ch}
+  .rules strong{font-family:"Newsreader",Georgia,serif;font-size:1.1rem;display:block}
+  .dayhead{margin:56px 0 8px;padding-top:24px;border-top:3px solid var(--navy)}
+  .dayhead h2{font-size:2.2rem}
+  .dayhead p{color:var(--muted);margin:4px 0 0}
+  article.part{padding:32px 0 8px}
+  article.part h2{font-size:1.7rem;margin-bottom:4px}
+  article.part .src{color:var(--muted);margin:0 0 18px;font-size:.95rem}
+  .field{margin:18px 0}
+  .field label{display:block;font-weight:500;max-width:66ch;margin-bottom:6px}
+  .field .hint{display:block;color:var(--muted);font-size:.9rem;font-weight:400;margin-top:2px}
+  textarea,input[type=text]{width:100%;font:inherit;font-size:1rem;padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);resize:vertical}
+  textarea{min-height:96px}
+  textarea.tall{min-height:170px}
+  textarea.short{min-height:60px}
+  .paste{border-left:4px solid var(--navy);padding-left:16px}
+  .make{border-left:4px solid var(--teal);padding-left:16px}
+  .charter{border-left:4px solid var(--amber);background:var(--amber-soft);padding:16px 20px 4px;margin:18px 0}
+  .card{border:1px solid var(--line);background:#fff;padding:18px 20px 6px;margin:18px 0}
+  .card h3{font-size:1.25rem;margin-bottom:8px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr}}
+  .status{position:fixed;bottom:16px;right:16px;background:var(--navy);color:#fff;padding:8px 14px;border-radius:4px;font-size:.85rem;opacity:0;transition:opacity .3s}
+  .status.show{opacity:1}
+  footer{background:var(--navy);color:#c7d4ea;padding:40px 0;margin-top:56px}
+  footer p{max-width:60ch;margin:0 0 10px}
+  footer h2{color:#fff;font-size:1.6rem;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>The World Engine</h1>
+    <p>You wrote a world. Now make it one you could actually run: a place where a bad year, a greedy neighbor, or a dead king does something, and the rules decide what.</p>
+  </div>
+</header>
+
+<nav class="bar" aria-label="Sections">
+  <div class="wrap">
+    <a href="#day1">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
+    <button class="ghost" id="clearBtn" type="button">Clear all</button>
+    <button id="copyBtn" type="button">Copy as Markdown</button>
+    <button id="dlBtn" type="button">Download .md</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section class="intro">
+  <h2 style="font-size:1.8rem">How this works</h2>
+  <p>Your Portfolio is the raw material. This page walks through it one part at a time. In each part you paste what you already wrote, then answer the questions that turn it from description into a system. On Day 3 you distill the whole thing into a twelve clause Charter, and then your world gets played against it.</p>
+  <p>Everything you type here saves in this browser automatically. When you are done, use the buttons at the top to copy or download it as Markdown, then paste it into a Google Doc to turn it in.</p>
+
+  <ul class="rules">
+    <li><strong>Answer from your world, not from what would be cool.</strong> If your Culture Profile says the people are proud and independent, then your answer about who does the unwanted work has to fit proud, independent people.</li>
+    <li><strong>Earth rules in the founding region.</strong> Water, food, defense, and growth work there the way they work here. Magic, if it exists there, costs something and someone controls who gets to use it.</li>
+    <li><strong>Silent is an answer.</strong> If your Portfolio never decided something, write "silent" and then decide it now. Keep the word "silent" in your answer so the gap stays visible.</li>
+    <li><strong>Nobody is grading whether it is historically right.</strong> You are being graded on whether the parts agree with each other and whether you committed.</li>
+  </ul>
+</section>
+
+<!-- =============== DAY 1 =============== -->
+<div class="dayhead" id="day1">
+  <h2>Day 1: The Land, The People, Power</h2>
+  <p>About 3.5 hours. Start with the opener, then Parts 1 through 3.</p>
+</div>
+
+<article class="part" id="opener">
+  <h2>Opener: The Five Decisions</h2>
+  <p class="src">Out loud first, recorder on, no looking anything up, about fifteen minutes. Then one or two sentences each here. Answer for your founding society as it stands in the Portfolio.</p>
+  <div class="field"><label>1. Where does water and food come from, and what happens in a bad year?</label><textarea class="short" data-key="fd1" data-label="Decision 1, water and food"></textarea></div>
+  <div class="field"><label>2. Who makes decisions, and how does the next person get the job?</label><textarea class="short" data-key="fd2" data-label="Decision 2, who decides"></textarea></div>
+  <div class="field"><label>3. Who does the work nobody wants, and why do they keep doing it?</label><textarea class="short" data-key="fd3" data-label="Decision 3, the unwanted work"></textarea></div>
+  <div class="field"><label>4. What happens to someone who breaks a rule, and who decides that?</label><textarea class="short" data-key="fd4" data-label="Decision 4, rules and punishment"></textarea></div>
+  <div class="field"><label>5. What gets written down, who can read it, and who keeps the copies?</label><textarea class="short" data-key="fd5" data-label="Decision 5, records"></textarea></div>
+</article>
+
+<article class="part" id="p1">
+  <h2>Part 1: The Land</h2>
+  <p class="src">From Lesson 2, Geography and Maps. Have your map next to you.</p>
+  <div class="field paste"><label>Paste what you wrote in Lesson 2. <span class="hint">Regions, places, climate, the Step 5 and Step 6 answers.</span></label><textarea class="tall" data-key="p1paste" data-label="From Lesson 2"></textarea></div>
+  <div class="field make"><label>Your founding society's settlement: where is it on the map, and what river or water source does it sit on? <span class="hint">Trace the water from where it starts to where it ends. Say where the floodplain is.</span></label><textarea data-key="p1a" data-label="The settlement and its water"></textarea></div>
+  <div class="field make"><label>Why does this spot work? Answer for all four: water, food, defense, and what happens when the population triples.</label><textarea data-key="p1b" data-label="Water, food, defense, growth"></textarea></div>
+  <div class="field make"><label>Name one site on your map you would have rejected for a settlement, and why.</label><textarea class="short" data-key="p1c" data-label="The rejected site"></textarea></div>
+  <div class="field make"><label>The storehouse. Where is it, why can it be defended there, and who guards it? <span class="hint">Add a symbol for it on your map.</span></label><textarea data-key="p1d" data-label="The storehouse"></textarea></div>
+  <div class="field make"><label>Does the climate of the founding region actually produce the food you said it does in Decision 1? If not, which one changes, the climate or the food?</label><textarea class="short" data-key="p1e" data-label="Climate and food check"></textarea></div>
+</article>
+
+<article class="part" id="p2">
+  <h2>Part 2: The People</h2>
+  <p class="src">From Lesson 3, People, Cultures, and Languages.</p>
+  <div class="field paste"><label>Paste your Culture Profile, your five words, five sayings, and greeting.</label><textarea class="tall" data-key="p2paste" data-label="From Lesson 3"></textarea></div>
+  <div class="field make"><label>Write one new saying that carries a rule of your society inside it. <span class="hint">The worksheet's Quechua example carries three laws in nine words. Give the saying, then say which rule it carries.</span></label><textarea class="short" data-key="p2a" data-label="A saying that carries a rule"></textarea></div>
+  <div class="field make"><label>Why do people in your society do the work nobody wants, without being forced? <span class="hint">Your answer has to fit the values in your Culture Profile. If it does not, one of them is wrong.</span></label><textarea data-key="p2b" data-label="Why the unwanted work gets done"></textarea></div>
+  <div class="field make"><label>Name the neighboring people. What, exactly, is the friction about? <span class="hint">Not "they are enemies." A specific thing: water, a pass, a material, a grudge, a border.</span></label><textarea data-key="p2c" data-label="The neighbor and the friction"></textarea></div>
+  <div class="field make"><label>What does the neighbor have that you do not, and what do you have that they want?</label><textarea class="short" data-key="p2d" data-label="What each side has"></textarea></div>
+</article>
+
+<article class="part" id="p3">
+  <h2>Part 3: Power</h2>
+  <p class="src">From Lesson 4, Governments, Religions, and Power.</p>
+  <div class="field paste"><label>Paste your Codex of Power.</label><textarea class="tall" data-key="p3paste" data-label="From Lesson 4"></textarea></div>
+  <div class="field make"><label>How does the next ruler get the job? <span class="hint">Write it so clearly that two people who both wanted it could not both point to your rule and claim it. If your Codex of Power was vague here, this is where it gets fixed.</span></label><textarea data-key="p3a" data-label="Succession"></textarea></div>
+  <div class="field make"><label>Does the law bind the ruler? Yes or no, and what makes it true. <span class="hint">"Yes" is easy to write. Who actually stops the ruler, and what happens to them if they try?</span></label><textarea data-key="p3b" data-label="Does the law bind the ruler"></textarea></div>
+  <div class="field make"><label>When belief and power disagree in your world, which one wins, and how does it win?</label><textarea data-key="p3c" data-label="Power and belief"></textarea></div>
+  <div class="field make"><label>Who enforces the rules, and who feeds the people doing the enforcing?</label><textarea class="short" data-key="p3d" data-label="Enforcement"></textarea></div>
+</article>
+
+<!-- =============== DAY 2 =============== -->
+<div class="dayhead" id="day2">
+  <h2>Day 2: Knowledge, Food, Memory</h2>
+  <p>About 3.5 hours. Parts 4 through 6. Part 6 is the longest.</p>
+</div>
+
+<article class="part" id="p4">
+  <h2>Part 4: Knowledge</h2>
+  <p class="src">From Lesson 5, Magic, Science, and Technology.</p>
+  <div class="field paste"><label>Paste your Magic Manifesto or Tech Codex.</label><textarea class="tall" data-key="p4paste" data-label="From Lesson 5"></textarea></div>
+  <div class="field make"><label>How information works in your world: how are records kept, who can read them, and who holds the copies?</label><textarea data-key="p4a" data-label="Records, readers, copies"></textarea></div>
+  <div class="field make"><label>What stops the person keeping the records from changing one? <span class="hint">If the answer is "nothing," write "nothing," then decide what your society does about that.</span></label><textarea class="short" data-key="p4b" data-label="What stops tampering"></textarea></div>
+  <div class="field make"><label>Magic or technology as a resource: where does it come from, what does it cost to use, who is allowed to use it, and how does a person get that permission?</label><textarea data-key="p4c" data-label="The source: origin, cost, permission"></textarea></div>
+  <div class="field make"><label>Is your system soft or hard, and why? <span class="hint">Hard systems have fixed rules a player can learn. Soft systems stay mysterious. Games usually need hard.</span></label><textarea class="short" data-key="p4d" data-label="Soft or hard"></textarea></div>
+</article>
+
+<article class="part" id="p5">
+  <h2>Part 5: Food</h2>
+  <p class="src">From Lesson 6, Creatures, Flora, and Fauna. Map on the desk.</p>
+  <div class="field paste"><label>Paste your creature entry and plant entry.</label><textarea class="tall" data-key="p5paste" data-label="From Lesson 6"></textarea></div>
+  <div class="field make"><label>Name the species your founding society depends on to eat: a staple crop or a farmed animal. <span class="hint">If neither of your Lesson 6 entries is one, create it now, short version: name, where it grows or lives, when it is harvested.</span></label><textarea data-key="p5a" data-label="The food species"></textarea></div>
+  <div class="field make"><label>The year that species fails: what does your society eat, and who decides who eats less?</label><textarea data-key="p5b" data-label="The bad year plan"></textarea></div>
+  <div class="field make"><label>Roughly how many people can the river valley on your map feed? Show your thinking. Then say what happens at three times that number.</label><textarea data-key="p5c" data-label="Carrying capacity and triple"></textarea></div>
+  <div class="field make"><label>Your fantasy creature: what does it eat, and what eats it? <span class="hint">If you cannot answer, it stays out of the founding region's food web. That is fine. Say so.</span></label><textarea class="short" data-key="p5d" data-label="The creature in the food web"></textarea></div>
+</article>
+
+<article class="part" id="p6">
+  <h2>Part 6: Memory</h2>
+  <p class="src">From Lesson 7, History, Legends, and Myths. Your Lesson 7 chronicle becomes the official version. You write the other one now.</p>
+  <div class="field paste"><label>Paste your Chronicle of Ages and your timeline.</label><textarea class="tall" data-key="p6paste" data-label="From Lesson 7"></textarea></div>
+  <div class="field make"><label>Who is telling the official version, and why do they deserve to rule? <span class="hint">Read your chronicle again. The voice belongs to someone. Name them and say what the chronicle is trying to make the reader believe.</span></label><textarea data-key="p6a" data-label="Who tells the official version"></textarea></div>
+  <div class="field make"><label>Now the same events, told years later by the person your society is hardest on, the one doing the work nobody wants, written down by someone else. <span class="hint">At least a solid paragraph. Use the worksheet's elder excerpt as a model.</span></label><textarea class="tall" data-key="p6b" data-label="The second chronicle"></textarea></div>
+  <div class="field make"><label>Name one specific rule or event the official version leaves out, and say why it was left out.</label><textarea class="short" data-key="p6c" data-label="What the official version silences"></textarea></div>
+  <div class="field make"><label>Your timeline: name the founding era and the present era. List the eras between them as blank lines. <span class="hint">Every crisis this year will fill one in.</span></label><textarea data-key="p6d" data-label="Timeline: founding, blanks, present"></textarea></div>
+</article>
+
+<!-- =============== DAY 3 =============== -->
+<div class="dayhead" id="day3">
+  <h2>Day 3: The Charter, then Play</h2>
+  <p>About 4 hours. Morning is the Charter and the comparison. Afternoon your world gets played.</p>
+</div>
+
+<article class="part" id="p7">
+  <h2>Part 7: The Charter</h2>
+  <p class="src">Read Parts 1 through 6 back to front before you start. The Charter is what all of it boils down to.</p>
+  <div class="charter">
+    <p style="margin:0 0 10px"><strong>On paper first.</strong> One heavy sheet, handwritten in your italic hand. No more than twelve numbered clauses. Every one of the Five Decisions has to be traceable to at least one clause. Name the society. Date it. Sign it. Twelve is the limit, not the target. Then type the clauses below so they export with the rest, and photograph the sheet.</p>
+    <p style="margin:0 0 10px">From this moment on, nothing on the sheet is erased. Changes are dated amendments below the clauses. A struck clause gets one line through it and stays readable.</p>
+  </div>
+  <div class="field make"><label>Society name, date, and your name as founder.</label><input type="text" data-key="ch0" data-label="Society, date, founder"></div>
+  <div class="field make"><label>The clauses, numbered, exactly as written on the sheet.</label><textarea class="tall" data-key="ch1" data-label="The Charter clauses"></textarea></div>
+  <div class="field make"><label>Traceability: for each of the Five Decisions, which clause number covers it?</label><textarea class="short" data-key="ch2" data-label="Five Decisions to clause numbers"></textarea></div>
+  <div class="field make"><label>Anywhere the Charter disagrees with Parts 1 through 6: say where, and which one you changed.</label><textarea class="short" data-key="ch3" data-label="Charter and Portfolio disagreements"></textarea></div>
+
+  <h3 style="font-size:1.35rem;margin-top:28px">The comparison</h3>
+  <p class="src" style="margin-top:6px">Your Charter goes next to a real one, nearly 4,000 years old. You will be given the extract.</p>
+  <div class="field make"><label>The old document. Who made it, when, for whom, why, and what is it trying to make you believe?</label><textarea data-key="cmp1" data-label="Sourcing the old document"></textarea></div>
+  <div class="field make"><label>What problem did they anticipate that you did not? Three sentences.</label><textarea class="short" data-key="cmp2" data-label="What they anticipated"></textarea></div>
+</article>
+
+<article class="part" id="p8">
+  <h2>Part 8: Play Your World</h2>
+  <p class="src">Five situations, one at a time, read to you. Ten minutes each, out loud, recorder on, no research, no notes. You answer from the Charter as written. Not the Charter you wish you had written. If it cannot handle the situation, you amend it on the spot, dated, in your hand. Then you log it here. The first card is practice and you get the answer right away. The other four you do not; their answers come from history later this year.</p>
+
+  <div class="card"><h3>Practice card</h3>
+    <div class="field"><label>What happened, in one line, and what the Charter said.</label><textarea class="short" data-key="c0a" data-label="Practice card: what happened"></textarea></div>
+    <div class="field"><label>Amendment, if any (clause number and new text), or why the Charter held.</label><textarea class="short" data-key="c0b" data-label="Practice card: amendment"></textarea></div>
+  </div>
+
+  <div class="card"><h3>Card 1</h3>
+    <div class="field"><label>What happened, and what the Charter said.</label><textarea class="short" data-key="c1a" data-label="Card 1: what happened"></textarea></div>
+    <div class="field"><label>Amendment, or why the Charter held.</label><textarea class="short" data-key="c1b" data-label="Card 1: amendment"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Prediction this card exposed. <span class="hint">Societies that do X tend to end up with Y.</span></label><textarea class="short" data-key="c1c" data-label="Card 1: prediction"></textarea></div>
+      <div class="field"><label>The mechanism, and how it would work as a game system.</label><textarea class="short" data-key="c1d" data-label="Card 1: mechanism and world engine note"></textarea></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Card 2</h3>
+    <div class="field"><label>What happened, and what the Charter said.</label><textarea class="short" data-key="c2a" data-label="Card 2: what happened"></textarea></div>
+    <div class="field"><label>Amendment, or why the Charter held.</label><textarea class="short" data-key="c2b" data-label="Card 2: amendment"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Prediction this card exposed.</label><textarea class="short" data-key="c2c" data-label="Card 2: prediction"></textarea></div>
+      <div class="field"><label>The mechanism, and how it would work as a game system.</label><textarea class="short" data-key="c2d" data-label="Card 2: mechanism and world engine note"></textarea></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Card 3</h3>
+    <div class="field"><label>What happened, and what the Charter said.</label><textarea class="short" data-key="c3a" data-label="Card 3: what happened"></textarea></div>
+    <div class="field"><label>Amendment, or why the Charter held.</label><textarea class="short" data-key="c3b" data-label="Card 3: amendment"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Prediction this card exposed.</label><textarea class="short" data-key="c3c" data-label="Card 3: prediction"></textarea></div>
+      <div class="field"><label>The mechanism, and how it would work as a game system.</label><textarea class="short" data-key="c3d" data-label="Card 3: mechanism and world engine note"></textarea></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>Card 4</h3>
+    <div class="field"><label>What happened, and what the Charter said.</label><textarea class="short" data-key="c4a" data-label="Card 4: what happened"></textarea></div>
+    <div class="field"><label>Amendment, or why the Charter held.</label><textarea class="short" data-key="c4b" data-label="Card 4: amendment"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Prediction this card exposed.</label><textarea class="short" data-key="c4c" data-label="Card 4: prediction"></textarea></div>
+      <div class="field"><label>The mechanism, and how it would work as a game system.</label><textarea class="short" data-key="c4d" data-label="Card 4: mechanism and world engine note"></textarea></div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1.35rem;margin-top:28px">Section 8: Silences and Amendments</h3>
+  <div class="field make"><label>Every "silent" you wrote in Parts 1 through 6, and what you decided. Every amendment made today, with its cause. <span class="hint">This section stays open all year. Every crisis card adds to it.</span></label><textarea class="tall" data-key="s8" data-label="Section 8: silences and amendments"></textarea></div>
+  <div class="field make"><label>Last question, out loud first, then two sentences: what did you get wrong when you first built this world, and how did you find out?</label><textarea class="short" data-key="s8b" data-label="What I got wrong and how I found out"></textarea></div>
+</article>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <h2>Turning it in</h2>
+    <p>Use "Copy as Markdown" at the top, paste into a Google Doc, and add the photo of your handwritten Charter and your map. That is the summative. The Charter sheet itself goes in the Founding folder and comes out every unit for the rest of the year.</p>
+  </div>
+</footer>
+
+<div class="status" id="status">Saved</div>
+
+<script>
+(function(){
+  var KEY='worldEngine_v1';
+  var fields=Array.prototype.slice.call(document.querySelectorAll('[data-key]'));
+  var status=document.getElementById('status');
+  var t;
+  function flash(msg){status.textContent=msg;status.classList.add('show');clearTimeout(t);t=setTimeout(function(){status.classList.remove('show')},1200)}
+  function load(){
+    try{var d=JSON.parse(localStorage.getItem(KEY)||'{}');fields.forEach(function(f){if(d[f.dataset.key]!=null)f.value=d[f.dataset.key]})}catch(e){}
+  }
+  function save(){
+    try{var d={};fields.forEach(function(f){d[f.dataset.key]=f.value});localStorage.setItem(KEY,JSON.stringify(d));flash('Saved')}catch(e){flash('Could not save in this browser')}
+  }
+  fields.forEach(function(f){f.addEventListener('input',function(){clearTimeout(f._t);f._t=setTimeout(save,400)})});
+  load();
+
+  function md(){
+    var out=['# The World Engine',''];
+    var name=document.querySelector('[data-key="ch0"]').value.trim();
+    if(name)out.push('**'+name+'**','');
+    var parts=document.querySelectorAll('article.part');
+    parts.forEach(function(p){
+      out.push('## '+p.querySelector('h2').textContent.trim(),'');
+      p.querySelectorAll('[data-key]').forEach(function(f){
+        if(f.dataset.key==='ch0')return;
+        var v=f.value.trim();
+        out.push('### '+f.dataset.label,'',v?v:'_(blank)_','');
+      });
+    });
+    return out.join('\n');
+  }
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var text=md();
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){flash('Copied. Paste into your Google Doc.')},function(){fallback(text)})}else fallback(text);
+  });
+  function fallback(text){var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');flash('Copied. Paste into your Google Doc.')}catch(e){flash('Copy failed. Use Download instead.')}document.body.removeChild(ta)}
+  document.getElementById('dlBtn').addEventListener('click',function(){
+    var blob=new Blob([md()],{type:'text/markdown'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='world-engine.md';document.body.appendChild(a);a.click();document.body.removeChild(a);flash('Downloaded world-engine.md');
+  });
+  document.getElementById('clearBtn').addEventListener('click',function(){
+    if(confirm('Clear everything on this page? Download your Markdown first if you want to keep it.')){fields.forEach(function(f){f.value=''});try{localStorage.removeItem(KEY)}catch(e){}flash('Cleared')}
+  });
+})();
+</script>
+</body>
+</html>
