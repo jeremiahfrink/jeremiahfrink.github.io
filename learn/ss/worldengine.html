@@ -22,7 +22,6 @@
   nav.bar a{padding:6px 10px;border-radius:4px;text-decoration:none;color:var(--navy);font-weight:500;white-space:nowrap;font-size:.9rem}
   nav.bar a:hover{background:var(--teal-soft)}
   nav.bar button{margin-left:auto;background:var(--amber);color:#fff;border:0;padding:8px 14px;border-radius:4px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
-  nav.bar button.ghost{background:transparent;color:var(--navy);border:1px solid var(--line);margin-left:0}
   button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
   section.intro{padding:48px 0 8px}
   section.intro p{max-width:66ch}
@@ -70,7 +69,6 @@
     <a href="#day1">Day 1</a>
     <a href="#day2">Day 2</a>
     <a href="#day3">Day 3</a>
-    <button class="ghost" id="clearBtn" type="button">Clear all</button>
     <button id="copyBtn" type="button">Copy as Markdown</button>
     <button id="dlBtn" type="button">Download .md</button>
   </div>
@@ -84,6 +82,8 @@
   <p>Everything you type here saves in this browser automatically. When you are done, use the buttons at the top to copy or download it as Markdown, then paste it into a Google Doc to turn it in.</p>
 
   <ul class="rules">
+    <li><strong>Be creative.</strong> This is your world. Strange, funny, beautiful, brutal, whatever you want it to be. Nobody is asking you to copy Earth.</li>
+    <li><strong>But make it a real world.</strong> One that could exist in the Gameosphere: a place where the food comes from somewhere, the ruler answers to something, and a bad year actually costs someone. If a player asked "why?" about any part of it, there is an answer.</li>
     <li><strong>Answer from your world, not from what would be cool.</strong> If your Culture Profile says the people are proud and independent, then your answer about who does the unwanted work has to fit proud, independent people.</li>
     <li><strong>Earth rules in the founding region.</strong> Water, food, defense, and growth work there the way they work here. Magic, if it exists there, costs something and someone controls who gets to use it.</li>
     <li><strong>Silent is an answer.</strong> If your Portfolio never decided something, write "silent" and then decide it now. Keep the word "silent" in your answer so the gap stays visible.</li>
@@ -297,9 +297,6 @@
   function fallback(text){var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');flash('Copied. Paste into your Google Doc.')}catch(e){flash('Copy failed. Use Download instead.')}document.body.removeChild(ta)}
   document.getElementById('dlBtn').addEventListener('click',function(){
     var blob=new Blob([md()],{type:'text/markdown'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='world-engine.md';document.body.appendChild(a);a.click();document.body.removeChild(a);flash('Downloaded world-engine.md');
-  });
-  document.getElementById('clearBtn').addEventListener('click',function(){
-    if(confirm('Clear everything on this page? Download your Markdown first if you want to keep it.')){fields.forEach(function(f){f.value=''});try{localStorage.removeItem(KEY)}catch(e){}flash('Cleared')}
   });
 })();
 </script>
