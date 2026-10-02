@@ -180,7 +180,7 @@ textarea{font:inherit; width:100%; min-height:5.5em; padding:8px 10px; border:2p
   <section class="export">
     <h2>Turn it in</h2>
     <p>When you are done, press <strong>Copy as Markdown</strong>, open a new Google Doc named <strong>Deck Footers</strong>, and paste. Share it with Dad and comment the link on your card. Keep your notebook page too: it shows your work.</p>
-    <div class="row"><button id="copyBtn">Copy as Markdown</button><button class="hint" id="clearBtn">Clear my answers</button><span id="copyStatus" aria-live="polite"></span></div>
+    <div class="row"><button id="copyBtn">Copy as Markdown</button><span id="copyStatus" aria-live="polite"></span></div>
     <textarea id="fallback" readonly aria-label="Your answers as Markdown"></textarea>
   </section>
 </main>
@@ -273,11 +273,6 @@ textarea{font:inherit; width:100%; min-height:5.5em; padding:8px 10px; border:2p
     if(navigator.clipboard&&navigator.clipboard.writeText){
       navigator.clipboard.writeText(md).then(function(){status.textContent='Copied. Paste it into your Google Doc.';},showFallback);
     } else showFallback();
-  });
-  document.getElementById('clearBtn').addEventListener('click',function(){
-    if(!confirm('Clear all your answers on this page?')) return;
-    try{localStorage.removeItem(KEY);}catch(e){}
-    location.reload();
   });
 })();
 </script>
