@@ -71,7 +71,12 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
 .hints p{margin:.5em 0; padding:8px 12px; background:var(--paper); border-left:4px solid var(--amber)}
 .formula{font-family:"Barlow Condensed",Calibri,Arial,sans-serif; font-size:1.35rem}
 .wrap-up{border:2px dashed var(--amber); padding:16px 18px; background:var(--card)}
-.wrap-up ul{padding-left:1.2em}
+.wrap-up label{display:block; font-weight:600; margin:14px 0 6px}
+textarea{font:inherit; width:100%; min-height:5.5em; padding:8px 10px; border:2px solid var(--line); background:var(--paper); color:var(--ink); resize:vertical}
+.export{margin-top:18px; background:var(--card); border:2px solid var(--ink); padding:16px 18px}
+.export .row{margin-top:8px}
+#copyStatus{font-weight:600; color:var(--good)}
+#fallback{display:none; margin-top:10px; min-height:12em}
 @media (max-width:620px){ .plan{grid-template-columns:1fr} .plan svg{max-width:240px; margin:0 auto} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -79,7 +84,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
 <body>
 <main>
   <h1>How much concrete do the deck footers need?</h1>
-  <p class="sub">Every post on the deck stands on a round concrete footer poured into a hole. Your job is to figure out how many bags of concrete to buy. Work each step in your notebook first, then type your answer and check it. Hints are there if you need them, not before.</p>
+  <p class="sub">Every post on the deck stands on a round concrete footer poured into a hole. Your job is to figure out how many bags of concrete to buy. Work each step in your notebook first, then type your answer and check it. Everything you type saves on this computer, so you can come back to it. Hints are there if you need them, not before.</p>
 
   <section class="plan" aria-label="The job">
     <dl>
@@ -105,7 +110,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
   </section>
   <p class="sub">Not sure if it's 16 or 17 footers? Change the number in the box above. Every answer below updates to match.</p>
 
-  <section class="step" data-key="r">
+  <section class="step" data-key="r" data-q="What is the radius of one footer, in feet?">
     <h2><span>1.</span> Get everything into feet</h2>
     <p>The width is in inches and the depth is in feet. Pick one unit. Use feet. What is the <strong>radius</strong> of one footer, in feet?</p>
     <div class="row"><input type="number" step="any" aria-label="Radius in feet"><span class="unit">ft</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -113,7 +118,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     <div class="hints"></div>
   </section>
 
-  <section class="step" data-key="v1">
+  <section class="step" data-key="v1" data-q="How many cubic feet of concrete fill one footer?">
     <h2><span>2.</span> Volume of one footer</h2>
     <p>A footer is a cylinder. How many cubic feet of concrete fill one hole? Round to two decimal places.</p>
     <div class="row"><input type="number" step="any" aria-label="Volume of one footer in cubic feet"><span class="unit">cubic ft</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -121,7 +126,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     <div class="hints"></div>
   </section>
 
-  <section class="step" data-key="vall">
+  <section class="step" data-key="vall" data-q="How many cubic feet for every footer on the deck?">
     <h2><span>3.</span> All of the footers</h2>
     <p>How many cubic feet for every footer on the deck?</p>
     <div class="row"><input type="number" step="any" aria-label="Total volume in cubic feet"><span class="unit">cubic ft</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -129,7 +134,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     <div class="hints"></div>
   </section>
 
-  <section class="step" data-key="bags">
+  <section class="step" data-key="bags" data-q="How many 80 lb bags do you need (0.6 cubic feet per bag)?">
     <h2><span>4.</span> Turn it into bags</h2>
     <p>Look at the back of an 80 lb bag (or look it up): one bag makes about <strong>0.6 cubic feet</strong> of concrete. How many bags do you need?</p>
     <div class="row"><input type="number" step="1" aria-label="Number of bags"><span class="unit">bags</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -137,7 +142,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     <div class="hints"></div>
   </section>
 
-  <section class="step" data-key="extra">
+  <section class="step" data-key="extra" data-q="How many bags with 10% extra?">
     <h2><span>5.</span> Buy a little extra</h2>
     <p>Holes are never dug perfectly, and some always spills. Builders add about 10% extra. How many bags with the extra?</p>
     <div class="row"><input type="number" step="1" aria-label="Number of bags with extra"><span class="unit">bags</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -145,7 +150,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     <div class="hints"></div>
   </section>
 
-  <section class="step" data-key="lbs">
+  <section class="step" data-key="lbs" data-q="How many pounds of concrete is that?">
     <h2><span>6.</span> Feel the weight</h2>
     <p>Someone has to lift every one of those bags. How many pounds of concrete is that?</p>
     <div class="row"><input type="number" step="1" aria-label="Total pounds"><span class="unit">lb</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -153,7 +158,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     <div class="hints"></div>
   </section>
 
-  <section class="step" data-key="yd">
+  <section class="step" data-key="yd" data-q="How many cubic yards is your total from step 3?">
     <h2><span>7.</span> Bags or a truck?</h2>
     <p>Concrete trucks sell by the <strong>cubic yard</strong>, not the cubic foot. How many cubic yards is your total from step 3? Round to one decimal place.</p>
     <div class="row"><input type="number" step="any" aria-label="Total cubic yards"><span class="unit">cubic yd</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
@@ -163,18 +168,26 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
 
   <section class="wrap-up">
     <h2>Make the call</h2>
-    <p>In your notebook, answer these three:</p>
-    <ul>
-      <li>Look up the price of one 80 lb bag of concrete mix at a store near us. What do all your bags cost?</li>
-      <li>Look up roughly what one cubic yard of ready mix concrete costs delivered near Rochester. What would the truck cost for your total?</li>
-      <li>Bags or truck? Pick one and give two reasons. Think about cost, the weight from step 6, and how long it takes to mix by hand.</li>
-    </ul>
-    <p><strong>Turn in:</strong> your notebook page with every step shown. Comment your final bag count and your bags or truck choice on your card.</p>
+    <p>Answer these three right here. Your answers save on this computer as you type.</p>
+    <label for="q1">1. Look up the price of one 80 lb bag of concrete mix at a store near us. What do all your bags cost?</label>
+    <textarea id="q1"></textarea>
+    <label for="q2">2. Look up roughly what one cubic yard of ready mix concrete costs delivered near Rochester. What would the truck cost for your total?</label>
+    <textarea id="q2"></textarea>
+    <label for="q3">3. Bags or truck? Pick one and give two reasons. Think about cost, the weight from step 6, and how long it takes to mix by hand.</label>
+    <textarea id="q3"></textarea>
+  </section>
+
+  <section class="export">
+    <h2>Turn it in</h2>
+    <p>When you are done, press <strong>Copy as Markdown</strong>, open a new Google Doc named <strong>Deck Footers</strong>, and paste. Share it with Dad and comment the link on your card. Keep your notebook page too: it shows your work.</p>
+    <div class="row"><button id="copyBtn">Copy as Markdown</button><button class="hint" id="clearBtn">Clear my answers</button><span id="copyStatus" aria-live="polite"></span></div>
+    <textarea id="fallback" readonly aria-label="Your answers as Markdown"></textarea>
   </section>
 </main>
 
 <script>
 (function(){
+  var KEY='footers-v2';
   var countEl=document.getElementById('count');
   function n(){var v=parseInt(countEl.value,10);return v>0?v:16;}
   var r=8/12, h=4, yieldFt=0.6;
@@ -192,6 +205,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     lbs:function(x,v){return near(x,v.lbs,0.02);},
     yd:function(x,v){return near(x,v.yd,0.04);}
   };
+  var units={r:'ft',v1:'cubic ft',vall:'cubic ft',bags:'bags',extra:'bags',lbs:'lb',yd:'cubic yd'};
   var hints={
     r:function(){return ["Radius is the distance from the center to the edge, so it is half the width across.","Half of 16 inches is 8 inches. There are 12 inches in a foot, so divide 8 by 12."];},
     v1:function(){return ["The volume of a cylinder is <span class='formula'>V = &pi; &times; r &times; r &times; h</span>. It's the area of the circle on top, times how deep it goes. Same idea as the pool.","Use your radius from step 1 for r and 4 for h. Use 3.14 for &pi;. Multiply r by itself first, then by 3.14, then by 4."];},
@@ -201,24 +215,69 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline
     lbs:function(){return ["Each bag weighs 80 pounds.","Multiply your step 5 bag count by 80."];},
     yd:function(){return ["A yard is 3 feet. A cubic yard is a cube 3 feet long, 3 feet wide, and 3 feet tall. How many cubic feet is that?","3 &times; 3 &times; 3 = 27 cubic feet in one cubic yard. Divide your step 3 total by 27."];}
   };
-  document.querySelectorAll('.step').forEach(function(step){
-    var key=step.dataset.key, input=step.querySelector('input'), fb=step.querySelector('.fb'), box=step.querySelector('.hints'), shown=0;
+  var state={count:'16', answers:{}, correct:{}, hints:{}, q1:'', q2:'', q3:''};
+  try{var saved=localStorage.getItem(KEY); if(saved){var p=JSON.parse(saved); for(var k in p){state[k]=p[k];}}}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  countEl.value=state.count;
+  ['q1','q2','q3'].forEach(function(id){var t=document.getElementById(id); t.value=state[id]||''; t.addEventListener('input',function(){state[id]=t.value; save();});});
+
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  steps.forEach(function(step){
+    var key=step.dataset.key, input=step.querySelector('input'), fb=step.querySelector('.fb'), box=step.querySelector('.hints'), hb=step.querySelector('.hint');
+    var shown=0;
+    function addHint(){var list=hints[key](); if(shown<list.length){var p=document.createElement('p');p.innerHTML=list[shown];box.appendChild(p);shown++;} hb.textContent=shown<list.length?'Another hint':'No more hints'; hb.disabled=shown>=list.length;}
+    if(state.answers[key]!==undefined) input.value=state.answers[key];
+    for(var i=0;i<(state.hints[key]||0);i++) addHint();
+    if(state.correct[key]){fb.textContent='Correct. Write it in your notebook and move on.';fb.className='fb ok';step.classList.add('done');}
+    input.addEventListener('input',function(){state.answers[key]=input.value; state.correct[key]=false; step.classList.remove('done'); fb.textContent=''; fb.className='fb'; save();});
     step.querySelector('.check').addEventListener('click',function(){
       var x=parseFloat(input.value);
       if(isNaN(x)){fb.textContent='Type a number first.';fb.className='fb no';return;}
-      if(checks[key](x,vals())){fb.textContent='Correct. Write it in your notebook and move on.';fb.className='fb ok';step.classList.add('done');}
+      var ok=checks[key](x,vals()); state.correct[key]=ok; save();
+      if(ok){fb.textContent='Correct. Write it in your notebook and move on.';fb.className='fb ok';step.classList.add('done');}
       else{fb.textContent='Not yet. Check your work, or try a hint.';fb.className='fb no';step.classList.remove('done');}
     });
-    var hb=step.querySelector('.hint');
-    hb.addEventListener('click',function(){
-      var list=hints[key]();
-      if(shown<list.length){var p=document.createElement('p');p.innerHTML=list[shown];box.appendChild(p);shown++;}
-      hb.textContent=shown<list.length?'Another hint':'No more hints';
-      if(shown>=list.length)hb.disabled=true;
-    });
+    hb.addEventListener('click',function(){addHint(); state.hints[key]=shown; save();});
   });
   countEl.addEventListener('input',function(){
-    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('done');var f=s.querySelector('.fb');f.textContent='';f.className='fb';});
+    state.count=countEl.value; state.correct={}; save();
+    steps.forEach(function(s){s.classList.remove('done');var f=s.querySelector('.fb');f.textContent='';f.className='fb';});
+  });
+
+  function markdown(){
+    var d=new Date(), lines=[];
+    lines.push('# Deck Footers: How Much Concrete?','');
+    lines.push('Date: '+d.toLocaleDateString(),'');
+    lines.push('**Number of footers**','',String(n())+' (each 16 inches across and 4 feet deep)','');
+    lines.push('## The Math','');
+    steps.forEach(function(s,i){
+      var k=s.dataset.key, a=(state.answers[k]||'').trim();
+      lines.push('**'+(i+1)+'. '+s.dataset.q+'**','');
+      if(a){
+        var note=state.correct[k]?'checked correct':'not checked correct';
+        var h=state.hints[k]||0;
+        lines.push(a+' '+units[k]+' ('+note+(h?', '+h+(h===1?' hint':' hints')+' used':'')+')','');
+      } else lines.push('(no answer)','');
+    });
+    lines.push('## Make the Call','');
+    ['q1','q2','q3'].forEach(function(id){
+      var q=document.querySelector('label[for='+id+']').textContent.trim();
+      lines.push('**'+q+'**','',(state[id]||'').trim()||'(no answer)','');
+    });
+    return lines.join('\n');
+  }
+  var status=document.getElementById('copyStatus'), fallback=document.getElementById('fallback');
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var md=markdown();
+    function showFallback(){fallback.style.display='block'; fallback.value=md; fallback.focus(); fallback.select(); status.textContent='Select all of the text below and copy it.';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(md).then(function(){status.textContent='Copied. Paste it into your Google Doc.';},showFallback);
+    } else showFallback();
+  });
+  document.getElementById('clearBtn').addEventListener('click',function(){
+    if(!confirm('Clear all your answers on this page?')) return;
+    try{localStorage.removeItem(KEY);}catch(e){}
+    location.reload();
   });
 })();
 </script>
