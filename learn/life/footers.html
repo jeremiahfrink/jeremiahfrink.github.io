@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Much Concrete? Deck Footers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f6f8; --grid:#dde6ec; --ink:#14284b; --muted:#4b5d78;
+  --teal:#137a7f; --amber:#e39b1b; --card:#ffffff; --line:#c5d2dc;
+  --good:#1d7a4a; --bad:#b2401f;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1a2c; --grid:#1a2a43; --ink:#e6edf6; --muted:#9fb0c8;
+    --teal:#4cc3c8; --amber:#f2b445; --card:#16243b; --line:#2b3f5e;
+    --good:#5fd394; --bad:#ff8a66;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1a2c; --grid:#1a2a43; --ink:#e6edf6; --muted:#9fb0c8;
+  --teal:#4cc3c8; --amber:#f2b445; --card:#16243b; --line:#2b3f5e;
+  --good:#5fd394; --bad:#ff8a66;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; color:var(--ink); background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:"Barlow",Calibri,"Segoe UI",Arial,sans-serif; font-size:17px; line-height:1.55;
+}
+main{max-width:760px; margin:0 auto; padding:28px 18px 60px}
+h1,h2{font-family:"Barlow Condensed",Calibri,Arial,sans-serif; letter-spacing:.01em; line-height:1.1}
+h1{font-size:clamp(2.2rem,7vw,3.4rem); margin:.2em 0 .15em}
+.sub{color:var(--muted); margin:0 0 22px; max-width:60ch}
+.plan{
+  background:var(--card); border:2px solid var(--ink); padding:18px 18px 14px; margin-bottom:26px;
+  display:grid; grid-template-columns:minmax(0,1fr) 220px; gap:18px; align-items:center;
+}
+.plan dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px}
+.plan dt{color:var(--muted)}
+.plan dd{margin:0; font-weight:600}
+.plan input{width:4.5em}
+svg{max-width:100%; height:auto; display:block}
+.step{background:var(--card); border:1px solid var(--line); border-left:6px solid var(--teal); padding:16px 18px; margin:0 0 16px}
+.step.done{border-left-color:var(--good)}
+.step h2{font-size:1.55rem; margin:0 0 6px}
+.step h2 span{color:var(--teal)}
+.step p{margin:.4em 0}
+.row{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:10px}
+input[type=number]{
+  font:inherit; font-size:1.05rem; padding:7px 9px; width:9em;
+  border:2px solid var(--line); background:var(--paper); color:var(--ink);
+}
+button{
+  font:inherit; font-weight:600; padding:7px 14px; cursor:pointer;
+  border:2px solid var(--ink); background:var(--ink); color:var(--card);
+}
+button.hint{background:transparent; color:var(--ink); border-color:var(--amber)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--amber); outline-offset:2px}
+.unit{color:var(--muted)}
+.fb{font-weight:600; min-height:1.4em; margin-top:6px}
+.fb.ok{color:var(--good)} .fb.no{color:var(--bad)}
+.hints p{margin:.5em 0; padding:8px 12px; background:var(--paper); border-left:4px solid var(--amber)}
+.formula{font-family:"Barlow Condensed",Calibri,Arial,sans-serif; font-size:1.35rem}
+.wrap-up{border:2px dashed var(--amber); padding:16px 18px; background:var(--card)}
+.wrap-up ul{padding-left:1.2em}
+@media (max-width:620px){ .plan{grid-template-columns:1fr} .plan svg{max-width:240px; margin:0 auto} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>How much concrete do the deck footers need?</h1>
+  <p class="sub">Every post on the deck stands on a round concrete footer poured into a hole. Your job is to figure out how many bags of concrete to buy. Work each step in your notebook first, then type your answer and check it. Hints are there if you need them, not before.</p>
+
+  <section class="plan" aria-label="The job">
+    <dl>
+      <dt>Footers</dt><dd><input type="number" id="count" value="16" min="1" step="1" aria-label="Number of footers"> holes</dd>
+      <dt>Shape</dt><dd>Round (a cylinder)</dd>
+      <dt>Width across</dt><dd>16 inches</dd>
+      <dt>Depth</dt><dd>4 feet</dd>
+      <dt>Bag</dt><dd>80 lb bag of concrete mix</dd>
+    </dl>
+    <svg viewBox="0 0 220 230" role="img" aria-label="Diagram of one footer: a cylinder 16 inches across and 4 feet deep below the ground line">
+      <line x1="10" y1="40" x2="210" y2="40" stroke="currentColor" stroke-width="3"/>
+      <text x="12" y="30" font-size="12" fill="currentColor">ground</text>
+      <ellipse cx="110" cy="40" rx="45" ry="12" fill="none" stroke="var(--teal)" stroke-width="3"/>
+      <line x1="65" y1="40" x2="65" y2="200" stroke="var(--teal)" stroke-width="3"/>
+      <line x1="155" y1="40" x2="155" y2="200" stroke="var(--teal)" stroke-width="3"/>
+      <path d="M65 200 A45 12 0 0 0 155 200" fill="none" stroke="var(--teal)" stroke-width="3"/>
+      <line x1="65" y1="62" x2="155" y2="62" stroke="var(--amber)" stroke-width="2"/>
+      <text x="110" y="78" font-size="13" text-anchor="middle" fill="currentColor">16 in across</text>
+      <line x1="180" y1="40" x2="180" y2="200" stroke="var(--amber)" stroke-width="2"/>
+      <text x="186" y="125" font-size="13" fill="currentColor">4 ft</text>
+      <text x="110" y="225" font-size="12" text-anchor="middle" fill="currentColor">one footer</text>
+    </svg>
+  </section>
+  <p class="sub">Not sure if it's 16 or 17 footers? Change the number in the box above. Every answer below updates to match.</p>
+
+  <section class="step" data-key="r">
+    <h2><span>1.</span> Get everything into feet</h2>
+    <p>The width is in inches and the depth is in feet. Pick one unit. Use feet. What is the <strong>radius</strong> of one footer, in feet?</p>
+    <div class="row"><input type="number" step="any" aria-label="Radius in feet"><span class="unit">ft</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="step" data-key="v1">
+    <h2><span>2.</span> Volume of one footer</h2>
+    <p>A footer is a cylinder. How many cubic feet of concrete fill one hole? Round to two decimal places.</p>
+    <div class="row"><input type="number" step="any" aria-label="Volume of one footer in cubic feet"><span class="unit">cubic ft</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="step" data-key="vall">
+    <h2><span>3.</span> All of the footers</h2>
+    <p>How many cubic feet for every footer on the deck?</p>
+    <div class="row"><input type="number" step="any" aria-label="Total volume in cubic feet"><span class="unit">cubic ft</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="step" data-key="bags">
+    <h2><span>4.</span> Turn it into bags</h2>
+    <p>Look at the back of an 80 lb bag (or look it up): one bag makes about <strong>0.6 cubic feet</strong> of concrete. How many bags do you need?</p>
+    <div class="row"><input type="number" step="1" aria-label="Number of bags"><span class="unit">bags</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="step" data-key="extra">
+    <h2><span>5.</span> Buy a little extra</h2>
+    <p>Holes are never dug perfectly, and some always spills. Builders add about 10% extra. How many bags with the extra?</p>
+    <div class="row"><input type="number" step="1" aria-label="Number of bags with extra"><span class="unit">bags</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="step" data-key="lbs">
+    <h2><span>6.</span> Feel the weight</h2>
+    <p>Someone has to lift every one of those bags. How many pounds of concrete is that?</p>
+    <div class="row"><input type="number" step="1" aria-label="Total pounds"><span class="unit">lb</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="step" data-key="yd">
+    <h2><span>7.</span> Bags or a truck?</h2>
+    <p>Concrete trucks sell by the <strong>cubic yard</strong>, not the cubic foot. How many cubic yards is your total from step 3? Round to one decimal place.</p>
+    <div class="row"><input type="number" step="any" aria-label="Total cubic yards"><span class="unit">cubic yd</span><button class="check">Check</button><button class="hint">Need a hint?</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <div class="hints"></div>
+  </section>
+
+  <section class="wrap-up">
+    <h2>Make the call</h2>
+    <p>In your notebook, answer these three:</p>
+    <ul>
+      <li>Look up the price of one 80 lb bag of concrete mix at a store near us. What do all your bags cost?</li>
+      <li>Look up roughly what one cubic yard of ready mix concrete costs delivered near Rochester. What would the truck cost for your total?</li>
+      <li>Bags or truck? Pick one and give two reasons. Think about cost, the weight from step 6, and how long it takes to mix by hand.</li>
+    </ul>
+    <p><strong>Turn in:</strong> your notebook page with every step shown. Comment your final bag count and your bags or truck choice on your card.</p>
+  </section>
+</main>
+
+<script>
+(function(){
+  var countEl=document.getElementById('count');
+  function n(){var v=parseInt(countEl.value,10);return v>0?v:16;}
+  var r=8/12, h=4, yieldFt=0.6;
+  function vals(){
+    var v1=Math.PI*r*r*h, vall=v1*n(), bags=Math.ceil(vall/yieldFt), extra=Math.ceil(bags*1.1);
+    return {r:r, v1:v1, vall:vall, bags:bags, extra:extra, lbs:extra*80, yd:vall/27};
+  }
+  function near(a,b,tol){return Math.abs(a-b)<=Math.abs(b)*tol;}
+  var checks={
+    r:function(x,v){return near(x,v.r,0.02);},
+    v1:function(x,v){return near(x,v.v1,0.02);},
+    vall:function(x,v){return near(x,v.vall,0.02);},
+    bags:function(x,v){return Math.abs(x-v.bags)<=1;},
+    extra:function(x,v){return Math.abs(x-v.extra)<=2;},
+    lbs:function(x,v){return near(x,v.lbs,0.02);},
+    yd:function(x,v){return near(x,v.yd,0.04);}
+  };
+  var hints={
+    r:function(){return ["Radius is the distance from the center to the edge, so it is half the width across.","Half of 16 inches is 8 inches. There are 12 inches in a foot, so divide 8 by 12."];},
+    v1:function(){return ["The volume of a cylinder is <span class='formula'>V = &pi; &times; r &times; r &times; h</span>. It's the area of the circle on top, times how deep it goes. Same idea as the pool.","Use your radius from step 1 for r and 4 for h. Use 3.14 for &pi;. Multiply r by itself first, then by 3.14, then by 4."];},
+    vall:function(){return ["Every footer is the same size.","Multiply your answer from step 2 by the number of footers ("+n()+")."];},
+    bags:function(){return ["Each bag fills 0.6 cubic feet. How many 0.6s fit into your total?","Divide your step 3 total by 0.6. You can't buy part of a bag, so if you get a decimal, round <strong>up</strong>, even if it's .1."];},
+    extra:function(){return ["10% extra means your number plus one tenth of your number.","Multiply your step 4 bags by 1.1, then round up again."];},
+    lbs:function(){return ["Each bag weighs 80 pounds.","Multiply your step 5 bag count by 80."];},
+    yd:function(){return ["A yard is 3 feet. A cubic yard is a cube 3 feet long, 3 feet wide, and 3 feet tall. How many cubic feet is that?","3 &times; 3 &times; 3 = 27 cubic feet in one cubic yard. Divide your step 3 total by 27."];}
+  };
+  document.querySelectorAll('.step').forEach(function(step){
+    var key=step.dataset.key, input=step.querySelector('input'), fb=step.querySelector('.fb'), box=step.querySelector('.hints'), shown=0;
+    step.querySelector('.check').addEventListener('click',function(){
+      var x=parseFloat(input.value);
+      if(isNaN(x)){fb.textContent='Type a number first.';fb.className='fb no';return;}
+      if(checks[key](x,vals())){fb.textContent='Correct. Write it in your notebook and move on.';fb.className='fb ok';step.classList.add('done');}
+      else{fb.textContent='Not yet. Check your work, or try a hint.';fb.className='fb no';step.classList.remove('done');}
+    });
+    var hb=step.querySelector('.hint');
+    hb.addEventListener('click',function(){
+      var list=hints[key]();
+      if(shown<list.length){var p=document.createElement('p');p.innerHTML=list[shown];box.appendChild(p);shown++;}
+      hb.textContent=shown<list.length?'Another hint':'No more hints';
+      if(shown>=list.length)hb.disabled=true;
+    });
+  });
+  countEl.addEventListener('input',function(){
+    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('done');var f=s.querySelector('.fb');f.textContent='';f.className='fb';});
+  });
+})();
+</script>
+</body>
+</html>
