@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#17324d; --navy-2:#0f2236; --teal:#1f8a8a; --teal-2:#176b6b; --amber:#e39b2c; --amber-2:#c47f14;
+  --sand:#f6efe3; --sand-2:#efe4d0; --paper:#fffdf8; --ink:#1d1d1b; --ink-2:#4b4a45; --line:#d9ccb4;
+  --l5:#4a3524; --l4:#8a6a44; --l3:#a98a5a; --l2:#c6ad7c; --l1:#dfcb9d;
+  --ok:#2e8b57; --bad:#b4433a;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--sand);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.15;margin:0 0 .4em}
+h1{font-size:2.6rem}h2{font-size:1.9rem}h3{font-size:1.3rem}
+p{margin:.4em 0 .9em}
+a{color:var(--teal-2)}
+code,.mono{font-family:"DM Mono",monospace}
+button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:.6em 1.1em;background:var(--navy);color:#fff}
+button.secondary{background:var(--sand-2);color:var(--navy)}
+button.amber{background:var(--amber);color:var(--navy-2);font-weight:700}
+button:disabled{opacity:.45;cursor:not-allowed}
+textarea,input[type=text]{width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:.6em .7em;background:#fff;color:var(--ink);resize:vertical}
+textarea{min-height:76px}
+textarea:focus,input:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+label{display:block;font-weight:500;margin:.6em 0 .25em;color:var(--navy)}
+.small{font-size:.9rem;color:var(--ink-2)}
+.tag{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:.15em .55em;border-radius:999px;background:var(--navy);color:#fff}
+.tag.ref{background:var(--amber);color:var(--navy-2)}
+.tag.teal{background:var(--teal)}
+.tag.bone{background:#7a5c3a}
+/* layout */
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header.top{background:var(--navy-2);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+header.top .wrap{display:flex;align-items:center;gap:14px;padding:10px 16px;flex-wrap:wrap}
+header.top .brand{font-family:"DM Serif Display",serif;font-size:1.25rem;letter-spacing:.02em}
+nav.steps{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.steps button{background:transparent;color:#cfd8e3;padding:.45em .7em;border-radius:6px;font-size:.9rem}
+nav.steps button.active{background:var(--teal);color:#fff}
+nav.steps button.locked{color:#6f7f90}
+.progress{height:6px;background:#0a1826}
+.progress>div{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));width:0;transition:width .4s}
+section.panel{display:none;padding:28px 0 60px}
+section.panel.active{display:block}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin:14px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.card.navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card.navy h2,.card.navy h3{color:#fff}
+.card.navy a{color:#ffd58a}
+.grid{display:grid;gap:14px}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid.three{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.hero svg{width:100%;height:auto;border-radius:var(--r)}
+ul.clean{padding-left:1.2em}ul.clean li{margin:.3em 0}
+.callout{border-left:5px solid var(--amber);background:#fff7e6;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+.callout.teal{border-color:var(--teal);background:#e8f5f5}
+.callout.bone{border-color:#7a5c3a;background:#f4ede3}
+.rule{font-family:"DM Serif Display",serif;font-size:1.25rem;color:var(--navy)}
+table{width:100%;border-collapse:collapse;margin:.6em 0 1em;background:#fff;border-radius:8px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.55em .7em;text-align:left;vertical-align:top;font-size:.95rem}
+th{background:var(--sand-2);color:var(--navy)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.done-pill{color:var(--ok);font-weight:700}
+/* dig layout */
+.dig{display:grid;grid-template-columns:230px 1fr;gap:22px;align-items:start}
+@media(max-width:800px){.dig{grid-template-columns:1fr}}
+.strata{position:sticky;top:70px}
+.strata svg{width:100%;height:auto}
+.strata .lay{cursor:pointer}
+.strata .lay.locked{cursor:not-allowed;opacity:.55}
+.strata .lay.active rect{stroke:var(--amber);stroke-width:4}
+.layerhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.layerhead .depth{font-family:"DM Mono",monospace;color:var(--ink-2)}
+.artifacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.art{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.art .pic{background:var(--sand-2);padding:10px;display:flex;justify-content:center;align-items:center;min-height:150px}
+.art .pic svg{width:170px;height:130px}
+.art .body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column}
+.art .cat{font-family:"DM Mono",monospace;font-size:.78rem;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.art h3{margin:.3em 0 .2em;font-size:1.15rem}
+.art .facts{font-size:.92rem;margin:0 0 .5em}
+.art .facts dt{font-weight:700;color:var(--navy);display:inline}
+.art .facts dd{display:inline;margin:0}
+.art .facts div{margin:.2em 0}
+.art .status{font-size:.8rem;margin-top:auto;padding-top:6px}
+.art.complete .pic{background:#e3efe8}
+.event{background:var(--navy);color:#fff;border-radius:var(--r);padding:18px 20px;margin:14px 0;box-shadow:0 4px 16px rgba(23,50,77,.25)}
+.event h3{color:#ffd58a;margin:0}
+.event .ev-head{display:flex;align-items:center;gap:12px;margin-bottom:.4em}
+.event .ev-icon{font-size:1.8rem;line-height:1}
+.event .callout{color:var(--ink)}
+.event.answered{background:var(--navy-2)}
+.clock{font-family:"DM Mono",monospace;font-size:.82rem;color:#fff;background:#223d5a;border-radius:999px;padding:.25em .8em;display:inline-flex;align-items:center;gap:8px}
+.clock .bar{width:90px;height:6px;background:#0a1826;border-radius:3px;overflow:hidden}
+.clock .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),#5aa9d6);width:0}
+.clock .water{color:#9fd3ea}
+.fieldlog{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;margin-top:10px;font-size:.85rem}
+.fieldlog h4{margin:0 0 .3em;font-family:"DM Serif Display",serif;font-weight:400;font-size:1rem;color:var(--navy)}
+.fieldlog li{margin:.25em 0}
+.hyp{background:#fff;border:2px dashed var(--teal);border-radius:var(--r);padding:16px 18px;margin-top:18px}
+.hyp .old{background:var(--sand);padding:10px 12px;border-radius:8px;margin:.4em 0;color:var(--ink-2)}
+.hyp .old s{color:#8a3a33}
+.lock-note{background:var(--sand-2);border-radius:8px;padding:10px 14px;font-size:.92rem}
+/* field kit */
+.kit .item{display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid var(--line);padding:14px 0}
+@media(max-width:700px){.kit .item{grid-template-columns:1fr}}
+.kit .item:first-of-type{border-top:0}
+footer{padding:30px 0 50px;color:var(--ink-2);font-size:.85rem}
+footer button{font-size:.8rem;padding:.4em .8em}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--navy-2);color:#fff;padding:.6em 1.1em;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:50}
+.toast.show{opacity:1}
+.reveal-locked{text-align:center;padding:60px 20px}
+.score td input[type=radio]{margin-right:.4em}
+.print-only{display:none}
+@media print{header.top,footer,.actions,.strata,nav{display:none!important}section.panel{display:block!important}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">The Dig</div>
+    <span class="small" style="color:#9fb3c8">Global History I · Unit 1 · Becoming Settled</span>
+    <span class="clock" id="clock"></span><span class="small mono" id="finds" style="color:#ffd58a"></span>
+    <nav class="steps" id="nav"></nav>
+  </div>
+  <div class="progress"><div id="prog"></div></div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= START HERE ================= -->
+<section class="panel" id="p-start">
+  <span class="tag">Start here</span>
+  <h1>What this is and how to use it</h1>
+  <div class="grid two">
+    <div class="card">
+      <h3>What this is</h3>
+      <p>This is the opening project for Global History Unit 1. You are going to play the lead archaeologist on a real excavation. The site is real, the finds are real, and the people who dug it were racing a dam. Its name is hidden until the end so you cannot look up the answers.</p>
+      <p>The unit's big question is <strong>What did we give up when we stopped moving?</strong> You will answer it with evidence you dig up yourself.</p>
+      <h3 style="margin-top:1em">What you will make</h3>
+      <p>Not an essay. You will make a <strong>museum exhibit</strong> about this place, on a wall or on a screen, and then give Dad a guided tour of it. The exhibit and the tour are the assessment for this unit.</p>
+    </div>
+    <div class="card">
+      <h3>How to move around</h3>
+      <p>Use the buttons in the top bar to jump between parts. Each part also has a <strong>Next</strong> button at the bottom. The parts go in order, and the Reveal stays grey until you submit your claim.</p>
+      <p>The thin bar under the top row fills in as you work. The yellow number counts the finds you have logged.</p>
+      <p>The <strong>field clock</strong> in the top bar counts the days of your dig. It runs on work, not real time: every kit item, every find you log, every checkpoint, and every field event you say yes to moves it forward a day. You have two seasons, 50 field days in all. In the second season the water starts to rise.</p>
+      <h3 style="margin-top:1em">Saving and turning in</h3>
+      <p>Everything you type saves in this browser on its own. You can close the tab and come back later. When you stop for the day, click <strong>Export journal</strong> at the bottom of any page. That downloads a Markdown file of everything you wrote. Paste it into your Global History doc.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>The plan, day by day</h3>
+    <table>
+      <tr><th>Day</th><th>What you do</th><th>About how long</th></tr>
+      <tr><td><strong>Day 1</strong></td><td>Read the Briefing. Do the Field Kit. Dig all five layers. Do the Lab.</td><td>3 hours, with a break after Layer 3</td></tr>
+      <tr><td><strong>Day 2</strong></td><td>Build the Exhibit. Submit your claim. Read the Reveal and score yourself.</td><td>2 to 3 hours</td></tr>
+      <tr><td><strong>Day 3</strong></td><td>Give Dad the walkthrough of your exhibit and answer his questions.</td><td>30 minutes</td></tr>
+    </table>
+    <p class="small">If you get stuck: try for 15 minutes, look it up for 10, write down where you lost the thread, text Dad, and move on to the next card.</p>
+  </div>
+  <div class="actions"><button class="amber" onclick="go('brief')">Next: read the Briefing</button></div>
+</section>
+
+<!-- ================= 0 BRIEFING ================= -->
+<section class="panel" id="p-brief">
+  <div class="hero">
+    <div>
+      <span class="tag">Briefing</span>
+      <h1>You have two seasons.<br>Then the river takes it.</h1>
+      <p>A dam is going up on a river in Southwest Asia. In about two years the reservoir behind it will cover a low mound on the south bank. The mound is 500 meters across and 8 meters deep, and it is made of nothing but collapsed houses, trash, ash, bones, and lost objects piled up over thousands of years. People lived here before anyone on Earth had written a single word.</p>
+      <p>You are the lead archaeologist. Nobody who lived here can tell you what happened. The only witnesses are the things they left behind, and those are buried in order: the oldest at the bottom, the newest on top. You will open one layer at a time, record what you find, and work out how these people lived, what changed, and what it cost them.</p>
+      <p class="rule">The unit's big question: <em>What did we give up when we stopped moving?</em></p>
+    </div>
+    <div>
+      <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross section of a settlement mound on a river terrace">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17324d"/><stop offset="1" stop-color="#1f8a8a"/></linearGradient>
+          <linearGradient id="water" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2b6f8f"/><stop offset="1" stop-color="#1f8a8a"/></linearGradient>
+        </defs>
+        <rect width="520" height="380" fill="url(#sky)"/>
+        <circle cx="430" cy="70" r="26" fill="#e39b2c"/>
+        <path d="M0 300 C120 280 200 330 320 310 S480 280 520 300 L520 380 L0 380Z" fill="url(#water)"/>
+        <path d="M0 316 C120 296 200 346 320 326 S480 296 520 316" stroke="#a9dede" stroke-width="2" fill="none" opacity=".6"/>
+        <path d="M0 230 L0 300 C120 280 200 330 320 310 L320 230Z" fill="#c6ad7c"/>
+        <path d="M0 250 L0 300 C120 280 200 330 320 310 L320 250Z" fill="#a98a5a"/>
+        <path d="M0 272 L0 300 C120 280 200 330 320 310 L320 272Z" fill="#8a6a44"/>
+        <path d="M30 230 Q160 120 290 230Z" fill="#dfcb9d"/>
+        <path d="M46 230 Q160 136 274 230Z" fill="#c6ad7c"/>
+        <path d="M64 230 Q160 154 256 230Z" fill="#a98a5a"/>
+        <path d="M84 230 Q160 172 236 230Z" fill="#8a6a44"/>
+        <path d="M106 230 Q160 192 214 230Z" fill="#4a3524"/>
+        <rect x="150" y="128" width="22" height="102" fill="#17324d" opacity=".55"/>
+        <rect x="150" y="128" width="22" height="102" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="161" y="118" fill="#fff" font-size="12" text-anchor="middle" font-family="DM Mono, monospace">TRENCH E</text>
+        <circle cx="200" cy="132" r="5" fill="#fff"/><rect x="196" y="137" width="8" height="14" fill="#fff" rx="2"/>
+        <text x="24" y="40" fill="#fff" font-size="20" font-family="DM Serif Display, serif">Site 47, river terrace</text>
+        <text x="24" y="62" fill="#cfe3e3" font-size="12" font-family="DM Sans, sans-serif">One mound. Eight meters of time.</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>How the dig works</h3>
+      <ul class="clean">
+        <li><strong>Field Kit.</strong> Learn the job first. Write six things every archaeologist knows in your own words.</li>
+        <li><strong>The Dig.</strong> Open five layers from the bottom up. For every find, write what you see, then write what you think it means. A layer will not close until every card has both.</li>
+        <li><strong>Checkpoints.</strong> After each layer, write what you think life was like for those people. When a later layer proves you wrong, go back and fix it. Being wrong and fixing it is the job.</li>
+        <li><strong>Field events.</strong> Things happen on a dig: weather, visitors, bad luck, lucky breaks. Each one asks you to spend a field day you do not have. Some of the most important finds at this site only end up in your record if you make the call.</li>
+        <li><strong>The Lab.</strong> Look at the whole site through three lenses: geography, technology, and economics.</li>
+        <li><strong>The Exhibit.</strong> Build a museum exhibit about this place, on a wall or on a screen. That is the assessment.</li>
+        <li><strong>The Reveal.</strong> After you submit your claim, you find out where this site really is and what the real team concluded.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Rules of the trench</h3>
+      <ul class="clean">
+        <li>Do not look up the site. The dig code hides its name on purpose. You get it at the end.</li>
+        <li>Say what you see before you say what it means. Every card asks for both, in that order.</li>
+        <li>Use the links on the cards. They are there to help you figure out what a thing is.</li>
+        <li>Write like you are talking to Dad. Full sentences, your own words, no copying.</li>
+      </ul>
+      <div class="actions"><button class="secondary" onclick="go('start')">Back</button><button class="amber" onclick="go('kit')">Next: open the Field Kit</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 1 FIELD KIT ================= -->
+<section class="panel" id="p-kit">
+  <span class="tag">Part 1 · about 40 minutes</span>
+  <h2>Field Kit</h2>
+  <div class="callout"><strong>What to do now:</strong> research each of the six items below and write a definition in your own words, two or three sentences plus one example. Then do the practice at the bottom. When all six have something written, click Next.</div>
+  <p>Archaeologists are not treasure hunters. They are detectives whose witnesses are all dead and whose evidence is dirt. You need to know how they think before you touch the trench.</p>
+  <div class="callout teal"><strong>Good places to start:</strong> <a href="https://www.saa.org/about-archaeology/what-is-archaeology" target="_blank" rel="noopener">Society for American Archaeology: What is archaeology?</a> · <a href="https://www.archaeological.org/programs/educators/introduction-to-archaeology/" target="_blank" rel="noopener">Archaeological Institute of America: Introduction to archaeology</a> · <a href="https://en.wikipedia.org/wiki/Archaeology" target="_blank" rel="noopener">Wikipedia: Archaeology</a>. Each item below also has its own links.</div>
+
+  <div class="card kit" id="kit"></div>
+
+  <div class="card">
+    <h3>The one rule that runs the whole dig</h3>
+    <p class="rule">Say what you see before you say what it means.</p>
+    <p>An <strong>observation</strong> is something anyone looking at the object would agree on: its size, material, shape, where it was found, and what was next to it. An <strong>inference</strong> is a claim about what it means: who used it, what for, and why it was there. Observations are easy and solid. Inferences are the real work, and they can be wrong. Every card in the trench asks you for both, in that order.</p>
+    <div class="callout teal">
+      <strong>Here is what a good pair looks like.</strong> Imagine a card showing a flat stone with a worn dip in the top and a smaller round stone beside it.<br>
+      <em>I see:</em> A heavy flat stone about 40 cm long with a smooth, shallow dip worn into the top. A fist sized round stone was found next to it. Both are a hard grey rock. They were inside a house, near the fire pit.<br>
+      <em>I think:</em> People rubbed the small stone back and forth on the big one to grind something, probably grain, because the dip is smooth and worn rather than chipped, and it was next to the cooking area. A stone this heavy also tells me they were not planning to carry it anywhere, so they probably stayed put.
+    </div>
+    <label for="kit-rule">Now try it. Pick any object within reach of you right now. Write two observations, then one inference about the person who owns it.</label>
+    <textarea id="kit-rule" data-key="kit.rule"></textarea>
+  </div>
+
+  <div class="actions">
+    <button class="secondary" onclick="go('brief')">Back</button>
+    <button id="kit-next" class="amber" onclick="go('dig')">Next: open the trench</button>
+    <span class="small" id="kit-status"></span>
+  </div>
+</section>
+
+<!-- ================= 2 THE DIG ================= -->
+<section class="panel" id="p-dig">
+  <span class="tag">Part 2 · about 2 hours</span>
+  <h2>The Dig: Trench E</h2>
+  <div class="callout"><strong>What to do now:</strong> start with Layer 5 at the bottom of the drawing on the left. Decide the field event first. Then fill in both boxes on every card. Then write the checkpoint. When all of that is done, the Close Layer button turns on and the next layer opens. Take a break after Layer 3.</div>
+  <div class="dig">
+    <aside class="strata" id="strata"></aside>
+    <div id="layer"></div>
+  </div>
+</section>
+
+<!-- ================= 3 LAB ================= -->
+<section class="panel" id="p-lab">
+  <span class="tag">Part 3 · about 20 minutes</span>
+  <h2>The Lab: three lenses</h2>
+  <div class="callout"><strong>What to do now:</strong> answer the four questions below using your finds. Name specific catalog numbers in each answer. This is the last part of Day 1.</div>
+  <p>You will ask the same three questions of every era this year. Ask them of Site 47 now.</p>
+  <div class="grid three">
+    <div class="card"><h3>Geography</h3><p class="small">Why did people settle here and not somewhere else? What did the river, the terrace, the open steppe, and the migrating herds make possible or impossible?</p><textarea data-key="lab.geo" style="min-height:130px"></textarea></div>
+    <div class="card"><h3>Technology</h3><p class="small">Which tools made settling down possible, and which ones made settling down costly? Pick the single tool you think mattered most and say why.</p><textarea data-key="lab.tech" style="min-height:130px"></textarea></div>
+    <div class="card"><h3>Economics</h3><p class="small">Once there was more food than one family could eat, where did the extra go? Who controlled it, and what did that do to who had power?</p><textarea data-key="lab.econ" style="min-height:130px"></textarea></div>
+  </div>
+  <div class="card">
+    <h3>The body keeps score</h3>
+    <p class="small">The bones in Layer 2 are the most direct evidence you have of what farming cost. Were the farmers better off than the foragers in Layer 5? Answer with evidence, and say what "better off" should even mean.</p>
+    <textarea data-key="lab.health" style="min-height:110px"></textarea>
+  </div>
+  <div class="actions">
+    <button class="secondary" onclick="go('dig')">Back to the trench</button>
+    <button class="amber" onclick="go('exhibit')">Next: the Exhibit brief</button>
+  </div>
+</section>
+
+<!-- ================= 4 EXHIBIT ================= -->
+<section class="panel" id="p-exhibit">
+  <span class="tag">Part 4 · Day 2</span>
+  <h2>The Exhibit</h2>
+  <div class="callout"><strong>What to do now:</strong> read the brief, pick your format, and build the seven panels. When the exhibit is done, write your claim in the box at the bottom and submit it. That unlocks the Reveal.</div>
+  <p>The museum has given you one wall, or one web page. Your job is to make a visitor who has never heard of this place understand what happened here and what it cost. This exhibit is the assessment for Unit 1. There is no essay.</p>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>The seven panels you need</h3>
+      <ol class="clean">
+        <li><strong>Title panel.</strong> Give the exhibit a real title (not "Site 47"), one line that makes a visitor want to read on, and the dates.</li>
+        <li><strong>Before.</strong> Show life in the deepest layers: food, shelter, work, and whether people moved around. Show at least three finds with their catalog numbers.</li>
+        <li><strong>The Gap.</strong> Explain what happened between the two villages and how you know.</li>
+        <li><strong>After.</strong> Show life in the farming village. Show at least three finds.</li>
+        <li><strong>The Body Keeps Score.</strong> Show the skeletal evidence plainly and respectfully. Explain what it tells us about the work and about who did it.</li>
+        <li><strong>How We Know.</strong> Explain the method: layers, observation versus inference, and one place where you changed your mind.</li>
+        <li><strong>The Claim.</strong> Put this at the center of the wall. Write your one sentence answer to <em>What did we give up when we stopped moving?</em> and show at least two finds that support it, with a line each on why.</li>
+      </ol>
+      <p class="small">Optional: add a "day in the life" scene of either village. Draw it, build it in Blender, do it in pixel art, or make a diorama.</p>
+    </div>
+    <div class="card">
+      <h3>Pick your format</h3>
+      <p><strong>Physical.</strong> Use foam board, poster board, or the hallway wall. Print the real artifact photos from the Reveal page, which links to open license images. Hand lettered headings are fine. Panel text can be printed.</p>
+      <p><strong>Digital.</strong> Make a slide deck, a single web page, or a Canva board with the same seven panels. It has to make sense when someone opens it without you there to explain.</p>
+      <h3 style="margin-top:1em">What a good one has</h3>
+      <ul class="clean">
+        <li>A visitor can follow it without you standing next to them.</li>
+        <li>Every claim points at a find, and every find has a catalog number.</li>
+        <li>At least one panel keeps observations and inferences visibly separate.</li>
+        <li>The claim panel is the first thing the eye lands on.</li>
+      </ul>
+      <h3 style="margin-top:1em">What to turn in</h3>
+      <p>Paste your exported Dig Journal into your Global History doc. Add photos of the physical exhibit or the link to the digital one. Then you are ready for Day 3.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Day 3: the walkthrough</h3>
+    <p>You are the museum guide. Dad is the visitor. Walk him through the exhibit panel by panel, in your own words, without reading off the panels. Expect him to stop you and ask questions like these:</p>
+    <ul class="clean">
+      <li>How do you know that? Which find tells you?</li>
+      <li>What is an observation here, and what is a guess?</li>
+      <li>What did you think at first, and what changed your mind?</li>
+      <li>If you had skipped one field event, what would you not know?</li>
+      <li>So, what did they give up? Was it worth it?</li>
+    </ul>
+    <p class="small">Plan on about 30 minutes. You do not need notes, but you can have your Dig Journal open.</p>
+  </div>
+
+  <div class="card navy">
+    <h3>Submit your claim to unlock the Reveal</h3>
+    <p>Write the one sentence that will sit at the center of your exhibit. Then list the finds that carry it, two or more. Do this before you see what the real team concluded. Once you submit, the site's real name and their conclusions open up.</p>
+    <label for="claim" style="color:#fff">Your claim (one sentence)</label>
+    <input type="text" id="claim" data-key="claim.text" placeholder="When we stopped moving, we gave up ...">
+    <label for="claim-ev" style="color:#fff">Your evidence (catalog numbers and one line each)</label>
+    <textarea id="claim-ev" data-key="claim.evidence"></textarea>
+    <div class="actions"><button class="amber" id="submit-claim" onclick="submitClaim()">Submit my claim and open the Reveal</button><span id="claim-status" class="small" style="color:#ffd58a"></span></div>
+  </div>
+  <div class="actions"><button class="secondary" onclick="go('lab')">Back to the Lab</button></div>
+</section>
+
+<!-- ================= 5 REVEAL ================= -->
+<section class="panel" id="p-reveal">
+  <div id="reveal-locked" class="reveal-locked">
+    <h2>Sealed</h2>
+    <p>The Reveal opens when you submit your claim on the Exhibit page.</p>
+  </div>
+  <div id="reveal-open" style="display:none">
+    <span class="tag teal">Reveal</span>
+    <h2>Site 47 is Tell Abu Hureyra</h2>
+    <div class="callout"><strong>What to do now:</strong> read what the real team concluded, score yourself honestly, write the two Codex entries, and then export your journal one last time.</div>
+    <p>It is a mound on the Euphrates River in northern Syria. Andrew Moore, Gordon Hillman, and Anthony Legge excavated it in 1972 and 1973 in a race against the Tabqa Dam. Lake Assad covered it in 1974. Everything we know comes from two seasons of digging and more than twenty five years of lab work afterward. The dig was one of the first anywhere to use flotation, which is why we have the seeds.</p>
+    <p><strong>Honesty note.</strong> Your trench was built almost entirely from the real Abu Hureyra sequence. The cards marked <span class="tag ref">Field reference</span> were real finds from other sites of the same era, brought in to show things Abu Hureyra does not preserve. The full list is at the bottom of this page.</p>
+
+    <div class="card">
+      <h3>What the real team concluded</h3>
+      <table>
+        <tr><th>Layer</th><th>Their reading</th></tr>
+        <tr><td><strong>5 · Abu Hureyra 1</strong><br>about 13,300 to 11,400 years ago</td><td>A village of settled hunter gatherers, perhaps one or two hundred people, living in pit houses cut into the terrace. They harvested over a hundred wild plant species from river, forest, and steppe, and killed migrating gazelle by the hundreds each spring, drying the meat. They ground wild grain on stone. People settled before farming: the stored food was too heavy to carry and too valuable to leave.</td></tr>
+        <tr><td><strong>4 · The Gap</strong><br>about 12,900 to 10,600 years ago</td><td>A sudden return to cold, dry conditions (the Younger Dryas) thinned the wild food. Weed seeds of disturbed ground and a handful of rye grains with a domesticated shape suggest people tried sowing grain to make up the loss. Then the village was largely abandoned for roughly a thousand years, probably for better watered sites nearby.</td></tr>
+        <tr><td><strong>3 · Abu Hureyra 2A</strong><br>about 10,600 to 9,500 years ago</td><td>A new village of rectangular mudbrick houses with plastered floors. People grew domesticated emmer, barley, and lentils, and still hunted gazelle heavily. Farming and hunting ran side by side for centuries.</td></tr>
+        <tr><td><strong>2 · Abu Hureyra 2B</strong><br>about 9,500 to 8,000 years ago</td><td>The village grew to several thousand people, among the largest anywhere. Around 8,300 years ago sheep and goat bones overtake gazelle: herding replaced the hunt, likely because the hunt had collapsed. Theya Molleson's study of the skeletons found bent and arthritic big toes, crushed lower vertebrae, and enlarged neck vertebrae, mostly in women, from kneeling for hours at the grinding stone and carrying loads on the head. Teeth were ground down by stone grit in the flour. Grooved front teeth show a few women held basket fiber in their mouths while weaving. Childhood stress lines in tooth enamel are common. The people buried under house floors are mostly women.</td></tr>
+        <tr><td><strong>1 · Abu Hureyra 2C</strong><br>about 8,000 to 7,800 years ago</td><td>Pottery appears. Tooth wear drops, which Molleson reads as grain being soaked and cooked in pots instead of eaten as gritty bread. The village ends soon after.</td></tr>
+      </table>
+      <p class="small">Dates are calibrated years before present and are rounded. Specialists still argue about the early rye and about whether the gap was a complete abandonment.</p>
+    </div>
+
+    <div class="card">
+      <h3>Score yourself</h3>
+      <p class="small">Compare your checkpoint hypotheses and your claim to the table above. Be honest. A miss with a good reason is worth more than a lucky match.</p>
+      <table class="score" id="scoretable">
+        <tr><th>Question</th><th>Match</th><th>Partial</th><th>Miss</th><th>Why (one line)</th></tr>
+        <tr><td>Were the Layer 5 people settled or moving?</td><td><input type="radio" name="s1" value="match"></td><td><input type="radio" name="s1" value="partial"></td><td><input type="radio" name="s1" value="miss"></td><td><input type="text" data-key="score.s1"></td></tr>
+        <tr><td>What happened in the Gap?</td><td><input type="radio" name="s2" value="match"></td><td><input type="radio" name="s2" value="partial"></td><td><input type="radio" name="s2" value="miss"></td><td><input type="text" data-key="score.s2"></td></tr>
+        <tr><td>Who did the grinding, and what did it cost them?</td><td><input type="radio" name="s3" value="match"></td><td><input type="radio" name="s3" value="partial"></td><td><input type="radio" name="s3" value="miss"></td><td><input type="text" data-key="score.s3"></td></tr>
+        <tr><td>Why did the gazelle disappear from the bones?</td><td><input type="radio" name="s4" value="match"></td><td><input type="radio" name="s4" value="partial"></td><td><input type="radio" name="s4" value="miss"></td><td><input type="text" data-key="score.s4"></td></tr>
+        <tr><td>Your central claim compared to their reading</td><td><input type="radio" name="s5" value="match"></td><td><input type="radio" name="s5" value="partial"></td><td><input type="radio" name="s5" value="miss"></td><td><input type="text" data-key="score.s5"></td></tr>
+      </table>
+      <label for="reveal-change">Name one thing you would change in your exhibit now that you have seen their reading, and say whether you will change it.</label>
+      <textarea id="reveal-change" data-key="reveal.change"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>For the Pattern Codex</h3>
+      <p>Unit 1 hands you your first pattern. Name it in your own words. Here is a starting shape you are free to reject: <em>stored food lets people stop moving; stopping lets numbers grow; growing numbers need more stored food; and the work of making it lands on some bodies more than others.</em></p>
+      <label for="codex-pattern">Name the pattern and explain how it works</label>
+      <textarea id="codex-pattern" data-key="codex.pattern"></textarea>
+      <label for="codex-world">World Engine line: write how this pattern shows up, or should show up, in your own world</label>
+      <textarea id="codex-world" data-key="codex.world"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>The borrowed finds and where they came from</h3>
+      <table>
+        <tr><th>Card</th><th>Real source</th><th>Why it was brought in</th></tr>
+        <tr><td>REF-01 Painted animals on a cave wall</td><td>Lascaux, France, about 17,000 years ago. <a href="https://en.wikipedia.org/wiki/Lascaux" target="_blank" rel="noopener">Wikipedia</a></td><td>Abu Hureyra has no cave, and Paleolithic art needed to be in the trench.</td></tr>
+        <tr><td>REF-02 Hand stencil</td><td>Cueva de las Manos, Argentina, and similar hand stencils worldwide. <a href="https://en.wikipedia.org/wiki/Cueva_de_las_Manos" target="_blank" rel="noopener">Wikipedia</a></td><td>Same reason, and to show the pattern is global.</td></tr>
+        <tr><td>REF-03 Bone handled sickle</td><td>Natufian sites of the southern Levant, same era as Layer 5. <a href="https://en.wikipedia.org/wiki/Natufian_culture" target="_blank" rel="noopener">Wikipedia</a></td><td>Abu Hureyra 1 has the flint blades with "sickle gloss" but not a complete sickle with its handle.</td></tr>
+        <tr><td>REF-04 Obsidian blade</td><td>Anatolian obsidian traded across the region, best known from Çatalhöyük. <a href="https://en.wikipedia.org/wiki/%C3%87atalh%C3%B6y%C3%BCk" target="_blank" rel="noopener">Wikipedia</a></td><td>To put long distance trade in a Neolithic layer next to the site's own sea shells.</td></tr>
+        <tr><td>REF-05 Two burials, one rich, one plain</td><td>A composite of Neolithic burials with and without grave goods, from Çatalhöyük and other sites.</td><td>To make the beginnings of inequality visible. Abu Hureyra's own burials show little difference in goods.</td></tr>
+      </table>
+      <p>Everything else in the trench is from Abu Hureyra itself: the painted skull, the grooved teeth, the bent toes, the sea shells, the pit houses, the mudbrick houses, the gazelle, the sheep, and the seeds.</p>
+    </div>
+
+    <div class="card">
+      <h3>Go further, and find images to print for the exhibit</h3>
+      <ul class="clean">
+        <li><a href="https://en.wikipedia.org/wiki/Tell_Abu_Hureyra" target="_blank" rel="noopener">Tell Abu Hureyra on Wikipedia</a>, with a photo of the pit houses and a reconstruction.</li>
+        <li><a href="https://commons.wikimedia.org/wiki/Category:Abu_Hureyra" target="_blank" rel="noopener">Wikimedia Commons: Abu Hureyra</a>, open license images including a mortar and pestle from the site.</li>
+        <li><a href="https://commons.wikimedia.org/wiki/Category:Saddle_querns" target="_blank" rel="noopener">Wikimedia Commons: saddle querns</a>, to show the grinding stone.</li>
+        <li><a href="https://www.rit.edu/academicaffairs/abuhureyra/" target="_blank" rel="noopener">Village on the Euphrates, data tables</a>, the project's own phase lists, burial tables, and human remains tables.</li>
+        <li><a href="https://engines.egr.uh.edu/episode/960" target="_blank" rel="noopener">Engines of Our Ingenuity, "Grain in Abu Hureyra"</a>, a short readable account of how Molleson worked out the toes.</li>
+        <li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0272947" target="_blank" rel="noopener">Smith and others, 2022, PLOS ONE</a>, the dung evidence that animals were being kept on site even in the forager village.</li>
+        <li>Theya Molleson, "The Eloquent Bones of Abu Hureyra," <em>Scientific American</em>, August 1994. Ask Dad for a copy.</li>
+      </ul>
+    </div>
+    <div class="actions"><button class="secondary" onclick="go('exhibit')">Back to the Exhibit</button><button class="amber" onclick="exportMd()">Export my journal</button></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <div class="actions">
+    <button onclick="exportMd()">Export journal (Markdown)</button>
+    <button class="secondary" onclick="window.print()">Print this page</button>
+    <span style="flex:1"></span>
+    <button class="secondary" onclick="dadUnlock()">Unlock everything (Dad only)</button>
+    <button class="secondary" onclick="resetAll()">Reset everything</button>
+  </div>
+  <p>The Dig · Global History and Geography I, Unit 1 · The site is a real excavation; its name stays sealed until the Reveal. Drawings are sketches, not to scale.</p>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- state ---------- */
+const KEY='thedig.v1';
+let S={unlocked:1, closed:[], claim:false, vals:{}};
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function val(k){return (S.vals[k]||'')}
+function setVal(k,v){S.vals[k]=v;save();}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+
+/* ---------- content: field kit ---------- */
+const KIT=[
+ {k:'strat',t:'Stratigraphy',q:'Explain why deeper usually means older, and name one thing that can break that rule.',l:[['Wikipedia: Stratigraphy (archaeology)','https://en.wikipedia.org/wiki/Stratigraphy_(archaeology)'],['Wikipedia: Law of superposition','https://en.wikipedia.org/wiki/Law_of_superposition']]},
+ {k:'three',t:'Artifact, ecofact, feature',q:'A stone blade, a charred seed, and a pit dug into the ground are three different kinds of evidence. Say which is which, and explain why the difference matters.',l:[['Wikipedia: Artifact (archaeology)','https://en.wikipedia.org/wiki/Artifact_(archaeology)'],['Wikipedia: Biofact (archaeology)','https://en.wikipedia.org/wiki/Biofact_(archaeology)'],['Wikipedia: Feature (archaeology)','https://en.wikipedia.org/wiki/Feature_(archaeology)']]},
+ {k:'context',t:'Context',q:'Explain why an object dug up carefully, with its position recorded, is worth more to science than the same object bought from a looter. What is lost when context is lost?',l:[['Wikipedia: Archaeological context','https://en.wikipedia.org/wiki/Archaeological_context'],['SAA: Looting and site destruction','https://www.saa.org/education-outreach/teaching-archaeology/k-12-activities-resources/archaeology-for-the-public/looting']]},
+ {k:'dating',t:'Dating: relative and absolute',q:'Explain the difference between saying "this is older than that" and "this is 11,000 years old." Then explain in plain words how radiocarbon dating works and what kinds of things it can date.',l:[['Wikipedia: Relative dating','https://en.wikipedia.org/wiki/Relative_dating'],['Wikipedia: Radiocarbon dating','https://en.wikipedia.org/wiki/Radiocarbon_dating']]},
+ {k:'flot',t:'Flotation',q:'How do you find a seed smaller than a grain of rice inside a ton of dirt? Describe the method. This site was one of the first anywhere to use it.',l:[['Wikipedia: Flotation (archaeology)','https://en.wikipedia.org/wiki/Flotation_(archaeology)']]},
+ {k:'bones',t:'Reading bones',q:'Explain what a human skeleton can tell you about a person\u2019s life, such as age, work, diet, and illness. Name two things bones record and one thing they cannot.',l:[['Wikipedia: Bioarchaeology','https://en.wikipedia.org/wiki/Bioarchaeology'],['Wikipedia: Enamel hypoplasia','https://en.wikipedia.org/wiki/Enamel_hypoplasia']]}
+];
+
+/* ---------- content: SVG icons ---------- */
+const I={
+ gazelle:`<svg viewBox="0 0 170 130"><g fill="#efe4d0" stroke="#7a5c3a" stroke-width="3" stroke-linejoin="round"><path d="M68 48 Q60 70 66 92 L74 108 L96 108 L104 92 Q110 70 102 48 Q85 40 68 48Z"/><path d="M70 48 Q58 30 62 10 Q66 2 72 8 Q78 24 78 46"/><path d="M100 48 Q112 30 108 10 Q104 2 98 8 Q92 24 92 46"/></g><g fill="#4a3524"><ellipse cx="76" cy="66" rx="6" ry="9"/><ellipse cx="94" cy="66" rx="6" ry="9"/><ellipse cx="85" cy="92" rx="3" ry="5"/></g><g fill="#a98a5a"><rect x="14" y="118" width="18" height="6" rx="2"/><rect x="38" y="118" width="18" height="6" rx="2"/><rect x="62" y="118" width="18" height="6" rx="2"/><rect x="86" y="118" width="18" height="6" rx="2"/><rect x="110" y="118" width="18" height="6" rx="2"/><rect x="134" y="118" width="18" height="6" rx="2"/></g></svg>`,
+ seeds:`<svg viewBox="0 0 170 130"><g fill="#4a3524"><ellipse cx="40" cy="60" rx="7" ry="13" transform="rotate(-20 40 60)"/><ellipse cx="62" cy="48" rx="7" ry="13" transform="rotate(10 62 48)"/><ellipse cx="85" cy="62" rx="7" ry="13" transform="rotate(-35 85 62)"/><ellipse cx="108" cy="50" rx="7" ry="13" transform="rotate(25 108 50)"/><ellipse cx="128" cy="66" rx="7" ry="13" transform="rotate(-10 128 66)"/><ellipse cx="55" cy="88" rx="6" ry="11" transform="rotate(40 55 88)"/><ellipse cx="100" cy="92" rx="6" ry="11" transform="rotate(-45 100 92)"/><ellipse cx="78" cy="100" rx="5" ry="9"/></g><path d="M20 118 h130" stroke="#a98a5a" stroke-width="3"/><text x="85" y="30" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">charred, 2 to 6 mm</text></svg>`,
+ pit:`<svg viewBox="0 0 170 130"><path d="M10 70 H60 Q60 100 85 100 Q110 100 110 70 H160" fill="none" stroke="#4a3524" stroke-width="3"/><rect x="10" y="70" width="150" height="50" fill="#a98a5a" opacity=".35"/><path d="M60 70 Q60 100 85 100 Q110 100 110 70Z" fill="#dfcb9d"/><path d="M50 70 Q85 20 120 70" fill="#8a6a44" opacity=".8"/><path d="M85 44 V100" stroke="#4a3524" stroke-width="3"/><circle cx="85" cy="88" r="6" fill="#e39b2c"/><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">cut into sandstone</text></svg>`,
+ quern:`<svg viewBox="0 0 170 130"><path d="M30 95 Q85 70 140 95 L140 105 Q85 80 30 105Z" fill="#8a6a44"/><path d="M30 95 Q85 70 140 95" fill="none" stroke="#4a3524" stroke-width="3"/><ellipse cx="85" cy="68" rx="22" ry="10" fill="#4a3524"/><path d="M85 20 Q70 40 85 55 Q100 40 85 20" fill="#e39b2c"/><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">basalt, 40 cm long</text></svg>`,
+ lunate:`<svg viewBox="0 0 170 130"><g fill="#6b6b6b" stroke="#333" stroke-width="2"><path d="M40 70 A25 25 0 0 1 80 60 A30 30 0 0 0 40 70Z"/><path d="M75 90 A25 25 0 0 1 115 80 A30 30 0 0 0 75 90Z"/><path d="M95 50 A25 25 0 0 1 135 40 A30 30 0 0 0 95 50Z"/></g><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">flint, 1 to 2 cm</text></svg>`,
+ shell:`<svg viewBox="0 0 170 130"><path d="M85 25 C120 25 135 70 110 95 Q85 110 60 95 C35 70 50 25 85 25Z" fill="#efe4d0" stroke="#8a6a44" stroke-width="3"/><g stroke="#8a6a44" stroke-width="2" fill="none"><path d="M85 25 L85 100"/><path d="M85 25 Q60 60 62 94"/><path d="M85 25 Q110 60 108 94"/><path d="M85 25 Q45 55 55 85"/><path d="M85 25 Q125 55 115 85"/></g><circle cx="85" cy="32" r="4" fill="#4a3524"/><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">drilled, 2 cm</text></svg>`,
+ cave:`<svg viewBox="0 0 170 130"><rect x="10" y="10" width="150" height="110" rx="10" fill="#8a6a44"/><g fill="none" stroke="#1d1d1b" stroke-width="3" stroke-linecap="round"><path d="M40 80 Q60 40 95 50 Q120 55 125 80"/><path d="M45 80 L45 100 M60 85 L62 100 M105 82 L108 100 M120 80 L122 100"/><path d="M95 50 Q100 35 115 36"/></g><g fill="#e39b2c" opacity=".8"><circle cx="50" cy="40" r="4"/><circle cx="135" cy="30" r="3"/></g></svg>`,
+ hand:`<svg viewBox="0 0 170 130"><rect x="10" y="10" width="150" height="110" rx="10" fill="#b4433a"/><path d="M70 110 V70 Q70 60 65 50 Q60 40 68 40 Q74 40 76 60 V40 Q76 30 84 30 Q90 30 90 40 V60 Q92 32 100 32 Q106 32 106 42 V62 Q108 40 114 42 Q120 44 118 62 V85 Q118 110 98 112Z" fill="#efe4d0"/></svg>`,
+ sickle:`<svg viewBox="0 0 170 130"><path d="M40 100 L70 70" stroke="#dfcb9d" stroke-width="14" stroke-linecap="round"/><path d="M70 70 Q90 30 140 35 Q110 45 100 70" fill="#efe4d0" stroke="#8a6a44" stroke-width="3"/><g fill="#6b6b6b"><rect x="78" y="56" width="10" height="7" transform="rotate(-40 83 59)"/><rect x="92" y="44" width="10" height="7" transform="rotate(-25 97 47)"/><rect x="108" y="38" width="10" height="7" transform="rotate(-10 113 41)"/></g><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">bone haft, flint teeth</text></svg>`,
+ dung:`<svg viewBox="0 0 170 130"><circle cx="50" cy="60" r="18" fill="#6e5a3a"/><circle cx="90" cy="75" r="22" fill="#6e5a3a"/><circle cx="125" cy="55" r="15" fill="#6e5a3a"/><g fill="#fff" opacity=".9"><circle cx="48" cy="58" r="2"/><circle cx="56" cy="66" r="1.5"/><circle cx="86" cy="70" r="2"/><circle cx="96" cy="80" r="1.5"/><circle cx="123" cy="52" r="1.5"/></g><text x="85" y="118" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">microscopic spherules</text></svg>`,
+ weeds:`<svg viewBox="0 0 170 130"><g stroke="#2e8b57" stroke-width="3" fill="none"><path d="M40 110 V60 M40 75 l-12 -10 M40 85 l12 -8"/><path d="M85 110 V50 M85 70 l-14 -8 M85 80 l14 -10 M85 60 l-8 -10"/><path d="M130 110 V65 M130 80 l-10 -8 M130 90 l12 -10"/></g><g fill="#4a3524"><ellipse cx="40" cy="55" rx="4" ry="7"/><ellipse cx="85" cy="44" rx="4" ry="7"/><ellipse cx="130" cy="60" rx="4" ry="7"/></g><path d="M20 112 h130" stroke="#8a6a44" stroke-width="4"/></svg>`,
+ rye:`<svg viewBox="0 0 170 130"><g fill="#e39b2c"><ellipse cx="60" cy="65" rx="9" ry="16"/><ellipse cx="85" cy="60" rx="9" ry="16"/><ellipse cx="110" cy="65" rx="9" ry="16"/></g><g stroke="#4a3524" stroke-width="2" fill="none"><path d="M60 49 V81 M85 44 V76 M110 49 V81"/></g><text x="85" y="105" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">5 grains, plump base</text></svg>`,
+ empty:`<svg viewBox="0 0 170 130"><rect x="10" y="20" width="150" height="90" fill="#c6ad7c"/><g stroke="#a98a5a" stroke-width="1" opacity=".7"><path d="M10 40 H160 M10 60 H160 M10 80 H160 M10 100 H160"/></g><text x="85" y="70" font-size="13" text-anchor="middle" fill="#4a3524" font-family="DM Serif Display,serif">nothing</text></svg>`,
+ brick:`<svg viewBox="0 0 170 130"><rect x="30" y="40" width="110" height="70" fill="#a98a5a" stroke="#4a3524" stroke-width="3"/><g stroke="#4a3524" stroke-width="2"><path d="M30 63 H140 M30 86 H140 M58 40 V63 M112 40 V63 M85 63 V86 M58 86 V110 M112 86 V110"/></g><rect x="70" y="80" width="30" height="30" fill="#17324d"/><path d="M30 40 L85 15 L140 40" fill="none" stroke="#4a3524" stroke-width="3"/></svg>`,
+ plaster:`<svg viewBox="0 0 170 130"><rect x="20" y="30" width="130" height="80" fill="#efe4d0" stroke="#8a6a44" stroke-width="3"/><path d="M20 70 Q85 55 150 70" stroke="#d9ccb4" stroke-width="2" fill="none"/><ellipse cx="60" cy="88" rx="20" ry="8" fill="#b4433a" opacity=".6"/><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">lime plaster floor, traces of red</text></svg>`,
+ emmer:`<svg viewBox="0 0 170 130"><g stroke="#8a6a44" stroke-width="3" fill="none"><path d="M85 115 V40"/></g><g fill="#e39b2c"><ellipse cx="78" cy="42" rx="6" ry="11" transform="rotate(-25 78 42)"/><ellipse cx="92" cy="42" rx="6" ry="11" transform="rotate(25 92 42)"/><ellipse cx="78" cy="58" rx="6" ry="11" transform="rotate(-25 78 58)"/><ellipse cx="92" cy="58" rx="6" ry="11" transform="rotate(25 92 58)"/><ellipse cx="78" cy="74" rx="6" ry="11" transform="rotate(-25 78 74)"/><ellipse cx="92" cy="74" rx="6" ry="11" transform="rotate(25 92 74)"/></g><g stroke="#e39b2c" stroke-width="1.5"><path d="M78 32 L60 10 M92 32 L110 10"/></g><text x="85" y="128" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">tough rachis</text></svg>`,
+ obsidian:`<svg viewBox="0 0 170 130"><path d="M60 110 L72 25 L98 25 L110 110 Z" fill="#1d1d1b"/><path d="M72 25 L85 110" stroke="#5a5a5a" stroke-width="1.5"/><path d="M98 25 L85 110" stroke="#5a5a5a" stroke-width="1.5"/><path d="M75 35 L80 90" stroke="#9fb3c8" stroke-width="2" opacity=".5"/><text x="85" y="125" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">volcanic glass, 8 cm</text></svg>`,
+ sheep:`<svg viewBox="0 0 170 130"><g fill="none" stroke="#4a3524" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M55 60 Q45 30 70 25 Q95 20 110 40 Q125 55 115 80 L112 100 M55 60 Q50 85 62 100"/><path d="M45 50 Q30 60 40 75 Q50 70 55 60"/><circle cx="90" cy="50" r="3" fill="#4a3524"/><path d="M108 60 q-10 8 -20 2"/></g><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">sheep/goat skull</text></svg>`,
+ toe:`<svg viewBox="0 0 170 130"><g fill="#efe4d0" stroke="#7a5c3a" stroke-width="3" stroke-linejoin="round"><path d="M25 85 Q25 70 40 70 L80 68 Q92 68 92 78 Q92 88 80 88 L40 90 Q25 90 25 85Z"/><path d="M92 76 Q100 60 120 56 Q135 54 138 64 Q140 74 128 78 L100 86Z"/><path d="M138 64 Q150 58 155 62 Q160 70 150 74 L136 76Z"/></g><path d="M96 72 l6 -6" stroke="#b4433a" stroke-width="3"/><text x="85" y="118" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">right big toe, adult female</text></svg>`,
+ spine:`<svg viewBox="0 0 170 130"><g fill="#efe4d0" stroke="#7a5c3a" stroke-width="3"><rect x="65" y="12" width="40" height="18" rx="5"/><rect x="65" y="36" width="40" height="18" rx="5"/><rect x="63" y="60" width="44" height="20" rx="5"/><rect x="58" y="86" width="54" height="14" rx="5"/></g><path d="M60 93 L110 93" stroke="#b4433a" stroke-width="3"/><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">lower back, crushed</text></svg>`,
+ teeth:`<svg viewBox="0 0 170 130"><g fill="#fff" stroke="#7a5c3a" stroke-width="3"><path d="M30 80 Q30 50 48 50 Q66 50 66 80 Q48 95 30 80Z"/><path d="M76 80 Q76 50 94 50 Q112 50 112 80 Q94 95 76 80Z"/><path d="M122 80 Q122 50 140 50 Q158 50 158 80 Q140 95 122 80Z"/></g><g stroke="#8a6a44" stroke-width="2"><path d="M34 58 H62 M80 56 H108 M126 58 H154"/></g><path d="M92 50 V72" stroke="#b4433a" stroke-width="3"/><text x="85" y="118" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">worn flat; one grooved</text></svg>`,
+ skull:`<svg viewBox="0 0 170 130"><path d="M50 60 Q50 20 85 20 Q120 20 120 60 Q120 85 105 92 L105 105 H65 L65 92 Q50 85 50 60Z" fill="#efe4d0" stroke="#7a5c3a" stroke-width="3"/><g fill="#1d1d1b"><ellipse cx="72" cy="62" rx="9" ry="11"/><ellipse cx="98" cy="62" rx="9" ry="11"/></g><g stroke="#b4433a" stroke-width="3" fill="none"><path d="M60 40 Q85 28 110 40"/><path d="M85 95 V105"/><path d="M58 70 L50 85 M112 70 L120 85"/></g><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">red pigment, no jaw</text></svg>`,
+ burial:`<svg viewBox="0 0 170 130"><rect x="10" y="20" width="150" height="90" fill="#c6ad7c"/><path d="M40 60 Q85 50 125 70 M45 75 Q85 60 120 85" stroke="#efe4d0" stroke-width="8" stroke-linecap="round" fill="none"/><circle cx="38" cy="58" r="10" fill="#efe4d0" stroke="#7a5c3a" stroke-width="2"/><g fill="#e39b2c"><circle cx="115" cy="40" r="3"/><circle cx="122" cy="44" r="3"/><circle cx="129" cy="40" r="3"/></g><rect x="110" y="86" width="22" height="14" fill="#1d1d1b"/><path d="M10 20 H160" stroke="#8a6a44" stroke-width="4"/></svg>`,
+ basket:`<svg viewBox="0 0 170 130"><path d="M35 50 L45 110 H125 L135 50Z" fill="#dfcb9d" stroke="#8a6a44" stroke-width="3"/><g stroke="#8a6a44" stroke-width="2" fill="none"><path d="M38 65 H132 M41 80 H129 M43 95 H127"/><path d="M55 50 L60 110 M75 50 L78 110 M95 50 L92 110 M115 50 L110 110"/></g><path d="M35 50 H135" stroke="#4a3524" stroke-width="4"/><text x="85" y="125" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">impression in clay</text></svg>`,
+ enamel:`<svg viewBox="0 0 170 130"><path d="M55 95 Q55 40 85 40 Q115 40 115 95 Q85 112 55 95Z" fill="#fff" stroke="#7a5c3a" stroke-width="3"/><g stroke="#b4433a" stroke-width="2"><path d="M60 62 Q85 56 110 62 M60 76 Q85 70 110 76"/></g><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">lines in the enamel</text></svg>`,
+ pot:`<svg viewBox="0 0 170 130"><path d="M60 30 H110 L105 45 Q130 60 120 95 Q115 110 85 110 Q55 110 50 95 Q40 60 65 45Z" fill="#a98a5a" stroke="#4a3524" stroke-width="3"/><path d="M60 70 Q85 62 110 70" stroke="#4a3524" stroke-width="2" fill="none"/><path d="M95 60 L120 100" stroke="#4a3524" stroke-width="2" opacity=".5"/><text x="85" y="125" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">fired clay, hand built</text></svg>`,
+ mortar:`<svg viewBox="0 0 170 130"><path d="M45 50 Q45 100 85 100 Q125 100 125 50Z" fill="#6b6b6b" stroke="#333" stroke-width="3"/><ellipse cx="85" cy="50" rx="40" ry="10" fill="#8a8a8a" stroke="#333" stroke-width="3"/><rect x="95" y="15" width="12" height="55" rx="6" fill="#4a3524" transform="rotate(20 101 42)"/><text x="85" y="122" font-size="11" text-anchor="middle" fill="#4b4a45" font-family="DM Mono,monospace">stone mortar and pestle</text></svg>`,
+ streets:`<svg viewBox="0 0 170 130"><rect x="10" y="10" width="150" height="110" fill="#c6ad7c"/><g fill="#a98a5a" stroke="#4a3524" stroke-width="2"><rect x="18" y="18" width="40" height="34"/><rect x="66" y="18" width="34" height="34"/><rect x="108" y="18" width="44" height="34"/><rect x="18" y="64" width="34" height="48"/><rect x="60" y="64" width="46" height="48"/><rect x="114" y="64" width="38" height="48"/></g><text x="85" y="59" font-size="9" text-anchor="middle" fill="#4a3524" font-family="DM Mono,monospace">1.5 m lane</text></svg>`
+};
+
+/* ---------- content: layers ---------- */
+const LAYERS=[
+ {n:5,name:'Layer 5: the bottom of the trench',depth:'8 m down · about 13,300 to 11,400 years ago',color:'var(--l5)',intro:'The trench hits sandstone bedrock here. Just above it, the first signs of people. This is the oldest material at the site.',
+  cards:[
+   {id:'47-5-01',title:'Pits cut into the rock',icon:'pit',ref:false,facts:[['Found','A cluster of round pits, 2 to 2.5 m across, cut into the soft sandstone terrace. Post holes around the edges. Inside: ash, burnt reeds, and small side pits.'],['Next to it','The other pits, close together. No walls above ground survive.'],['Think about','What is a hole like this for, and what does it take to dig one?']],link:['Wikipedia: Pit house','https://en.wikipedia.org/wiki/Pit-house']},
+   {id:'47-5-02',title:'Gazelle, by the hundreds',icon:'gazelle',ref:false,facts:[['Found','Tens of thousands of gazelle bones. In one sample the teeth of the young animals are all at the same stage of eruption, meaning they were all killed within a few weeks of each other, in early summer.'],['Also','Smaller numbers of onager, wild sheep, wild cattle, hare, fox, birds, fish.'],['Think about','What kind of hunting produces this many animals in one short season, and what do you do with that much meat?']],link:['Wikipedia: Goitered gazelle','https://en.wikipedia.org/wiki/Goitered_gazelle']},
+   {id:'47-5-03',title:'Seeds, charred, by the thousand',icon:'seeds',ref:false,facts:[['Found','Charred seeds and fruit stones from more than 100 wild plant species, recovered by flotation: wild einkorn and rye, lentils, knotweed and dock, club rush, wild fruits and nuts.'],['Where they grow','Some from the river banks, some from oak and pistachio woodland, some from the open steppe. The three zones are each within a day\u2019s walk but in different directions.'],['Think about','What does the list tell you about how far people ranged and how many seasons they were here?']],link:['Wikipedia: Einkorn wheat','https://en.wikipedia.org/wiki/Einkorn_wheat']},
+   {id:'47-5-04',title:'Grinding stone',icon:'quern',ref:false,facts:[['Found','Large, heavy stones with a worn dip in the top surface, and smaller rounded stones that fit the dip. Several, from the earliest levels upward.'],['Weight','Too heavy to carry comfortably any distance.'],['Think about','What are these for, and what does owning one say about whether you plan to leave?']],link:['Wikipedia: Quern-stone','https://en.wikipedia.org/wiki/Quern-stone']},
+   {id:'47-5-05',title:'Tiny crescent blades',icon:'lunate',ref:false,facts:[['Found','Hundreds of small flint pieces shaped like crescents, 1 to 2 cm long, one edge sharp, the other blunted. Some have a glossy polish along the sharp edge.'],['Think about','Something this small is not a knife on its own. What was it part of? What leaves a polish on flint?']],link:['Wikipedia: Microlith','https://en.wikipedia.org/wiki/Microlith']},
+   {id:'47-5-06',title:'Sea shells, hundreds of kilometers from the sea',icon:'shell',ref:false,facts:[['Found','Shells of Mediterranean and Red Sea species, many drilled for stringing. The nearest coast is well over 150 km away.'],['Think about','How did they get here, and what does it mean that people wanted them?']],link:['Wikipedia: Natufian culture (trade section)','https://en.wikipedia.org/wiki/Natufian_culture']},
+   {id:'47-5-07',title:'Dung, under the microscope',icon:'dung',ref:false,facts:[['Found','Microscopic mineral spherules that form in the gut of grazing animals, concentrated inside the settlement rather than scattered across it. Found in the earliest levels.'],['Think about','Wild animals do not leave dung inside a village. What might this mean about the relationship between these people and at least some animals, even this early?']],link:['PLOS ONE: dung spherulites at an early village','https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0272947']},
+   {id:'REF-01',title:'Painted animals on a cave wall',icon:'cave',ref:true,facts:[['Field reference','This find is from another site of the Paleolithic era, provided for comparison. Horses, aurochs, and deer painted in charcoal and ochre deep inside a cave, far from daylight.'],['Think about','Why would hunting people spend effort on this, in a place nobody lives?']],link:['Wikipedia: Cave painting','https://en.wikipedia.org/wiki/Cave_painting']},
+   {id:'REF-02',title:'Hand stencil',icon:'hand',ref:true,facts:[['Field reference','From another Paleolithic site. Pigment blown around a hand pressed to rock. Found at sites on several continents, thousands of years apart.'],['Think about','What is a person doing when they do this? Is it the same thing you do when you do something like it?']],link:['Wikipedia: Cave of the Hands','https://en.wikipedia.org/wiki/Cueva_de_las_Manos']},
+   {id:'REF-03',title:'Bone handled sickle',icon:'sickle',ref:true,facts:[['Field reference','From a nearby site of the same era. A curved bone handle with a groove along the inner edge, flint blades still set in it. The blades carry the same glossy polish as the crescents in this trench.'],['Think about','Now that you can see the whole tool, what were the crescents cutting? Does cutting wild grain count as farming?']],link:['Wikipedia: Sickle (prehistory)','https://en.wikipedia.org/wiki/Sickle']}
+  ],
+  checkpoint:'Hypothesis 1. Describe how the people of Layer 5 lived. Where did they get food? Did they stay in one place all year? What were their homes like? What did they value? Point to at least three catalog numbers.'},
+
+ {n:4,name:'Layer 4: the thin layer and the empty layer',depth:'about 12,900 to 10,600 years ago',color:'var(--l4)',intro:'Above the pit village the deposit gets thin and strange, then stops entirely for a long stretch. This layer is short on finds. Read it as carefully as the busy ones.',
+  cards:[
+   {id:'47-4-01',title:'The wild foods thin out',icon:'seeds',ref:false,facts:[['Found','In the upper part of the old village, the seeds from woodland fruits and nuts drop sharply. Steppe and river plants remain. Pollen from trees declines.'],['Climate record','Ice cores from far away record a sudden return to cold, dry conditions beginning around 12,900 years ago and lasting over a thousand years.'],['Think about','If you are the people in the pits, what is the first thing you notice, and what do you do about it?']],link:['Wikipedia: Younger Dryas','https://en.wikipedia.org/wiki/Younger_Dryas']},
+   {id:'47-4-02',title:'Weeds of broken ground',icon:'weeds',ref:false,facts:[['Found','A sudden rise in seeds from plants that grow on freshly disturbed soil, the kind that take over a dug garden, at the same level the wild foods decline.'],['Think about','What disturbs ground? What is somebody doing to the land that they were not doing before?']],link:['Wikipedia: Ruderal species','https://en.wikipedia.org/wiki/Ruderal_species']},
+   {id:'47-4-03',title:'Five grains of rye',icon:'rye',ref:false,facts:[['Found','Five charred rye grains with a plumper, more rounded shape than wild rye. In wild rye, the ripe grain falls from the stalk on its own. In grain that people sow and harvest year after year, the type that holds on to the stalk until cut wins out, and the grain gets fatter.'],['Date','Directly radiocarbon dated to about 13,000 years ago, in the time of the cold snap. That is thousands of years before anyone else is known to have grown a cereal.'],['Think about','Five grains is a tiny sample. How much weight should it carry? What would make you more confident?']],link:['Wikipedia: Rye (history)','https://en.wikipedia.org/wiki/Rye']},
+   {id:'47-4-04',title:'The empty layer',icon:'empty',ref:false,facts:[['Found','Nothing. A thick band of soil with almost no bones, no tools, no seeds, no ash. Below it, the pit village. Above it, something else entirely.'],['Elsewhere','About 50 km away, across the river, a different settlement grows rapidly during these same centuries.'],['Think about','A layer with nothing in it is still evidence. What question does it answer?']],link:['Wikipedia: Tell (archaeology)','https://en.wikipedia.org/wiki/Tell_(archaeology)']}
+  ],
+  checkpoint:'Hypothesis 2. Explain what happened here between the two villages. Was the rye farming? Where did the people go? Then look back at Hypothesis 1 and say what still holds and what you would change.'},
+
+ {n:3,name:'Layer 3: a new village',depth:'about 10,600 to 9,500 years ago',color:'var(--l3)',intro:'After the gap, people are back, and nothing about their houses looks like the pits below.',
+  cards:[
+   {id:'47-3-01',title:'Rectangular mudbrick house',icon:'brick',ref:false,facts:[['Found','Walls of sun dried mud brick, straight and square cornered, with several small rooms. Built directly on top of the old pit village. Rebuilt on the same footprint more than once.'],['Think about','Compare this to 47-5-01. What does it take to build this, and what does building it say about how long you plan to stay?']],link:['Wikipedia: Mudbrick','https://en.wikipedia.org/wiki/Mudbrick']},
+   {id:'47-3-02',title:'Plastered floor',icon:'plaster',ref:false,facts:[['Found','Floors of lime plaster, smooth and hard, some with traces of red and black paint. Making lime plaster means burning limestone at high heat for days.'],['Think about','This is a lot of fuel and labor for a floor. Who does that, and why?']],link:['Wikipedia: Lime plaster','https://en.wikipedia.org/wiki/Lime_plaster']},
+   {id:'47-3-03',title:'Emmer, barley, lentils',icon:'emmer',ref:false,facts:[['Found','Charred grain in quantity: emmer wheat, barley, and lentils, all with the fat grain and tough stalk joint of domesticated crops. The wild plant list from Layer 5 shrinks to a fraction.'],['Think about','What has been gained and what has been given up when a hundred wild foods become three crops?']],link:['Wikipedia: Emmer','https://en.wikipedia.org/wiki/Emmer']},
+   {id:'47-3-04',title:'Gazelle, still',icon:'gazelle',ref:false,facts:[['Found','Gazelle bones still dominate the animal bone, in the same seasonal pattern as Layer 5. The spring hunt continues alongside the fields.'],['Think about','Does farming replace hunting here, or sit beside it? What would it take for that to change?']],link:['Wikipedia: Goitered gazelle','https://en.wikipedia.org/wiki/Goitered_gazelle']},
+   {id:'47-3-05',title:'Mortar and pestle',icon:'mortar',ref:false,facts:[['Found','Deep stone mortars and heavy pestles, along with saddle querns like 47-5-04, now larger and far more numerous. Found inside houses.'],['Think about','More grinding stones per house than before. What does that say about how much grain is moving through each household, and how much of someone\u2019s day it takes?']],link:['Wikipedia: Mortar and pestle','https://en.wikipedia.org/wiki/Mortar_and_pestle']},
+   {id:'REF-04',title:'Obsidian blade',icon:'obsidian',ref:true,facts:[['Field reference','From a site of this era in the region. A long blade of black volcanic glass, sharper than any flint. The nearest volcanic source is hundreds of kilometers north, in the mountains.'],['Think about','Put this beside the sea shells in 47-5-06. What kind of connections between villages does a blade like this require?']],link:['Wikipedia: Obsidian','https://en.wikipedia.org/wiki/Obsidian']}
+  ],
+  checkpoint:'Hypothesis 3. Describe life in the new village. What is different from Layer 5? What is the same? Who do you think is doing the work? Go back and fix Hypotheses 1 and 2 if the new finds change them.'},
+
+ {n:2,name:'Layer 2: the big village',depth:'about 9,500 to 8,000 years ago',color:'var(--l2)',intro:'This is the thickest layer in the trench. The village is now enormous for its time. The finds here include the people themselves. Read the bone cards with care; these were real lives.',
+  cards:[
+   {id:'47-2-01',title:'Houses packed along lanes',icon:'streets',ref:false,facts:[['Found','Mudbrick houses built wall to wall, separated by narrow lanes about 1.5 m wide. Refuse is dumped into the spaces between houses and under new floors. The mound covers more than 11 hectares, and estimates for this phase run to several thousand people.'],['Think about','What problems appear when thousands of people live this close that did not exist for two hundred? Who solves them?']],link:['Wikipedia: Neolithic (settlement section)','https://en.wikipedia.org/wiki/Neolithic']},
+   {id:'47-2-02',title:'Sheep and goat overtake gazelle',icon:'sheep',ref:false,facts:[['Found','Partway through this layer, within a short span, gazelle drop to a small fraction of the animal bone and sheep and goat take over. The sheep and goat bones include many young animals and a bias toward females kept to older ages.'],['Think about','Wild herds do not have that age and sex pattern. What does this pattern mean? And why would a hunt that lasted thousands of years stop in a few generations?']],link:['Wikipedia: Domestication of the sheep','https://en.wikipedia.org/wiki/Domestication_of_the_sheep']},
+   {id:'47-2-03',title:'A big toe, bent back',icon:'toe',ref:false,facts:[['Found','On many adult skeletons, the bones of the right big toe are arthritic and permanently bent upward, with the joint surfaces worn where they rubbed. Almost all of these are female. Some are young. The matching knee and ankle joints show flattened facets from a kneeling, toes tucked position.'],['Also on these skeletons','Enlarged bones at the knee where it met the ground.'],['Think about','What repeated posture does this? Look back at 47-3-05 and 47-5-04. What job, done daily for hours, from the teenage years on?']],link:['Wikipedia: Osteoarthritis','https://en.wikipedia.org/wiki/Osteoarthritis']},
+   {id:'47-2-04',title:'A crushed lower back',icon:'spine',ref:false,facts:[['Found','The lowest vertebrae on many adults are collapsed or pushed out of line, worst in women. Upper neck vertebrae on some are enlarged in a way seen in people who carry heavy loads on the head.'],['Think about','Combine this with 47-2-03. Sketch the body in motion. What is it doing, and with how much force?']],link:['Wikipedia: Vertebral compression fracture','https://en.wikipedia.org/wiki/Vertebral_compression_fracture']},
+   {id:'47-2-05',title:'Teeth: worn flat, and one with a groove',icon:'teeth',ref:false,facts:[['Found','Molars worn down smooth, in people who were not old. Flour ground on stone carries stone grit. A few women have deep grooves across the front teeth, the kind left by pulling fiber through the mouth over and over.'],['Think about','What was the daily bread doing to the people who ate it? And what craft leaves grooves like that, and why only a few people?']],link:['Wikipedia: Dental microwear','https://en.wikipedia.org/wiki/Dental_microwear']},
+   {id:'47-2-06',title:'Lines in the enamel',icon:'enamel',ref:false,facts:[['Found','Horizontal lines across the enamel of many teeth. Enamel forms in childhood and stops growing for a time when a child is sick or starving; the line is the scar.'],['Think about','What does a village with lots of these lines tell you about childhood here? Would a foraging child have had the same risks, or different ones?']],link:['Wikipedia: Enamel hypoplasia','https://en.wikipedia.org/wiki/Enamel_hypoplasia']},
+   {id:'47-2-07',title:'Buried under the floor',icon:'burial',ref:false,facts:[['Found','Burials beneath house floors, inside the rooms people lived in. Most of those buried inside houses are women. Some skulls were removed later and kept separately.'],['Think about','What is a family saying when it keeps its dead under the floor? Why women more than men inside the house?']],link:['Wikipedia: Skull cult (Neolithic)','https://en.wikipedia.org/wiki/Plastered_human_skulls']},
+   {id:'47-2-08',title:'A painted skull',icon:'skull',ref:false,facts:[['Found','An adult skull, removed from its body after burial, with red pigment painted in bands across the brow and face. Kept, apparently, for a long time before it was reburied.'],['Think about','This is not practical. What is it for, and what does it tell you about how these people thought about the dead, and about the past?']],link:['Wikipedia: Ancestor veneration','https://en.wikipedia.org/wiki/Veneration_of_the_dead']},
+   {id:'47-2-09',title:'Basket impression',icon:'basket',ref:false,facts:[['Found','The woven pattern of a basket pressed into a lump of clay or plaster. No basket survives; only its ghost.'],['Think about','Put this beside the grooved teeth in 47-2-05. What has a basket got to do with farming? What else do you need containers for once you have surplus?']],link:['Wikipedia: Basket weaving','https://en.wikipedia.org/wiki/Basket_weaving']},
+   {id:'REF-05',title:'Two burials, one rich, one plain',icon:'burial',ref:true,facts:[['Field reference','From a large village of the same era in the region. One burial with beads, a polished stone mirror, and worked bone; a neighboring burial with nothing at all.'],['Think about','Nothing in Layer 5 looks like this. What has to exist in a society before one person can be buried with more than another?']],link:['Wikipedia: Grave goods','https://en.wikipedia.org/wiki/Grave_goods']}
+  ],
+  checkpoint:'Hypothesis 4. Describe who is doing what in the big village and what it is doing to their bodies. Were these people better off than the people of Layer 5? Say what "better off" means before you answer. Fix earlier hypotheses if you need to.'},
+
+ {n:1,name:'Layer 1: the top of the mound',depth:'about 8,000 to 7,800 years ago · the end of the site',color:'var(--l1)',intro:'The last people to live here. Then the mound sits empty for thousands of years until the dam.',
+  cards:[
+   {id:'47-1-01',title:'The first pots',icon:'pot',ref:false,facts:[['Found','Fired clay vessels for the first time in the sequence, hand built, some burnished. Before this, every container at the site was stone, basket, or skin.'],['Think about','What can a pot do that a basket cannot? Think about water, heat, and time.']],link:['Wikipedia: Pottery (Neolithic origins)','https://en.wikipedia.org/wiki/Pottery']},
+   {id:'47-1-02',title:'Teeth, less worn',icon:'teeth',ref:false,facts:[['Found','In this top layer the heavy wear on molars drops. Grit from the grinding stones is still in the flour, so the grain itself did not change.'],['Think about','Put this beside 47-1-01. What changed about how people ate? Is that a technology fix for a problem farming created?']],link:['Wikipedia: Porridge','https://en.wikipedia.org/wiki/Porridge']},
+   {id:'47-1-03',title:'Then nothing',icon:'empty',ref:false,facts:[['Found','The deposits stop. The mound is abandoned and never reoccupied at this scale.'],['Think about','You do not have to explain this, and the real team is not sure either. But: after everything you have seen, what are the candidates?']],link:['Wikipedia: Neolithic decline','https://en.wikipedia.org/wiki/Neolithic_decline']}
+  ],
+  checkpoint:'Hypothesis 5, the whole site. Write a short paragraph for someone who has never heard of this place. Say who lived here, how life changed from bottom to top, and what it cost. Then go on to the Lab.'}
+];
+
+/* ---------- content: field events ---------- */
+const EVENTS={
+ 5:{title:'A visitor at the trench edge',icon:'\uD83D\uDC11',text:'An old shepherd stops with his flock and watches you work for a long time. Through the foreman he says that after heavy rain his grandfather used to find "stone teeth" and small white shells on the slope below the mound, and that the children once strung them. He points to a gully about two hundred meters off. Following him costs a day you planned to spend in the trench.',
+   choice:'Walk the gully with him (one day)',decline:'Thank him and keep digging',reveal:['47-5-06'],
+   yes:'You spend the day on your hands and knees in the gully. He was right. Among the flint you find drilled shells that have no business being this far from any sea. Catalog 47-5-06 is now in the trench record.',
+   no:'You keep to the plan. The shells, if they exist, stay in the gully. You can change your mind.'},
+ 4:{title:'The storm',icon:'\u26C8',text:'Rain all night, the first real rain of the season. By morning the north face of the trench has slumped into the cut, taking the clean section with it and burying two days of work under wet spoil. The crew wants to shovel it out and move on. Hillman, your plant specialist, wants to run the whole collapsed mass through the flotation tank first, which will take the crew most of a day and produce, probably, nothing.',
+   choice:'Float the collapsed spoil (most of a day)',decline:'Shovel it out and move on',reveal:['47-4-03'],
+   yes:'The tank runs until dusk. In the last tray, five charred grains, fatter than they should be. Hillman goes very quiet. Catalog 47-4-03 is in the record, and you have a problem, because they come from a level far too old for farming.',
+   no:'The spoil goes on the heap. Whatever was in it is on the heap too. You can change your mind.'},
+ 3:{title:'The visitor from across the river',icon:'\uD83D\uDEF6',text:'The director of the dig on the far bank crosses by boat with a crate of finds. Their site, she says, grew fast during exactly the centuries when yours was empty. She has brought something she thinks you should see, but she can only stay the afternoon, and you had planned to open the next house floor.',
+   choice:'Spend the afternoon with her finds',decline:'Open the floor as planned',reveal:['REF-04'],
+   yes:'She unwraps a blade of black volcanic glass, long as your hand, from a source hundreds of kilometers north. Her village has dozens. Yours, so far, has none. She leaves it with you as a reference piece. REF-04 is in the record.',
+   no:'The floor comes up on schedule. She leaves with her crate. You can change your mind.'},
+ 2:{title:'The crate nobody opened',icon:'\uD83D\uDCE6',text:'The bone specialist arrives from London to start on the burials. Going through the first season\u2019s storage she finds a crate marked only with a trench number and "fragile, do not wash." Nobody remembers packing it. Opening it properly means she spends her first day on it instead of on the skeletons you dug this week.',
+   choice:'Open the crate properly (her first day)',decline:'Leave it for later; start on the new burials',reveal:['47-2-08'],
+   yes:'Inside, in a nest of straw, an adult skull with bands of red pigment still on the brow. Not a burial. Something kept. Catalog 47-2-08 is in the record, and the specialist asks for all the other skulls to be re-examined.',
+   no:'The crate stays sealed. Whatever is inside waits. You can change your mind.'},
+ 1:{title:'The water',icon:'\uD83C\uDF0A',text:'The engineers send word: the dam will close early. The reservoir will reach the foot of the mound within weeks, not months. The top layer is thin, and you can record it, but there will be no third season and no second look at anything. Everything you did not write down is gone when the water comes.',
+   choice:'Record the top layer and pack the finds',decline:null,reveal:[],
+   yes:'You record what is there. The crates go to the trucks. The last thing you see from the road is the trench filling with brown water. From here on, the site exists only in the record you kept. Make it good.',no:''}
+};
+const HIDDEN=new Set(Object.values(EVENTS).flatMap(e=>e.reveal));
+const SEASON_DAYS=50;
+function dayCount(){let d=1; KIT.forEach(k=>{if(val('kit.'+k.k).trim())d++;}); LAYERS.forEach(L=>L.cards.forEach(c=>{if(val(c.id+'.see').trim()&&val(c.id+'.think').trim())d++;})); d+=S.closed.length; [5,4,3,2,1].forEach(n=>{if(S.events&&S.events[n]==='yes')d++;}); return Math.min(d,SEASON_DAYS);}
+function renderClock(){const d=dayCount(); const season=d<=25?1:2; const el=document.getElementById('clock'); if(!el)return; let water=''; if(d>=45)water='<span class="water">the water is at the foot of the mound</span>'; else if(d>=38)water='<span class="water">water rising</span>'; else if(season===2)water='<span class="water">dam closing</span>'; el.innerHTML='Season '+season+' &middot; Day '+d+' of '+SEASON_DAYS+' <span class="bar"><i style="width:'+Math.round(d/SEASON_DAYS*100)+'%"></i></span>'+water;}
+function eventDay(n){S.evday=S.evday||{}; if(!S.evday[n]){S.evday[n]=dayCount();save();} return S.evday[n];}
+function eventDone(n){return !!(S.events&&S.events[n]==='yes');}
+function eventSet(n,v){S.events=S.events||{};S.events[n]=v;save();showLayer(n);toast(v==='yes'?'New find in the record.':'Noted in the field log.');}
+function fieldLog(){return [5,4,3,2,1].filter(n=>S.events&&S.events[n]).map(n=>'Day '+(S.evday&&S.evday[n]||'?')+', '+EVENTS[n].title+': '+(S.events[n]==='yes'?EVENTS[n].choice:EVENTS[n].decline));}
+
+/* ---------- navigation ---------- */
+const STEPS=[['start','Start here'],['brief','Briefing'],['kit','Field Kit'],['dig','The Dig'],['lab','Lab'],['exhibit','Exhibit'],['reveal','Reveal']];
+let current=S.step||'start';
+function go(id){
+  current=id; S.step=id; save();
+  document.querySelectorAll('section.panel').forEach(p=>p.classList.toggle('active',p.id==='p-'+id));
+  renderNav(); if(id==='dig') renderDig(); if(id==='reveal') renderReveal(); if(id==='kit') renderKit();
+  window.scrollTo({top:0,behavior:'smooth'}); updateProgress();
+}
+function renderNav(){
+  const n=document.getElementById('nav'); n.innerHTML='';
+  STEPS.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.className=(id===current?'active':'')+(id==='reveal'&&!S.claim?' locked':'');b.onclick=()=>go(id);n.appendChild(b);});
+}
+function updateProgress(){
+  let total=0,done=0;
+  KIT.forEach(k=>{total++;if(val('kit.'+k.k).trim())done++;});
+  LAYERS.forEach(L=>{L.cards.forEach(c=>{total+=2;if(val(c.id+'.see').trim())done++;if(val(c.id+'.think').trim())done++;});total++;if(val('hyp.'+L.n).trim())done++;});
+  ['lab.geo','lab.tech','lab.econ','lab.health','claim.text','claim.evidence'].forEach(k=>{total++;if(val(k).trim())done++;});
+  document.getElementById('prog').style.width=Math.round(done/total*100)+'%';
+  let fTot=0,fDone=0; LAYERS.forEach(L=>L.cards.forEach(c=>{fTot++;if(val(c.id+'.see').trim()&&val(c.id+'.think').trim())fDone++;}));
+  document.getElementById('finds').textContent=fDone+' of '+fTot+' finds logged';
+  renderClock();
+}
+
+/* ---------- bind inputs ---------- */
+function bind(root){
+  root.querySelectorAll('[data-key]').forEach(el=>{
+    const k=el.dataset.key; if(el.value!==undefined) el.value=val(k);
+    el.oninput=()=>{setVal(k,el.value);updateProgress();if(el.dataset.card) cardStatus(el.dataset.card);if(el.dataset.layer) layerStatus(+el.dataset.layer);if(k.startsWith('kit.'))kitStatus();};
+  });
+  root.querySelectorAll('input[type=radio]').forEach(r=>{const k='score.'+r.name+'.pick';if(val(k)===r.value)r.checked=true;r.onchange=()=>setVal(k,r.value);});
+}
+
+/* ---------- field kit ---------- */
+function renderKit(){
+  const el=document.getElementById('kit'); if(el.dataset.built) return; el.dataset.built=1;
+  el.innerHTML=KIT.map(k=>`<div class="item"><div><h3>${k.t}</h3><p class="small">${k.q}</p><p class="small">${k.l.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`).join(' · ')}</p></div><div><label>Write it in your own words, with one example</label><textarea data-key="kit.${k.k}"></textarea></div></div>`).join('');
+  bind(el); kitStatus();
+}
+function kitStatus(){
+  const n=KIT.filter(k=>val('kit.'+k.k).trim()).length;
+  const s=document.getElementById('kit-status'); if(s) s.textContent='You have written '+n+' of '+KIT.length+' kit items'+(val('kit.rule').trim()?' and done the practice.':'.');
+}
+
+/* ---------- dig ---------- */
+let activeLayer=null;
+function layerOpen(n){return n>=5-(S.unlocked-1);}  // unlocked=1 -> only layer 5
+function layerClosed(n){return S.closed.includes(n);}
+function renderStrata(){
+  const el=document.getElementById('strata');
+  const H=[70,36,60,110,40]; // heights for layers 1..5 top to bottom (1 thin? keep 1 moderate)
+  let y=20, parts='';
+  [1,2,3,4,5].forEach((n,i)=>{
+    const L=LAYERS.find(x=>x.n===n); const open=layerOpen(n); const h=H[i];
+    const cls='lay'+(open?'':' locked')+(activeLayer===n?' active':'');
+    parts+=`<g class="${cls}" data-n="${n}"><rect x="10" y="${y}" width="190" height="${h}" fill="${L.color}" stroke="#fff" stroke-width="2"/><text x="20" y="${y+h/2+5}" fill="#fff" font-size="14" font-family="DM Sans,sans-serif" font-weight="700">Layer ${n}${layerClosed(n)?' \u2713':''}${open?'':' \uD83D\uDD12'}</text></g>`;
+    y+=h;
+  });
+  parts+=`<rect x="10" y="${y}" width="190" height="18" fill="#5c5c5c"/><text x="20" y="${y+13}" fill="#fff" font-size="11" font-family="DM Mono,monospace">bedrock</text>`;
+  const log=fieldLog();
+  el.innerHTML=`<svg viewBox="0 0 210 ${y+30}"><text x="10" y="12" font-size="11" fill="#4b4a45" font-family="DM Mono,monospace">TRENCH E, SOUTH FACE</text>${parts}</svg><p class="small">The oldest layer is at the bottom. Click a layer to open it. Locked layers open when you close the one below.</p><div class="fieldlog"><h4>Field log</h4>${log.length?'<ul class="clean" style="padding-left:1em">'+log.map(l=>'<li>'+l+'</li>').join('')+'</ul>':'<span class="small">Nothing yet. Things will happen.</span>'}</div>`;
+  el.querySelectorAll('.lay').forEach(g=>{g.onclick=()=>{const n=+g.dataset.n; if(layerOpen(n)) showLayer(n); else toast('Close the layer below this one first.');};});
+}
+function renderDig(){
+  renderStrata();
+  if(activeLayer===null){ let n=5; while(n>1 && layerClosed(n) && layerOpen(n-1)) n--; activeLayer=S.activeLayer||n; }
+  showLayer(activeLayer);
+}
+function showLayer(n){
+  activeLayer=n; S.activeLayer=n; save(); renderStrata();
+  const L=LAYERS.find(x=>x.n===n); const el=document.getElementById('layer');
+  const E=EVENTS[n]; const ev=S.events&&S.events[n];
+  const eventHtml=`<div class="event ${ev?'answered':''}">
+      <div class="ev-head"><span class="ev-icon">${E.icon}</span><h3>Day ${eventDay(n)}: ${E.title}</h3></div>
+      <p>${E.text}</p>
+      ${!ev?`<div class="actions"><button class="amber" onclick="eventSet(${n},'yes')">${E.choice}</button>${E.decline?`<button class="secondary" onclick="eventSet(${n},'no')">${E.decline}</button>`:''}</div>`
+          :ev==='yes'?`<div class="callout teal"><strong>Field log.</strong> ${E.yes}</div>`
+          :`<div class="callout"><strong>Field log.</strong> ${E.no} <button class="secondary" style="margin-left:8px" onclick="eventSet(${n},'yes')">${E.choice}</button></div>`}
+    </div>`;
+  const visible=L.cards.filter(c=>!HIDDEN.has(c.id)||eventDone(n)||S.unlocked>=5&&S.claim);
+  const cards=visible.map(c=>`
+    <div class="art" id="card-${c.id}">
+      <div class="pic">${I[c.icon]}</div>
+      <div class="body">
+        <div class="cat"><span>${c.id}</span>${c.ref?'<span class="tag ref">Field reference</span>':''}</div>
+        <h3>${c.title}</h3>
+        <dl class="facts">${c.facts.map(([k,v])=>`<div><dt>${k}:</dt> <dd>${v}</dd></div>`).join('')}</dl>
+        <p class="small" style="margin:0 0 .3em"><a href="${c.link[1]}" target="_blank" rel="noopener">${c.link[0]}</a></p>
+        <label>I see (observations only)</label><textarea data-key="${c.id}.see" data-card="${c.id}" data-layer="${n}" placeholder="Describe its size, material, shape, where it was, and what was next to it."></textarea>
+        <label>I think (what it means, and why)</label><textarea data-key="${c.id}.think" data-card="${c.id}" data-layer="${n}" placeholder="Say what it was for, who used it, and what it tells you. Then say what makes you think so."></textarea>
+        <div class="status" id="st-${c.id}"></div>
+      </div>
+    </div>`).join('');
+  const prev=[];
+  for(let k=5;k>n;k--){const h=val('hyp.'+k).trim(); if(h) prev.push(`<div class="old"><strong>Hypothesis ${6-k} (Layer ${k}):</strong> ${esc(h)}</div>`);}
+  el.innerHTML=`
+    <div class="layerhead"><h2>${L.name}</h2><span class="depth">${L.depth}</span></div>
+    <p>${L.intro}</p>
+    ${eventHtml}
+    <div class="callout"><strong>${visible.length} finds in the record, about ${Math.round(visible.length*8)} minutes.</strong> Fill in both boxes on every card. Say what you see first, then what you think it means.</div>
+    <div class="artifacts">${cards}</div>
+    <div class="hyp">
+      <h3>Checkpoint</h3>
+      <p>${L.checkpoint}</p>
+      ${prev.length?`<p class="small">Here is what you wrote before. If a new find changes your mind, say so in your new answer, like this: "I was wrong about X because of ${L.cards[0].id}."</p>${prev.join('')}`:''}
+      <textarea data-key="hyp.${n}" data-layer="${n}" style="min-height:140px"></textarea>
+      <div class="actions">
+        <button id="close-${n}" onclick="closeLayer(${n})">${n>1?'Close Layer '+n+' and open Layer '+(n-1):'Close Layer 1 and go to the Lab'}</button>
+        <span class="lock-note" id="ls-${n}"></span>
+      </div>
+    </div>`;
+  bind(el); visible.forEach(c=>cardStatus(c.id)); layerStatus(n);
+  updateProgress();
+}
+function visibleCards(n){const L=LAYERS.find(x=>x.n===n);return L.cards.filter(c=>!HIDDEN.has(c.id)||eventDone(n));}
+function cardStatus(id){
+  const ok=val(id+'.see').trim()&&val(id+'.think').trim();
+  const el=document.getElementById('st-'+id); const card=document.getElementById('card-'+id);
+  if(el) el.innerHTML=ok?'<span class="done-pill">Logged</span>':'<span class="small">Fill in both boxes to log this find</span>';
+  if(card) card.classList.toggle('complete',!!ok);
+}
+function layerStatus(n){
+  const missing=visibleCards(n).filter(c=>!(val(c.id+'.see').trim()&&val(c.id+'.think').trim())).length;
+  const hyp=val('hyp.'+n).trim();
+  const evOpen=!(S.events&&S.events[n]);
+  const b=document.getElementById('close-'+n), s=document.getElementById('ls-'+n);
+  if(!b) return;
+  if(layerClosed(n)){b.disabled=true;s.textContent='This layer is closed. You can still edit what you wrote.';return;}
+  const ready=missing===0&&hyp&&!evOpen; b.disabled=!ready;
+  const parts=[]; if(evOpen) parts.push('decide the field event'); if(missing) parts.push('log '+missing+' more card'+(missing>1?'s':'')); if(!hyp) parts.push('write the checkpoint');
+  s.textContent=ready?'Everything is done. You can close this layer.':'Before you can close this layer: '+parts.join(', ')+'.';
+}
+function closeLayer(n){
+  if(!S.closed.includes(n)) S.closed.push(n);
+  if(n>1){S.unlocked=Math.max(S.unlocked,6-(n-1));save();toast('Layer '+(n-1)+' is open.');showLayer(n-1);}
+  else{save();toast('Trench complete. To the Lab.');go('lab');}
+}
+
+/* ---------- claim & reveal ---------- */
+function submitClaim(){
+  if(!val('claim.text').trim()||!val('claim.evidence').trim()){document.getElementById('claim-status').textContent='Write both your claim and your evidence first.';return;}
+  S.claim=true; save(); toast('Reveal unlocked.'); go('reveal');
+}
+function renderReveal(){
+  const open=S.claim; document.getElementById('reveal-locked').style.display=open?'none':'block';
+  const r=document.getElementById('reveal-open'); r.style.display=open?'block':'none'; if(open) bind(r);
+}
+
+/* ---------- export ---------- */
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function exportMd(){
+  const d=new Date(); const lines=[];
+  lines.push('# The Dig: Journal','','Global History and Geography I, Unit 1, Becoming Settled  ','Exported '+d.toLocaleString()+'  ','Field clock: Season '+(dayCount()<=25?1:2)+', Day '+dayCount()+' of '+SEASON_DAYS,'');
+  lines.push('## Field Kit');
+  KIT.forEach(k=>{lines.push('**'+k.t+'.** '+(val('kit.'+k.k)||'(blank)'),'');});
+  lines.push('**Observation vs. inference practice.** '+(val('kit.rule')||'(blank)'),'');
+  lines.push('## The Dig');
+  LAYERS.forEach(L=>{
+    lines.push('','### '+L.name+' ('+L.depth+')','');
+    const ev=S.events&&S.events[L.n]; if(ev) lines.push('*Field event: '+EVENTS[L.n].title+'. Decision: '+(ev==='yes'?EVENTS[L.n].choice:EVENTS[L.n].decline)+'.*','');
+    visibleCards(L.n).forEach(c=>{lines.push('**'+c.id+' '+c.title+(c.ref?' [Field reference]':'')+'**  ','I see: '+(val(c.id+'.see')||'(blank)')+'  ','I think: '+(val(c.id+'.think')||'(blank)'),'');});
+    lines.push('**Hypothesis '+(6-L.n)+'.** '+(val('hyp.'+L.n)||'(blank)'),'');
+  });
+  lines.push('## The Lab','','**Geography.** '+(val('lab.geo')||'(blank)'),'','**Technology.** '+(val('lab.tech')||'(blank)'),'','**Economics.** '+(val('lab.econ')||'(blank)'),'','**The body keeps score.** '+(val('lab.health')||'(blank)'),'');
+  lines.push('## The Claim','','**Claim.** '+(val('claim.text')||'(blank)'),'','**Evidence.**  ',(val('claim.evidence')||'(blank)'),'');
+  if(S.claim){
+    lines.push('## Reveal: self score','');
+    const Q=['Settled or moving (Layer 5)','The Gap','Grinding: who and cost','Why gazelle disappeared','Central claim vs. theirs'];
+    Q.forEach((q,i)=>{const n='s'+(i+1);lines.push('- '+q+': **'+(val('score.'+n+'.pick')||'not scored')+'** '+(val('score.'+n)||''));});
+    lines.push('','**What I would change.** '+(val('reveal.change')||'(blank)'),'','## Pattern Codex','','**Pattern.** '+(val('codex.pattern')||'(blank)'),'','**World Engine line.** '+(val('codex.world')||'(blank)'),'');
+  }
+  const blob=new Blob([lines.join('\n')],{type:'text/markdown'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dig-journal-'+d.toISOString().slice(0,10)+'.md';a.click();
+  toast('Journal exported.');
+}
+function dadUnlock(){if(confirm('Unlock every layer and the Reveal? This button is for Dad.')){S.unlocked=5;S.claim=true;save();toast('Everything unlocked.');go(current);}}
+function resetAll(){if(confirm('Erase everything you wrote and start over? Export your journal first if you want a copy.')){localStorage.removeItem(KEY);location.reload();}}
+
+/* ---------- boot ---------- */
+bind(document); renderKit(); go(current);
+</script>
+</body>
+</html>
