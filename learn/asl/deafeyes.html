@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Through Deaf Eyes Notes</title>
+<style>
+  :root {
+    --navy: #1f3a5f;
+    --teal: #1d7a7a;
+    --amber: #d98a1c;
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --ink: #1c2430;
+    --muted: #5b6676;
+    --line: #d9dee6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Calibri, "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 28px 16px 22px;
+  }
+  header .wrap h1 { margin: 0 0 6px; font-family: Cambria, Georgia, serif; font-size: 30px; }
+  header .wrap p { margin: 0; opacity: 0.9; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  main .wrap { padding-top: 20px; padding-bottom: 60px; }
+  nav {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--card); border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 16px; }
+  nav a {
+    font-size: 14px; text-decoration: none; color: var(--navy);
+    border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px;
+  }
+  nav a.done { background: var(--teal); color: #fff; border-color: var(--teal); }
+  section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px; margin-bottom: 18px;
+  }
+  section h2 { margin: 0 0 4px; color: var(--navy); font-size: 21px; }
+  .step { color: var(--teal); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .help { color: var(--muted); margin: 4px 0 12px; }
+  label.q { display: block; font-weight: 700; margin: 14px 0 6px; }
+  textarea, input[type=text] {
+    width: 100%; font: inherit; color: inherit;
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: #fff;
+  }
+  textarea { min-height: 80px; resize: vertical; }
+  .row {
+    border-left: 4px solid var(--amber); padding: 8px 0 8px 12px; margin: 10px 0;
+  }
+  .row .grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .row small { color: var(--muted); font-weight: 700; }
+  button {
+    font: inherit; cursor: pointer; border-radius: 6px; padding: 8px 14px;
+    border: 1px solid var(--teal); background: #fff; color: var(--teal);
+  }
+  button.primary { background: var(--teal); color: #fff; }
+  .intro ul { margin: 6px 0 0 18px; padding: 0; }
+  .status {
+    background: #fff7ea; border: 1px solid var(--amber); border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 18px;
+  }
+  .saved { color: var(--muted); font-size: 14px; margin-top: 8px; }
+  @media (min-width: 640px) {
+    .row .grid.two { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Through Deaf Eyes: Note Catcher</h1>
+    <p>ASL · Deaf Culture Notebook</p>
+  </div>
+</header>
+
+<nav aria-label="Sections">
+  <div class="wrap" id="navlinks">
+    <a href="#start" data-sec="start">Start</a>
+    <a href="#quiz" data-sec="quiz">Opening quiz</a>
+    <a href="#timeline" data-sec="timeline">Events</a>
+    <a href="#people" data-sec="people">People</a>
+    <a href="#ideas" data-sec="ideas">Big ideas</a>
+    <a href="#connect" data-sec="connect">Connections</a>
+    <a href="#finish" data-sec="finish">Finish</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <section class="intro" id="about">
+    <h2>What this page is</h2>
+    <p>You already started <em>Through Deaf Eyes</em>, the PBS documentary about 200 years of Deaf life in America. This page catches your notes while you keep watching.</p>
+    <ul>
+      <li>Watch for about 30 minutes, starting where you stopped.</li>
+      <li>Pause the film whenever something matters and write it down in the right section.</li>
+      <li>You do not need to fill every box. You need enough notes that you could explain what you watched to someone else.</li>
+      <li>Your answers save on this computer as you type. When you finish, press <strong>Copy as Markdown</strong> at the bottom and paste it into your Deaf Culture Notebook.</li>
+    </ul>
+  </section>
+
+  <div class="status" id="status">Loading…</div>
+
+  <section id="start">
+    <div class="step">Step 1</div>
+    <h2>Find your place</h2>
+    <p class="help">Before you press play, write down where you are starting.</p>
+    <label class="q" for="start_time">What time stamp are you starting from?</label>
+    <input type="text" id="start_time" data-q="What time stamp did I start from?">
+    <label class="q" for="recap">What do you remember from the part you already watched? Write two or three sentences.</label>
+    <textarea id="recap" data-q="What I remember from the part I already watched"></textarea>
+  </section>
+
+  <section id="quiz">
+    <div class="step">Step 2</div>
+    <h2>The opening quiz</h2>
+    <p class="help">The film opens with a true or false quiz about deaf people. You saw it in your first ten minutes.</p>
+    <label class="q" for="quiz_why">Why do you think the filmmakers chose to start the film with that quiz? What were they trying to fix in the viewer's head?</label>
+    <textarea id="quiz_why" data-q="Why the film starts with the true or false quiz"></textarea>
+    <label class="q" for="quiz_me">Which statement in the quiz would you have gotten wrong before you started learning about ASL? Explain why.</label>
+    <textarea id="quiz_me" data-q="A quiz statement I would have gotten wrong, and why"></textarea>
+  </section>
+
+  <section id="timeline">
+    <div class="step">Step 3</div>
+    <h2>Events in Deaf history</h2>
+    <p class="help">The film moves through history. Each time it lands on a date, a school, a law, or a big change, add a row. Aim for at least four.</p>
+    <div id="timeline_rows"></div>
+    <button type="button" onclick="addRow('timeline')">Add an event</button>
+  </section>
+
+  <section id="people">
+    <div class="step">Step 4</div>
+    <h2>People in the film</h2>
+    <p class="help">Write down people who are interviewed or talked about. Aim for at least three.</p>
+    <div id="people_rows"></div>
+    <button type="button" onclick="addRow('people')">Add a person</button>
+  </section>
+
+  <section id="ideas">
+    <div class="step">Step 5</div>
+    <h2>Big ideas</h2>
+    <label class="q" for="bigD">The film uses "Deaf" with a capital D and "deaf" with a lowercase d. Explain the difference in your own words.</label>
+    <textarea id="bigD" data-q="Deaf with a capital D and deaf with a lowercase d, in my own words"></textarea>
+    <label class="q" for="shortfilm">The documentary includes short films made by Deaf artists. If you saw one, describe what it showed and how it felt different from the rest of the documentary.</label>
+    <textarea id="shortfilm" data-q="A short film by a Deaf artist, and how it felt different"></textarea>
+    <label class="q" for="conflict">What is one argument or conflict the film shows, either between Deaf and hearing people or inside the Deaf community? Explain both sides.</label>
+    <textarea id="conflict" data-q="An argument or conflict the film shows, with both sides"></textarea>
+  </section>
+
+  <section id="connect">
+    <div class="step">Step 6</div>
+    <h2>Connections</h2>
+    <label class="q" for="kbyg">Pick one rule from your Know Before You Go presentation. What did you see in the film that explains why that rule exists?</label>
+    <textarea id="kbyg" data-q="A Know Before You Go rule the film helps explain"></textarea>
+    <label class="q" for="questions">Write down two questions you still have after watching.</label>
+    <textarea id="questions" data-q="Questions I still have"></textarea>
+  </section>
+
+  <section id="finish">
+    <div class="step">Step 7</div>
+    <h2>Finish</h2>
+    <label class="q" for="end_time">What time stamp did you stop at? Write it so you know where to start next time.</label>
+    <input type="text" id="end_time" data-q="What time stamp did I stop at?">
+    <p class="help" style="margin-top:14px">When you are done, press the button, open your Deaf Culture Notebook, and paste.</p>
+    <button type="button" class="primary" onclick="copyMarkdown()">Copy as Markdown</button>
+    <div class="saved" id="copied"></div>
+  </section>
+
+</div>
+</main>
+
+<script>
+  var KEY = 'deafeyes_notes_v1';
+  var ROWS = {
+    timeline: { min: 4, fields: [
+      ['date', 'When did it happen? (a year or a time period)'],
+      ['what', 'What happened?'],
+      ['why', 'Why did it matter for Deaf people?']
+    ], two: false, label: 'Event' },
+    people: { min: 3, fields: [
+      ['name', 'Who is this person?'],
+      ['role', 'Why are they in the film?'],
+      ['said', 'What is one thing they said or did that stuck with you?']
+    ], two: false, label: 'Person' }
+  };
+  var state = { fields: {}, timeline: [], people: [] };
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) { state = JSON.parse(raw); }
+    } catch (e) {}
+    state.fields = state.fields || {};
+    ['timeline', 'people'].forEach(function (k) {
+      state[k] = state[k] || [];
+      while (state[k].length < ROWS[k].min) { state[k].push({}); }
+    });
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    updateStatus();
+  }
+
+  function renderRows(kind) {
+    var box = document.getElementById(kind + '_rows');
+    box.innerHTML = '';
+    state[kind].forEach(function (row, i) {
+      var div = document.createElement('div');
+      div.className = 'row';
+      var html = '<small>' + ROWS[kind].label + ' ' + (i + 1) + '</small><div class="grid">';
+      ROWS[kind].fields.forEach(function (f) {
+        html += '<label class="q" style="margin-top:6px">' + f[1] + '</label>' +
+          '<input type="text" data-kind="' + kind + '" data-i="' + i + '" data-f="' + f[0] + '">';
+      });
+      div.innerHTML = html + '</div>';
+      box.appendChild(div);
+      div.querySelectorAll('input').forEach(function (inp) {
+        inp.value = row[inp.dataset.f] || '';
+        inp.addEventListener('input', function () {
+          state[kind][i][inp.dataset.f] = inp.value;
+          save();
+        });
+      });
+    });
+  }
+  function addRow(kind) {
+    state[kind].push({});
+    renderRows(kind);
+    save();
+  }
+
+  function filled(v) { return v && v.trim().length > 0; }
+  function rowDone(r, kind) {
+    return ROWS[kind].fields.every(function (f) { return filled(r[f[0]]); });
+  }
+
+  function sectionDone(sec) {
+    var el = document.getElementById(sec);
+    if (sec === 'timeline' || sec === 'people') {
+      return state[sec].filter(function (r) { return rowDone(r, sec); }).length >= ROWS[sec].min;
+    }
+    var inputs = el.querySelectorAll('[data-q]');
+    for (var i = 0; i < inputs.length; i++) {
+      if (!filled(state.fields[inputs[i].id])) return false;
+    }
+    return true;
+  }
+
+  function updateStatus() {
+    var secs = ['start', 'quiz', 'timeline', 'people', 'ideas', 'connect', 'finish'];
+    var names = { start: 'Find your place', quiz: 'The opening quiz', timeline: 'Events', people: 'People', ideas: 'Big ideas', connect: 'Connections', finish: 'Finish' };
+    var left = [];
+    secs.forEach(function (s) {
+      var link = document.querySelector('nav a[data-sec="' + s + '"]');
+      if (sectionDone(s)) { link.classList.add('done'); } else { link.classList.remove('done'); left.push(names[s]); }
+    });
+    var t = state.timeline.filter(function (r) { return rowDone(r, 'timeline'); }).length;
+    var p = state.people.filter(function (r) { return rowDone(r, 'people'); }).length;
+    var msg;
+    if (left.length === 0) {
+      msg = 'Every section is filled in. Press Copy as Markdown at the bottom and paste it into your Deaf Culture Notebook.';
+    } else {
+      msg = 'Still to do: ' + left.join(', ') + '. You have ' + t + ' of 4 events and ' + p + ' of 3 people filled in completely.';
+    }
+    document.getElementById('status').textContent = msg;
+  }
+
+  function copyMarkdown() {
+    var out = ['# Through Deaf Eyes: Notes', ''];
+    function add(q, a) { out.push('**' + q + '**', '', (a && a.trim()) ? a.trim() : '(not answered)', ''); }
+    document.querySelectorAll('#start [data-q], #quiz [data-q]').forEach(function (el) { add(el.dataset.q, state.fields[el.id]); });
+    out.push('## Events in Deaf history', '');
+    state.timeline.forEach(function (r, i) {
+      if (!filled(r.date) && !filled(r.what) && !filled(r.why)) return;
+      out.push('**Event ' + (i + 1) + ': ' + (r.date || '') + '**', '', (r.what || '') + (filled(r.why) ? ' Why it mattered: ' + r.why : ''), '');
+    });
+    out.push('## People in the film', '');
+    state.people.forEach(function (r, i) {
+      if (!filled(r.name) && !filled(r.role) && !filled(r.said)) return;
+      out.push('**' + (r.name || 'Person ' + (i + 1)) + '**', '', (r.role || '') + (filled(r.said) ? ' What stuck with me: ' + r.said : ''), '');
+    });
+    out.push('## Big ideas and connections', '');
+    document.querySelectorAll('#ideas [data-q], #connect [data-q], #finish [data-q]').forEach(function (el) { add(el.dataset.q, state.fields[el.id]); });
+    var text = out.join('\n');
+    var msg = document.getElementById('copied');
+    function done() { msg.textContent = 'Copied. Now paste it into your Deaf Culture Notebook.'; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  load();
+  document.querySelectorAll('[data-q]').forEach(function (el) {
+    el.value = state.fields[el.id] || '';
+    el.addEventListener('input', function () { state.fields[el.id] = el.value; save(); });
+  });
+  renderRows('timeline');
+  renderRows('people');
+  updateStatus();
+</script>
+</body>
+</html>
