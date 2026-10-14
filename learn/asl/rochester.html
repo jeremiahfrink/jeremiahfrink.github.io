@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deaf Rochester Research Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1b2a4a;
+    --teal: #1f7a7a;
+    --teal-light: #e3f2f1;
+    --amber: #d9891c;
+    --amber-light: #fdf1de;
+    --ink: #222831;
+    --muted: #5b6573;
+    --line: #d6dbe2;
+    --bg: #f6f7f9;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "DM Sans", Calibri, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 28px 16px 22px;
+  }
+  header .wrap, main .wrap { max-width: 860px; margin: 0 auto; }
+  header h1 {
+    font-family: "DM Serif Display", Georgia, serif;
+    font-weight: 400;
+    font-size: 2.1rem;
+    margin: 0 0 4px;
+  }
+  header p { margin: 0; color: #c9d4e6; }
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    max-width: 860px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 10px 16px;
+  }
+  nav button {
+    font: inherit; font-size: 0.95rem;
+    border: 1px solid var(--line);
+    background: #fff; color: var(--navy);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  nav button.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+  main { padding: 20px 16px 60px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  h2 {
+    font-family: "DM Serif Display", Georgia, serif;
+    font-weight: 400;
+    color: var(--navy);
+    font-size: 1.8rem;
+    margin: 8px 0 12px;
+  }
+  h3 { color: var(--navy); margin: 0 0 6px; font-size: 1.2rem; }
+  h4 { color: var(--teal); margin: 18px 0 6px; font-size: 1.02rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 0 18px;
+  }
+  .callout {
+    background: var(--amber-light);
+    border-left: 5px solid var(--amber);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 0 0 18px;
+  }
+  .callout.teal { background: var(--teal-light); border-left-color: var(--teal); }
+  .source-meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 8px; }
+  a { color: var(--teal); font-weight: 500; }
+  ul, ol { padding-left: 22px; margin: 6px 0 10px; }
+  li { margin: 3px 0; }
+  label.q {
+    display: block;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 16px 0 6px;
+  }
+  label.q .hint { display: block; font-weight: 400; color: var(--muted); font-size: 0.93rem; }
+  textarea {
+    width: 100%;
+    font: inherit; font-size: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    min-height: 90px;
+    resize: vertical;
+    background: #fcfcfd;
+  }
+  textarea.big { min-height: 260px; }
+  textarea.mid { min-height: 150px; }
+  textarea:focus { outline: 2px solid var(--teal); border-color: var(--teal); }
+  .status {
+    font-size: 0.92rem; color: var(--muted);
+    margin: 0 0 16px;
+  }
+  .btn {
+    font: inherit; font-weight: 700;
+    background: var(--navy); color: #fff;
+    border: none; border-radius: 8px;
+    padding: 12px 20px; cursor: pointer;
+  }
+  .btn:hover { background: var(--teal); }
+  .copied { color: var(--teal); font-weight: 700; margin-left: 10px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 0.97rem; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 8px 6px; }
+  th { color: var(--navy); }
+  .example { font-style: italic; color: var(--muted); }
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.7rem; }
+    .card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Deaf Rochester: Research Notes</h1>
+    <p>ASL · Research for your Deaf Rochester tour site</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button data-tab="start" class="active">Start Here</button>
+    <button data-tab="p1">Part 1</button>
+    <button data-tab="p2">Part 2</button>
+    <button data-tab="lists">Tour Stops and Questions</button>
+    <button data-tab="p3">Part 3</button>
+    <button data-tab="export">Turn In</button>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<p class="status" id="status"></p>
+
+<!-- START HERE -->
+<section class="panel active" id="start" data-title="Start Here">
+  <h2>Start Here</h2>
+
+  <div class="card">
+    <h3>What this page is</h3>
+    <p>This page holds your research notes for the Deaf Rochester project. Everything you write here will become the raw material for the Google Site you are going to build: a virtual tour of Deaf Rochester for hearing people.</p>
+    <p>The page has three parts, and each one may take more than one day. Take as long as you need to do them well.</p>
+    <ul>
+      <li><strong>Part 1</strong> is about Rochester's Deaf community today. Dad has chosen the sources.</li>
+      <li><strong>Part 2</strong> is about how it all started. Dad has chosen these sources too, but you get even less help deciding what to write down.</li>
+      <li><strong>Part 3</strong> is your own research. You find the sources and keep your notes in your Deaf Culture Notebook. This page gives you a plan for how to do that.</li>
+    </ul>
+    <p>The <strong>Tour Stops and Questions</strong> tab is open the whole time. Add to it whenever something comes up in Parts 1 and 2.</p>
+    <p>Your work saves automatically in this browser as you type. When you are ready to turn something in, go to the <strong>Turn In</strong> tab and copy your notes into a Google Doc.</p>
+  </div>
+
+  <div class="callout">
+    <h3>Why this page gives you less help than the PBS page did</h3>
+    <p>On the <em>Through Deaf Eyes</em> page, every question was written for you. You answered them, and that helped you understand the film. But when you start finding your own sources, nobody will be there to write the questions. You will have to decide for yourself what is worth writing down.</p>
+    <p>So this page is a step toward doing that on your own. For each source, you get a few <strong>key ideas to watch for</strong> and one big open box for your notes. You decide what goes in the box. In Part 2 you get even fewer key ideas. By Part 3, you will be setting up your own notes, with suggestions from Dad on how to do it well.</p>
+  </div>
+
+  <div class="card">
+    <h3>How to take good notes</h3>
+    <ol>
+      <li><strong>Read the key ideas before you start.</strong> They tell you what to pay attention to, so you are not trying to catch everything.</li>
+      <li><strong>Write in your own words.</strong> Read or watch a section, then look away from it and write down what you remember. If you cannot explain it without looking, you do not understand it yet, so go back and read it again.</li>
+      <li><strong>Do not copy and paste whole sections.</strong> Copying feels like work, but your brain skips the part where it makes sense of the information. You will not remember it, and you will not be able to use it when you build your site.</li>
+      <li><strong>Copy only when you want an exact quote.</strong> If someone says something so well that you want to use their exact words on your site, copy it, put it in quotation marks, and write who said it.</li>
+      <li><strong>Short is fine.</strong> Notes do not have to be full sentences. Phrases, lists, names, and dates are all good notes as long as you will understand them next week.</li>
+      <li><strong>Mark things as you go.</strong> Use these marks so you can find things later:
+        <ul>
+          <li><strong>?</strong> next to something that confused you or that you want to find out more about</li>
+          <li><strong>STOP</strong> next to a place that could be a tour stop</li>
+          <li><strong>" "</strong> around an exact quote, with the person's name</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- PART 1 -->
+<section class="panel" id="p1" data-title="Part 1: Rochester's Deaf Community Now">
+  <h2>Part 1: Rochester's Deaf Community Now</h2>
+  <p>In this part you are finding out what Deaf life in Rochester looks like today, and why so many Deaf people choose to live here. Read the key ideas for each source before you start, then take your notes in the big box.</p>
+
+  <div class="card">
+    <h3>Source 1: Why Deaf people come to Rochester</h3>
+    <p class="source-meta">WXXI News, January 2022 · <a href="https://www.wxxinews.org/inclusion-desk/2022-01-24/resources-culture-make-rochester-a-draw-for-many-in-deaf-community" target="_blank" rel="noopener">Resources, culture make Rochester a draw for many in deaf community</a></p>
+    <h4>Key ideas to watch for</h4>
+    <ul>
+      <li>The reasons Deaf people give for moving to Rochester and staying</li>
+      <li>Specific places and services in the city that are set up for Deaf people</li>
+      <li>The people quoted in the article and what each of them says</li>
+      <li>Any numbers, and where those numbers come from</li>
+    </ul>
+    <label class="q" for="s1notes">My notes
+      <span class="hint">Write in your own words. Use ?, STOP, and quotation marks.</span></label>
+    <textarea id="s1notes" class="big"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Source 2: The NTID population study</h3>
+    <p class="source-meta">Hearing Review, October 2012 · <a href="https://hearingreview.com/inside-hearing/research/study-confirms-that-rochester-ny-has-highest-per-capita-deaf-population" target="_blank" rel="noopener">Study Confirms That Rochester, NY Has Highest Per Capita Deaf Population</a></p>
+    <h4>Key ideas to watch for</h4>
+    <ul>
+      <li>Who did the study and what information they used</li>
+      <li>What "per capita" means, and why it matters for comparing cities</li>
+      <li>What the study says is the main reason Rochester's number is so high</li>
+      <li>What the study counts, and what it does not count</li>
+    </ul>
+    <label class="q" for="s2notes">My notes</label>
+    <textarea id="s2notes" class="big"></textarea>
+    <label class="q" for="s2think">The study counts people who are deaf or hard of hearing. It does not count how many people use ASL or think of themselves as culturally Deaf. Why is that difference important if you are going to write about it on a public website?
+      <span class="hint">Think back to what you learned about deaf and Deaf in Through Deaf Eyes.</span></label>
+    <textarea id="s2think"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Source 3: A local conversation about Deaf culture</h3>
+    <p class="source-meta">WXXI <em>Connections</em>, April 2017, about 51 minutes · <a href="https://www.wxxinews.org/inclusion-desk/2017-04-12/connections-deaf-culture-in-rochester" target="_blank" rel="noopener">Connections: Deaf Culture in Rochester</a></p>
+    <p>Turn on captions. You can pause as often as you want. A good rhythm is to watch about five minutes, pause, and write what you remember before going on.</p>
+    <h4>Key ideas to watch for</h4>
+    <ul>
+      <li>Who the guests are, what they do, and which of them are Deaf</li>
+      <li>How the show handles communication between the Deaf guests, the interpreters, and the host</li>
+      <li>What the guests say hearing people get wrong about Deaf people</li>
+      <li>Anything about Rochester specifically: jobs, history, hospitals, schools, or how the city has changed</li>
+      <li>One thing a guest says that every hearing person in Rochester should hear</li>
+    </ul>
+    <label class="q" for="s3notes">My notes</label>
+    <textarea id="s3notes" class="big"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>End of Part 1</h3>
+    <label class="q" for="p1why">Based only on what you know right now, why is Rochester important to the Deaf community?
+      <span class="hint">Two or three sentences. You will come back to this at the end of the project and see how your answer changed.</span></label>
+    <textarea id="p1why"></textarea>
+    <label class="q" for="p1game">Could this go in the game? Write one idea from Part 1 that could become a scene, a character, or a moment in the game you will build later.</label>
+    <textarea id="p1game"></textarea>
+  </div>
+  <div class="callout teal">Before you move on, open the <strong>Tour Stops and Questions</strong> tab and make sure you have added every place and question from Part 1.</div>
+</section>
+
+<!-- PART 2 -->
+<section class="panel" id="p2" data-title="Part 2: How It All Started">
+  <h2>Part 2: How It All Started</h2>
+  <p>Now you go back in time to find out how Rochester became so important to Deaf people. You get fewer key ideas in this part. That is on purpose. Read each source once all the way through first, then decide for yourself what is worth writing down.</p>
+
+  <div class="card">
+    <h3>Source 4: Deaf Rochester in the 1800s</h3>
+    <p class="source-meta">RIT Libraries, written by historian Harry Lang · <a href="https://infoguides.rit.edu/19thcenturydeaf" target="_blank" rel="noopener">19th and 20th Century Deaf Rochester History</a></p>
+    <p>Read the Introduction, then click <strong>Notable Deaf Rochesterians</strong> in the menu.</p>
+    <h4>Key ideas to watch for</h4>
+    <ul>
+      <li>The earliest events, and the people who made them happen</li>
+      <li>Places in Rochester you could still visit today</li>
+    </ul>
+    <label class="q" for="s4notes">My notes</label>
+    <textarea id="s4notes" class="big"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Source 5: The Rochester Method</h3>
+    <p class="source-meta">Lifeprint · <a href="https://www.lifeprint.com/asl101/pages-layout/rochestermethod2.htm" target="_blank" rel="noopener">The Rochester Method</a></p>
+    <h4>Key ideas to watch for</h4>
+    <ul>
+      <li>What the method was, and how Deaf people felt about it</li>
+      <li>How it connects to the 1880 conference in Milan, which you may remember from <em>Through Deaf Eyes</em></li>
+    </ul>
+    <label class="q" for="s5notes">My notes</label>
+    <textarea id="s5notes" class="big"></textarea>
+    <label class="q" for="s5think">This is a hard part of Rochester's history. If you put the Rochester Method on your site, how would you explain it honestly to a hearing visitor so it does not come across as a fun fact?</label>
+    <textarea id="s5think"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Source 6: How NTID came to Rochester</h3>
+    <p class="source-meta">RIT Libraries · <a href="https://infoguides.rit.edu/ntidbeginnings/history" target="_blank" rel="noopener">NTID Beginnings</a></p>
+    <p>Look at the main page and the subpages about the 1965 law and the first class of students.</p>
+    <h4>Key ideas to watch for</h4>
+    <ul>
+      <li>What NTID is, and how and when it came to Rochester</li>
+      <li>How NTID changed the city (use what you learned from Source 2 too)</li>
+    </ul>
+    <label class="q" for="s6notes">My notes</label>
+    <textarea id="s6notes" class="big"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Your First Timeline</h3>
+    <label class="q" for="timeline">Use all six sources to put the events you found in order. Write one event per line with the year first.
+      <span class="hint">Example of the format: 1876: (what happened)</span></label>
+    <textarea id="timeline" class="mid"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>End of Part 2</h3>
+    <label class="q" for="p2why">Look at your answer at the end of Part 1. Would you change it now? Write a new answer, and explain what changed your thinking.</label>
+    <textarea id="p2why"></textarea>
+    <label class="q" for="p2game">Could this go in the game? Write one idea from Part 2.</label>
+    <textarea id="p2game"></textarea>
+    <label class="q" for="p2reflect">Which way of taking notes worked best for you in Parts 1 and 2? What would you do differently next time?
+      <span class="hint">You will use this answer when you set up your own notes in Part 3.</span></label>
+    <textarea id="p2reflect"></textarea>
+  </div>
+  <div class="callout teal">Before you move on, finish your question bank on the <strong>Tour Stops and Questions</strong> tab, including the sorting and the five stars. Part 3 starts from your starred questions.</div>
+</section>
+
+<!-- LISTS -->
+<section class="panel" id="lists" data-title="Tour Stops and Questions">
+  <h2>Tour Stops and Questions</h2>
+  <p>Keep this tab going through Parts 1 and 2. These lists are what turn your notes into a website.</p>
+
+  <div class="card">
+    <h3>Possible Tour Stops</h3>
+    <label class="q" for="stops">Every time a source mentions a real place connected to the Deaf community, add it here. For each one, write the place, where it is, which source mentioned it, and why it might belong on the tour.
+      <span class="hint">Add anything that might work. You will choose your final stops later.</span></label>
+    <textarea id="stops" class="mid"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Question Bank</h3>
+    <p>You are writing questions from three points of view. These questions will guide your own research in Part 3, and many of them will become questions your site answers for visitors.</p>
+
+    <label class="q" for="qown">1. Your own questions
+      <span class="hint">What do you want to know that these sources did not answer? Think about anything that confused you, anything that seemed incomplete, and anything you simply want to know more about. Write at least five.</span></label>
+    <textarea id="qown" class="mid"></textarea>
+
+    <label class="q" for="qearlier">2. Questions from your earlier work
+      <span class="hint">Look back at your Through Deaf Eyes note catcher and anything else you have done in ASL so far. What questions did you have then that connect to Rochester? For example, if something happened nationally, did it happen here too? Write at least three.</span></label>
+    <textarea id="qearlier"></textarea>
+
+    <label class="q" for="qneighbor">3. Questions from a hearing neighbor
+      <span class="hint">Imagine a hearing person who has lived in Rochester their whole life. They have driven past RIT and maybe past the Rochester School for the Deaf, but they have never really noticed the Deaf community. Maybe they once saw people signing at Wegmans and did not know what to do. They are not unkind; they have just never been shown. What would that person be curious about, nervous about, or wrong about? What would help them understand, and what would help them do better the next time they meet a Deaf person? Write their questions in their own voice, the way they would actually ask them. Write at least five.</span></label>
+    <p class="example">Two examples to get you started (write your own, do not count these): "If a Deaf person comes up to me at work and I don't know any sign language, what should I do?" · "Why is there a college for Deaf students in Rochester, of all places?"</p>
+    <textarea id="qneighbor" class="mid"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Sort Your Questions</h3>
+    <p>When your question bank is done, go back through it and put a letter at the start of each question:</p>
+    <ul>
+      <li><strong>R</strong> if you can research it yourself online or at a library</li>
+      <li><strong>A</strong> if the best way to answer it would be to ask a Deaf person, because it is about their own experience and not something you should guess at</li>
+      <li><strong>S</strong> if it is a question your site should answer for hearing visitors</li>
+    </ul>
+    <p>A question can have more than one letter. Then copy the <strong>five questions you most want to research</strong> into the box below. Part 3 starts here.</p>
+    <label class="q" for="starred">My five starred research questions</label>
+    <textarea id="starred" class="mid"></textarea>
+  </div>
+</section>
+
+<!-- PART 3 -->
+<section class="panel" id="p3" data-title="Part 3: Your Own Research">
+  <h2>Part 3: Your Own Research</h2>
+  <p>Now you are the researcher. You will find your own sources, check them, and take your own notes. Your notes for this part go in your <strong>Deaf Culture Notebook</strong>, in a section called <strong>Deaf Rochester Research</strong>, not on this page. This page gives you a plan for setting up those notes and a place to keep track of how it is going.</p>
+  <p>Aim for at least <strong>four sources</strong> you found yourself. This part may take more than one day.</p>
+
+  <div class="card">
+    <h3>Step 1: Set up your notes before you search</h3>
+    <p>Good researchers decide how they will organize their notes before they start, so that every source gets the same treatment and nothing important gets lost. Here is a structure that works well. Use it, or change it based on what you learned about yourself in Parts 1 and 2.</p>
+    <p>Make one section in your notebook for <strong>each source</strong>, and give each section these parts:</p>
+    <ol>
+      <li><strong>Source:</strong> the title, the link, who made it, and when.</li>
+      <li><strong>Check:</strong> your answers to the five source checks in Step 3 below. Keep them short.</li>
+      <li><strong>Which question this helps answer:</strong> the starred question (or questions) this source connects to.</li>
+      <li><strong>Notes:</strong> what you learned, in your own words. Use ?, STOP, and quotation marks the same way you did in Parts 1 and 2.</li>
+      <li><strong>Quotes:</strong> only exact words you might use on your site, with who said them.</li>
+      <li><strong>New questions:</strong> anything this source made you wonder about.</li>
+    </ol>
+    <label class="q" for="setup">How will you set up your notes? Describe your structure, and explain anything you changed from the suggestion above and why.</label>
+    <textarea id="setup"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Step 2: Decide what is worth writing down</h3>
+    <p>You will find a lot more information than you can use. Before you write something down, ask yourself whether it helps you answer one of your starred questions, or whether it would help a hearing visitor on your tour.</p>
+    <table>
+      <tr><th>Usually worth writing down</th><th>Usually not worth writing down</th></tr>
+      <tr>
+        <td>
+          <ul>
+            <li>Names of people and places, with what they did or why they matter</li>
+            <li>Dates for your timeline</li>
+            <li>Reasons and explanations (the "why")</li>
+            <li>What Deaf people say about their own experience</li>
+            <li>Facts that surprised you, because they will probably surprise your visitors too</li>
+            <li>Anything that disagrees with another source</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Things you already wrote down from another source (just note that this source agrees)</li>
+            <li>Long descriptions you could find again with the link</li>
+            <li>Details that have nothing to do with Rochester or your questions</li>
+            <li>Whole paragraphs copied from the page</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Step 3: Search and check</h3>
+    <p>Start with your starred questions. Turn each one into a few search words. If you get stuck, here are some searches to try:</p>
+    <ul>
+      <li>Rochester Recreation Club for the Deaf</li>
+      <li>Deaf Wellness Center Rochester</li>
+      <li>Robert Panara NTID</li>
+      <li>Dyer Arts Center NTID</li>
+      <li>Rochester School for the Deaf history</li>
+      <li>Rochester Deaf community Kodak Xerox jobs</li>
+      <li>Rochester History journal Deaf community</li>
+      <li>Deaf owned businesses Rochester NY</li>
+    </ul>
+    <p>Look for sources made by Deaf people or Deaf organizations. A tour of Deaf Rochester should include Deaf voices, not only hearing people talking about Deaf people. NTID has a <a href="https://www.youtube.com/@RITNTID" target="_blank" rel="noopener">YouTube channel</a>, and WXXI has more local stories on <a href="https://video.wxxi.org/" target="_blank" rel="noopener">WXXI Video</a>.</p>
+
+    <h4>The five source checks</h4>
+    <p>Run every source through these checks before you trust it.</p>
+    <ol>
+      <li><strong>Who made it?</strong> A news organization, a school, a museum, a Deaf organization, a business, or a random person? If you cannot tell, be careful.</li>
+      <li><strong>How do they know?</strong> Do they show where their information came from, like a study, a record, an interview, or someone who was there?</li>
+      <li><strong>What do other sources say?</strong> Open a new tab and search for the same fact somewhere else. If two or three trustworthy sources agree, you can use it. If you only find it in one place, say so or leave it out. Professional fact checkers do exactly this: they leave the page and check what others say.</li>
+      <li><strong>When was it made?</strong> History stays true, but hours, addresses, and businesses change.</li>
+      <li><strong>Whose voice is it?</strong> Is a Deaf person or Deaf organization speaking, or a hearing person speaking about Deaf people?</li>
+    </ol>
+    <div class="callout" style="margin-top:12px">Be careful with AI summaries at the top of search results. They can mix up facts or make them up. Use them to get ideas for what to search next, then go read the real source.</div>
+  </div>
+
+  <div class="card">
+    <h3>Step 4: Keep track as you go</h3>
+    <label class="q" for="sourcelog">Research log: list each source as you find it, with its title and link, and one line on whether it passed your checks.</label>
+    <textarea id="sourcelog" class="mid"></textarea>
+    <label class="q" for="answered">Which of your starred questions have you answered so far, and which are still open?</label>
+    <textarea id="answered"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>End of Part 3</h3>
+    <label class="q" for="p3stops">Look at your Possible Tour Stops list and everything you found in your own research. Which six or more stops do you want on your tour? For each one, write one or two sentences on why.</label>
+    <textarea id="p3stops" class="mid"></textarea>
+    <label class="q" for="p3notes">How did your notes structure work? What would you change before your next research project?</label>
+    <textarea id="p3notes"></textarea>
+  </div>
+</section>
+
+<!-- EXPORT -->
+<section class="panel" id="export" data-title="Turn In">
+  <h2>Turn In</h2>
+  <div class="card">
+    <p>When you finish a part, click the button below. It copies everything you have written on this page as Markdown, with each question in bold and your answer underneath. Paste it into your Google Doc and turn it in.</p>
+    <p>Your Part 3 notes live in your Deaf Culture Notebook, so turn that section in too when Part 3 is done.</p>
+    <button class="btn" id="copyBtn">Copy as Markdown</button><span class="copied" id="copiedMsg"></span>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+(function () {
+  var KEY = "asl-rochester-notes-v1";
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { data = {}; }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("textarea"));
+
+  boxes.forEach(function (t) {
+    if (data[t.id]) t.value = data[t.id];
+    t.addEventListener("input", function () {
+      data[t.id] = t.value;
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+      updateStatus();
+    });
+  });
+
+  function updateStatus() {
+    var parts = [["p1", "Part 1"], ["p2", "Part 2"], ["lists", "Tour Stops and Questions"], ["p3", "Part 3"]];
+    var msgs = [];
+    parts.forEach(function (p) {
+      var sec = document.getElementById(p[0]);
+      var all = sec.querySelectorAll("textarea");
+      var left = 0;
+      all.forEach(function (t) { if (!t.value.trim()) left++; });
+      if (left === 0) msgs.push(p[1] + ": every box has something in it.");
+      else msgs.push(p[1] + ": " + left + (left === 1 ? " box" : " boxes") + " still empty.");
+    });
+    document.getElementById("status").textContent = "Saved in this browser. " + msgs.join(" ");
+  }
+  updateStatus();
+
+  var buttons = document.querySelectorAll("nav button");
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      buttons.forEach(function (x) { x.classList.remove("active"); });
+      document.querySelectorAll(".panel").forEach(function (p) { p.classList.remove("active"); });
+      b.classList.add("active");
+      document.getElementById(b.getAttribute("data-tab")).classList.add("active");
+      window.scrollTo(0, 0);
+    });
+  });
+
+  function labelText(t) {
+    var l = document.querySelector('label[for="' + t.id + '"]');
+    if (!l) return t.id;
+    var clone = l.cloneNode(true);
+    var hint = clone.querySelector(".hint");
+    if (hint) hint.remove();
+    return clone.textContent.replace(/\s+/g, " ").trim();
+  }
+
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    var out = ["# Deaf Rochester: Research Notes", ""];
+    ["p1", "p2", "lists", "p3"].forEach(function (id) {
+      var sec = document.getElementById(id);
+      out.push("## " + sec.getAttribute("data-title"), "");
+      sec.querySelectorAll("textarea").forEach(function (t) {
+        var card = t.closest(".card");
+        var h = card ? card.querySelector("h3") : null;
+        var q = labelText(t);
+        var heading = h && q.indexOf(h.textContent) === -1 ? h.textContent + ": " : "";
+        out.push("**" + heading + q + "**", "", t.value.trim() || "(not answered yet)", "");
+      });
+    });
+    var text = out.join("\n");
+    var msg = document.getElementById("copiedMsg");
+    function done() { msg.textContent = "Copied. Paste it into your Google Doc."; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) { msg.textContent = "Copy did not work. Ask Dad for help."; }
+      ta.remove();
+    }
+  });
+})();
+</script>
+</body>
+</html>
