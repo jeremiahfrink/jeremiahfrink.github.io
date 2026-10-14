@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sensory Diet</title>
+<style>
+:root{
+  --navy:#1b2a4a; --teal:#1f8a8a; --amber:#e08a1e; --ink:#1e2430; --muted:#5b6270;
+  --bg:#fbfaf7; --card:#ffffff; --line:#dde3ea; --soft:#eef6f6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Calibri,"Segoe UI",system-ui,sans-serif;font-size:17px;line-height:1.55;color:var(--ink);background:var(--bg)}
+header{background:var(--navy);color:#fff;padding:18px 16px}
+header h1{margin:0;font-family:Cambria,Georgia,serif;font-size:1.6rem}
+header p{margin:4px 0 0;color:#cfe0e0;font-size:.95rem}
+nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;padding:0 8px}
+nav button{background:none;border:none;border-bottom:3px solid transparent;padding:12px 10px;font:inherit;font-size:.95rem;color:var(--muted);cursor:pointer}
+nav button.on{color:var(--navy);border-bottom-color:var(--amber);font-weight:700}
+main{max-width:760px;margin:0 auto;padding:16px}
+section{display:none}
+section.on{display:block}
+h2{font-family:Cambria,Georgia,serif;color:var(--navy);margin:8px 0 10px;font-size:1.45rem}
+h3{color:var(--teal);margin:22px 0 6px;font-size:1.1rem}
+p{margin:0 0 12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+.note{background:var(--soft);border-left:4px solid var(--teal)}
+.warn{background:#fff6ea;border-left:4px solid var(--amber)}
+label.q{display:block;font-weight:700;color:var(--navy);margin:14px 0 4px}
+textarea,input[type=text]{width:100%;font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+textarea{min-height:88px;resize:vertical}
+input[type=text]{min-height:40px}
+table{width:100%;border-collapse:collapse;margin:8px 0 14px}
+th,td{border:1px solid var(--line);padding:6px;vertical-align:top;text-align:left}
+th{background:var(--soft);color:var(--navy);font-size:.9rem}
+td input[type=text]{min-height:36px;padding:6px 8px;font-size:.95rem}
+.small{font-size:.9rem;color:var(--muted)}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line)}
+.chk input{width:22px;height:22px;margin-top:3px;flex:none}
+.chk span{flex:1}
+.btn{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer}
+.btn.alt{background:var(--amber)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.status{font-size:.9rem;color:var(--muted)}
+.res{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.res a{color:var(--teal);font-weight:700;word-break:break-word}
+.pill{display:inline-block;background:var(--navy);color:#fff;border-radius:999px;padding:2px 10px;font-size:.8rem;margin-right:6px}
+.speed{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.speed label{border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;background:#fff;font-size:.95rem}
+.speed input{display:none}
+.speed input:checked + span{color:#fff}
+.speed label:has(input:checked){background:var(--teal);border-color:var(--teal);color:#fff}
+footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
+@media (max-width:600px){ body{font-size:16px} th,td{padding:5px} }
+</style>
+</head>
+<body>
+<header>
+  <h1>The Sensory Diet</h1>
+  <p>Health · a two week mini project · everything you type here saves on this device</p>
+</header>
+<nav id="nav">
+  <button data-s="start" class="on">Start here</button>
+  <button data-s="idea">1 · The idea</button>
+  <button data-s="read">2 · Read and watch</button>
+  <button data-s="day">3 · Your day now</button>
+  <button data-s="plan">4 · Build the plan</button>
+  <button data-s="run">5 · Run it</button>
+  <button data-s="reflect">6 · Reflect</button>
+</nav>
+<main>
+
+<!-- START -->
+<section id="start" class="on">
+  <h2>What this is</h2>
+  <p>This is a short Health project about how you keep yourself level through a day. Not level as in calm all the time. Level as in able to focus when you need to focus, able to wind down when you need to wind down, and not stuck at either end.</p>
+  <p>You have probably heard the word <strong>diet</strong> used to mean eating less. That is not what it means here. A diet is simply what you take in and when. A sensory diet is the same idea, applied to everything your body takes in that is not food: movement, sound, light, pressure, screens, quiet.</p>
+  <h3>What you are making</h3>
+  <p>By the end of this you will have written your own sensory diet plan, tried it for one school week, and written down honestly what happened. That is the whole assignment. You are not being graded on whether the plan worked. You are being graded on whether you built it thoughtfully, ran it, and told the truth about it.</p>
+  <h3>How to use this page</h3>
+  <p>The tabs across the top go in order. Each day's Trello card tells you which tab to open. Your answers save automatically on this device, so you can leave and come back. When a card asks you to turn something in, use the <strong>Copy as Markdown</strong> button at the bottom of any tab, paste it into a Google Doc, and put the link in a card comment.</p>
+  <div class="box warn">
+    <p><strong>One thing to know before you start.</strong> Most of what is written about sensory diets is written for people with autism or ADHD, and most of it is written for young kids or their parents. You have ADHD, so some of it will fit you. Some of it will not. Nothing on this page asks you to accept any of it on faith. Your job is to read like a person deciding what applies to them, not like a patient being told what to do.</p>
+  </div>
+</section>
+
+<!-- IDEA -->
+<section id="idea">
+  <h2>1 · The idea</h2>
+  <p>Think about how you eat during a day. You do not eat everything at once. You spread it out, and the timing is not random. Breakfast gets you started, lunch keeps you going through the afternoon, dinner refuels you after the day. Each meal has a job, and the job depends on the time.</p>
+  <p>Sometimes the timing matters even when your body is not sending the signal. For example, if a person takes a medication that turns down their appetite during the day, they can go until dinner without ever feeling hungry. Their body still needed the fuel at lunch. The signal was quiet, but the need was not. So that person eats lunch anyway, because they know the need is there, and then makes sure dinner is a real meal, because that is when the hunger comes back and the body can catch up.</p>
+  <p>The same thing is true of what your nervous system takes in. Movement, pressure, sound, quiet, light, and screens all change how awake, settled, or wound up you feel. Occupational therapists call this your level of alertness, and some of them describe it like a car engine: running low, running just right, or running high. The useful part of that idea is that <strong>you can change your engine speed on purpose</strong>, and the best time to do it is usually before you notice you need to.</p>
+  <h3>Why this matters for you specifically</h3>
+  <p>Your school day involves a lot of sitting and a lot of screens. Then, when school is done, the thing you enjoy most also happens sitting down, at a screen. There is nothing wrong with any of that on its own. But it means your day can run for hours without the kinds of input that move your engine speed, and then everything piles up at once: restless in the afternoon, wired at night, flat in the morning.</p>
+  <p>Research on teenagers backs this up. One study that put wearable sensors on nearly 400 high school students found they sat for about three quarters of class time and about three quarters of the evening, and that breaking up long sitting was linked to better health and better school outcomes. Other researchers have written guidelines saying school days should include scheduled movement breaks and that screen-based schoolwork should stop an hour before bed. Those are the kinds of claims you will check for yourself in the next tab.</p>
+  <h3>The questions this project is really asking</h3>
+  <div class="box note">
+    <p><strong>What does your body need to take in during a day, besides food, to run well?</strong></p>
+    <p><strong>When does it need it?</strong> Not all at once. Spread through the day, and timed to the parts of the day that are hardest.</p>
+    <p><strong>How would you know if it worked?</strong></p>
+  </div>
+  <label class="q" for="idea_q1">Before you read anything else: in your own words, what do you think "a sensory diet" means, and what is one thing in your day right now that already works like one? (Maybe something you do without thinking that helps you settle or wake up.)</label>
+  <textarea id="idea_q1" data-save></textarea>
+  <div class="row"><button class="btn ghost" onclick="exportMd('idea')">Copy as Markdown</button><span class="status" id="st_idea"></span></div>
+</section>
+
+<!-- READ -->
+<section id="read">
+  <h2>2 · Read and watch</h2>
+  <p>Six sources. Two are videos, the rest are short reads. For each one, write what made sense for you and what did not. "This is written for six year olds" is a fair thing to notice. So is "this part is actually me."</p>
+  <p class="small">A note on evidence: occupational therapists use sensory diets all the time, and plenty of people say they help, but the research behind them is thin and the studies are small. That is not a reason to ignore the idea. It is a reason to test it on yourself instead of taking anyone's word for it.</p>
+
+  <div class="res">
+    <span class="pill">Read first</span><a href="https://www.understood.org/articles/sensory-diet-treatment-what-you-need-to-know" target="_blank" rel="noopener">Understood.org: Sensory diet treatment, what you need to know</a>
+    <p class="small">The plainest explanation. Written for parents of kids, so translate as you go. It has a sample sensory diet you can look at to see the shape of one.</p>
+    <label class="q">What made sense for you, and what did not?</label><textarea data-save id="r1"></textarea>
+  </div>
+
+  <div class="res">
+    <span class="pill">Watch</span><a href="https://therapyinanutshell.com/sensory-diet/" target="_blank" rel="noopener">Therapy in a Nutshell: Exploring a Sensory Diet for Emotional Regulation (video, about 16 min)</a>
+    <p class="small">Emma McAdam is a licensed therapist. This one is written for adults and teens, not little kids, and it connects sensory needs to mood. She tells a story about someone who was misread for years. Watch for the part about sensory seeking versus sensory avoiding, and notice that she says nobody is only one or the other.</p>
+    <label class="q">Are you more of a seeker or an avoider, and for which senses? Give one example each way.</label><textarea data-save id="r2"></textarea>
+  </div>
+
+  <div class="res">
+    <span class="pill">Read</span><a href="https://colab.telethonkids.org.au/siteassets/media-docs---colab/how-does-your-engine-run-v2-002.pdf" target="_blank" rel="noopener">The Alert Program engine analogy (2 page PDF)</a>
+    <p class="small">This is the "engine running low, just right, or high" idea, and the five categories of things that change your engine speed: mouth, move, touch, look, listen. It is the simplest tool in this whole project and probably the most useful one.</p>
+    <label class="q">Think of a typical school morning. When is your engine low, when is it high, and when is it just right? What were you doing right before each one?</label><textarea data-save id="r3"></textarea>
+  </div>
+
+  <div class="res">
+    <span class="pill">Read</span><a href="https://www.theottoolbox.com/?p=76712" target="_blank" rel="noopener">The OT Toolbox: Sensory diet for adults</a>
+    <p class="small">Written by an occupational therapist for adults, so the activities are things a person your age would actually do. Skim the lists by sense and mark the ones you would not be embarrassed to do.</p>
+    <label class="q">List five activities from this page you would actually try. Mark each one "wakes me up" or "settles me down."</label><textarea data-save id="r4"></textarea>
+  </div>
+
+  <div class="res">
+    <span class="pill">Skim</span><a href="https://misophoniainternational.com/wp-content/uploads/2015/09/Sensory-Diet-2022-Updated.pdf" target="_blank" rel="noopener">Sensory Diet for Adults and Teens (PDF)</a>
+    <p class="small">Long lists of activities by sense, written for teens and adults. Also says something useful about dose: a few minutes helps, but about thirty minutes lasts longer, and some people need something every hour or two. That is the timing question again.</p>
+    <label class="q">What does this source say about how often and how long? Do you believe it? Why or why not?</label><textarea data-save id="r5"></textarea>
+  </div>
+
+  <div class="res">
+    <span class="pill">Read</span><a href="https://ipan.deakin.edu.au/2019/06/five-ways-teens-can-cut-their-sedentary-time/" target="_blank" rel="noopener">Deakin University: Five ways teens can cut their sedentary time</a>
+    <p class="small">The sitting study from tab 1, with its own suggestions. Then look at <a href="https://cheo.on.ca/en/news/global-recommendations-released-to-reduce-sedentary-time-at-school.aspx" target="_blank" rel="noopener">these school-day recommendations</a> and check the claim I made: do they really say movement breaks during school and no screen homework in the hour before bed?</p>
+    <label class="q">Did my summary hold up? What would you change about it? And which of the five Deakin suggestions is realistic for your day?</label><textarea data-save id="r6"></textarea>
+  </div>
+
+  <div class="box note" style="margin-top:18px">
+    <p><strong>Optional video search.</strong> There is a YouTube video called <em>How to Use a Sensory Diet (Explained by a Pediatric OT)</em>. Search for it by that exact title. Before you watch, check who made it and whether they are selling something. Decide if it is worth your ten minutes.</p>
+  </div>
+  <label class="q" for="read_sum">Pulling it together: what is one idea from these sources that you think is actually true for you, and one idea you think does not apply to you at all?</label>
+  <textarea id="read_sum" data-save></textarea>
+  <div class="row"><button class="btn ghost" onclick="exportMd('read')">Copy as Markdown</button><span class="status" id="st_read"></span></div>
+</section>
+
+<!-- DAY -->
+<section id="day">
+  <h2>3 · Your day right now</h2>
+  <p>You cannot plan a diet until you know what you are already taking in. This is an honest picture of a normal school day. No judgment, just what is true.</p>
+  <table>
+    <thead><tr><th style="width:28%">Part of the day</th><th>What you are usually doing</th><th style="width:22%">Engine: low, just right, or high</th></tr></thead>
+    <tbody>
+      <tr><td>Waking up to starting school</td><td><input type="text" data-save id="d1a"></td><td><input type="text" data-save id="d1b"></td></tr>
+      <tr><td>Morning school block</td><td><input type="text" data-save id="d2a"></td><td><input type="text" data-save id="d2b"></td></tr>
+      <tr><td>Lunch</td><td><input type="text" data-save id="d3a"></td><td><input type="text" data-save id="d3b"></td></tr>
+      <tr><td>Afternoon school block</td><td><input type="text" data-save id="d4a"></td><td><input type="text" data-save id="d4b"></td></tr>
+      <tr><td>School done to dinner</td><td><input type="text" data-save id="d5a"></td><td><input type="text" data-save id="d5b"></td></tr>
+      <tr><td>Dinner to bed</td><td><input type="text" data-save id="d6a"></td><td><input type="text" data-save id="d6b"></td></tr>
+    </tbody>
+  </table>
+  <label class="q" for="day_q1">Roughly how many hours of a school day are you sitting? How many of those hours are at a screen for school, and how many at a screen for fun? (A guess is fine. Say that it is a guess.)</label>
+  <textarea id="day_q1" data-save></textarea>
+  <label class="q" for="day_q2">Where in the day is the longest stretch with no movement at all?</label>
+  <textarea id="day_q2" data-save></textarea>
+  <label class="q" for="day_q3">Screens for school and screens for fun are different kinds of input, even though they look the same from outside. How do they feel different to you? Does one wind you up and the other settle you, or is it the other way around, or neither?</label>
+  <textarea id="day_q3" data-save></textarea>
+  <label class="q" for="day_q4">Is there a time of day where you know you need something (to move, to be quiet, to eat) but the signal is faint, the way hunger goes quiet for the person in the example? What would it mean to handle that on a schedule instead of waiting for the signal?</label>
+  <textarea id="day_q4" data-save></textarea>
+  <div class="row"><button class="btn ghost" onclick="exportMd('day')">Copy as Markdown</button><span class="status" id="st_day"></span></div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <h2>4 · Build the plan</h2>
+  <p>A sensory diet has the same parts as a food one: a few planned "meals" at set times, and some "snacks" you can grab when you need them. Keep it small. Five or six items you will actually do beats fifteen you will abandon by Tuesday.</p>
+  <div class="box note">
+    <p><strong>Rules for a good item:</strong> it names a time, it names an action, it says how long, and it says what it is for (wake me up, settle me down, break up sitting, get me off a screen). "Move more" is not an item. "Walk to the end of the street and back before the afternoon block, 8 minutes, to reset after lunch" is an item.</p>
+  </div>
+  <h3>Planned meals (set times)</h3>
+  <p class="small">Fill in as many rows as you need. Empty rows are ignored. These rows become your daily checklist in the next tab.</p>
+  <table id="planTable">
+    <thead><tr><th style="width:17%">When</th><th>What you will do</th><th style="width:14%">How long</th><th style="width:22%">What it is for</th></tr></thead>
+    <tbody>
+      <tr><td><input type="text" data-save id="p1w" placeholder="Before school"></td><td><input type="text" data-save id="p1a"></td><td><input type="text" data-save id="p1h"></td><td><input type="text" data-save id="p1f"></td></tr>
+      <tr><td><input type="text" data-save id="p2w" placeholder="Mid morning"></td><td><input type="text" data-save id="p2a"></td><td><input type="text" data-save id="p2h"></td><td><input type="text" data-save id="p2f"></td></tr>
+      <tr><td><input type="text" data-save id="p3w" placeholder="Lunch"></td><td><input type="text" data-save id="p3a"></td><td><input type="text" data-save id="p3h"></td><td><input type="text" data-save id="p3f"></td></tr>
+      <tr><td><input type="text" data-save id="p4w" placeholder="Mid afternoon"></td><td><input type="text" data-save id="p4a"></td><td><input type="text" data-save id="p4h"></td><td><input type="text" data-save id="p4f"></td></tr>
+      <tr><td><input type="text" data-save id="p5w" placeholder="After school"></td><td><input type="text" data-save id="p5a"></td><td><input type="text" data-save id="p5h"></td><td><input type="text" data-save id="p5f"></td></tr>
+      <tr><td><input type="text" data-save id="p6w" placeholder="Evening"></td><td><input type="text" data-save id="p6a"></td><td><input type="text" data-save id="p6h"></td><td><input type="text" data-save id="p6f"></td></tr>
+      <tr><td><input type="text" data-save id="p7w" placeholder="Before bed"></td><td><input type="text" data-save id="p7a"></td><td><input type="text" data-save id="p7h"></td><td><input type="text" data-save id="p7f"></td></tr>
+      <tr><td><input type="text" data-save id="p8w"></td><td><input type="text" data-save id="p8a"></td><td><input type="text" data-save id="p8h"></td><td><input type="text" data-save id="p8f"></td></tr>
+    </tbody>
+  </table>
+  <h3>Snacks (grab when needed)</h3>
+  <label class="q" for="snack_hi">If my engine is running high (wound up, restless, can't settle), I will:</label>
+  <textarea id="snack_hi" data-save></textarea>
+  <label class="q" for="snack_lo">If my engine is running low (flat, foggy, can't start), I will:</label>
+  <textarea id="snack_lo" data-save></textarea>
+  <h3>The screen question</h3>
+  <label class="q" for="plan_screen">What is your one rule about screens for fun this week? Not a ban. A rule about <em>when</em>, like "not in the hour before bed" or "not until I have been outside once." Why that rule?</label>
+  <textarea id="plan_screen" data-save></textarea>
+  <label class="q" for="plan_why">Explain your plan in a few sentences to someone who has not read any of this. Why these things, at these times?</label>
+  <textarea id="plan_why" data-save></textarea>
+  <div class="row"><button class="btn ghost" onclick="exportMd('plan')">Copy as Markdown</button><span class="status" id="st_plan"></span></div>
+</section>
+
+<!-- RUN -->
+<section id="run">
+  <h2>5 · Run it</h2>
+  <p>Five school days. Each day, check off what you did, mark your engine three times, and write two honest lines. If you skip a meal, say so. A skipped item you admit to is worth more than a checked box that is not true.</p>
+  <div id="runDays"></div>
+  <div class="row"><button class="btn ghost" onclick="exportMd('run')">Copy as Markdown</button><span class="status" id="st_run"></span></div>
+</section>
+
+<!-- REFLECT -->
+<section id="reflect">
+  <h2>6 · Reflect</h2>
+  <p>This is the part that gets graded, and it is graded on honesty and thinking, not on results. A plan that failed and taught you something is a success here.</p>
+  <label class="q" for="ref1">Which items did you actually do most days? Which did you drop, and when did you drop them?</label>
+  <textarea id="ref1" data-save></textarea>
+  <label class="q" for="ref2">Did anything change in how you felt during the school day? Be specific about time of day. If nothing changed, say that.</label>
+  <textarea id="ref2" data-save></textarea>
+  <label class="q" for="ref3">What did you learn about the timing question? Was there a time of day where doing something on a schedule, before you felt like you needed it, made a difference?</label>
+  <textarea id="ref3" data-save></textarea>
+  <label class="q" for="ref4">Go back to the sources in tab 2. Now that you have tried it, which one was most right about you, and which was most wrong?</label>
+  <textarea id="ref4" data-save></textarea>
+  <label class="q" for="ref5">What is the version of this plan you would actually keep? Two or three items, with times.</label>
+  <textarea id="ref5" data-save></textarea>
+  <div class="row"><button class="btn ghost" onclick="exportMd('reflect')">Copy as Markdown</button><button class="btn alt" onclick="exportMd('all')">Copy everything as Markdown</button><span class="status" id="st_reflect"></span></div>
+</section>
+
+</main>
+<footer>Sensory Diet · Health · answers save on this device only. Paste exports into a Google Doc to keep them.</footer>
+
+<script>
+(function(){
+  var KEY='sensory_v1';
+  var store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ store={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+  // tabs
+  var nav=document.getElementById('nav');
+  nav.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return; show(b.dataset.s);
+  });
+  function show(id){
+    document.querySelectorAll('section').forEach(function(s){ s.classList.toggle('on', s.id===id); });
+    document.querySelectorAll('nav button').forEach(function(b){ b.classList.toggle('on', b.dataset.s===id); });
+    store._tab=id; save(); window.scrollTo(0,0);
+    if(id==='run') buildRun();
+  }
+
+  // run days
+  var DAYS=[['run1','Day 1 · Mon Oct 19'],['run2','Day 2 · Tue Oct 20'],['run3','Day 3 · Wed Oct 21'],['run4','Day 4 · Thu Oct 22'],['run5','Day 5 · Fri Oct 23']];
+  function planItems(){
+    var out=[];
+    for(var i=1;i<=8;i++){
+      var a=(store['p'+i+'a']||'').trim(); if(!a) continue;
+      out.push({i:i, text:((store['p'+i+'w']||'').trim()? store['p'+i+'w'].trim()+': ':'')+a+((store['p'+i+'h']||'').trim()? ' ('+store['p'+i+'h'].trim()+')':'')});
+    }
+    return out;
+  }
+  function buildRun(){
+    var host=document.getElementById('runDays'); host.innerHTML='';
+    var items=planItems();
+    DAYS.forEach(function(d){
+      var box=document.createElement('div'); box.className='box';
+      var h=document.createElement('h3'); h.textContent=d[1]; h.style.marginTop='4px'; box.appendChild(h);
+      if(!items.length){ var p=document.createElement('p'); p.className='small'; p.textContent='Fill in the plan in tab 4 first. Your items will show up here as a checklist.'; box.appendChild(p); }
+      items.forEach(function(it){
+        var id=d[0]+'_c'+it.i;
+        var row=document.createElement('label'); row.className='chk';
+        var c=document.createElement('input'); c.type='checkbox'; c.id=id; c.checked=!!store[id];
+        c.addEventListener('change',function(){ store[id]=c.checked; save(); });
+        var s=document.createElement('span'); s.textContent=it.text;
+        row.appendChild(c); row.appendChild(s); box.appendChild(row);
+      });
+      var sp=document.createElement('div'); sp.innerHTML='<label class="q">Engine check (low / just right / high)</label>';
+      ['Morning','Midday','Evening'].forEach(function(t){
+        var wrap=document.createElement('div'); wrap.className='speed'; wrap.innerHTML='<span class="small" style="min-width:70px;line-height:30px">'+t+'</span>';
+        ['low','just right','high'].forEach(function(v){
+          var id=d[0]+'_e'+t; var l=document.createElement('label');
+          var r=document.createElement('input'); r.type='radio'; r.name=id; r.value=v; r.checked=(store[id]===v);
+          r.addEventListener('change',function(){ store[id]=v; save(); });
+          var s=document.createElement('span'); s.textContent=v; l.appendChild(r); l.appendChild(s); wrap.appendChild(l);
+        });
+        sp.appendChild(wrap);
+      });
+      box.appendChild(sp);
+      var l=document.createElement('label'); l.className='q'; l.textContent='Two honest lines about today:'; box.appendChild(l);
+      var ta=document.createElement('textarea'); ta.id=d[0]+'_n'; ta.value=store[ta.id]||''; ta.style.minHeight='64px';
+      ta.addEventListener('input',function(){ store[ta.id]=ta.value; save(); }); box.appendChild(ta);
+      host.appendChild(box);
+    });
+  }
+
+  // bind saves
+  document.querySelectorAll('[data-save]').forEach(function(el){
+    if(store[el.id]!==undefined) el.value=store[el.id];
+    el.addEventListener('input',function(){ store[el.id]=el.value; save(); });
+  });
+
+  // export
+  function q(id){ var el=document.getElementById(id); return el? el.value.trim():''; }
+  function lab(id){ var l=document.querySelector('label[for="'+id+'"]'); if(l) return l.textContent.trim(); var el=document.getElementById(id); var p=el&&el.previousElementSibling; return p&&p.tagName==='LABEL'? p.textContent.trim():id; }
+  function qa(id){ return '**'+lab(id)+'**\n'+(q(id)||'_(blank)_')+'\n\n'; }
+  function tableRow(prefix,cols){ return cols.map(function(c){ return (store[prefix+c]||'').trim(); }); }
+  var EXP={
+    idea:function(){ return '## 1 · The idea\n\n'+qa('idea_q1'); },
+    read:function(){ var s='## 2 · Read and watch\n\n'; ['r1','r2','r3','r4','r5','r6','read_sum'].forEach(function(i){ s+=qa(i); }); return s; },
+    day:function(){ var s='## 3 · Your day right now\n\n| Part of the day | What I am usually doing | Engine |\n|---|---|---|\n';
+      var names=['Waking up to starting school','Morning school block','Lunch','Afternoon school block','School done to dinner','Dinner to bed'];
+      names.forEach(function(n,i){ var r=tableRow('d'+(i+1),['a','b']); s+='| '+n+' | '+r[0]+' | '+r[1]+' |\n'; });
+      s+='\n'; ['day_q1','day_q2','day_q3','day_q4'].forEach(function(i){ s+=qa(i); }); return s; },
+    plan:function(){ var s='## 4 · My sensory diet plan\n\n**Planned meals**\n\n| When | What I will do | How long | What it is for |\n|---|---|---|---|\n';
+      for(var i=1;i<=8;i++){ var r=tableRow('p'+i,['w','a','h','f']); if(r.join('')) s+='| '+r.join(' | ')+' |\n'; }
+      s+='\n'; ['snack_hi','snack_lo','plan_screen','plan_why'].forEach(function(i){ s+=qa(i); }); return s; },
+    run:function(){ var s='## 5 · Running it\n\n'; var items=planItems();
+      DAYS.forEach(function(d){ s+='### '+d[1]+'\n';
+        items.forEach(function(it){ s+='- ['+(store[d[0]+'_c'+it.i]?'x':' ')+'] '+it.text+'\n'; });
+        s+='\nEngine: morning '+(store[d[0]+'_eMorning']||'?')+', midday '+(store[d[0]+'_eMidday']||'?')+', evening '+(store[d[0]+'_eEvening']||'?')+'\n\n';
+        s+='**Two honest lines:** '+((store[d[0]+'_n']||'').trim()||'_(blank)_')+'\n\n'; });
+      return s; },
+    reflect:function(){ var s='## 6 · Reflection\n\n'; ['ref1','ref2','ref3','ref4','ref5'].forEach(function(i){ s+=qa(i); }); return s; }
+  };
+  window.exportMd=function(which){
+    var md='# Sensory Diet · Health\n\n';
+    if(which==='all'){ ['idea','read','day','plan','run','reflect'].forEach(function(k){ md+=EXP[k](); }); }
+    else md+=EXP[which]();
+    var st=document.getElementById('st_'+(which==='all'?'reflect':which));
+    function done(ok){ if(st){ st.textContent= ok? 'Copied. Paste it into your Google Doc.' : 'Could not copy automatically. Select the text in the box that opened and copy it.'; } }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(md).then(function(){done(true);},function(){fallback(md);done(false);}); }
+    else { fallback(md); done(false); }
+  };
+  function fallback(md){ var ta=document.createElement('textarea'); ta.value=md; ta.style.cssText='position:fixed;left:8px;top:60px;width:90%;height:60%;z-index:99'; document.body.appendChild(ta); ta.select(); setTimeout(function(){ ta.remove(); },20000); }
+
+  show(store._tab||'start');
+})();
+</script>
+</body>
+</html>
