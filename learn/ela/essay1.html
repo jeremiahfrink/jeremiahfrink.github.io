@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essay 1: Homeschooling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1b2a4a; --teal:#1f7a7a; --teal-soft:#e3f1f0; --amber:#e08a1e; --amber-soft:#fdf1e0;
+  --bg:#f6f7f9; --card:#ffffff; --text:#1d2433; --muted:#5b6475; --line:#d9dee7; --done:#2e8b57;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --navy:#9fb4dd; --teal:#5fc4c0; --teal-soft:#16302f; --amber:#f0a447; --amber-soft:#33281a;
+    --bg:#11151d; --card:#1a202b; --text:#e6e9ef; --muted:#a3abba; --line:#2d3544; --done:#5fcf8f;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",Calibri,Arial,sans-serif;font-size:17px;line-height:1.55}
+header{background:#1b2a4a;color:#fff;padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5}
+header h1{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:22px;margin:0}
+header .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#saveState{font-size:14px;opacity:.85}
+button{font-family:inherit;font-size:15px;border-radius:8px;border:none;padding:9px 14px;cursor:pointer}
+.btn-amber{background:#e08a1e;color:#1b1b1b;font-weight:700}
+.btn-teal{background:var(--teal);color:#fff;font-weight:700}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.wrap{display:flex;max-width:1150px;margin:0 auto;gap:22px;padding:18px 16px 60px}
+nav{width:250px;flex-shrink:0}
+nav .overall{font-size:14px;color:var(--muted);margin-bottom:8px}
+nav ol{list-style:none;margin:0;padding:0}
+nav li button{width:100%;text-align:left;background:var(--card);color:var(--text);border:1px solid var(--line);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+nav li button.active{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal-soft)}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--muted);flex-shrink:0}
+.dot.part{border-color:var(--amber);background:var(--amber-soft)}
+.dot.done{border-color:var(--done);background:var(--done)}
+main{flex:1;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:30px;margin:0 0 4px;color:var(--navy)}
+.stepnum{color:var(--teal);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.intro p,.intro li{max-width:68ch}
+.box{border-radius:10px;padding:14px 16px;margin:16px 0}
+.box.teal{background:var(--teal-soft);border-left:5px solid var(--teal)}
+.box.amber{background:var(--amber-soft);border-left:5px solid var(--amber)}
+.box h3{margin:0 0 6px;font-size:17px}
+.box p{margin:6px 0}
+pre{background:#1b2a4a;color:#e9eef7;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:14px}
+table.ladder{border-collapse:collapse;width:100%;margin:10px 0;font-size:15px}
+table.ladder td,table.ladder th{border:1px solid var(--line);padding:8px;vertical-align:top;text-align:left}
+table.ladder th{background:var(--teal-soft)}
+.fhead{font-family:"DM Serif Display",Georgia,serif;font-size:21px;color:var(--navy);margin:26px 0 4px;border-top:1px solid var(--line);padding-top:14px}
+.field{margin:16px 0}
+.field label{display:block;font-weight:700;margin-bottom:4px}
+.field .hint{color:var(--muted);font-size:14.5px;margin-bottom:6px}
+textarea,input[type=text]{width:100%;font-family:inherit;font-size:16px;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+textarea{resize:vertical}
+textarea:focus,input:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.checks{margin-top:26px;border-top:2px solid var(--line);padding-top:12px}
+.checks h3{margin:0 0 4px;color:var(--navy)}
+.checks .hint{color:var(--muted);font-size:14.5px;margin-bottom:8px}
+.checks label{display:flex;gap:10px;align-items:flex-start;margin:8px 0;cursor:pointer}
+.checks input{width:20px;height:20px;margin-top:3px;flex-shrink:0;accent-color:var(--teal)}
+.status{margin-top:20px;padding:12px 14px;border-radius:8px;font-weight:500}
+.status.left{background:var(--amber-soft)}
+.status.ok{background:var(--teal-soft)}
+.navbtns{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1b2a4a;color:#fff;padding:10px 18px;border-radius:8px;display:none;z-index:10}
+@media (max-width:820px){
+  .wrap{flex-direction:column}
+  nav{width:100%}
+  nav ol{display:flex;overflow-x:auto;gap:6px;padding-bottom:4px}
+  nav li button{white-space:nowrap;margin:0}
+  .card{padding:16px}
+  .card h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Essay 1: Would You Recommend Homeschooling?</h1>
+  <div class="right">
+    <span id="saveState">Your work saves automatically.</span>
+    <button class="btn-amber" id="copyBtn">Copy as Markdown</button>
+  </div>
+</header>
+<div class="wrap">
+  <nav>
+    <div class="overall" id="overall"></div>
+    <ol id="navlist"></ol>
+  </nav>
+  <main><div class="card" id="stepCard"></div></main>
+</div>
+<div id="toast"></div>
+
+<script>
+const KEY = "essay1_homeschool_v1";
+
+const STEPS = [
+{ id:"start", title:"Start Here", start:true, html:`
+<div class="intro">
+<p>This guide walks you through writing an argument essay one step at a time. The question is:</p>
+<div class="box teal"><h3>Based on your current experience, would you recommend homeschooling?</h3>
+<p>This is not a yes or no question. The real answer depends on things, and figuring out what it depends on is most of the work.</p></div>
+
+<h3>What you are making</h3>
+<ul>
+<li><b>Your thinking.</b> Everything you type into this guide. It shows how you built your argument.</li>
+<li><b>Your essay.</b> A five or six paragraph essay that you write in a Google Doc at Step 10.</li>
+</ul>
+<p>Both get graded. The thinking counts as much as the essay.</p>
+
+<h3>How to use this guide</h3>
+<ul>
+<li>Work through the steps in order. Each step has questions to answer and a short checklist at the bottom.</li>
+<li>Check a box only when it is true. The checklist is for you: it shows you what a strong answer has.</li>
+<li>The list of steps shows your progress. A green dot means the step is done. An orange dot means you started it.</li>
+<li>Your answers save automatically in this browser on this computer. Use the same computer and browser each time.</li>
+<li>At the end of every session, click <b>Copy as Markdown</b> and paste everything into a Google Doc named <b>Essay 1 Thinking</b>, replacing what was there. That way nothing gets lost.</li>
+</ul>
+
+<div class="box amber"><h3>Any honest answer is acceptable</h3>
+<p>Yes, no, and "it depends" are all fine answers. Your grade comes from how well you think it through and back it up, not from which answer you pick. Dad wants your real opinion.</p></div>
+
+<h3>Getting your thoughts down</h3>
+<p>Write your thoughts down as you go. If typing is slowing you down, try voice to text: in a Google Doc, open the Tools menu and choose Voice typing; on a Mac, press the dictation key or the Fn key twice; on Windows, press the Windows key and H together. Paste what you get into this guide, then read it over and fix it.</p>
+
+<h3>Suggested sessions</h3>
+<ol>
+<li><b>Session 1:</b> Steps 1 to 4. Also ask Grandpa today for a time to talk this week.</li>
+<li><b>Session 2:</b> Steps 5 and 6 (gather evidence and interview Grandpa).</li>
+<li><b>Session 3:</b> Steps 7 to 9 (claim, counterclaim, outline).</li>
+<li><b>Session 4:</b> Step 10 (write the draft).</li>
+<li><b>Session 5:</b> Step 11 (revise and turn in).</li>
+</ol>
+
+<h3>If you get stuck</h3>
+<p>Try it, look it up, write down that you are stuck and why, text or email Dad, then move on to the next part you can do.</p>
+<p><b>Click "Step 1" to begin.</b></p>
+</div>`},
+
+{ id:"reader", num:1, title:"Pick Your Reader", html:`
+<p>Every argument is written for someone. Your essay should help a real kind of person make a real decision. Choose who that is.</p>
+<p>Some ideas: a family with an eighth grader deciding whether to homeschool next year, a friend your age who is thinking about asking their parents to homeschool, or a parent who thinks homeschooling sounds like a bad idea. You can pick one of these or choose your own.</p>
+<div class="box teal"><p>Picture one specific person. "People" is not a reader. "A fourteen year old who loves robotics club and is bored in class" is a reader.</p></div>`,
+fields:[
+ {id:"r_who", q:"Who is your reader? Describe them in two or three sentences.", hint:"Include their age, their situation, and why they are thinking about homeschooling right now.", rows:4},
+ {id:"r_know", q:"What does your reader probably already believe about homeschooling?", rows:3},
+ {id:"r_worry", q:"What are two or three things your reader worries about or wants to know?", rows:4},
+ {id:"r_trust", q:"What would make this reader trust what you say?", rows:3}
+],
+checks:[
+ "I described one specific reader, not \"people\" or \"everyone.\"",
+ "I listed at least two things my reader worries about or wants to know.",
+ "My reader is someone who is actually trying to decide something."
+]},
+
+{ id:"first", num:2, title:"Write Your First Answer", html:`
+<p>Write your first answer fast, without overthinking it. This is your starting point, not your final answer.</p>
+<div class="box amber"><p>You will probably change your mind as you work. That is a good sign. Strong writers often find out what they really think while they are thinking it through.</p></div>`,
+fields:[
+ {id:"f_answer", q:"What is your first answer: yes, no, or it depends? Write it in one sentence.", rows:2},
+ {id:"f_reasons", q:"What are three reasons that come to mind right away?", rows:5},
+ {id:"f_unsure", q:"What is one thing that makes you less sure of your answer?", rows:3}
+],
+checks:[
+ "I wrote my answer as a full sentence.",
+ "I listed three reasons.",
+ "I wrote down at least one thing that makes me less sure."
+]},
+
+{ id:"vars", num:3, title:"Find the Variables", html:`
+<p>As a coder, you can think of the answer as the output of a function. Different inputs give different outputs. Your job in this step is to find the inputs.</p>
+<pre>function shouldHomeschool(student) {
+  // The answer depends on these variables.
+  // Your job: figure out what they are,
+  // and what values make the answer yes or no.
+}</pre>
+<p>Here are some areas to get you thinking. Use the ones that fit, skip the ones that do not, and add your own:</p>
+<ul>
+<li>how a student learns best</li>
+<li>schedule and pace</li>
+<li>friends and social life</li>
+<li>who teaches, and how</li>
+<li>activities outside school, such as classes, sports, or volunteering</li>
+<li>motivation and self discipline</li>
+<li>the family's situation</li>
+<li>goals after high school</li>
+</ul>
+<p>Fill in at least four variables. Include at least one where homeschooling has not worked well for you, or has been mixed.</p>`,
+fields:[
+ {head:"Variable 1"},
+ {id:"v1_name", q:"Name the variable.", rows:1, short:true},
+ {id:"v1_me", q:"How has this worked for you so far? Good, bad, or mixed, and why?", rows:3},
+ {id:"v1_who", q:"What kind of student would this help? What kind would it hurt?", rows:3},
+ {head:"Variable 2"},
+ {id:"v2_name", q:"Name the variable.", rows:1, short:true},
+ {id:"v2_me", q:"How has this worked for you so far? Good, bad, or mixed, and why?", rows:3},
+ {id:"v2_who", q:"What kind of student would this help? What kind would it hurt?", rows:3},
+ {head:"Variable 3"},
+ {id:"v3_name", q:"Name the variable.", rows:1, short:true},
+ {id:"v3_me", q:"How has this worked for you so far? Good, bad, or mixed, and why?", rows:3},
+ {id:"v3_who", q:"What kind of student would this help? What kind would it hurt?", rows:3},
+ {head:"Variable 4"},
+ {id:"v4_name", q:"Name the variable.", rows:1, short:true},
+ {id:"v4_me", q:"How has this worked for you so far? Good, bad, or mixed, and why?", rows:3},
+ {id:"v4_who", q:"What kind of student would this help? What kind would it hurt?", rows:3},
+ {head:"Variable 5 (optional)"},
+ {id:"v5_name", q:"Name the variable.", rows:1, short:true, optional:true},
+ {id:"v5_me", q:"How has this worked for you so far? Good, bad, or mixed, and why?", rows:3, optional:true},
+ {id:"v5_who", q:"What kind of student would this help? What kind would it hurt?", rows:3, optional:true},
+ {head:"Choose your top three"},
+ {id:"v_top", q:"Which three variables matter most to your reader from Step 1? Explain why you chose them.", hint:"These three become the body of your essay.", rows:5}
+],
+checks:[
+ "I named at least four variables.",
+ "At least one variable is something that has not worked well for me, or has been mixed.",
+ "For each variable, I wrote what kind of student it would help and what kind it would hurt.",
+ "I chose my top three variables and explained why they matter to my reader."
+]},
+
+{ id:"ladder", num:4, title:"Climb the Specificity Ladder", html:`
+<p>General statements do not convince anyone. Specific ones do. The specificity ladder turns a vague statement into one a reader can picture.</p>
+<table class="ladder">
+<tr><th>Rung</th><th>What it sounds like</th><th>Example 1 (a game)</th><th>Example 2 (a student at a regular school)</th></tr>
+<tr><td><b>Rung 1</b><br>General</td><td>A big claim with no details</td><td>The game is hard.</td><td>Regular school wastes time.</td></tr>
+<tr><td><b>Rung 2</b><br>More specific</td><td>Names the part you mean</td><td>The boss fights are hard.</td><td>A lot of the school day is spent waiting.</td></tr>
+<tr><td><b>Rung 3</b><br>Specific</td><td>A real moment, number, or detail someone could picture</td><td>On the third boss, I died eleven times before I figured out how to dodge the second attack.</td><td>In every class, the first ten minutes went to attendance and getting settled, which adds up to about an hour a day.</td></tr>
+</table>
+<div class="box teal"><p><b>Rung 3 test:</b> could someone who has never met you picture exactly what happened? If not, keep climbing.</p></div>
+<p>Now climb the ladder for each of your top three variables from Step 3.</p>`,
+fields:[
+ {head:"Top variable 1"},
+ {id:"l1_r1", q:"Rung 1: Write a general statement about this variable.", rows:2},
+ {id:"l1_r2", q:"Rung 2: Make it more specific.", rows:2},
+ {id:"l1_r3", q:"Rung 3: Make it a real moment, number, or detail.", rows:3},
+ {head:"Top variable 2"},
+ {id:"l2_r1", q:"Rung 1: Write a general statement about this variable.", rows:2},
+ {id:"l2_r2", q:"Rung 2: Make it more specific.", rows:2},
+ {id:"l2_r3", q:"Rung 3: Make it a real moment, number, or detail.", rows:3},
+ {head:"Top variable 3"},
+ {id:"l3_r1", q:"Rung 1: Write a general statement about this variable.", rows:2},
+ {id:"l3_r2", q:"Rung 2: Make it more specific.", rows:2},
+ {id:"l3_r3", q:"Rung 3: Make it a real moment, number, or detail.", rows:3}
+],
+checks:[
+ "Each Rung 3 has a specific time, place, number, or example.",
+ "Someone who has never met me could picture each Rung 3.",
+ "I avoided words like \"always,\" \"never,\" and \"everyone\" unless they are actually true."
+]},
+
+{ id:"evidence", num:5, title:"Gather Your Evidence", html:`
+<p>A claim without evidence is just an opinion. In this essay, your evidence comes from your own experience and from your interview with Grandpa (Step 6). There are a few kinds of evidence you can use:</p>
+<ul>
+<li><b>A specific moment:</b> one time something happened, with details.</li>
+<li><b>A pattern:</b> something that happens again and again. Say how often, such as "three days out of five" or "every week since September."</li>
+<li><b>A comparison:</b> how something works now compared with how it worked at your previous school.</li>
+<li><b>What someone else saw or said:</b> this comes from your interview.</li>
+</ul>
+<div class="box amber"><p><b>Be honest about how much evidence you have.</b> You started homeschooling on September 9. A few weeks is real evidence, but it is not years. Notice where your evidence is strong and where it is thin.</p></div>`,
+fields:[
+ {head:"Top variable 1"},
+ {id:"e1_now", q:"What specific evidence from homeschooling do you have for this variable?", hint:"Use a Rung 3 moment or a pattern with how often it happens.", rows:4},
+ {id:"e1_before", q:"How did this work at your previous school? Give a specific comparison.", rows:3},
+ {head:"Top variable 2"},
+ {id:"e2_now", q:"What specific evidence from homeschooling do you have for this variable?", hint:"Use a Rung 3 moment or a pattern with how often it happens.", rows:4},
+ {id:"e2_before", q:"How did this work at your previous school? Give a specific comparison.", rows:3},
+ {head:"Top variable 3"},
+ {id:"e3_now", q:"What specific evidence from homeschooling do you have for this variable?", hint:"Use a Rung 3 moment or a pattern with how often it happens.", rows:4},
+ {id:"e3_before", q:"How did this work at your previous school? Give a specific comparison.", rows:3},
+ {head:"Looking at all of it"},
+ {id:"e_against", q:"What evidence do you have that goes against your first answer from Step 2?", rows:4},
+ {id:"e_thin", q:"Where is your evidence strongest, and where is it thinnest?", rows:3}
+],
+checks:[
+ "Each top variable has at least one specific moment or one pattern with how often it happens.",
+ "Each top variable has a comparison with my previous school.",
+ "I wrote down evidence that goes against my first answer.",
+ "I was honest about where my evidence is thin."
+]},
+
+{ id:"interview", num:6, title:"Interview Grandpa", html:`
+<p>Grandpa taught school for many years. He saw a lot of students, and he can tell you what he noticed about how they learned, what helped them, and what did not. He may see homeschooling differently than you do. That is useful: a different view makes your argument stronger, whether he agrees with you or not.</p>
+<p>Keep in mind that he taught a while ago. Part of your job is to think about what has changed since then.</p>
+<div class="box teal"><h3>How to write good interview questions</h3>
+<p>Ask open questions that start with how, why, what, or "tell me about a time." Avoid questions that can be answered with yes or no.</p>
+<p>Ask for specifics, the same way you climbed the ladder: "Can you tell me about one student you remember?"</p>
+<p>Ask at least one question about what worries him about homeschooling.</p>
+<p>Ask him if it is OK to quote him in your essay.</p></div>`,
+fields:[
+ {head:"Before the interview"},
+ {id:"i_qs", q:"Write at least six interview questions.", rows:8},
+ {id:"i_when", q:"When and how will the interview happen?", hint:"In person, by phone, or by video call.", rows:1, short:true},
+ {head:"During the interview"},
+ {id:"i_notes", q:"Write notes on his answers.", hint:"You do not need every word. Write down the important parts, and write his exact words for anything you might quote.", rows:12},
+ {head:"After the interview"},
+ {id:"i_useful", q:"What was the most useful thing Grandpa said?", rows:3},
+ {id:"i_agree", q:"What did he say that agreed with your thinking?", rows:3},
+ {id:"i_complicate", q:"What did he say that disagreed with you or made the answer more complicated?", rows:3},
+ {id:"i_changed", q:"What has changed in school or in homeschooling since he taught? How does that affect what he told you?", rows:4}
+],
+checks:[
+ "I asked at least six open questions.",
+ "I asked him for at least one specific example.",
+ "I asked what worries him about homeschooling.",
+ "I asked if I could quote him.",
+ "I wrote down at least one thing he said that complicates my thinking."
+]},
+
+{ id:"claim", num:7, title:"Size Your Claim", html:`
+<p>Your claim is your answer to the question in one or two sentences. It is the most important sentence in your essay.</p>
+<p>A claim cannot be bigger than its evidence. "Homeschooling is better for everyone" would need evidence about everyone. You have evidence about yourself, plus what Grandpa saw. Make the claim fit what you can actually back up.</p>
+<div class="box teal"><h3>Use this pattern, or the coder version</h3>
+<p>I would recommend homeschooling for students who ____, but not for students who ____, because ____.</p>
+<pre>if (student.____ &amp;&amp; student.____) {
+  recommend = true;   // because ____
+} else {
+  recommend = false;  // because ____
+}</pre>
+<p>Here is an example on a different topic: "I would recommend this game to players who enjoy learning from failure, but not to players who want to relax after a long day, because the game punishes every mistake."</p></div>
+<p>Words like "in my experience," "so far," and "for a student like me" can help your claim match your evidence.</p>`,
+fields:[
+ {id:"c_v1", q:"Write your first version of your claim.", rows:3},
+ {id:"c_check", q:"Is any part of your claim bigger than your evidence? Which part?", rows:3},
+ {id:"c_v2", q:"Write your revised claim.", rows:3},
+ {id:"c_reader", q:"How does this claim help your reader from Step 1 make their decision?", rows:3}
+],
+checks:[
+ "My claim is not just yes or no.",
+ "My claim names which students, or what situations, my answer applies to.",
+ "I can point to evidence from Step 5 or Step 6 for every part of my claim.",
+ "My claim is one or two sentences long."
+]},
+
+{ id:"counter", num:8, title:"Face the Counterclaim", html:`
+<p>A counterclaim is the strongest argument against your claim. Including it may feel like it weakens your essay, but it does the opposite. When you state the other side fairly and then respond, your reader trusts you more.</p>
+<p>You can respond in one of three ways:</p>
+<ul>
+<li><b>Concede:</b> admit part of it is true, then explain why your claim still holds.</li>
+<li><b>Rebut:</b> show why the counterclaim is weaker than it looks, using evidence.</li>
+<li><b>Limit:</b> show that it is true only for certain students or situations, which your claim already accounts for.</li>
+</ul>
+<div class="box amber"><p>Pick the strongest counterclaim, not the easiest one to knock down. Your reader is probably already thinking it.</p></div>`,
+fields:[
+ {id:"k_claim", q:"What is the strongest argument against your claim?", rows:3},
+ {id:"k_evidence", q:"What evidence would someone use to support that argument?", hint:"Look back at your evidence against your first answer (Step 5) and at what Grandpa said (Step 6).", rows:4},
+ {id:"k_true", q:"What part of the counterclaim is actually true?", rows:3},
+ {id:"k_type", q:"Will you concede, rebut, or limit? Why?", rows:2},
+ {id:"k_response", q:"Write your response to the counterclaim.", rows:5}
+],
+checks:[
+ "I chose the strongest counterclaim, not the easiest one.",
+ "I stated the counterclaim fairly, the way someone who believes it would say it.",
+ "I admitted what is true about it.",
+ "My response uses evidence, not just my opinion."
+]},
+
+{ id:"outline", num:9, title:"Build Your Outline", html:`
+<div class="box teal"><h3>A suggested structure for this essay</h3>
+<p>This six paragraph structure fits this essay because you have three top variables and a counterclaim. It is not the only way to build an essay. Later essays will need different shapes, and you will learn those too.</p>
+<p>If you have only two strong variables, you can write five paragraphs: cut one body paragraph and leave the rest the same.</p></div>
+<ol>
+<li><b>Introduction:</b> Connect with your reader's situation, state the question, and end with your claim.</li>
+<li><b>Body paragraphs 1 to 3:</b> Each one covers one top variable, in this order: a point sentence, your evidence (Rung 3), an explanation of why the evidence proves the point, and a sentence that links back to your claim.</li>
+<li><b>Counterclaim paragraph:</b> State the counterclaim fairly, then give your response.</li>
+<li><b>Conclusion:</b> Tell your reader what to take away and what to think about as they decide. Do not just repeat your introduction.</li>
+</ol>
+<div class="box amber"><p><b>Explaining is not repeating.</b> After your evidence, explain <i>why</i> it supports your point. "This shows that I learn better when..." is explaining. Saying the same evidence again in different words is not.</p></div>`,
+fields:[
+ {head:"Paragraph 1: Introduction"},
+ {id:"o_p1", q:"How will you connect with your reader? Copy your claim from Step 7 at the end.", rows:4},
+ {head:"Paragraph 2: Body 1"},
+ {id:"o_p2_point", q:"Point sentence:", rows:2},
+ {id:"o_p2_ev", q:"Evidence (Rung 3, with any comparison or interview detail):", rows:3},
+ {id:"o_p2_why", q:"Explanation: Why does this evidence prove your point?", rows:3},
+ {head:"Paragraph 3: Body 2"},
+ {id:"o_p3_point", q:"Point sentence:", rows:2},
+ {id:"o_p3_ev", q:"Evidence (Rung 3, with any comparison or interview detail):", rows:3},
+ {id:"o_p3_why", q:"Explanation: Why does this evidence prove your point?", rows:3},
+ {head:"Paragraph 4: Body 3 (skip if you are writing five paragraphs)"},
+ {id:"o_p4_point", q:"Point sentence:", rows:2, optional:true},
+ {id:"o_p4_ev", q:"Evidence (Rung 3, with any comparison or interview detail):", rows:3, optional:true},
+ {id:"o_p4_why", q:"Explanation: Why does this evidence prove your point?", rows:3, optional:true},
+ {head:"Paragraph 5: Counterclaim"},
+ {id:"o_p5", q:"Write the counterclaim and your response, in a few phrases.", rows:4},
+ {head:"Paragraph 6: Conclusion"},
+ {id:"o_p6", q:"What should your reader take away? What should they think about as they decide?", rows:4}
+],
+checks:[
+ "My claim appears at the end of my introduction.",
+ "Each body paragraph covers one variable and has evidence and an explanation.",
+ "My explanations say why the evidence matters, not just repeat it.",
+ "I used Grandpa's interview somewhere in my outline.",
+ "My conclusion speaks to my reader's decision and does not just repeat my introduction."
+]},
+
+{ id:"draft", num:10, title:"Write Your Draft", html:`
+<p>Now write the essay in a Google Doc. Name it <b>Essay 1 Final</b>. Keep this guide open next to it and write from your outline.</p>
+<ul>
+<li>Write the whole draft first. Do not stop to fix spelling or small mistakes; you will fix those in Step 11.</li>
+<li>Voice to text is fine for drafting. Read it over afterward.</li>
+<li>When you use something Grandpa said, introduce him so your reader knows why he matters, for example: "My grandfather, who taught school for many years, told me..."</li>
+<li>If you get stuck on one paragraph, skip it, write the next one, and come back.</li>
+</ul>`,
+fields:[
+ {id:"d_link", q:"Paste the link to your Essay 1 Final Google Doc.", rows:1, short:true},
+ {id:"d_hard", q:"Which paragraph was hardest to write, and why?", rows:3}
+],
+checks:[
+ "My draft has five or six paragraphs.",
+ "Every body paragraph has evidence from Step 5 or Step 6.",
+ "I wrote the whole draft before going back to fix things.",
+ "The Google Doc's sharing is set so Dad can open it."
+]},
+
+{ id:"revise", num:11, title:"Revise and Turn In", html:`
+<p>Revising means reading your draft several times, looking for one kind of problem each time. Work through the four passes below in your Google Doc. Check each box when that item is true of your essay.</p>
+<p>Reading your essay out loud to yourself is one of the best ways to catch problems, especially in Pass 4.</p>`,
+fields:[
+ {id:"rv_change", q:"What was the biggest change you made while revising?", rows:3},
+ {id:"rv_learn", q:"What did you learn about writing an argument that you will use next time?", rows:3},
+ {id:"rv_mind", q:"Did your answer change from your first answer in Step 2? How?", rows:3}
+],
+checkGroups:[
+ {title:"Pass 1: Argument", items:[
+  "My claim is clear and appears at the end of my introduction.",
+  "Every body paragraph supports my claim.",
+  "My counterclaim is stated fairly, and my response uses evidence."
+ ]},
+ {title:"Pass 2: Evidence and specificity", items:[
+  "Every body paragraph has at least one Rung 3 detail.",
+  "Every piece of evidence is followed by an explanation of why it matters.",
+  "When I quote or describe Grandpa, I introduce who he is.",
+  "I removed or fixed words like \"always,\" \"never,\" and \"everyone\" that are not true."
+ ]},
+ {title:"Pass 3: Reader", items:[
+  "My reader from Step 1 would understand every part without asking me questions.",
+  "My essay answers at least one of my reader's worries from Step 1.",
+  "My conclusion helps my reader decide."
+ ]},
+ {title:"Pass 4: Sentences and conventions", items:[
+  "I read the whole essay out loud to myself and fixed anything that sounded wrong.",
+  "My sentences do not all start the same way.",
+  "I fixed spelling, capital letters, and punctuation.",
+  "Each paragraph is indented or separated by a blank line."
+ ]},
+ {title:"Turn in", items:[
+  "I clicked Copy as Markdown and pasted everything into my Essay 1 Thinking Google Doc.",
+  "I turned in Essay 1 Thinking and Essay 1 Final."
+ ]}
+]}
+];
+
+let data = {};
+try { data = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { data = {}; }
+let current = data._current || "start";
+
+function save(){
+  try { localStorage.setItem(KEY, JSON.stringify(data)); setSaveState("Saved at " + new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}) + "."); }
+  catch(e){ setSaveState("This browser is not saving. Copy as Markdown before you leave."); }
+}
+function setSaveState(t){ document.getElementById("saveState").textContent = t; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function allChecks(step){
+  if (step.checks) return step.checks.map((t,i)=>({key:step.id+"_c"+i, text:t}));
+  if (step.checkGroups){ const out=[]; step.checkGroups.forEach((g,gi)=>g.items.forEach((t,i)=>out.push({key:step.id+"_g"+gi+"_"+i, text:t}))); return out; }
+  return [];
+}
+function reqFields(step){ return (step.fields||[]).filter(f=>f.id && !f.optional); }
+function progress(step){
+  if (step.start) return null;
+  const f = reqFields(step), c = allChecks(step);
+  const fLeft = f.filter(x=>!(data[x.id]||"").trim()).length;
+  const cLeft = c.filter(x=>!data[x.key]).length;
+  const total = f.length + c.length, left = fLeft + cLeft;
+  return {fLeft, cLeft, state: left===0 ? "done" : (left<total ? "part" : "none")};
+}
+
+function renderNav(){
+  const ol = document.getElementById("navlist"); ol.innerHTML = "";
+  let done = 0;
+  STEPS.forEach(s=>{
+    const p = progress(s); if (p && p.state==="done") done++;
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    if (s.id===current) b.className="active";
+    const dot = s.start ? "" : `<span class="dot ${p.state==="none"?"":p.state}"></span>`;
+    b.innerHTML = dot + (s.start ? s.title : `Step ${s.num}: ${s.title}`);
+    b.onclick = ()=>go(s.id);
+    li.appendChild(b); ol.appendChild(li);
+  });
+  const n = STEPS.length-1;
+  document.getElementById("overall").textContent = done===n ? "All 11 steps are done." : `${done} of ${n} steps done. ${n-done} to go.`;
+}
+
+function renderStep(){
+  const s = STEPS.find(x=>x.id===current) || STEPS[0];
+  const idx = STEPS.indexOf(s);
+  let h = s.start ? `<div class="stepnum">Welcome</div><h2>${s.title}</h2>` : `<div class="stepnum">Step ${s.num} of 11</div><h2>${s.title}</h2>`;
+  h += `<div class="intro">${s.html}</div>`;
+  (s.fields||[]).forEach(f=>{
+    if (f.head){ h += `<div class="fhead">${esc(f.head)}</div>`; return; }
+    const v = esc(data[f.id]||"");
+    h += `<div class="field"><label for="${f.id}">${esc(f.q)}</label>`;
+    if (f.hint) h += `<div class="hint">${esc(f.hint)}</div>`;
+    h += f.short ? `<input type="text" id="${f.id}" value="${v}">` : `<textarea id="${f.id}" rows="${f.rows||3}">${v}</textarea>`;
+    h += `</div>`;
+  });
+  if (s.checks){
+    h += `<div class="checks"><h3>Check your work</h3><div class="hint">Check a box only when it is true.</div>`;
+    allChecks(s).forEach(c=>{ h += `<label><input type="checkbox" data-key="${c.key}" ${data[c.key]?"checked":""}><span>${esc(c.text)}</span></label>`; });
+    h += `</div>`;
+  }
+  if (s.checkGroups){
+    h += `<div class="checks"><h3>Revision checklists</h3><div class="hint">Check a box only when it is true of your essay.</div>`;
+    s.checkGroups.forEach((g,gi)=>{
+      h += `<div class="fhead" style="font-size:18px">${esc(g.title)}</div>`;
+      g.items.forEach((t,i)=>{ const k=s.id+"_g"+gi+"_"+i; h += `<label><input type="checkbox" data-key="${k}" ${data[k]?"checked":""}><span>${esc(t)}</span></label>`; });
+    });
+    h += `</div>`;
+  }
+  if (!s.start) h += `<div class="status" id="status"></div>`;
+  h += `<div class="navbtns">`;
+  h += idx>0 ? `<button class="btn-ghost" id="prevBtn">Back</button>` : `<span></span>`;
+  h += idx<STEPS.length-1 ? `<button class="btn-teal" id="nextBtn">${idx===0?"Begin Step 1":"Next step"}</button>` : `<button class="btn-amber" id="copy2">Copy as Markdown</button>`;
+  h += `</div>`;
+  document.getElementById("stepCard").innerHTML = h;
+
+  document.querySelectorAll("#stepCard textarea, #stepCard input[type=text]").forEach(el=>{
+    el.addEventListener("input", ()=>{ data[el.id]=el.value; save(); updateStatus(); renderNav(); });
+  });
+  document.querySelectorAll("#stepCard input[type=checkbox]").forEach(el=>{
+    el.addEventListener("change", ()=>{ data[el.dataset.key]=el.checked; save(); updateStatus(); renderNav(); });
+  });
+  const pb=document.getElementById("prevBtn"); if(pb) pb.onclick=()=>go(STEPS[idx-1].id);
+  const nb=document.getElementById("nextBtn"); if(nb) nb.onclick=()=>go(STEPS[idx+1].id);
+  const c2=document.getElementById("copy2"); if(c2) c2.onclick=copyMd;
+  updateStatus();
+}
+
+function plural(n,w){ return n + " " + w + (n===1?"":"s"); }
+function updateStatus(){
+  const s = STEPS.find(x=>x.id===current); const el = document.getElementById("status");
+  if (!el || !s) return;
+  const p = progress(s);
+  if (p.state==="done"){
+    const idx = STEPS.indexOf(s);
+    el.className="status ok";
+    el.textContent = idx<STEPS.length-1 ? `This step is done. Go on to Step ${STEPS[idx+1].num}.` : "Every step is done. Copy as Markdown, paste it into Essay 1 Thinking, and turn in both documents.";
+  } else {
+    const parts=[]; if(p.fLeft) parts.push(plural(p.fLeft,"answer")); if(p.cLeft) parts.push(plural(p.cLeft,"checklist item"));
+    el.className="status left";
+    el.textContent = "Still to do on this step: " + parts.join(" and ") + ".";
+  }
+}
+
+function go(id){ current=id; data._current=id; save(); renderNav(); renderStep(); window.scrollTo(0,0); }
+
+function buildMd(){
+  let md = "# Essay 1 Thinking: Would You Recommend Homeschooling?\n\n";
+  md += "*Copied " + new Date().toLocaleString() + "*\n\n";
+  STEPS.forEach(s=>{
+    if (s.start) return;
+    md += `## Step ${s.num}: ${s.title}\n\n`;
+    (s.fields||[]).forEach(f=>{
+      if (f.head){ md += `### ${f.head}\n\n`; return; }
+      const v = (data[f.id]||"").trim();
+      md += `**${f.q}**\n\n${v || "_(not answered yet)_"}\n\n`;
+    });
+    if (s.checks){
+      md += "**Checklist**\n\n";
+      allChecks(s).forEach(c=>{ md += `- [${data[c.key]?"x":" "}] ${c.text}\n`; });
+      md += "\n";
+    }
+    if (s.checkGroups){
+      s.checkGroups.forEach((g,gi)=>{
+        md += `**${g.title}**\n\n`;
+        g.items.forEach((t,i)=>{ md += `- [${data[s.id+"_g"+gi+"_"+i]?"x":" "}] ${t}\n`; });
+        md += "\n";
+      });
+    }
+  });
+  return md;
+}
+function toast(t){ const el=document.getElementById("toast"); el.textContent=t; el.style.display="block"; setTimeout(()=>el.style.display="none",2600); }
+function copyMd(){
+  const md = buildMd();
+  const fallback = ()=>{ const ta=document.createElement("textarea"); ta.value=md; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); toast("Copied. Paste it into Essay 1 Thinking.");}catch(e){toast("Copy did not work. Ask Dad for help.");} ta.remove(); };
+  if (navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(md).then(()=>toast("Copied. Paste it into Essay 1 Thinking."), fallback); }
+  else fallback();
+}
+document.getElementById("copyBtn").onclick = copyMd;
+
+renderNav(); renderStep();
+</script>
+</body>
+</html>
