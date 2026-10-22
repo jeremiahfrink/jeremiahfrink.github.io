@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chemistry of Life</title>
+<style>
+:root{
+  --navy:#1F3A5F; --teal:#0F7C80; --amber:#D98E04;
+  --ink:#1b2430; --muted:#5a6676; --line:#dfe4ea;
+  --bg:#f6f7f9; --card:#ffffff; --tealbg:#e9f4f4; --amberbg:#fdf4e0;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.25;margin:0}
+a{color:var(--teal)}
+a:hover{color:var(--navy)}
+
+/* ---------- layout ---------- */
+.wrap{display:flex;min-height:100vh;align-items:flex-start}
+.side{
+  width:240px;flex:0 0 240px;background:var(--navy);color:#fff;
+  min-height:100vh;padding:22px 0 40px;position:sticky;top:0;
+  max-height:100vh;overflow-y:auto;
+}
+.side .brand{padding:0 20px 18px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:14px}
+.side .brand .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+.side .brand h1{font-size:20px;color:#fff;margin-top:6px}
+.navbtn{
+  display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;
+  background:none;border:0;color:#cdd8e6;padding:10px 20px;cursor:pointer;
+  font:inherit;font-size:14px;line-height:1.35;
+}
+.navbtn:hover{background:rgba(255,255,255,.07);color:#fff}
+.navbtn.active{background:rgba(255,255,255,.14);color:#fff;font-weight:600;
+  box-shadow:inset 3px 0 0 var(--amber)}
+.navbtn .shortlbl{display:none}
+.tick{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);
+  display:inline-flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px}
+.tick.done{background:var(--amber);border-color:var(--amber);color:var(--navy);font-weight:800}
+
+.main{flex:1;min-width:0;padding:34px 28px 90px;display:flex;justify-content:center}
+.col{width:100%;max-width:var(--maxw)}
+
+/* ---------- blocks ---------- */
+.screen{display:none}
+.screen.on{display:block}
+.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+h2.title{font-size:31px;color:var(--navy);margin:6px 0 4px}
+.time{color:var(--muted);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+h3.step{font-size:18px;color:var(--teal);margin:0 0 10px}
+h3.sec{font-size:20px;color:var(--navy);margin:0 0 10px}
+p{margin:0 0 13px}
+p:last-child{margin-bottom:0}
+ul,ol{margin:0 0 13px;padding-left:22px}
+li{margin-bottom:7px}
+strong{font-weight:700}
+
+.note{background:var(--tealbg);border-left:5px solid var(--teal);border-radius:0 8px 8px 0;padding:16px 18px;margin:0 0 18px}
+.must{background:var(--amberbg);border-left:5px solid var(--amber);border-radius:0 8px 8px 0;padding:16px 18px;margin:18px 0 0}
+.must h4{font-family:Georgia,serif;font-size:16px;margin:0 0 10px;color:var(--navy)}
+
+.golink{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;
+  padding:9px 16px;border-radius:7px;font-size:14px;font-weight:600;margin:4px 8px 10px 0}
+.golink:hover{background:var(--navy);color:#fff}
+.golink .ext{opacity:.75;font-weight:400}
+
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:13px}
+td.lbl{background:#f2f4f7;font-weight:600;width:30%}
+
+/* ---------- inputs ---------- */
+.q{margin:16px 0 0}
+.q label{display:block;font-weight:600;margin-bottom:6px;color:var(--navy)}
+textarea,input[type=text]{
+  width:100%;border:1px solid #c7cdd6;border-radius:7px;padding:10px 12px;
+  font:inherit;font-size:15px;line-height:1.55;background:#fff;color:var(--ink);resize:vertical;
+}
+textarea:focus,input[type=text]:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+
+.checks{margin:12px 0 0;padding:0;list-style:none}
+.checks li{margin:0 0 9px;padding:0}
+.chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.chk input{margin:4px 0 0;flex:0 0 auto;width:17px;height:17px;accent-color:var(--teal)}
+.chk span{flex:1}
+
+.picker{display:grid;gap:10px;margin:12px 0 0}
+.pick{border:1px solid var(--line);border-radius:8px;padding:13px 15px;cursor:pointer;background:#fff;display:flex;gap:11px;align-items:flex-start}
+.pick:hover{border-color:var(--teal)}
+.pick input{margin:4px 0 0;flex:0 0 auto;accent-color:var(--teal)}
+.pick.sel{border-color:var(--teal);background:var(--tealbg)}
+.pick b{display:block;color:var(--navy);margin-bottom:2px}
+.pick small{color:var(--muted);font-size:14px;line-height:1.5;display:block}
+
+/* ---------- footer bar ---------- */
+.bar{position:fixed;left:240px;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);
+  padding:11px 28px;display:flex;align-items:center;gap:14px;justify-content:space-between;z-index:20}
+.saved{color:var(--muted);font-size:13px}
+.saved b{color:var(--teal)}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:7px;padding:9px 16px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--teal)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid #c7cdd6}
+.btn.ghost:hover{background:#f2f4f7;color:var(--navy)}
+.bargroup{display:flex;gap:9px;flex-wrap:wrap}
+
+.navrow{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+
+/* ---------- mobile ---------- */
+@media (max-width:860px){
+  .wrap{display:block}
+  .side{width:auto;flex:none;min-height:0;max-height:none;position:static;padding:16px 0 10px;overflow:visible}
+  .side .brand{padding:0 16px 12px}
+  .navscroll{display:flex;overflow-x:auto;gap:4px;padding:0 10px 4px;-webkit-overflow-scrolling:touch}
+  .navbtn{white-space:nowrap;width:auto;padding:8px 12px;border-radius:7px;font-size:13px}
+  .navbtn.active{box-shadow:none;background:rgba(255,255,255,.2)}
+  .navbtn .lbl{display:none}
+  .navbtn .shortlbl{display:inline}
+  .main{padding:20px 16px 100px}
+  .bar{left:0;padding:10px 16px;flex-direction:column;align-items:stretch;gap:9px}
+  .bargroup{justify-content:stretch}
+  .btn{flex:1}
+  h2.title{font-size:25px}
+  .card{padding:17px 16px}
+}
+
+/* ---------- print ---------- */
+@media print{
+  .side,.bar,.navrow,.golink{display:none !important}
+  .screen{display:block !important;page-break-after:always}
+  .main{padding:0}
+  body{background:#fff;font-size:11.5pt}
+  .card{border:0;padding:0 0 10px;margin:0}
+  textarea{border:1px solid #999;min-height:70px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="side">
+    <div class="brand">
+      <div class="kicker">Life Science: Biology</div>
+      <h1>Chemistry of Life</h1>
+    </div>
+    <div class="navscroll" id="nav"></div>
+  </nav>
+
+  <main class="main"><div class="col" id="screens"></div></main>
+</div>
+
+<div class="bar">
+  <div class="saved" id="saved">Your work saves by itself</div>
+  <div class="bargroup">
+    <button class="btn ghost" id="copyBlock">Copy this block</button>
+    <button class="btn" id="copyAll">Copy everything</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Content. Each block is data; the page renders from it.
+   ============================================================ */
+const BLOCKS = [
+{
+  id:"start", nav:"Start here", short:"Start", kicker:"Unit 1",
+  title:"Chemistry of Life", time:"Five blocks plus a final project",
+  body:[
+    {h:"What this is", p:[
+      "This is Unit 1 of your biology course. The question it is built around is this: <b>why is everything alive made out of these particular molecules and not some others?</b>",
+      "There are five blocks and then a final project. Every block works the same way. First you play something, usually a simulation or a game. Then you watch a short video about the thing you just played. Then you show me that you understood it."
+    ]},
+    {h:"How you show it is up to you", p:[
+      "That last step is the one that counts, and you choose the form it takes. You can talk to a camera, draw a diagram, build a slide deck, make an animation, design it as a game mechanic, or write it out.",
+      "<b>How you show it is your call. What has to be in it is not.</b> Every block has a short list of things your work needs to cover, and that list is what I grade against."
+    ]},
+    {h:"Two rules about the showing part", p:[
+      "These exist for a reason and the reason is worth knowing.",
+      "<b>1. Use at least three different formats across the five blocks.</b> Do not make five videos in a row. When you can only explain something one way, you usually know it less well than you think. Being made to explain the same idea as a drawing, then as a paragraph, then out loud, is what shows you where the soft spots are.",
+      "<b>2. At least one of the five has to be written.</b> The final project asks for writing. You want to have practiced before you get there, not be doing it for the first time when it counts."
+    ]},
+    {h:"How this page works", p:[
+      "Use the list on the left to move between blocks. Tick the steps off as you finish them, and type your notes and answers straight into the boxes.",
+      "<b>Everything you type saves by itself</b> as you go. You can close this page, come back tomorrow, and it will all still be here. Nothing on this page deletes your work.",
+      "When you finish a block, press <b>Copy this block</b> at the bottom. That puts everything you wrote on your clipboard, formatted and ready to paste straight into a Google Doc."
+    ]},
+    {h:"How I will grade the showing part", tbl:{
+      head:["What I look at","Weight","What that means"],
+      rows:[
+        ["Is everything there","50%","Every item on the \"your work has to show\" list for that block turns up somewhere in what you made. If one is missing, it does not matter how good the rest is."],
+        ["Is it right","30%","The science is accurate. If you are not sure about something, say you are not sure. That costs you nothing. Saying something wrong with confidence costs you a lot."],
+        ["Could someone else follow it","20%","Picture a person who has not done this block. Could they watch or read what you made and come away understanding the idea?"]
+      ]},
+    p3:["<b>The format itself is never graded.</b> A rough pencil drawing that covers every item on the list beats a beautiful slide deck that misses half of them. Put your time into the content, not the polish."]}
+  ]
+},
+
+/* ---------------- BLOCK 1 ---------------- */
+{
+  id:"b1", nav:"1. Atoms and Bonds", short:"1. Atoms", kicker:"Block 1",
+  title:"Atoms, Elements, and Bonds", time:"About an hour",
+  body:[
+    {p:[
+      "Everything alive is built out of a surprisingly short list of ingredients. Not hundreds of them. Six, mostly, and the same six whether you are looking at a tree, a fish, a mushroom from your woods, or yourself.",
+      "That is strange when you stop and think about it. A tree and a fish do not look like they are made of the same stuff. At the level of atoms, they nearly are. What makes them different is not the ingredient list. It is how those ingredients are stuck together, and that is what this block is really about."
+    ]},
+
+    {step:"1. Play: Build a Molecule", mins:"15 minutes",
+     p:["Work through the first two levels. The game gives you a box of loose atoms and asks you to build specific molecules. You drag atoms toward each other and they snap together when they fit."],
+     link:{url:"https://phet.colorado.edu/en/simulations/build-a-molecule",label:"Open Build a Molecule"},
+     p2:["<b>Pay attention to this while you play, because it is the thing that caused trouble last time.</b> Some of what you build is made of only one kind of atom. Oxygen gas is two oxygen atoms stuck together, and that is all it is. Other things you build have two or three different kinds of atom in them. Water has oxygen and hydrogen in it. Carbon dioxide has carbon and oxygen.",
+      "That difference has names:"],
+     tbl:{rows:[
+       ["An element","is made of only one kind of atom. Oxygen gas is an element. So is a lump of copper. So is a diamond, which is nothing but carbon."],
+       ["A compound","has two or more different kinds of atom bonded together. Water is a compound. Salt is a compound. Sugar is a compound."],
+       ["A molecule","is simply two or more atoms bonded into one unit, and it does not matter whether they are the same kind or different kinds."]
+     ]},
+     p3:["Here is the part that trips almost everybody. <b>Element or compound is one question. Molecule or not is a completely separate question.</b> Oxygen gas is an element, because it is all oxygen. It is also a molecule, because it is two atoms bonded together. Both are true at once. They are not opposites and you are not picking one."],
+     q:[{id:"b1q1",label:"Build at least ten molecules. Which ones were elements and which were compounds? List a few of each.",rows:3}]
+    },
+
+    {step:"2. Play: Molecule Polarity", mins:"10 minutes",
+     p:["Open the first screen, the one called Two Atoms. You will see two balls joined by a bond, and two sliders underneath them. Those sliders control how greedy each atom is for the electrons the two of them are sharing. (The real word for that greediness is electronegativity, but greed is a fine way to think about it.)",
+        "Try both of these and watch what happens to the arrow and the colors:"],
+     link:{url:"https://phet.colorado.edu/en/simulations/molecule-polarity",label:"Open Molecule Polarity"},
+     ul:["<b>Set both sliders to the same place.</b> Neither atom wins. The two of them share the electrons right down the middle and the whole thing stays balanced. <b>That is a covalent bond.</b>",
+         "<b>Now drag one slider all the way up and the other all the way down.</b> The greedy atom hauls the electrons almost completely over to its own side, and the other atom is left with hardly any. <b>That is what an ionic bond is.</b> One atom has essentially taken the electrons instead of sharing them."],
+     p3:["<b>The thing actually worth noticing:</b> covalent and ionic are not two unrelated items you memorize off a list. They are the two ends of a single slider, and everything in between exists too. That is a more honest picture than the one most textbooks give you, and it is much harder to get backwards."]
+    },
+
+    {step:"3. Go and get a magnet", mins:"5 minutes",
+     p:["There is one thing neither simulation can show you, so you are going to do it yourself. Find a magnet and stick it to the fridge.",
+        "Now pull it off. Feel that? You had to work at it. <b>That was energy going out of your arm and into pulling those two things apart.</b>",
+        "Now hold it close and let it snap back on. You did not have to do anything. It did the work itself, and you heard the click and felt the little jolt. <b>That was energy coming back out.</b>",
+        "Chemical bonds behave the same way:"],
+     tbl:{rows:[
+       ["Breaking a bond takes energy in.","Something has to supply it. It does not happen for free."],
+       ["Making a bond lets energy out.","The energy is released when the two atoms come together."]
+     ]},
+     p3:["Get this one burned in now. In a couple of units the whole subject will be where living things get their energy from, and if you are holding this backwards, every answer you give will come out backwards too."],
+     q:[{id:"b1q2",label:"Write both of those sentences in your own words. Put them on your Chemistry Reference page too.",rows:2}]
+    },
+
+    {step:"4. Watch: Chemical Bonding", mins:"15 minutes",
+     link:{url:"https://www.youtube.com/watch?v=u_Y1sC58C7M",label:"Watch the video",note:"ItsDrDan, 14 minutes"},
+     p:["This one is pitched a little above where you are, so pause it whenever you need to. It is worth it because it hits the exact things that gave you trouble: the difference between molecules and compounds, what the electrons are doing in each type of bond, and a third kind of bond called metallic bonding.",
+        "<b>That third one is the answer to something you got wrong before.</b> A copper wire is not made of molecules. Metal atoms pack together in a repeating grid and share their electrons across the whole thing, so there is no little unit of two copper atoms you could point at. Watch for that section."],
+     q:[{id:"b1q3",label:"After watching: in your own words, what are the electrons doing in a covalent bond? What about in an ionic bond?",rows:3}]
+    },
+
+    {step:"5. Show what you know", mins:"about 20 minutes",
+     pick:{id:"b1pick",options:[
+       ["Talk to camera","Three minutes of you explaining it with no script in front of you. Do as many takes as you want."],
+       ["One page diagram","Draw it on a single page. The six elements, the two kinds of bond, what the electrons are doing in each. Labels and arrows, not paragraphs."],
+       ["Game mechanic","Write up how bonding would work as a rule in a game. What does it cost a player to break a bond? What do they get back when one forms? Half a page."]
+     ]},
+     q:[{id:"b1plan",label:"Jot your plan or your script notes here before you make it.",rows:4}],
+     must:["The six elements that almost everything alive is built from, and where you would find each one inside a living thing.",
+           "The difference between an element and a compound, with one real example of each.",
+           "What the electrons are actually doing in a covalent bond, and what they are doing in an ionic bond.",
+           "Whether energy goes in or comes out when a bond breaks, and when a bond forms."]
+    }
+  ]
+},
+
+/* ---------------- BLOCK 2 ---------------- */
+{
+  id:"b2", nav:"2. Water", short:"2. Water", kicker:"Block 2",
+  title:"Water", time:"About an hour",
+  body:[
+    {p:["Water is so ordinary that it is hard to notice how weird it is. It does several things that almost no other liquid does, and every single one of those strange behaviours turns out to be a reason that life can happen at all. If water behaved like a normal liquid, there would be nothing alive on this planet.",
+        "That is not an exaggeration, and this block is where you find out why."]},
+
+    {step:"1. Do two experiments in the kitchen", mins:"10 minutes",
+     p:["Start here rather than with the video, because these are more interesting if nobody has told you the answer yet."],
+     ol:["<b>The penny.</b> Put a penny flat on the counter and drip water onto it one drop at a time. Count the drops. Keep going until it spills over. The number is going to be much higher than you expect, and you will see the water pile up into a dome on top of the penny instead of running off.",
+         "<b>The paper clip.</b> Fill a glass with water. Now lay a paper clip flat on the surface, gently, do not drop it. It floats. A paper clip is steel, and steel is denser than water, so it has no business floating at all."],
+     q:[{id:"b2q1",label:"How many drops fit on the penny?",rows:1},
+        {id:"b2q2",label:"Both of those happen for the same reason. Guess what it is, before you watch the video. You do not have to be right.",rows:3}]
+    },
+
+    {step:"2. Watch: Properties of Water", mins:"10 minutes",
+     link:{url:"https://www.youtube.com/watch?v=3jwAGWky98c",label:"Watch the video",note:"Amoeba Sisters"},
+     p:["The video walks through several of water's strange properties. For every one it names, it also tells you why a living thing cares about it.",
+        "<b>Do this while you watch:</b> you want the pairs, not just the list, because the pairs are what the showing step asks for."],
+     q:[{id:"b2q3",label:"List the properties on the left and why a living thing needs each one on the right. Write them as pairs, one per line.",rows:6}]
+    },
+
+    {step:"3. Play: pH Scale", mins:"15 minutes",
+     link:{url:"https://phet.colorado.edu/en/simulations/ph-scale",label:"Open pH Scale",note:"use the Macro screen"},
+     p:["Here is what the screen is measuring. Some liquids are acids, some are bases, and most sit somewhere in between. The pH scale is a number line telling you which a liquid is. It runs from 0 to 14, and 7 in the middle is neutral, which is plain water.",
+        "Pour out the different liquids and watch where each lands: coffee, milk, soda, blood, drain cleaner. Then take one liquid and slowly add plain water to it, watching what the number does."],
+     q:[{id:"b2q4",label:"Which end of the scale is acid, the low numbers or the high numbers?",rows:1},
+        {id:"b2q5",label:"When you add plain water to something, does its pH move toward 7 or away from it? Why would that be?",rows:3}],
+     p3:["This matters more than it looks. In Block 5 you will meet molecules that stop working entirely if the pH around them shifts too far."]
+    },
+
+    {step:"4. Show what you know", mins:"about 20 minutes",
+     pick:{id:"b2pick",options:[
+       ["Five slide deck","One idea per slide. Few words, and a picture or diagram on each one."],
+       ["Demo video","Film yourself doing the penny and the paper clip, explaining what is happening and why as you go. Three or four minutes."],
+       ["Talk to camera","Three minutes explaining it, no script."]
+     ]},
+     q:[{id:"b2plan",label:"Jot your plan or your script notes here before you make it.",rows:4}],
+     must:["Why a water molecule ends up with a slightly positive end and a slightly negative end. (That lopsidedness is what the word <b>polar</b> means, and it causes everything else in this block.)",
+           "Two of water's properties, and for each one, a reason a living thing needs it.",
+           "What pH measures, and what a low number and a high number each tell you."]
+    }
+  ]
+},
+
+/* ---------------- BLOCK 3 ---------------- */
+{
+  id:"b3", nav:"3. Carbon and Chains", short:"3. Carbon", kicker:"Block 3",
+  title:"Carbon, Monomers, and Polymers", time:"About 45 minutes",
+  body:[
+    {h:"The picture first", p:[
+      "Think about a bike chain. The whole chain is one long thing, but it is built out of a lot of identical little links, and every link is the same shape as every other link. If you had a pile of loose links you could snap them together into a chain as long as you wanted. You could also take the chain apart again and end up back with a pile of links.",
+      "Living things build almost everything this way. Two words for it:"],
+      tbl:{rows:[
+        ["A monomer","is one of the little links. One single unit."],
+        ["A polymer","is the chain you get when you snap a lot of those links together."]
+      ]},
+      p3:["<b>Here is one you have eaten.</b> Starch is a polymer. The link it is built from is glucose, which is a kind of sugar. A potato is essentially a storage container packed with glucose links snapped into long chains. When you eat it, your body snaps those chains back apart into single glucose links so that it can actually use them. That is most of what digestion is.",
+          "And the reason any of this works is <b>carbon</b>, which you will see in the simulation."]
+    },
+
+    {step:"1. Play: Macromolecule Man, first section", mins:"15 minutes",
+     link:{url:"https://biomanbio.com/HTML5GamesandLabs/LifeChemgames/macromoleculeman-page.html",label:"Open Macromolecule Man"},
+     p:["Play the first section, where you are putting building blocks together into bigger molecules. You do not need to finish the whole thing. You will come back to it in Block 4.",
+        "<b>Watch for two things.</b> First, notice that you are always snapping the same kind of small piece onto a growing chain, over and over. Second, and this is easy to miss, notice what the game shows coming off when two pieces join together."]
+    },
+
+    {step:"2. Watch: Dehydration Synthesis and Hydrolysis", mins:"10 minutes",
+     link:{url:"https://www.youtube.com/watch?v=ALFE2tNIY5c",label:"Watch the video",note:"Amoeba Sisters, 6 minutes"},
+     p:["Those two long words are just the names for snapping links together and pulling them apart. Do not let them put you off.",
+        "<b>Watch for this:</b> a water molecule is involved every single time. It goes one direction when a chain gets built and the opposite direction when a chain gets taken apart."],
+     q:[{id:"b3q1",label:"Which way does the water go when a chain is built? What about when a chain is broken apart?",rows:3}]
+    },
+
+    {step:"3. Show what you know", mins:"about 20 minutes",
+     pick:{id:"b3pick",options:[
+       ["Short animation","Two monomers joining, then a chain being pulled apart. It can be simple. Blender, or anything else you want to use."],
+       ["One page diagram","Draw the joining and the breaking, with the water labelled in both, and arrows showing which way it goes each time."],
+       ["Written explanation","Half a page in your own words. This is a good one to use for your written requirement, because the idea is small enough to explain cleanly without it turning into a wall of text."]
+     ]},
+     q:[{id:"b3plan",label:"Jot your plan or your draft here.",rows:5}],
+     must:["Why carbon in particular can build long chains and rings when most atoms cannot.",
+           "What a monomer is and what a polymer is, with one real example of each from a living thing.",
+           "What happens to a water molecule when two monomers join together, and what happens when a chain gets broken apart."]
+    }
+  ]
+},
+
+/* ---------------- BLOCK 4 ---------------- */
+{
+  id:"b4", nav:"4. The Big Four", short:"4. Big Four", kicker:"Block 4",
+  title:"The Four Macromolecules", time:"About 70 minutes. The most important block in the unit.",
+  body:[
+    {p:["Here is the claim this block makes, and it is a big one. <b>Every living thing ever found is built out of four families of large molecules.</b> Not forty. Four. A redwood, a jellyfish, the bacteria in your gut, and you are all assembled from the same four categories of ingredient.",
+        "The final project for this unit is about where those four families come from, so this is the block everything else has been building toward."]},
+
+    {step:"1. Play: Macromolecule Man, the whole game", mins:"25 minutes",
+     link:{url:"https://biomanbio.com/HTML5GamesandLabs/LifeChemgames/macromoleculeman-page.html",label:"Open Macromolecule Man"},
+     p:["The game keeps asking you to build a particular kind of molecule out of particular building blocks. <b>Keep a running list as you play:</b> for each of the four families, what is the building block it gets made from? Write it down while you play rather than trying to remember it after."]
+    },
+
+    {step:"2. Watch: Biomolecules", mins:"10 minutes",
+     link:{url:"https://www.youtube.com/watch?v=1Dx7LDwINLU",label:"Watch the video",note:"Amoeba Sisters, updated 2023"},
+     p:["<b>Watch for which elements are in each family.</b> Two of the four families contain nothing but carbon, hydrogen, and oxygen. The other two have extra elements in them that the first two do not. Work out which two have the extras, and what those extras are.",
+        "That might sound like a small detail. It is not. <b>It is the entire point of this unit</b>, and the final project is built on it."],
+     q:[{id:"b4q1",label:"Which two families have extra elements, and what are the extras?",rows:2}]
+    },
+
+    {step:"3. Fill in the table", mins:"10 minutes",
+     p:["Fill this in here, then copy it onto your Chemistry Reference page in your notebook. You will use it for the rest of the year."],
+     grid:{id:"b4grid",head:["Family","Built from","Elements in it","What it does in a living thing"],
+           rows:["Carbohydrates","Lipids (fats)","Proteins","Nucleic acids"]}
+    },
+
+    {step:"4. Show what you know", mins:"about 25 minutes",
+     pick:{id:"b4pick",options:[
+       ["Crafting system","Design the four families as craftable items in a game. For each, write the recipe: what ingredients does the player gather, and what is the item good for once made? The recipes have to be scientifically correct. A recipe that is wrong is a recipe you do not understand."],
+       ["Five slide deck","One slide for each family, plus a summary slide at the end that ties them together."],
+       ["Teach someone","Explain all four to somebody in the house who does not know them. Record it. At the end, ask them to tell one back to you, and say whether they got it right. If not, that usually means the explanation was the problem, not them."]
+     ]},
+     q:[{id:"b4plan",label:"Jot your plan, your recipes, or your slide outline here.",rows:6}],
+     must:["All four families, and for each one, the building block it is made from and what job it does in a living thing.",
+           "Which elements are in each family, including exactly where nitrogen, sulfur, and phosphorus show up.",
+           "One real food, and which of the four families are in it."]
+    }
+  ]
+},
+
+/* ---------------- BLOCK 5 ---------------- */
+{
+  id:"b5", nav:"5. Proteins and Enzymes", short:"5. Enzymes", kicker:"Block 5",
+  title:"Proteins and Enzymes", time:"About three hours, spread over a few days",
+  body:[
+    {p:["This block is longer than the others because there is something real in it.",
+        "The big idea of the entire unit lands here, and it is this: <b>what a molecule can do depends on its shape.</b> Not on what it is made of, not on how big it is. Its shape. Change the shape and it stops working, even though every atom is still there.",
+        "Proteins are where that is clearest, and enzymes are the clearest kind of protein."]},
+
+    {step:"1. Play: Enzymatic", mins:"25 minutes",
+     link:{url:"https://biomanbio.com/HTML5GamesandLabs/LifeChemgames/enzymatichtml5page.html",label:"Open Enzymatic"},
+     p:["Work through the games and virtual experiments in it.",
+        "<b>Watch for this.</b> When you change the temperature or the pH in the experiments, the enzyme stops working. Notice carefully what kind of stopping it is. It does not just slow down and then speed back up when you put things back. Past a certain point something happens to it that does not undo. That is the thing to notice."]
+    },
+
+    {step:"2. Watch: Enzymes and How They Work", mins:"10 minutes",
+     link:{url:"https://www.youtube.com/watch?v=wNG2uPao8BI",label:"Watch the video",note:"BioMan Biology"},
+     p3:["<b>Listen for the word denature.</b> It means the shape got wrecked. Once you have that word, the experiments you just ran will make sense, because you were watching enzymes denature.",
+        "If you want a second explanation of the same idea in a different style, the Amoeba Sisters have one here: <a href=\"https://www.youtube.com/watch?v=qgVFkRn8f10\" target=\"_blank\" rel=\"noopener\">Enzymes (Amoeba Sisters)</a>."]
+    },
+
+    {step:"3. Fold a real protein", mins:"60 to 90 minutes",
+     p:["This part is different from everything else in this unit, so read all of it before you start.",
+        "A protein starts as a long chain of amino acids, exactly like the chains you built in Block 3. But a protein chain does not stay stretched out in a line. It folds up into a specific three dimensional shape, and that shape is what lets it do its job. A protein folded into the wrong shape is a protein that does not work.",
+        "Here is the problem scientists have with that. If you know the order of amino acids in a chain, working out what shape it will fold into is brutally hard. There are more possible shapes than anyone could check in a lifetime, and computers have historically been bad at it.",
+        "It turns out people are good at it. Humans are good at looking at a shape and getting a feel for how it wants to sit, in a way that is difficult to turn into a formula a computer can follow.",
+        "So the University of Washington built <b>Foldit</b>, a puzzle game where you fold real proteins with your hands and it scores how good your fold is. <b>The score is not made up.</b> It comes from real biochemistry, and good solutions get looked at by actual researchers."],
+     note:{h:"This has genuinely worked.",p:[
+        "In 2011, Foldit players were handed an enzyme from a monkey virus whose shape researchers had been trying to work out for roughly fifteen years. The players cracked it in about three weeks.",
+        "The scientific paper that came out of it lists the Foldit players as authors alongside the researchers. You will sometimes see this story told as \"gamers beat supercomputers,\" which is not quite what happened. What actually happened is better: people and computers are good at different things, and somebody worked out how to let people do the part they are good at."]},
+     link:{url:"https://fold.it",label:"Go to Foldit and download it"},
+     ol:["Make an account when you download it.",
+         "<b>Work through the Beginner Puzzles, and do not skip them.</b> They teach you the controls and the actual rules of folding, and they take a while on purpose. Skipping them means being lost later.",
+         "Keep going until you have finished at least the first several intro puzzles. If you want to carry on after that, go ahead.",
+         "Take a screenshot of your best score and keep it for what you turn in."],
+     p3:["<b>Pay attention to this while you play.</b> The game will keep pushing you to tuck certain parts of the protein inside, hidden away, and leave other parts out on the surface. Find out why it wants that. <b>It connects straight back to the water block, and that is not a coincidence.</b> Some parts of a protein get along with water and some do not, and a protein folding up in a watery cell sorts itself out accordingly."],
+     q:[{id:"b5q1",label:"Why does the game want some parts of the protein tucked inside and others left on the surface?",rows:3}]
+    },
+
+    {step:"4. Make a prediction, then test it for real", mins:"15 minutes",
+     p:["Before you do the kitchen lab with Dad, write down a prediction.",
+        "If you drop hydrogen peroxide on a piece of raw potato, and then on a piece of potato that has been boiled, which one bubbles more?",
+        "Then run it and see. Your prediction turning out wrong is not a problem and costs you nothing. Not writing one down at all is the only way to get this part wrong."],
+     q:[{id:"b5q2",label:"Your prediction, and why. Use the word denature in your reason.",rows:3},
+        {id:"b5q3",label:"After the lab: what actually happened?",rows:3}]
+    },
+
+    {step:"5. Show what you know", mins:"about 25 minutes",
+     pick:{id:"b5pick",options:[
+       ["Talk to camera","Four minutes. Include your prediction, what actually happened, and whether you were right. Show your Foldit screenshot and explain what you were trying to do."],
+       ["Short animation","An enzyme meeting the thing it works on, doing its job, and then getting denatured by heat."],
+       ["Written explanation","One page, including the prediction and the result."]
+     ]},
+     q:[{id:"b5plan",label:"Jot your plan or your script notes here.",rows:5}],
+     must:["What an enzyme does, and why its shape is the reason it works on one particular thing and not on others.",
+           "What denaturing means, and two things that cause it.",
+           "Your potato prediction, your reason for it, and what actually happened.",
+           "One thing you learned from folding proteins in Foldit that you did not get from the video or the game."]
+    }
+  ]
+},
+
+/* ---------------- BLOCK 6 ---------------- */
+{
+  id:"b6", nav:"Final project", short:"Final", kicker:"Block 6",
+  title:"Built From Sugar", time:"About 90 minutes. No game for this one.",
+  body:[
+    {p:["This is where the five blocks come together, and it is the piece that counts for the state standard this whole unit is built on."]},
+
+    {h:"The task", p:["Pick one living thing. It can be something from your own property, or the dog, or you. <b>Explain how it builds itself out of sugar, and where the rest of its elements come from.</b>"]},
+
+    {h:"What your explanation has to answer",
+     ol:["Where does this living thing get its sugar, and what is sugar actually made of?",
+         "How does a carbon chain end up becoming a protein, or a fat, or a starch, or a nucleic acid?",
+         "Where do the nitrogen, the sulfur, and the phosphorus come from? They are not in sugar.",
+         "Why does shape matter? Use what you learned from the enzymes and from folding proteins.",
+         "Which part of your own explanation are you least sure about?"],
+     q:[{id:"b6q1",label:"Which living thing are you picking, and why that one?",rows:2},
+        {id:"b6draft",label:"Draft your explanation here. Record yourself saying it first, then write down what you said.",rows:12}]
+    },
+
+    {h:"What you turn in",
+     tbl:{rows:[
+       ["A model","Drawn or built. Show sugar turning into one of the four big molecules, with the elements labelled, and arrows showing which parts came from the air, which came from water, and which came from the soil."],
+       ["The explanation","Record yourself explaining it first, five to seven minutes. Then write it up, about 400 words, working from what you said. Talking first and writing second is the order that works best for you, so use it."]
+     ]}
+    },
+
+    {h:"The part that matters most",
+     p:["Somewhere in it, name one thing you believed at the start of this unit that you now know was wrong, and say what changed your mind.",
+        "The state standard this unit is built on uses the words <b>construct and revise an explanation.</b> The revising is not a bonus or an extra. It is the thing being graded. Being wrong first and right later is how this is supposed to go."],
+     q:[{id:"b6rev",label:"What did you believe at the start of this unit that you now know was wrong? What changed your mind?",rows:5}]
+    }
+  ]
+}
+];
+
+/* ============================================================
+   Render
+   ============================================================ */
+const KEY="bio-unit1-chem-v1";
+let state=JSON.parse(localStorage.getItem(KEY)||"{}");
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+function paras(arr){return (arr||[]).map(t=>`<p>${t}</p>`).join("")}
+function tbl(t){
+  if(!t) return "";
+  const head=t.head?`<tr>${t.head.map(h=>`<th>${h}</th>`).join("")}</tr>`:"";
+  const rows=(t.rows||[]).map(r=>{
+    if(t.head) return `<tr>${r.map(cell=>`<td>${cell}</td>`).join("")}</tr>`;
+    return `<tr><td class="lbl">${r[0]}</td><td>${r[1]}</td></tr>`;
+  }).join("");
+  return `<table>${head}${rows}</table>`;
+}
+function qs(list){
+  return (list||[]).map(q=>
+    `<div class="q"><label for="${q.id}">${q.label}</label>
+     <textarea id="${q.id}" rows="${q.rows||3}" data-k="${q.id}"></textarea></div>`).join("");
+}
+function picker(pk){
+  if(!pk) return "";
+  return `<div class="picker" data-pick="${pk.id}">`+pk.options.map((o,i)=>
+    `<label class="pick" data-v="${i}">
+       <input type="radio" name="${pk.id}" value="${i}" data-k="${pk.id}">
+       <span><b>${o[0]}</b><small>${o[1]}</small></span>
+     </label>`).join("")+`</div>`;
+}
+function grid(g){
+  if(!g) return "";
+  const head=`<tr>${g.head.map(h=>`<th>${h}</th>`).join("")}</tr>`;
+  const rows=g.rows.map((r,i)=>`<tr><td class="lbl">${r}</td>`+
+    [1,2,3].map(cI=>`<td style="padding:4px"><textarea rows="2" data-k="${g.id}_${i}_${cI}" style="border:0;padding:5px;font-size:14px"></textarea></td>`).join("")+
+    `</tr>`).join("");
+  return `<table>${head}${rows}</table>`;
+}
+function must(items,bid){
+  if(!items) return "";
+  return `<div class="must"><h4>Your work has to show all ${items.length===4?"four":"three"} of these</h4>
+    <ul class="checks">`+items.map((m,i)=>
+      `<li><label class="chk"><input type="checkbox" data-k="${bid}_must_${i}"><span>${m}</span></label></li>`).join("")
+    +`</ul></div>`;
+}
+
+function renderBlock(b,idx){
+  let h=`<section class="screen" id="s-${b.id}" data-block="${b.id}">
+    <div class="kicker">${b.kicker}</div>
+    <h2 class="title">${b.title}</h2>
+    <div class="time">${b.time}</div>`;
+
+  b.body.forEach((sec,si)=>{
+    h+=`<div class="card">`;
+    if(sec.step){
+      h+=`<label class="chk" style="margin-bottom:10px">
+            <input type="checkbox" data-k="${b.id}_step_${si}">
+            <span><h3 class="step" style="display:inline">${sec.step}</h3>
+            <span style="color:var(--muted);font-size:14px"> &middot; ${sec.mins||""}</span></span>
+          </label>`;
+    } else if(sec.h){ h+=`<h3 class="sec">${sec.h}</h3>`; }
+    h+=paras(sec.p);
+    if(sec.link){
+      h+=`<a class="golink" href="${sec.link.url}" target="_blank" rel="noopener">${sec.link.label} <span class="ext">&#8599;</span></a>`;
+      if(sec.link.note) h+=`<div style="color:var(--muted);font-size:14px;margin:-4px 0 12px">${sec.link.note}</div>`;
+    }
+    h+=paras(sec.p2);
+    h+=tbl(sec.tbl);
+    if(sec.ul) h+=`<ul>${sec.ul.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+    if(sec.ol) h+=`<ol>${sec.ol.map(x=>`<li>${x}</li>`).join("")}</ol>`;
+    if(sec.note){
+      h+=`<div class="note"><p><b>${sec.note.h}</b></p>${paras(sec.note.p)}</div>`;
+    }
+    h+=paras(sec.p3);
+    h+=grid(sec.grid);
+    h+=picker(sec.pick);
+    h+=qs(sec.q);
+    h+=must(sec.must,b.id);
+    h+=`</div>`;
+  });
+
+  const prev=BLOCKS[idx-1], next=BLOCKS[idx+1];
+  h+=`<div class="navrow">
+        <div>${prev?`<button class="btn ghost" data-go="${prev.id}">&larr; ${prev.nav}</button>`:""}</div>
+        <div>${next?`<button class="btn" data-go="${next.id}">${next.nav} &rarr;</button>`:""}</div>
+      </div></section>`;
+  return h;
+}
+
+document.getElementById("screens").innerHTML=BLOCKS.map(renderBlock).join("");
+document.getElementById("nav").innerHTML=BLOCKS.map(b=>
+  `<button class="navbtn" data-go="${b.id}">
+     <span class="tick" data-tick="${b.id}"></span>
+     <span><span class="lbl">${b.nav}</span><span class="shortlbl">${b.short}</span></span>
+   </button>`).join("");
+
+/* ---------- state ---------- */
+function restore(){
+  document.querySelectorAll("[data-k]").forEach(el=>{
+    const k=el.dataset.k, v=state[k];
+    if(v===undefined) return;
+    if(el.type==="checkbox") el.checked=!!v;
+    else if(el.type==="radio"){ if(el.value===String(v)) el.checked=true; }
+    else el.value=v;
+  });
+  document.querySelectorAll(".picker").forEach(syncPick);
+  updateTicks();
+}
+function syncPick(p){
+  p.querySelectorAll(".pick").forEach(l=>{
+    const r=l.querySelector("input");
+    l.classList.toggle("sel",r.checked);
+  });
+}
+let t=null;
+function save(){
+  clearTimeout(t);
+  t=setTimeout(()=>{
+    localStorage.setItem(KEY,JSON.stringify(state));
+    const s=document.getElementById("saved");
+    s.innerHTML="<b>Saved.</b> Your work is on this device.";
+    setTimeout(()=>{s.textContent="Your work saves by itself";},1800);
+  },400);
+}
+document.addEventListener("input",e=>{
+  const el=e.target; if(!el.dataset.k) return;
+  state[el.dataset.k]= el.type==="checkbox" ? el.checked : el.value;
+  save(); updateTicks();
+});
+document.addEventListener("change",e=>{
+  const el=e.target; if(!el.dataset.k) return;
+  state[el.dataset.k]= el.type==="checkbox" ? el.checked : el.value;
+  const p=el.closest(".picker"); if(p) syncPick(p);
+  save(); updateTicks();
+});
+
+/* progress tick: a block counts done when every step box in it is ticked */
+function updateTicks(){
+  BLOCKS.forEach(b=>{
+    const boxes=document.querySelectorAll(`#s-${b.id} input[type=checkbox][data-k^="${b.id}_step_"]`);
+    const el=document.querySelector(`[data-tick="${b.id}"]`);
+    if(!el) return;
+    if(!boxes.length){ el.classList.remove("done"); el.textContent=""; return; }
+    const done=[...boxes].every(x=>x.checked);
+    el.classList.toggle("done",done);
+    el.textContent=done?"✓":"";
+  });
+}
+
+/* ---------- navigation ---------- */
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id==="s-"+id));
+  document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.go===id));
+  state._at=id; save();
+  window.scrollTo({top:0,behavior:"instant"});
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-go]"); if(!b) return;
+  show(b.dataset.go);
+});
+
+/* ---------- markdown export ---------- */
+function blockMd(b){
+  let out=`## ${b.kicker}. ${b.title}\n\n`;
+  let any=false;
+  b.body.forEach(sec=>{
+    if(sec.pick){
+      const v=state[sec.pick.id];
+      if(v!==undefined&&v!==""){ any=true;
+        out+=`**How I am showing it:** ${sec.pick.options[Number(v)][0]}\n\n`; }
+    }
+    if(sec.grid){
+      const g=sec.grid; let rows="";
+      g.rows.forEach((r,i)=>{
+        const cells=[1,2,3].map(c=>state[`${g.id}_${i}_${c}`]||"");
+        if(cells.some(x=>x.trim())){ rows+=`| ${r} | ${cells.join(" | ")} |\n`; }
+      });
+      if(rows){ any=true;
+        out+=`| ${g.head.join(" | ")} |\n|${g.head.map(()=>"---").join("|")}|\n${rows}\n`; }
+    }
+    (sec.q||[]).forEach(q=>{
+      const v=(state[q.id]||"").trim();
+      if(v){ any=true;
+        out+=`**${q.label.replace(/<[^>]+>/g,"")}**\n\n${v}\n\n`; }
+    });
+  });
+  return any?out:"";
+}
+function copy(text,label){
+  navigator.clipboard.writeText(text).then(()=>{
+    const s=document.getElementById("saved");
+    s.innerHTML=`<b>Copied.</b> ${label} is on your clipboard, ready to paste.`;
+    setTimeout(()=>{s.textContent="Your work saves by itself";},2600);
+  }).catch(()=>{
+    const s=document.getElementById("saved");
+    s.innerHTML="<b>Could not copy.</b> Select the text in the boxes and copy it by hand.";
+    setTimeout(()=>{s.textContent="Your work saves by itself";},3200);
+  });
+}
+document.getElementById("copyBlock").addEventListener("click",()=>{
+  const id=state._at||BLOCKS[0].id;
+  const b=BLOCKS.find(x=>x.id===id);
+  const md=blockMd(b);
+  copy(md?`# Chemistry of Life\n\n${md}`:`# Chemistry of Life\n\n## ${b.kicker}. ${b.title}\n\nNothing written in this block yet.\n`,"This block");
+});
+document.getElementById("copyAll").addEventListener("click",()=>{
+  let out="# Chemistry of Life\n\nUnit 1, Life Science: Biology\n\n";
+  BLOCKS.forEach(b=>{const m=blockMd(b); if(m) out+=m;});
+  copy(out,"Everything you have written");
+});
+
+/* ---------- go ---------- */
+restore();
+show(state._at&&BLOCKS.some(b=>b.id===state._at)?state._at:BLOCKS[0].id);
+</script>
+</body>
+</html>
