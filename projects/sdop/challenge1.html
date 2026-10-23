@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The build challenge | ITC series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  LINKS STILL NEEDED. Search this file for: NEEDLINK
+  Resource bank doc, skill file download, Hack Your Assessment,
+  Where's the Evidence, library folder.
+  Replace the href and delete class="need".
+  ============================================================
+-->
+
+<style>
+:root{--navy:#12263F;--teal:#0E6E6E;--amber:#B45309;--berry:#8A2E4D;--indigo:#3C3F78;
+  --ink:#12263F;--paper:#F3F6F8;--muted:#5B6B7C;--line:#D6DEE5;--soft:#E8EEF2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+a{color:var(--navy)}
+.back{display:inline-block;font-size:13.5px;color:#A9C0D6;text-decoration:none;margin-bottom:14px}
+.back:hover{color:#fff}
+.masthead{background:var(--navy);color:#fff;padding:30px 0 28px}
+.masthead h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:33px;
+  line-height:1.15;margin:0 0 6px;letter-spacing:-0.01em}
+.masthead .sub{color:#A9C0D6;font-size:15px;margin:0 0 22px;max-width:68ch}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18)}
+.rule{background:var(--navy);padding:13px 15px}
+.rule b{display:block;font-size:14.5px;font-weight:600;margin-bottom:2px}
+.rule span{display:block;font-size:13px;color:#A9C0D6;line-height:1.45}
+
+.question{background:#fff;border:1px solid var(--line);border-top:5px solid var(--amber);
+  margin-top:-1px;padding:18px 22px 20px}
+.question p{margin:0;font-size:15.5px;max-width:68ch}
+.question b{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:22px;display:block;margin-bottom:6px}
+
+.jump{padding:18px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.jump a{font-size:13.5px;font-weight:500;padding:7px 14px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);border-radius:2px;text-decoration:none}
+.jump a:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+
+.step{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent,var(--navy));margin-top:18px}
+.step-top{padding:16px 46px 16px 18px;position:relative;cursor:pointer;display:flex;gap:16px;align-items:baseline}
+.step-top:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.step-top::after{content:"";position:absolute;right:19px;top:50%;margin-top:-6px;width:9px;height:9px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .18s ease}
+.step.open .step-top::after{transform:rotate(-135deg);margin-top:-2px}
+.step-num{flex:0 0 auto;font-size:12.5px;font-weight:700;color:var(--accent,var(--navy));letter-spacing:.02em}
+.step-num small{display:block;font-weight:500;color:var(--muted);margin-top:1px}
+.step-top h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:22px;margin:0;line-height:1.2}
+.step-top p{margin:3px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.step-body{display:none;border-top:1px solid var(--soft);padding:16px 18px 18px;background:#FAFCFD}
+.step.open .step-body{display:block}
+.step-body h3{font-size:12.5px;font-weight:700;color:var(--muted);margin:14px 0 7px}
+.step-body h3:first-child{margin-top:0}
+.step-body p{margin:0 0 10px;font-size:14.5px;max-width:70ch}
+.step-body ul,.step-body ol{margin:0 0 10px;padding-left:20px;font-size:14.5px}
+.step-body li{margin-bottom:5px}
+.step-body li b{font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{background:#fff;border:1px solid var(--line);padding:13px 15px}
+.box h4{font-size:14.5px;font-weight:600;margin:0 0 6px}
+.box p{font-size:14px;margin:0 0 9px;color:var(--muted)}
+.topics{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 14px;margin:0 0 12px;padding:0;list-style:none}
+.topics li{font-size:14px;padding:7px 10px;background:#fff;border:1px solid var(--line)}
+.prompt{background:#fff;border:1px solid var(--line);padding:12px 14px;font-size:13.5px;
+  line-height:1.5;white-space:pre-wrap;max-height:220px;overflow:auto}
+.copy{font:inherit;font-size:13px;font-weight:600;margin-top:9px;padding:7px 14px;
+  border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:2px;cursor:pointer}
+.copy:hover{background:var(--navy);color:#fff}
+.copy:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.linkrow{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+.lnk{display:inline-block;font-size:14px;font-weight:600;text-decoration:none;
+  padding:9px 16px;border:1px solid var(--navy);color:var(--navy);background:#fff;border-radius:2px}
+.lnk:hover{background:var(--navy);color:#fff}
+.lnk.primary{background:var(--navy);color:#fff}
+.lnk.primary:hover{background:#0B1A2C}
+.lnk:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.need{display:inline-block;font-size:14px;font-weight:500;padding:9px 16px;
+  border:1px dashed #B8863B;color:#8A6320;background:#FDF8EE;border-radius:2px;
+  text-decoration:none;cursor:default}
+.need::before{content:"Need the link: ";font-weight:700}
+.check{list-style:none;padding:0;margin:0 0 6px}
+.check li{padding:7px 0 7px 26px;position:relative;border-bottom:1px solid var(--soft);font-size:14.5px}
+.check li:last-child{border-bottom:0}
+.check li::before{content:"";position:absolute;left:2px;top:11px;width:13px;height:13px;border:1.5px solid var(--muted);border-radius:2px}
+.note{font-size:13.5px;color:var(--muted)}
+.guard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--berry);padding:16px 20px;margin-top:28px}
+.guard h3{font-size:14px;font-weight:700;margin:0 0 8px}
+.guard ul{margin:0;padding-left:18px;font-size:14px}
+.guard li{margin-bottom:4px}
+footer{margin-top:36px;border-top:1px solid var(--line);padding:22px 0 60px;font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.rules,.two,.topics{grid-template-columns:1fr}.masthead h1{font-size:26px}.step-top{flex-wrap:wrap;gap:6px}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="back" href="index.html">Back to the series page</a>
+    <h1>The build challenge</h1>
+    <p class="sub">Forty five minutes. Use AI to help you design and build something you will actually use with teachers to help them use AI well. Two layers, one build.</p>
+    <div class="rules">
+      <div class="rule"><b>Build something real</b><span>A plan or a list of ideas does not count. You leave with a thing a teacher can hold, open, or do.</span></div>
+      <div class="rule"><b>Plan as a table, build alone or in pairs</b><span>Ten minutes to plan together. Thirty to build. Five with a critical friend.</span></div>
+      <div class="rule"><b>Let the questions come first</b><span>The design coach asks before it builds. If it starts building early, tell it to stop and ask.</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="question">
+    <p><b>What do our teachers need from us on AI right now, and what will we build to meet it?</b>
+    That is the question for the morning. Everything below is in service of it. Start wherever you are: the steps are in order, but you do not have to go in order.</p>
+  </div>
+
+  <nav class="jump" aria-label="Jump to a step">
+    <a href="#s1">1. Plan as a table</a>
+    <a href="#s2">2. Pick what you will make</a>
+    <a href="#s3">3. Build with the design coach</a>
+    <a href="#s4">4. Check it</a>
+    <a href="#s5">5. Post it</a>
+    <a href="#models">Models and library</a>
+  </nav>
+
+  <!-- ==================== STEP 1 ==================== -->
+  <article class="step open" id="s1" style="--accent:#12263F">
+    <div class="step-top">
+      <div class="step-num">Step 1<small>10 minutes, as a table</small></div>
+      <div><h2>Plan as a table</h2><p>Four questions, one topic each, and everyone knows what they are building before the clock starts.</p></div>
+    </div>
+    <div class="step-body">
+      <h3>Talk through these, in order</h3>
+      <ol>
+        <li><b>What are teachers at your schools asking for, or struggling with?</b> Use their words. Pull from the concerns list from this morning if it helps.</li>
+        <li><b>What do we already have?</b> Anything on your laptops, in the bank, or from Session 1 that already answers part of it.</li>
+        <li><b>What do we need to build?</b> The gap between the first two answers.</li>
+        <li><b>Who builds what?</b> One build per person or pair. Spread across topics so the bank fills, not one topic five times.</li>
+      </ol>
+      <h3>Claim a topic in the resource bank</h3>
+      <p>Each build lives in one of these ten sections. Put your name next to the one you are taking so the table can see the spread.</p>
+      <ul class="topics">
+        <li>AI foundations and tool awareness</li>
+        <li>Working with AI: prompting, checking, revising, deciding, disclosing</li>
+        <li>Ethics, safety, and digital citizenship</li>
+        <li>AI for teacher workflow and planning</li>
+        <li>AI for differentiation, inclusion, and support</li>
+        <li>AI for communication</li>
+        <li>AI for professional learning and reflection</li>
+        <li>AI for student learning and thinking</li>
+        <li>AI for assessment and feedback</li>
+        <li>Using AI to understand student work</li>
+      </ul>
+      <p class="note">A lens on all ten: what does this look like in this subject and this grade band?</p>
+      <div class="linkrow">
+        <a class="need" href="#">Open the resource bank</a><!-- NEEDLINK -->
+      </div>
+    </div>
+  </article>
+
+  <!-- ==================== STEP 2 ==================== -->
+  <article class="step" id="s2" style="--accent:#B45309">
+    <div class="step-top">
+      <div class="step-num">Step 2<small>Before you open anything</small></div>
+      <div><h2>Pick what you will make</h2><p>The form follows the need, not the other way round. A deck is one option, not the default.</p></div>
+    </div>
+    <div class="step-body">
+      <p>Decide this with your teachers in mind. What would they actually use, in the setting you have with them?</p>
+      <div class="two">
+        <div class="box"><h4>Something teachers do</h4>
+          <p>An activity with directions, timings, and discussion questions. For a staff meeting, a PLC, or one on one. Teachers process and learn by doing it, not by watching you.</p></div>
+        <div class="box"><h4>Something teachers reuse</h4>
+          <p>A template with blanks: a prompt frame, a planning sheet, a reflection sheet, a family letter, an assignment frame that names the AI Use Continuum level.</p></div>
+        <div class="box"><h4>Something teachers react to</h4>
+          <p>An AI answer to critique, a before and after lesson, a sample that starts a conversation. Often the fastest build and the best discussion.</p></div>
+        <div class="box"><h4>Something you run</h4>
+          <p>A coaching conversation guide for one on one, or a short deck for a session. If you choose a deck, keep it under ten slides and put the doing in the room.</p></div>
+        <div class="box"><h4>Something that lives on</h4>
+          <p>A page teachers come back to. Build it as a single HTML file with the design coach and embed it as a full page in a Google Site. Styles inline, nothing pulled from outside.</p></div>
+        <div class="box"><h4>A skill of your own</h4>
+          <p>If Skills is on your account, build a skill that helps teachers do one thing well. Keep it to one job. Our guidelines go in it.</p></div>
+      </div>
+      <p class="note" style="margin-top:12px">Or something else. The design coach will ask you what you want to make and offer suggestions. You do not have to decide alone.</p>
+    </div>
+  </article>
+
+  <!-- ==================== STEP 3 ==================== -->
+  <article class="step" id="s3" style="--accent:#0E6E6E">
+    <div class="step-top">
+      <div class="step-num">Step 3<small>30 minutes, alone or in pairs</small></div>
+      <div><h2>Build with the design coach</h2><p>Open Gemini. Give it the design coach. Answer its questions, confirm the summary, then build together.</p></div>
+    </div>
+    <div class="step-body">
+      <h3>Two ways to start. Pick the one that works on your account.</h3>
+      <div class="two">
+        <div class="box"><h4>If you have Skills</h4>
+          <p>Download the skill file, add it to your skills in the Gemini app, then open a new chat and say "help me design something for my teachers."</p>
+          <div class="linkrow"><a class="need" href="#">Download the skill file</a><!-- NEEDLINK --></div></div>
+        <div class="box"><h4>If you do not</h4>
+          <p>Copy the prompt below and paste it as the first message in a new Gemini chat. It does the same job.</p>
+          <div class="linkrow"><a class="lnk" href="#prompt">Jump to the prompt</a></div></div>
+      </div>
+
+      <h3>What it will do</h3>
+      <p>It is a design coach, not a template. It asks in five moves and builds nothing until you say the summary is right.</p>
+      <ol>
+        <li><b>The need.</b> What teachers are asking for, which topic, who is asking, and whether this is about awareness, a skill, or changing practice. One question at a time.</li>
+        <li><b>The people and the constraints.</b> Where teachers are starting, how much time, what setting, what devices, what must be in or out. A short batch.</li>
+        <li><b>The takeaway.</b> "After this, teachers will be able to ___." It pushes back if you give it five things.</li>
+        <li><b>How teachers will learn.</b> Where they try, build, or rehearse instead of watch. The why for these teachers. Where they talk, get feedback, choose, and connect it to Monday.</li>
+        <li><b>What you will make.</b> It asks, offers suggestions, and ends with "or something else." Then it asks what you already have to build from.</li>
+      </ol>
+      <p>Then it writes a short summary and asks "Is this right?" Say yes, or fix it. Only then does it build.</p>
+
+      <h3>While it builds</h3>
+      <ul>
+        <li>Paste in anything you already have for this topic. Build from it rather than starting new.</li>
+        <li>When it asks what would make this better for your teachers, answer honestly. One or two rounds of revision is the sweet spot.</li>
+        <li>Check the output for accuracy and bias before it goes anywhere near a teacher. Every response is a starting point.</li>
+      </ul>
+
+      <h3 id="prompt">The prompt, for anyone without Skills</h3>
+      <div class="prompt">You are a design coach for an instructional technology coach in the School District of Philadelphia who supports teachers with AI. Help me think through what my teachers need and design something that works, then help me make it. You are not a template. You are a colleague who asks good questions.
+
+Most important rule: do not draft, outline, or build anything until all five moves below are done and I have confirmed your summary. If I ask you to skip ahead, say you will right after a few questions, then ask the next one.
+
+How to ask: one question at a time when it needs real thought (moves 1, 3, 4). A short batch of three or four when the answers are quick facts (move 2). Offer two or three example answers only if I seem stuck. Push back gently when an answer is vague or too big. Reflect back what you hear in plain words so I can correct you.
+
+Move 1, the need, one at a time: What are teachers actually asking for or struggling with, in their words? Which topic does that sit in? Who is asking, which grade band and subject? Is this a need for awareness, for a skill, or for changing how they do something?
+
+Move 2, the people and the constraints, as a batch: Where are these teachers starting with AI? How much time do I have with them and in what setting? What devices and access will they have? Anything that must be in it or must stay out?
+
+Move 3, the takeaway: Ask me to finish "After this, teachers will be able to ___." If I give more than one thing, ask which matters most. Ask what teachers will notice with students because of it, and what the mindset shift is, if there is one.
+
+Move 4, how teachers will learn, one at a time, skipping any I have answered: How will I engage their thinking, what will they try, critique, build, compare, or rehearse rather than watch? What is the why for these specific teachers? Where will they work on something real from their own practice? Where do they talk to each other? Where do they get feedback and reflect? Where do they have a choice? How does it connect to Monday? If readiness is mixed, where are the entry points for a nervous teacher and a confident one? Then ask what I have done with teachers before that worked, that we could borrow from.
+
+Move 5, what I will make: Ask "What do you want to create to support this?" Offer ideas that fit what I have said (a short deck, an activity with directions and timings, a one on one conversation guide, a reusable template, a sample teachers react to, a handout, a page that lives on a site) and always end with "or something else." Then ask what I already have for this topic that we should build from, and invite me to paste it.
+
+Checkpoint: write a short summary in plain words, who it is for, the need, the takeaway, how teachers will learn, what we are making, what we are building from. Ask "Is this right? Anything to change before I draft?" Wait for a yes.
+
+Building: once confirmed, build what I chose in a form I can paste into Google Slides or Docs or use as is. Then ask what would make it better for my teachers and revise once or twice. Offer, without forcing, participant materials, a prep checklist, and facilitator tips with likely sticking points. End with these critical friend questions: Would a teacher use this on Monday? Do teachers actually do something? Is the takeaway clear in one sentence? Is it safe under our guidelines? What is one change? Suggest how to label it for our resource bank: topic, format, audience, length, who made it, date.
+
+Guardrails, always: Approved tools only (Gemini, Gemini Notebook, Gemini in Classroom, Adobe Express with Firefly), district accounts only. Students use Gemini and Gemini Notebook in grades 9 to 12 only; below grade 9 the teacher uses AI and students see the product; Adobe Express is open to all grades. No student names, student work, or secure assessments go into AI tools, even de-identified. Teachers are given their curriculum; build from it, do not design new units. When students use AI, name the AI Use Continuum level (No AI Use, AI-Assisted Idea Generation, AI-Assisted Editing, AI-Assisted Task Completion, Unrestricted AI Use) and disclosure follows the level. AI detectors are not used; point to task design instead. Check AI output for accuracy and bias before it reaches anyone.
+
+The ten topics: AI Foundations and Tool Awareness; Working With AI (prompting, checking, revising, deciding, disclosing); Ethics, Safety, and Digital Citizenship; AI for Teacher Workflow and Planning; AI for Differentiation, Inclusion, and Support; AI for Communication; AI for Professional Learning and Reflection; AI for Student Learning and Thinking; AI for Assessment and Feedback; Using AI to Understand Student Work. A lens on all of them: what does this look like in this subject and grade band?
+
+Style: plain, warm, direct. Short sentences. No jargon. I am the expert on my teachers. You bring the questions.
+
+Start with move 1.</div>
+      <button class="copy" type="button">Copy the prompt</button>
+    </div>
+  </article>
+
+  <!-- ==================== STEP 4 ==================== -->
+  <article class="step" id="s4" style="--accent:#8A2E4D">
+    <div class="step-top">
+      <div class="step-num">Step 4<small>5 minutes, with a critical friend</small></div>
+      <div><h2>Check it</h2><p>Hand it to someone at another table. Five questions, honest answers, one change.</p></div>
+    </div>
+    <div class="step-body">
+      <h3>Critical friend questions</h3>
+      <ul class="check">
+        <li>Would a teacher use this on Monday?</li>
+        <li>Do teachers actually do something, or do they watch?</li>
+        <li>Is the takeaway clear in one sentence?</li>
+        <li>Is it safe under our guidelines?</li>
+        <li>What is one change that would make it land better?</li>
+      </ul>
+      <h3>What makes professional learning good, in case you want the longer list</h3>
+      <p class="note">These are the questions the design coach was working from. Use them on your own build, or on anyone else's.</p>
+      <ul class="check">
+        <li>It engages their thinking. Teachers try, critique, build, compare, or rehearse.</li>
+        <li>The why is clear for these teachers, in their words.</li>
+        <li>Teachers work on something real from their own practice and their given curriculum.</li>
+        <li>Teachers talk to each other, about something specific.</li>
+        <li>There is feedback, and a stop to reflect.</li>
+        <li>There is a choice: which example, which task, how far to go.</li>
+        <li>It connects to Monday. Teachers know what they will do this week.</li>
+        <li>A nervous teacher and a confident one both have a way in.</li>
+        <li>It borrows from something that already worked.</li>
+        <li>It is safe under our guidelines, and it says so where it matters.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- ==================== STEP 5 ==================== -->
+  <article class="step" id="s5" style="--accent:#3C3F78">
+    <div class="step-top">
+      <div class="step-num">Step 5<small>Before the gallery walk</small></div>
+      <div><h2>Post it</h2><p>Your build goes in the bank under its topic, labeled so a colleague can find it in March.</p></div>
+    </div>
+    <div class="step-body">
+      <h3>Label it</h3>
+      <ul>
+        <li><b>Topic</b> (one of the ten)</li>
+        <li><b>Format</b> (activity, template, sample, guide, deck, page, skill, other)</li>
+        <li><b>Audience</b> (grade band, subject, teachers or administrators)</li>
+        <li><b>Length</b> (how long it takes to run or use)</li>
+        <li><b>Who made it, and the date</b></li>
+      </ul>
+      <p>Put it in the <b>What we built</b> part of your topic's section. Link to the file or paste the text. If it is a skill, paste the skill text, since skills cannot be shared yet.</p>
+      <div class="linkrow">
+        <a class="need" href="#">Open the resource bank</a><!-- NEEDLINK -->
+      </div>
+    </div>
+  </article>
+
+  <!-- ==================== MODELS AND LIBRARY ==================== -->
+  <article class="step" id="models" style="--accent:#12263F">
+    <div class="step-top">
+      <div class="step-num">Models<small>and the library</small></div>
+      <div><h2>What a finished build looks like</h2><p>Two activities teachers do in under thirty minutes. Borrow the shape, not the content.</p></div>
+    </div>
+    <div class="step-body">
+      <div class="two">
+        <div class="box"><h4>Hack Your Assessment</h4>
+          <p>Teachers put their own assignment through AI to see what it produces, then decide what has to change so the thinking stays with the student.</p>
+          <div class="linkrow"><a class="need" href="#">Open</a><!-- NEEDLINK --></div></div>
+        <div class="box"><h4>Where's the Evidence</h4>
+          <p>Teachers read an AI answer and hunt for what it is standing on. A short activity that teaches checking before trusting.</p>
+          <div class="linkrow"><a class="need" href="#">Open</a><!-- NEEDLINK --></div></div>
+      </div>
+      <h3>The library</h3>
+      <p>Files you can pull from: activities, templates, and examples from other districts, adapted to our guidelines. Take what helps. Nothing here is required.</p>
+      <div class="linkrow">
+        <a class="need" href="#">Open the library folder</a><!-- NEEDLINK -->
+        <a class="lnk" href="https://www.impactedvisors.org/assets/ai-resource-guide.html" target="_blank" rel="noopener">AI teaching and learning resource guide</a>
+        <a class="lnk" href="coach-sparks.html">Idea sparks for coaches</a>
+      </div>
+    </div>
+  </article>
+
+  <div class="guard">
+    <h3>Before anything reaches a teacher</h3>
+    <ul>
+      <li>No student names, student work, or secure assessments in any AI tool.</li>
+      <li>Approved tools and district accounts only.</li>
+      <li>Students use Gemini and Gemini Notebook in grades 9 to 12 only. Adobe Express is open at every grade.</li>
+      <li>Check every AI output for accuracy and bias. It is a starting point, not an answer.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Instructional Technology Coach series, Session 2, October 2026. The design coach is for our team's use, not for teachers. Builds go in the shared resource bank, which moves into the district after this session.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  steps.forEach(function(s){
+    var top = s.querySelector('.step-top');
+    top.setAttribute('role','button');
+    top.setAttribute('tabindex','0');
+    top.setAttribute('aria-expanded', s.classList.contains('open') ? 'true' : 'false');
+    function toggle(){
+      var open = !s.classList.contains('open');
+      s.classList.toggle('open', open);
+      top.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    top.addEventListener('click', toggle);
+    top.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+  // Jump links open the target step.
+  document.querySelectorAll('.jump a, a[href="#prompt"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      var step = el && (el.classList.contains('step') ? el : el.closest('.step'));
+      if (step && !step.classList.contains('open')){
+        step.classList.add('open');
+        step.querySelector('.step-top').setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var b = document.querySelector('.copy');
+  if (b){
+    b.addEventListener('click', function(){
+      var text = b.parentNode.querySelector('.prompt').textContent;
+      var done = function(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy the prompt'; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done, function(){ b.textContent = 'Select and copy above'; });
+      } else {
+        var t = document.createElement('textarea');
+        t.value = text; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); done(); } catch(e){ b.textContent = 'Select and copy above'; }
+        document.body.removeChild(t);
+      }
+    });
+  }
+  document.querySelectorAll('a.need').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); });
+  });
+})();
+</script>
+
+</body>
+</html>
