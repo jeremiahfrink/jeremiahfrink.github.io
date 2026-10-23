@@ -8,15 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
 
-<!--
-  ============================================================
-  LINKS STILL NEEDED. Search this file for: NEEDLINK
-  Resource bank doc, skill file download, Hack Your Assessment,
-  Where's the Evidence, library folder.
-  Replace the href and delete class="need".
-  ============================================================
--->
-
 <style>
 :root{--navy:#12263F;--teal:#0E6E6E;--amber:#B45309;--berry:#8A2E4D;--indigo:#3C3F78;
   --ink:#12263F;--paper:#F3F6F8;--muted:#5B6B7C;--line:#D6DEE5;--soft:#E8EEF2}
@@ -88,10 +79,25 @@ a{color:var(--navy)}
 .lnk.primary{background:var(--navy);color:#fff}
 .lnk.primary:hover{background:#0B1A2C}
 .lnk:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-.need{display:inline-block;font-size:14px;font-weight:500;padding:9px 16px;
-  border:1px dashed #B8863B;color:#8A6320;background:#FDF8EE;border-radius:2px;
-  text-decoration:none;cursor:default}
-.need::before{content:"Need the link: ";font-weight:700}
+.popbtn{font:inherit;font-size:13.5px;font-weight:600;padding:8px 14px;border:1px solid #fff;
+  background:transparent;color:#fff;border-radius:2px;cursor:pointer}
+.popbtn:hover{background:#fff;color:var(--navy)}
+.popbtn.dark{border-color:var(--navy);color:var(--navy)}
+.popbtn.dark:hover{background:var(--navy);color:#fff}
+.popbtn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+dialog.pl{border:0;border-top:5px solid var(--teal);padding:0;max-width:720px;width:calc(100% - 40px);
+  background:#fff;color:var(--ink);box-shadow:0 12px 40px rgba(18,38,63,.25)}
+dialog.pl::backdrop{background:rgba(18,38,63,.55)}
+.pl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:18px 22px 10px}
+.pl-head h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:23px;margin:0}
+.pl-close{font:inherit;font-size:13px;font-weight:600;background:none;border:1px solid var(--line);
+  padding:6px 12px;border-radius:2px;cursor:pointer;color:var(--ink)}
+.pl-close:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pl-body{padding:0 22px 20px;max-height:70vh;overflow:auto}
+.pl-body p.intro{margin:0 0 12px;font-size:14px;color:var(--muted)}
+.pl-body ol{margin:0;padding-left:22px}
+.pl-body li{margin-bottom:10px;font-size:14.5px}
+.pl-body li b{display:block;font-weight:600}
 .check{list-style:none;padding:0;margin:0 0 6px}
 .check li{padding:7px 0 7px 26px;position:relative;border-bottom:1px solid var(--soft);font-size:14.5px}
 .check li:last-child{border-bottom:0}
@@ -117,6 +123,7 @@ footer{margin-top:36px;border-top:1px solid var(--line);padding:22px 0 60px;font
       <div class="rule"><b>Plan as a table, build alone or in pairs</b><span>Ten minutes to plan together. Thirty to build. Five with a critical friend.</span></div>
       <div class="rule"><b>Let the questions come first</b><span>The design coach asks before it builds. If it starts building early, tell it to stop and ask.</span></div>
     </div>
+    <p style="margin:16px 0 0"><button class="popbtn" type="button" data-open-pl>What makes professional learning good: the ten criteria</button></p>
   </div>
 </header>
 
@@ -133,7 +140,7 @@ footer{margin-top:36px;border-top:1px solid var(--line);padding:22px 0 60px;font
     <a href="#s3">3. Build with the design coach</a>
     <a href="#s4">4. Check it</a>
     <a href="#s5">5. Post it</a>
-    <a href="#models">Models and library</a>
+    <a href="#bank">The resource bank</a>
   </nav>
 
   <!-- ==================== STEP 1 ==================== -->
@@ -166,7 +173,7 @@ footer{margin-top:36px;border-top:1px solid var(--line);padding:22px 0 60px;font
       </ul>
       <p class="note">A lens on all ten: what does this look like in this subject and this grade band?</p>
       <div class="linkrow">
-        <a class="need" href="#">Open the resource bank</a><!-- NEEDLINK -->
+        <a class="lnk" href="https://datadunkers.ca/events/iste26.html#articles" target="_blank" rel="noopener">Open the resource bank</a>
       </div>
     </div>
   </article>
@@ -208,7 +215,7 @@ footer{margin-top:36px;border-top:1px solid var(--line);padding:22px 0 60px;font
       <div class="two">
         <div class="box"><h4>If you have Skills</h4>
           <p>Download the skill file, add it to your skills in the Gemini app, then open a new chat and say "help me design something for my teachers."</p>
-          <div class="linkrow"><a class="need" href="#">Download the skill file</a><!-- NEEDLINK --></div></div>
+          <div class="linkrow"><a class="lnk primary" href="https://drive.google.com/file/d/1nPPaBLCZfaaLC2eMleLuyR1TBZurZDXO/view?usp=drive_link" target="_blank" rel="noopener">Download the skill file</a></div></div>
         <div class="box"><h4>If you do not</h4>
           <p>Copy the prompt below and paste it as the first message in a new Gemini chat. It does the same job.</p>
           <div class="linkrow"><a class="lnk" href="#prompt">Jump to the prompt</a></div></div>
@@ -279,20 +286,9 @@ Start with move 1.</div>
         <li>Is it safe under our guidelines?</li>
         <li>What is one change that would make it land better?</li>
       </ul>
-      <h3>What makes professional learning good, in case you want the longer list</h3>
-      <p class="note">These are the questions the design coach was working from. Use them on your own build, or on anyone else's.</p>
-      <ul class="check">
-        <li>It engages their thinking. Teachers try, critique, build, compare, or rehearse.</li>
-        <li>The why is clear for these teachers, in their words.</li>
-        <li>Teachers work on something real from their own practice and their given curriculum.</li>
-        <li>Teachers talk to each other, about something specific.</li>
-        <li>There is feedback, and a stop to reflect.</li>
-        <li>There is a choice: which example, which task, how far to go.</li>
-        <li>It connects to Monday. Teachers know what they will do this week.</li>
-        <li>A nervous teacher and a confident one both have a way in.</li>
-        <li>It borrows from something that already worked.</li>
-        <li>It is safe under our guidelines, and it says so where it matters.</li>
-      </ul>
+      <h3>Want the longer list?</h3>
+      <p class="note">The design coach was working from ten criteria for good professional learning. Use them on your own build, or on anyone else's.</p>
+      <p><button class="popbtn dark" type="button" data-open-pl>Open the ten criteria</button></p>
     </div>
   </article>
 
@@ -313,30 +309,21 @@ Start with move 1.</div>
       </ul>
       <p>Put it in the <b>What we built</b> part of your topic's section. Link to the file or paste the text. If it is a skill, paste the skill text, since skills cannot be shared yet.</p>
       <div class="linkrow">
-        <a class="need" href="#">Open the resource bank</a><!-- NEEDLINK -->
+        <a class="lnk" href="https://datadunkers.ca/events/iste26.html#articles" target="_blank" rel="noopener">Open the resource bank</a>
       </div>
     </div>
   </article>
 
-  <!-- ==================== MODELS AND LIBRARY ==================== -->
-  <article class="step" id="models" style="--accent:#12263F">
+  <!-- ==================== RESOURCE BANK ==================== -->
+  <article class="step" id="bank" style="--accent:#12263F">
     <div class="step-top">
-      <div class="step-num">Models<small>and the library</small></div>
-      <div><h2>What a finished build looks like</h2><p>Two activities teachers do in under thirty minutes. Borrow the shape, not the content.</p></div>
+      <div class="step-num">Bank<small>shared resources</small></div>
+      <div><h2>The resource bank</h2><p>Examples to borrow from, what we already have, and what we build today. One place, by topic.</p></div>
     </div>
     <div class="step-body">
-      <div class="two">
-        <div class="box"><h4>Hack Your Assessment</h4>
-          <p>Teachers put their own assignment through AI to see what it produces, then decide what has to change so the thinking stays with the student.</p>
-          <div class="linkrow"><a class="need" href="#">Open</a><!-- NEEDLINK --></div></div>
-        <div class="box"><h4>Where's the Evidence</h4>
-          <p>Teachers read an AI answer and hunt for what it is standing on. A short activity that teaches checking before trusting.</p>
-          <div class="linkrow"><a class="need" href="#">Open</a><!-- NEEDLINK --></div></div>
-      </div>
-      <h3>The library</h3>
-      <p>Files you can pull from: activities, templates, and examples from other districts, adapted to our guidelines. Take what helps. Nothing here is required.</p>
+      <p>Take what helps. Nothing here is required. Everything you build today goes back in under its topic so a colleague can find it later.</p>
       <div class="linkrow">
-        <a class="need" href="#">Open the library folder</a><!-- NEEDLINK -->
+        <a class="lnk primary" href="https://datadunkers.ca/events/iste26.html#articles" target="_blank" rel="noopener">Open the resource bank</a>
         <a class="lnk" href="https://www.impactedvisors.org/assets/ai-resource-guide.html" target="_blank" rel="noopener">AI teaching and learning resource guide</a>
         <a class="lnk" href="coach-sparks.html">Idea sparks for coaches</a>
       </div>
@@ -356,6 +343,28 @@ Start with move 1.</div>
   <footer>
     Instructional Technology Coach series, Session 2, October 2026. The design coach is for our team's use, not for teachers. Builds go in the shared resource bank, which moves into the district after this session.
   </footer>
+
+<dialog class="pl" id="pl">
+  <div class="pl-head">
+    <h2>What makes professional learning good</h2>
+    <button class="pl-close" type="button" data-close-pl>Close</button>
+  </div>
+  <div class="pl-body">
+    <p class="intro">Ten criteria. The design coach asks about most of them. Use them to check any build, yours or a colleague's.</p>
+    <ol>
+      <li><b>Honor who learners are and what they bring</b>Build on participants' prior experience, context, and strengths. Do not treat them as blank slates.</li>
+      <li><b>Make the why and the what's in it for me explicit</b>Clearly connect the learning to problems they care about and the impact on students and their own work.</li>
+      <li><b>Give meaningful voice, choice, and control</b>Allow adults to make decisions about how they engage, what examples they explore, and how they apply the learning.</li>
+      <li><b>Center on real work and immediate application</b>Use authentic tasks, tools, and artifacts (lesson plans, student work, assessments) that connect directly to what they will do tomorrow.</li>
+      <li><b>Engage learners actively, not passively</b>Have them do, build, try, rehearse, analyze, and create, not just listen. Include chances to practice with support.</li>
+      <li><b>Include feedback, reflection, and metacognition</b>Build in time for participants to get feedback, think about what worked or did not, and plan how they will adjust their practice.</li>
+      <li><b>Foster collaboration and community</b>Design structures where participants learn with and from each other: partner work, small groups, protocols, co-planning.</li>
+      <li><b>Differentiate based on readiness and role</b>Offer multiple entry points and pathways so beginners, more advanced users, teachers, and administrators all find it relevant and appropriately challenging.</li>
+      <li><b>Design for equity, belonging, and safety</b>Create an environment where all voices are welcomed, concerns can be raised, and trying new ideas feels safe.</li>
+      <li><b>Plan for continuity, not one and done</b>Connect learning to follow up: coaching, future sessions, check-ins, or communities of practice so people can revisit and deepen their learning over time.</li>
+    </ol>
+  </div>
+</dialog>
 
 </div>
 
@@ -404,9 +413,16 @@ Start with move 1.</div>
       }
     });
   }
-  document.querySelectorAll('a.need').forEach(function(a){
-    a.addEventListener('click', function(e){ e.preventDefault(); });
+  var dlg = document.getElementById('pl');
+  document.querySelectorAll('[data-open-pl]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+    });
   });
+  document.querySelectorAll('[data-close-pl]').forEach(function(btn){
+    btn.addEventListener('click', function(){ if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); });
+  });
+  dlg.addEventListener('click', function(e){ if (e.target === dlg && dlg.close) dlg.close(); });
 })();
 </script>
 
