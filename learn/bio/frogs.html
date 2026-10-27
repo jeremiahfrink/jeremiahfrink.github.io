@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Frog Tank: Phase 1</title>
+<style>
+:root{
+  --navy:#1F3A5F; --teal:#0F7C80; --amber:#D98E04;
+  --ink:#1b2430; --muted:#5a6676; --line:#dfe4ea;
+  --bg:#f6f7f9; --card:#ffffff; --tealbg:#e9f4f4; --amberbg:#fdf4e0; --greenbg:#eef5ec;
+  --maxw:820px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;line-height:1.25;margin:0}
+a{color:var(--teal)} a:hover{color:var(--navy)}
+
+.wrap{display:flex;min-height:100vh;align-items:flex-start}
+.side{width:248px;flex:0 0 248px;background:var(--navy);color:#fff;min-height:100vh;
+  padding:22px 0 40px;position:sticky;top:0;max-height:100vh;overflow-y:auto}
+.side .brand{padding:0 20px 18px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:14px}
+.side .brand .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+.side .brand h1{font-size:20px;color:#fff;margin-top:6px}
+.navbtn{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;background:none;border:0;
+  color:#cdd8e6;padding:10px 20px;cursor:pointer;font:inherit;font-size:14px;line-height:1.35}
+.navbtn:hover{background:rgba(255,255,255,.07);color:#fff}
+.navbtn.active{background:rgba(255,255,255,.14);color:#fff;font-weight:600;box-shadow:inset 3px 0 0 var(--amber)}
+.navbtn .shortlbl{display:none}
+.tick{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);
+  display:inline-flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px}
+.tick.done{background:var(--amber);border-color:var(--amber);color:var(--navy);font-weight:800}
+
+.main{flex:1;min-width:0;padding:34px 28px 95px;display:flex;justify-content:center}
+.col{width:100%;max-width:var(--maxw)}
+.screen{display:none}.screen.on{display:block}
+.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+h2.title{font-size:31px;color:var(--navy);margin:6px 0 4px}
+.time{color:var(--muted);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px}
+h3.step{font-size:18px;color:var(--teal);margin:0 0 10px}
+h3.sec{font-size:20px;color:var(--navy);margin:0 0 10px}
+p{margin:0 0 13px} p:last-child{margin-bottom:0}
+ul,ol{margin:0 0 13px;padding-left:22px} li{margin-bottom:7px}
+
+.note{background:var(--tealbg);border-left:5px solid var(--teal);border-radius:0 8px 8px 0;padding:16px 18px;margin:0 0 16px}
+.must{background:var(--amberbg);border-left:5px solid var(--amber);border-radius:0 8px 8px 0;padding:16px 18px;margin:18px 0 0}
+.must h4{font-size:16px;margin:0 0 10px;color:var(--navy)}
+.wildtank{background:var(--greenbg);border-left:5px solid #6a9b59;border-radius:0 8px 8px 0;padding:14px 18px;margin:0 0 16px}
+
+.golink{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;padding:9px 16px;
+  border-radius:7px;font-size:14px;font-weight:600;margin:4px 8px 10px 0}
+.golink:hover{background:var(--navy);color:#fff}
+.golink .ext{opacity:.75;font-weight:400}
+.srclist{margin:0;padding-left:20px;font-size:15px}
+.srclist li{margin-bottom:9px}
+
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:13px}
+td.lbl{background:#f2f4f7;font-weight:600;width:32%}
+
+.q{margin:16px 0 0}
+.q label{display:block;font-weight:600;margin-bottom:6px;color:var(--navy)}
+textarea,input[type=text]{width:100%;border:1px solid #c7cdd6;border-radius:7px;padding:10px 12px;
+  font:inherit;font-size:15px;line-height:1.55;background:#fff;color:var(--ink);resize:vertical}
+textarea:focus,input[type=text]:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+
+.checks{margin:12px 0 0;padding:0;list-style:none}
+.checks li{margin:0 0 9px}
+.chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.chk input{margin:4px 0 0;flex:0 0 auto;width:17px;height:17px;accent-color:var(--teal)}
+.chk span{flex:1}
+
+/* species cards */
+.spec{border:1px solid var(--line);border-radius:9px;margin:0 0 16px;overflow:hidden}
+.spec>h4{background:#f2f4f7;padding:11px 15px;font-size:16.5px;color:var(--navy);
+  border-bottom:1px solid var(--line);margin:0}
+.spec>h4 em{font-weight:400;font-style:italic;color:var(--muted);font-size:14.5px}
+.specbody{padding:13px 15px}
+.fld{margin:0 0 11px}
+.fld:last-child{margin-bottom:0}
+.fld label{display:block;font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.fld textarea{font-size:14.5px;padding:7px 10px}
+.grp{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--teal);
+  margin:4px 0 9px;padding-top:4px}
+.grp.second{border-top:1px dashed var(--line);margin-top:16px;padding-top:14px}
+
+.picker{display:grid;gap:10px;margin:12px 0 0}
+.pick{border:1px solid var(--line);border-radius:8px;padding:13px 15px;cursor:pointer;background:#fff;
+  display:flex;gap:11px;align-items:flex-start}
+.pick:hover{border-color:var(--teal)}
+.pick input{margin:4px 0 0;flex:0 0 auto;accent-color:var(--teal)}
+.pick.sel{border-color:var(--teal);background:var(--tealbg)}
+.pick b{display:block;color:var(--navy);margin-bottom:2px}
+.pick small{color:var(--muted);font-size:14px;line-height:1.5;display:block}
+
+.bar{position:fixed;left:248px;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);
+  padding:11px 28px;display:flex;align-items:center;gap:14px;justify-content:space-between;z-index:20}
+.saved{color:var(--muted);font-size:13px}.saved b{color:var(--teal)}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:7px;padding:9px 16px;font:inherit;
+  font-size:14px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--teal)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid #c7cdd6}
+.btn.ghost:hover{background:#f2f4f7;color:var(--navy)}
+.bargroup{display:flex;gap:9px;flex-wrap:wrap}
+.navrow{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+
+@media (max-width:860px){
+  .wrap{display:block}
+  .side{width:auto;flex:none;min-height:0;max-height:none;position:static;padding:16px 0 10px;overflow:visible}
+  .side .brand{padding:0 16px 12px}
+  .navscroll{display:flex;overflow-x:auto;gap:4px;padding:0 10px 4px;-webkit-overflow-scrolling:touch}
+  .navbtn{white-space:nowrap;width:auto;padding:8px 12px;border-radius:7px;font-size:13px}
+  .navbtn.active{box-shadow:none;background:rgba(255,255,255,.2)}
+  .navbtn .lbl{display:none}
+  .navbtn .shortlbl{display:inline}
+  .main{padding:20px 16px 110px}
+  .bar{left:0;padding:10px 16px;flex-direction:column;align-items:stretch;gap:9px}
+  .bargroup{justify-content:stretch}.btn{flex:1}
+  h2.title{font-size:25px}.card{padding:17px 16px}
+}
+@media print{
+  .side,.bar,.navrow,.golink{display:none !important}
+  .screen{display:block !important;page-break-after:always}
+  .main{padding:0}body{background:#fff;font-size:11.5pt}
+  .card{border:0;padding:0 0 10px;margin:0}
+  textarea{border:1px solid #999;min-height:60px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="side">
+    <div class="brand">
+      <div class="kicker">Life Science: Biology</div>
+      <h1>The Frog Tank</h1>
+    </div>
+    <div class="navscroll" id="nav"></div>
+  </nav>
+  <main class="main"><div class="col" id="screens"></div></main>
+</div>
+<div class="bar">
+  <div class="saved" id="saved">Your work saves by itself</div>
+  <div class="bargroup">
+    <button class="btn ghost" id="copyBlock">Copy this part</button>
+    <button class="btn" id="copyAll">Copy everything</button>
+  </div>
+</div>
+
+<script>
+const SPECIES=[
+ {k:"whites", n:"White's tree frog", sci:"Litoria caerulea"},
+ {k:"green",  n:"American green tree frog", sci:"Hyla cinerea"},
+ {k:"pacman", n:"Pacman frog", sci:"Ceratophrys cranwelli"},
+ {k:"dwarf",  n:"African dwarf frog", sci:"Hymenochirus boettgeri"},
+ {k:"fireb",  n:"Oriental fire-bellied toad", sci:"Bombina orientalis"},
+ {k:"axo",    n:"Axolotl (not a frog, and that is the point)", sci:"Ambystoma mexicanum"}
+];
+
+const BLOCKS=[
+{
+ id:"start", nav:"Start here", short:"Start", kicker:"The Frog Tank",
+ title:"Phase 1: Choose the Frog", time:"About seven hours, spread over two weeks",
+ body:[
+  {h:"What this whole project is", p:[
+    "You have an aquarium that has been sitting empty for about six months. You are going to put frogs in it.",
+    "But not yet, and that is the interesting part. An aquarium with an animal in it is a tiny world, and you are the one who has to make that world work. Everything the frog needs, which in the wild comes from a whole forest or a whole pond, now has to come from inside a glass box you set up. If you get it wrong, something alive pays for it.",
+    "That is a real science problem, and it happens to be the exact question this whole biology course is built around: <b>what would it take to build a living world and keep it running?</b> You are about to answer it for real instead of on paper."
+  ]},
+  {h:"How every phase works", p:[
+    "There are seven phases, and each one follows the same pattern. <b>First you find out how the thing works in the wild. Then you work out how to make it happen in a glass box.</b>",
+    "That order matters. Almost everyone who keeps an animal badly does it because they skipped the first half. They learned the tank rules without ever learning why those rules exist, so when something goes wrong they have no idea what to change."
+  ],
+  tbl:{head:["Phase","What you work out"],rows:[
+    ["1. Choose the frog","Which species, and why that one. You are here."],
+    ["2. Home habitat","Where it lives in the wild, and how many will fit in your tank."],
+    ["3. Water and warmth","How a frog handles temperature, and how your tank will do that job for it."],
+    ["4. The nitrogen cycle","Why frog waste is dangerous, and how to grow the bacteria that handle it."],
+    ["5. Food and energy","What eats what in the wild, and what you will actually feed yours."],
+    ["6. Design the habitat","The full plan for the inside of the tank, built within what the tank can do."],
+    ["7. The frogs arrive","Setting it up, quarantine, and keeping a care log."]
+  ]}},
+  {h:"The video series", p:[
+    "You are also going to teach this to other people. One episode per phase on your channel, about five minutes each, explaining what you worked out and why.",
+    "This is not extra work bolted onto the top. <b>The episode is how you show what you learned for that phase</b>, so it replaces the write-up rather than adding to it.",
+    "Having an audience changes the work in a way that is worth knowing about. If you explain something wrong on camera, other people learn it wrong, and some of them might be about to buy an animal. So anything you are unsure about gets checked before it goes up.",
+    "<b>Who checks it depends on what the episode is about</b>, and that is worth paying attention to, because picking the right person to ask is a skill in itself. For anything to do with water chemistry, that is your brother-in-law, who teaches chemistry for a living. For anything about the animals themselves, the people running your zoo class are the ones who would know. Asking a chemistry teacher about frog behaviour, or a zookeeper about pH calculations, gets you a polite guess rather than an answer."
+  ]},
+  {h:"Your zoo class is part of this", p:[
+    "Your next zoo class runs for six weeks and it is about frogs and amphibians. That timing is lucky and you should not waste it.",
+    "They already know you there, and after your presentation last time they were keen to have you back, so this is not a room you are walking into cold. It may be possible to arrange a proper interview with a keeper on top of the class itself.",
+    "Here is how to use it. As you research, you are going to run into questions a website cannot really answer. Things like what these animals are actually like to look after day to day, or what a zoo does when one gets sick, or how they decide what goes inside an enclosure. Write those questions down as they come up. There are boxes on the pages for exactly that. Then take them to the class and ask.",
+    "The people teaching it work with amphibians for a living, and that makes them a different kind of source from a book. <b>A book tells you what is generally true. Somebody who does the job tells you what actually happens</b>, including the parts that never make it into a care sheet. Both are useful. They are not the same thing, and when they disagree, that disagreement is worth paying attention to rather than ignoring."
+  ]},
+
+  {h:"How this page works", p:[
+    "Use the list on the left to move through the parts. Tick things off as you finish them, and type your research and your answers straight into the boxes.",
+    "<b>Everything you type saves by itself.</b> You can close this page and come back tomorrow and it will all still be here. Nothing on this page deletes your work.",
+    "When you finish a part, press <b>Copy this part</b> at the bottom. That puts everything you wrote on your clipboard, ready to paste into a Google Doc."
+  ]}
+ ]
+},
+
+/* ---------------- PART 1 ---------------- */
+{
+ id:"p1", nav:"1. What is an amphibian", short:"1. Amphibian", kicker:"Part 1",
+ title:"What Is an Amphibian, Actually?", time:"About 90 minutes",
+ body:[
+  {p:["Before you pick a frog you need to know what a frog <i>is</i>, at the level of how its body actually works. This is not background reading you can skim. Three facts in this part are the reason almost every rule in the rest of the project exists, and if you skip them, later phases will feel like a list of arbitrary instructions instead of things that follow from something."]},
+
+  {step:"1. Find out what makes an amphibian an amphibian", mins:"25 minutes",
+   p:["Animals get sorted into groups by what they have in common. Amphibians are one of those groups, and frogs are only part of it.",
+      "Find out what the word amphibian actually means, and what the three living groups of amphibians are. (One of them is frogs and toads. One is salamanders and newts. The third one almost nobody has heard of, and it is worth finding.)"],
+   q:[{id:"p1q1",label:"What does the word amphibian mean, and where does the word come from?",rows:2},
+      {id:"p1q2",label:"What are the three living groups of amphibians? Give an example animal for each.",rows:3}]
+  },
+
+  {step:"2. Metamorphosis: the animal changes body plan halfway through", mins:"20 minutes",
+   p:["A frog does not grow up the way you did. You have had roughly the same body plan your whole life, just bigger. A frog does not. It starts as a tadpole, which is a swimming animal with gills and a tail that eats plants, and it becomes a frog, which is a hopping animal with lungs and legs that eats meat.",
+      "That is not growing up. That is being rebuilt. Find out what actually happens during that rebuild."],
+   q:[{id:"p1q3",label:"List at least four things that physically change when a tadpole becomes a frog. For each one, say what it lets the animal do that it could not do before.",rows:5}]
+  },
+
+  {step:"3. Frogs breathe through their skin", mins:"25 minutes",
+   p:["This is the single most important fact in the entire project, so give it real attention.",
+      "A frog has lungs, but it does not only use them. A frog also takes in oxygen directly through its skin, which works because frog skin is thin and permeable. <b>Permeable</b> means things can pass through it, in both directions.",
+      "Now think about what that means. Your skin is a barrier. It keeps the outside outside. A frog's skin is not a barrier in the same way, which means a frog is far more open to whatever is in its water and its air than you are. That one fact is why water quality is a life-or-death issue for a frog and only a comfort issue for a fish."],
+   q:[{id:"p1q4",label:"How does oxygen get from the water or air into a frog through its skin? What has to be true about the skin for that to work?",rows:3},
+      {id:"p1q5",label:"Tap water in most towns has chlorine or chloramine added to it. Knowing what you now know about frog skin, why would tap water be a serious problem for a frog, in a way it would not be for you drinking a glass of it?",rows:3}]
+  },
+
+  {step:"4. A frog cannot warm itself up", mins:"20 minutes",
+   p:["You make your own heat. Right now your body is burning food partly to hold you at roughly 37 degrees Celsius, whatever the room is doing. That is expensive. A big share of everything you eat goes to it.",
+      "A frog does not do that. A frog's body temperature is whatever its surroundings are. The word for that is <b>ectotherm</b>, and the word for what you are is <b>endotherm</b>.",
+      "There are real advantages to being an ectotherm, which is worth finding out, because people usually assume it is just a worse design. It is not. It is a different trade."],
+   q:[{id:"p1q6",label:"What is the advantage of being an ectotherm? Think about food. How much does a frog have to eat compared with a bird or a mouse of the same size?",rows:3},
+      {id:"p1q7",label:"Here is the one that matters for your tank. In the wild, a frog that is too cold or too hot can move. What can it do? And what does that tell you about what the inside of your tank is going to need?",rows:4}]
+  },
+
+  {step:"5. Write down what you want to ask at the zoo", mins:"10 minutes",
+   p:["You have just spent an hour and a half on how amphibian bodies work. Some of it will have raised questions that the reading did not settle, and some of it will have been hard to picture from a description alone.",
+      "Those are the good questions to take to someone who handles these animals. Write down two or three now, while they are fresh. A question you thought of yourself and wrote down beats one you make up on the spot in the room."],
+   q:[{id:"p1zoo",label:"Two or three questions from Part 1 to ask at your zoo class.",rows:3}]
+  },
+
+  {src:["<b>AmphibiaWeb</b> at amphibiaweb.org, run by the University of California, Berkeley. This is a real scientific database rather than a pet site, and you will use it in Part 3 as well.",
+        "<b>Your library.</b> You have a research librarian you have already interviewed. A real amphibian book will beat ten web pages for this part.",
+        "Any high school biology textbook chapter on amphibians or on vertebrate groups."]},
+
+  {must:["What the word amphibian means and the three living groups.",
+         "At least four physical changes from tadpole to frog, each with what it lets the animal do.",
+         "How a frog takes in oxygen through its skin, and why that makes water quality life-or-death.",
+         "What an ectotherm is, one real advantage of being one, and what it means for your tank."],
+   mustTitle:"By the end of Part 1 you should be able to explain"}
+ ]
+},
+
+/* ---------------- PART 2 ---------------- */
+{
+ id:"p2", nav:"2. Measure the tank", short:"2. Tank", kicker:"Part 2",
+ title:"Measure the Tank", time:"About 45 minutes",
+ body:[
+  {p:["Every choice you make from here is limited by one thing you cannot change: the tank you already own. You are not buying a tank to fit the frog. You are finding a frog that fits the tank.",
+     "That is called a <b>constraint</b>, and in engineering it means a hard limit you have to design within. Constraints sound annoying but they are actually useful, because they throw out most of the options for you before you waste time on them."]},
+
+  {step:"1. Measure it and work out its volume", mins:"25 minutes",
+   p:["Measure the inside of the tank, in centimetres and in inches, because pet care information comes in both and you will need to compare against both.",
+      "Then work out the volume. You did exactly this for the pool project in geometry, so you already know the method: multiply the three dimensions to get volume, then convert into gallons. One US gallon is 231 cubic inches, or about 3,785 cubic centimetres.",
+      "Measure the inside, not the outside. Glass is thicker than you think and it comes off every dimension."],
+   q:[{id:"p2q1",label:"Length, width, and height of the inside of the tank. Give both centimetres and inches.",rows:2},
+      {id:"p2q2",label:"Show your volume calculation, and give the answer in gallons and in litres.",rows:4}]
+  },
+
+  {step:"2. Work out what it is built to be", mins:"20 minutes",
+   p:["Tanks are not all the same shape for the same reason. A tall tank with a lot of height suits a frog that climbs. A long low tank with a big floor suits a frog that sits on the ground. A tank built to hold deep water is different again.",
+      "Look at yours and work out which it is. Then check what it physically can and cannot do."],
+   ol:["Is it taller than it is long, or longer than it is tall? Which kind of animal does that shape suit?",
+       "Does the lid let air through, or does it seal? A sealed lid holds humidity in. A screen lid lets it out fast.",
+       "Could it safely hold deep water, or is it built as a dry tank? Water is heavy, about 8.3 pounds per gallon, and a tank not built for it can fail.",
+       "What is already in it, and what equipment came with it?"],
+   q:[{id:"p2q3",label:"Answer all four of those here.",rows:5},
+      {id:"p2q4",label:"In one sentence: what kind of animal is this tank actually built for?",rows:2}]
+  },
+
+  {wildtank:"This is the first place the wild-and-then-tank pattern shows up. A wild frog has a whole pond or a whole forest. You have this box. Every phase from here is about which parts of that pond you can fit in the box, and what you do about the parts you cannot."},
+
+  {must:["The inside dimensions of the tank in both units.",
+         "Its volume in gallons and litres, with your working shown.",
+         "What kind of animal the shape of this tank actually suits, and why."],
+   mustTitle:"By the end of Part 2 you should have"}
+ ]
+},
+
+/* ---------------- PART 3 ---------------- */
+{
+ id:"p3", nav:"3. The candidates", short:"3. Candidates", kicker:"Part 3",
+ title:"The Candidates", time:"About two and a half hours",
+ body:[
+  {p:["Here are six animals to look at. Five are frogs. The sixth is an axolotl, which is a salamander and not a frog at all, and it is on the list on purpose. It is your channel's mascot, and comparing it against the frogs will show you something that none of the frogs can show you on their own.",
+      "You are going to do this in two rounds, which is how researchers actually narrow a decision. <b>Round one is a quick pass over all six.</b> Round two is a deep dive on only the three that survive. Doing the deep dive on all six would take hours and most of it would be wasted on animals you were never going to pick."]},
+
+  {step:"Round 1. A quick pass over all six", mins:"60 minutes",
+   p:["Four questions each, no more. You are not trying to decide yet, you are trying to find out who is even in the running.",
+      "<b>A note on scientific names.</b> Every species has a two-word scientific name in Latin, like <i>Litoria caerulea</i>. The first word is the genus, which is the small group of close relatives it belongs to, and the second word is the species. Common names are unreliable, because the same animal gets called different things in different places and sometimes two different animals share a name. The scientific name is the one that is never ambiguous. Use it when you search."],
+   src:["<b>AmphibiaWeb</b> (amphibiaweb.org) for range, habitat, and real species accounts.",
+        "<b>The IUCN Red List</b> (iucnredlist.org) for conservation status. This is the global standard for how threatened a species is.",
+        "<b>iNaturalist</b>, which you already use, for seeing where people actually find these animals.",
+        "Care sheets from frog breeders are useful for Round 2, but be aware they are trying to sell you something. Cross-check anything important."],
+   species:{id:"r1",fields:[
+     ["sci","Scientific name (copy it exactly, including spelling)"],
+     ["where","Where does it live in the wild? Country or region."],
+     ["lives","Where does it spend its time: in the water, on the ground, or up in plants and trees?"],
+     ["iucn","IUCN conservation status, and the year that assessment was made"]
+   ]}
+  },
+
+  {step:"Round 2. Pick three and go deep", mins:"80 minutes",
+   p:["Look at your round one answers next to your tank measurements from Part 2. Some of these six are already out. An animal that climbs is wrong for a long flat tank. An animal that needs deep water is wrong for a tank not built to hold it.",
+      "Choose the three worth a real look, and say why the other three are out. <b>Ruling things out with a reason is as much a part of this as choosing.</b>"],
+   q:[{id:"p3cut",label:"Which three are out, and what specifically rules each one out?",rows:4}],
+   p3:["Now research your three properly. Notice that the questions come in two halves, and the halves are the pattern this whole project runs on: <b>first the wild, then the tank.</b>"],
+   species3:{id:"r2",
+     pickId:"p3short",
+     wild:[
+       ["biome","What kind of place does it live in? Rainforest, desert, pond, grassland, and so on."],
+       ["climate","What is the climate there? Temperature range across the year, and how wet it is."],
+       ["eats","What does it eat in the wild, and what eats it?"]
+     ],
+     tank:[
+       ["size","How big does an adult get?"],
+       ["minsize","What tank size do keepers say is the minimum for one adult? Does yours clear it?"],
+       ["temp","What temperature range does it need, and would your room hold that?"],
+       ["water","What are its water needs: depth, and anything about the water itself?"],
+       ["feed","What would you actually feed it, how often, and where do you get that?"],
+       ["bred","Can you get one that was bred in captivity rather than taken from the wild?"]
+     ]},
+   q2:[{id:"p3zoo",label:"Which of these animals does the zoo actually keep? If any, that is worth asking about: what is their enclosure like, and what is the hardest part of looking after it?",rows:3}]
+  },
+
+  {must:["All six animals with their correct scientific names, wild range, where they live, and conservation status.",
+         "Three ruled out, each with a specific reason tied to your tank.",
+         "Three researched in depth, with the wild half and the tank half both filled in."],
+   mustTitle:"By the end of Part 3 you should have"}
+ ]
+},
+
+/* ---------------- PART 4 ---------------- */
+{
+ id:"p4", nav:"4. Where frogs come from", short:"4. Sourcing", kicker:"Part 4",
+ title:"Where the Frog Comes From, and Why It Matters", time:"About 75 minutes",
+ body:[
+  {p:["There is a question most people never ask when they buy an animal: where did this specific animal come from before it was in this shop? For amphibians right now, that is not a small question. It is one of the most serious conservation problems in the world, and it connects directly back to the skin fact you learned in Part 1."]},
+
+  {step:"1. Find out what chytrid is", mins:"35 minutes",
+   p:["There is a fungus with the name <i>Batrachochytrium dendrobatidis</i>, which people shorten to Bd or just call chytrid, said like <b>KIT-rid</b>. It infects amphibian skin.",
+      "It has been involved in the decline or extinction of a very large number of amphibian species worldwide, and biologists generally describe it as one of the worst wildlife disease events ever recorded. There is a second related one, <i>Batrachochytrium salamandrivorans</i> or Bsal, which goes after salamanders.",
+      "<b>Here is the part to work out for yourself, because it ties straight back to Part 1.</b> The fungus attacks the skin. You already know that a frog's skin is not just a covering, it is doing a job that keeps the animal alive. So find out what the fungus actually does to the skin, and why damaging the skin is fatal rather than just uncomfortable."],
+   q:[{id:"p4q1",label:"What does chytrid do to an amphibian's skin, and why is that fatal? Connect it back to what you learned in Part 1.",rows:4},
+      {id:"p4q2",label:"How does chytrid get from one place to another? Name at least two ways, and say whether people are involved in either of them.",rows:3}]
+  },
+
+  {step:"2. Wild-caught against captive-bred", mins:"25 minutes",
+   p:["Some animals in the pet trade were bred in captivity. Others were caught in the wild and shipped. For amphibians this difference matters for two separate reasons, and you should be able to name both."],
+   ol:["<b>For the wild population.</b> What does taking animals out of a wild population do to it, especially for a species that is already threatened?",
+       "<b>For your tank.</b> Think about what you just learned about chytrid. What risk does a wild-caught animal carry that a captive-bred one is less likely to?"],
+   q:[{id:"p4q3",label:"Answer both of those.",rows:4},
+      {id:"p4q4",label:"For each of your three shortlisted species, can you find out whether captive-bred ones are normally available? Where would you actually get one?",rows:4}]
+  },
+
+  {step:"3. Why the quarantine tank exists", mins:"15 minutes",
+   p:["People who keep amphibians seriously do not put a new animal straight into the main tank. They keep it in a separate simple setup for several weeks first and watch it, before it ever meets anything else.",
+      "That separate setup is called <b>quarantine</b>, and now you know why it exists. It is not caution for its own sake. It is because a new animal can carry something you cannot see, and once it is in your main tank it is very hard to undo."],
+   q:[{id:"p4q5",label:"In your own words: what is quarantine for, and why does it specifically matter for amphibians?",rows:3}]
+  },
+
+  {step:"4. Take this part to the zoo class", mins:"20 minutes, plus the class",
+   p:["Part 4 is the single best part of this whole phase to bring to your zoo class, because it is the part where what you have read and what people actually do are most likely to differ.",
+      "Zoos are not bystanders in the amphibian problem. Many of them run breeding programmes for species that are in serious trouble in the wild, and every one of them has a quarantine procedure for new animals that is far stricter than anything you will do at home. The people in that room deal with the things you just read about as part of their job.",
+      "Some questions worth asking, and you should add your own:"],
+   ol:["Have you dealt with chytrid here, and what do you actually do about it?",
+       "What happens when a new amphibian arrives? How long is it kept separate, and what are you watching for?",
+       "Does this zoo breed any amphibians for conservation, and what happens to those animals afterwards?",
+       "What do you think about people keeping frogs as pets? Ask it straight. You may get an answer you did not expect, and that is the point of asking a person instead of a website."],
+   q:[{id:"p4zooq",label:"Your own questions to add to that list.",rows:3}],
+   p3:["<b>There is a good chance you can get more than a few minutes in a class.</b> The people there remember you from last time and they were glad to have you back, so Dad can ask about setting up a proper sit-down interview with a keeper.",
+      "If that happens, run it the way you already know how. You have done this twice now, with the research librarian and for Home Ground: write your questions out beforehand, record it with permission, and afterwards write it up as a source rather than as a chat. That means noting who they are and what makes them worth listening to, and sorting what they told you by how they know it, whether they saw it themselves, were taught it, or are reasoning from experience.",
+      "A keeper is a particularly good interview for this project because they will tell you things that never make it into a care sheet. Care sheets describe the animal. A keeper can tell you what goes wrong."],
+   q2:[{id:"p4zooa",label:"After the class or the interview: what did they say? Write it in your own words, and note anything that did not match what you had read.",rows:6}]
+  },
+
+  {step:"5. Build your expert list", mins:"20 minutes",
+   p:["You are six phases away from finishing this, and some of what is coming is going to be beyond what a website can settle. So start a list now of who you could actually ask, and what each person would be the right person for.",
+      "The important bit is the second column. <b>A person is not an expert in general, they are an expert in something.</b> Asking the right person the wrong question wastes both your time and theirs, and usually gets you a polite guess that sounds like an answer.",
+      "Here is what is coming, so you know what you are matching people to:"],
+   tbl:{head:["Coming up in","A question you will need answered"],rows:[
+     ["Phase 2","How many animals can this tank actually support, and how do you work that out?"],
+     ["Phase 3","How do you hold a steady temperature and humidity in a glass box, and how do you treat tap water?"],
+     ["Phase 4","How do you grow the right bacteria in a filter, and how do you know when it has worked?"],
+     ["Phase 5","What do you feed it, and how do you make feeder insects actually nutritious?"],
+     ["Phase 6","How do you lay out an enclosure so the animal can do what it would do in the wild?"]
+   ]},
+   p3:["Some people you already have. Your brother-in-law teaches chemistry, which makes Phase 3 and Phase 4 his territory. The zoo educators and keepers cover the animals. Your research librarian can find you things you will not find by searching.",
+      "Some you do not have yet, and finding them is part of the work. A local reptile and amphibian society. An aquarium shop person who cycles tanks every week and has seen it fail. A university biology department. The scientists whose names are on the AmphibiaWeb accounts you have been reading, who are often easier to reach than you would guess, especially if you ask one specific question rather than a vague one."],
+   q2:[{id:"p4experts",label:"Your list. For each person or group: who they are, what they would be the right person to ask about, and how you would reach them.",rows:7}]
+  },
+
+  {wildtank:"This part is the clearest case of the wild-and-then-tank pattern cutting both ways. Usually you are asking what the wild can teach you about the tank. Here you are also asking what your tank could do to the wild."},
+
+  {must:["What chytrid is, what it does to amphibian skin, and why that kills.",
+         "At least two ways it spreads, and whether people are part of that.",
+         "Two separate reasons captive-bred matters, one about the wild population and one about your tank.",
+         "What quarantine is for.",
+         "What the zoo told you, and anything they said that did not match what you had read.",
+         "Who you would go to for each of the questions still coming, and why that particular person."],
+   mustTitle:"By the end of Part 4 you should be able to explain"}
+ ]
+},
+
+/* ---------------- PART 5 ---------------- */
+{
+ id:"p5", nav:"5. Make the call", short:"5. Decide", kicker:"Part 5",
+ title:"Make the Call, and Defend It", time:"About 75 minutes",
+ body:[
+  {p:["Now you choose, and you have to argue for it. This is the part that counts, and it is a real scientific skill with a name: <b>making a claim and defending it with evidence.</b>",
+      "The thing that separates this from just picking your favourite is that your reasons have to be specific and they have to come from what you found out. \"It looks cool\" is not evidence. \"My tank is 29 gallons and 30 inches tall, and this species climbs, and keepers say it needs at least 18 inches of height\" is evidence."]},
+
+  {step:"1. Write the criteria down first", mins:"20 minutes",
+   p:["Before you announce a winner, write down what you were judging them on. Doing it in this order stops you from picking first and then inventing reasons afterwards, which is something people do without noticing.",
+      "A <b>criterion</b> is a thing a good answer has to do. A criterion can be a hard yes-or-no, like whether it physically fits your tank, or it can be a matter of degree, like how hard it is to care for."],
+   q:[{id:"p5q1",label:"List your criteria, most important first. For each one, say whether it is a hard requirement or something you are weighing.",rows:6}]
+  },
+
+  {step:"2. Make the claim", mins:"30 minutes",
+   p:["Three paragraphs, roughly. Record yourself saying it first and then write it down, the way you do for English, because you explain things better out loud.",
+      "Your argument needs all three of these pieces:"],
+   ol:["<b>The claim.</b> Which species, stated plainly.",
+       "<b>The evidence.</b> Specific facts from your research, with numbers where you have them, and where each fact came from.",
+       "<b>The reasoning.</b> Why that evidence supports that choice. This is the piece people skip. Do not just list facts next to each other and hope the connection is obvious."],
+   q:[{id:"p5claim",label:"Your argument. Claim, evidence, reasoning.",rows:12}]
+  },
+
+  {step:"3. Argue against yourself", mins:"25 minutes",
+   p:["This is the part that makes it real science rather than a sales pitch. Anyone can list the good points of the thing they already decided on.",
+      "Take your strongest runner-up and make the honest case for it. Then say why you still think your choice is better. If you cannot make a decent case for the runner-up, that usually means you did not research it properly."],
+   q:[{id:"p5alt",label:"The best honest case for your runner-up.",rows:5},
+      {id:"p5why",label:"Why you still think your choice beats it.",rows:4},
+      {id:"p5risk",label:"What is the hardest part of keeping the species you chose, and what is your plan for it?",rows:4}]
+  },
+
+  {must:["Your criteria, written down before the decision, with hard requirements marked.",
+         "A claim naming one species, backed by specific evidence with sources.",
+         "Reasoning that connects the evidence to the choice rather than just listing it.",
+         "An honest case for the runner-up, and why you still chose what you chose.",
+         "The hardest part of keeping your species, and your plan for it."],
+   mustTitle:"What your argument has to contain"}
+ ]
+},
+
+/* ---------------- PART 6 ---------------- */
+{
+ id:"p6", nav:"6. Episode 1", short:"6. Episode", kicker:"Part 6",
+ title:"Episode 1", time:"About 90 minutes",
+ body:[
+  {p:["This is where Phase 1 goes public. One episode, about five minutes, on your channel. It is the first of seven, one per phase.",
+      "<b>Keep it to five minutes.</b> Video work expands to fill whatever time you give it, and the hours here are supposed to go into the science, not the editing."]},
+
+  {step:"1. Use your own mascot as the hook", mins:"25 minutes",
+   p:["Your channel's symbol is an axolotl, and that turns out to be a genuinely good way into this.",
+      "An axolotl is a salamander, not a frog, which makes it a close relative. It is unusual for a reason worth explaining on camera: <b>it never finishes metamorphosis.</b> Where a tadpole loses its gills and its tail and becomes a frog, an axolotl simply does not. It keeps its feathery external gills and stays in its larval body for its whole life, and still becomes an adult that can breed. The word for that is <b>neoteny</b>.",
+      "Now the part that makes it a story. In the wild the axolotl lives in one small lake system near Mexico City, Lake Xochimilco, and it is listed as Critically Endangered, which is the most serious category the IUCN Red List has before extinct in the wild. Meanwhile there are a great many axolotls alive in tanks around the world.",
+      "<b>That gap is your hook.</b> An animal can be nearly gone in the wild and common in captivity at the same time, and that tells you something important: a tank is not the same thing as a habitat. Which is the whole reason you are spending seven phases on this instead of just buying a frog."],
+   q:[{id:"p6hook",label:"Write your opening in your own words. What is the gap, and why should someone watching care?",rows:5}]
+  },
+
+  {step:"2. Plan the episode", mins:"25 minutes",
+   p:["Five minutes is not much. That is roughly 700 to 800 words spoken. Plan it rather than rambling and cutting."],
+   tbl:{head:["Section","Roughly","What goes in it"],rows:[
+     ["The hook","45 seconds","The axolotl gap. Nearly gone in the wild, everywhere in tanks."],
+     ["What I am doing","30 seconds","I have an empty tank and I am going to build a working world in it."],
+     ["The science","2 minutes","The thing from Part 1 that surprised you most. Skin breathing is the strongest option."],
+     ["The decision","1 minute","Which frog, and your two best reasons with real numbers."],
+     ["Next time","30 seconds","What Phase 2 is about."]
+   ]},
+   q:[{id:"p6plan",label:"Your outline or script.",rows:8}]
+  },
+
+  {step:"3. Get it checked before it goes up", mins:"20 minutes",
+   p:["You are teaching other people now. If you say something wrong on camera, other people learn it wrong, and some of them might be about to buy an animal.",
+      "So before this gets posted, someone checks it. Dad reads your script for every episode. Beyond that, who you ask depends on what you are claiming:"],
+   tbl:{rows:[
+     ["Anything about the animals", "The people at your zoo class. They work with amphibians, so they will catch a wrong claim about behaviour, housing, or health faster than anyone."],
+     ["Anything about water chemistry", "Your brother-in-law, who teaches chemistry. Phases 3 and 4 are going to lean on him, since pH and the nitrogen cycle are his subject."],
+     ["Everything", "Dad reads the script before it goes up."]
+   ]},
+   p3:["<b>Matching the question to the person is the real lesson here.</b> Ask a chemistry teacher about frog behaviour and you get a polite guess. Ask a zookeeper to check your pH maths and you get the same. Knowing who actually knows a thing is a research skill, and most people never learn it.",
+      "This is also not a lack of trust in you. Real science works this way. Papers are reviewed before publication by people who know the subject, specifically not by people who know the author."],
+   q2:[{id:"p6check",label:"Who did you ask, what came back, and what did you change?",rows:4}]
+  },
+
+  {step:"4. Record and post", mins:"20 minutes",
+   p:["Film it, cut it, and post it through Dad's account the way you do with the channel already.",
+      "One thing to keep an eye on for your own records: <b>the research and the explaining count as biology hours. The editing does not.</b> Editing is a skill you already have, so it is not what you are being taught here."],
+   q:[{id:"p6link",label:"Paste the link to the finished episode here.",rows:2}]
+  },
+
+  {must:["An opening that uses the axolotl gap and makes a viewer care.",
+         "At least one piece of real amphibian biology explained clearly enough that someone who knows nothing comes away understanding it.",
+         "Your species choice with two specific reasons, including real numbers.",
+         "Evidence that someone checked it before it went up, and what changed."],
+   mustTitle:"What the episode has to include"}
+ ]
+}
+];
+
+/* ============================================================ */
+const KEY="bio-frogtank-p1-v1";
+let state=JSON.parse(localStorage.getItem(KEY)||"{}");
+function paras(a){return (a||[]).map(t=>`<p>${t}</p>`).join("")}
+function tbl(t){ if(!t) return "";
+  const head=t.head?`<tr>${t.head.map(h=>`<th>${h}</th>`).join("")}</tr>`:"";
+  const rows=(t.rows||[]).map(r=> t.head
+    ? `<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`
+    : `<tr><td class="lbl">${r[0]}</td><td>${r[1]}</td></tr>`).join("");
+  return `<table>${head}${rows}</table>`;}
+function qs(l){return (l||[]).map(q=>
+  `<div class="q"><label for="${q.id}">${q.label}</label>
+   <textarea id="${q.id}" rows="${q.rows||3}" data-k="${q.id}"></textarea></div>`).join("")}
+function srcbox(list){ if(!list) return "";
+  return `<div class="note"><p><b>Where to look</b></p><ul class="srclist">`+
+    list.map(s=>`<li>${s}</li>`).join("")+`</ul></div>`;}
+function speciesCards(s){
+  return SPECIES.map(sp=>`<div class="spec">
+    <h4>${sp.n} <em>${sp.sci}</em></h4><div class="specbody">`+
+    s.fields.map(f=>`<div class="fld"><label>${f[1]}</label>
+      <textarea rows="2" data-k="${s.id}_${sp.k}_${f[0]}"></textarea></div>`).join("")+
+    `</div></div>`).join("");
+}
+function species3(s){
+  let h=`<div class="q"><label>Which three are you taking forward? Tick exactly three.</label><ul class="checks">`+
+    SPECIES.map(sp=>`<li><label class="chk"><input type="checkbox" data-k="${s.pickId}_${sp.k}">
+      <span>${sp.n} <i style="color:var(--muted)">${sp.sci}</i></span></label></li>`).join("")+`</ul></div>`;
+  h+=SPECIES.map(sp=>`<div class="spec" style="margin-top:14px">
+    <h4>Deep dive: ${sp.n} <em>${sp.sci}</em></h4><div class="specbody">
+    <div class="grp">In the wild</div>`+
+    s.wild.map(f=>`<div class="fld"><label>${f[1]}</label>
+      <textarea rows="2" data-k="${s.id}_${sp.k}_${f[0]}"></textarea></div>`).join("")+
+    `<div class="grp second">In your tank</div>`+
+    s.tank.map(f=>`<div class="fld"><label>${f[1]}</label>
+      <textarea rows="2" data-k="${s.id}_${sp.k}_${f[0]}"></textarea></div>`).join("")+
+    `</div></div>`).join("");
+  h+=`<p style="margin-top:12px;color:var(--muted);font-size:14.5px">Only fill in the three you ticked. Leave the others empty.</p>`;
+  return h;
+}
+function must(items,bid,title){ if(!items) return "";
+  return `<div class="must"><h4>${title||"Your work has to show"}</h4><ul class="checks">`+
+    items.map((m,i)=>`<li><label class="chk"><input type="checkbox" data-k="${bid}_must_${i}"><span>${m}</span></label></li>`).join("")
+    +`</ul></div>`;}
+
+function renderBlock(b,idx){
+  let h=`<section class="screen" id="s-${b.id}" data-block="${b.id}">
+    <div class="kicker">${b.kicker}</div><h2 class="title">${b.title}</h2>
+    <div class="time">${b.time}</div>`;
+  b.body.forEach((sec,si)=>{
+    h+=`<div class="card">`;
+    if(sec.step){
+      h+=`<label class="chk" style="margin-bottom:10px"><input type="checkbox" data-k="${b.id}_step_${si}">
+          <span><h3 class="step" style="display:inline">${sec.step}</h3>
+          <span style="color:var(--muted);font-size:14px"> &middot; ${sec.mins||""}</span></span></label>`;
+    } else if(sec.h){ h+=`<h3 class="sec">${sec.h}</h3>`; }
+    h+=paras(sec.p);
+    h+=tbl(sec.tbl);
+    if(sec.ol) h+=`<ol>${sec.ol.map(x=>`<li>${x}</li>`).join("")}</ol>`;
+    if(sec.ul) h+=`<ul>${sec.ul.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+    h+=srcbox(sec.src);
+    if(sec.species) h+=speciesCards(sec.species);
+    h+=qs(sec.q);
+    h+=paras(sec.p3);
+    if(sec.species3) h+=species3(sec.species3);
+    h+=qs(sec.q2);
+    if(sec.wildtank) h+=`<div class="wildtank"><p><b>Wild first, then tank.</b> ${sec.wildtank}</p></div>`;
+    h+=must(sec.must,b.id,sec.mustTitle);
+    h+=`</div>`;
+  });
+  const prev=BLOCKS[idx-1],next=BLOCKS[idx+1];
+  h+=`<div class="navrow"><div>${prev?`<button class="btn ghost" data-go="${prev.id}">&larr; ${prev.nav}</button>`:""}</div>
+      <div>${next?`<button class="btn" data-go="${next.id}">${next.nav} &rarr;</button>`:""}</div></div></section>`;
+  return h;
+}
+document.getElementById("screens").innerHTML=BLOCKS.map(renderBlock).join("");
+document.getElementById("nav").innerHTML=BLOCKS.map(b=>
+  `<button class="navbtn" data-go="${b.id}"><span class="tick" data-tick="${b.id}"></span>
+   <span><span class="lbl">${b.nav}</span><span class="shortlbl">${b.short}</span></span></button>`).join("");
+
+function restore(){
+  document.querySelectorAll("[data-k]").forEach(el=>{
+    const v=state[el.dataset.k]; if(v===undefined) return;
+    if(el.type==="checkbox") el.checked=!!v; else el.value=v;
+  });
+  updateTicks();
+}
+let t=null;
+function save(){clearTimeout(t);t=setTimeout(()=>{
+  localStorage.setItem(KEY,JSON.stringify(state));
+  const s=document.getElementById("saved");
+  s.innerHTML="<b>Saved.</b> Your work is on this device.";
+  setTimeout(()=>{s.textContent="Your work saves by itself"},1800);},400);}
+["input","change"].forEach(ev=>document.addEventListener(ev,e=>{
+  const el=e.target; if(!el.dataset.k) return;
+  state[el.dataset.k]= el.type==="checkbox" ? el.checked : el.value;
+  save(); updateTicks();}));
+
+function updateTicks(){
+  BLOCKS.forEach(b=>{
+    const boxes=document.querySelectorAll(`#s-${b.id} input[type=checkbox][data-k^="${b.id}_step_"]`);
+    const el=document.querySelector(`[data-tick="${b.id}"]`); if(!el) return;
+    if(!boxes.length){el.classList.remove("done");el.textContent="";return;}
+    const done=[...boxes].every(x=>x.checked);
+    el.classList.toggle("done",done); el.textContent=done?"✓":"";
+  });
+}
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id==="s-"+id));
+  document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.go===id));
+  state._at=id; save(); window.scrollTo({top:0,behavior:"instant"});
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]"); if(b) show(b.dataset.go);});
+
+function blockMd(b){
+  let out=`## ${b.kicker}. ${b.title}\n\n`,any=false;
+  b.body.forEach(sec=>{
+    if(sec.species){
+      SPECIES.forEach(sp=>{
+        const vals=sec.species.fields.map(f=>[f[1],(state[`${sec.species.id}_${sp.k}_${f[0]}`]||"").trim()]);
+        if(vals.some(v=>v[1])){any=true;
+          out+=`### ${sp.n} (*${sp.sci}*)\n\n`;
+          vals.forEach(v=>{if(v[1]) out+=`**${v[0]}**\n\n${v[1]}\n\n`;});}
+      });
+    }
+    if(sec.species3){
+      const picked=SPECIES.filter(sp=>state[`${sec.species3.pickId}_${sp.k}`]);
+      if(picked.length){any=true; out+=`**Shortlist:** ${picked.map(p=>p.n).join(", ")}\n\n`;}
+      SPECIES.forEach(sp=>{
+        const all=[...sec.species3.wild.map(f=>["Wild: "+f[1],f[0]]),...sec.species3.tank.map(f=>["Tank: "+f[1],f[0]])];
+        const vals=all.map(a=>[a[0],(state[`${sec.species3.id}_${sp.k}_${a[1]}`]||"").trim()]);
+        if(vals.some(v=>v[1])){any=true;
+          out+=`### Deep dive: ${sp.n} (*${sp.sci}*)\n\n`;
+          vals.forEach(v=>{if(v[1]) out+=`**${v[0]}**\n\n${v[1]}\n\n`;});}
+      });
+    }
+    [...(sec.q||[]),...(sec.q2||[])].forEach(q=>{const v=(state[q.id]||"").trim();
+      if(v){any=true; out+=`**${q.label.replace(/<[^>]+>/g,"")}**\n\n${v}\n\n`;}});
+  });
+  return any?out:"";
+}
+function copy(text,label){
+  navigator.clipboard.writeText(text).then(()=>{
+    const s=document.getElementById("saved");
+    s.innerHTML=`<b>Copied.</b> ${label} is on your clipboard, ready to paste.`;
+    setTimeout(()=>{s.textContent="Your work saves by itself"},2600);
+  }).catch(()=>{
+    const s=document.getElementById("saved");
+    s.innerHTML="<b>Could not copy.</b> Select the text in the boxes and copy it by hand.";
+    setTimeout(()=>{s.textContent="Your work saves by itself"},3200);});
+}
+document.getElementById("copyBlock").addEventListener("click",()=>{
+  const b=BLOCKS.find(x=>x.id===(state._at||BLOCKS[0].id)); const md=blockMd(b);
+  copy(md?`# The Frog Tank, Phase 1\n\n${md}`:`# The Frog Tank, Phase 1\n\n## ${b.kicker}. ${b.title}\n\nNothing written in this part yet.\n`,"This part");
+});
+document.getElementById("copyAll").addEventListener("click",()=>{
+  let out="# The Frog Tank, Phase 1: Choose the Frog\n\nLife Science: Biology\n\n";
+  BLOCKS.forEach(b=>{const m=blockMd(b); if(m) out+=m;});
+  copy(out,"Everything you have written");
+});
+restore();
+show(state._at&&BLOCKS.some(b=>b.id===state._at)?state._at:BLOCKS[0].id);
+</script>
+</body>
+</html>
