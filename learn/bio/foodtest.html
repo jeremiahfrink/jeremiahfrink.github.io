@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virtual Food Test Lab</title>
+<style>
+:root{--navy:#1F3A5F;--teal:#0F7C80;--amber:#D98E04;--ink:#1b2430;--muted:#5a6676;
+ --line:#dfe4ea;--bg:#f6f7f9;--card:#fff;--tealbg:#e9f4f4;--amberbg:#fdf4e0;--redbg:#fdeceb;--maxw:860px}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;line-height:1.25;margin:0}
+a{color:var(--teal)}
+.wrap{display:flex;min-height:100vh;align-items:flex-start}
+.side{width:230px;flex:0 0 230px;background:var(--navy);color:#fff;min-height:100vh;padding:22px 0 40px;position:sticky;top:0;max-height:100vh;overflow-y:auto}
+.side .brand{padding:0 20px 18px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:14px}
+.side .brand .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+.side .brand h1{font-size:19px;color:#fff;margin-top:6px}
+.navbtn{display:flex;gap:10px;width:100%;text-align:left;background:none;border:0;color:#cdd8e6;padding:10px 20px;cursor:pointer;font:inherit;font-size:14px;line-height:1.35}
+.navbtn:hover{background:rgba(255,255,255,.07);color:#fff}
+.navbtn.active{background:rgba(255,255,255,.14);color:#fff;font-weight:600;box-shadow:inset 3px 0 0 var(--amber)}
+.navbtn .shortlbl{display:none}
+.tick{flex:0 0 18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.4);display:inline-flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px}
+.tick.done{background:var(--amber);border-color:var(--amber);color:var(--navy);font-weight:800}
+.main{flex:1;min-width:0;padding:32px 28px 95px;display:flex;justify-content:center}
+.col{width:100%;max-width:var(--maxw)}
+.screen{display:none}.screen.on{display:block}
+.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700}
+h2.title{font-size:30px;color:var(--navy);margin:6px 0 4px}
+.time{color:var(--muted);font-size:14px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:21px 23px;margin-bottom:18px}
+h3.sec{font-size:19px;color:var(--navy);margin:0 0 10px}
+h3.step{font-size:18px;color:var(--teal);margin:0 0 10px}
+p{margin:0 0 13px}p:last-child{margin-bottom:0}
+ul,ol{margin:0 0 13px;padding-left:22px}li{margin-bottom:7px}
+.note{background:var(--tealbg);border-left:5px solid var(--teal);border-radius:0 8px 8px 0;padding:15px 17px;margin:0 0 16px}
+.must{background:var(--amberbg);border-left:5px solid var(--amber);border-radius:0 8px 8px 0;padding:15px 17px;margin:18px 0 0}
+.must h4{font-size:16px;margin:0 0 9px;color:var(--navy)}
+.warn{background:var(--redbg);border-left:5px solid #c0493a;border-radius:0 8px 8px 0;padding:13px 16px;margin:12px 0 0;font-size:15px}
+table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:13px}
+td.lbl{background:#f2f4f7;font-weight:600}
+.q{margin:16px 0 0}.q label{display:block;font-weight:600;margin-bottom:6px;color:var(--navy)}
+textarea{width:100%;border:1px solid #c7cdd6;border-radius:7px;padding:10px 12px;font:inherit;font-size:15px;line-height:1.55;background:#fff;resize:vertical}
+textarea:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
+.checks{margin:10px 0 0;padding:0;list-style:none}.checks li{margin:0 0 9px}
+.chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.chk input{margin:4px 0 0;flex:0 0 auto;width:17px;height:17px;accent-color:var(--teal)}
+
+/* ---- bench ---- */
+.bench{display:grid;grid-template-columns:1fr 290px;gap:18px;align-items:start}
+.rack h4,.tests h4,.tube h4{font-size:14px;color:var(--navy);margin:0 0 9px}
+.samples{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+.samp{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:#fff;cursor:pointer;text-align:left;font:inherit;font-size:14px;line-height:1.35}
+.samp:hover{border-color:var(--teal)}
+.samp.sel{border-color:var(--teal);background:var(--tealbg);box-shadow:inset 0 0 0 1px var(--teal)}
+.samp b{display:block;color:var(--navy);font-size:14px}
+.samp small{color:var(--muted);font-size:12px}
+.samp.unk b{color:#8a5a00}
+.grouphead{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--teal);margin:14px 0 7px}
+.grouphead:first-child{margin-top:0}
+.testrow{display:grid;gap:7px;margin-top:4px}
+.tbtn{border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:#fff;cursor:pointer;font:inherit;font-size:14px;text-align:left}
+.tbtn:hover:not(:disabled){border-color:var(--teal);background:var(--tealbg)}
+.tbtn:disabled{opacity:.45;cursor:not-allowed}
+.tbtn b{display:block;color:var(--navy)}
+.tbtn small{color:var(--muted);font-size:12.5px}
+.tubewrap{border:1px solid var(--line);border-radius:9px;padding:14px;background:#fff;position:sticky;top:18px}
+.vial{height:120px;border-radius:6px 6px 16px 16px;border:2px solid #c3cad3;background:#eef1f4;
+ display:flex;align-items:flex-end;justify-content:center;overflow:hidden;margin:0 auto 11px;width:74px}
+.liquid{width:100%;height:0;transition:height .45s ease,background .6s ease;background:#eef1f4}
+.readout{font-size:14px;text-align:center;color:var(--muted);min-height:40px}
+.readout b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.heatbtn{width:100%;background:var(--amber);color:#3a2600;border:0;border-radius:7px;padding:9px;font:inherit;font-weight:700;cursor:pointer;margin-top:8px}
+.heatbtn:hover{background:#c07f04}
+.resultsrow td:first-child{font-weight:600}
+.swatch{display:inline-block;width:13px;height:13px;border-radius:3px;border:1px solid rgba(0,0,0,.2);vertical-align:-2px;margin-right:6px}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:7px;padding:9px 16px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--teal)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid #c7cdd6}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.bar{position:fixed;left:230px;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:11px 28px;display:flex;align-items:center;gap:14px;justify-content:space-between;z-index:20}
+.saved{color:var(--muted);font-size:13px}.saved b{color:var(--teal)}
+.bargroup{display:flex;gap:9px;flex-wrap:wrap}
+.navrow{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+@media (max-width:900px){
+ .bench{grid-template-columns:1fr}
+ .tubewrap{position:static}
+}
+@media (max-width:860px){
+ .wrap{display:block}
+ .side{width:auto;flex:none;min-height:0;max-height:none;position:static;padding:16px 0 10px;overflow:visible}
+ .side .brand{padding:0 16px 12px}
+ .navscroll{display:flex;overflow-x:auto;gap:4px;padding:0 10px 4px}
+ .navbtn{white-space:nowrap;width:auto;padding:8px 12px;border-radius:7px;font-size:13px}
+ .navbtn.active{box-shadow:none;background:rgba(255,255,255,.2)}
+ .navbtn .lbl{display:none}.navbtn .shortlbl{display:inline}
+ .main{padding:20px 16px 110px}
+ .bar{left:0;padding:10px 16px;flex-direction:column;align-items:stretch;gap:9px}
+ .btn{flex:1}
+ h2.title{font-size:24px}.card{padding:16px 15px}
+ table{font-size:13px}th,td{padding:6px 7px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <nav class="side">
+  <div class="brand"><div class="kicker">Life Science: Biology</div><h1>Virtual Food Test Lab</h1></div>
+  <div class="navscroll" id="nav"></div>
+ </nav>
+ <main class="main"><div class="col" id="screens"></div></main>
+</div>
+<div class="bar">
+ <div class="saved" id="saved">Your work saves by itself</div>
+ <div class="bargroup">
+  <button class="btn ghost" id="copyBlock">Copy this part</button>
+  <button class="btn" id="copyAll">Copy everything</button>
+ </div>
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+const SAMPLES=[
+ {id:"water",  n:"Distilled water", grp:"control", hint:"Your negative control", c:{sugar:0,starch:0,protein:0,lipid:0}},
+ {id:"glucose",n:"Glucose solution", grp:"known", hint:"A simple sugar", c:{sugar:3,starch:0,protein:0,lipid:0}},
+ {id:"sucrose",n:"Table sugar solution", grp:"known", hint:"Sucrose", c:{sugar:0,starch:0,protein:0,lipid:0}},
+ {id:"starch", n:"Cornstarch in water", grp:"known", hint:"A starch", c:{sugar:0,starch:3,protein:0,lipid:0}},
+ {id:"egg",    n:"Egg white in water", grp:"known", hint:"A protein", c:{sugar:0,starch:0,protein:3,lipid:0}},
+ {id:"oil",    n:"Vegetable oil", grp:"known", hint:"A lipid", c:{sugar:0,starch:0,protein:0,lipid:3}},
+ {id:"A",n:"Unknown A",grp:"unknown",real:"Milk",            c:{sugar:2,starch:0,protein:2,lipid:2}},
+ {id:"B",n:"Unknown B",grp:"unknown",real:"Potato juice",     c:{sugar:1,starch:3,protein:0,lipid:0}},
+ {id:"C",n:"Unknown C",grp:"unknown",real:"Apple juice",      c:{sugar:3,starch:0,protein:0,lipid:0}},
+ {id:"D",n:"Unknown D",grp:"unknown",real:"Peanut butter in water",c:{sugar:1,starch:1,protein:3,lipid:3}}
+];
+const TESTS=[
+ {id:"benedict",n:"Benedict's solution",det:"sugar",heat:true,sub:"Detects simple sugars. Needs heating.",
+  col:["#4a7fd4","#6fae5e","#e08a30","#b03a1e"],
+  lab:["Stayed blue","Turned green","Turned orange","Turned brick red"]},
+ {id:"iodine",n:"Iodine",det:"starch",heat:false,sub:"Detects starch.",
+  col:["#b5802e","#5a4a8c","#2a2358","#141033"],
+  lab:["Stayed amber brown","Went dark purple","Went blue black","Went deep blue black"]},
+ {id:"biuret",n:"Biuret reagent",det:"protein",heat:false,sub:"Detects protein.",
+  col:["#5b8fd4","#9b7bb8","#7a4a96","#5e2d7a"],
+  lab:["Stayed blue","Faint violet","Turned purple","Turned deep purple"]},
+ {id:"paper",n:"Brown paper",det:"lipid",heat:false,sub:"Detects lipids. Rub it on and let it dry.",
+  col:["#a08050","#c7a877","#ddc8a2","#efe4ca"],
+  lab:["Dried with no mark","Faint greasy patch","Clear translucent spot","Strong translucent spot"]}
+];
+const POS=["negative","weak positive","positive","strong positive"];
+
+/* ===================== STATE ===================== */
+const KEY="bio-foodtest-v1";
+let state=JSON.parse(localStorage.getItem(KEY)||"{}");
+state.res=state.res||{};          // "sampleId|testId" -> level 0..3  (or -1 = not heated)
+let sel=null, pending=null;
+
+/* ===================== SCREENS ===================== */
+const BLOCKS=[
+{id:"start",nav:"Start here",short:"Start",kicker:"Before the real lab",
+ title:"Virtual Food Test Lab",time:"About 60 minutes",
+ html:`
+ <div class="card"><h3 class="sec">Why you are doing this one on a screen first</h3>
+  <p>The real reagents for this lab are still in the post, so you are going to run the whole thing virtually first, and then run it again for real when they arrive.</p>
+  <p>That order is not a consolation prize. It is actually the better way round, for three reasons.</p>
+  <ul>
+   <li><b>You get to make mistakes for free.</b> Real Benedict's solution runs out. Here you can forget a step, do it wrong, and start again at no cost.</li>
+   <li><b>You learn the procedure before it matters.</b> When the real reagents arrive you will already know the order of operations, so you can pay attention to the chemistry instead of to the instructions.</li>
+   <li><b>You end up with two sets of results to compare.</b> That comparison is the interesting part, and it is a whole section of this page. A simulation is a model of reality, and <b>every model is wrong in some way.</b> Finding out exactly where this one is wrong teaches you more than either lab would on its own.</li>
+  </ul>
+ </div>
+ <div class="card"><h3 class="sec">What a food test actually is</h3>
+  <p>You cannot see a protein. You cannot see a sugar. They are far too small, and most of them are colourless anyway.</p>
+  <p>So chemists use an <b>indicator</b>, which is a substance that changes colour when a particular kind of molecule is present. You add the indicator, something changes or it does not, and you read the answer off the colour.</p>
+  <p>These four are called <b>presumptive tests</b>, and that word is doing real work. Presumptive means the result tells you a class of substance is <i>probably</i> there. It does not tell you which exact molecule, it can be fooled, and on its own it proves nothing. A crime lab uses presumptive tests the same way and for the same reason: they are fast and cheap, and they tell you what to look at more closely.</p>
+  <table><tr><th>Test</th><th>Looks for</th><th>A positive result looks like</th></tr>
+   <tr><td>Benedict's solution</td><td>Simple sugars</td><td>Blue goes green, then orange, then brick red</td></tr>
+   <tr><td>Iodine</td><td>Starch</td><td>Amber brown goes blue black</td></tr>
+   <tr><td>Biuret reagent</td><td>Protein</td><td>Blue goes purple</td></tr>
+   <tr><td>Brown paper</td><td>Lipids (fats and oils)</td><td>A translucent spot that does not dry out</td></tr>
+  </table>
+  <p>Notice the Benedict's row has three colours in it rather than one. That test does not just say yes or no, it says roughly how much, which makes it more useful and also easier to misread.</p>
+ </div>
+ <div class="note"><p><b>One rule before you start, and the whole lab depends on it.</b></p>
+  <p>Test the things you already know the answer for <i>before</i> you test anything mysterious.</p>
+  <p>If you have never seen what this test looks like when nothing is there, you cannot tell a positive from a normal-looking tube. And if you have never seen a real positive, you do not know how strong a real one is. The bench will warn you if you skip this, but it will let you do it, because noticing the problem yourself is better than being blocked.</p></div>
+ <div class="card"><h3 class="sec">How the bench works</h3>
+  <ol><li>Click a sample from the rack on the left.</li>
+   <li>Click one of the four tests.</li>
+   <li>For Benedict's you then have to heat it, the same as you would in the real lab. Nothing happens without heat.</li>
+   <li>The result is logged automatically into your results table. You cannot lose it.</li></ol>
+  <p>Work through all ten samples with all four tests. That is forty tests, which sounds like a lot and takes about twenty minutes.</p>
+ </div>`},
+
+{id:"bench",nav:"The bench",short:"Bench",kicker:"Part 1",
+ title:"Run the Tests",time:"About 25 minutes",bench:true},
+
+{id:"results",nav:"Your results",short:"Results",kicker:"Part 2",
+ title:"What Did You Find?",time:"About 20 minutes",results:true},
+
+{id:"before",nav:"Predict the real lab",short:"Predict",kicker:"Part 3",
+ title:"Before the Real Reagents Arrive",time:"About 10 minutes",
+ html:`
+ <div class="card"><p>When the real reagents turn up you are going to run this again on real food from the kitchen. Before that happens, write down what you expect, because a prediction you wrote beforehand is worth far more than one you make up afterwards.</p>
+  <p>It is very hard to be honest about being surprised if you never said what you expected.</p>
+ </div>
+ <div class="card"><h3 class="step">What you will actually test</h3>
+  <p>Pick four or five things from the kitchen. Good ones have a mix: something you expect to be mostly starch, something mostly protein, something mostly fat, and at least one you genuinely cannot call.</p>
+  <div class="q"><label for="f_pick">What are you going to test, and what do you expect each one to contain?</label><textarea id="f_pick" data-k="f_pick" rows="5"></textarea></div>
+ </div>
+ <div class="card"><h3 class="step">Where you think the simulation will be wrong</h3>
+  <p>This page is a model. Models are simplified on purpose, which means they are always wrong somewhere, and the useful question is where.</p>
+  <p>Think about what real liquids actually do. Real food is cloudy, coloured, and lumpy. Real colour changes happen gradually rather than instantly. Real brown paper takes time to dry and you have to wait.</p>
+  <div class="q"><label for="f_wrong">Name two things you think will be harder or messier in the real lab than they were here.</label><textarea id="f_wrong" data-k="f_wrong" rows="4"></textarea></div>
+ </div>
+ <div class="must"><h4>Do not skip this part</h4>
+  <ul class="checks">
+   <li><label class="chk"><input type="checkbox" data-k="before_must_0"><span>Your list of real foods and what you expect each to contain.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="before_must_1"><span>Two specific places you expect the simulation to differ from reality.</span></label></li>
+  </ul></div>`},
+
+{id:"after",nav:"After the real lab",short:"After",kicker:"Part 4",
+ title:"Compare the Two",time:"About 20 minutes, after the real lab",
+ html:`
+ <div class="note"><p><b>Come back to this part once you have run the real lab with Dad.</b> Leave it empty until then.</p></div>
+ <div class="card"><h3 class="step">What matched, and what did not</h3>
+  <div class="q"><label for="f_match">Which parts of the real lab worked the way the simulation said they would?</label><textarea id="f_match" data-k="f_match" rows="4"></textarea></div>
+  <div class="q"><label for="f_diff">Which parts did not? Be specific about what was different.</label><textarea id="f_diff" data-k="f_diff" rows="5"></textarea></div>
+  <div class="q"><label for="f_pred">Go back and look at the two differences you predicted. Were you right? Did something else surprise you instead?</label><textarea id="f_pred" data-k="f_pred" rows="4"></textarea></div>
+ </div>
+ <div class="card"><h3 class="step">The question this whole thing was really for</h3>
+  <p>You now have a simulation and a real experiment side by side, which most people never get.</p>
+  <div class="q"><label for="f_model">A simulation is a model of reality. Based on what you just saw, what is a model like this genuinely good for, and what should you never trust one to tell you?</label><textarea id="f_model" data-k="f_model" rows="6"></textarea></div>
+ </div>
+ <div class="must"><h4>Your work has to show</h4>
+  <ul class="checks">
+   <li><label class="chk"><input type="checkbox" data-k="after_must_0"><span>At least one specific thing the simulation got right.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="after_must_1"><span>At least one specific thing it got wrong or made too easy.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="after_must_2"><span>Whether your written predictions held up.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="after_must_3"><span>What a model is good for, and what it cannot tell you.</span></label></li>
+  </ul></div>`}
+];
+
+/* ===================== RENDER ===================== */
+function benchHTML(){
+ const grp=(g,t)=>`<div class="grouphead">${t}</div><div class="samples">`+
+  SAMPLES.filter(s=>s.grp===g).map(s=>
+   `<button class="samp${s.grp==="unknown"?" unk":""}" data-samp="${s.id}">
+     <b>${s.n}</b><small>${s.hint||"Composition unknown"}</small></button>`).join("")+`</div>`;
+ return `
+ <div class="card"><p>Click a sample, then click a test. Benedict's needs heating afterwards, exactly as it would in a real lab.</p>
+  <p><b>Start with distilled water and the five known samples.</b> Once you know what each test looks like when it is negative and when it is strongly positive, the four unknowns will actually mean something.</p></div>
+ <div class="bench">
+  <div>
+   <div class="card rack">${grp("control","Your control")}${grp("known","Known samples")}${grp("unknown","Unknowns")}</div>
+  </div>
+  <div>
+   <div class="tubewrap">
+    <h4>Test tube</h4>
+    <div class="vial"><div class="liquid" id="liquid"></div></div>
+    <div class="readout" id="readout"><b>Nothing selected</b>Pick a sample from the rack.</div>
+    <div id="heatslot"></div>
+    <h4 style="margin-top:14px">Tests</h4>
+    <div class="testrow" id="testrow">`+
+     TESTS.map(t=>`<button class="tbtn" data-test="${t.id}" disabled><b>${t.n}</b><small>${t.sub}</small></button>`).join("")
+   +`</div>
+    <div id="warnslot"></div>
+   </div>
+  </div>
+ </div>
+ <div class="card"><h3 class="sec">Results so far</h3><div id="grid"></div>
+  <p style="color:var(--muted);font-size:14px;margin-top:10px" id="progress"></p></div>`;
+}
+function resultsHTML(){
+ return `
+ <div class="card"><h3 class="sec">Your results table</h3>
+  <p>This filled itself in as you worked. Read down the columns rather than across the rows, because that is how you spot what a test is actually telling you.</p>
+  <div id="grid2"></div></div>
+ <div class="card"><h3 class="step">The one that should have surprised you</h3>
+  <p>Look at your two sugar samples. <b>Glucose solution</b> and <b>table sugar solution</b> are both sugar. One of them came back strongly positive with Benedict's and the other did not react at all.</p>
+  <p>That is not a bug in this page. It is true in a real lab, and it is the single most important thing in this whole exercise. Find out why. The phrase to search for is <b>reducing sugar</b>.</p>
+  <div class="q"><label for="f_sucrose">Why does table sugar not react with Benedict's, when glucose does? And what does that tell you about what a negative result actually means?</label><textarea id="f_sucrose" data-k="f_sucrose" rows="5"></textarea></div>
+ </div>
+ <div class="card"><h3 class="step">Identify the unknowns</h3>
+  <p>For each one, say what you think is in it and which results told you so. Name the evidence, not just the conclusion.</p>
+  <div class="q"><label for="f_A">Unknown A</label><textarea id="f_A" data-k="f_A" rows="3"></textarea></div>
+  <div class="q"><label for="f_B">Unknown B</label><textarea id="f_B" data-k="f_B" rows="3"></textarea></div>
+  <div class="q"><label for="f_C">Unknown C</label><textarea id="f_C" data-k="f_C" rows="3"></textarea></div>
+  <div class="q"><label for="f_D">Unknown D</label><textarea id="f_D" data-k="f_D" rows="3"></textarea></div>
+  <div id="revealslot" style="margin-top:14px"></div>
+ </div>
+ <div class="card"><h3 class="step">What these tests cannot tell you</h3>
+  <div class="q"><label for="f_limits">You now know these tests can miss something that is genuinely there. Write down two things a positive or negative result does <b>not</b> prove.</label><textarea id="f_limits" data-k="f_limits" rows="4"></textarea></div>
+ </div>
+ <div class="must"><h4>Your work has to show</h4>
+  <ul class="checks">
+   <li><label class="chk"><input type="checkbox" data-k="res_must_0"><span>A complete results table, all ten samples against all four tests.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="res_must_1"><span>Why table sugar does not react with Benedict's.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="res_must_2"><span>All four unknowns identified, each with the evidence you used.</span></label></li>
+   <li><label class="chk"><input type="checkbox" data-k="res_must_3"><span>Two things these tests cannot prove.</span></label></li>
+  </ul></div>`;
+}
+function render(){
+ document.getElementById("screens").innerHTML=BLOCKS.map((b,i)=>{
+  let inner=b.html||"";
+  if(b.bench) inner=benchHTML();
+  if(b.results) inner=resultsHTML();
+  const p=BLOCKS[i-1],n=BLOCKS[i+1];
+  return `<section class="screen" id="s-${b.id}"><div class="kicker">${b.kicker}</div>
+   <h2 class="title">${b.title}</h2><div class="time">${b.time}</div>${inner}
+   <div class="navrow"><div>${p?`<button class="btn ghost" data-go="${p.id}">&larr; ${p.nav}</button>`:""}</div>
+   <div>${n?`<button class="btn" data-go="${n.id}">${n.nav} &rarr;</button>`:""}</div></div></section>`;
+ }).join("");
+ document.getElementById("nav").innerHTML=BLOCKS.map(b=>
+  `<button class="navbtn" data-go="${b.id}"><span class="tick" data-tick="${b.id}"></span>
+   <span><span class="lbl">${b.nav}</span><span class="shortlbl">${b.short}</span></span></button>`).join("");
+}
+
+/* ===================== BENCH LOGIC ===================== */
+function key(s,t){return s+"|"+t}
+function selectSample(id){
+ sel=id; pending=null;
+ document.querySelectorAll("[data-samp]").forEach(b=>b.classList.toggle("sel",b.dataset.samp===id));
+ document.querySelectorAll("[data-test]").forEach(b=>b.disabled=false);
+ const s=SAMPLES.find(x=>x.id===id);
+ setTube("#eef1f4",0,`<b>${s.n}</b>Ready. Choose a test.`);
+ document.getElementById("heatslot").innerHTML="";
+ document.getElementById("warnslot").innerHTML="";
+}
+function setTube(color,h,text){
+ const l=document.getElementById("liquid"); if(!l)return;
+ l.style.background=color; l.style.height=h+"%";
+ document.getElementById("readout").innerHTML=text;
+}
+function controlsDone(testId){
+ const t=TESTS.find(x=>x.id===testId);
+ const neg=state.res[key("water",testId)]!==undefined;
+ const posSample=SAMPLES.find(s=>s.grp==="known"&&s.c[t.det]===3);
+ const pos=posSample?state.res[key(posSample.id,testId)]!==undefined:true;
+ return {neg,pos,posName:posSample?posSample.n:""};
+}
+function runTest(testId){
+ if(!sel) return;
+ const t=TESTS.find(x=>x.id===testId), s=SAMPLES.find(x=>x.id===sel);
+ const warn=document.getElementById("warnslot"); warn.innerHTML="";
+ if(s.grp==="unknown"){
+  const c=controlsDone(testId); const miss=[];
+  if(!c.neg) miss.push("distilled water, so you do not know what a negative looks like");
+  if(!c.pos) miss.push(`${c.posName}, so you do not know how strong a real positive is`);
+  if(miss.length) warn.innerHTML=`<div class="warn"><b>You have not run this test on ${miss.join(", or on ")}.</b>
+    You can carry on, but think about whether you could actually defend the result you are about to read.</div>`;
+ }
+ if(t.heat){
+  setTube(t.col[0],62,`<b>${t.n} added</b>Nothing has happened yet. It needs heat.`);
+  pending={s:sel,t:testId};
+  document.getElementById("heatslot").innerHTML=`<button class="heatbtn" id="heatgo">Heat in the water bath</button>`;
+  document.getElementById("heatgo").onclick=()=>finish(sel,testId);
+  return;
+ }
+ finish(sel,testId);
+}
+function finish(sampId,testId){
+ const t=TESTS.find(x=>x.id===testId), s=SAMPLES.find(x=>x.id===sampId);
+ const lvl=s.c[t.det];
+ state.res[key(sampId,testId)]=lvl; save();
+ setTube(t.col[lvl],t.id==="paper"?38:62,`<b>${t.lab[lvl]}</b>${s.n} with ${t.n}: <b>${POS[lvl]}</b>`);
+ document.getElementById("heatslot").innerHTML=""; pending=null;
+ drawGrid();
+}
+function gridHTML(){
+ let h=`<table><tr><th>Sample</th>`+TESTS.map(t=>`<th>${t.n.split("'")[0]}</th>`).join("")+`</tr>`;
+ SAMPLES.forEach(s=>{
+  h+=`<tr class="resultsrow"><td class="lbl">${s.n}</td>`;
+  TESTS.forEach(t=>{
+   const v=state.res[key(s.id,t.id)];
+   h+= v===undefined ? `<td style="color:#b3bac3">not tested</td>`
+     : `<td><span class="swatch" style="background:${t.col[v]}"></span>${POS[v]}</td>`;
+  });
+  h+=`</tr>`;
+ });
+ return h+`</table>`;
+}
+function drawGrid(){
+ const g=document.getElementById("grid"), g2=document.getElementById("grid2");
+ if(g) g.innerHTML=gridHTML();
+ if(g2) g2.innerHTML=gridHTML();
+ const done=Object.keys(state.res).length, total=SAMPLES.length*TESTS.length;
+ const p=document.getElementById("progress");
+ if(p) p.textContent=`${done} of ${total} tests run.`+(done<total?" Keep going until the table is full.":" The table is complete.");
+ drawReveal(); updateTicks();
+}
+let revealSig=null;
+function drawReveal(){
+ const slot=document.getElementById("revealslot"); if(!slot) return;
+ const ids=["A","B","C","D"], ready=ids.every(i=>(state["f_"+i]||"").trim().length>8);
+ /* only touch the DOM when something actually changed, otherwise a redraw
+    mid-click destroys the button before the click lands on it */
+ const sig=state._revealed?"rev":(ready?"ready":"wait");
+ if(sig===revealSig) return;
+ revealSig=sig;
+ if(state._revealed){
+  slot.innerHTML=`<table><tr><th>Unknown</th><th>What it actually was</th></tr>`+
+   ids.map(i=>`<tr><td class="lbl">Unknown ${i}</td><td>${SAMPLES.find(s=>s.id===i).real}</td></tr>`).join("")+
+   `</table><p style="font-size:14.5px"><b>Check your reasoning, not just your answer.</b> If you got one right for the wrong reason, that is worth knowing about now rather than in the real lab.</p>`;
+  return;
+ }
+ slot.innerHTML=`<button class="btn" id="revealbtn" ${ready?"":"disabled"}>Show me what the unknowns were</button>
+  <p style="color:var(--muted);font-size:14px;margin-top:8px">${ready?"Only press this once you are happy with all four answers.":"Write an answer for all four unknowns first."}</p>`;
+ const b=document.getElementById("revealbtn");
+ if(b&&ready) b.onclick=()=>{state._revealed=true;save();drawReveal();};
+}
+
+/* ===================== PLUMBING ===================== */
+let tm=null;
+function save(){clearTimeout(tm);tm=setTimeout(()=>{
+ localStorage.setItem(KEY,JSON.stringify(state));
+ const s=document.getElementById("saved");
+ s.innerHTML="<b>Saved.</b> Your work is on this device.";
+ setTimeout(()=>{s.textContent="Your work saves by itself"},1700);},350);}
+function restore(){
+ document.querySelectorAll("[data-k]").forEach(el=>{
+  const v=state[el.dataset.k]; if(v===undefined)return;
+  if(el.type==="checkbox") el.checked=!!v; else el.value=v;});
+ drawGrid();
+}
+["input","change"].forEach(ev=>document.addEventListener(ev,e=>{
+ const el=e.target; if(!el.dataset.k)return;
+ state[el.dataset.k]= el.type==="checkbox"?el.checked:el.value;
+ save(); drawReveal(); updateTicks();}));
+document.addEventListener("click",e=>{
+ const g=e.target.closest("[data-go]"); if(g){show(g.dataset.go);return;}
+ const sa=e.target.closest("[data-samp]"); if(sa){selectSample(sa.dataset.samp);return;}
+ const te=e.target.closest("[data-test]"); if(te&&!te.disabled){runTest(te.dataset.test);return;}
+});
+function updateTicks(){
+ const done=Object.keys(state.res).length, total=SAMPLES.length*TESTS.length;
+ const marks={bench:done>=total,
+   results:["A","B","C","D"].every(i=>(state["f_"+i]||"").trim())&&(state.f_sucrose||"").trim(),
+   before:(state.f_pick||"").trim()&&(state.f_wrong||"").trim(),
+   after:(state.f_model||"").trim()};
+ BLOCKS.forEach(b=>{const el=document.querySelector(`[data-tick="${b.id}"]`); if(!el)return;
+  const d=!!marks[b.id]; el.classList.toggle("done",d); el.textContent=d?"✓":"";});
+}
+function show(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id==="s-"+id));
+ document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.go===id));
+ state._at=id; save(); drawGrid(); window.scrollTo({top:0,behavior:"instant"});
+}
+/* ---------- markdown ---------- */
+const LBL={f_sucrose:"Why does table sugar not react with Benedict's, and what does a negative result actually mean?",
+ f_A:"Unknown A",f_B:"Unknown B",f_C:"Unknown C",f_D:"Unknown D",
+ f_limits:"Two things these tests cannot prove",
+ f_pick:"What I will test in the real lab, and what I expect",
+ f_wrong:"Two things I expect to be harder in the real lab",
+ f_match:"What the real lab matched",f_diff:"What was different",
+ f_pred:"Did my predictions hold up?",f_model:"What a model is good for, and what it cannot tell you"};
+const GROUP={bench:[],results:["f_sucrose","f_A","f_B","f_C","f_D","f_limits"],
+ before:["f_pick","f_wrong"],after:["f_match","f_diff","f_pred","f_model"],start:[]};
+function tableMd(){
+ let o=`| Sample | ${TESTS.map(t=>t.n).join(" | ")} |\n|${TESTS.map(()=>"---").join("|")}|---|\n`;
+ SAMPLES.forEach(s=>{o+=`| ${s.n} | `+TESTS.map(t=>{const v=state.res[key(s.id,t.id)];
+  return v===undefined?"not tested":POS[v];}).join(" | ")+` |\n`;});
+ return o+"\n";
+}
+function blockMd(b){
+ let o=`## ${b.title}\n\n`,any=false;
+ if(b.id==="bench"||b.id==="results"){ if(Object.keys(state.res).length){any=true;o+=tableMd();} }
+ (GROUP[b.id]||[]).forEach(k=>{const v=(state[k]||"").trim();
+  if(v){any=true;o+=`**${LBL[k]}**\n\n${v}\n\n`;}});
+ return any?o:"";
+}
+function copy(txt,label){navigator.clipboard.writeText(txt).then(()=>{
+ const s=document.getElementById("saved");
+ s.innerHTML=`<b>Copied.</b> ${label} is on your clipboard.`;
+ setTimeout(()=>{s.textContent="Your work saves by itself"},2400);
+}).catch(()=>{const s=document.getElementById("saved");
+ s.innerHTML="<b>Could not copy.</b> Select the text and copy it by hand.";
+ setTimeout(()=>{s.textContent="Your work saves by itself"},3000);});}
+document.getElementById("copyBlock").onclick=()=>{
+ const b=BLOCKS.find(x=>x.id===(state._at||"start")), m=blockMd(b);
+ copy(m?`# Virtual Food Test Lab\n\n${m}`:`# Virtual Food Test Lab\n\n## ${b.title}\n\nNothing written here yet.\n`,"This part");};
+document.getElementById("copyAll").onclick=()=>{
+ let o="# Virtual Food Test Lab\n\nLife Science: Biology, Unit 1\n\n";
+ BLOCKS.forEach(b=>{const m=blockMd(b); if(m)o+=m;});
+ copy(o,"Everything");};
+
+render(); restore();
+show(state._at&&BLOCKS.some(b=>b.id===state._at)?state._at:"start");
+</script>
+</body>
+</html>
