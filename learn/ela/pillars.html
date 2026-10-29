@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Pillars: Series Bible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#132947;
+  --navy-deep:#0D1C32;
+  --navy-soft:#2A4568;
+  --teal:#17877F;
+  --teal-light:#D3E8E5;
+  --amber:#C8741A;
+  --amber-light:#FBECD9;
+  --field:#F1F4F8;
+  --paper:#FFFFFF;
+  --ink:#1A2433;
+  --ink-soft:#54637A;
+  --line:#D4DCE6;
+  --radius:3px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--field);
+  color:var(--ink);
+  font-family:"DM Sans",system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+}
+
+/* ---------- masthead ---------- */
+.masthead{
+  background:var(--navy);
+  color:#fff;
+  padding:30px 0 0;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.masthead h1{
+  font-family:"DM Sans",sans-serif;
+  font-weight:700;
+  font-size:clamp(26px,4.5vw,38px);
+  letter-spacing:-0.02em;
+  margin:0 0 6px;
+  line-height:1.1;
+}
+.masthead .sub{color:#A9C0DC;font-size:15px;margin:0 0 22px;max-width:52ch}
+.state{
+  display:flex;flex-wrap:wrap;gap:0;
+  border-top:1px solid var(--navy-soft);
+}
+.state div{
+  flex:1 1 auto;min-width:108px;
+  padding:11px 14px 13px;
+  border-right:1px solid var(--navy-soft);
+}
+.state div:last-child{border-right:none}
+.state b{display:block;font-size:20px;font-weight:700;color:#fff;line-height:1.2}
+.state span{font-size:12.5px;color:#8FA9C9}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:40;
+  background:var(--navy-deep);
+  border-bottom:1px solid var(--navy-soft);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+}
+nav .wrap{display:flex;gap:2px;padding:0 12px}
+nav a{
+  flex:0 0 auto;
+  color:#9FB6D1;text-decoration:none;
+  font-size:14px;font-weight:500;
+  padding:12px 13px;
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+}
+nav a:hover{color:#fff}
+nav a.on{color:#fff;border-bottom-color:var(--amber)}
+
+/* ---------- sections ---------- */
+section{padding:46px 0 10px}
+.part{
+  display:flex;align-items:baseline;gap:12px;
+  margin:0 0 4px;
+}
+.part .n{
+  font-size:13px;font-weight:700;color:var(--teal);
+  letter-spacing:0.04em;
+}
+h2{
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(22px,3.4vw,29px);
+  font-weight:700;letter-spacing:-0.015em;
+  margin:0 0 14px;line-height:1.2;
+}
+h3{font-size:18px;font-weight:700;margin:30px 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 14px;max-width:68ch}
+.lede{font-size:18px;color:var(--ink-soft);max-width:62ch}
+.q{font-weight:700;margin:22px 0 6px;max-width:68ch}
+.hint{font-size:14.5px;color:var(--ink-soft);margin:-2px 0 10px;max-width:66ch}
+
+/* ---------- callout ---------- */
+.call{
+  background:var(--paper);
+  border-left:4px solid var(--teal);
+  padding:16px 18px;margin:20px 0;
+}
+.call p:last-child{margin-bottom:0}
+.call.warn{border-left-color:var(--amber)}
+
+/* ---------- walkthrough link ---------- */
+.wt{
+  display:block;background:var(--navy);color:#fff;
+  padding:16px 18px;margin:0 0 4px;text-decoration:none;
+  border-left:4px solid var(--amber);
+}
+.wt strong{display:block;font-size:16px;margin-bottom:3px}
+.wt span{font-size:14.5px;color:#A9C0DC}
+.wt:hover{background:var(--navy-deep)}
+
+/* ---------- inputs ---------- */
+textarea,input[type=text]{
+  width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:10px 12px;line-height:1.55;
+}
+textarea{resize:vertical;min-height:86px}
+textarea:focus,input[type=text]:focus{
+  outline:2px solid var(--teal);outline-offset:-1px;border-color:var(--teal);
+}
+label.f{display:block;font-size:14px;font-weight:500;color:var(--ink-soft);margin:12px 0 4px}
+
+/* ---------- table ---------- */
+.tbl{background:var(--paper);border:1px solid var(--line);margin:16px 0 8px}
+.tbl .hd{
+  display:grid;grid-template-columns:1.1fr 1fr 1.3fr;
+  background:var(--navy);color:#fff;font-size:13px;font-weight:500;
+}
+.tbl .hd div{padding:9px 11px;border-right:1px solid var(--navy-soft)}
+.tbl .hd div:last-child{border-right:none}
+.row{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;border-top:1px solid var(--line)}
+.row > *{padding:9px 11px;border-right:1px solid var(--line)}
+.row > *:last-child{border-right:none}
+.row .lbl{font-size:15px;background:#FAFBFD;display:flex;align-items:center}
+.row textarea{border:none;padding:0;min-height:62px;font-size:15.5px;background:transparent}
+.row textarea:focus{outline:2px solid var(--teal);outline-offset:3px}
+@media(max-width:700px){
+  .tbl .hd{display:none}
+  .row{grid-template-columns:1fr;border-top:3px solid var(--line)}
+  .row > *{border-right:none;border-bottom:1px solid var(--line)}
+  .row .lbl{font-weight:700;background:#EEF2F7}
+  .row textarea::placeholder{color:#8392A8}
+}
+
+/* ---------- pillar picker ---------- */
+.pillars{display:grid;gap:10px;margin:18px 0}
+.pil{
+  background:var(--paper);border:1px solid var(--line);
+  border-left:4px solid var(--line);
+  padding:14px 16px;cursor:pointer;display:block;
+}
+.pil:hover{border-color:var(--teal)}
+.pil input{position:absolute;opacity:0;pointer-events:none}
+.pil .nm{font-family:"DM Serif Display",Georgia,serif;font-size:21px;line-height:1.2;margin-bottom:5px}
+.pil .ds{font-size:15px;color:var(--ink-soft);max-width:60ch}
+.pil .dp{font-size:14px;color:var(--teal);margin-top:7px;font-style:italic}
+.pil.sel{border-left-color:var(--amber);background:var(--amber-light);border-color:#E4C9A6}
+.pil.sel .nm::after{content:" ✓";color:var(--amber);font-family:"DM Sans",sans-serif;font-size:17px}
+.pil.off{opacity:.45}
+
+/* ---------- rule plate ---------- */
+.rule{background:var(--paper);border:1px solid var(--line);margin:18px 0;padding:16px 18px}
+.rule .pn{font-family:"DM Serif Display",Georgia,serif;font-size:22px;margin-bottom:10px}
+.plate{
+  background:var(--navy);color:#fff;padding:15px 17px;
+  border-left:4px solid var(--amber);margin:10px 0;
+}
+.plate .draft{font-size:12.5px;color:var(--amber);margin-bottom:6px;font-weight:500}
+.plate .txt{font-size:17px;line-height:1.5}
+.plate.now{border-left-color:var(--teal)}
+.plate.now .draft{color:#7FD3CB}
+button{
+  font-family:inherit;font-size:15px;font-weight:500;
+  background:var(--teal);color:#fff;border:none;border-radius:var(--radius);
+  padding:9px 16px;cursor:pointer;
+}
+button:hover{background:#12706A}
+button.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+button.ghost:hover{background:var(--teal-light)}
+button:disabled{background:#B7C2D1;cursor:not-allowed}
+.revbox{background:var(--amber-light);border:1px solid #E4C9A6;padding:14px 16px;margin:12px 0}
+
+/* ---------- shelf ---------- */
+.shelf{margin:18px 0}
+.item{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--teal);margin-bottom:12px;padding:15px 17px}
+.item.game{border-left-color:var(--amber)}
+.item .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:4px}
+.item .top input[type=text]{flex:1 1 200px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.seg button{background:var(--paper);color:var(--ink-soft);border-radius:0;padding:8px 13px;font-size:14px}
+.seg button.on{background:var(--navy);color:#fff}
+.chk{display:flex;gap:9px;align-items:flex-start;margin:10px 0;font-size:15px;max-width:66ch;cursor:pointer}
+.chk input{margin-top:4px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--teal)}
+.del{background:none;color:#A33;border:none;padding:4px 6px;font-size:14px}
+
+/* ---------- log ---------- */
+.log{background:var(--navy-deep);color:#fff;padding:4px 0;margin:18px 0}
+.log .e{padding:14px 18px;border-bottom:1px solid var(--navy-soft)}
+.log .e:last-child{border-bottom:none}
+.log .was{color:#8FA9C9;text-decoration:line-through;font-size:15px}
+.log .broke{color:var(--amber);font-size:14px;margin:5px 0}
+.log .now{font-size:16px}
+.log .empty{padding:16px 18px;color:#8FA9C9;font-size:15px}
+
+/* ---------- gate ---------- */
+.gate{background:var(--amber-light);border:1px solid #E4C9A6;padding:16px 18px;margin:16px 0}
+.locked-note{color:var(--ink-soft);font-size:15px;font-style:italic}
+
+/* ---------- export ---------- */
+.export{background:var(--navy);color:#fff;padding:26px 0 34px;margin-top:46px}
+.export h2{color:#fff}
+.export p{color:#A9C0DC;max-width:60ch}
+.export button{background:var(--amber)}
+.export button:hover{background:#A85F12}
+.saved{font-size:13.5px;color:var(--teal);min-height:18px;margin-top:8px}
+footer{padding:22px 0 40px;font-size:14px;color:var(--ink-soft)}
+@media(prefers-reduced-motion:no-preference){
+  .plate{animation:seal .3s ease-out}
+  @keyframes seal{from{transform:scale(.985);opacity:.4}to{transform:none;opacity:1}}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>Story Pillars</h1>
+    <p class="sub">You are writing a series bible for a set of games. Two pillars, a rule for each one, the stories that prove them, and a record of every time you changed your mind.</p>
+    <div class="state">
+      <div><b id="sPil">0</b><span>of 2 pillars</span></div>
+      <div><b id="sRul">0</b><span>rules locked</span></div>
+      <div><b id="sShe">0</b><span>of 4 stories</span></div>
+      <div><b id="sLog">0</b><span>log entries</span></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap" id="nav">
+    <a href="#p0">0. Drew</a>
+    <a href="#p1">1. Pillars</a>
+    <a href="#p2">2. Rules</a>
+    <a href="#p3">3. Shelf</a>
+    <a href="#p4">4. The Bible</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section style="padding-top:28px">
+  <a class="wt" href="pillars-walkthrough.html">
+    <strong>Stuck? Open the walkthrough.</strong>
+    <span>The whole job gets done once, start to finish, on Gilgamesh and Journey. It uses pillars you can't pick, so it shows you the moves without handing you your answers.</span>
+  </a>
+</section>
+
+<section>
+  <h3 style="margin-top:22px">What you are doing</h3>
+  <p>A studio has hired you to design a set of games, not just one. They share a world, or a feeling, or a set of ideas, and a player should be able to tell they belong together.</p>
+  <p>Before anybody builds anything, somebody has to write the <strong>series bible</strong>. That is a real thing studios make. It says what these stories are about, what they always do, and what they never do. When two people on the team disagree about whether something fits, they open the bible and it settles the argument. It is a quiet little document that ends up deciding what actually gets made.</p>
+  <p>A series bible is built on <strong>pillars</strong>. A pillar is one big idea the whole series stands on. You are picking two.</p>
+  <p>For each pillar you write a <strong>rule</strong>. A rule says what a story has to do to actually earn that pillar, instead of just gesturing at it.</p>
+  <div class="call">
+    <p>Here is the part that is harder than it sounds. You write your rules first, before you look at any stories, as a guess. Then you find stories and hold them up against your rules. Sometimes the story wins and the rule has to change.</p>
+    <p>That is not you failing. That is the job.</p>
+  </div>
+  <p class="hint">Everything you type saves by itself. You can close this and come back.</p>
+</section>
+
+<!-- PART 0 -->
+<section id="p0">
+  <div class="part"><span class="n">PART 0</span></div>
+  <h2>Start with <em>The Taming of the Drew</em></h2>
+  <p>You read <em>The Taming of the Drew</em>, a novel by Stephanie Kate Strohm. It is a retelling of <em>The Taming of the Shrew</em>, a play William Shakespeare wrote about four hundred years ago. You saw that play on stage, so you know both versions of this story.</p>
+  <p>You did this move once already with <em>Hadestown</em>, the musical you saw. When somebody retells an old story, every change they make is an argument about what the story is really about.</p>
+  <p>This time you are going faster and staying smaller. You are not writing the whole argument. You are taking stock of what made it through.</p>
+
+  <div class="tbl" id="drewTbl">
+    <div class="hd"><div>Part of Shakespeare's play</div><div>Did it make it into Strohm's book?</div><div>If it changed or disappeared, what did the story lose?</div></div>
+  </div>
+  <p class="hint">That last column is the whole point. "It's gone" is not an answer. The answer is what the story could do with that piece that it can't do without it.</p>
+
+  <p class="q">1. One thing Strohm cut was the hardest part of Shakespeare's play to put in a book for teenagers. What was it? What happened to the story when she took it out? Is her book better or worse for it?</p>
+  <textarea data-k="q1"></textarea>
+
+  <p class="q">2. One thing she changed is not a cut at all. Something got flipped around instead of removed. Find it. What can she say with it flipped that Shakespeare couldn't say?</p>
+  <textarea data-k="q2"></textarea>
+
+  <p class="q">3. Strohm keeps Shakespeare's original right there inside her book, since her characters are putting on the actual play. What does she get out of doing that? What does it risk?</p>
+  <textarea data-k="q3"></textarea>
+
+  <div class="call warn">
+    <p><strong>Now the question that opens up the rest of this project.</strong></p>
+    <p>You just watched a story survive getting moved four hundred years forward, across an ocean, and into a completely different form. Some parts held up. Some died on the way.</p>
+    <p>What else have you read or played that has pieces in it you have seen somewhere else? Not the same plot. The same <em>moves</em>. Write down everything that comes to mind, even if the connection seems small or dumb. Don't filter yet.</p>
+  </div>
+  <textarea data-k="brainstorm" style="min-height:150px"></textarea>
+  <p class="hint">This is not your evidence yet. It is a pile of ideas to go digging through later.</p>
+</section>
+
+<!-- PART 1 -->
+<section id="p1">
+  <div class="part"><span class="n">PART 1</span></div>
+  <h2>Pick your two pillars</h2>
+  <p>Here is the brief from the studio. You get five to choose from. Pick two.</p>
+  <div class="pillars" id="pillars"></div>
+  <p class="hint">These five aren't random. They are the ideas holding up the oldest adventure story we still have, which happens to be the one you're reading next. You'll get to find out whether they hold up. For now just treat them as the job.</p>
+
+  <label class="f">Which two did you pick, and why do these two belong together?</label>
+  <textarea data-k="whyPillars"></textarea>
+
+  <label class="f">Of the three you rejected, which was the closest call? What almost got it in, and what kept it out?</label>
+  <textarea data-k="closeCall"></textarea>
+</section>
+
+<!-- PART 2 -->
+<section id="p2">
+  <div class="part"><span class="n">PART 2</span></div>
+  <h2>Write your rules first</h2>
+  <p>Before you go anywhere near a book, write a rule for each of your two pillars.</p>
+  <p>A rule has to be specific enough that you could hand it to a stranger and they could use it to judge a story you've never read. If everybody would just nod along, it isn't a rule. It's a nice thought.</p>
+
+  <h3>Five soft rules</h3>
+  <p>Here is a soft rule for each of the five pillars. Every one sounds reasonable. Every one is useless, because no story would ever fail it.</p>
+  <div class="tbl">
+    <div class="hd" style="grid-template-columns:1fr 1.6fr"><div>Pillar</div><div>A soft rule</div></div>
+    <div class="row" style="grid-template-columns:1fr 1.6fr"><div class="lbl">The Return</div><div>The character has to come home.</div></div>
+    <div class="row" style="grid-template-columns:1fr 1.6fr"><div class="lbl">The Stranger at the Door</div><div>Characters have to treat strangers well.</div></div>
+    <div class="row" style="grid-template-columns:1fr 1.6fr"><div class="lbl">Thinking Beats Fighting</div><div>The hero has to be clever.</div></div>
+    <div class="row" style="grid-template-columns:1fr 1.6fr"><div class="lbl">What Outlasts You</div><div>It has to be about somebody who wants to be remembered.</div></div>
+    <div class="row" style="grid-template-columns:1fr 1.6fr"><div class="lbl">The Price of Pride</div><div>A proud character has to lose.</div></div>
+  </div>
+
+  <h3>The same first one, fixed</h3>
+  <div class="plate now"><div class="draft">The Return</div><div class="txt">A story has to show you what home was like before, so you notice the difference yourself instead of somebody telling you.</div></div>
+  <p>See what changed. The soft version describes the pillar. The fixed version says what the story has to <em>do</em>, and a story could absolutely fail it. Plenty of stories send a character home without ever showing you what home was before. Those stories now fail your rule, and that is the point. A rule that nothing fails is not sorting anything.</p>
+
+  <h3>Now write yours</h3>
+  <p class="hint">You are guessing. You're supposed to be guessing. Lock each one when you're ready, so you can look back later and see what you got wrong.</p>
+  <div id="rules"></div>
+</section>
+
+<!-- PART 3 -->
+<section id="p3">
+  <div class="part"><span class="n">PART 3</span></div>
+  <h2>Picking your shelf</h2>
+  <p>Your shelf is the small set of stories you'll use to prove your pillars: <strong>three books and one game</strong>. These should be things you already know well. You are not reading four new things. You're going back through stuff you've already read and played, and looking at it the way a designer looks at it instead of the way a fan does.</p>
+
+  <h3>When a story breaks your rule</h3>
+  <p>This is going to happen and you need to know what to do about it.</p>
+  <p>You wrote a rule. Then you think of a story you know is good, you hold it up against the rule, and it doesn't fit. Maybe it does the pillar beautifully but in a way your rule never saw coming. Maybe it skips a step your rule insisted on. That story <strong>broke your rule</strong>. Your rule said "any story doing this has to do X," and here's a good story that doesn't do X.</p>
+  <p>When that happens you have two choices, and you have to pick one on purpose and say so:</p>
+  <div class="call">
+    <p><strong>The story knows something your rule didn't.</strong> Your rule was too narrow. Rewrite it so it covers what this story is doing.</p>
+    <p><strong>Your rule is fine and this story just isn't using this pillar.</strong> Leave it off the shelf and keep looking.</p>
+  </div>
+  <p>The thing you are not allowed to do is quietly loosen a rule so a story you already liked can sneak in. If you're changing a rule, go back up to Part 2 and revise it there, and say which story broke it. The log writes itself from that.</p>
+
+  <h3>One story has to be missing a pillar</h3>
+  <p>This is different from breaking a rule, so don't mix them up. A story that <strong>breaks a rule</strong> has the pillar, it just handles it in a way your rule didn't expect. A story that is <strong>missing a pillar</strong> doesn't have it at all.</p>
+  <p>Somewhere on your shelf you need one of those. A story with no real homecoming. A world where nobody owes a stranger anything and nothing bad comes of it. A hero who only ever wins by hitting things.</p>
+  <div class="call warn">
+    <p><strong>Make this one the game.</strong> It's much easier to spot a missing pillar in a game than in a book, and what you learn from it is exactly the same.</p>
+    <p>That story isn't a mistake on the shelf. It might be your best evidence, because when a pillar is gone you can finally see what it was doing.</p>
+  </div>
+
+  <h3>Your shelf</h3>
+  <p class="hint">Answer these while you're looking at the story, not later. Doing it now is much easier than trying to remember next week.</p>
+  <div class="shelf" id="shelf"></div>
+  <button id="addItem">Add a story</button>
+
+  <h3>Revision log</h3>
+  <p>Every rule you change lands here by itself. This gets graded, and it's better proof that you were thinking than the final rules are. A bible with nothing in the log is claiming you nailed both rules on the first try, which nobody has ever done.</p>
+  <div class="log" id="log"></div>
+
+  <p class="hint">Everything you notice along the way also goes in the Pattern Log, including stuff about characters, since the Hero Ledger lives inside the Pattern Log now.</p>
+</section>
+
+<!-- PART 4 -->
+<section id="p4">
+  <div class="part"><span class="n">PART 4</span></div>
+  <h2>Write the bible</h2>
+  <p>This is the thing you turn in. Most of it is already written by the time you get here. You're assembling, not starting over.</p>
+  <div id="bible"></div>
+
+  <h3>The arc</h3>
+  <p>Your two pillars aren't two separate things sitting next to each other. They're one series.</p>
+  <div class="gate">
+    <p style="margin-bottom:10px"><strong>Argue this out loud to Dad before you write a word of it.</strong> Talk through how your two pillars fit together across a set of games. What's the shape? Where does a player start, and where do these two take them? Why does this pair make a series instead of just two ideas?</p>
+    <label class="chk"><input type="checkbox" data-k="arcTalked"><span>I argued the arc out loud with Dad.</span></label>
+  </div>
+  <div id="arcWrap" hidden>
+    <p>Now write it up short. The talking is where you figured it out. The writing is just catching what you said.</p>
+    <textarea data-k="arc" style="min-height:170px"></textarea>
+  </div>
+</section>
+
+</div>
+
+<div class="export">
+  <div class="wrap">
+    <h2>Turn it in</h2>
+    <p>Copy everything as Markdown, then paste it into a Google Doc. Your rules, your shelf, your log, and your arc all come across.</p>
+    <button id="copyBtn">Copy as Markdown</button>
+    <div class="saved" id="copyMsg"></div>
+  </div>
+</div>
+
+<div class="wrap"><footer>
+  <p>English 9, Unit 1. Next up: <em>The Odyssey</em>, a poem by Homer, a Greek storyteller from about three thousand years ago. Your bible will already be finished, so the question won't be "what are the themes of <em>The Odyssey</em>." It'll be: does the oldest one pass your rules?</p>
+</footer></div>
+
+<script>
+const KEY='storyPillars.v1';
+const PILLARS=[
+ {id:'return',name:'The Return',ds:"Can you go back? And when you get there, is it the same place, or did it move on without you?",dp:"As a design problem: what does the player come home to, and how do you make them feel that it changed?"},
+ {id:'stranger',name:'The Stranger at the Door',ds:"Somebody shows up. What do you owe them? What do they owe you? What happens to a world where nobody bothers with that anymore?",dp:"As a design problem: could hospitality be an actual system with real consequences, not just dialogue?"},
+ {id:'thinking',name:'Thinking Beats Fighting',ds:"The character who wins by being smarter than the problem instead of stronger than it. And it costs them something.",dp:"As a design problem: what is the button for being clever? What does the player actually do?"},
+ {id:'outlast',name:'What Outlasts You',ds:"Your name. Your reputation. The version of you people tell stories about after you're gone. What would you trade for it?",dp:"As a design problem: what is the score really measuring, and what is the game rewarding?"},
+ {id:'pride',name:'The Price of Pride',ds:"The moment somebody could have walked away clean, and instead had to be seen winning. And it wrecked them.",dp:"As a design problem: can you get a player to choose the expensive, satisfying, stupid thing on purpose?"}
+];
+const DREW=[
+ ['The taming itself (who tames who, and how)','taming'],
+ ['The way the taming actually gets done','method'],
+ ['The marriage and money part of the plot','money'],
+ ['The sister and the men chasing her','sister'],
+ ["The long speech Kate gives at the very end of the play",'speech'],
+ ['The ending, and how it leaves you feeling','ending']
+];
+
+let S={fields:{},picked:[],rules:{},log:[],shelf:[]};
+try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(S,JSON.parse(r));}catch(e){}
+let saveT;
+function save(){
+  clearTimeout(saveT);
+  saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}},250);
+}
+const g=id=>document.getElementById(id);
+const esc=s=>(s||'').replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+function f(k){return S.fields[k]||''}
+function setF(k,v){S.fields[k]=v;save();stats()}
+
+/* ---- generic field binding ---- */
+function bindAll(root){
+  root.querySelectorAll('[data-k]').forEach(el=>{
+    const k=el.dataset.k;
+    if(el.type==='checkbox'){
+      el.checked=!!S.fields[k];
+      el.onchange=()=>{setF(k,el.checked);if(k==='arcTalked')g('arcWrap').hidden=!el.checked;};
+    }else{
+      el.value=f(k);
+      el.oninput=()=>setF(k,el.value);
+    }
+  });
+}
+
+/* ---- Drew table ---- */
+function drew(){
+  const t=g('drewTbl');
+  DREW.forEach(([label,k])=>{
+    const r=document.createElement('div');r.className='row';
+    r.innerHTML=`<div class="lbl">${label}</div>
+      <div><textarea data-k="d_${k}_a" placeholder="Did it survive?"></textarea></div>
+      <div><textarea data-k="d_${k}_b" placeholder="What did the story lose?"></textarea></div>`;
+    t.appendChild(r);
+  });
+}
+
+/* ---- pillars ---- */
+function pillars(){
+  const w=g('pillars');w.innerHTML='';
+  PILLARS.forEach(p=>{
+    const on=S.picked.includes(p.id);
+    const off=!on&&S.picked.length>=2;
+    const l=document.createElement('label');
+    l.className='pil'+(on?' sel':'')+(off?' off':'');
+    l.innerHTML=`<input type="checkbox" ${on?'checked':''} ${off?'disabled':''}>
+      <div class="nm">${p.name}</div><div class="ds">${p.ds}</div><div class="dp">${p.dp}</div>`;
+    l.querySelector('input').onchange=e=>{
+      if(e.target.checked){if(S.picked.length<2)S.picked.push(p.id);}
+      else{S.picked=S.picked.filter(x=>x!==p.id); delete S.rules[p.id];}
+      save();pillars();rules();bible();stats();
+    };
+    w.appendChild(l);
+  });
+}
+
+/* ---- rules ---- */
+function rules(){
+  const w=g('rules');w.innerHTML='';
+  if(!S.picked.length){w.innerHTML='<p class="locked-note">Pick your two pillars above first.</p>';return;}
+  S.picked.forEach(id=>{
+    const p=PILLARS.find(x=>x.id===id);
+    const r=S.rules[id];
+    const d=document.createElement('div');d.className='rule';
+    if(!r||!r.locked){
+      d.innerHTML=`<div class="pn">${p.name}</div>
+        <textarea placeholder="What does a story have to DO to earn this pillar?">${esc(r?r.draft:'')}</textarea>
+        <div style="margin-top:10px"><button>Lock this rule</button></div>`;
+      const ta=d.querySelector('textarea');
+      ta.oninput=()=>{S.rules[id]={draft:ta.value,locked:false};save()};
+      d.querySelector('button').onclick=()=>{
+        if(!ta.value.trim())return;
+        S.rules[id]={draft:ta.value.trim(),current:ta.value.trim(),locked:true,at:new Date().toLocaleDateString()};
+        save();rules();bible();stats();
+      };
+    }else{
+      const changed=r.current!==r.draft;
+      d.innerHTML=`<div class="pn">${p.name}</div>
+        <div class="plate"><div class="draft">First draft, locked ${r.at}</div><div class="txt">${esc(r.draft)}</div></div>
+        ${changed?`<div class="plate now"><div class="draft">Current rule</div><div class="txt">${esc(r.current)}</div></div>`:''}
+        <div style="margin-top:10px"><button class="ghost">A story broke this rule. Revise it.</button></div>
+        <div class="revbox" hidden>
+          <label class="f" style="margin-top:0">Which story broke it?</label>
+          <input type="text" placeholder="Name the story">
+          <label class="f">What does the rule say now?</label>
+          <textarea placeholder="The new wording"></textarea>
+          <div style="margin-top:10px"><button>Save the change</button></div>
+        </div>`;
+      const box=d.querySelector('.revbox');
+      d.querySelector('button.ghost').onclick=()=>{box.hidden=!box.hidden};
+      box.querySelector('button').onclick=()=>{
+        const who=box.querySelector('input').value.trim();
+        const nw=box.querySelector('textarea').value.trim();
+        if(!who||!nw)return;
+        S.log.push({pillar:p.name,was:r.current,broke:who,now:nw,at:new Date().toLocaleDateString()});
+        r.current=nw;save();rules();logView();bible();stats();
+      };
+    }
+    w.appendChild(d);
+  });
+}
+
+/* ---- log ---- */
+function logView(){
+  const w=g('log');
+  if(!S.log.length){w.innerHTML='<div class="empty">Nothing yet. Entries appear here the first time a story makes you change a rule.</div>';return;}
+  w.innerHTML=S.log.map(e=>`<div class="e">
+    <div class="was">${esc(e.was)}</div>
+    <div class="broke">Broken by ${esc(e.broke)} · ${e.pillar} · ${e.at}</div>
+    <div class="now">${esc(e.now)}</div></div>`).join('');
+}
+
+/* ---- shelf ---- */
+function shelf(){
+  const w=g('shelf');w.innerHTML='';
+  if(!S.shelf.length){w.innerHTML='<p class="locked-note">Nothing on the shelf yet. Three books and one game.</p>';}
+  S.shelf.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='item'+(it.type==='game'?' game':'');
+    const pilOpts=S.picked.map(id=>{
+      const p=PILLARS.find(x=>x.id===id);
+      return `<label class="chk"><input type="checkbox" data-pil="${id}" ${it.pil&&it.pil.includes(id)?'checked':''}><span>Speaks to <strong>${p.name}</strong></span></label>`;
+    }).join('');
+    d.innerHTML=`
+      <div class="top">
+        <input type="text" placeholder="Title" value="${esc(it.title)}">
+        <div class="seg"><button class="${it.type==='book'?'on':''}" data-t="book">Book</button><button class="${it.type==='game'?'on':''}" data-t="game">Game</button></div>
+        <button class="del">Remove</button>
+      </div>
+      ${pilOpts||'<p class="locked-note">Pick your pillars first.</p>'}
+      <label class="f">Where exactly? Name the moment: chapter, scene, mission, line.</label>
+      <textarea placeholder="The exact spot">${esc(it.where)}</textarea>
+      <label class="f">How does it pull it off? Not what it does. What is the actual technique?</label>
+      <textarea placeholder="If it makes you feel something, what did it do to you to make that land?">${esc(it.how)}</textarea>
+      <label class="chk"><input type="checkbox" class="miss" ${it.missing?'checked':''}><span>This is the one that is <strong>missing</strong> a pillar entirely.</span></label>
+      <div class="missWrap" ${it.missing?'':'hidden'}>
+        <label class="f">What does this story lose by not having it? What does that prove about what the pillar was doing?</label>
+        <textarea placeholder="The absence is the evidence">${esc(it.missWhy)}</textarea>
+      </div>`;
+    const ins=d.querySelectorAll('textarea'),ti=d.querySelector('input[type=text]');
+    ti.oninput=()=>{it.title=ti.value;save();bible()};
+    ins[0].oninput=()=>{it.where=ins[0].value;save();bible()};
+    ins[1].oninput=()=>{it.how=ins[1].value;save();bible()};
+    if(ins[2])ins[2].oninput=()=>{it.missWhy=ins[2].value;save();bible()};
+    d.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{it.type=b.dataset.t;save();shelf();bible()});
+    d.querySelectorAll('[data-pil]').forEach(cb=>cb.onchange=()=>{
+      it.pil=it.pil||[];
+      if(cb.checked){if(!it.pil.includes(cb.dataset.pil))it.pil.push(cb.dataset.pil)}
+      else it.pil=it.pil.filter(x=>x!==cb.dataset.pil);
+      save();bible();
+    });
+    d.querySelector('.miss').onchange=e=>{
+      if(e.target.checked)S.shelf.forEach((o,j)=>{if(j!==i)o.missing=false});
+      it.missing=e.target.checked;save();shelf();bible();
+    };
+    d.querySelector('.del').onclick=()=>{S.shelf.splice(i,1);save();shelf();bible();stats()};
+    w.appendChild(d);
+  });
+}
+g('addItem').onclick=()=>{
+  S.shelf.push({title:'',type:'book',pil:[],where:'',how:'',missing:false,missWhy:''});
+  save();shelf();stats();
+};
+
+/* ---- bible assembly ---- */
+function bible(){
+  const w=g('bible');
+  if(!S.picked.length){w.innerHTML='<p class="locked-note">Pick your pillars and lock your rules first.</p>';return;}
+  w.innerHTML=S.picked.map(id=>{
+    const p=PILLARS.find(x=>x.id===id);
+    const r=S.rules[id];
+    const best=S.shelf.filter(s=>s.pil&&s.pil.includes(id)&&!s.missing);
+    const miss=S.shelf.find(s=>s.missing);
+    return `<div class="rule">
+      <div class="pn">${p.name}</div>
+      ${r&&r.locked?`<div class="plate now"><div class="draft">Your rule</div><div class="txt">${esc(r.current)}</div></div>`
+        :'<p class="locked-note">No locked rule yet.</p>'}
+      <label class="f">The best one. Which story does this pillar best, and how it pulls it off. Clean up what you wrote in Part 3 so it makes sense to somebody who wasn't there.</label>
+      <textarea data-k="best_${id}" placeholder="${best.length?'On your shelf: '+best.map(b=>esc(b.title||'untitled')).join(', '):'Nothing on the shelf is tagged to this pillar yet.'}">${esc(f('best_'+id))}</textarea>
+      <label class="f">The one that's missing it. ${miss?'On your shelf: '+esc(miss.title||'untitled')+'.':''} What does that story lose, and what does losing it prove?</label>
+      <textarea data-k="missing_${id}">${esc(f('missing_'+id))}</textarea>
+    </div>`;
+  }).join('');
+  bindAll(w);
+}
+
+/* ---- stats ---- */
+function stats(){
+  g('sPil').textContent=S.picked.length;
+  g('sRul').textContent=S.picked.filter(id=>S.rules[id]&&S.rules[id].locked).length;
+  g('sShe').textContent=S.shelf.length;
+  g('sLog').textContent=S.log.length;
+}
+
+/* ---- export ---- */
+function markdown(){
+  let o='# Story Pillars: Series Bible\n\n';
+  o+='## Part 0: The Taming of the Drew\n\n';
+  DREW.forEach(([label,k])=>{
+    o+=`**${label}**\n\nSurvived: ${f('d_'+k+'_a')||'(blank)'}\n\nWhat was lost: ${f('d_'+k+'_b')||'(blank)'}\n\n`;
+  });
+  o+=`**What was the hardest part to put in a book for teenagers?**\n\n${f('q1')||'(blank)'}\n\n`;
+  o+=`**What got flipped instead of cut?**\n\n${f('q2')||'(blank)'}\n\n`;
+  o+=`**What does Strohm gain and risk by keeping the play inside the book?**\n\n${f('q3')||'(blank)'}\n\n`;
+  o+=`**Where else have I seen these moves?**\n\n${f('brainstorm')||'(blank)'}\n\n`;
+  o+='## Part 1: My two pillars\n\n';
+  o+=S.picked.map(id=>'- '+PILLARS.find(p=>p.id===id).name).join('\n')+'\n\n';
+  o+=`**Why these two belong together**\n\n${f('whyPillars')||'(blank)'}\n\n`;
+  o+=`**The closest call among the three I rejected**\n\n${f('closeCall')||'(blank)'}\n\n`;
+  o+='## Part 2: My rules\n\n';
+  S.picked.forEach(id=>{
+    const p=PILLARS.find(x=>x.id===id),r=S.rules[id];
+    o+=`### ${p.name}\n\n`;
+    if(r&&r.locked){
+      o+=`**First draft (locked ${r.at})**\n\n${r.draft}\n\n`;
+      if(r.current!==r.draft)o+=`**Current rule**\n\n${r.current}\n\n`;
+    }else o+='(not locked yet)\n\n';
+  });
+  o+='## Part 3: My shelf\n\n';
+  S.shelf.forEach(s=>{
+    o+=`### ${s.title||'(untitled)'} (${s.type})\n\n`;
+    if(s.pil&&s.pil.length)o+=`Pillars: ${s.pil.map(id=>PILLARS.find(p=>p.id===id).name).join(', ')}\n\n`;
+    o+=`**Where exactly**\n\n${s.where||'(blank)'}\n\n**How it pulls it off**\n\n${s.how||'(blank)'}\n\n`;
+    if(s.missing)o+=`**Missing a pillar**\n\n${s.missWhy||'(blank)'}\n\n`;
+  });
+  o+='## Revision log\n\n';
+  if(!S.log.length)o+='(no entries)\n\n';
+  S.log.forEach(e=>{o+=`**${e.pillar}**, broken by ${e.broke} on ${e.at}\n\nWas: ${e.was}\n\nNow: ${e.now}\n\n`});
+  o+='## Part 4: The bible\n\n';
+  S.picked.forEach(id=>{
+    const p=PILLARS.find(x=>x.id===id),r=S.rules[id];
+    o+=`### ${p.name}\n\n**The rule**\n\n${r&&r.locked?r.current:'(not locked)'}\n\n`;
+    o+=`**The best one**\n\n${f('best_'+id)||'(blank)'}\n\n`;
+    o+=`**The one that's missing it**\n\n${f('missing_'+id)||'(blank)'}\n\n`;
+  });
+  o+=`## The arc\n\n${f('arc')||'(blank)'}\n`;
+  return o;
+}
+g('copyBtn').onclick=async()=>{
+  const md=markdown(),m=g('copyMsg');
+  try{await navigator.clipboard.writeText(md);m.textContent='Copied. Paste it into your Google Doc.';}
+  catch(e){
+    const t=document.createElement('textarea');t.value=md;document.body.appendChild(t);
+    t.select();document.execCommand('copy');t.remove();
+    m.textContent='Copied. Paste it into your Google Doc.';
+  }
+  setTimeout(()=>m.textContent='',4000);
+};
+
+/* ---- nav highlight ---- */
+const links=[...document.querySelectorAll('#nav a')];
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));
+  }});
+},{rootMargin:'-20% 0px -70% 0px'});
+['p0','p1','p2','p3','p4'].forEach(id=>obs.observe(g(id)));
+
+/* ---- boot ---- */
+drew();pillars();rules();logView();shelf();bible();
+bindAll(document);
+g('arcWrap').hidden=!S.fields.arcTalked;
+stats();
+</script>
+</body>
+</html>

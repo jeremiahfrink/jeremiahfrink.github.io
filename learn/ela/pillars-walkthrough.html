@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Pillars: Walkthrough</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#132947;--navy-deep:#0D1C32;--navy-soft:#2A4568;
+  --teal:#17877F;--teal-light:#D3E8E5;
+  --amber:#C8741A;--amber-light:#FBECD9;
+  --field:#F1F4F8;--paper:#FFFFFF;
+  --ink:#1A2433;--ink-soft:#54637A;--line:#D4DCE6;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--field);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+.masthead{background:var(--navy);color:#fff;padding:30px 0 28px}
+.masthead h1{font-weight:700;font-size:clamp(26px,4.5vw,38px);letter-spacing:-0.02em;margin:0 0 8px;line-height:1.1}
+.masthead p{color:#A9C0DC;font-size:16px;margin:0;max-width:56ch}
+.back{display:inline-block;color:#fff;background:var(--teal);text-decoration:none;font-size:14.5px;font-weight:500;padding:8px 14px;border-radius:3px;margin-top:20px}
+.back:hover{background:#12706A}
+.guard{background:var(--amber-light);border-left:4px solid var(--amber);padding:18px 20px;margin:28px 0}
+.guard p{margin:0 0 10px;max-width:64ch}
+.guard p:last-child{margin:0}
+h2{font-size:clamp(21px,3.3vw,27px);font-weight:700;letter-spacing:-0.015em;margin:46px 0 6px;line-height:1.2}
+h3{font-size:18px;font-weight:700;margin:28px 0 8px}
+p{margin:0 0 14px;max-width:68ch}
+em.t{font-style:italic}
+.stage{font-size:13px;font-weight:700;color:var(--teal);letter-spacing:0.04em;margin-top:46px}
+.pn{font-family:"DM Serif Display",Georgia,serif;font-size:24px;line-height:1.2;margin:0 0 6px}
+.plate{background:var(--navy);color:#fff;padding:16px 18px;border-left:4px solid var(--amber);margin:14px 0}
+.plate.now{border-left-color:var(--teal)}
+.plate .lab{font-size:12.5px;color:var(--amber);margin-bottom:6px;font-weight:500}
+.plate.now .lab{color:#7FD3CB}
+.plate .txt{font-size:17px;line-height:1.5}
+.soft{background:var(--paper);border:1px solid var(--line);border-left:4px solid #B7C2D1;padding:14px 17px;margin:14px 0;color:var(--ink-soft)}
+.soft .lab{font-size:12.5px;font-weight:500;margin-bottom:5px;color:#8392A8}
+.item{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--teal);padding:16px 18px;margin:16px 0}
+.item.game{border-left-color:var(--amber)}
+.item.miss{border-left-color:#B7C2D1}
+.item .ttl{font-size:18px;font-weight:700;margin-bottom:2px}
+.item .kind{font-size:13.5px;color:var(--ink-soft);margin-bottom:12px}
+.item .fl{font-size:14px;font-weight:500;color:var(--ink-soft);margin:14px 0 3px}
+.item p{margin:0 0 10px}
+.verdict{display:inline-block;font-size:13.5px;font-weight:500;padding:4px 10px;border-radius:3px;margin-bottom:10px}
+.verdict.pass{background:var(--teal-light);color:#0E5F59}
+.verdict.broke{background:var(--amber-light);color:#8A4E0E}
+.verdict.gone{background:#E6EBF1;color:var(--ink-soft)}
+.logentry{background:var(--navy-deep);color:#fff;padding:16px 18px;margin:16px 0}
+.logentry .was{color:#8FA9C9;text-decoration:line-through;font-size:15px}
+.logentry .broke{color:var(--amber);font-size:14px;margin:6px 0}
+.logentry .now{font-size:16.5px}
+details{background:var(--paper);border:1px solid var(--line);margin:14px 0}
+summary{padding:14px 17px;cursor:pointer;font-weight:500;font-size:16px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--teal);font-weight:700}
+details[open] summary::before{content:"– "}
+details[open] summary{border-bottom:1px solid var(--line)}
+.dbody{padding:4px 17px 16px}
+.dbody p{margin:12px 0}
+.note{background:var(--paper);border-left:4px solid var(--teal);padding:15px 18px;margin:18px 0}
+.note p:last-child{margin-bottom:0}
+footer{padding:36px 0 50px;color:var(--ink-soft);font-size:15px}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>Walkthrough</h1>
+    <p>The whole job done once, start to finish, so you can see the shape of it before you do your own.</p>
+    <a class="back" href="pillars.html">Back to your series bible</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="guard">
+  <p><strong>Read this bit first.</strong> This walkthrough uses two pillars that are <strong>not on your list of five</strong>. That is on purpose. You can watch every move happen on stories you already know, and none of the answers are any use to you, because you can't pick these pillars.</p>
+  <p>It also uses <em class="t">Gilgamesh</em> and <em class="t">Journey</em>, which are still free for your shelf. Seeing what <em class="t">Gilgamesh</em> does with one pillar tells you nothing about what it does with another.</p>
+</div>
+
+<p class="stage">STAGE 1</p>
+<h2>Picking the two pillars</h2>
+
+<p>Two pillars picked for this walkthrough:</p>
+
+<div class="plate now"><div class="lab">Pillar one</div><div class="txt" style="font-family:'DM Serif Display',Georgia,serif;font-size:22px">The One Who Doesn't Make It</div><div style="margin-top:8px;color:#C9DBF0;font-size:15.5px">The person who travels with you and isn't there at the end.</div></div>
+
+<div class="plate now"><div class="lab">Pillar two</div><div class="txt" style="font-family:'DM Serif Display',Georgia,serif;font-size:22px">The Thing You Can't Bring Back</div><div style="margin-top:8px;color:#C9DBF0;font-size:15.5px">What you go after, actually get, and lose anyway.</div></div>
+
+<h3>Why these two belong together</h3>
+<p>One of them creates a want and the other one refuses it. You lose somebody, so you go after the thing that would undo it, and the thing slips too. That is not two ideas sitting next to each other. That is a shape a player can move through, which is what makes it a series instead of a pile.</p>
+
+<h3>The closest call among the rejected ones</h3>
+<p>The Place That Doesn't Want You almost got in. Both <em class="t">Gilgamesh</em> and <em class="t">Journey</em> are full of landscape that is actively trying to stop you, and it would have been easy to find evidence for.</p>
+<p>It stayed out because it is about scenery, not about a choice somebody makes. The other two argue with each other. A hostile desert doesn't argue with anything. It just sits there being hostile.</p>
+
+<p class="stage">STAGE 2</p>
+<h2>Writing the rule, first draft</h2>
+
+<p>Start with the soft version, so you can see what you are trying to avoid.</p>
+
+<div class="soft">
+  <div class="lab">Soft rule, no good</div>
+  A story with The One Who Doesn't Make It has to have a companion who dies.
+</div>
+
+<p>Why that one is useless: almost every adventure story has somebody die. Nothing fails this. It describes the pillar instead of saying what the story has to <em>do</em>.</p>
+
+<p>Here is the first real attempt:</p>
+
+<div class="plate"><div class="lab">First draft, locked</div><div class="txt">A story using The One Who Doesn't Make It has to give you real time with the companion doing ordinary things before you lose them, so the loss costs you something you actually had.</div></div>
+
+<p>That one can be checked and it can be wrong. Plenty of stories kill off a character you barely met. Those stories now fail the rule, and that is the whole point of writing one.</p>
+
+<p class="stage">STAGE 3</p>
+<h2>Building the shelf</h2>
+
+<div class="item">
+  <div class="ttl">Gilgamesh</div>
+  <div class="kind">Book</div>
+  <span class="verdict pass">Meets the rule</span>
+
+  <div class="fl">Where exactly</div>
+  <p>Gilgamesh and Enkidu meet by wrestling each other in the street. They travel to the Cedar Forest together and kill Humbaba. They kill the Bull of Heaven together. Then the gods decide one of them has to pay for it, and Enkidu is the one who dies.</p>
+
+  <div class="fl">How it pulls it off</div>
+  <p>Proportion. The poem spends roughly its first half on the friendship and its whole second half on the grief. That ratio is the argument. By the time Enkidu dies you have watched them do everything together, so when Gilgamesh refuses to let anyone bury the body and sits with it until it starts to rot, you understand him instead of judging him.</p>
+  <p>The technique is that the story buys the grief with time. It does not tell you the friendship mattered. It makes you sit through it until it does.</p>
+</div>
+
+<div class="item game">
+  <div class="ttl">Journey</div>
+  <div class="kind">Game</div>
+  <span class="verdict broke">Breaks the rule</span>
+
+  <div class="fl">Where exactly</div>
+  <p>The companion who turns up beside you in the snow on the final climb, and the moment they stop moving and you keep going.</p>
+
+  <div class="fl">Why it breaks the rule</div>
+  <p>The rule says you need real time doing ordinary things together. <em class="t">Journey</em> gives you none of that. You cannot speak to your companion. You don't know who they are and you can't ask. There is no backstory, no conversation, nothing ordinary at all. And losing them still hurts.</p>
+  <p>So the rule is wrong, or at least too narrow.</p>
+
+  <div class="fl">What it does instead</div>
+  <p>It makes you <em>need</em> them. Standing close to your companion recharges your scarf, and the scarf is what lets you fly. Alone, you physically cannot go as far. The attachment isn't built out of knowing them. It is built out of depending on them.</p>
+  <p>That is a completely different technique from the one <em class="t">Gilgamesh</em> uses, and it gets to the same place.</p>
+</div>
+
+<div class="note">
+  <p><strong>This is the moment that matters.</strong> A story you know is good just failed a rule you wrote. You have two choices and you have to pick one out loud.</p>
+  <p>Choice one: <em class="t">Journey</em> isn't using this pillar. Drop it from the shelf. That one is clearly wrong here, because the loss is the most memorable thing in the game.</p>
+  <p>Choice two: the rule was too narrow and the story knows something you didn't. Rewrite it.</p>
+</div>
+
+<div class="plate now"><div class="lab">Rewritten rule</div><div class="txt">A story using The One Who Doesn't Make It has to make you depend on the companion for something you can feel, whether that's shared history or something you literally cannot do without them, so that losing them changes what you are able to do and not just how you feel.</div></div>
+
+<p>The new version covers both. <em class="t">Gilgamesh</em> builds the dependence out of history. <em class="t">Journey</em> builds it out of the scarf. The rule got wider without getting soft, because a story that kills off somebody you never needed still fails it.</p>
+
+<div class="logentry">
+  <div class="was">A story using The One Who Doesn't Make It has to give you real time with the companion doing ordinary things before you lose them, so the loss costs you something you actually had.</div>
+  <div class="broke">Broken by Journey · The One Who Doesn't Make It</div>
+  <div class="now">A story using The One Who Doesn't Make It has to make you depend on the companion for something you can feel, whether that's shared history or something you literally cannot do without them, so that losing them changes what you are able to do and not just how you feel.</div>
+</div>
+
+<p>That log entry is worth more than the rule is. Anybody can write a rule. The entry proves you went and checked.</p>
+
+<div class="item miss">
+  <div class="ttl">The Taming of the Drew</div>
+  <div class="kind">Book</div>
+  <span class="verdict gone">Missing the pillar entirely</span>
+
+  <div class="fl">What's missing</div>
+  <p>Nobody travels with anybody and nobody is lost. There is no companion whose absence changes the ending. The pillar isn't handled badly. It isn't there at all.</p>
+
+  <div class="fl">What the absence proves</div>
+  <p>A comedy makes you a promise that everything is going to be fine. Put a companion in who doesn't make it, and that promise is broken and it stops being the book it was.</p>
+  <p>So the absence isn't an oversight by the author. It is structural. Which tells you something the two good examples couldn't: this pillar isn't just a thing a story can have. It decides what kind of story you are allowed to write once you've used it.</p>
+</div>
+
+<details>
+  <summary>The second pillar, done shorter</summary>
+  <div class="dbody">
+    <div class="pn">The Thing You Can't Bring Back</div>
+    <div class="soft"><div class="lab">Soft rule, no good</div>The character has to fail to get what they want.</div>
+    <p>Useless, because that is just most stories.</p>
+    <div class="plate now"><div class="lab">The rule</div><div class="txt">A story using The Thing You Can't Bring Back has to let the character actually get it and hold it before losing it, so that the loss is something that happened to them rather than something they never reached.</div></div>
+    <p><strong>Gilgamesh, where exactly:</strong> he ties stones to his feet and dives to the bottom of the sea for the plant that makes you young again. He gets it. On the way home he stops to bathe and a snake eats it, sheds its skin, and goes.</p>
+    <p><strong>How it pulls it off:</strong> the story lets him succeed first. If he had simply never found the plant it would be a story about a journey being too hard. Because he held it, it becomes a story about carelessness, and about a universe that is not keeping score in his favour. The whole meaning sits in the gap between having it and having it for good.</p>
+  </div>
+</details>
+
+<p class="stage">STAGE 4</p>
+<h2>The arc</h2>
+
+<p>This is the part that makes it a series bible instead of two essays stapled together.</p>
+
+<p><strong>The shape:</strong> three games, and the player ends every one of them holding less than they started with.</p>
+
+<p>In the first game you travel with somebody and you lose them. In the second you go after the thing that would undo it, and you get it, and it slips. In the third you come home with nothing and have to work out what to do with a life that isn't going to hand it back.</p>
+
+<p><strong>Why this pair makes a series:</strong> the first pillar builds a want and the second pillar refuses it. That refusal is what keeps the player going, because losing something is a reason to chase, and failing to bring it back is a reason to chase harder. By the third game the chasing is the problem, and the player has to notice that themselves.</p>
+
+<p>Two pillars that just sat next to each other, like The One Who Doesn't Make It and The Place That Doesn't Want You, would give you three games with a similar mood. These two give you three games with a direction.</p>
+
+<div class="note">
+  <p><strong>Notice how short that was.</strong> The arc is the hardest thinking in the whole project and it came out to about four paragraphs.</p>
+  <p>That is because it got argued out loud first. Talking is where you find the shape. Writing is just catching what you already said.</p>
+</div>
+
+<h2>What to take from this</h2>
+
+<details>
+  <summary>A rule is good when a story could fail it</summary>
+  <div class="dbody"><p>Both soft rules above sound completely reasonable and sort nothing, because no story fails them. If you can't name a story that would fail your rule, it isn't doing any work yet.</p></div>
+</details>
+
+<details>
+  <summary>Changing your mind is the point, not a mistake</summary>
+  <div class="dbody"><p>The first rule here lasted exactly one story before <em class="t">Journey</em> knocked it over. That's normal, and the log entry is better evidence of thinking than a rule that never got tested.</p><p>What you can't do is quietly widen a rule so something you already liked gets in. Say what broke it and say what you changed.</p></div>
+</details>
+
+<details>
+  <summary>"How does it pull it off" means naming the technique</summary>
+  <div class="dbody"><p><em class="t">Gilgamesh</em> and <em class="t">Journey</em> both make you care about somebody you lose. One does it with proportion, by spending half the poem on the friendship. The other does it with a mechanic, by making your scarf depend on them.</p><p>"It made me sad" is what the story did. "It spent half its length on the friendship before it spent anything on the grief" is how it pulled it off. The second one is the answer.</p></div>
+</details>
+
+<details>
+  <summary>The story that's missing the pillar earns its spot</summary>
+  <div class="dbody"><p><em class="t">The Taming of the Drew</em> has nothing to say about losing a companion, and that's exactly what made it useful. It showed that this pillar changes what genre you're allowed to be in, which neither of the good examples could show on its own.</p></div>
+</details>
+
+<footer>
+  <p><a href="pillars.html" style="color:var(--teal);font-weight:500">Back to your series bible</a></p>
+</footer>
+
+</div>
+</body>
+</html>
