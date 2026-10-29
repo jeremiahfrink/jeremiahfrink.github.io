@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A process for bringing AI into a school district: four strands, five phases, the roll-out, role-based entry points, field examples, and a resource library.">
+<title>District AI Capacity Playbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single scroll with a sticky section bar; the framework grid is the one interactive exhibit, the rest reads top down. */
+:root{
+  --bg:#fbfaf7; --surface:#ffffff; --surface-2:#f1efe9; --fg:#1b2a3a; --muted:#5b6673; --line:#dcd8cf;
+  --navy:#1b2a3a; --navy-ink:#ffffff; --teal:#0f7f8a; --teal-soft:#e2f1f2; --amber:#d9881c; --amber-soft:#fbefd9;
+  --s1:#1f4e79; --s2:#3f7d2c; --s3:#6b3fa0; --s4:#0f7f8a;
+  --display:"Source Serif 4",Georgia,"Times New Roman",serif; --body:"DM Sans",Calibri,"Segoe UI",system-ui,sans-serif;
+  --radius:6px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#111920; --surface:#182330; --surface-2:#1f2c3a; --fg:#eae7e0; --muted:#a7b0b9; --line:#2d3a48;
+  --navy:#0d141c; --navy-ink:#eae7e0; --teal:#3cb5c0; --teal-soft:#153840; --amber:#f0a73a; --amber-soft:#3d2d13;
+  --s1:#6ea3d6; --s2:#7dbb65; --s3:#b08ad8; --s4:#3cb5c0; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#111920; --surface:#182330; --surface-2:#1f2c3a; --fg:#eae7e0; --muted:#a7b0b9; --line:#2d3a48;
+  --navy:#0d141c; --navy-ink:#eae7e0; --teal:#3cb5c0; --teal-soft:#153840; --amber:#f0a73a; --amber-soft:#3d2d13;
+  --s1:#6ea3d6; --s2:#7dbb65; --s3:#b08ad8; --s4:#3cb5c0; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--navy)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,5vw,3.4rem)}
+h2{font-size:clamp(1.6rem,3.2vw,2.2rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem;font-family:var(--body);font-weight:600}
+p{margin:0}
+a{color:var(--teal)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);font-weight:600}
+.lede{font-size:1.15rem;color:var(--muted);max-width:62ch}
+.prose{max-width:66ch}
+.prose p+p{margin-top:.8em}
+section{padding-block:2.5rem}
+section .wrap>h2{margin-bottom:.4rem}
+section .wrap>.lede{margin-bottom:2rem}
+
+/* header + nav */
+header.hero{background:var(--navy);color:var(--navy-ink);padding-block:3.5rem 3rem}
+header.hero .eyebrow{color:var(--amber)}
+header.hero h1{margin:.5rem 0 1rem;max-width:18ch}
+header.hero .lede{color:var(--navy-ink);opacity:.85}
+header.hero .byline{margin-top:2rem;font-size:.9rem;opacity:.75}
+nav.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--navy);color:var(--navy-ink);border-bottom:1px solid rgba(255,255,255,.12)}
+nav.bar .wrap{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none}
+nav.bar a{color:var(--navy-ink);text-decoration:none;font-size:.85rem;font-weight:500;padding:.8rem .7rem;white-space:nowrap;opacity:.8;border-bottom:3px solid transparent}
+nav.bar a:hover,nav.bar a:focus-visible{opacity:1;border-bottom-color:var(--amber);outline:none}
+
+/* why */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:2rem}
+.pillar{padding:1.1rem 1.2rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.pillar .n{font-family:var(--display);font-size:1.6rem;color:var(--amber);line-height:1}
+.pillar h4{margin:.4rem 0 .3rem}
+.pillar p{color:var(--muted);font-size:.95rem}
+.callout{margin-top:2rem;padding:1.2rem 1.4rem;background:var(--teal-soft);border-left:4px solid var(--teal);font-family:var(--display);font-size:1.2rem}
+
+/* policy system */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.three .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem}
+.three .box .eyebrow{color:var(--teal)}
+.three .box h3{margin:.3rem 0 .5rem}
+.three .box p{color:var(--muted);font-size:.95rem}
+.three .box .q{margin-top:.9rem;font-family:var(--display);font-size:1.05rem;color:var(--fg)}
+
+/* framework grid */
+.strands{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2.5rem}
+.strand{padding:1rem 1.1rem;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);border-top:5px solid var(--c)}
+.strand h4{color:var(--c)}
+.strand p{font-size:.92rem;color:var(--muted);margin-top:.3rem}
+.gridwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:.88rem}
+table.matrix th,table.matrix td{border:1px solid var(--line);padding:.6rem .7rem;vertical-align:top;text-align:left}
+table.matrix thead th{background:var(--surface-2);font-weight:600;font-family:var(--body);font-size:.82rem}
+table.matrix thead th small{display:block;font-weight:400;color:var(--muted);margin-top:.15rem}
+table.matrix tbody th{width:170px;font-weight:600;font-family:var(--body);color:var(--c);border-left:4px solid var(--c);font-size:.85rem}
+table.matrix td{color:var(--fg);line-height:1.4}
+.gridnote{font-size:.85rem;color:var(--muted);margin-top:.6rem}
+
+/* phases walkthrough */
+.phase{display:grid;grid-template-columns:200px 1fr;gap:1.5rem;padding:1.6rem 0;border-top:1px solid var(--line)}
+.phase:first-of-type{border-top:none}
+.phase .num{font-family:var(--display);font-size:3rem;color:var(--amber);line-height:1}
+.phase .ph-title{font-family:var(--display);font-size:1.3rem;font-weight:600;margin-top:.2rem}
+.phase .focus{color:var(--muted);font-size:.95rem;margin-top:.3rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.cols ul{margin:.4rem 0 0;padding-left:1.1rem}
+.cols li{margin-bottom:.3rem;font-size:.95rem}
+.cols h4{display:flex;align-items:center;gap:.5rem}
+.tag{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:999px;background:var(--amber-soft);color:var(--amber);font-weight:600}
+.res a{display:block;font-size:.9rem;margin-bottom:.25rem}
+@media (max-width:720px){.cols{grid-template-columns:1fr}}
+
+/* workstreams */
+.streams{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.stream{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem}
+.stream h3{margin-bottom:.5rem}
+.stream p{font-size:.93rem;color:var(--muted)}
+.acc .body ul{padding-left:1.1rem;margin:.6rem 0 0;font-size:.9rem}
+.stream li{margin-bottom:.25rem}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.role{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem;display:flex;flex-direction:column;gap:.5rem}
+.role h3{color:var(--teal)}
+.role p{font-size:.93rem;color:var(--muted)}
+.role .links{margin-top:.3rem;display:flex;flex-direction:column;gap:.3rem;font-size:.9rem}
+.role .links a::before{content:"→ ";color:var(--amber)}
+
+/* scenarios */
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;margin-top:1rem}
+.scen div{background:var(--surface-2);border-radius:var(--radius);padding:.9rem 1rem;font-size:.92rem}
+.scen strong{display:block;margin-bottom:.2rem}
+.themes{columns:2;column-gap:2rem;font-size:.9rem;margin-top:1rem;padding-left:1.2rem}
+@media (max-width:600px){.themes{columns:1}}
+
+/* library */
+.filters{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.filters button{font:inherit;font-size:.85rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.filters button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.8rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem 1rem;display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.card .k{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.card a{font-weight:500;text-decoration:none}
+.card a:hover{text-decoration:underline}
+.card p{font-size:.85rem;color:var(--muted)}
+.card[hidden]{display:none}
+.count{font-size:.85rem;color:var(--muted);margin-bottom:.8rem}
+
+/* views + accordions */
+.view[hidden]{display:none}
+nav.bar a[aria-current="page"]{opacity:1;border-bottom-color:var(--amber)}
+details.acc{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-bottom:.7rem}
+details.acc>summary{list-style:none;cursor:pointer;padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;font-weight:600}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+";margin-left:auto;font-family:var(--display);font-size:1.5rem;color:var(--amber);line-height:1}
+details.acc[open]>summary::after{content:"\2013"}
+details.acc>summary:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+details.acc .body{padding:0 1.2rem 1.2rem}
+details.acc .num{font-family:var(--display);font-size:1.8rem;color:var(--amber);line-height:1;min-width:1.6rem}
+details.acc .sumtext{display:flex;flex-direction:column;gap:.15rem}
+details.acc .sumtext small{font-weight:400;color:var(--muted);font-size:.9rem}
+.picker{display:flex;gap:.4rem;flex-wrap:wrap;margin:1.5rem 0 1rem}
+.picker button{font:inherit;font-size:.85rem;padding:.5rem .9rem;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left}
+.picker button[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.picker button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.picker button b{display:block;font-family:var(--display);font-size:1.1rem}
+.phasefocus{font-family:var(--display);font-size:1.15rem;margin-bottom:1rem;padding:.9rem 1.1rem;background:var(--amber-soft);border-left:4px solid var(--amber)}
+.strand .ph{margin-top:.6rem;font-size:.93rem;color:var(--fg);border-top:1px dashed var(--line);padding-top:.6rem}
+.toolbar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:.8rem}
+.toolbar input{font:inherit;padding:.5rem .8rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--fg);flex:1 1 220px;min-width:0}
+.toolbar input:focus-visible{outline:2px solid var(--amber)}
+.linkbtn{font:inherit;font-size:.85rem;background:none;border:none;color:var(--teal);cursor:pointer;padding:0;text-decoration:underline}
+.fig{margin:1rem 0 0;max-width:100%}.fig img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--radius)}.fig figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem}
+.ex{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--line)}
+.ex:first-child{border-top:none;padding-top:0}
+.ex h5{font-family:var(--body);font-weight:600;font-size:1rem;margin:0 0 .2rem}
+.ex .src{display:inline-block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
+.ex .lab{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;display:block;margin-bottom:.2rem}
+.ex p{font-size:.92rem}
+@media (max-width:760px){.ex{grid-template-columns:1fr}}
+.posture{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.5rem 0}
+.posture div{padding:1rem 1.1rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);border-top:4px solid var(--teal)}
+.posture h4{margin-bottom:.3rem}
+.posture p{font-size:.92rem;color:var(--muted)}
+.seq{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.seq div{padding:1rem;background:var(--amber-soft);border-radius:var(--radius)}
+.seq b{font-family:var(--display);font-size:1.2rem;display:block;color:var(--amber)}
+.seq p{font-size:.92rem}
+footer{padding-block:2.5rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">A practical playbook for school districts</div>
+    <h1>Building District Capacity for AI</h1>
+    <p class="lede">A process for bringing AI into a district responsibly: what to build, in what order, and the toolkits and resources that support each step. Built from work with district leaders, task forces, and professional learning teams.</p>
+    <p class="byline">Jeremiah Okal-Frink, PhD · Impact Edvisors</p>
+  </div>
+</header>
+<nav class="bar" aria-label="Sections">
+  <div class="wrap">
+    <a href="#why" data-view="why">Why</a><a href="#system" data-view="system">Policy is not the system</a><a href="#framework" data-view="framework">Strands and phases</a><a href="#rollout" data-view="rollout">The roll-out</a><a href="#workstreams" data-view="workstreams">Work areas</a><a href="#roles" data-view="roles">By role</a><a href="#examples" data-view="examples">Field examples</a><a href="#scenarios" data-view="scenarios">Scenarios</a><a href="#library" data-view="library">Resource library</a>
+  </div>
+</nav>
+
+<section id="why" class="view">
+  <div class="wrap">
+    <h2>Why this matters now</h2>
+    <p class="lede">AI is already in classrooms, offices, and homes. The question for a district is no longer whether to respond but how to build the capacity to respond well.</p>
+    <div class="prose">
+      <p>Students and staff are using AI at near universal rates, often without shared expectations. Bans have given way to guidance in most places, and higher education now expects students to arrive with AI literacy and explicit citation habits. At the same time, state and federal rules keep shifting, and vendors keep adding AI to tools districts already own.</p>
+      <p>There is a finite window to shape how AI enters education so that it is guided by human values like equity and inclusion, not only by the market. Across many district engagements, the same lessons keep showing up.</p>
+    </div>
+    <div style="margin-top:2rem">
+<details class="acc"><summary><span class="sumtext"><span>The evolving landscape: global to educational</span><small>What is happening in AI, how it reaches the educational ecosystem, and what leaders need to do about it.</small></span></summary><div class="body"><figure class="fig"><img src="img/landscape.jpg" alt="Infographic in four columns: global AI news, AI in the United States, impacts on the educational ecosystem, and what leaders need to do." loading="lazy"></figure><figure class="fig"><img src="img/time-to-lead.jpg" alt="Slide: Time to Lead, a finite window of opportunity, and three core literacies: conceptual, critical, and creative." loading="lazy"></figure></div></details>
+<details class="acc" open><summary><span class="sumtext"><span>What the work has shown</span><small>Six lessons from use cases, professional learning, district work, and implementation support.</small></span></summary><div class="body"><figure class="fig"><img src="img/what-the-work-has-shown.jpg" alt="Six lessons: AI implementation is not a technology rollout; capacity has to be role based; guidance has to become usable practice; use cases turn vision into action; professional learning must go beyond tools; sustainability comes from routines." loading="lazy"></figure><details class="acc" style="margin-top:1rem"><summary>Read the six lessons as text</summary><div class="body"><div>
+      <details class="acc"><summary><span class="num">1</span>AI implementation is not a technology roll-out</summary><div class="body" style="color:var(--muted)">It is a people, practice, and capacity challenge.</div></details>
+      <details class="acc"><summary><span class="num">2</span>Capacity has to be role based</summary><div class="body" style="color:var(--muted)">Leaders, coaches, teachers, students, and families need different supports.</div></details>
+      <details class="acc"><summary><span class="num">3</span>Guidance has to become usable practice</summary><div class="body" style="color:var(--muted)">Policies need examples, scenarios, routines, and decision tools.</div></details>
+      <details class="acc"><summary><span class="num">4</span>Use cases turn vision into action</summary><div class="body" style="color:var(--muted)">They move a district from "AI is everywhere" to "here is what we are changing."</div></details>
+      <details class="acc"><summary><span class="num">5</span>Professional learning must go beyond tools</summary><div class="body" style="color:var(--muted)">The real work is judgment, task design, evidence, equity, and student thinking.</div></details>
+      <details class="acc"><summary><span class="num">6</span>Sustainability comes from routines</summary><div class="body" style="color:var(--muted)">Coaching, shared resources, leadership check-ins, communication, and reflection build the system.</div></details>
+    </div></div></details></div></details></div>
+    <div class="callout">Build the capacity around the people, not the technology.</div>
+  </div>
+</section>
+
+<section id="system" class="view">
+  <div class="wrap">
+    <h2>Policy is not the whole system</h2>
+    <p class="lede">Many districts stop at a board policy. Policy sets the foundation; governance keeps it accountable and current; guidance makes it usable in daily practice. All three are needed.</p>
+<figure class="fig"><img src="img/policy-not-whole-system.jpg" alt="Policy is not the whole system: board policy sets expectations, governance defines how policy is applied and enforced, guidance turns expectations into practical action." loading="lazy"></figure>
+    <details class="acc" style="margin-top:1.2rem"><summary>Read the three layers and their guiding questions</summary><div class="body">
+    <div class="three">
+      <div class="box"><div class="eyebrow">1</div><h3>Board policy</h3><p>Sets the district's formal expectations, boundaries, and responsibilities.</p><p class="q">What must be true across the district?</p></div>
+      <div class="box"><div class="eyebrow">2</div><h3>Governance</h3><p>Defines how policy is applied, monitored, updated, and enforced.</p><p class="q">Who decides, how are concerns handled, and what happens when policy is not followed?</p></div>
+      <div class="box"><div class="eyebrow">3</div><h3>Guidance, procedures, and supports</h3><p>Turns expectations into practical action for leaders, educators, students, and staff.</p><p class="q">What do people actually do to implement this well?</p></div>
+    </div>
+    </div></details>
+  </div>
+</section>
+
+<section id="framework" class="view">
+  <div class="wrap">
+    <h2>The framework: four strands, five phases</h2>
+    <p class="lede">Strands are the areas of work that must develop in parallel. Phases show how that work matures over time. Together they let a district move with coherence while recognizing that different strands move at different speeds.</p>
+<details class="acc"><summary><span class="sumtext"><span>Four strands of AI integration</span><small>The areas of work that must develop in parallel.</small></span></summary><div class="body"><figure class="fig"><img src="img/four-strands.jpg" alt="Four strands: Policy, Governance and Operations; Professional Learning and AI Literacy; Exploration, Innovation and Instructional Integration; Community Engagement and Outreach." loading="lazy"></figure></div></details>
+<details class="acc"><summary><span class="sumtext"><span>Five phases of AI roll-out</span><small>How the work unfolds over time.</small></span></summary><div class="body"><figure class="fig"><img src="img/five-phases.jpg" alt="Five phases: Awareness and Groundwork; Direction Setting and Guardrails; Early Implementation and Feedback; Broadening Use and System Alignment; Reflection, Refinement and Sustainability." loading="lazy"></figure></div></details>
+<details class="acc"><summary><span class="sumtext"><span>How the framework works</span><small>Strands show what we build. Phases show how the work matures.</small></span></summary><div class="body"><figure class="fig"><img src="img/how-framework-works.jpg" alt="Strands plus phases together form a practical roll-out framework; different strands may move at different speeds." loading="lazy"></figure></div></details>
+    <h3 style="margin-top:2rem">Pick a phase to see what each strand is doing</h3>
+    <div class="picker" id="picker">
+      <button type="button" data-p="0" aria-pressed="true"><b>Phase 1</b>Awareness and Groundwork</button>
+      <button type="button" data-p="1" aria-pressed="false"><b>Phase 2</b>Direction Setting and Guardrails</button>
+      <button type="button" data-p="2" aria-pressed="false"><b>Phase 3</b>Early Implementation and Feedback</button>
+      <button type="button" data-p="3" aria-pressed="false"><b>Phase 4</b>Broadening Use and System Alignment</button>
+      <button type="button" data-p="4" aria-pressed="false"><b>Phase 5</b>Reflection, Refinement and Sustainability</button>
+    </div>
+    <div class="phasefocus" id="phasefocus"></div>
+    <div class="strands">
+      <div class="strand" style="--c:var(--s1)"><h4>Policy, Governance and Operations</h4><p>Formal expectations, decision structures, risk management, and operational systems for responsible AI use.</p><div class="ph" data-s="0"></div></div>
+      <div class="strand" style="--c:var(--s2)"><h4>Professional Learning and AI Literacy</h4><p>Shared understanding, ethical practice, and AI fluency. Starts with leaders and educators, then expands outward.</p><div class="ph" data-s="1"></div></div>
+      <div class="strand" style="--c:var(--s3)"><h4>Exploration, Innovation and Instructional Integration</h4><p>Hands-on use. Educators first, then pilots with students, with cycles of reflection.</p><div class="ph" data-s="2"></div></div>
+      <div class="strand" style="--c:var(--s4)"><h4>Community Engagement and Outreach</h4><p>Transparency, trust, and shared language with families, boards, and the wider community.</p><div class="ph" data-s="3"></div></div>
+    </div>
+    <details class="acc"><summary>See the full strand by phase grid</summary><div class="body">
+    <div class="gridwrap">
+      <table class="matrix">
+        <thead><tr>
+          <th>Strand</th>
+          <th>Phase 1<small>Awareness and Groundwork</small></th>
+          <th>Phase 2<small>Direction Setting and Guardrails</small></th>
+          <th>Phase 3<small>Early Implementation and Feedback</small></th>
+          <th>Phase 4<small>Broadening Use and System Alignment</small></th>
+          <th>Phase 5<small>Reflection, Refinement and Sustainability</small></th>
+        </tr></thead>
+        <tbody>
+          <tr style="--c:var(--s1)"><th>Policy, Governance and Operations</th><td>Initiate readiness audits, define working groups, begin AUP and policy review, clarify legal and ethical guidance</td><td>Draft new or revised policies (AUP, academic integrity, AI use), begin legal and board input, start scenario planning</td><td>Finalize and approve policies; publish guidance documents with examples and scenarios</td><td>Embed into district processes (tool vetting, risk review, onboarding); begin monitoring and revision cycles</td><td>Refine based on use data and feedback; revisit risk assessments and ethical guardrails</td></tr>
+          <tr style="--c:var(--s2)"><th>Professional Learning and AI Literacy</th><td>Launch awareness PD for leaders and educators; build shared language; introduce ethical use</td><td>Provide deeper PD; design tiered supports by role; introduce early student AI literacy goals</td><td>Scale role-specific PD; students begin early AI literacy work in class; expand ethics focus</td><td>Integrate AI literacy into curriculum and digital citizenship; offer self-paced PD; deepen student and family understanding</td><td>Evaluate growth and gaps; build long-term AI fluency goals for all roles; support a learning culture</td></tr>
+          <tr style="--c:var(--s3)"><th>Exploration, Innovation and Instructional Integration</th><td>Identify existing use cases and early adopters; form an exploratory working group; no formal pilots yet</td><td>Educators explore AI in their professional workflow; small-group planning for instructional pilots begins</td><td>Run pilot projects with reflection; support collaborative planning and review of outcomes</td><td>Expand AI-integrated practices across content areas and grade levels; collect models and exemplars</td><td>Institutionalize effective practices; build coaching and support networks; share externally</td></tr>
+          <tr style="--c:var(--s4)"><th>Community Engagement and Outreach</th><td>Minimal external communication; identify key parent and stakeholder groups and concerns</td><td>Draft key messaging and FAQs; prepare communications based on district values and direction</td><td>Launch communications to families and the public about goals, practices, and protections; offer intro sessions for parents</td><td>Build a proactive communication rhythm; highlight student and educator work; strengthen parent partnership</td><td>Continue family and community engagement; gather feedback; build transparency into ongoing AI evolution</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="gridnote">Source: the strands and phases planning document developed with a large urban district in New York, also included in the AI Task Force Toolkit.</p>
+    </div></details>
+  </div>
+</section>
+
+<section id="rollout" class="view">
+  <div class="wrap">
+    <h2>The roll-out, phase by phase</h2>
+    <p class="lede">Districts do not need to do everything at once. Open a phase to see what to do, who is involved, and which toolkits support the work. Phases 1 through 3 are where most districts spend their first year.</p>
+    <p style="margin-bottom:1rem"><button type="button" class="linkbtn" data-toggle="#rollout">Expand all phases</button></p>
+
+    <details class="acc" open><summary><span class="num">1</span><span class="sumtext"><span>Awareness and Groundwork</span><small>Build internal understanding, lay foundational plans, and surface what is already happening.</small></span></summary><div class="body"><div class="cols">
+        <div><h4>What to do</h4><ul>
+          <li>Run an AI readiness assessment: survey staff, inventory tools already in use, and review current policy. Summarize findings for leadership.</li>
+          <li>Charter an AI task force or policy and ethics working group with cross-role membership (leaders, teachers, instructional technology, IT, counsel, a board liaison).</li>
+          <li>Hold a launch session: orientation, purpose, and expectations for the development work.</li>
+          <li>Deliver a shared "Basics of AI" session for leaders and the task force so everyone starts from the same language.</li>
+          <li>Identify early adopters and existing use cases across buildings. No formal pilots yet.</li>
+          <li>Begin listing the family and community groups and concerns that will need to be addressed later.</li>
+        </ul></div>
+        <div><h4>Who <span class="tag">lead</span></h4><p style="font-size:.93rem;color:var(--muted)">Superintendent or designee, task force chair, instructional technology lead.</p>
+          <h4 style="margin-top:1rem">Supporting resources</h4><div class="res">
+          <a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0">AI Task Force Toolkit</a>
+          <a href="https://docs.google.com/presentation/d/1a_ZmSG7CgT8SyujWGCodMOT_0UBMtkYq/edit?usp=sharing">Basics of AI presentation</a>
+          <a href="https://www.cgcs.org/genaichecklist">CGCS and CoSN Gen AI Readiness Checklist</a>
+          <a href="https://docs.google.com/spreadsheets/d/17gKqhIRPsW6FkQWU9XAm25Tru1m7zWvVxj4XvJ8thgY/edit?usp=sharing">AI Tools Being Used in Education (inventory starter)</a>
+        </div></div></details>    </div>
+
+    <details class="acc"><summary><span class="num">2</span><span class="sumtext"><span>Direction Setting and Guardrails</span><small>Set boundaries, formalize direction, and support deeper understanding.</small></span></summary><div class="body"><div class="cols">
+        <div><h4>What to do</h4><ul>
+          <li>Hold a collaborative visioning session: local principles, policy purpose, and scope. Write a district position statement on AI.</li>
+          <li>Curate and annotate sample policies and guidance from other districts and states, then co-develop a policy and guidance framework naming the required components.</li>
+          <li>Draft the key artifacts: AUP addendum, usage guidelines for staff and students, data rules (what may and may not be entered into AI tools), and scenario-based guidance.</li>
+          <li>Run two draft review and scenario-building sessions with the task force to work through gray areas and edge cases.</li>
+          <li>Define the AI tool vetting process (privacy, technical, instructional, risk review) and start an approved tools list.</li>
+          <li>Begin deeper professional learning for the development group and start designing role-based supports. Draft family messaging and FAQs.</li>
+        </ul></div>
+        <div><h4>Who <span class="tag">lead</span></h4><p style="font-size:.93rem;color:var(--muted)">Task force, curriculum and instruction, IT and data privacy, legal counsel, board policy committee.</p>
+          <h4 style="margin-top:1rem">Supporting resources</h4><div class="res">
+          <a href="https://docs.google.com/document/d/1kX_xjbqGURkaqSB9fobOD-z1RHlSbGm2/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Governance and Guidance (draft)</a>
+          <a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0">Task Force Toolkit: Draft Guidance, Tool Selection and Data Privacy sections</a>
+          <a href="https://docs.google.com/presentation/d/120B6dgjdqlgVAW6qgGrq1QTQzF8NpexGueLqwlcy0go/edit#slide=id.g2de47de721f_0_44">AI Student Guideline Examples</a>
+          <a href="https://www.teachai.org/toolkit">TeachAI AI Guidance for Schools Toolkit</a>
+          <a href="https://www.aiforeducation.io/ai-resources/state-ai-guidance">State AI guidance listing (AI for Education)</a>
+        </div></div></details>    </div>
+
+    <details class="acc"><summary><span class="num">3</span><span class="sumtext"><span>Early Implementation and Feedback</span><small>Move from planning to practice in controlled, supported ways.</small></span></summary><div class="body"><div class="cols">
+        <div><h4>What to do</h4><ul>
+          <li>Finalize and approve policy. Publish guidance with worked examples and the core scenarios.</li>
+          <li>Train the trainers: a full-day session for instructional technology facilitators and coaches to review guidance and build deployment materials for their buildings.</li>
+          <li>Give site and department leaders short recorded microlearning sessions plus a working session on localizing implementation.</li>
+          <li>Launch foundational professional learning for all staff: responsible use, evaluating AI output, and the district guidance. Record completion before tool access.</li>
+          <li>Run instructional pilots with a reflection cycle. Capture use cases and effective prompts.</li>
+          <li>Launch family communication: what AI is, how students may use it, how data is protected, the approved tools list. Offer intro sessions for parents.</li>
+          <li>Share a project resource hub so staff can find everything in one place.</li>
+        </ul></div>
+        <div><h4>Who <span class="tag">lead</span></h4><p style="font-size:.93rem;color:var(--muted)">Instructional technology facilitators, building leaders, professional learning team, communications.</p>
+          <h4 style="margin-top:1rem">Supporting resources</h4><div class="res">
+          <a href="https://docs.google.com/document/d/1xNlKwJYA3AYb1xfHsj4QEsBujxDdKLRn/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Leader Toolkit</a>
+          <a href="https://docs.google.com/document/d/1ZUVuypiItNZV2SjNp_NncyjIST6QMZDh/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Teacher Toolkit</a> <a href="https://www.impactedvisors.org/projects/bps/toolkit-teacher.html">(district site built from it)</a>
+          <a href="https://docs.google.com/document/d/1d34wRvqEBXWonGZsBPCjKG28L4J06ylK/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">AI Literacy Framework for Teachers</a>
+          <a href="https://www.impactedvisors.org/assets/UsingAIasaTeacher.html">Thinking, Designing, and Planning with AI: Teacher Guide</a>
+          <a href="https://docs.google.com/document/d/1Z871GpuPpCIgLfZjLVabMpY3dkb_E_03fnSLAg_Ny8k/edit?tab=t.0#heading=h.pf9m7maiugeq">Design Challenge Guide: Automating a Teacher or Student Task</a>
+        </div></div></details>    </div>
+
+    <details class="acc"><summary><span class="num">4</span><span class="sumtext"><span>Broadening Use and System Alignment</span><small>Support widespread use with coherence, resources, and accountability.</small></span></summary><div class="body"><div class="cols">
+        <div><h4>What to do</h4><ul>
+          <li>Embed AI into standing processes: tool vetting requests, risk review, new staff onboarding.</li>
+          <li>Integrate AI literacy into curriculum and digital citizenship. Set a teacher competency expectation that is simple, practical, and non-evaluative.</li>
+          <li>Offer self-paced modules and leader-specific learning alongside coaching cycles.</li>
+          <li>Expand AI-integrated practice across content areas and grade levels. Collect exemplars and use cases.</li>
+          <li>Build a communication rhythm with families that highlights student and educator work.</li>
+        </ul></div>
+        <div><h4>Who <span class="tag">lead</span></h4><p style="font-size:.93rem;color:var(--muted)">Curriculum leaders, coaches, instructional technology, communications.</p>
+          <h4 style="margin-top:1rem">Supporting resources</h4><div class="res">
+          <a href="https://docs.google.com/document/d/1EHhGYn1jVhKAOx8j5X116j9jkNFN06CS/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">AI Literate Educator Continuum (UNESCO based)</a>
+          <a href="https://drive.google.com/drive/folders/15ySxK9FCPcdnw4DtroBTmvRcDwqd4TCX?usp=sharing">ISTE AI Guides and lessons (Drive folder)</a>
+          <a href="https://ai4k12.org/gradeband-progression-charts/">AI4K12 grade band progression charts</a>
+          <a href="https://docs.google.com/presentation/d/1twGgP1tcxhc_vQBIh5l3dEzW-Agx_Nhs3R9bO9rFPfM/edit?usp=sharing">13 Scenarios of AI in Student Coursework</a>
+        </div></div></details>    </div>
+
+    <details class="acc"><summary><span class="num">5</span><span class="sumtext"><span>Reflection, Refinement and Sustainability</span><small>Ensure long-term growth, equity, and responsible evolution.</small></span></summary><div class="body"><div class="cols">
+        <div><h4>What to do</h4><ul>
+          <li>Hold a reflection and revision session with the task force after the first implementation cycle. Gather feedback and lessons learned.</li>
+          <li>Review tools annually for privacy and effectiveness. Revisit risk assessments and guardrails using real use data.</li>
+          <li>Evaluate growth and gaps against the educator continuum. Set long-term AI fluency goals for every role.</li>
+          <li>Institutionalize what works: coaching networks, shared prompt banks, a cadence for leadership check-ins.</li>
+          <li>Keep family and community engagement going and make the evolution of AI use transparent.</li>
+        </ul></div>
+        <div><h4>Who <span class="tag">lead</span></h4><p style="font-size:.93rem;color:var(--muted)">Cabinet, task force, data and assessment, professional learning.</p>
+          <h4 style="margin-top:1rem">Supporting resources</h4><div class="res">
+          <a href="https://docs.google.com/document/d/1bTo2fIDtb66F0OJIZCEnDRIbq9g0kkUe/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Scaling Plan (multi-year)</a>
+          <a href="https://www.cosn.org/wp-content/uploads/2024/04/Cosn_CGCS-K-12-Gen-AI-Maturity-Tool-Conference.pdf">CoSN and CGCS Gen AI Maturity Tool</a>
+          <a href="https://datadunkers.ca/events/iste26.html">AI professional learning design session</a>
+        </div></div></details>    </div>
+<details class="acc" style="margin-top:1.5rem"><summary><span class="sumtext"><span>Example: one district's blueprint</span><small>How a large urban district connected policy, professional learning, coaching, and classroom practice.</small></span></summary><div class="body"><figure class="fig"><img src="img/example-district-blueprint.jpg" alt="Example slide: a district blueprint for AI in education. Laying the foundation: equitable AI policy, comprehensive professional development, a unified coaching model. Transforming classrooms: differentiated instruction, student creativity, curriculum and assessment innovation." loading="lazy"><figcaption>Example slide from one district's implementation, shared for illustration.</figcaption></figure></div></details>
+  </div>
+</section>
+
+<section id="workstreams" class="view">
+  <div class="wrap">
+    <h2>The four work areas inside the toolkit</h2>
+    <p class="lede">Within the Policy and Guidance strand, the task force organizes its work into four areas. Each has a "where we are now" check, resources to help, and a planned next steps table the team fills in.</p>
+    <div>
+      <details class="acc"><summary><span class="sumtext"><span>Guidance and guidelines</span><small>Clear expectations and common language for responsible AI use across roles, with examples to reduce gray-area confusion.</small></span></summary><div class="body"><ul><li>Overarching expectations for AI use</li><li>Teacher use: allowed, not allowed, must ensure</li><li>Student use, disclosure, and academic integrity</li><li>Designing assignments: prohibited, limited, with disclosure, encouraged</li><li>Leadership roles and family communication</li></ul></div></details>
+      <details class="acc"><summary><span class="sumtext"><span>Tool selection and data privacy</span><small>How the district reviews and approves AI tools, age considerations, state law alignment, and what data can and cannot be entered.</small></span></summary><div class="body"><ul><li>Tool categories: staff only, instructional for students, operational</li><li>Vetting: privacy and security, technical, instructional, risk, final approval</li><li>Age bands K to 5, 6 to 8, 9 to 12</li><li>Staff and student training before use</li><li>Unapproved tools and ongoing monitoring</li></ul></div></details>
+      <details class="acc"><summary><span class="sumtext"><span>Professional learning</span><small>Training priorities and roll-out supports to build staff readiness and keep implementation consistent across buildings.</small></span></summary><div class="body"><ul><li>Professional learning formats matrix (spark segments to coaching cycles)</li><li>AI Literate Educator Continuum: Acquire, Deepen, Create</li><li>Role-based tracks for leaders, coaches, teachers</li><li>Example roll-out plans and three implementation profiles</li></ul></div></details>
+      <details class="acc"><summary><span class="sumtext"><span>AI with students</span><small>Student expectations, AI literacy supports, and guidance for assignment and assessment design in a world where students have AI access.</small></span></summary><div class="body"><ul><li>Spectrum of opportunities: lesson, routine, event, project, program</li><li>Depth of literacy: swim (all), snorkel (most), scuba (some)</li><li>Digital citizenship competencies</li><li>Student guideline examples and scenario sets</li></ul><figure class="fig"><img src="img/spectrum-of-opportunities.jpg" alt="Spectrum of opportunities for AI literacy: lesson, routine, event, project, program, across K to 12, with equitable access as the core principle." loading="lazy"></figure><figure class="fig"><img src="img/depth-of-ai-literacy.jpg" alt="Depth of AI literacy, Gwinnett County Public Schools: swim (all) understand and can use AI; snorkel (most) proficient users; scuba dive (some) develop AI and solve problems with it." loading="lazy"><figcaption>Depth model from Gwinnett County Public Schools.</figcaption></figure></div></details>
+    </div>
+    <p class="gridnote" style="margin-top:1.2rem">All four areas live in the <a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0">AI Task Force Toolkit</a>, which a district copies and localizes.</p>
+  </div>
+</section>
+
+<section id="roles" class="view">
+  <div class="wrap">
+    <h2>Start from your role</h2>
+    <p class="lede">The same process looks different depending on where you sit. Pick the entry point that matches your seat.</p>
+    <div class="roles">
+      <div class="role"><h3>District leader</h3><details class="acc" style="margin:0"><summary style="padding:.6rem .9rem;font-size:.9rem">Five places leaders engage with AI</summary><div class="body" style="padding:0 .9rem .9rem"><figure class="fig"><img src="img/engaging-as-leader.jpg" alt="Engaging with AI as a leader: instructional practices, equity and access, professional learning and capacity building, ethics and data privacy, operational efficiency, each with a strategy." loading="lazy"></figure></div></details><p>Five places to engage: instructional practices, equity and access, professional learning and capacity, ethics and data privacy, operational efficiency. Your job is the governance layer and the system view across all four strands.</p><div class="links">
+        <a href="https://docs.google.com/document/d/1xNlKwJYA3AYb1xfHsj4QEsBujxDdKLRn/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Leader Toolkit</a>
+        <a href="https://docs.google.com/document/d/1kX_xjbqGURkaqSB9fobOD-z1RHlSbGm2/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Governance and Guidance</a>
+        <a href="https://docs.google.com/document/d/1bTo2fIDtb66F0OJIZCEnDRIbq9g0kkUe/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Scaling Plan</a>
+        <a href="https://www.impactedvisors.org/assets/admin_task_ai_helper.html">Admin Task AI Helper (everyday administrative work)</a>
+      </div></div>
+      <div class="role"><h3>Task force or working group</h3><details class="acc" style="margin:0"><summary style="padding:.6rem .9rem;font-size:.9rem">Leading AI literacy development</summary><div class="body" style="padding:0 .9rem .9rem"><figure class="fig"><img src="img/leading-ai-literacy.jpg" alt="Leading AI literacy development: framework, expectations, connections, progression, and responsibilities." loading="lazy"></figure></div></details><p>Lead AI literacy development: define the framework, expectations by role, connections to other frameworks, progression over time, and who teaches what. Draft and review the guidance, tool vetting, and scenarios.</p><div class="links">
+        <a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0">AI Task Force Toolkit</a>
+        <a href="https://kennedyhq.com/wp/2023/12/21/ai-literacy-framework/">UNESCO adapted AI literacy framework (Kennedy HQ)</a>
+        <a href="https://ai4k12.org/gradeband-progression-charts/">AI4K12 Five Big Ideas</a>
+        <a href="https://docs.google.com/spreadsheets/d/191nh8_kNumjIrqEVV-bnqyHdIyq3GSx1NL1NfLzqXjM/edit?usp=sharing">List of curricular resources</a>
+      </div></div>
+      <div class="role"><h3>Professional learning lead</h3><details class="acc" style="margin:0"><summary style="padding:.6rem .9rem;font-size:.9rem">The future is not prompt engineering</summary><div class="body" style="padding:0 .9rem .9rem"><figure class="fig"><img src="img/not-prompt-engineering.jpg" alt="The future is not prompt engineering. It is problem formation and solution refinement." loading="lazy"></figure></div></details><p>Move staff beyond prompt tips toward problem formation and solution refinement. Use the formats matrix and the educator continuum to design tiered, role-based learning.</p><div class="links">
+        <a href="https://docs.google.com/document/d/1d34wRvqEBXWonGZsBPCjKG28L4J06ylK/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">AI Literacy Framework for Teachers</a>
+        <a href="https://docs.google.com/document/d/1EHhGYn1jVhKAOx8j5X116j9jkNFN06CS/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">AI Literate Educator Continuum</a>
+        <a href="https://docs.google.com/presentation/d/1qiP8XGxbpcfnP44QeFSH0_57uJHxWXGONaxE8OMtPDQ/edit?usp=drivesdk">Prompting with AI (deck)</a>
+        <a href="https://datadunkers.ca/events/iste26.html">AI PL design session</a>
+      </div></div>
+      <div class="role"><h3>Instructional technology and coaches</h3><details class="acc" style="margin:0"><summary style="padding:.6rem .9rem;font-size:.9rem">Roles AI can play</summary><div class="body" style="padding:0 .9rem .9rem"><figure class="fig"><img src="img/roles-of-ai.jpg" alt="Roles of AI: assistant, coach, advisor, collaborator, simulator, critic." loading="lazy"></figure></div></details><p>Support the teacher. Help educators choose the role AI plays (assistant, coach, advisor, collaborator, simulator, critic) and redesign tasks so student thinking stays central.</p><div class="links">
+        <a href="https://docs.google.com/document/d/1ZUVuypiItNZV2SjNp_NncyjIST6QMZDh/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Teacher Toolkit</a>
+        <a href="https://www.impactedvisors.org/assets/UsingAIasaTeacher.html">Thinking, Designing, and Planning with AI</a>
+        <a href="https://www.impactedvisors.org/assets/airole_explorer.html">AI Role Explorer</a>
+        <a href="https://docs.google.com/document/d/1vIJevalMfqUYhB2_k31_K56-eNYxRts7YHlKnPyPf6Q/edit?tab=t.ygfc79qku5us#heading=h.z897xjofcnmk">Feedback and AI</a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="examples" class="view">
+  <div class="wrap">
+    <h2>How education systems are putting AI to work</h2>
+    <p class="lede">Field examples of what other systems have tried, grouped by area. Nearly all are back office and adult facing: the business of running the system. Three commitments show up in every one.</p>
+    <div class="posture"><div><h4>Human centered</h4><p>AI reveals what is in the data; people verify, investigate, and decide.</p></div><div><h4>Governed</h4><p>Every workload enters through an intake path and is measured from the start.</p></div><div><h4>On controlled infrastructure</h4><p>The work runs where the system, not a vendor, holds the data.</p></div></div><p style="margin-bottom:1rem"><button type="button" class="linkbtn" data-toggle="#examples .areas">Expand all areas</button></p><div class="areas"><details class="acc"><summary><span class="sumtext"><span>Operations of the physical system</span><small>Transportation, food, facilities, and assets: the daily business of running a district, with no student-facing technology anywhere.</small></span></summary><div class="body"><div class="ex"><div><h5>A regional collaborative focused on operational AI</h5><span class="src">C21 Canada initiative, 2026</span><span class="lab">What it is</span><p>Twelve Metro Vancouver districts serving nearly three quarters of the province's students built a standing AI network. Published wins include real-time family registration and communication across languages and staff-found payroll improvements.</p></div><div><span class="lab">How it works</span><p>Superintendents attended personally rather than delegating. Deliberately few supported platforms ("when you support everything, you support nothing"). Shared principles, locally led practice.</p></div><div><span class="lab">What it suggests for a district</span><p>Leadership-level attention and governance before scale. A district does not need to invent this structure; a regional service agency or consortium usually already has it.</p></div></div><div class="ex"><div><h5>Device and asset tracking</h5><span class="src">Named by teams at a large urban district, 2025 readiness review</span><span class="lab">What it is</span><p>Manual warranty tracking, named as cumbersome by a district's own service teams.</p></div><div><span class="lab">How it works</span><p>Runs entirely on data the technology office already owns, small in scope, through a governed intake path, measured from the start.</p></div><div><span class="lab">What it suggests for a district</span><p>A modest, universal burden and a low-risk rehearsal of the repeatable process (intake, build, measure, decide) any larger workload will need.</p></div></div><div class="ex"><div><h5>Transportation route intelligence</h5><span class="src">Published examples: Denver; Colorado Springs D11</span><span class="lab">What it is</span><p>AI-generated routing scenarios and vehicle to student matching. Denver modeled the impact of ten school closures. A neighboring district recovered more than 17,000 hours of learning time in one year through on-time arrival.</p></div><div><span class="lab">How it works</span><p>AI produced and scored the scenario space; transportation professionals set parameters and made every call. Co-developed with a vendor rather than bought off the shelf.</p></div><div><span class="lab">What it suggests for a district</span><p>Frame it as recovered learning time, not technology. The first question is discovery: where does the routing data live today, and who controls it?</p></div></div><div class="ex"><div><h5>Food service forecasting and waste intelligence</h5><span class="src">Published examples: Nebraska-Lincoln; Georgia Tech</span><span class="lab">What it is</span><p>One institution cut dining food waste roughly 40 percent; another applied the same tracking to a 53 million dollar in-house operation.</p></div><div><span class="lab">How it works</span><p>Instrument the operation first: continuous waste tracking built the dataset, AI turned it into forecasting, and food service professionals kept all planning authority.</p></div><div><span class="lab">What it suggests for a district</span><p>Higher education numbers do not transfer; the pattern does. Projections stay illustrative until the district's own data speaks.</p></div></div></div></details><details class="acc"><summary><span class="sumtext"><span>Finance, procurement, and legacy modernization</span><small>Solicitations, spend, and the legacy applications running beneath them.</small></span></summary><div class="body"><div class="ex"><div><h5>Legacy modernization, proven in the field</h5><span class="src">Completed work at a large urban district</span><span class="lab">What it is</span><p>A pilot migration of a mainframe application was completed and met its success criteria, with AI accelerating the work.</p></div><div><span class="lab">How it works</span><p>A bounded application, chosen deliberately. Success criteria defined before work began; engineering owned every decision.</p></div><div><span class="lab">What it suggests for a district</span><p>AI-assisted rewrites are fast to build and hard to maintain without a governed platform and a named owner per workload. The discipline, as much as the technology, made the result credible.</p></div></div><div class="ex"><div><h5>Solicitation drafting with buyers in control</h5><span class="src">Published examples: Jordan District, UT; Equalis Group</span><span class="lab">What it is</span><p>District buyers draft and refine RFP criteria and scopes in minutes instead of hours. A cooperative serving roughly 1,300 districts trained a model on its own solicitation corpus.</p></div><div><span class="lab">How it works</span><p>Human in the loop by design: AI drafts, buyers keep full editorial control and final language. Grounding in institutional documents is what made outputs usable.</p></div><div><span class="lab">What it suggests for a district</span><p>A document-foundation task before it is an AI task, with counsel in the loop throughout. Procurement usually sits outside IT, so plan it as a two-office conversation.</p></div></div></div></details><details class="acc"><summary><span class="sumtext"><span>Documents, compliance, and administrative workflow</span><small>The unstructured paper of public education, where the field evidence and district-named needs line up most densely.</small></span></summary><div class="body"><div class="ex"><div><h5>Compliance documentation and high-volume correspondence</h5><span class="src">Named by teams at a large urban district, 2025 readiness review</span><span class="lab">What it is</span><p>Compliance processes carrying heavy unstructured documentation, produced and managed manually; correspondence on the order of 30,000 items handled by hand.</p></div><div><span class="lab">How it works</span><p>Governed retrieval and drafting over documents the organization owns outright, on infrastructure already in the building, measured from day one.</p></div><div><span class="lab">What it suggests for a district</span><p>The strongest first proving workload: no student records, honest metrics fast, and a full rehearsal of the repeatable process. Set the expectation of workflow proof with real but modest numbers.</p></div></div><div class="ex"><div><h5>Policy consolidation as a byproduct of building</h5><span class="src">C21 Canada initiative: Rainy River DSB, ON</span><span class="lab">What it is</span><p>Building a planning assistant forced consolidation of fragmented policies into one accessible location, a benefit realized before launch.</p></div><div><span class="lab">How it works</span><p>The grounding requirement did the work: to give an AI only vetted documents, the documents first had to be found, reconciled, and organized.</p></div><div><span class="lab">What it suggests for a district</span><p>The preparation an AI workload demands is itself data governance progress. Scope the consolidation into the first workload and the project doubles as records management.</p></div></div><div class="ex"><div><h5>Staff agents inside the organization's own tenant</h5><span class="src">C21 Canada initiative: Foothills SD, AB</span><span class="lab">What it is</span><p>AI agents for staff workflows and family communication; AI-supported triage kept service to families whole through a staffing disruption.</p></div><div><span class="lab">How it works</span><p>Built inside the division's own tenant: a sovereignty decision reached independently, then relied on when operations were strained.</p></div><div><span class="lab">What it suggests for a district</span><p>Where it ran is the transferable choice. Name early that any family-facing communication needs a translation-quality review process.</p></div></div></div></details><details class="acc"><summary><span class="sumtext"><span>Technology operations and cyber</span><small>The technology office's own code, tickets, and alerts. Every workload runs on data the organization already holds, for internal users first.</small></span></summary><div class="body"><div class="ex"><div><h5>Technology operations workloads</h5><span class="src">Named by technology teams at a large urban district, 2025 readiness review</span><span class="lab">What it is</span><p>Code completion and refactoring for developers; ticket volume, time-to-close, and bottleneck analysis with AI-aided queue management; troubleshooting keyed to error codes; AI-enabled security alert triage.</p></div><div><span class="lab">How it works</span><p>Entirely on the technology organization's own code, tickets, and logs, for internal users, with well-established reference implementations.</p></div><div><span class="lab">What it suggests for a district</span><p>Highest readiness in the landscape. Queue analysis is service-improvement analytics, about tickets and never about people. The people who would run every future workload build skills here first.</p></div></div><div class="ex"><div><h5>District-built micro-apps</h5><span class="src">An emerging pattern in the field</span><span class="lab">What it is</span><p>Districts and individual staff increasingly build their own small AI-assisted applications: schedule helpers, form processors, dashboards, created in days rather than procured in months.</p></div><div><span class="lab">How it works</span><p>Fast to build and easy to abandon: typically no security review, no data agreement, no inventory entry, and no owner of record once the builder changes roles.</p></div><div><span class="lab">What it suggests for a district</span><p>Not whether staff build tools, but through what path. Security review, hosting, and inventory are roles a technology office already holds; the intake-and-inventory pattern below is the ready-made answer.</p></div></div></div></details><details class="acc"><summary><span class="sumtext"><span>Analysis and decision support from the system's own data</span><small>The question leadership is ultimately measured on. In every example AI reveals patterns worth investigating and educators verify and decide; rich data is used without any automated determination about any student.</small></span></summary><div class="body"><div class="ex"><div><h5>AI analysis of standardized assessment data</h5><span class="src">C21 Canada initiative: Chinook's Edge SD, AB</span><span class="lab">What it is</span><p>Applied AI to provincial assessment results to surface performance trends for school leadership teams.</p></div><div><span class="lab">How it works</span><p>Accuracy required careful data segmentation, learned iteratively. Vendor privacy limits pushed the work into a controlled server environment.</p></div><div><span class="lab">What it suggests for a district</span><p>Trustworthy analysis needs data organized for the question, and the controlled environment this system reached by necessity is the posture a district should assume by design.</p></div></div><div class="ex"><div><h5>Intervention insight from aggregate data</h5><span class="src">C21 Canada initiative: Dufferin-Peel Catholic DSB, ON</span><span class="lab">What it is</span><p>Reading intervention insight for teachers from aggregate screener patterns, with individual student profiles avoided by design.</p></div><div><span class="lab">How it works</span><p>Co-developed by curriculum, technology, and reading specialists working only on aggregate patterns; instructional expertise owned the design.</p></div><div><span class="lab">What it suggests for a district</span><p>Rich data in and aggregate insight out can coexist, with every action a professional's. Instructional specialists led; one system's related answer was a dedicated data analyst role.</p></div></div><div class="ex"><div><h5>Finding schools that outperform expectations</h5><span class="src">A working example on public, aggregate data</span><span class="lab">What it is</span><p>A model built from public, aggregate school characteristics flags schools exceeding expectations year over year: candidates for investigation, not validated exemplars. No public ranking, no prescribed action.</p></div><div><span class="lab">How it works</span><p>Expectation-versus-actual framing, aggregate inputs only. The design answers who decided, and from what data, before anyone asks.</p></div><div><span class="lab">What it suggests for a district</span><p>Candidates for investigation is the design, not a caveat: the model finds where to look; educators determine what is happening there.</p></div></div></div></details><details class="acc"><summary><span class="sumtext"><span>Knowledge navigation, productivity, and communication</span><small>AI supporting the adults who run the system. Chat is one interface in this area, never the point of the platform.</small></span></summary><div class="body"><div class="ex"><div><h5>A coach for navigating what the system knows</h5><span class="src">A concept to explore</span><span class="lab">What it is</span><p>Two capabilities on one governed foundation: a walled-garden coach grounded only in vetted intervention documentation, offering ideas to consider rather than answers to obey; and guided inquiry, where a leader states what they want to understand and the tool recommends an approach and returns results with visualizations.</p></div><div><span class="lab">How it works</span><p>The credibility reference is StretchAI, launched by ISTE+ASCD in June 2026 after three years of development: walled garden, trained only on vetted research-based publications, role aware.</p></div><div><span class="lab">What it suggests for a district</span><p>The opening question is diagnostic on its own: where does knowledge about interventions live across the district today? In most systems it is scattered, and discovering that is itself a data readiness finding.</p></div></div><div class="ex"><div><h5>A system-owned AI at state scale</h5><span class="src">Published example: a state education department</span><span class="lab">What it is</span><p>A department-built generative AI tool in its own environment: trialed in 16 schools, expanded to 50, rolled out to roughly 100,000 staff after surveys showed workload savings; students later, separately safeguarded.</p></div><div><span class="lab">How it works</span><p>Two disciplines: sovereign hosting from day one (data under departmental control, training no outside models), and expansion gated on evidence at every step, staff before students.</p></div><div><span class="lab">What it suggests for a district</span><p>Evidence for the governed platform, not a case for another chatbot. The staircase scales down as well as up: own staff first, then a small cohort, then everyone, gated on evidence.</p></div></div></div></details><details class="acc"><summary><span class="sumtext"><span>Patterns that apply no matter where the work starts</span><small>Not areas to choose among: how any chosen area runs well.</small></span></summary><div class="body"><div class="ex"><div><h5>Governance grows with the work</h5><span class="src">C21 Canada initiative: Louis Riel SD, MB</span><span class="lab">What it is</span><p>Purpose-built staff agents paired with a full governance build: executive committee, data advisor and champion networks, formal AI guidelines, a data governance charter.</p></div><div><span class="lab">How it works</span><p>Their stated thesis: an AI strategy and a data governance strategy must grow together.</p></div><div><span class="lab">What it suggests for a district</span><p>Governance built alongside the first workloads makes every answer to every community a matter of record rather than reassurance.</p></div></div><div class="ex"><div><h5>Every pilot is measured</h5><span class="src">C21 Canada initiative: Nova Scotia Community College</span><span class="lab">What it is</span><p>A disciplined enterprise pilot of AI productivity tools with pre, mid, and post measurement.</p></div><div><span class="lab">How it works</span><p>Evidence, not enthusiasm, drove the adoption and change management decisions.</p></div><div><span class="lab">What it suggests for a district</span><p>Set criteria together before work begins and measure against the district's own goals. Modest first numbers, honestly reported, are what make the next team join.</p></div></div><div class="ex"><div><h5>Everything is inventoried</h5><span class="src">The intake-to-production path</span><span class="lab">What it is</span><p>Every workload enters through a governed path: a live inventory of what is running, on what data, with what access, and who owns it.</p></div><div><span class="lab">How it works</span><p>Intake, reference architecture, deployment, and measurement as one repeatable path rather than case by case exceptions.</p></div><div><span class="lab">What it suggests for a district</span><p>A durable answer to the questions boards and auditors ask of every public system, and a ready home for the micro-app question. The inventory is part of the work, not overhead on it.</p></div></div></div></details></div><h3 style="margin-top:2rem">Reading the landscape: a sequence, not a menu</h3><p class="lede" style="margin-bottom:0">The most compelling public stories need the most preparation, and the readiest areas tell the quietest stories.</p><div class="seq"><div><b>Prove (now)</b><p>Documents and technology operations: one or two proving workloads on the district's own documents and tickets; the repeatable workflow built and measured in house.</p></div><div><b>Show (next)</b><p>Operations, finance, and procurement: the visible back-office work, where a small group of interested offices can scope data access together.</p></div><div><b>Aim (the destination)</b><p>Analysis and decision support, with knowledge navigation throughout: the district's own data question answered responsibly, on a proven workflow and a governed foundation, with people deciding.</p></div></div><details class="acc" style="margin-top:2rem"><summary><span class="sumtext"><span>Three district implementation profiles</span><small>How different contexts shaped different strategies, and what they share.</small></span></summary><div class="body"><figure class="fig"><img src="img/profile-downstate.jpg" alt="Downstate New York district: guided and cautious implementation. Top-down rollout emphasizing policy and compliance, optional PD, model lessons, comprehensive student protections." loading="lazy"></figure><figure class="fig"><img src="img/profile-regionwide.jpg" alt="Region-wide school board: equity-driven, phased rollout. Three-year plan aligned with UNESCO, a Trailblazers group, baseline expectations for all teachers, feedback loops." loading="lazy"></figure><figure class="fig"><img src="img/profile-rural-suburban.jpg" alt="Rural and suburban school system: empowered exploration with support. Teacher-led experimentation, ongoing PD at the teacher's pace, trained coaches, focus groups and surveys." loading="lazy"></figure><figure class="fig"><img src="img/cross-district-insights.jpg" alt="Cross-district insights: context drives strategy, start small but plan big, balance risk and opportunity with ethics, equity, and voice. Common threads: teacher empowerment, feedback loops, tool quality and guidance. Personalized, productive, protected." loading="lazy"></figure></div></details><p class="gridnote" style="margin-top:1.5rem">Sources: a 2025 AI readiness review at a large urban district; the C21 Canada AI Use Case Initiative (published cases, 2024 to 2026); publicly reported implementations at the named organizations; field observations compiled August 2026. Shared as observations of what others have tried, not prescriptions.</p>
+  </div>
+</section>
+
+<section id="scenarios" class="view">
+  <div class="wrap">
+    <h2>Scenarios: where guidance meets daily practice</h2>
+    <p class="lede">Scenarios are how a task force tests its draft guidance and how staff learn to make consistent decisions in gray areas. The toolkit includes six core scenarios, each with a recommended response and a "better next time," plus 21 broader themes for discussion.</p>
+    <h3>Six core scenarios</h3>
+    <div>
+      <details class="acc"><summary>1. Student uses AI when it was not allowed</summary><div class="body" style="font-size:.95rem">Reflective conversation, revise with approved processes, document with a learning focus. Next time: an AI-use statement on every assignment.</div></details>
+      <details class="acc"><summary>2. Student enters personal information into an AI tool</summary><div class="body" style="font-size:.95rem">Explain the privacy expectation, contact the family, reteach digital safety. Next time: a simple repeated script and tools that block PII.</div></details>
+      <details class="acc"><summary>3. AI generates inaccurate, biased, or inappropriate output</summary><div class="body" style="font-size:.95rem">Do not use it; model critical evaluation; report and document patterns for tool review.</div></details>
+      <details class="acc"><summary>4. Student submits work entirely produced by AI without disclosure</summary><div class="body" style="font-size:.95rem">Oral explanation, structured supports, resubmission with a process log. Next time: checkpoints and reflection prompts.</div></details>
+      <details class="acc"><summary>5. Teacher uses AI in a way that conflicts with district expectations</summary><div class="body" style="font-size:.95rem">Coaching on human review; AI as a draft partner, never the final evaluative word.</div></details>
+      <details class="acc"><summary>6. Approved tool malfunctions during a lesson</summary><div class="body" style="font-size:.95rem">Pause, redirect, capture the issue, report it. Next time: preview tools and keep a backup plan.</div></details>
+    </div>
+    <details class="acc" style="margin-top:1.5rem"><summary><span class="sumtext"><span>21 discussion themes</span><small>Each theme in the toolkit has two scenarios, items to consider, positive angles, stakeholders, and equity considerations.</small></span></summary><div class="body"><ol class="themes">
+      <li>Cheating and academic integrity</li><li>Plagiarism and writing voice</li><li>Bias and hallucinations</li><li>Ethical use and student integrity</li><li>Teacher concerns and perceptions</li><li>Overwhelm and "Big Brother" concerns</li><li>Loss of creativity</li><li>Teacher workload and PD support</li><li>AI replacing critical thinking</li><li>Student data privacy</li><li>Misinformation and AI hallucinations</li><li>Unequal access to AI</li><li>Teacher integrity and professional use</li><li>AI as "the future" vs. real impact</li><li>Fear of surveillance</li><li>Enhancing student learning experiences</li><li>Writing, plagiarism, and student voice</li><li>Atrophy of critical thinking skills</li><li>Policy clarity and consistency</li><li>Leadership communication and public trust</li><li>System implementation and teacher support</li>
+    </ol></div></details>
+    <p style="margin-top:1rem"><a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0">Read all scenarios in the Task Force Toolkit</a> · <a href="https://www.teachai.org/media/ethics_flashcards">TeachAI ethics flashcards</a> · <a href="https://www.canva.com/design/DAGhuS1hJtQ/16tFOUV0kAyg67aFDSNtLg/edit">Activities to support responsible use of AI</a></p>
+  </div>
+</section>
+
+<section id="library" class="view">
+  <div class="wrap">
+    <h2>Resource library</h2>
+    <p class="lede">Everything linked above plus the hands-on tools and external references, in one filterable list.</p>
+    <div class="filters" role="group" aria-label="Filter resources">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="toolkit" aria-pressed="false">District toolkits</button>
+      <button type="button" data-f="framework" aria-pressed="false">Frameworks and policy references</button>
+      <button type="button" data-f="workshop" aria-pressed="false">Workshop materials</button>
+      <button type="button" data-f="try" aria-pressed="false">Try it</button>
+      <button type="button" data-f="tool" aria-pressed="false">Tool directory</button>
+    </div>
+    <div class="toolbar"><input type="search" id="q" placeholder="Search resources by name or description" aria-label="Search resources"><span class="count" id="count" style="margin:0"></span></div>
+    <div class="cards" id="cards">
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0">AI Task Force Toolkit</a><p>Roll-out framework, guidance, tool vetting, professional learning, scenarios.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1kX_xjbqGURkaqSB9fobOD-z1RHlSbGm2/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Governance and Guidance</a><p>Draft administrative guidance a district can adapt.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1xNlKwJYA3AYb1xfHsj4QEsBujxDdKLRn/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Leader Toolkit</a><p>Leadership support toolkit, draft.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1ZUVuypiItNZV2SjNp_NncyjIST6QMZDh/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Teacher Toolkit</a><p>Spring 2026 version. See also the <a href="https://www.impactedvisors.org/projects/bps/toolkit-teacher.html">district website built from it</a>.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1d34wRvqEBXWonGZsBPCjKG28L4J06ylK/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">AI Literacy Framework for Teachers</a><p>Used to develop professional learning with consistency across a district.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1EHhGYn1jVhKAOx8j5X116j9jkNFN06CS/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">AI Literate Educator Continuum</a><p>Based on UNESCO. Acquire, Deepen, Create across four domains.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1bTo2fIDtb66F0OJIZCEnDRIbq9g0kkUe/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true">Example Scaling Plan</a><p>Multi-year district AI planning document.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/presentation/d/1a_ZmSG7CgT8SyujWGCodMOT_0UBMtkYq/edit?usp=sharing&ouid=116098965606763672622&rtpof=true&sd=true">Basics of AI presentation</a><p>Shared starting deck for leaders and staff.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/spreadsheets/d/17gKqhIRPsW6FkQWU9XAm25Tru1m7zWvVxj4XvJ8thgY/edit?usp=sharing">AI Tools Being Used in Education</a><p>Spreadsheet to start a tool inventory.</p></div>
+      <div class="card" data-f="toolkit"><span class="k">Toolkit</span><a href="https://docs.google.com/document/d/1vd6AwgMqbTLkRleDQKKs24BqR9ZQMiiLf-Lzv-G9tNU/edit?usp=sharing">German International School resources</a><p>Example resource set from another system.</p></div>
+
+      <div class="card" data-f="framework"><span class="k">Framework</span><a href="https://kennedyhq.com/wp/2023/12/21/ai-literacy-framework/">UNESCO adapted AI literacy framework (Kennedy HQ)</a></div>
+      <div class="card" data-f="framework"><span class="k">Framework</span><a href="https://ai4k12.org/gradeband-progression-charts/">AI4K12 Five Big Ideas</a><p>Grade band progression charts.</p></div>
+      <div class="card" data-f="framework"><span class="k">Framework</span><a href="https://digitalpromise.org/2024/02/21/revealing-an-ai-literacy-framework-for-learners-and-educators/">Digital Promise AI literacy framework</a></div>
+      <div class="card" data-f="framework"><span class="k">Framework</span><a href="https://www.unesco.org/en/articles/ai-competency-framework-teachers">UNESCO AI competency framework for teachers</a></div>
+      <div class="card" data-f="framework"><span class="k">Policy reference</span><a href="https://www.teachai.org/toolkit">TeachAI AI Guidance for Schools Toolkit</a></div>
+      <div class="card" data-f="framework"><span class="k">Policy reference</span><a href="https://www.cgcs.org/genaichecklist">CGCS and CoSN Gen AI Readiness Checklist</a></div>
+      <div class="card" data-f="framework"><span class="k">Policy reference</span><a href="https://www.aiforeducation.io/ai-resources/state-ai-guidance">State AI guidance listing</a><p>AI for Education.</p></div>
+      <div class="card" data-f="framework"><span class="k">Policy reference</span><a href="https://michiganvirtual.org/resources/guides/ai-guide/">Planning Guide for AI: A Framework for School Districts</a><p>Michigan Virtual, written for any district.</p></div>
+      <div class="card" data-f="framework"><span class="k">Policy reference</span><a href="https://www.ilogroup.com/wp-content/uploads/2024/03/Framework-for-Implementing-Artificial-Intelligence-AI-in-K-12-Education_v1.0.pdf">ILO Group framework for district leaders</a></div>
+      <div class="card" data-f="framework"><span class="k">Policy example</span><a href="https://www.gcpsk12.org/programs-and-services/college-and-career-development/academies-and-career-technical-and-agricultural-education/artificial-intelligence-and-computer-science/guidance-for-human-centered-ai-use">Gwinnett County Public Schools</a><p>Human centered AI guidance and the swim, snorkel, scuba depth model.</p></div>
+      <div class="card" data-f="framework"><span class="k">Policy example</span><a href="https://www.sufferncentral.org/departments/academics/ai-guidelines">Suffern Central School District AI guidelines</a></div>
+      <div class="card" data-f="framework"><span class="k">Policy example</span><a href="https://www.vcsd.k12.ny.us/board-of-education/policies/8636-artificial-intelligence/">Valley Central School District policy 8636</a></div>
+      <div class="card" data-f="framework"><span class="k">Policy example</span><a href="https://www.ocsb.ca/why-ocsb/humane-use-of-technology/artificial-intelligence-at-the-ocsb/">AI parent page example (OCSB)</a></div>
+      <div class="card" data-f="framework"><span class="k">Resource site</span><a href="https://iste.org/ai">ISTE AI resources</a></div>
+      <div class="card" data-f="framework"><span class="k">Resource site</span><a href="https://www.cosn.org/ai/">CoSN AI</a></div>
+
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/document/d/1Z871GpuPpCIgLfZjLVabMpY3dkb_E_03fnSLAg_Ny8k/edit?tab=t.0#heading=h.pf9m7maiugeq">Design Challenge Guide: Automating a Teacher or Student Task</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.youtube.com/watch?v=6LbzOrgUx5Q">TechTip: Understanding Chatbots</a><p>Video, NYSED TRLE.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.youtube.com/watch?v=-gsAAXShMPM">TechTip: Create Your Chatbot</a><p>Video, NYSED TRLE.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.teachai.org/media/ethics_flashcards">AI ethics flashcards</a><p>TeachAI.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.canva.com/design/DAGhuS1hJtQ/16tFOUV0kAyg67aFDSNtLg/edit">Activities to support responsible use of AI</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/document/d/1vIJevalMfqUYhB2_k31_K56-eNYxRts7YHlKnPyPf6Q/edit?tab=t.ygfc79qku5us#heading=h.z897xjofcnmk">Feedback and AI</a><p>Multi-tab doc with additional support and links.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/forms/d/e/1FAIpQLSc_6TTBUBlshd0pfHHb8DkUqLUrTBUUuvHsU4Y62ULl7K1uRA/viewform?usp=dialog">"Is that OK?" check-in form</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/presentation/d/1qiP8XGxbpcfnP44QeFSH0_57uJHxWXGONaxE8OMtPDQ/edit?usp=drivesdk">Prompting with AI</a><p>Problem formation and solution refinement over prompt engineering.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.impactedvisors.org/assets/admin_task_ai_helper.html">Admin Task AI Helper</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.impactedvisors.org/assets/UsingAIasaTeacher.html">Thinking, Designing, and Planning with AI</a><p>Teacher guide.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://www.impactedvisors.org/assets/airole_explorer.html">AI Role Explorer</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/presentation/d/120B6dgjdqlgVAW6qgGrq1QTQzF8NpexGueLqwlcy0go/edit#slide=id.g2de47de721f_0_44">AI Student Guideline Examples</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/presentation/d/1twGgP1tcxhc_vQBIh5l3dEzW-Agx_Nhs3R9bO9rFPfM/edit?usp=sharing">13 Scenarios of AI in Student Coursework</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://drive.google.com/drive/folders/15ySxK9FCPcdnw4DtroBTmvRcDwqd4TCX?usp=sharing">ISTE AI Guides and lessons</a><p>Drive folder. Also at <a href="https://iste.org/ai-lessons">iste.org/ai-lessons</a>.</p></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://drive.google.com/drive/folders/1SDv4B6xV3lqCfm2SeUHP6_1XNIrJBesv?usp=drive_link">ISTE digital citizenship lessons</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://docs.google.com/spreadsheets/d/191nh8_kNumjIrqEVV-bnqyHdIyq3GSx1NL1NfLzqXjM/edit?usp=sharing">List of curricular resources</a></div>
+      <div class="card" data-f="workshop"><span class="k">Workshop</span><a href="https://padlet.com/edvisor/fall-activities-b7kl3hp96puvkzic">Fall activities: image generation</a><p>Padlet board.</p></div>
+
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://quickdraw.withgoogle.com/">Quick, Draw!</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://huggingface.co/spaces/society-ethics/DiffusionBiasExplorer">Diffusion Bias Explorer</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://whichfaceisreal.com/">Which Face is Real</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://readalong.google.com">Read Along</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://experiments.withgoogle.com/semi-conductor">Semi-Conductor</a><p>Google Creative Lab.</p></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://cocodataset.org/#explore">COCO dataset explorer</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://mostlikelymachine.artefactgroup.com/">Most Likely Machine</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://www.autodraw.com/">AutoDraw</a></div>
+      <div class="card" data-f="try"><span class="k">Try it</span><a href="https://teachablemachine.withgoogle.com/">Teachable Machine</a></div>
+
+      <div class="card" data-f="tool"><span class="k">Educator platform</span><a href="https://www.teacherserver.com/">TeacherServer</a></div>
+      <div class="card" data-f="tool"><span class="k">Educator platform</span><a href="https://app.magicschool.ai/tools">MagicSchool AI</a></div>
+      <div class="card" data-f="tool"><span class="k">Educator platform</span><a href="https://www.briskteaching.com/">Brisk Teaching</a></div>
+      <div class="card" data-f="tool"><span class="k">Educator platform</span><a href="https://schoolai.com/">SchoolAI</a></div>
+      <div class="card" data-f="tool"><span class="k">Focused tool</span><a href="https://web.diffit.me/">Diffit</a></div>
+      <div class="card" data-f="tool"><span class="k">Focused tool</span><a href="https://www.almanack.ai/">Almanack</a></div>
+      <div class="card" data-f="tool"><span class="k">Focused tool</span><a href="https://goblin.tools/">Goblin Tools</a></div>
+      <div class="card" data-f="tool"><span class="k">Focused tool</span><a href="https://quizizz.com/">Quizizz</a></div>
+      <div class="card" data-f="tool"><span class="k">Focused tool</span><a href="https://notebooklm.google.com/">NotebookLM</a><p>Google.</p></div>
+      <div class="card" data-f="tool"><span class="k">Image and slides</span><a href="https://www.canva.com/">Canva</a></div>
+      <div class="card" data-f="tool"><span class="k">Image and slides</span><a href="https://www.adobe.com/products/firefly.html">Adobe Firefly</a></div>
+      <div class="card" data-f="tool"><span class="k">Image and slides</span><a href="https://www.craiyon.com/">Craiyon</a></div>
+      <div class="card" data-f="tool"><span class="k">Image and slides</span><a href="https://www.bing.com/images/create?FORM=GENILP">Bing Image Creator</a></div>
+      <div class="card" data-f="tool"><span class="k">Image and slides</span><a href="https://gamma.app/">Gamma</a></div>
+      <div class="card" data-f="tool"><span class="k">Image and slides</span><a href="https://slidesgo.com/">Slidesgo</a></div>
+      <div class="card" data-f="tool"><span class="k">Video</span><a href="https://www.synthesia.io/">Synthesia</a></div>
+      <div class="card" data-f="tool"><span class="k">Video</span><a href="https://lumen5.com/">Lumen5</a></div>
+      <div class="card" data-f="tool"><span class="k">Video</span><a href="https://www.heygen.com/">HeyGen</a></div>
+      <div class="card" data-f="tool"><span class="k">Video</span><a href="https://vids.google.com/">Google Vids</a></div>
+      <div class="card" data-f="tool"><span class="k">Video</span><a href="https://www.canva.com/features/ai-video-generator/">Canva AI video generator</a></div>
+      <div class="card" data-f="tool"><span class="k">Audio</span><a href="https://elevenlabs.io/">ElevenLabs</a></div>
+      <div class="card" data-f="tool"><span class="k">Music</span><a href="https://suno.com/">Suno</a></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Developed by Jeremiah Okal-Frink, PhD, Impact Edvisors. Example documents are drafts developed with partner districts and are shared as starting points, not as policy or legal advice. Resources collected on the <a href="https://padlet.com/edvisor/ai-links-and-resources-for-capacity-building-5e8yfq4r56bsjv28">companion Padlet board</a>.</div></footer>
+
+<script>
+(function(){
+  /* views */
+  var views=['why','system','framework','rollout','workstreams','roles','examples','scenarios','library'];
+  var links=document.querySelectorAll('nav.bar a[data-view]');
+  function show(){
+    var h=(location.hash||'').replace('#','');
+    if(views.indexOf(h)<0)h='why';
+    views.forEach(function(v){document.getElementById(v).hidden=(v!==h);});
+    links.forEach(function(a){if(a.dataset.view===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show);show();
+
+  /* phase picker */
+  var P=[
+    ['Awareness and Groundwork','Build internal understanding, lay foundational plans, and surface what is already happening.'],
+    ['Direction Setting and Guardrails','Set boundaries, formalize direction, and support deeper understanding.'],
+    ['Early Implementation and Feedback','Move from planning to practice in controlled, supported ways.'],
+    ['Broadening Use and System Alignment','Support widespread use with coherence, resources, and accountability.'],
+    ['Reflection, Refinement and Sustainability','Ensure long-term growth, equity, and responsible evolution.']];
+  var rows=document.querySelectorAll('table.matrix tbody tr');
+  var pb=document.querySelectorAll('#picker button'),pf=document.getElementById('phasefocus'),ph=document.querySelectorAll('.strand .ph');
+  function pick(i){
+    pb.forEach(function(b){b.setAttribute('aria-pressed',String(+b.dataset.p===i));});
+    pf.innerHTML='<strong>Phase '+(i+1)+': '+P[i][0]+'.</strong> '+P[i][1];
+    ph.forEach(function(el,s){el.textContent=rows[s].children[i+1].textContent;});
+  }
+  pb.forEach(function(b){b.addEventListener('click',function(){pick(+b.dataset.p);});});
+  pick(0);
+
+  /* expand all */
+  document.querySelectorAll('[data-toggle]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var ds=document.querySelectorAll(btn.dataset.toggle+' details.acc');
+      var open=btn.textContent.indexOf('Expand')===0;
+      ds.forEach(function(d){d.open=open;});
+      btn.textContent=btn.textContent.replace(open?'Expand':'Collapse',open?'Collapse':'Expand');
+    });
+  });
+
+  /* library */
+  var btns=document.querySelectorAll('.filters button'),cards=document.querySelectorAll('#cards .card'),count=document.getElementById('count'),q=document.getElementById('q');
+  var f='all';
+  function apply(){
+    var n=0,t=q.value.trim().toLowerCase();
+    cards.forEach(function(c){var show=(f==='all'||c.dataset.f===f)&&(!t||c.textContent.toLowerCase().indexOf(t)>=0);c.hidden=!show;if(show)n++;});
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.f===f));});
+    count.textContent=n+' resources';
+    try{localStorage.setItem('libFilter',f);}catch(e){}
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){f=b.dataset.f;apply();});});
+  q.addEventListener('input',apply);
+  try{f=localStorage.getItem('libFilter')||'all';}catch(e){}
+  apply();
+})();
+</script>
+
+</body>
+</html>
