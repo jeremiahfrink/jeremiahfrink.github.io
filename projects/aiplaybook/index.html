@@ -538,7 +538,7 @@ footer{padding-block:2.5rem;border-top:1px solid var(--line);font-size:.85rem;co
     doCopy(btn,parts.join('\n\n----------\n\n'));
   });});
 
-  /* library: loaded from data/resources.json */
+  /* library: loaded from resources.json */
   var btns=document.querySelectorAll('.filters button'),cards=[],count=document.getElementById('count'),q=document.getElementById('q');
   var f='all';
   function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -551,8 +551,8 @@ footer{padding-block:2.5rem;border-top:1px solid var(--line);font-size:.85rem;co
     });
     cards=wrap.querySelectorAll('.card');apply();
   }
-  fetch('data/resources.json').then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(j){render(j.resources||[]);}).catch(function(){
-    var s=document.getElementById('libstatus');if(s)s.textContent='The resource list could not load. It lives in data/resources.json next to this page; check that the file is present and valid.';
+  fetch('resources.json').then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(j){render(j.resources||[]);}).catch(function(){
+    var s=document.getElementById('libstatus');if(s)s.textContent='The resource list could not load. It lives in resources.json next to this page; check that the file is present and valid.';
   });
   function apply(){
     var n=0,t=q.value.trim().toLowerCase();
