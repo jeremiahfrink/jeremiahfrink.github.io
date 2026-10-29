@@ -1,0 +1,516 @@
+{
+  "_about": "Resource library for the District AI Capacity Playbook. category must be one of: toolkit, framework, workshop, try, tool. kind is the small label on the card. note is optional.",
+  "resources": [
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "AI Task Force Toolkit",
+      "url": "https://docs.google.com/document/d/1C6hVorRNBmGx5eAMEMjghyGyUw6QDAYKMTOpqWQx9x8/edit?tab=t.0",
+      "note": "Roll-out framework, guidance, tool vetting, professional learning, scenarios."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "Example Governance and Guidance",
+      "url": "https://docs.google.com/document/d/1kX_xjbqGURkaqSB9fobOD-z1RHlSbGm2/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true",
+      "note": "Draft administrative guidance a district can adapt."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "Example Leader Toolkit",
+      "url": "https://docs.google.com/document/d/1xNlKwJYA3AYb1xfHsj4QEsBujxDdKLRn/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true",
+      "note": "Leadership support toolkit, draft."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "Teacher Toolkit",
+      "url": "https://docs.google.com/document/d/1ZUVuypiItNZV2SjNp_NncyjIST6QMZDh/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true",
+      "note": "Spring 2026 version. See also the district website built from it (https://www.impactedvisors.org/projects/bps/toolkit-teacher.html)."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "AI Literacy Framework for Teachers",
+      "url": "https://docs.google.com/document/d/1d34wRvqEBXWonGZsBPCjKG28L4J06ylK/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true",
+      "note": "Used to develop professional learning with consistency across a district."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "AI Literate Educator Continuum",
+      "url": "https://docs.google.com/document/d/1EHhGYn1jVhKAOx8j5X116j9jkNFN06CS/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true",
+      "note": "Based on UNESCO. Acquire, Deepen, Create across four domains."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "Example Scaling Plan",
+      "url": "https://docs.google.com/document/d/1bTo2fIDtb66F0OJIZCEnDRIbq9g0kkUe/edit?usp=drive_link&ouid=115030825022075577765&rtpof=true&sd=true",
+      "note": "Multi-year district AI planning document."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "Basics of AI presentation",
+      "url": "https://docs.google.com/presentation/d/1a_ZmSG7CgT8SyujWGCodMOT_0UBMtkYq/edit?usp=sharing&ouid=116098965606763672622&rtpof=true&sd=true",
+      "note": "Shared starting deck for leaders and staff."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "AI Tools Being Used in Education",
+      "url": "https://docs.google.com/spreadsheets/d/17gKqhIRPsW6FkQWU9XAm25Tru1m7zWvVxj4XvJ8thgY/edit?usp=sharing",
+      "note": "Spreadsheet to start a tool inventory."
+    },
+    {
+      "category": "toolkit",
+      "kind": "Toolkit",
+      "title": "German International School resources",
+      "url": "https://docs.google.com/document/d/1vd6AwgMqbTLkRleDQKKs24BqR9ZQMiiLf-Lzv-G9tNU/edit?usp=sharing",
+      "note": "Example resource set from another system."
+    },
+    {
+      "category": "framework",
+      "kind": "Framework",
+      "title": "UNESCO adapted AI literacy framework (Kennedy HQ)",
+      "url": "https://kennedyhq.com/wp/2023/12/21/ai-literacy-framework/",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Framework",
+      "title": "AI4K12 Five Big Ideas",
+      "url": "https://ai4k12.org/gradeband-progression-charts/",
+      "note": "Grade band progression charts."
+    },
+    {
+      "category": "framework",
+      "kind": "Framework",
+      "title": "Digital Promise AI literacy framework",
+      "url": "https://digitalpromise.org/2024/02/21/revealing-an-ai-literacy-framework-for-learners-and-educators/",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Framework",
+      "title": "UNESCO AI competency framework for teachers",
+      "url": "https://www.unesco.org/en/articles/ai-competency-framework-teachers",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Policy reference",
+      "title": "TeachAI AI Guidance for Schools Toolkit",
+      "url": "https://www.teachai.org/toolkit",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Policy reference",
+      "title": "CGCS and CoSN Gen AI Readiness Checklist",
+      "url": "https://www.cgcs.org/genaichecklist",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Policy reference",
+      "title": "State AI guidance listing",
+      "url": "https://www.aiforeducation.io/ai-resources/state-ai-guidance",
+      "note": "AI for Education."
+    },
+    {
+      "category": "framework",
+      "kind": "Policy reference",
+      "title": "Planning Guide for AI: A Framework for School Districts",
+      "url": "https://michiganvirtual.org/resources/guides/ai-guide/",
+      "note": "Michigan Virtual, written for any district."
+    },
+    {
+      "category": "framework",
+      "kind": "Policy reference",
+      "title": "ILO Group framework for district leaders",
+      "url": "https://www.ilogroup.com/wp-content/uploads/2024/03/Framework-for-Implementing-Artificial-Intelligence-AI-in-K-12-Education_v1.0.pdf",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Policy example",
+      "title": "Gwinnett County Public Schools",
+      "url": "https://www.gcpsk12.org/programs-and-services/college-and-career-development/academies-and-career-technical-and-agricultural-education/artificial-intelligence-and-computer-science/guidance-for-human-centered-ai-use",
+      "note": "Human centered AI guidance and the swim, snorkel, scuba depth model."
+    },
+    {
+      "category": "framework",
+      "kind": "Policy example",
+      "title": "Suffern Central School District AI guidelines",
+      "url": "https://www.sufferncentral.org/departments/academics/ai-guidelines",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Policy example",
+      "title": "Valley Central School District policy 8636",
+      "url": "https://www.vcsd.k12.ny.us/board-of-education/policies/8636-artificial-intelligence/",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Policy example",
+      "title": "AI parent page example (OCSB)",
+      "url": "https://www.ocsb.ca/why-ocsb/humane-use-of-technology/artificial-intelligence-at-the-ocsb/",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Resource site",
+      "title": "ISTE AI resources",
+      "url": "https://iste.org/ai",
+      "note": ""
+    },
+    {
+      "category": "framework",
+      "kind": "Resource site",
+      "title": "CoSN AI",
+      "url": "https://www.cosn.org/ai/",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Design Challenge Guide: Automating a Teacher or Student Task",
+      "url": "https://docs.google.com/document/d/1Z871GpuPpCIgLfZjLVabMpY3dkb_E_03fnSLAg_Ny8k/edit?tab=t.0#heading=h.pf9m7maiugeq",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "TechTip: Understanding Chatbots",
+      "url": "https://www.youtube.com/watch?v=6LbzOrgUx5Q",
+      "note": "Video, NYSED TRLE."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "TechTip: Create Your Chatbot",
+      "url": "https://www.youtube.com/watch?v=-gsAAXShMPM",
+      "note": "Video, NYSED TRLE."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "AI ethics flashcards",
+      "url": "https://www.teachai.org/media/ethics_flashcards",
+      "note": "TeachAI."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Activities to support responsible use of AI",
+      "url": "https://www.canva.com/design/DAGhuS1hJtQ/16tFOUV0kAyg67aFDSNtLg/edit",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Feedback and AI",
+      "url": "https://docs.google.com/document/d/1vIJevalMfqUYhB2_k31_K56-eNYxRts7YHlKnPyPf6Q/edit?tab=t.ygfc79qku5us#heading=h.z897xjofcnmk",
+      "note": "Multi-tab doc with additional support and links."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "\"Is that OK?\" check-in form",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSc_6TTBUBlshd0pfHHb8DkUqLUrTBUUuvHsU4Y62ULl7K1uRA/viewform?usp=dialog",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Prompting with AI",
+      "url": "https://docs.google.com/presentation/d/1qiP8XGxbpcfnP44QeFSH0_57uJHxWXGONaxE8OMtPDQ/edit?usp=drivesdk",
+      "note": "Problem formation and solution refinement over prompt engineering."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Admin Task AI Helper",
+      "url": "https://www.impactedvisors.org/assets/admin_task_ai_helper.html",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Thinking, Designing, and Planning with AI",
+      "url": "https://www.impactedvisors.org/assets/UsingAIasaTeacher.html",
+      "note": "Teacher guide."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "AI Role Explorer",
+      "url": "https://www.impactedvisors.org/assets/airole_explorer.html",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "AI Student Guideline Examples",
+      "url": "https://docs.google.com/presentation/d/120B6dgjdqlgVAW6qgGrq1QTQzF8NpexGueLqwlcy0go/edit#slide=id.g2de47de721f_0_44",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "13 Scenarios of AI in Student Coursework",
+      "url": "https://docs.google.com/presentation/d/1twGgP1tcxhc_vQBIh5l3dEzW-Agx_Nhs3R9bO9rFPfM/edit?usp=sharing",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "ISTE AI Guides and lessons",
+      "url": "https://drive.google.com/drive/folders/15ySxK9FCPcdnw4DtroBTmvRcDwqd4TCX?usp=sharing",
+      "note": "Drive folder. Also at iste.org/ai-lessons (https://iste.org/ai-lessons)."
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "ISTE digital citizenship lessons",
+      "url": "https://drive.google.com/drive/folders/1SDv4B6xV3lqCfm2SeUHP6_1XNIrJBesv?usp=drive_link",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "List of curricular resources",
+      "url": "https://docs.google.com/spreadsheets/d/191nh8_kNumjIrqEVV-bnqyHdIyq3GSx1NL1NfLzqXjM/edit?usp=sharing",
+      "note": ""
+    },
+    {
+      "category": "workshop",
+      "kind": "Workshop",
+      "title": "Fall activities: image generation",
+      "url": "https://padlet.com/edvisor/fall-activities-b7kl3hp96puvkzic",
+      "note": "Padlet board."
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Quick, Draw!",
+      "url": "https://quickdraw.withgoogle.com/",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Diffusion Bias Explorer",
+      "url": "https://huggingface.co/spaces/society-ethics/DiffusionBiasExplorer",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Which Face is Real",
+      "url": "https://whichfaceisreal.com/",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Read Along",
+      "url": "https://readalong.google.com",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Semi-Conductor",
+      "url": "https://experiments.withgoogle.com/semi-conductor",
+      "note": "Google Creative Lab."
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "COCO dataset explorer",
+      "url": "https://cocodataset.org/#explore",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Most Likely Machine",
+      "url": "https://mostlikelymachine.artefactgroup.com/",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "AutoDraw",
+      "url": "https://www.autodraw.com/",
+      "note": ""
+    },
+    {
+      "category": "try",
+      "kind": "Try it",
+      "title": "Teachable Machine",
+      "url": "https://teachablemachine.withgoogle.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Educator platform",
+      "title": "TeacherServer",
+      "url": "https://www.teacherserver.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Educator platform",
+      "title": "MagicSchool AI",
+      "url": "https://app.magicschool.ai/tools",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Educator platform",
+      "title": "Brisk Teaching",
+      "url": "https://www.briskteaching.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Educator platform",
+      "title": "SchoolAI",
+      "url": "https://schoolai.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Focused tool",
+      "title": "Diffit",
+      "url": "https://web.diffit.me/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Focused tool",
+      "title": "Almanack",
+      "url": "https://www.almanack.ai/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Focused tool",
+      "title": "Goblin Tools",
+      "url": "https://goblin.tools/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Focused tool",
+      "title": "Quizizz",
+      "url": "https://quizizz.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Focused tool",
+      "title": "NotebookLM",
+      "url": "https://notebooklm.google.com/",
+      "note": "Google."
+    },
+    {
+      "category": "tool",
+      "kind": "Image and slides",
+      "title": "Canva",
+      "url": "https://www.canva.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Image and slides",
+      "title": "Adobe Firefly",
+      "url": "https://www.adobe.com/products/firefly.html",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Image and slides",
+      "title": "Craiyon",
+      "url": "https://www.craiyon.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Image and slides",
+      "title": "Bing Image Creator",
+      "url": "https://www.bing.com/images/create?FORM=GENILP",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Image and slides",
+      "title": "Gamma",
+      "url": "https://gamma.app/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Image and slides",
+      "title": "Slidesgo",
+      "url": "https://slidesgo.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Video",
+      "title": "Synthesia",
+      "url": "https://www.synthesia.io/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Video",
+      "title": "Lumen5",
+      "url": "https://lumen5.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Video",
+      "title": "HeyGen",
+      "url": "https://www.heygen.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Video",
+      "title": "Google Vids",
+      "url": "https://vids.google.com/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Video",
+      "title": "Canva AI video generator",
+      "url": "https://www.canva.com/features/ai-video-generator/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Audio",
+      "title": "ElevenLabs",
+      "url": "https://elevenlabs.io/",
+      "note": ""
+    },
+    {
+      "category": "tool",
+      "kind": "Music",
+      "title": "Suno",
+      "url": "https://suno.com/",
+      "note": ""
+    }
+  ]
+}
