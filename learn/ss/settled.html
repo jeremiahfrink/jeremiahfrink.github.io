@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Becoming Settled</title>
+<style>
+  :root{
+    --navy:#1b2a49; --teal:#1f7a8c; --teal-dark:#155e6b; --amber:#e0a100; --amber-dark:#b98400;
+    --paper:#fbfaf7; --card:#ffffff; --ink:#222a35; --muted:#5a6472; --line:#d9dde3; --soft:#eef3f5; --warn:#fff4d6; --ok:#e8f5ec;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:Calibri,"Segoe UI",system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5}
+  h1,h2,h3{font-family:Cambria,Georgia,"Times New Roman",serif;color:var(--navy);line-height:1.2;margin:0 0 .5rem}
+  h1{font-size:1.5rem}
+  h2{font-size:1.7rem;margin-top:.25rem}
+  h3{font-size:1.2rem;margin-top:1.4rem}
+  p{margin:.6rem 0}
+  a{color:var(--teal-dark)}
+  ul,ol{margin:.4rem 0 .8rem 1.3rem}
+  li{margin:.25rem 0}
+  table{border-collapse:collapse;width:100%;margin:.6rem 0 1rem;font-size:.97rem}
+  th,td{border:1px solid var(--line);padding:.45rem .55rem;text-align:left;vertical-align:top}
+  th{background:var(--soft);color:var(--navy)}
+  blockquote{margin:.8rem 0;padding:.7rem 1rem;border-left:4px solid var(--teal);background:var(--soft);border-radius:0 8px 8px 0}
+
+  /* top bar */
+  .top{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:.6rem 1rem .5rem;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+  .top .row{display:flex;flex-wrap:wrap;gap:.5rem .9rem;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto}
+  .top h1{color:#fff;margin:0;font-size:1.25rem}
+  .top .sub{font-size:.85rem;opacity:.85}
+  .counter{display:flex;gap:.9rem;align-items:center;font-size:.9rem}
+  .counter .num{font-family:Cambria,Georgia,serif;font-size:1.6rem;color:var(--amber);font-weight:bold;line-height:1}
+  .counter .left{opacity:.9}
+  .nav{display:flex;flex-wrap:wrap;gap:.35rem;max-width:1080px;margin:.5rem auto 0}
+  .nav button{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.3rem .75rem;font-size:.85rem;cursor:pointer;font-family:inherit}
+  .nav button:hover{background:rgba(255,255,255,.2)}
+  .nav button.active{background:var(--teal);border-color:var(--teal)}
+  .nav button.locked{opacity:.45;cursor:default}
+  .bar{height:6px;background:rgba(255,255,255,.18);border-radius:3px;max-width:1080px;margin:.5rem auto 0;overflow:hidden}
+  .bar div{height:100%;background:var(--amber);width:0%;transition:width .3s}
+
+  main{max-width:860px;margin:0 auto;padding:1.2rem 1rem 4rem}
+  .screen{display:none}
+  .screen.active{display:block;animation:fade .25s}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .eyebrow{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.2rem}
+  .now{background:var(--warn);border:1px solid #f0d58a;border-radius:10px;padding:.7rem 1rem;margin:.9rem 0 1.2rem}
+  .now strong{color:var(--amber-dark)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;margin:.9rem 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .example{border-color:var(--teal);background:#f3f9fa}
+  .bad{border-color:#e3b4b4;background:#fdf3f3}
+  label{display:block;font-weight:bold;color:var(--navy);margin:.7rem 0 .25rem;font-size:.95rem}
+  label .hint{font-weight:normal;color:var(--muted);font-size:.88rem}
+  textarea,input[type=text]{width:100%;font-family:inherit;font-size:1rem;padding:.55rem .65rem;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);resize:vertical}
+  textarea{min-height:4.2rem}
+  textarea.short{min-height:3rem}
+  textarea:focus,input:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+  .stat{border-left:5px solid var(--line)}
+  .stat.done{border-left-color:var(--teal);background:var(--ok)}
+  .stat .head{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+  .stat .head h3{margin:0;font-size:1.1rem}
+  .stat .look{font-size:.9rem;color:var(--muted);margin:.2rem 0 .3rem}
+  .stat .check{font-size:.85rem;color:var(--teal-dark);font-weight:bold}
+  .stat.required .head h3::after{content:" · required";color:var(--amber-dark);font-size:.85rem;font-weight:normal}
+  .parts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem}
+  @media (max-width:760px){.parts{grid-template-columns:1fr}}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr}}
+  .strip{width:100%}
+  .strip input{width:100%}
+  .btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 .5rem}
+  button.btn{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:.55rem .95rem;font-size:.95rem;cursor:pointer;font-family:inherit}
+  button.btn:hover{background:var(--teal-dark)}
+  button.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+  button.btn.amber{background:var(--amber);color:#1b1b1b}
+  button.btn.amber:hover{background:var(--amber-dark);color:#fff}
+  .status{font-size:.9rem;color:var(--muted);margin:.4rem 0}
+  .footer{max-width:860px;margin:0 auto;padding:1rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+  .foot-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.6rem}
+  .locked-note{background:var(--soft);border-radius:10px;padding:1rem;color:var(--muted)}
+  .toast{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:8px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .25s;z-index:30}
+  .toast.show{opacity:1}
+  .src{margin:.9rem 0}
+  .src .feeds{font-size:.88rem;color:var(--teal-dark)}
+  @media print{.top,.btns,.foot-btns,.toast{display:none}.screen{display:block;page-break-after:always}textarea{border:1px solid #999}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="row">
+    <div>
+      <h1>Becoming Settled</h1>
+      <div class="sub">Global History I · Unit 1 · Module 2: The Farming Trade</div>
+    </div>
+    <div class="counter">
+      <div><span class="num" id="statCount">0</span> <span class="left">of 18 stats done</span></div>
+      <div class="left" id="statusLine"></div>
+    </div>
+  </div>
+  <div class="nav" id="nav"></div>
+  <div class="bar"><div id="barFill"></div></div>
+</div>
+
+<main>
+
+<!-- SCREEN 0 -->
+<section class="screen" id="s0">
+  <div class="eyebrow">Start here</div>
+  <h2>What this is and how to use it</h2>
+  <div class="now"><strong>What to do now:</strong> read this page, then click Next.</div>
+
+  <h3>What this is</h3>
+  <p>The Dig opened this unit. You excavated a real village, built an exhibit, and found out the site was Tell Abu Hureyra. This page finishes the unit in three modules, one each week. Module 2 is open now. Modules 3 and 4 will appear on this same page when it is their turn.</p>
+  <p>The unit's big question is still <strong>What did we give up when we stopped moving?</strong></p>
+
+  <h3>Two words this module uses a lot</h3>
+  <p>A <strong>forager</strong> is a person who gets food by hunting animals and gathering wild plants, and who moves when the food moves. The people in Layer 5 of your trench were foragers. A <strong>farmer</strong> plants crops, keeps animals, and stays in one place. The people in Layer 2 were farmers.</p>
+
+  <h3>What you will make in Module 2</h3>
+  <ul>
+    <li>Two character sheets, one for a Forager and one for a Farmer, built from real evidence.</li>
+    <li>A choice between them, made twice.</li>
+    <li>A dated entry in your World Engine.</li>
+    <li>The first page of your Pattern Codex.</li>
+  </ul>
+
+  <h3>The one rule for this module</h3>
+  <p><strong>No stat without a source.</strong> Every stat on a character sheet has three parts: what you found, where you found it, and what it means for that character. The counter at the top only counts a stat when all three parts are filled in. A number you made up does not count. A number you read somewhere and can name does.</p>
+
+  <h3>How to move around</h3>
+  <p>Use the buttons in the top bar, or the Next button at the bottom of each screen. The thin bar fills as you work. The amber number counts the stats you have finished, out of 18. The Research button opens the list of places to look; keep it open in a second tab while you fill in the sheets.</p>
+
+  <h3>Saving and turning in</h3>
+  <p>Everything you type saves on its own, in this browser on this computer. You can close the tab and come back. At the end of each day click <strong>Copy as Markdown</strong> at the bottom of any screen and paste it into your Global History doc.</p>
+
+  <h3>The plan, day by day</h3>
+  <table>
+    <tr><th>Day</th><th>What you do</th><th>About how long</th></tr>
+    <tr><td><strong>Wednesday</strong></td><td>Start here. How a stat works. Both character sheets. Then click <strong>Take it with you</strong> so your sheets are on your phone for the car.</td><td>60 minutes, then about 20 minutes arguing with Dad on the drive to the zoo class</td></tr>
+    <tr><td><strong>Thursday</strong></td><td>Fill in any stats you left blank. Then The Farmer grows up, The map, and Pick your character.</td><td>60 minutes</td></tr>
+    <tr><td><strong>Friday</strong></td><td>The upgrade that traps you, and The Codex opens. Paste both into their documents.</td><td>60 minutes</td></tr>
+  </table>
+  <p>If you get stuck: try for 15 minutes, look it up for 10, write down where you lost the thread, text Dad, and move on to the next card.</p>
+
+  <div class="btns"><button class="btn" data-go="s1">Next: how a stat works</button></div>
+</section>
+
+<!-- SCREEN 1 -->
+<section class="screen" id="s1">
+  <div class="eyebrow">Module 2 · Screen 1 · about 10 minutes</div>
+  <h2>How a stat works</h2>
+  <div class="now"><strong>What to do now:</strong> read the worked example and the one that does not count. Then do the practice at the bottom. Then click Next.</div>
+
+  <p>A character sheet in a game has stats: strength, speed, hit points. On this page the stats are things like Height, Teeth, and Children, and the numbers come from bones and seeds that real scientists measured. You do not roll them. You find them.</p>
+
+  <div class="card example">
+    <h3 style="margin-top:0">A finished stat looks like this</h3>
+    <p><strong>Forager · Food</strong></p>
+    <p><strong>What you found:</strong> The people of Abu Hureyra 1, the forager village in Layer 5, gathered more than a hundred kinds of wild plants from the river, the forest, and the open steppe, and killed gazelle by the hundreds each spring, drying the meat for the year.</p>
+    <p><strong>Where it came from:</strong> The Dig, the Reveal page, the Layer 5 row. That is what Andrew Moore, Gordon Hillman, and Anthony Legge, the archaeologists who dug the site, concluded.</p>
+    <p><strong>What it means for this character:</strong> A forager here ate from a very wide menu. If one plant failed in a dry year there were ninety nine others. This character does not starve because one crop fails, because there is no one crop.</p>
+  </div>
+
+  <div class="card bad">
+    <h3 style="margin-top:0">This one does not count</h3>
+    <p><strong>What you found:</strong> Foragers ate better.</p>
+    <p>No number, no place, no source, and no one in particular. It might even be true, and it still does not count. Every stat needs a thing you found, the place you found it, and what it means for the character.</p>
+  </div>
+
+  <h3>Practice: one stat from a source you already have</h3>
+  <p>Open your Crash Course 1 answers (the Agricultural Revolution video). Find one thing the video said about life before farming or after it, and write it up as a stat with all three parts. Any stat you like. Say which character it belongs to.</p>
+  <div class="card stat" data-stat="practice">
+    <div class="parts">
+      <div><label>What you found</label><textarea data-key="p_found"></textarea></div>
+      <div><label>Where it came from</label><textarea data-key="p_source"></textarea></div>
+      <div><label>What it means, and for which character</label><textarea data-key="p_means"></textarea></div>
+    </div>
+  </div>
+
+  <div class="btns"><button class="btn ghost" data-go="s0">Back</button><button class="btn" data-go="s2">Next: the Forager sheet</button></div>
+</section>
+
+<!-- SCREEN 2: FORAGER -->
+<section class="screen" id="s2">
+  <div class="eyebrow">Module 2 · Screen 2 · about 25 minutes</div>
+  <h2>Character Sheet: Forager</h2>
+  <div class="now"><strong>What to do now:</strong> fill in as many of the nine stats as the sources give you. Open the Research page in a second tab and keep your Dig Journal handy. Three parts for every stat. If a source does not give you a stat today, leave it blank; you finish blanks on Thursday. Write the class description last.</div>
+
+  <p>This is the person from Layer 5. They live in a village of pit houses on the river terrace, they harvest wild plants and hunt gazelle, and when the food moves they can move. Build them from evidence.</p>
+
+  <div class="card">
+    <label>Class description <span class="hint">(write this last: three sentences, like the top of a character sheet. Who is this person, what are they good at, what gets them)</span></label>
+    <textarea data-key="for_class"></textarea>
+  </div>
+
+  <div id="foragerStats"></div>
+
+  <div class="btns"><button class="btn ghost" data-go="s1">Back</button><button class="btn" data-go="s3">Next: the Farmer sheet</button></div>
+</section>
+
+<!-- SCREEN 3: FARMER -->
+<section class="screen" id="s3">
+  <div class="eyebrow">Module 2 · Screen 3 · about 25 minutes</div>
+  <h2>Character Sheet: Farmer</h2>
+  <div class="now"><strong>What to do now:</strong> same nine stats, three parts each, for the person from Layer 2. <strong>Who paid</strong> is required on this sheet; the sheet is not finished without it. When you are done for the day, click <strong>Take it with you</strong> at the bottom so your sheets are on your phone for the car.</div>
+
+  <p>This is the person from Layer 2. They live in a mudbrick house in a village of several thousand people. They grow emmer wheat, barley, and lentils, they keep sheep and goats, and they are not going anywhere. Build them from evidence.</p>
+
+  <div class="card">
+    <label>Class description <span class="hint">(write this last: three sentences. Who is this person, what are they good at, what gets them)</span></label>
+    <textarea data-key="far_class"></textarea>
+  </div>
+
+  <div id="farmerStats"></div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Take it with you</h3>
+    <p>Tonight on the drive to the zoo class you argue both characters with Dad, out loud: which one you would rather be, and why, using your stats. Then he will ask you a second question, and you will find out tomorrow why your two answers come out different.</p>
+    <p>Click the button. It copies both sheets and the two questions. Paste that into a Google Doc and open it on your phone in the car. Your work on this page does not travel to your phone on its own; the copy does.</p>
+    <div class="btns" style="margin-top:.5rem">
+      <button class="btn amber" id="carCopy">Take it with you (copy for the car)</button>
+      <button class="btn ghost" id="carDownload">Download the car copy instead</button>
+    </div>
+    <p class="status">Then click <strong>Copy as Markdown</strong> at the bottom of the page and paste it into your Global History doc. That is Wednesday's turn in.</p>
+  </div>
+
+  <div class="btns"><button class="btn ghost" data-go="s2">Back</button><button class="btn" data-go="s4">Next: the Farmer grows up (Thursday)</button></div>
+</section>
+
+<!-- SCREEN 4 -->
+<section class="screen" id="s4">
+  <div class="eyebrow">Module 2 · Screen 4 · Thursday · about 20 minutes</div>
+  <h2>The Farmer grows up</h2>
+  <div class="now"><strong>What to do now:</strong> first go back and finish any stat you left blank on Wednesday. Then read this screen, open the scientists' table (link on the Research page), and fill in the strip. Then write the two sentences.</div>
+
+  <p>In a game, a character levels up and the stats change. On this screen the whole village levels up. As it gets bigger and older, the stats of the people in it change too, and not all in the same direction.</p>
+  <p>The village is <strong>Çatalhöyük</strong> (say it chat-al-HOY-ook), a farming town in what is now Turkey. It lasted about 1,150 years, from around 7100 BCE to around 5950 BCE, and at its biggest held somewhere between 3,500 and 8,000 people. Clark Spencer Larsen, a scientist at Ohio State University who studies the bones people leave behind (the job is called bioarchaeology), led a team that spent 25 years studying 742 skeletons from the town. They split the town's life into three periods, Early, Middle, and Late, and made a table showing how the people changed from one period to the next.</p>
+  <p>Think of the three periods as Level 1, Level 2, and Level 3 of the same character. Find these five rows in their table and copy the words they use (they write things like Low, Increase, Decline, Substantial).</p>
+
+  <table class="strip">
+    <tr><th style="width:34%">Row in their table</th><th>Early (Level 1)<br><span class="hint">7100 to 6700 BCE</span></th><th>Middle (Level 2)<br><span class="hint">6700 to 6500 BCE</span></th><th>Late (Level 3)<br><span class="hint">6500 to 5950 BCE</span></th></tr>
+    <tr><td>Birth rate</td><td><input type="text" data-key="lv_birth_e"></td><td><input type="text" data-key="lv_birth_m"></td><td><input type="text" data-key="lv_birth_l"></td></tr>
+    <tr><td>Adult mobility and workload</td><td><input type="text" data-key="lv_work_e"></td><td><input type="text" data-key="lv_work_m"></td><td><input type="text" data-key="lv_work_l"></td></tr>
+    <tr><td>Head injuries (cranial depressed fractures)</td><td><input type="text" data-key="lv_head_e"></td><td><input type="text" data-key="lv_head_m"></td><td><input type="text" data-key="lv_head_l"></td></tr>
+    <tr><td>Cavities (dental carious lesions)</td><td><input type="text" data-key="lv_cav_e"></td><td><input type="text" data-key="lv_cav_m"></td><td><input type="text" data-key="lv_cav_l"></td></tr>
+    <tr><td>How far they herded sheep from the town</td><td><input type="text" data-key="lv_herd_e"></td><td><input type="text" data-key="lv_herd_m"></td><td><input type="text" data-key="lv_herd_l"></td></tr>
+  </table>
+
+  <div class="card">
+    <label>What got worse as the town got bigger? One sentence, naming at least two rows.</label>
+    <textarea class="short" data-key="lv_worse"></textarea>
+    <label>What got better, or at least did not get worse? Look for a row in their table that says Decrease. One sentence.</label>
+    <textarea class="short" data-key="lv_better"></textarea>
+  </div>
+
+  <div class="btns"><button class="btn ghost" data-go="s3">Back</button><button class="btn" data-go="s5">Next: the map</button></div>
+</section>
+
+<!-- SCREEN 5 -->
+<section class="screen" id="s5">
+  <div class="eyebrow">Module 2 · Screen 5 · Thursday · about 15 minutes</div>
+  <h2>The map</h2>
+  <div class="now"><strong>What to do now:</strong> open the map (link on the Research page). List five places where farming was invented on its own and the main crop in each. Then answer the question at the bottom in three or four sentences.</div>
+
+  <p>Farming was not invented once and then copied. It was invented separately, by people who never met each other, in at least seven different parts of the world, each with its own crops. Wheat and barley in Southwest Asia, where your trench is. Rice and millet in China. Maize in Mexico. Potatoes in the Andes. Taro and bananas in New Guinea. Sorghum in Africa. Squash and sunflowers in eastern North America. Each of those places took the same trade your two character sheets describe, without knowing anyone else had.</p>
+
+  <div class="card">
+    <table>
+      <tr><th style="width:50%">Place</th><th>Main crop or crops</th></tr>
+      <tr><td><input type="text" data-key="map_p1"></td><td><input type="text" data-key="map_c1"></td></tr>
+      <tr><td><input type="text" data-key="map_p2"></td><td><input type="text" data-key="map_c2"></td></tr>
+      <tr><td><input type="text" data-key="map_p3"></td><td><input type="text" data-key="map_c3"></td></tr>
+      <tr><td><input type="text" data-key="map_p4"></td><td><input type="text" data-key="map_c4"></td></tr>
+      <tr><td><input type="text" data-key="map_p5"></td><td><input type="text" data-key="map_c5"></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <label>If farming was such a bad trade for the body, why did people keep taking it, again and again, in places that had never heard of each other? Three or four sentences. Use your Children and Numbers stats from both sheets.</label>
+    <textarea data-key="map_why"></textarea>
+  </div>
+
+  <div class="btns"><button class="btn ghost" data-go="s4">Back</button><button class="btn" data-go="s6">Next: pick your character</button></div>
+</section>
+
+<!-- SCREEN 6 -->
+<section class="screen" id="s6">
+  <div class="eyebrow">Module 2 · Screen 6 · Thursday · about 20 minutes</div>
+  <h2>Pick your character</h2>
+  <div class="now"><strong>What to do now:</strong> you argued this in the car with Dad on Wednesday. Now write it down. Two questions, three to five sentences each, then one more sentence at the end.</div>
+
+  <div class="card">
+    <label>Question one. If you could be born as one of these two characters, which would you pick, and why? Use your stats. Name at least three of them.</label>
+    <textarea data-key="pick_person"></textarea>
+  </div>
+
+  <p>Now jump ahead 500 years. The forager band is still a band of about the same size, because a mother who carries her children cannot have many of them close together. The farming village has had many more children every generation, and it is now a town. The town needs more land for more fields, and the only land left is the land the foragers hunt on.</p>
+
+  <div class="card">
+    <label>Question two. Which way of living is still there in 500 years, and which one gets pushed out? Three to five sentences. Use your Children and Numbers stats, and what you wrote on the map screen.</label>
+    <textarea data-key="pick_society"></textarea>
+  </div>
+
+  <div class="card">
+    <label>Your two answers are probably different. One sentence: why?</label>
+    <textarea class="short" data-key="pick_why"></textarea>
+  </div>
+
+  <div class="btns"><button class="btn ghost" data-go="s5">Back</button><button class="btn" data-go="s7">Next: the upgrade that traps you (Friday)</button></div>
+</section>
+
+<!-- SCREEN 7 -->
+<section class="screen" id="s7">
+  <div class="eyebrow">Module 2 · Screen 7 · Friday · about 35 minutes</div>
+  <h2>The upgrade that traps you</h2>
+  <div class="now"><strong>What to do now:</strong> read the first part. Then open your World Engine doc and your Charter and do the ten minute reread. Then write the three slots and the last line, and date the entry.</div>
+
+  <h3>The sword</h3>
+  <p>In a lot of games there is an item like this. A sword that hits harder than anything else you can carry. The catch: while you hold it, you are poisoned. Your resistance does not help; the poison is part of the sword. And it is a binding item. Once you pick it up, you cannot put it down.</p>
+  <p>So the question is never "is it a good sword." The hit is real. The question is what it costs you every turn, and whether you can ever let go.</p>
+
+  <h3>Farming is that sword</h3>
+  <p>Look at your two sheets. <strong>The hit:</strong> more food from one place, more children, more people, more hands, and a storehouse. <strong>The poison:</strong> shorter, more cavities, worse knees and backs, more sickness, and more fighting as the village fills up. <strong>The binding:</strong> once there are three times as many people (that was the number from The Drop), there is no hunting ground on any map that could feed them all. The village cannot go back to foraging. It cannot unequip.</p>
+  <p>That is why this unit calls the farming change a trade and not an upgrade. An upgrade is better with no catch. A trade costs something, and this one locked.</p>
+
+  <h3>Back to your world</h3>
+  <p>In September you built a world. You drew its map on heavy paper, decided how its people eat, where their food is stored, who leads them and what happens when the leader dies, how they keep records, and what their magic or technology costs. Then you wrote the Charter in your own handwriting: the rules your people live under. In October you played it: four crisis cards hit your world (The Bad Year, Three Times as Many, The Neighbor's Demand, The Source Fails) and you answered each one out loud from the Charter as written, then amended it with a date where it failed.</p>
+  <p>You have not opened it in about three weeks. That is fine. It is all still there, in two places: the World Engine doc, and the Charter sheet in its folder.</p>
+  <p><strong>Open both now.</strong> Read these three places before you write anything. Ten minutes.</p>
+  <ol>
+    <li><strong>Part 1 of the World Engine.</strong> How your people eat. Where the storehouse is. Your plan for a bad year.</li>
+    <li><strong>The number you wrote for how many people your land can feed.</strong> It is in Day 2 of the World Engine. Find it and write it in the box below.</li>
+    <li><strong>Your Charter, the clauses about food,</strong> and the amendments you added during Play Your World. Those have dates on them.</li>
+  </ol>
+  <div class="card">
+    <label>The number: how many people can your land feed, as you wrote it in the World Engine?</label>
+    <input type="text" data-key="we_number">
+  </div>
+  <p>Now you know what your society eats and how many of them there are. That is all you need.</p>
+
+  <h3>A worked example, so you can see the shape</h3>
+  <p>This is not your world. It is a made up one.</p>
+  <div class="card example">
+    <p><em>A town on a river that eats fish from a weir. A weir is a wooden fence built across the water that traps fish as they swim through.</em></p>
+    <p><strong>The hit:</strong> fish every day without hunting for it. The town never goes hungry in summer, and it dries fish for winter. It grows to 2,000 people.</p>
+    <p><strong>The poison:</strong> the weir has to be cleared and rebuilt every spring, in cold water, and the men who do it get sick and die younger. Two thousand people living packed along one bank share every illness. When the river floods, the town cannot move, because the weir is the town.</p>
+    <p><strong>The binding:</strong> two thousand people cannot go back to hunting. There is no forest near enough with that much game. The day the town passed about 500 people, the weir stopped being a choice. Now it is the only thing keeping them alive, and they know it.</p>
+  </div>
+  <p>Notice that each part names something specific: a number, a group of people, a season. "It is good" or "it is bad" is not an answer. Say who, how many, and when.</p>
+
+  <h3>Now yours</h3>
+  <p>Three slots. Write in full sentences.</p>
+  <div class="card">
+    <label>The hit. What do your people get from the way they eat that a wandering band would never have? Name the food, the place it comes from, and what it lets them build or do.</label>
+    <textarea data-key="we_hit"></textarea>
+    <label>The poison. What does it cost them, every year, no matter what? And who feels it most? Name the group, the way the scientists named the women of Abu Hureyra. If you do not know who, that is the answer to write down: "I never decided who does this work."</label>
+    <textarea data-key="we_poison"></textarea>
+    <label>The binding. Use the number you wrote above. Past what number of people can your society not go back to any other way of eating? Then say what happens if a Bad Year comes after they have passed it.</label>
+    <textarea data-key="we_binding"></textarea>
+  </div>
+
+  <h3>Last line</h3>
+  <p>Look at your Charter one more time. Does any clause already know about the poison or the binding? Do not change the Charter now; that is not how your world works, and a card is coming for this in the next module. Just write one sentence here: either "Clause __ covers this because __" or "My Charter does not mention __."</p>
+  <div class="card">
+    <textarea class="short" data-key="we_charter"></textarea>
+    <label>Date this entry</label>
+    <input type="text" data-key="we_date" placeholder="for example: November 6, 2026">
+  </div>
+  <p><strong>Turn in:</strong> copy this entry into the World Engine doc. The exact spot gets linked here on Friday morning.</p>
+
+  <div class="btns"><button class="btn ghost" data-go="s6">Back</button><button class="btn" data-go="s8">Next: the Codex opens</button></div>
+</section>
+
+<!-- SCREEN 8 -->
+<section class="screen" id="s8">
+  <div class="eyebrow">Module 2 · Screen 8 · Friday · about 25 minutes</div>
+  <h2>The Codex opens</h2>
+  <div class="now"><strong>What to do now:</strong> read what the Codex is. Open your Dig Journal to the Reveal page answers. Then fill in the five fields below. Then click Copy as Markdown and paste the whole day into your Global History doc.</div>
+
+  <h3>What the Pattern Codex is</h3>
+  <p>History has patterns: things that happen again and again, in different places and centuries, for the same reasons. The Pattern Codex is your own book of those patterns, written in your words, with the places you have seen them. You add to it all year, and next year too. By June it is the thing you will use to answer the course's big question: those who do not learn from history, are they truly doomed to repeat it?</p>
+  <p>Every pattern in the Codex has the same five parts:</p>
+  <ol>
+    <li><strong>The pattern, named.</strong> A short name you would remember.</li>
+    <li><strong>How it works.</strong> The mechanism, in your own words: this happens, so that happens, so that happens.</li>
+    <li><strong>Cases.</strong> At least two times in history it happened, from two different eras. One is not enough; one time is a story, two times is a pattern.</li>
+    <li><strong>Sightings.</strong> Places you see it now, in the news or in your own life.</li>
+    <li><strong>World Engine note.</strong> How the pattern shows up, or should show up, in your own world.</li>
+  </ol>
+
+  <h3>Your first pattern</h3>
+  <p>You already started it. On the Reveal page of The Dig you named a pattern in your own words and wrote a World Engine line. Open your Dig Journal and bring those in here as your first draft. Then improve them with what you learned this week. If you want a name and do not have one, "The upgrade that traps you" is a starting shape you are free to reject.</p>
+
+  <div class="card">
+    <label>1. The pattern, named</label>
+    <input type="text" data-key="cx_name">
+    <label>2. How it works, in your own words. This happens, so that happens, so that happens.</label>
+    <textarea data-key="cx_how"></textarea>
+    <label>3. Case one: the Neolithic, from this unit. Name the site or sites you would point to and the evidence that shows the pattern there.</label>
+    <textarea data-key="cx_case1"></textarea>
+    <label>3. Case two: a different era <span class="hint">(leave this blank for now and write "needs one." Module 3 gives it to you.)</span></label>
+    <textarea class="short" data-key="cx_case2"></textarea>
+    <label>4. Sightings <span class="hint">(leave blank for now. Dad will tell you how sightings get added from here on.)</span></label>
+    <textarea class="short" data-key="cx_sight"></textarea>
+    <label>5. World Engine note. Copy your hit, poison, and binding from the last screen into two or three sentences.</label>
+    <textarea data-key="cx_we"></textarea>
+  </div>
+
+  <p><strong>Turn in:</strong> this entry goes into your Pattern Codex document. The link gets added here on Friday morning. Then click Copy as Markdown below and paste the whole module into your Global History doc.</p>
+
+  <div class="btns"><button class="btn ghost" data-go="s7">Back</button><button class="btn" data-go="s3b">Module 3 (opens next week)</button></div>
+</section>
+
+<!-- RESEARCH -->
+<section class="screen" id="research">
+  <div class="eyebrow">Research page · keep this open in a second tab</div>
+  <h2>Where to look</h2>
+  <div class="now"><strong>What to do now:</strong> before anything else, open your Crash Course 1 and 3 answers from last Friday. You already watched both videos and answered questions on each. Some of your stats are sitting in those answers. Then use the sources below. Each one says what it is, what to look for, and which stats it feeds.</div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">Your own Dig Journal and The Dig's Reveal page</h3>
+    <p><a href="https://www.impactedvisors.org/learn/ss/thedig.html" target="_blank" rel="noopener">The Dig</a>, Reveal page, the table "What the real team concluded." Your own excavation is a source. The Layer 5 row describes the forager village; the Layer 2 row has Theya Molleson's reading of the skeletons from the farming village. Your Lab answers are a source too.</p>
+    <p class="feeds">Feeds: Forager Food, Numbers, Teeth, Bones, What kills you (Layer 4) · Farmer Teeth, Bones, Numbers, Who paid</p>
+  </div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">Engines of Our Ingenuity, "Grain in Abu Hureyra"</h3>
+    <p><a href="https://engines.egr.uh.edu/episode/960" target="_blank" rel="noopener">engines.egr.uh.edu/episode/960</a>. A short page, about 600 words, on how Theya Molleson, a scientist at the Natural History Museum in London who studies bones, worked out from toes and knees what the women of Abu Hureyra did all day. Read the whole thing. Look for what happened to toes, knees, lower backs, and teeth, and for who it happened to.</p>
+    <p class="feeds">Feeds: Farmer Bones, Teeth, Who paid · Forager Bones (by comparison)</p>
+  </div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">Jared Diamond, "The Worst Mistake in the History of the Human Race"</h3>
+    <p><a href="http://discovermagazine.com/1987/may/02-the-worst-mistake-in-the-history-of-the-human-race" target="_blank" rel="noopener">Discover magazine, May 1987</a>. If the link is behind a wall, Dad has a copy. Jared Diamond is a scientist who wrote this short essay arguing that farming was a bad deal for the human body. He is making an argument, so take the numbers he gives and leave his opinion for later; you read it as a document in Module 4. Look for: how tall people were before and after farming, how many hours a week foragers spent getting food and how many kinds of plants they ate, how far apart foragers and farmers spaced their children and why, and what happened to the skeletons at Dickson Mounds when people there switched to corn.</p>
+    <p class="feeds">Feeds: Forager Height, Food, Children, Sickness · Farmer Height, Food, Children, Sickness</p>
+  </div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">Phys.org, "Dawn of agriculture took toll on health"</h3>
+    <p><a href="https://phys.org/news/2011-06-dawn-agriculture-toll-health.html" target="_blank" rel="noopener">phys.org, June 2011</a>. A news story about Amanda Mummert, a scientist at Emory University who went through every study of human height before and after farming, from all over the world. Look for what happened to height, whether it happened everywhere, and what the scientists think caused it.</p>
+    <p class="feeds">Feeds: Farmer Height, Sickness</p>
+  </div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">The Çatalhöyük study: news story and the scientists' table</h3>
+    <p><a href="https://www.eurekalert.org/news-releases/608713" target="_blank" rel="noopener">The news story</a> about Clark Spencer Larsen's 25 year study of the town. Look for how many people lived there, what the crowding did, the sheep, the cavities, and the healed head injuries. Then <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6601267/table/t01" target="_blank" rel="noopener">the scientists' own table</a>, which is what you copy from on the Farmer grows up screen. The table's left column names the row; the next columns are Early, Middle, and Late.</p>
+    <p class="feeds">Feeds: Farmer Numbers, Teeth, Sickness, What kills you · all of The Farmer grows up</p>
+  </div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">The map: where farming began on its own</h3>
+    <p><a href="https://en.wikipedia.org/wiki/Neolithic_Revolution" target="_blank" rel="noopener">Wikipedia, Neolithic Revolution</a>. Scroll to the map of the centers where farming started independently, and the section on each region's crops. You only need places and crops from this page.</p>
+    <p class="feeds">Feeds: The map screen</p>
+  </div>
+
+  <div class="card src">
+    <h3 style="margin-top:0">Crash Course World History 1 and 3, your answers</h3>
+    <p>You answered questions on both videos on Friday, October 30. Video 1 is the Agricultural Revolution, video 3 is Mesopotamia. Do not rewatch them. Open your answers and pull from those.</p>
+    <p class="feeds">Feeds: Forager Food, Numbers · Farmer Numbers, Sickness, What kills you</p>
+  </div>
+
+  <div class="btns"><button class="btn ghost" data-go="s2">Back to the Forager sheet</button><button class="btn ghost" data-go="s3">Back to the Farmer sheet</button></div>
+</section>
+
+<!-- MODULE 3 placeholder -->
+<section class="screen" id="s3b">
+  <div class="eyebrow">Module 3</div>
+  <h2>Surplus to Hierarchy</h2>
+  <div class="locked-note">Opens the week of November 9, on this page. Nothing to do here yet.</div>
+  <div class="btns"><button class="btn ghost" data-go="s8">Back</button></div>
+</section>
+
+<!-- MODULE 4 placeholder -->
+<section class="screen" id="s4b">
+  <div class="eyebrow">Module 4</div>
+  <h2>Read One Document Well</h2>
+  <div class="locked-note">Opens the week of November 16, on this page. Nothing to do here yet.</div>
+  <div class="btns"><button class="btn ghost" data-go="s8">Back</button></div>
+</section>
+
+</main>
+
+<div class="footer">
+  <div class="foot-btns">
+    <button class="btn" id="mdCopy">Copy as Markdown</button>
+    <button class="btn ghost" id="mdDownload">Download Markdown</button>
+    <button class="btn ghost" onclick="window.print()">Print this page</button>
+  </div>
+  <div>Becoming Settled · Global History and Geography I, Unit 1 · Your answers save in this browser only. Copy as Markdown at the end of each day and paste into your Global History doc.</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var KEY = 'settled_v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ state = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+  // ---- stat definitions ----
+  var STATS = [
+    { id:'height', name:'Height', what:'How tall an adult was.' },
+    { id:'teeth',  name:'Teeth',  what:'What the teeth looked like: worn down, cavities, broken, or sound.' },
+    { id:'bones',  name:'Bones',  what:'Marks of work and injury on the skeleton.' },
+    { id:'sick',   name:'Sickness', what:'Which diseases could reach this person, and which could not.' },
+    { id:'food',   name:'Food',   what:'How many kinds of food, and how many hours a week to get it.' },
+    { id:'kids',   name:'Children', what:'How many a mother had, and how far apart.' },
+    { id:'num',    name:'Numbers', what:'How many people lived together: one band or village, and one region.' },
+    { id:'kill',   name:'What kills you', what:'The real risk of this life. What is the bad year, and who dies in it.' },
+    { id:'paid',   name:'Who paid', what:'Who in the group carries the cost of the way it eats.' }
+  ];
+  var LOOK = {
+    forager: {
+      height:'Diamond\u2019s essay: the skeletons from Greece and Turkey at the end of the Ice Age.',
+      teeth:'Your Dig Journal, Layer 5 cards. The Engines page says what grinding did later, which tells you what teeth were like before.',
+      bones:'Dig Journal, Layer 5. Molleson compared the forager bones and the farming bones from the same site; the Reveal, Layer 2 row, says what changed.',
+      sick:'Diamond\u2019s essay: which diseases need a crowd to spread. Crash Course 1.',
+      food:'The worked example on Screen 1. Diamond\u2019s essay: hours a week and kinds of plants for the Bushmen and the Hadza.',
+      kids:'Diamond\u2019s essay: how far apart a moving mother spaces her children, and why.',
+      num:'The Dig Reveal, Layer 5 row. Crash Course 1.',
+      kill:'Your Dig Journal, Layer 4 (the Gap): what happened when the cold came back and the wild food thinned.',
+      paid:'Your Lab answers. Compare who did the hard work in Layer 5 to who did it in Layer 2. The Reveal says whose bones were bent by grinding. Whose were, before farming?'
+    },
+    farmer: {
+      height:'Diamond\u2019s essay: Greece and Turkey by 3000 BCE. The phys.org story: what happened to height everywhere people started farming.',
+      teeth:'The Dig Reveal, Layer 2 row. The Engines page: grit in the flour. The Çatalhöyük news story: cavities.',
+      bones:'The Dig Reveal, Layer 2 row. The Engines page: toes, knees, lower backs.',
+      sick:'Diamond\u2019s essay: Dickson Mounds. The Çatalhöyük news story: crowding and sheep.',
+      food:'Diamond\u2019s essay: how few crops most farmers depend on, and what that does when one fails. Crash Course 1.',
+      kids:'Diamond\u2019s essay: the two year spacing. The Çatalhöyük table: what the birth rate did in the Middle period.',
+      num:'The Dig Reveal, Layer 2 row. The Çatalhöyük news story: how many at its peak.',
+      kill:'The year the crop fails. The Çatalhöyük news story: the healed head injuries. Crash Course 3: the neighbor who wants your storehouse.',
+      paid:'The Engines page and the Dig Reveal, Layer 2 row: whose bones carried the grinding, and what it did to them. Say who.'
+    }
+  };
+
+  function buildSheet(containerId, prefix, who){
+    var c = document.getElementById(containerId);
+    var html = '';
+    STATS.forEach(function(s){
+      var req = (who==='farmer' && s.id==='paid') ? ' required' : '';
+      html += '<div class="card stat'+req+'" data-stat="'+prefix+'_'+s.id+'">' +
+        '<div class="head"><h3>'+s.name+'</h3><span class="check" data-check="'+prefix+'_'+s.id+'"></span></div>' +
+        '<div class="look"><strong>'+s.what+'</strong> Look in: '+LOOK[who][s.id]+'</div>' +
+        '<div class="parts">' +
+          '<div><label>What you found</label><textarea data-key="'+prefix+'_'+s.id+'_found"></textarea></div>' +
+          '<div><label>Where it came from</label><textarea data-key="'+prefix+'_'+s.id+'_source"></textarea></div>' +
+          '<div><label>What it means for this character</label><textarea data-key="'+prefix+'_'+s.id+'_means"></textarea></div>' +
+        '</div></div>';
+    });
+    c.innerHTML = html;
+  }
+  buildSheet('foragerStats','for','forager');
+  buildSheet('farmerStats','far','farmer');
+
+  // ---- screens and nav ----
+  var SCREENS = [
+    { id:'s0', label:'Start here' },
+    { id:'s1', label:'1 How a stat works' },
+    { id:'s2', label:'2 Forager' },
+    { id:'s3', label:'3 Farmer' },
+    { id:'s4', label:'4 Grows up' },
+    { id:'s5', label:'5 Map' },
+    { id:'s6', label:'6 Pick' },
+    { id:'s7', label:'7 The upgrade' },
+    { id:'s8', label:'8 Codex' },
+    { id:'research', label:'Research' },
+    { id:'s3b', label:'Module 3', locked:true },
+    { id:'s4b', label:'Module 4', locked:true }
+  ];
+  var nav = document.getElementById('nav');
+  SCREENS.forEach(function(sc){
+    var b = document.createElement('button');
+    b.textContent = sc.label;
+    b.setAttribute('data-go', sc.id);
+    if (sc.locked) b.className = 'locked';
+    nav.appendChild(b);
+  });
+  function show(id){
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.toggle('active', s.id===id); });
+    document.querySelectorAll('#nav button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-go')===id); });
+    state.__screen = id; save();
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-go]');
+    if (t){ show(t.getAttribute('data-go')); }
+  });
+
+  // ---- fields ----
+  var fields = Array.prototype.slice.call(document.querySelectorAll('[data-key]'));
+  fields.forEach(function(f){
+    var k = f.getAttribute('data-key');
+    if (state[k] !== undefined) f.value = state[k];
+    f.addEventListener('input', function(){
+      state[k] = f.value; save(); update();
+    });
+  });
+
+  function val(k){ return (state[k] || '').trim(); }
+  function statDone(prefix, id){
+    return val(prefix+'_'+id+'_found') && val(prefix+'_'+id+'_source') && val(prefix+'_'+id+'_means');
+  }
+  var REQUIRED = fields.map(function(f){ return f.getAttribute('data-key'); }).filter(function(k){ return k.indexOf('p_')!==0 && k!=='cx_case2' && k!=='cx_sight'; });
+
+  function update(){
+    var done = 0, forDone = 0, farDone = 0;
+    STATS.forEach(function(s){
+      var a = statDone('for', s.id), b = statDone('far', s.id);
+      if (a){ done++; forDone++; } if (b){ done++; farDone++; }
+      var ea = document.querySelector('[data-stat="for_'+s.id+'"]'); if (ea) ea.classList.toggle('done', !!a);
+      var eb = document.querySelector('[data-stat="far_'+s.id+'"]'); if (eb) eb.classList.toggle('done', !!b);
+      var ca = document.querySelector('[data-check="for_'+s.id+'"]'); if (ca) ca.textContent = a ? 'Counted' : '';
+      var cb = document.querySelector('[data-check="far_'+s.id+'"]'); if (cb) cb.textContent = b ? 'Counted' : '';
+    });
+    document.getElementById('statCount').textContent = done;
+    var filled = REQUIRED.filter(function(k){ return val(k); }).length;
+    document.getElementById('barFill').style.width = Math.round(100*filled/REQUIRED.length) + '%';
+    var msg = '';
+    if (done < 18){
+      if (forDone < 9 && farDone === 0) msg = 'Forager sheet: ' + (9-forDone) + ' stats to go.';
+      else if (farDone < 9) msg = 'Farmer sheet: ' + (9-farDone) + ' to go' + (statDone('far','paid') ? '.' : ', and Who paid is required.');
+      else msg = 'Forager sheet: ' + (9-forDone) + ' to go.';
+    } else {
+      msg = 'All 18 stats counted. Keep going.';
+    }
+    document.getElementById('statusLine').textContent = msg;
+  }
+
+  // ---- markdown export ----
+  function labelFor(el){
+    var lab = el.previousElementSibling;
+    if (lab && lab.tagName==='LABEL') return lab.textContent.replace(/\s+/g,' ').trim();
+    var td = el.closest('td');
+    if (td){
+      var tr = td.parentNode, row = tr.firstElementChild.textContent.trim();
+      var idx = Array.prototype.indexOf.call(tr.children, td);
+      var th = tr.parentNode.querySelector('tr').children[idx];
+      var col = th ? th.textContent.replace(/\s+/g,' ').trim() : '';
+      return row + (col ? ' · ' + col : '');
+    }
+    return el.getAttribute('data-key');
+  }
+  function sheetMd(prefix, title){
+    var out = '## Character Sheet: ' + title + '\n\n';
+    out += '**Class description**\n' + (val(prefix+'_class') || '(blank)') + '\n\n';
+    STATS.forEach(function(s){
+      out += '### ' + s.name + '\n';
+      out += '**What you found:** ' + (val(prefix+'_'+s.id+'_found') || '(blank)') + '\n';
+      out += '**Where it came from:** ' + (val(prefix+'_'+s.id+'_source') || '(blank)') + '\n';
+      out += '**What it means for this character:** ' + (val(prefix+'_'+s.id+'_means') || '(blank)') + '\n\n';
+    });
+    return out;
+  }
+  function fullMd(){
+    var today = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+    var out = '# Becoming Settled, Module 2: The Farming Trade\n*Exported ' + today + '*\n\n';
+    out += '## Screen 1: practice stat\n';
+    out += '**What you found:** ' + (val('p_found')||'(blank)') + '\n**Where it came from:** ' + (val('p_source')||'(blank)') + '\n**What it means, and for which character:** ' + (val('p_means')||'(blank)') + '\n\n';
+    out += sheetMd('for','Forager');
+    out += sheetMd('far','Farmer');
+    // screens 4 to 8 by DOM order
+    ['s4','s5','s6','s7','s8'].forEach(function(id){
+      var sec = document.getElementById(id);
+      out += '## ' + sec.querySelector('h2').textContent.trim() + '\n\n';
+      sec.querySelectorAll('[data-key]').forEach(function(el){
+        out += '**' + labelFor(el) + '**\n' + (val(el.getAttribute('data-key')) || '(blank)') + '\n\n';
+      });
+    });
+    return out;
+  }
+  function carMd(){
+    var out = '# The car argument: Forager or Farmer?\n\n';
+    out += '**Question one.** If you could be born as one of these two characters, which would you pick, and why? Use your stats.\n\n';
+    out += '**Question two** (Dad will explain it in the car). Think about 500 years later. Which way of living is still there, and which one gets pushed out?\n\n';
+    ['for','far'].forEach(function(p){
+      out += '## ' + (p==='for' ? 'Forager' : 'Farmer') + '\n';
+      STATS.forEach(function(s){
+        var f = val(p+'_'+s.id+'_found'), m = val(p+'_'+s.id+'_means');
+        if (f || m) out += '- **' + s.name + ':** ' + f + (m ? ' Meaning: ' + m : '') + '\n';
+        else out += '- **' + s.name + ':** (blank)\n';
+      });
+      out += '\n';
+    });
+    return out;
+  }
+  function toast(msg){
+    var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2200);
+  }
+  function copyText(txt, okMsg){
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ toast(okMsg); }, function(){ fallbackCopy(txt, okMsg); });
+    } else fallbackCopy(txt, okMsg);
+  }
+  function fallbackCopy(txt, okMsg){
+    var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast(okMsg); } catch(e){ toast('Copy did not work. Use Download instead.'); }
+    document.body.removeChild(ta);
+  }
+  function download(txt, name){
+    var blob = new Blob([txt], {type:'text/markdown'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+  document.getElementById('mdCopy').addEventListener('click', function(){ copyText(fullMd(), 'Copied. Paste it into your Global History doc.'); });
+  document.getElementById('mdDownload').addEventListener('click', function(){ download(fullMd(), 'settled_module2.md'); });
+  document.getElementById('carCopy').addEventListener('click', function(){ copyText(carMd(), 'Copied. Paste it into a Google Doc for the car.'); });
+  document.getElementById('carDownload').addEventListener('click', function(){ download(carMd(), 'car_argument.md'); });
+
+  // ---- start ----
+  update();
+  show(state.__screen || 's0');
+})();
+</script>
+</body>
+</html>
