@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geometry Practice Run</title>
+<style>
+:root{
+  --navy:#14213d;--navy2:#1f3357;--teal:#0f766e;--teal-l:#e2f3f1;--amber:#b45309;--amber-l:#fdf1df;
+  --ink:#1a2238;--muted:#55657a;--line:#d6dee6;--bg:#f4f7fa;--card:#ffffff;--good:#166a43;--good-l:#e3f4ea;--warn:#7a4b0e;--warn-l:#fff3dc;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Calibri,"Segoe UI",system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 70px}
+header h1{font-size:clamp(1.5rem,4vw,2.1rem);margin:4px 0 2px;color:var(--navy)}
+header .sub{color:var(--teal);font-weight:600;margin:0 0 6px}
+.meter{display:flex;align-items:center;gap:10px;margin:8px 0 4px;font-size:14px;color:var(--muted)}
+.meter .bar{flex:1;height:10px;border-radius:10px;background:#dfe7ee;overflow:hidden}
+.meter .fill{height:100%;background:linear-gradient(90deg,var(--teal),#14a094);width:0%}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+nav button{font:inherit;font-size:14px;border:1px solid #b9c8d3;background:#fff;color:var(--navy);border-radius:9px;padding:8px 11px;cursor:pointer;font-weight:600}
+nav button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+nav button .tick{color:var(--teal);margin-left:4px}
+nav button.on .tick{color:#9fe3d9}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:0 0 14px;box-shadow:0 1px 3px #14213d0f}
+.panel h2{margin:0 0 8px;color:var(--navy);font-size:1.3rem}
+.panel h3{margin:0 0 6px;color:var(--navy);font-size:1.08rem}
+.big{border-left:5px solid var(--teal);background:#fbfefd}
+.big p{margin:6px 0}
+.rulebox{background:var(--teal-l);border-radius:10px;padding:10px 12px;margin:8px 0}
+.paper{background:var(--amber-l);border-radius:10px;padding:10px 12px;margin:8px 0;color:#5c3a0b}
+table.mini{border-collapse:collapse;margin:8px 0;font-size:15px}
+table.mini td,table.mini th{border:1px solid var(--line);padding:5px 9px;text-align:left}
+table.mini th{background:#eef3f7}
+.prob{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;background:#fff}
+.prob .tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.prob .q{font-size:1.05rem;margin:4px 0 10px}
+.fields{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.fields label{display:flex;flex-direction:column;font-size:14px;color:var(--muted);gap:3px}
+.fields input{font:inherit;width:120px;padding:8px 10px;border:1px solid #9fb2bf;border-radius:8px;color:var(--ink)}
+.fields input.rad{width:80px}
+.radrow{display:flex;align-items:center;gap:6px;font-size:1.2rem}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opts button{font:inherit;text-align:left;border:1px solid #b9c8d3;background:#fff;border-radius:9px;padding:9px 12px;cursor:pointer;color:var(--ink)}
+.opts button.sel{border:2px solid var(--teal);background:var(--teal-l)}
+.multi{display:flex;flex-direction:column;gap:8px}
+.multi label{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.multi select{font:inherit;padding:7px 9px;border-radius:8px;border:1px solid #9fb2bf}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{font:inherit;font-weight:700;border-radius:9px;padding:9px 14px;cursor:pointer;border:1px solid var(--teal);background:var(--teal);color:#fff}
+.btn.alt{background:#fff;color:var(--teal)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fb{margin-top:10px;border-radius:10px;padding:10px 12px;display:none}
+.fb.good{display:block;background:var(--good-l);color:var(--good)}
+.fb.warn{display:block;background:var(--warn-l);color:var(--warn)}
+.steps{display:none;margin-top:10px;border-top:2px dashed var(--line);padding-top:10px}
+.steps.show{display:block}
+.steps ol{margin:4px 0 0 20px;padding:0}
+.steps li{margin:5px 0}
+.done-mark{float:right;font-size:13px;font-weight:700;color:var(--good)}
+textarea{font:inherit;width:100%;min-height:100px;border:1px solid #9fb2bf;border-radius:9px;padding:9px}
+.model{display:none;background:#f3f6fa;border-radius:10px;padding:10px 12px;margin-top:8px}
+.model.show{display:block}
+svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto;touch-action:manipulation}
+svg text{font-family:Calibri,"Segoe UI",system-ui,sans-serif}
+.slider{display:flex;align-items:center;gap:10px;font-size:15px;margin:6px 0}
+.slider input{flex:1}
+.readout{background:#f3f6fa;border-radius:9px;padding:8px 11px;font-size:15px;margin-top:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sq-tools{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.sq-tools button{font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1px solid #b9c8d3;background:#fff;cursor:pointer}
+.status{font-size:14px;color:var(--muted);margin-top:6px}
+.nextrow{display:flex;justify-content:space-between;gap:8px;margin-top:6px}
+@media(max-width:760px){.two{grid-template-columns:1fr}.wrap{padding:14px 12px 50px}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Geometry Practice Run</h1>
+  <p class="sub">Seven stations. Try it, check it, and see the steps.</p>
+  <div class="meter"><span id="meterText">0 problems solved</span><div class="bar"><div class="fill" id="meterFill"></div></div></div>
+</header>
+<nav id="nav"></nav>
+<main id="app"></main>
+</div>
+
+<script>
+/* ---------- storage (safe) ---------- */
+const KEY='geoPracticeRun_v1';
+let S={station:'start',ans:{},sel:{},text:{},modelSeen:{}};
+try{const raw=localStorage.getItem(KEY);if(raw){const o=JSON.parse(raw);S=Object.assign(S,o);}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,txt){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(txt!==undefined)e.textContent=txt;return e;}
+function num(v){if(v===undefined||v===null)return NaN;v=String(v).trim().replace(/−/g,'-').replace(/\s+/g,'');if(v==='')return NaN;return Number(v);}
+function close(a,b,tol){return Math.abs(a-b)<=(tol||0.0001);}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ---------- content ---------- */
+const OPT_RULE=['The two parts are equal','The two parts add to 180°','The two parts add to 90°','The pieces add up to the whole'];
+const STATIONS=[
+{id:'start',title:'Start here',short:'Start here'},
+
+{id:'s1',title:'Station 1: Which equation?',short:'1 · Which equation?',
+big:`<p>Almost every problem in this unit comes down to one choice: <b>what kind of equation does the picture give you?</b> There are only four kinds.</p>
+<div class="rulebox"><b>Equal:</b> vertical angles, a bisector (cuts into two equal halves), a midpoint (cuts a segment into two equal halves), and the equal pairs on parallel lines.<br>
+<b>Add to 180°:</b> anything that makes a straight line. A linear pair. Supplementary angles.<br>
+<b>Add to 90°:</b> anything that makes a right angle (a square corner). Complementary angles.<br>
+<b>Pieces add up to the whole:</b> a ray splits an angle, or a point splits a segment, and nobody said the pieces are equal. Small piece plus small piece equals the big one.</div>
+<p>Here is the trap you have fallen into before: when you see two pieces, your brain jumps to 180. Only use 180 when there is a <b>straight line</b>. If the whole is 60°, the pieces add to 60. If there is a midpoint, the pieces are equal, and nothing adds to 180.</p>`,
+interactive:'straight',
+probs:[
+ {id:'1a',type:'mc',q:'Two angles form a linear pair. Which equation?',opts:OPT_RULE,ans:1,steps:['A linear pair sits along one straight line.','A straight line measures 180°.','So the two angles add to 180°.']},
+ {id:'1b',type:'mc',q:'A ray splits a 75° angle into two pieces. Nothing says the ray is a bisector. Which equation?',opts:OPT_RULE,ans:3,steps:['There is no straight line here, so 180 is out.','Nobody said "bisect," so you cannot assume the pieces are equal.','The two pieces fill up the 75° angle, so piece + piece = 75.']},
+ {id:'1c',type:'mc',q:'Two lines cross. Which equation goes with the two angles across from each other (vertical angles)?',opts:OPT_RULE,ans:0,steps:['Vertical angles are across from each other at the crossing.','They are always the same size.','So you set them equal.']},
+ {id:'1d',type:'mc',q:'Two angles fit together to make a right angle. Which equation?',opts:OPT_RULE,ans:2,steps:['A right angle (square corner) is 90°.','The two angles fill it up together.','So they add to 90°. That is what complementary means.']},
+ {id:'1e',type:'mc',q:'M is the midpoint of segment AB. Which equation goes with AM and MB?',opts:OPT_RULE,ans:0,steps:['Midpoint means the exact middle.','The middle cuts the segment into two equal halves.','So AM = MB. There is no angle here at all, so 180 makes no sense.']},
+ {id:'1f',type:'mc',q:'Point B is between A and C on a segment. Which equation goes with AB, BC, and AC?',opts:OPT_RULE,ans:3,steps:['B is just "between," not the midpoint, so the pieces may be different lengths.','The two pieces together make the whole segment.','So AB + BC = AC. This is the Segment Addition Postulate.']},
+ {id:'1g',type:'num',q:'A ray splits an 80° angle into two pieces: (2x + 5)° and (3x − 5)°. There is no bisector. Find x and both pieces.<br><span class="status">Do the work on paper: write the equation first.</span>',
+  fields:[{l:'x',a:16},{l:'first piece (°)',a:37},{l:'second piece (°)',a:43}],
+  steps:['Which equation? There is no straight line and no bisector, so the pieces add to the whole: (2x + 5) + (3x − 5) = 80.','Combine like terms: 2x + 3x = 5x, and 5 − 5 = 0. So 5x = 80.','Divide both sides by 5: x = 16.','First piece: 2(16) + 5 = 37°. Second piece: 3(16) − 5 = 43°.','Check: 37 + 43 = 80. ✓']},
+ {id:'1h',type:'num',q:'M is the midpoint of AB. AM = 3x − 4 and MB = x + 10. Find x and the whole length AB.',
+  fields:[{l:'x',a:7},{l:'AB',a:34}],
+  steps:['Which equation? Midpoint means the halves are equal: 3x − 4 = x + 10.','Subtract x from both sides: 2x − 4 = 10.','Add 4 to both sides: 2x = 14, so x = 7.','AM = 3(7) − 4 = 17. MB = 7 + 10 = 17. Equal halves. ✓','The question asks for the whole: AB = 17 + 17 = 34. Watch out: the answer is not x, and it is not just one half.']}
+]},
+
+{id:'s2',title:'Station 2: Angles at one crossing',short:'2 · One crossing',
+big:`<p>When two straight lines cross, they make four angles. Move the slider below and watch. There are only <b>two sizes</b>, a big one and a small one.</p>
+<ul><li><b>Vertical angles</b> are across from each other. They are always equal.</li>
+<li><b>A linear pair</b> is two angles next to each other along a straight line. They always add to 180°.</li>
+<li><b>Adjacent</b> means next to each other, sharing a side.</li>
+<li><b>Supplementary</b> means they add to 180°. <b>Complementary</b> means they add to 90°.</li></ul>
+<p>A linear pair gets three names at once: adjacent, linear pair, and supplementary. Each name tells you one thing about the pair.</p>`,
+interactive:'cross',
+probs:[
+ {id:'2a',type:'num',q:'Two lines cross. One of the four angles is 64°. Find the angle across from it, and the angle right next to it.',
+  fields:[{l:'across from it (°)',a:64},{l:'next to it (°)',a:116}],
+  steps:['The angle across from it is vertical to it, so it is equal: 64°.','The angle next to it forms a linear pair with it, so together they make 180°.','180 − 64 = 116°.','So the four angles are 64, 116, 64, 116. Two sizes, like the slider showed.']},
+ {id:'2b',type:'mc',q:'Two angles share a side, and their outer sides make a straight line. Pick the most complete set of names.',opts:['Vertical and congruent','Adjacent, linear pair, supplementary','Adjacent and complementary','Corresponding'],ans:1,steps:['They share a side, so they are adjacent.','Their outer sides make a straight line, so they are a linear pair.','A straight line is 180°, so they are also supplementary. All three names fit.']},
+ {id:'2c',type:'num',q:'Two angles are complementary. They measure x° and (2x − 6)°. Find x and both angles.',
+  fields:[{l:'x',a:32},{l:'first angle (°)',a:32},{l:'second angle (°)',a:58}],
+  steps:['Complementary means they add to 90: x + (2x − 6) = 90.','Combine: 3x − 6 = 90.','Add 6: 3x = 96. Divide by 3: x = 32.','The angles are 32° and 2(32) − 6 = 58°.','Check: 32 + 58 = 90. ✓']},
+ {id:'2d',type:'num',q:'Two vertical angles measure (7x − 18)° and (4x + 15)°. Find x and the angle.',
+  fields:[{l:'x',a:11},{l:'angle (°)',a:59}],
+  steps:['Vertical angles are equal: 7x − 18 = 4x + 15.','Subtract 4x: 3x − 18 = 15.','Add 18: 3x = 33, so x = 11.','Angle: 7(11) − 18 = 59°. Check the other one: 4(11) + 15 = 59°. ✓']}
+]},
+
+{id:'s3',title:'Station 3: Parallel lines, name it from where it sits',short:'3 · Parallel lines',
+big:`<p>This is the most important station. Take your time here.</p>
+<p>Two parallel lines, <b>m</b> on top and <b>n</b> on the bottom, crossed by a slanted line <b>t</b> (the transversal). That makes eight angles. We number them the same way as your Show What You Know sheet, like reading a page:</p>
+<div class="rulebox">Where t crosses <b>m</b>: ∠1 top left, ∠2 top right, ∠3 bottom left, ∠4 bottom right.<br>Where t crosses <b>n</b>: ∠5 top left, ∠6 top right, ∠7 bottom left, ∠8 bottom right.</div>
+<p><b>This is a different numbering from the Reinforcement Lab.</b> That is on purpose. The name of a pair never comes from the numbers. It comes from <b>where the two angles sit</b>.</p>
+<p><b>The decoder.</b> Ask two questions about the pair, in this order:</p>
+<ol><li><b>Inside or outside?</b> Inside means between the two parallel lines. Are both inside, both outside, or one of each?</li>
+<li><b>Same side or opposite sides of t?</b></li></ol>
+<table class="mini"><tr><th>Inside / outside</th><th>Side of t</th><th>Name</th><th>Rule</th></tr>
+<tr><td>One inside, one outside</td><td>Same side</td><td>Corresponding (same spot at each crossing)</td><td>Equal</td></tr>
+<tr><td>Both inside</td><td>Opposite sides</td><td>Alternate interior</td><td>Equal</td></tr>
+<tr><td>Both outside</td><td>Opposite sides</td><td>Alternate exterior</td><td>Equal</td></tr>
+<tr><td>Both inside</td><td>Same side</td><td>Same side interior</td><td>Add to 180°</td></tr></table>
+<p><b>Do not go backward.</b> "They are equal, so they must be corresponding" is wrong thinking, because three different pairs are equal. Find where they sit first. The name comes from that. The rule comes last.</p>
+<p>In the picture, click any two angle numbers. The page will tell you where they sit. Move the slider and watch: there are only two sizes of angle, and big + small = 180°.</p>`,
+interactive:'trans',
+probs:[
+ {id:'3a',type:'multi',q:'∠1 and ∠5. Use the decoder.',parts:[
+   {l:'Inside or outside?',o:['Both inside','Both outside','One inside, one outside'],a:2},
+   {l:'Side of t?',o:['Same side','Opposite sides'],a:0},
+   {l:'Name',o:['Corresponding','Alternate interior','Alternate exterior','Same side interior'],a:0},
+   {l:'Rule',o:['Equal','Add to 180°'],a:0}],
+  steps:['∠1 is top left at line m. That is above m, so it is outside the parallel lines.','∠5 is top left at line n. That is above n, which is between the lines, so it is inside.','One inside, one outside. Both are on the left of t, so same side.','That is the same spot at each crossing (top left and top left): corresponding.','Corresponding angles are equal.']},
+ {id:'3b',type:'multi',q:'∠3 and ∠6. Use the decoder.',parts:[
+   {l:'Inside or outside?',o:['Both inside','Both outside','One inside, one outside'],a:0},
+   {l:'Side of t?',o:['Same side','Opposite sides'],a:1},
+   {l:'Name',o:['Corresponding','Alternate interior','Alternate exterior','Same side interior'],a:1},
+   {l:'Rule',o:['Equal','Add to 180°'],a:0}],
+  steps:['∠3 is below m, and ∠6 is above n. Both are between the lines, so both are inside.','∠3 is left of t. ∠6 is right of t. Opposite sides.','Both inside, opposite sides: alternate interior. ("Alternate" always means opposite sides of t.)','Alternate interior angles are equal. They make a Z shape.']},
+ {id:'3c',type:'multi',q:'∠4 and ∠6. Careful: in the Reinforcement Lab, these numbers meant a different pair.',parts:[
+   {l:'Inside or outside?',o:['Both inside','Both outside','One inside, one outside'],a:0},
+   {l:'Side of t?',o:['Same side','Opposite sides'],a:0},
+   {l:'Name',o:['Corresponding','Alternate interior','Alternate exterior','Same side interior'],a:3},
+   {l:'Rule',o:['Equal','Add to 180°'],a:1}],
+  steps:['∠4 is bottom right at m: below m, so inside.','∠6 is top right at n: above n, so inside.','Both are right of t. Same side.','Both inside, same side: same side interior.','Same side interior angles add to 180°. One is the big size and one is the small size. Look at the slider picture to see it.']},
+ {id:'3d',type:'multi',q:'∠2 and ∠7. Use the decoder.',parts:[
+   {l:'Inside or outside?',o:['Both inside','Both outside','One inside, one outside'],a:1},
+   {l:'Side of t?',o:['Same side','Opposite sides'],a:1},
+   {l:'Name',o:['Corresponding','Alternate interior','Alternate exterior','Same side interior'],a:2},
+   {l:'Rule',o:['Equal','Add to 180°'],a:0}],
+  steps:['∠2 is above m: outside. ∠7 is below n: outside. Both outside.','∠2 is right of t. ∠7 is left of t. Opposite sides.','Both outside, opposite sides: alternate exterior.','Alternate exterior angles are equal.']},
+ {id:'3e',type:'mc',q:'<b>Spot the mistake.</b> A student wrote: "∠1 and ∠5 are corresponding because a straight line goes through both of them, and a straight line is 180°." What is wrong?',
+  opts:['Nothing. That is the right reason.','The name is right, but the reason is wrong. They are corresponding because they sit in the same spot (top left) at each crossing.','The name is wrong. They are alternate interior.','They are corresponding because they are equal.'],ans:1,
+  steps:['The name corresponding is correct.','But 180° has nothing to do with it. Corresponding angles are equal, not 180.','The real reason is position: same spot at each crossing. ∠1 is top left at m, and ∠5 is top left at n.']},
+ {id:'3f',type:'mc',q:'<b>Spot the mistake.</b> A student wrote: "∠3 and ∠6 are the same size, so they are corresponding." What is wrong?',
+  opts:['Nothing. Equal angles are corresponding.','The thinking runs backward. Being equal does not tell you the name, because three different pairs are equal. ∠3 and ∠6 are both inside and on opposite sides, so they are alternate interior.','They are not equal.','They are same side interior.'],ans:1,
+  steps:['Corresponding, alternate interior, and alternate exterior angles are all equal. So "equal" cannot tell you which one it is.','You have to look at where they sit: both inside, opposite sides of t.','That makes them alternate interior.']},
+ {id:'3g',type:'num',q:'∠3 = (5x − 5)° and ∠7 = (3x + 35)°. Name the pair on paper first, then find x and the angle.',
+  fields:[{l:'x',a:20},{l:'angle (°)',a:95}],
+  steps:['Where do they sit? ∠3 is bottom left at m. ∠7 is bottom left at n. Same spot at each crossing: corresponding.','Corresponding angles are equal: 5x − 5 = 3x + 35.','Subtract 3x: 2x − 5 = 35. Add 5: 2x = 40. So x = 20.','Angle: 5(20) − 5 = 95°. Check: 3(20) + 35 = 95°. ✓']},
+ {id:'3h',type:'num',q:'∠4 = (3x + 10)° and ∠5 = (5x − 26)°. Name the pair first, then find x and the angle.',
+  fields:[{l:'x',a:18},{l:'angle (°)',a:64}],
+  steps:['∠4 is bottom right at m (inside, right). ∠5 is top left at n (inside, left).','Both inside, opposite sides: alternate interior. Equal.','3x + 10 = 5x − 26. Subtract 3x: 10 = 2x − 26. Add 26: 36 = 2x. So x = 18.','Angle: 3(18) + 10 = 64°. Check: 5(18) − 26 = 64°. ✓']},
+ {id:'3i',type:'num',q:'∠3 = (2x + 14)° and ∠5 = (3x + 6)°. Name the pair first, then find x and both angles.',
+  fields:[{l:'x',a:32},{l:'∠3 (°)',a:78},{l:'∠5 (°)',a:102}],
+  steps:['∠3 is bottom left at m (inside, left). ∠5 is top left at n (inside, left).','Both inside, same side: same side interior. They add to 180. They are NOT equal.','(2x + 14) + (3x + 6) = 180. Combine: 5x + 20 = 180.','Subtract 20: 5x = 160. So x = 32.','∠3 = 2(32) + 14 = 78°. ∠5 = 3(32) + 6 = 102°. Check: 78 + 102 = 180. ✓']}
+]},
+
+{id:'s4',title:'Station 4: Square roots',short:'4 · Square roots',
+big:`<p><b>Squaring</b> means a number times itself: 7² = 7 × 7 = 49. Think of a square made of tiles: 7 tiles on each side, 49 tiles in all.</p>
+<p><b>A square root goes backward.</b> √49 asks, "what number times itself makes 49?" The answer is 7. So if c² = 49, then c = 7. <b>c² is the area of the square. c is the side.</b> They are different things.</p>
+<p><b>Simplifying.</b> Most numbers are not perfect squares. To simplify, find the <b>biggest perfect square</b> that divides evenly into the number, and pull it out.</p>
+<div class="rulebox">√80: 80 = 16 × 5, and 16 is a perfect square. So √80 = √16 · √5 = 4√5.<br>The 5 stays inside because 5 is not a perfect square.</div>
+<p>Keep this list handy. These are the perfect squares: <b>4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144</b>. Start with the biggest one that fits. If you use a smaller one, you will have to break it down again.</p>`,
+interactive:'square',
+probs:[
+ {id:'4a',type:'num',q:'c² = 64. What is c?',fields:[{l:'c',a:8}],steps:['c² = 64 means c × c = 64.','8 × 8 = 64.','So c = 8. The side is 8, and the area is 64.']},
+ {id:'4b',type:'mc',q:'A right triangle gives you c² = 50. What is c?',opts:['c = 25','c = 50','c = √50, which is about 7.1','c = 2500'],ans:2,steps:['50 is c², the square of the side, not the side.','To get c, undo the squaring: c = √50.','√50 is between 7 and 8, because 7² = 49 and 8² = 64. It is about 7.1.','25 is a trap: that is half of 50, not the square root. Square roots are never "divide by something."']},
+ {id:'4c',type:'rad',q:'Simplify √12.',a:[2,3],steps:['Which perfect squares divide into 12? 4 does: 12 = 4 × 3.','√12 = √4 · √3.','√4 = 2, so √12 = 2√3.','Check with a calculator: √12 ≈ 3.46, and 2 × √3 ≈ 2 × 1.73 = 3.46. ✓']},
+ {id:'4d',type:'rad',q:'Simplify √18.',a:[3,2],steps:['18 = 9 × 2, and 9 is a perfect square.','√18 = √9 · √2 = 3√2.']},
+ {id:'4e',type:'rad',q:'Simplify √75.',a:[5,3],steps:['Try the perfect squares from the list. 75 ÷ 25 = 3 exactly.','√75 = √25 · √3 = 5√3.']},
+ {id:'4f',type:'rad',q:'Simplify √48. Use the biggest perfect square.',a:[4,3],steps:['4 goes into 48 (48 = 4 × 12), but so does a bigger one: 16. 48 = 16 × 3.','√48 = √16 · √3 = 4√3.','If you used 4 first, you got 2√12. That is not finished, because 12 still has a 4 inside it: 2√12 = 2 · 2√3 = 4√3. Same answer, more steps.']},
+ {id:'4g',type:'rad',q:'Simplify √300.',a:[10,3],steps:['100 is a perfect square, and 300 = 100 × 3.','√300 = √100 · √3 = 10√3.']},
+ {id:'4h',type:'mc',q:'A student wrote √48 = 2√12. Which is true?',opts:['That is wrong. √48 cannot be simplified.','That is correct and finished.','That is correct but not finished. 12 still has a perfect square (4) inside, so it becomes 4√3.','√48 = 24.'],ans:2,steps:['2√12 is the same value as √48, so it is not wrong.','But 12 = 4 × 3, so √12 = 2√3.','2√12 = 2 · 2√3 = 4√3. Always check whether the number left inside can break down again.']}
+]},
+
+{id:'s5',title:'Station 5: Distance, the hidden triangle',short:'5 · Distance',
+big:`<p>To find how far apart two points are, build a right triangle you cannot see yet.</p>
+<ol><li><b>Horizontal leg:</b> how far across? Subtract the x values (and drop any minus sign, since length is never negative).</li>
+<li><b>Vertical leg:</b> how far up or down? Subtract the y values.</li>
+<li>The slanted line between the points is the <b>hypotenuse</b>. Use a² + b² = d².</li>
+<li><b>Take the square root at the end.</b> d² is not the distance. d is.</li></ol>
+<div class="rulebox">Write it on two lines, so every equals sign is true:<br>3² + 4² = 9 + 16 = 25, so d² = 25<br>d = √25 = 5</div>
+<p>Click two spots on the grid below to see the two legs drawn in.</p>`,
+interactive:'grid',
+probs:[
+ {id:'5a',type:'num',q:'A right triangle has legs 6 and 8. Find the hypotenuse.',fields:[{l:'hypotenuse',a:10}],steps:['6² + 8² = 36 + 64 = 100, so c² = 100.','c = √100 = 10.']},
+ {id:'5b',type:'num',q:'Find the distance from (2, 1) to (5, 5). Sketch it on paper first.',fields:[{l:'horizontal leg',a:3},{l:'vertical leg',a:4},{l:'distance',a:5}],steps:['Across: from x = 2 to x = 5 is 3.','Up: from y = 1 to y = 5 is 4.','3² + 4² = 9 + 16 = 25, so d² = 25.','d = √25 = 5.']},
+ {id:'5c',type:'num',q:'Find the distance from (−1, −2) to (5, 6).',fields:[{l:'horizontal leg',a:6},{l:'vertical leg',a:8},{l:'distance',a:10}],steps:['Across: from −1 to 5. 5 − (−1) = 5 + 1 = 6.','Up: from −2 to 6. 6 − (−2) = 6 + 2 = 8.','6² + 8² = 36 + 64 = 100, so d² = 100.','d = √100 = 10.']},
+ {id:'5d',type:'num',q:'Find the distance from (0, 3) to (4, −1). This one does not come out to a whole number. Give d² and then d as a decimal to one place.',fields:[{l:'horizontal leg',a:4},{l:'vertical leg',a:4},{l:'d²',a:32},{l:'d (decimal)',a:5.7,tol:0.06}],steps:['Across: 0 to 4 is 4.','Down: 3 to −1. 3 − (−1) = 4.','4² + 4² = 16 + 16 = 32, so d² = 32.','d = √32. Simplify: 32 = 16 × 2, so √32 = 4√2.','As a decimal: √32 ≈ 5.7. That makes sense, because 5² = 25 and 6² = 36.']},
+ {id:'5e',type:'mc',q:'For the triangle with legs 3 and 4, someone says "the triangle is 25 units." What does the 25 really mean?',opts:['The distance is 25.','25 is d², the square of the distance. The distance itself is 5.','25 is the area of the triangle.','25 is the perimeter.'],ans:1,steps:['3² + 4² = 25 gives you d², not d.','Nothing in the picture is 25 units long.','Take the square root: d = 5. That is the length of the slanted line.']}
+]},
+
+{id:'s6',title:'Station 6: Midpoints',short:'6 · Midpoints',
+big:`<p><b>The midpoint is the exact middle.</b> On a number line, the middle of two numbers is their <b>average</b>: add them and divide by 2. Halfway between 2 and 8 is (2 + 8) ÷ 2 = 5.</p>
+<p>On a graph, do it twice: <b>average the x's</b>, then <b>average the y's</b>. Two separate steps.</p>
+<div class="rulebox">Midpoint of (2, 5) and (8, 1):<br>x: (2 + 8) ÷ 2 = 5<br>y: (5 + 1) ÷ 2 = 3<br>Midpoint: (5, 3)</div>
+<p><b>Missing endpoint.</b> If you know A and the midpoint M, find how far you moved from A to M, then make the same move again from M to get to B.</p>
+<p><b>Distance or midpoint?</b> They are different tools. Distance asks <i>how far apart</i>, so you use the triangle. Midpoint asks <i>where the middle is</i>, so you use averages. No triangle needed for a midpoint.</p>`,
+interactive:'numline',
+probs:[
+ {id:'6a',type:'num',q:'What number is exactly halfway between 4 and 10?',fields:[{l:'halfway',a:7}],steps:['Add them: 4 + 10 = 14.','Divide by 2: 14 ÷ 2 = 7.','Check: 7 is 3 away from 4, and 3 away from 10. ✓']},
+ {id:'6b',type:'num',q:'What number is exactly halfway between −6 and 2?',fields:[{l:'halfway',a:-2}],steps:['Add them: −6 + 2 = −4.','Divide by 2: −4 ÷ 2 = −2.','Check: from −6 to −2 is 4, and from −2 to 2 is 4. ✓']},
+ {id:'6c',type:'coord',q:'Find the midpoint of (4, 2) and (10, 8).',a:[7,5],steps:['x: (4 + 10) ÷ 2 = 14 ÷ 2 = 7.','y: (2 + 8) ÷ 2 = 10 ÷ 2 = 5.','Midpoint: (7, 5).']},
+ {id:'6d',type:'coord',q:'Find the midpoint of (−6, 3) and (2, −5).',a:[-2,-1],steps:['x: (−6 + 2) ÷ 2 = −4 ÷ 2 = −2.','y: (3 + (−5)) ÷ 2 = −2 ÷ 2 = −1.','Midpoint: (−2, −1).']},
+ {id:'6e',type:'coord',q:'M(5, 3) is the midpoint of AB, and A is (2, 1). Find B. On paper, write how far you moved from A to M.',a:[8,5],steps:['From A to M in x: 2 to 5 is +3.','From A to M in y: 1 to 3 is +2.','Do the same move again from M: x: 5 + 3 = 8. y: 3 + 2 = 5.','B = (8, 5).','Check: midpoint of (2, 1) and (8, 5) is ((2 + 8) ÷ 2, (1 + 5) ÷ 2) = (5, 3). ✓']},
+ {id:'6f',type:'mc',q:'In a game, you need a checkpoint exactly halfway between two spawn points. Which tool?',opts:['Distance: build the triangle','Midpoint: average the x\'s and average the y\'s'],ans:1,steps:['"Halfway" is asking where the middle is.','That is the midpoint: averages, no triangle.']},
+ {id:'6g',type:'mc',q:'In the same game, you need to know how far apart two players are. Which tool?',opts:['Distance: build the triangle','Midpoint: average the x\'s and average the y\'s'],ans:0,steps:['"How far apart" is asking for a length.','That is distance: horizontal leg, vertical leg, a² + b² = d², then take the square root.']}
+]},
+
+{id:'s7',title:'Station 7: In your own words',short:'7 · Your words',
+big:`<p>Last station. Write in full sentences. After you write, click the button to compare with a model answer. Your answer does not have to match it word for word. It just needs the same idea.</p>`,
+texts:[
+ {id:'t1',q:'Same side interior angles are not equal. They add to 180°. Explain why, using what you know about a linear pair. (Hint: use ∠3, ∠5, and ∠1 from Station 3.)',
+  model:'∠5 and ∠1 are corresponding, so ∠5 is the same size as ∠1. ∠1 and ∠3 are a linear pair, so ∠1 + ∠3 = 180°. Since ∠5 is the same size as ∠1, I can swap it in: ∠5 + ∠3 = 180°. That is why same side interior angles add to 180°.'},
+ {id:'t2',q:'For a right triangle with legs 3 and 4, explain what the 25 means and what the 5 means.',
+  model:'3² + 4² = 25. The 25 is c², the square of the hypotenuse, like the area of a square built on that side. The hypotenuse itself is 5, because 5 × 5 = 25. Nothing in the triangle is 25 units long.'},
+ {id:'t3',q:'How do you tell when to use the triangle (distance) and when to use averages (midpoint)?',
+  model:'If the question asks how far apart two points are, I use the triangle: find the two legs, use a² + b² = d², and take the square root. If it asks where the middle is, I average the x values and average the y values. A midpoint does not need a triangle.'},
+ {id:'t4',q:'Which station felt easiest? Which one are you still unsure about, and what exactly is confusing?',model:null}
+]}
+];
+
+/* ---------- nav & progress ---------- */
+function allProbs(){return STATIONS.flatMap(s=>s.probs||[]);}
+function stationDone(s){if(s.probs)return s.probs.every(p=>S.ans[p.id]&&S.ans[p.id].solved);if(s.texts)return s.texts.every(t=>(S.text[t.id]||'').trim().length>0);return false;}
+function renderNav(){
+  $('nav').innerHTML=STATIONS.map(s=>`<button class="${S.station===s.id?'on':''}" onclick="go('${s.id}')">${s.short}${stationDone(s)?'<span class="tick">✓</span>':''}</button>`).join('');
+  const ps=allProbs();const solved=ps.filter(p=>S.ans[p.id]&&S.ans[p.id].solved).length;
+  $('meterText').textContent=`${solved} of ${ps.length} problems solved`;
+  $('meterFill').style.width=(100*solved/ps.length)+'%';
+}
+function go(id){S.station=id;save();render();window.scrollTo(0,0);}
+
+/* ---------- rendering ---------- */
+function render(){
+  renderNav();
+  const s=STATIONS.find(x=>x.id===S.station)||STATIONS[0];
+  if(s.id==='start'){renderStart();return;}
+  let h=`<section class="panel big"><h2>${s.title}</h2>${s.big}</section>`;
+  if(s.interactive)h+=`<section class="panel" id="inter"></section>`;
+  if(s.probs){h+=`<section class="panel"><h3>Problems</h3><div class="paper">Do your work on paper. Write the station and problem number next to each one (like <b>Station 3, #3h</b>). Type your answers here and click Check. If you get stuck, click <b>Show me step by step</b>.</div>`;
+    h+=s.probs.map(probHTML).join('')+'</section>';}
+  if(s.texts){h+=s.texts.map(textHTML).join('');}
+  const i=STATIONS.indexOf(s);
+  h+=`<div class="nextrow"><span>${i>0?`<button class="btn alt" onclick="go('${STATIONS[i-1].id}')">Back</button>`:''}</span>`+
+     (i<STATIONS.length-1?`<button class="btn" onclick="go('${STATIONS[i+1].id}')">Next station</button>`:`<button class="btn" onclick="copyMD()">Copy as Markdown</button>`)+`</div>`;
+  if(s.id==='s7')h+=`<p id="copyStatus" class="status">When you are finished, click Copy as Markdown and paste it into your Geometry Google Doc under today's date.</p>`;
+  $('app').innerHTML=h;
+  if(s.interactive)INTER[s.interactive]();
+  (s.probs||[]).forEach(restoreProb);
+}
+
+function renderStart(){
+  $('app').innerHTML=`<section class="panel big"><h2>What this is</h2>
+  <p>This is a practice run on the geometry ideas you have been working on: picking the right equation, angle pairs, parallel lines, square roots, distance, and midpoints. Some of it goes back to middle school ideas on purpose, so the foundation is solid.</p>
+  <p>There are seven stations. Each one starts with a short explanation, then something you can move or click, then problems.</p>
+  <h3>How it works</h3>
+  <ol><li>Read the explanation at the top of the station. Play with the picture.</li>
+  <li>Do each problem <b>on paper</b> first. Write the station and problem number next to your work.</li>
+  <li>Type your answer and click <b>Check</b>. You can try again as many times as you need.</li>
+  <li>Stuck, or want to see how it works? Click <b>Show me step by step</b>. It walks through the whole thing.</li>
+  <li>The page remembers your first try on every problem. That is fine. First tries are how Dad sees what you know and what to teach next, so do not guess just to get the green box.</li></ol>
+  <h3>Which stations matter most</h3>
+  <p><b>Station 1</b> (which equation) and <b>Station 3</b> (parallel lines) are the most important. If you are short on time, do those two first.</p>
+  <h3>Saving and turning in</h3>
+  <p>Your answers save in this browser on their own, so use the same browser every time. When you finish (or stop for the day), go to Station 7 and click <b>Copy as Markdown</b>. Paste it into your Geometry Google Doc. Take a photo of your paper too.</p>
+  <div class="btns"><button class="btn" onclick="go('s1')">Start Station 1</button></div></section>`;
+}
+
+function probHTML(p){
+  const a=S.ans[p.id]||{};
+  let body='';
+  if(p.type==='mc'){body=`<div class="opts">${p.opts.map((o,i)=>`<button data-p="${p.id}" data-i="${i}" onclick="pick('${p.id}',${i})">${o}</button>`).join('')}</div>`;}
+  else if(p.type==='num'){body=`<div class="fields">${p.fields.map((f,i)=>`<label>${f.l}<input id="${p.id}_${i}" inputmode="decimal"></label>`).join('')}</div>`;}
+  else if(p.type==='rad'){body=`<div class="radrow"><input class="rad" id="${p.id}_0" inputmode="numeric" placeholder="outside" style="font:inherit;padding:8px;border:1px solid #9fb2bf;border-radius:8px;width:90px"> √ <input class="rad" id="${p.id}_1" inputmode="numeric" placeholder="inside" style="font:inherit;padding:8px;border:1px solid #9fb2bf;border-radius:8px;width:90px"></div><div class="status">Type the number outside the root in the first box and the number left inside in the second box.</div>`;}
+  else if(p.type==='coord'){body=`<div class="radrow">( <input id="${p.id}_0" inputmode="decimal" placeholder="x" style="font:inherit;padding:8px;border:1px solid #9fb2bf;border-radius:8px;width:80px"> , <input id="${p.id}_1" inputmode="decimal" placeholder="y" style="font:inherit;padding:8px;border:1px solid #9fb2bf;border-radius:8px;width:80px"> )</div>`;}
+  else if(p.type==='multi'){body=`<div class="multi">${p.parts.map((pt,i)=>`<label><b>${pt.l}</b><select id="${p.id}_${i}"><option value="">Choose...</option>${pt.o.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select></label>`).join('')}</div>`;}
+  return `<div class="prob" id="box_${p.id}"><span class="done-mark" id="dm_${p.id}">${a.solved?'Solved ✓':''}</span><div class="tag">Problem ${p.id}</div><div class="q">${p.q}</div>${body}
+  <div class="btns"><button class="btn" onclick="check('${p.id}')">Check</button><button class="btn alt" onclick="showSteps('${p.id}')">Show me step by step</button></div>
+  <div class="fb" id="fb_${p.id}"></div>
+  <div class="steps" id="st_${p.id}"><b>Step by step</b><ol>${p.steps.map(x=>`<li>${x}</li>`).join('')}</ol></div></div>`;
+}
+function restoreProb(p){
+  const a=S.ans[p.id];if(!a)return;
+  if(p.type==='mc'){if(a.last!==undefined)markPick(p.id,a.last);}
+  else if(a.vals){a.vals.forEach((v,i)=>{const e=$(p.id+'_'+i);if(e)e.value=v;});}
+  if(a.solved){const f=$('fb_'+p.id);f.className='fb good';f.textContent='Solved. Nice work.';}
+  if(a.stepsSeen)$('st_'+p.id).classList.add('show');
+}
+function markPick(id,i){document.querySelectorAll(`[data-p="${id}"]`).forEach(b=>b.classList.toggle('sel',Number(b.dataset.i)===i));}
+function pick(id,i){S.sel[id]=i;markPick(id,i);}
+function rec(id){if(!S.ans[id])S.ans[id]={tries:0,first:null,solved:false,stepsSeen:false,stepsBefore:false};return S.ans[id];}
+
+function check(id){
+  const p=allProbs().find(x=>x.id===id);const a=rec(id);let ok=false,vals=[],shown='';
+  if(p.type==='mc'){const i=S.sel[id];if(i===undefined){fb(id,'Pick an answer first.',false);return;}ok=i===p.ans;a.last=i;shown=p.opts[i];}
+  else if(p.type==='multi'){vals=p.parts.map((pt,i)=>$(id+'_'+i).value);if(vals.some(v=>v==='')){fb(id,'Answer every part first.',false);return;}
+    const wrong=p.parts.map((pt,i)=>Number(vals[i])===pt.a?null:pt.l).filter(Boolean);ok=wrong.length===0;
+    shown=p.parts.map((pt,i)=>pt.l+': '+pt.o[Number(vals[i])]).join('; ');
+    if(!ok){a.tries++;if(a.first===null){a.first=false;a.firstAns=shown;}a.vals=vals;save();renderNav();fb(id,'Not yet. Check these: '+wrong.join(', ')+'. Go back to the decoder: inside or outside first, then which side of t.',false);return;}}
+  else{const n=p.type==='num'?p.fields.length:2;vals=[];for(let i=0;i<n;i++)vals.push($(id+'_'+i).value);
+    if(vals.some(v=>String(v).trim()==='')){fb(id,'Fill in every box first.',false);return;}
+    const want=p.type==='num'?p.fields.map(f=>f.a):p.a;const tol=p.type==='num'?p.fields.map(f=>f.tol||0.0001):[0.0001,0.0001];
+    ok=vals.every((v,i)=>close(num(v),want[i],tol[i]));
+    if(p.type==='num')shown=p.fields.map((f,i)=>f.l+' = '+vals[i]).join(', ');
+    else if(p.type==='rad')shown=vals[0]+'√'+vals[1];
+    else shown='('+vals[0]+', '+vals[1]+')';
+    if(!ok&&p.type==='rad'){const o=num(vals[0]),inn=num(vals[1]);if(o*o*inn===p.a[0]*p.a[0]*p.a[1]){a.tries++;if(a.first===null){a.first=false;a.firstAns=shown;}a.vals=vals;save();renderNav();fb(id,'That has the right value, but it is not finished. The number inside still has a perfect square hiding in it. Pull out a bigger perfect square.',false);return;}}
+  }
+  a.tries++;a.vals=vals;
+  if(a.first===null){a.first=ok;a.firstAns=shown;}
+  if(ok){a.solved=true;a.finalAns=shown;if(!a.stepsSeen)a.stepsBefore=false;}
+  save();renderNav();
+  if(ok){fb(id,a.tries===1?'Correct on the first try.':'Correct. You got there.',true);$('dm_'+id).textContent='Solved ✓';}
+  else fb(id,hintFor(p),false);
+}
+function hintFor(p){
+  if(p.type==='mc')return 'Not this one. Reread the explanation at the top of the station, or click Show me step by step.';
+  if(p.type==='coord')return 'Not yet. Do x and y as two separate averages (or two separate moves).';
+  if(p.type==='rad')return 'Not yet. Which perfect square divides evenly into the number? Try the biggest one first.';
+  return 'Not yet. Did you write the equation first? Check which kind of equation the picture gives you, then check your arithmetic.';
+}
+function fb(id,t,good){const f=$('fb_'+id);f.className='fb '+(good?'good':'warn');f.textContent=t;}
+function showSteps(id){const a=rec(id);if(!a.stepsSeen){a.stepsSeen=true;a.stepsBefore=!a.solved;}save();$('st_'+id).classList.add('show');}
+
+function textHTML(t){
+  return `<section class="panel"><h3>${t.q}</h3><textarea id="tx_${t.id}" oninput="saveText('${t.id}')">${esc(S.text[t.id]||'')}</textarea>
+  ${t.model?`<div class="btns"><button class="btn alt" onclick="showModel('${t.id}')">Compare with a model answer</button></div><div class="model ${S.modelSeen[t.id]?'show':''}" id="md_${t.id}"><b>Model answer:</b> ${t.model}</div><p class="status" id="ms_${t.id}"></p>`:''}</section>`;
+}
+function saveText(id){S.text[id]=$('tx_'+id).value;save();renderNav();}
+function showModel(id){if(!(S.text[id]||'').trim()){$('ms_'+id).textContent='Write your own answer first, then compare.';return;}S.modelSeen[id]=true;save();$('md_'+id).classList.add('show');$('ms_'+id).textContent='';}
+
+/* ---------- interactives ---------- */
+const INTER={
+straight(){
+  $('inter').innerHTML=`<h3>Angles on a straight line</h3><svg id="sv" viewBox="0 0 440 210"></svg>
+  <div class="slider">Move the ray: <input type="range" min="15" max="165" value="55" id="rg"></div><div class="readout" id="ro"></div>`;
+  const draw=()=>{const a=Number($('rg').value),sv=$('sv');sv.innerHTML='';const cx=220,cy=170,R=150,r=a*Math.PI/180;
+    sv.appendChild(el('line',{x1:cx-R-10,y1:cy,x2:cx+R+10,y2:cy,stroke:'#14213d','stroke-width':4,'stroke-linecap':'round'}));
+    sv.appendChild(el('line',{x1:cx,y1:cy,x2:cx+R*Math.cos(r),y2:cy-R*Math.sin(r),stroke:'#b45309','stroke-width':4,'stroke-linecap':'round'}));
+    const arc=(a0,a1,rad,col)=>{const p0=[cx+rad*Math.cos(a0),cy-rad*Math.sin(a0)],p1=[cx+rad*Math.cos(a1),cy-rad*Math.sin(a1)];sv.appendChild(el('path',{d:`M${cx} ${cy} L${p0[0]} ${p0[1]} A${rad} ${rad} 0 0 0 ${p1[0]} ${p1[1]} Z`,fill:col,opacity:.85}));};
+    arc(0,r,55,'#cfe9e5');arc(r,Math.PI,45,'#f8e3c4');
+    const lab=(ang,rad,t,c)=>sv.appendChild(el('text',{x:cx+rad*Math.cos(ang),y:cy-rad*Math.sin(ang)+6,'text-anchor':'middle','font-size':18,'font-weight':700,fill:c},t));
+    lab(r/2,80,a+'°','#0f766e');lab((r+Math.PI)/2,72,(180-a)+'°','#b45309');
+    $('ro').textContent=`${a}° + ${180-a}° = 180°. However you move the ray, the two angles on a straight line always add to 180°. That is the only time 180 shows up.`;};
+  $('rg').oninput=draw;draw();
+},
+cross(){
+  $('inter').innerHTML=`<h3>Two lines crossing</h3><svg id="sv" viewBox="0 0 440 300"></svg>
+  <div class="slider">Turn one line: <input type="range" min="20" max="160" value="60" id="rg"></div><div class="readout" id="ro"></div>`;
+  const draw=()=>{const a=Number($('rg').value),sv=$('sv');sv.innerHTML='';const cx=220,cy=150,R=135,r=a*Math.PI/180;
+    const P=(rad,ang)=>[cx+rad*Math.cos(ang),cy-rad*Math.sin(ang)];
+    const secs=[[0,r],[r,Math.PI],[Math.PI,Math.PI+r],[Math.PI+r,2*Math.PI]];
+    secs.forEach((s,i)=>{const p0=P(52,s[0]),p1=P(52,s[1]);sv.appendChild(el('path',{d:`M${cx} ${cy} L${p0[0]} ${p0[1]} A52 52 0 0 0 ${p1[0]} ${p1[1]} Z`,fill:i%2===0?'#cfe9e5':'#f8e3c4'}));
+      const t=P(82,(s[0]+s[1])/2);sv.appendChild(el('text',{x:t[0],y:t[1]+6,'text-anchor':'middle','font-size':17,'font-weight':700,fill:i%2===0?'#0f766e':'#b45309'},(i%2===0?a:180-a)+'°'));});
+    let p=P(R,0),q=P(R,Math.PI);sv.appendChild(el('line',{x1:p[0],y1:p[1],x2:q[0],y2:q[1],stroke:'#14213d','stroke-width':4}));
+    p=P(R,r);q=P(R,r+Math.PI);sv.appendChild(el('line',{x1:p[0],y1:p[1],x2:q[0],y2:q[1],stroke:'#14213d','stroke-width':4}));
+    $('ro').textContent=`Across from each other (vertical): ${a}° and ${a}°, ${180-a}° and ${180-a}°. Next to each other (linear pair): ${a}° + ${180-a}° = 180°. Only two sizes, every time.`;};
+  $('rg').oninput=draw;draw();
+},
+trans(){
+  $('inter').innerHTML=`<h3>Parallel lines and a transversal</h3><svg id="sv" viewBox="0 0 500 360"></svg>
+  <div class="slider">Tilt line t: <input type="range" min="35" max="145" value="60" id="rg"></div>
+  <div class="readout" id="ro">Click any two angle numbers in the picture.</div><div class="readout" id="ro2"></div>`;
+  let picked=[];
+  const draw=()=>{const th=Number($('rg').value),T=th*Math.PI/180,sv=$('sv');sv.innerHTML='';const yM=120,yN=250;
+    const xAt=y=>250+(185-y)*Math.cos(T)/Math.sin(T);
+    sv.appendChild(el('rect',{x:20,y:yM,width:460,height:yN-yM,fill:'#eef7f6'}));
+    sv.appendChild(el('text',{x:30,y:(yM+yN)/2+5,'font-size':13,fill:'#0f766e'},'inside (between the lines)'));
+    sv.appendChild(el('text',{x:30,y:yM-82,'font-size':13,fill:'#55657a'},'outside'));
+    sv.appendChild(el('text',{x:30,y:yN+92,'font-size':13,fill:'#55657a'},'outside'));
+    [[yM,'m'],[yN,'n']].forEach(([y,n])=>{sv.appendChild(el('line',{x1:20,y1:y,x2:480,y2:y,stroke:'#14213d','stroke-width':4}));sv.appendChild(el('text',{x:486,y:y+5,'font-size':16,'font-style':'italic',fill:'#14213d'},n));
+      sv.appendChild(el('path',{d:`M${130} ${y-6} l9 6 l-9 6`,fill:'none',stroke:'#14213d','stroke-width':2}));});
+    sv.appendChild(el('line',{x1:xAt(18),y1:18,x2:xAt(352),y2:352,stroke:'#b45309','stroke-width':4}));
+    sv.appendChild(el('text',{x:xAt(18)+8,y:26,'font-size':16,'font-style':'italic',fill:'#b45309'},'t'));
+    const big=180-th,small=th;
+    const ang={1:big,2:small,3:small,4:big,5:big,6:small,7:small,8:big};
+    const dirs={TR:th/2,TL:(th+180)/2,BL:180+th/2,BR:270+th/2};
+    const order=[['TL',1],['TR',2],['BL',3],['BR',4]];
+    [[yM,0],[yN,4]].forEach(([y,off])=>{const cx=xAt(y);order.forEach(([pos,k])=>{const n=k+off,d=dirs[pos]*Math.PI/180;const x=cx+34*Math.cos(d),yy=y-34*Math.sin(d);
+      const on=picked.includes(n);const g=el('g',{style:'cursor:pointer'});g.addEventListener('click',()=>{if(picked.includes(n))picked=picked.filter(z=>z!==n);else{picked.push(n);if(picked.length>2)picked.shift();}draw();});
+      g.appendChild(el('circle',{cx:x,cy:yy,r:14,fill:on?'#14213d':(ang[n]===small?'#cfe9e5':'#f8e3c4'),stroke:'#14213d','stroke-width':on?2:0}));
+      g.appendChild(el('text',{x:x,y:yy+5,'text-anchor':'middle','font-size':15,'font-weight':700,fill:on?'#fff':'#14213d'},String(n)));sv.appendChild(g);});});
+    $('ro2').textContent=`Right now: angles 2, 3, 6, 7 are ${small}° (teal). Angles 1, 4, 5, 8 are ${big}° (tan). ${small}° + ${big}° = 180°.`;
+    if(picked.length===2){const info=n=>({inside:[3,4,5,6].includes(n),left:[1,3,5,7].includes(n),line:n<=4?'m':'n'});const A=info(picked[0]),B=info(picked[1]);
+      let io=A.inside&&B.inside?'both inside':(!A.inside&&!B.inside?'both outside':'one inside, one outside');let sd=A.left===B.left?'the same side of t':'opposite sides of t';
+      let extra=A.line===B.line?' They are at the same crossing, so look back at Station 2 (vertical angles or a linear pair).':'';
+      $('ro').innerHTML=`∠${picked[0]} and ∠${picked[1]}: <b>${io}</b>, on <b>${sd}</b>.${extra} Now use the decoder table to name them.`;}
+    else $('ro').textContent='Click any two angle numbers in the picture.';};
+  $('rg').oninput=draw;draw();
+},
+square(){
+  $('inter').innerHTML=`<div class="two"><div><h3>Side and area</h3><svg id="sv" viewBox="0 0 260 260"></svg>
+  <div class="slider">Side: <input type="range" min="1" max="12" value="7" id="rg"></div><div class="readout" id="ro"></div></div>
+  <div><h3>Try a split</h3><p class="status">Type a number, then click a perfect square to see whether it divides in evenly.</p>
+  <input id="nIn" inputmode="numeric" value="80" style="font:inherit;padding:8px;border:1px solid #9fb2bf;border-radius:8px;width:110px">
+  <div class="sq-tools">${[4,9,16,25,36,49,64,81,100,121,144].map(q=>`<button onclick="trySplit(${q})">${q}</button>`).join('')}</div>
+  <div class="readout" id="sp">Pick a perfect square.</div></div></div>`;
+  const draw=()=>{const n=Number($('rg').value),sv=$('sv');sv.innerHTML='';const s=Math.floor(236/12),x0=12,y0=12;
+    for(let i=0;i<n;i++)for(let j=0;j<n;j++)sv.appendChild(el('rect',{x:x0+j*s,y:y0+i*s,width:s-2,height:s-2,fill:'#cfe9e5',stroke:'#0f766e','stroke-width':0.6}));
+    $('ro').innerHTML=`Side = <b>${n}</b>. Area = ${n} × ${n} = <b>${n*n}</b>. So ${n}² = ${n*n}, and √${n*n} = ${n}. The square root gets you back to the side.`;};
+  $('rg').oninput=draw;draw();
+}
+,grid(){
+  $('inter').innerHTML=`<h3>Build the hidden triangle</h3><svg id="sv" viewBox="0 0 420 420"></svg><div class="readout" id="ro">Click a spot to place A, then click another spot to place B.</div>`;
+  let A=null,B=null,next='A';const mn=-6,mx=8,sc=26,ox=20+(-mn)*sc,oy=20+mx*sc;const X=v=>ox+v*sc,Y=v=>oy-v*sc;
+  const draw=()=>{const sv=$('sv');sv.innerHTML='';
+    for(let v=mn;v<=mx;v++){sv.appendChild(el('line',{x1:X(v),y1:Y(mn),x2:X(v),y2:Y(mx),stroke:v===0?'#7b8d99':'#e3e9ee','stroke-width':v===0?2:1}));sv.appendChild(el('line',{x1:X(mn),y1:Y(v),x2:X(mx),y2:Y(v),stroke:v===0?'#7b8d99':'#e3e9ee','stroke-width':v===0?2:1}));
+      if(v!==0&&v%2===0){sv.appendChild(el('text',{x:X(v),y:Y(0)+15,'text-anchor':'middle','font-size':11,fill:'#55657a'},String(v)));sv.appendChild(el('text',{x:X(0)-6,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:'#55657a'},String(v)));}}
+    const hit=el('rect',{x:X(mn),y:Y(mx),width:(mx-mn)*sc,height:(mx-mn)*sc,fill:'transparent',style:'cursor:crosshair'});
+    hit.addEventListener('click',ev=>{const r=$('sv').getBoundingClientRect(),k=420/r.width;const px=(ev.clientX-r.left)*k,py=(ev.clientY-r.top)*k;const vx=Math.round((px-ox)/sc),vy=Math.round((oy-py)/sc);
+      if(vx<mn||vx>mx||vy<mn||vy>mx)return;if(next==='A'){A=[vx,vy];B=null;next='B';}else{B=[vx,vy];next='A';}draw();});
+    sv.appendChild(hit);
+    if(A&&B){const C=[B[0],A[1]];sv.appendChild(el('line',{x1:X(A[0]),y1:Y(A[1]),x2:X(B[0]),y2:Y(B[1]),stroke:'#14213d','stroke-width':3,'stroke-dasharray':'6 4'}));
+      sv.appendChild(el('line',{x1:X(A[0]),y1:Y(A[1]),x2:X(C[0]),y2:Y(C[1]),stroke:'#b45309','stroke-width':5}));sv.appendChild(el('line',{x1:X(C[0]),y1:Y(C[1]),x2:X(B[0]),y2:Y(B[1]),stroke:'#0f766e','stroke-width':5}));
+      const dx=Math.abs(B[0]-A[0]),dy=Math.abs(B[1]-A[1]);
+      $('ro').innerHTML=`A(${A[0]}, ${A[1]}) to B(${B[0]}, ${B[1]}). <span style="color:#b45309"><b>Horizontal leg: ${dx}</b></span> (from x = ${A[0]} to x = ${B[0]}). <span style="color:#0f766e"><b>Vertical leg: ${dy}</b></span> (from y = ${A[1]} to y = ${B[1]}). The dashed line is the hypotenuse. Now you do the rest: ${dx}² + ${dy}² = d², then take the square root.`;}
+    [[A,'A'],[B,'B']].forEach(([p,n])=>{if(!p)return;sv.appendChild(el('circle',{cx:X(p[0]),cy:Y(p[1]),r:7,fill:'#14213d',stroke:'#fff','stroke-width':2}));sv.appendChild(el('text',{x:X(p[0])+9,y:Y(p[1])-9,'font-size':14,'font-weight':700,fill:'#14213d'},n));});
+    if(A&&!B)$('ro').textContent=`A is at (${A[0]}, ${A[1]}). Now click to place B.`;};
+  draw();
+},
+numline(){
+  $('inter').innerHTML=`<h3>Halfway on a number line</h3><svg id="sv" viewBox="0 0 460 120"></svg>
+  <div class="slider">First number: <input type="range" min="-10" max="10" value="2" id="ra"></div>
+  <div class="slider">Second number: <input type="range" min="-10" max="10" value="8" id="rb"></div><div class="readout" id="ro"></div>`;
+  const draw=()=>{const a=Number($('ra').value),b=Number($('rb').value),m=(a+b)/2,sv=$('sv');sv.innerHTML='';const X=v=>230+v*20.5;
+    sv.appendChild(el('line',{x1:X(-10.5),y1:60,x2:X(10.5),y2:60,stroke:'#14213d','stroke-width':2}));
+    for(let v=-10;v<=10;v++){sv.appendChild(el('line',{x1:X(v),y1:54,x2:X(v),y2:66,stroke:'#14213d','stroke-width':1}));if(v%2===0)sv.appendChild(el('text',{x:X(v),y:86,'text-anchor':'middle','font-size':12,fill:'#55657a'},String(v)));}
+    sv.appendChild(el('line',{x1:X(Math.min(a,b)),y1:60,x2:X(Math.max(a,b)),y2:60,stroke:'#0f766e','stroke-width':6}));
+    [[a,'#14213d'],[b,'#14213d']].forEach(([v,c])=>sv.appendChild(el('circle',{cx:X(v),cy:60,r:7,fill:c})));
+    sv.appendChild(el('circle',{cx:X(m),cy:60,r:8,fill:'#b45309',stroke:'#fff','stroke-width':2}));
+    sv.appendChild(el('text',{x:X(m),y:36,'text-anchor':'middle','font-size':14,'font-weight':700,fill:'#b45309'},'middle '+m));
+    $('ro').textContent=`(${a} + ${b}) ÷ 2 = ${a+b} ÷ 2 = ${m}. The middle is ${Math.abs(m-a)} away from each end.`;};
+  $('ra').oninput=draw;$('rb').oninput=draw;draw();
+}};
+function trySplit(q){const n=num($('nIn').value);const o=$('sp');if(!Number.isFinite(n)||n<=0){o.textContent='Type a whole number first.';return;}
+  if(n%q===0)o.innerHTML=`${n} ÷ ${q} = <b>${n/q}</b> exactly. So ${n} = ${q} × ${n/q}, and √${q} = ${Math.round(Math.sqrt(q))}. Is ${q} the biggest perfect square that works? Try the bigger ones too.`;
+  else o.innerHTML=`${n} ÷ ${q} = ${(n/q).toFixed(2)}. That is not a whole number, so ${q} does not divide in evenly. Try another.`;}
+
+/* ---------- markdown export ---------- */
+function copyMD(){
+  let t='# Geometry Practice Run\n\n';
+  const d=new Date();t+='**Date:** '+d.toLocaleDateString()+'\n\n';
+  const ps=allProbs();const solved=ps.filter(p=>S.ans[p.id]&&S.ans[p.id].solved).length;const first=ps.filter(p=>S.ans[p.id]&&S.ans[p.id].first===true).length;
+  t+=`**Solved:** ${solved} of ${ps.length}  \n**Correct on the first try:** ${first}\n\n`;
+  STATIONS.forEach(s=>{if(s.probs){t+='## '+s.title+'\n\n';s.probs.forEach(p=>{const a=S.ans[p.id];const q=p.q.replace(/<br>/g,' ').replace(/<[^>]+>/g,'');
+      t+='**'+p.id+'. '+q+'**\n\n';
+      if(!a||!a.tries){t+='Not attempted.\n\n';return;}
+      t+='- First try: '+(a.firstAns||'')+' ('+(a.first?'correct':'not correct')+')\n';
+      if(a.solved&&a.tries>1)t+='- Final answer: '+(a.finalAns||'')+' (correct after '+a.tries+' tries)\n';
+      if(!a.solved)t+='- Not solved yet ('+a.tries+' tries)\n';
+      if(a.stepsSeen)t+='- Opened the step by step '+(a.stepsBefore?'before solving':'after solving')+'\n';
+      t+='\n';});}
+    if(s.texts){t+='## '+s.title+'\n\n';s.texts.forEach(x=>{t+='**'+x.q+'**\n\n'+((S.text[x.id]||'').trim()||'*No answer yet.*')+'\n\n';if(x.model&&S.modelSeen[x.id])t+='*(Compared with the model answer after writing.)*\n\n';});}});
+  const done=m=>{const s=$('copyStatus');if(s)s.textContent=m;};
+  const fallback=()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='width:100%;height:220px;margin-top:10px';const s=$('copyStatus');if(s){s.after(ta);ta.focus();ta.select();}done('Copying was blocked. Select all the text in the box below, copy it, and paste it into your Google Doc.');};
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>done('Copied! Paste it into your Geometry Google Doc under today\'s date.'),fallback);}else fallback();}catch(e){fallback();}
+}
+
+render();
+</script>
+</body>
+</html>
