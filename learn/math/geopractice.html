@@ -225,6 +225,30 @@ probs:[
  {id:'4h',type:'mc',q:'A student wrote √48 = 2√12. Which is true?',opts:['That is wrong. √48 cannot be simplified.','That is correct and finished.','That is correct but not finished. 12 still has a perfect square (4) inside, so it becomes 4√3.','√48 = 24.'],ans:2,steps:['2√12 is the same value as √48, so it is not wrong.','But 12 = 4 × 3, so √12 = 2√3.','2√12 = 2 · 2√3 = 4√3. Always check whether the number left inside can break down again.']}
 ]},
 
+{id:'sb',title:'Bonus: Square root check',short:'Bonus · Square roots',
+big:`<p>This is a check to see whether the square root method stuck. <b>Try every problem before you open the step by step.</b> Do the work on paper.</p>
+<div class="rulebox"><b>The rule:</b> the perfect square comes <b>out</b>, as its square root. The leftover stays <b>in</b>.<br><br>
+√12: 12 = 4 × 3. The perfect square is 4.<br>
+4 comes out as √4 = <b>2</b>. The 3 stays inside.<br>
+√12 = <b>2√3</b></div>
+<p><b>Check it every time:</b> square the outside number, then multiply by the inside number. You should get back the number you started with. For 2√3: 2² × 3 = 4 × 3 = 12. ✓</p>
+<p>If you write 3√4, run the check: 3² × 4 = 36, not 12. That tells you the numbers are in the wrong places. And a perfect square should never be left inside the root, because it can always come out.</p>`,
+probs:[
+ {id:'b1',type:'rad',q:'Simplify √20.',a:[2,5],steps:['Which perfect square divides into 20? 4 does: 20 = 4 × 5.','4 comes out as √4 = 2. The 5 stays inside.','√20 = 2√5.','Check: 2² × 5 = 4 × 5 = 20. ✓']},
+ {id:'b2',type:'rad',q:'Simplify √27.',a:[3,3],steps:['27 = 9 × 3, and 9 is a perfect square.','9 comes out as √9 = 3. The 3 stays inside.','√27 = 3√3.','Check: 3² × 3 = 9 × 3 = 27. ✓']},
+ {id:'b3',type:'rad',q:'Simplify √72. Use the biggest perfect square.',a:[6,2],steps:['Perfect squares that divide 72: 4, 9, and 36. The biggest is 36: 72 = 36 × 2.','36 comes out as √36 = 6. The 2 stays inside.','√72 = 6√2.','Check: 6² × 2 = 36 × 2 = 72. ✓','If you used 4 or 9 first, you would get 3√8 or 2√18, which are not finished.']},
+ {id:'b4',type:'rad',q:'Simplify √8.',a:[2,2],steps:['8 = 4 × 2.','4 comes out as √4 = 2. The 2 stays inside.','√8 = 2√2.','Check: 2² × 2 = 4 × 2 = 8. ✓']},
+ {id:'b5',type:'rad',q:'Simplify √28.',a:[2,7],steps:['28 = 4 × 7.','4 comes out as 2. The 7 stays inside.','√28 = 2√7.','Check: 2² × 7 = 28. ✓']},
+ {id:'b6',type:'rad',q:'Simplify √32. Use the biggest perfect square.',a:[4,2],steps:['Perfect squares that divide 32: 4 and 16. The biggest is 16: 32 = 16 × 2.','16 comes out as √16 = 4. The 2 stays inside.','√32 = 4√2.','Check: 4² × 2 = 16 × 2 = 32. ✓']},
+ {id:'b7',type:'rad',q:'Simplify √500.',a:[10,5],steps:['100 is a perfect square, and 500 = 100 × 5.','100 comes out as √100 = 10. The 5 stays inside.','√500 = 10√5.','Check: 10² × 5 = 100 × 5 = 500. ✓']},
+ {id:'b8',type:'mc',q:'<b>Spot the mistake.</b> A student wrote √12 = 3√4. What went wrong?',
+  opts:['Nothing. That is correct.','The perfect square 4 was left inside. It should come out as √4 = 2, and the 3 stays inside: √12 = 2√3.','It should be 4√3.','It should be 6.'],ans:1,
+  steps:['The student found the right split: 12 = 4 × 3.','But the 4 is the perfect square, so it is the one that comes out, as its square root: 2.','The 3 is not a perfect square, so it stays inside.','√12 = 2√3. Check: 2² × 3 = 12. ✓ And the wrong answer fails the check: 3² × 4 = 36.']},
+ {id:'b9',type:'mc',q:'In the answer 5√3, where did the 5 come from?',
+  opts:['It is the leftover number that would not fit.','It is the square root of the perfect square that came out (25), so the original number was 25 × 3 = 75.','It is 3 + 2.','It is half of 10.'],ans:1,
+  steps:['The number outside is always the square root of the perfect square that came out.','5 is √25. So 25 came out, and 3 stayed in.','The original number was 25 × 3 = 75. So 5√3 = √75.']}
+]},
+
 {id:'s5',title:'Station 5: Distance, the hidden triangle',short:'5 · Distance',
 big:`<p>To find how far apart two points are, build a right triangle you cannot see yet.</p>
 <ol><li><b>Horizontal leg:</b> how far across? Subtract the x values (and drop any minus sign, since length is never negative).</li>
@@ -345,6 +369,7 @@ function rec(id){if(!S.ans[id])S.ans[id]={tries:0,first:null,solved:false,stepsS
 
 function check(id){
   const p=allProbs().find(x=>x.id===id);const a=rec(id);let ok=false,vals=[],shown='';
+  if(a.solved){fb(id,'Already solved. Nice work.',true);return;}
   if(p.type==='mc'){const i=S.sel[id];if(i===undefined){fb(id,'Pick an answer first.',false);return;}ok=i===p.ans;a.last=i;shown=p.opts[i];}
   else if(p.type==='multi'){vals=p.parts.map((pt,i)=>$(id+'_'+i).value);if(vals.some(v=>v==='')){fb(id,'Answer every part first.',false);return;}
     const wrong=p.parts.map((pt,i)=>Number(vals[i])===pt.a?null:pt.l).filter(Boolean);ok=wrong.length===0;
@@ -357,6 +382,8 @@ function check(id){
     if(p.type==='num')shown=p.fields.map((f,i)=>f.l+' = '+vals[i]).join(', ');
     else if(p.type==='rad')shown=vals[0]+'√'+vals[1];
     else shown='('+vals[0]+', '+vals[1]+')';
+    if(!ok&&p.type==='rad'){const o0=num(vals[0]),i0=num(vals[1]);const rt=Math.round(Math.sqrt(i0));
+      if(i0>1&&rt*rt===i0&&o0*o0*i0!==p.a[0]*p.a[0]*p.a[1]){a.tries++;if(a.first===null){a.first=false;a.firstAns=shown;}a.vals=vals;save();renderNav();fb(id,'Look at the number inside: '+i0+' is a perfect square, so it should not stay inside. It comes out as its square root, '+rt+'. Then run the check: square the outside number and multiply by the inside number. You should get back the number you started with.',false);return;}}
     if(!ok&&p.type==='rad'){const o=num(vals[0]),inn=num(vals[1]);if(o*o*inn===p.a[0]*p.a[0]*p.a[1]){a.tries++;if(a.first===null){a.first=false;a.firstAns=shown;}a.vals=vals;save();renderNav();fb(id,'That has the right value, but it is not finished. The number inside still has a perfect square hiding in it. Pull out a bigger perfect square.',false);return;}}
   }
   a.tries++;a.vals=vals;
