@@ -1,1 +1,25 @@
-
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#14233e"><title>NYSCATE 2026 | My Conference Planner</title><link rel="stylesheet" href="styles.css"></head><body class="locked">
+<section class="password-gate" id="passwordGate" aria-labelledby="gateHeading">
+  <form id="passwordForm" class="password-card">
+    <div class="eyebrow">NYSCATE 2026</div>
+    <h2 id="gateHeading">Conference Planner</h2>
+    <p>Enter the conference access password to open the planner.</p>
+    <label for="accessPassword">Access password</label>
+    <input id="accessPassword" type="password" required autocomplete="current-password" placeholder="Password" aria-describedby="passwordError">
+    <label class="remember-label" for="rememberDevice"><input id="rememberDevice" type="checkbox" checked> Remember this personal device</label>
+    <p class="remember-help">Leave this checked to stay signed in on this browser. Uncheck it on shared devices.</p>
+    <p class="password-error" id="passwordError" role="alert" aria-live="polite"></p>
+    <button type="submit" id="unlockButton">Open planner</button>
+    <p class="password-note">This shared password is a basic access screen, not confidential-data protection.</p>
+  </form>
+</section>
+<div id="plannerApp" hidden>
+<header class="mast"><div class="shell top"><div><div class="eyebrow">NOVEMBER 21–24 · 2026</div><h1>NYSCATE <span>Conference Planner</span></h1><p>Discover sessions, explore activities, and make the conference yours.</p></div><div class="save-status" id="saveStatus">Saved on this device</div></div></header>
+<main class="shell"><nav class="views" aria-label="Planner views"><button class="tab active" data-view="explore">Explore events</button><button class="tab" data-view="schedule">Daily agenda</button><button class="tab" data-view="mine">My conference <span id="savedCount">0</span></button></nav>
+<section class="toolbar" aria-label="Search and filters"><div class="search-wrap"><label for="search">Search titles, presenters, rooms, tracks</label><input id="search" type="search" placeholder="Try: AI, STEM, Dell, or a presenter…"></div><div class="filter-grid"><div><label for="day">Day</label><select id="day"><option value="all">All days</option><option value="2026-11-21">Sat, Nov 21</option><option value="2026-11-22">Sun, Nov 22</option><option value="2026-11-23">Mon, Nov 23</option><option value="2026-11-24">Tue, Nov 24</option></select></div><div><label for="track">Presentation track</label><select id="track"><option value="all">All tracks</option></select></div><div><label for="room">Room</label><select id="room"><option value="all">All rooms</option></select></div><div><label for="audience">Audience</label><select id="audience"><option value="attendee">Attendee-friendly</option><option value="all">All events, including restricted</option><option value="board">Board, committee & invited</option><option value="staff">Operations & staffing</option></select></div></div><div class="type-head"><strong>Event types</strong><button class="link-btn" id="allTypes">Select all</button><button class="link-btn" id="defaultTypes">Reset</button></div><div class="chips" id="typeChips"></div><div class="toggles"><label><input type="checkbox" id="showBlocks"> Show generic session-block headings</label><label><input type="checkbox" id="onlyOpen"> Hide restricted/invitation events</label></div></section>
+<div class="result-bar"><div><strong id="resultCount">Loading...</strong> <span id="viewDescription"></span></div><div class="result-actions"><button class="secondary" id="exportCalendar">Export my calendar (.ics)</button><button class="secondary" id="printMy">Print my schedule</button></div></div>
+<section id="events" class="events" aria-live="polite"></section>
+<footer><p>Unofficial planning tool based on the NYSCATE internal schedule and program grid. Times, rooms, event details, and eligibility should be confirmed with conference organizers.</p><p>Selections stay in this browser. This static site has no sign-in or cross-device synchronization.</p></footer></main>
+<dialog id="details"><div class="dialog-inner"><button class="close" id="closeDetails" aria-label="Close">×</button><div id="detailBody"></div></div></dialog>
+</div>
+<script src="gate.js" defer></script></body></html>
