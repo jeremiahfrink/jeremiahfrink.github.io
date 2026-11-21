@@ -1,0 +1,530 @@
+{
+  "metadata": {
+    "title": "U.S. Public School Enrollment and Spending",
+    "enrollmentYear": "Fall 2023",
+    "spendingYear": "FY 2024",
+    "sources": [
+      {
+        "name": "NCES Digest Table 203.20",
+        "url": "https://nces.ed.gov/programs/digest/d25/tables/dt25_203.20.asp"
+      },
+      {
+        "name": "Census Public Elementary-Secondary Education Finance FY2024",
+        "url": "https://www.census.gov/data/tables/2024/econ/school-finances/secondary-education-finance.html"
+      }
+    ],
+    "note": "Spending per student is current spending divided by finance-survey enrollment, not the NCES fall enrollment count."
+  },
+  "states": [
+    {
+      "code": "AL",
+      "name": "Alabama",
+      "type": "State",
+      "students": 748650,
+      "totalSpending": 11983882000,
+      "perStudent": 13626.86,
+      "financeEnrollment": 741082,
+      "currentSpending": 10098622000
+    },
+    {
+      "code": "AK",
+      "name": "Alaska",
+      "type": "State",
+      "students": 131243,
+      "totalSpending": 3036722000,
+      "perStudent": 21003.79,
+      "financeEnrollment": 131243,
+      "currentSpending": 2756601000
+    },
+    {
+      "code": "AZ",
+      "name": "Arizona",
+      "type": "State",
+      "students": 1117630,
+      "totalSpending": 13058339000,
+      "perStudent": 12002.96,
+      "financeEnrollment": 884915,
+      "currentSpending": 10621598000
+    },
+    {
+      "code": "AR",
+      "name": "Arkansas",
+      "type": "State",
+      "students": 484978,
+      "totalSpending": 7514231000,
+      "perStudent": 13872.57,
+      "financeEnrollment": 458186,
+      "currentSpending": 6356218000
+    },
+    {
+      "code": "CA",
+      "name": "California",
+      "type": "State",
+      "students": 5924113,
+      "totalSpending": 130742027000,
+      "perStudent": 20790.84,
+      "financeEnrollment": 5274265,
+      "currentSpending": 109656400000
+    },
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "type": "State",
+      "students": 865661,
+      "totalSpending": 16352697000,
+      "perStudent": 15907.95,
+      "financeEnrollment": 841065,
+      "currentSpending": 13379616000
+    },
+    {
+      "code": "CT",
+      "name": "Connecticut",
+      "type": "State",
+      "students": 512652,
+      "totalSpending": 14083361000,
+      "perStudent": 26315.57,
+      "financeEnrollment": 472293,
+      "currentSpending": 12428660000
+    },
+    {
+      "code": "DE",
+      "name": "Delaware",
+      "type": "State",
+      "students": 141842,
+      "totalSpending": 2993049000,
+      "perStudent": 22201.22,
+      "financeEnrollment": 123393,
+      "currentSpending": 2739475000
+    },
+    {
+      "code": "DC",
+      "name": "District of Columbia",
+      "type": "District",
+      "students": 92794,
+      "totalSpending": 1992562000,
+      "perStudent": 31529.36,
+      "financeEnrollment": 50839,
+      "currentSpending": 1602921000
+    },
+    {
+      "code": "FL",
+      "name": "Florida",
+      "type": "State",
+      "students": 2872335,
+      "totalSpending": 43503398000,
+      "perStudent": 12692.61,
+      "financeEnrollment": 2841039,
+      "currentSpending": 36060193000
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "type": "State",
+      "students": 1749701,
+      "totalSpending": 31054456000,
+      "perStudent": 15832.59,
+      "financeEnrollment": 1705143,
+      "currentSpending": 26996823000
+    },
+    {
+      "code": "HI",
+      "name": "Hawaii",
+      "type": "State",
+      "students": 169308,
+      "totalSpending": 4410987000,
+      "perStudent": 23878.19,
+      "financeEnrollment": 169308,
+      "currentSpending": 4042769000
+    },
+    {
+      "code": "ID",
+      "name": "Idaho",
+      "type": "State",
+      "students": 316414,
+      "totalSpending": 3445266000,
+      "perStudent": 11060.4,
+      "financeEnrollment": 285690,
+      "currentSpending": 3159846000
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "type": "State",
+      "students": 1846264,
+      "totalSpending": 46247262000,
+      "perStudent": 21776.44,
+      "financeEnrollment": 1831215,
+      "currentSpending": 39877338000
+    },
+    {
+      "code": "IN",
+      "name": "Indiana",
+      "type": "State",
+      "students": 1032723,
+      "totalSpending": 16820264000,
+      "perStudent": 13622.21,
+      "financeEnrollment": 978458,
+      "currentSpending": 13328759000
+    },
+    {
+      "code": "IA",
+      "name": "Iowa",
+      "type": "State",
+      "students": 508112,
+      "totalSpending": 9041970000,
+      "perStudent": 14368.95,
+      "financeEnrollment": 507866,
+      "currentSpending": 7297501000
+    },
+    {
+      "code": "KS",
+      "name": "Kansas",
+      "type": "State",
+      "students": 483505,
+      "totalSpending": 8264175000,
+      "perStudent": 15558.01,
+      "financeEnrollment": 482136,
+      "currentSpending": 7501079000
+    },
+    {
+      "code": "KY",
+      "name": "Kentucky",
+      "type": "State",
+      "students": 657520,
+      "totalSpending": 11567596000,
+      "perStudent": 14595.65,
+      "financeEnrollment": 656427,
+      "currentSpending": 9580976000
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "type": "State",
+      "students": 708190,
+      "totalSpending": 11094485000,
+      "perStudent": 15580.65,
+      "financeEnrollment": 628335,
+      "currentSpending": 9789866000
+    },
+    {
+      "code": "ME",
+      "name": "Maine",
+      "type": "State",
+      "students": 172545,
+      "totalSpending": 3738473000,
+      "perStudent": 19961.6,
+      "financeEnrollment": 169316,
+      "currentSpending": 3379819000
+    },
+    {
+      "code": "MD",
+      "name": "Maryland",
+      "type": "State",
+      "students": 890122,
+      "totalSpending": 20145277000,
+      "perStudent": 20208.06,
+      "financeEnrollment": 889728,
+      "currentSpending": 17979674000
+    },
+    {
+      "code": "MA",
+      "name": "Massachusetts",
+      "type": "State",
+      "students": 914958,
+      "totalSpending": 24568391000,
+      "perStudent": 24428.91,
+      "financeEnrollment": 862765,
+      "currentSpending": 21076409000
+    },
+    {
+      "code": "MI",
+      "name": "Michigan",
+      "type": "State",
+      "students": 1426491,
+      "totalSpending": 27421483000,
+      "perStudent": 18313.73,
+      "financeEnrollment": 1224595,
+      "currentSpending": 22426900000
+    },
+    {
+      "code": "MN",
+      "name": "Minnesota",
+      "type": "State",
+      "students": 869967,
+      "totalSpending": 17143608000,
+      "perStudent": 17097.98,
+      "financeEnrollment": 794003,
+      "currentSpending": 13575849000
+    },
+    {
+      "code": "MS",
+      "name": "Mississippi",
+      "type": "State",
+      "students": 436523,
+      "totalSpending": 6378215000,
+      "perStudent": 12324.39,
+      "financeEnrollment": 432375,
+      "currentSpending": 5328756000
+    },
+    {
+      "code": "MO",
+      "name": "Missouri",
+      "type": "State",
+      "students": 891248,
+      "totalSpending": 14991099000,
+      "perStudent": 14240.52,
+      "financeEnrollment": 865208,
+      "currentSpending": 12321009000
+    },
+    {
+      "code": "MT",
+      "name": "Montana",
+      "type": "State",
+      "students": 149291,
+      "totalSpending": 2374566000,
+      "perStudent": 13655.63,
+      "financeEnrollment": 154013,
+      "currentSpending": 2103145000
+    },
+    {
+      "code": "NE",
+      "name": "Nebraska",
+      "type": "State",
+      "students": 329162,
+      "totalSpending": 6122630000,
+      "perStudent": 16147.48,
+      "financeEnrollment": 328848,
+      "currentSpending": 5310066000
+    },
+    {
+      "code": "NV",
+      "name": "Nevada",
+      "type": "State",
+      "students": 479574,
+      "totalSpending": 7281459000,
+      "perStudent": 14811.66,
+      "financeEnrollment": 417474,
+      "currentSpending": 6183481000
+    },
+    {
+      "code": "NH",
+      "name": "New Hampshire",
+      "type": "State",
+      "students": 166594,
+      "totalSpending": 3942546000,
+      "perStudent": 22978.15,
+      "financeEnrollment": 156325,
+      "currentSpending": 3592059000
+    },
+    {
+      "code": "NJ",
+      "name": "New Jersey",
+      "type": "State",
+      "students": 1392567,
+      "totalSpending": 41176277000,
+      "perStudent": 27233.56,
+      "financeEnrollment": 1323927,
+      "currentSpending": 36055244000
+    },
+    {
+      "code": "NM",
+      "name": "New Mexico",
+      "type": "State",
+      "students": 311719,
+      "totalSpending": 6165496000,
+      "perStudent": 17663.78,
+      "financeEnrollment": 289851,
+      "currentSpending": 5119864000
+    },
+    {
+      "code": "NY",
+      "name": "New York",
+      "type": "State",
+      "students": 2533449,
+      "totalSpending": 91626986000,
+      "perStudent": 31917.51,
+      "financeEnrollment": 2350583,
+      "currentSpending": 75024748000
+    },
+    {
+      "code": "NC",
+      "name": "North Carolina",
+      "type": "State",
+      "students": 1544289,
+      "totalSpending": 20905412000,
+      "perStudent": 12995.16,
+      "financeEnrollment": 1396880,
+      "currentSpending": 18152676000
+    },
+    {
+      "code": "ND",
+      "name": "North Dakota",
+      "type": "State",
+      "students": 119033,
+      "totalSpending": 2522208000,
+      "perStudent": 17102.46,
+      "financeEnrollment": 119016,
+      "currentSpending": 2035466000
+    },
+    {
+      "code": "OH",
+      "name": "Ohio",
+      "type": "State",
+      "students": 1675300,
+      "totalSpending": 31251239000,
+      "perStudent": 17256.79,
+      "financeEnrollment": 1550261,
+      "currentSpending": 26752525000
+    },
+    {
+      "code": "OK",
+      "name": "Oklahoma",
+      "type": "State",
+      "students": 698761,
+      "totalSpending": 9163037000,
+      "perStudent": 12161.56,
+      "financeEnrollment": 647207,
+      "currentSpending": 7871048000
+    },
+    {
+      "code": "OR",
+      "name": "Oregon",
+      "type": "State",
+      "students": 572624,
+      "totalSpending": 12283672000,
+      "perStudent": 18083.02,
+      "financeEnrollment": 545641,
+      "currentSpending": 9866839000
+    },
+    {
+      "code": "PA",
+      "name": "Pennsylvania",
+      "type": "State",
+      "students": 1692829,
+      "totalSpending": 40415164000,
+      "perStudent": 21090.53,
+      "financeEnrollment": 1506485,
+      "currentSpending": 31772566000
+    },
+    {
+      "code": "RI",
+      "name": "Rhode Island",
+      "type": "State",
+      "students": 136154,
+      "totalSpending": 3181960000,
+      "perStudent": 22110.47,
+      "financeEnrollment": 122128,
+      "currentSpending": 2700308000
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "type": "State",
+      "students": 793860,
+      "totalSpending": 13507083000,
+      "perStudent": 15060.06,
+      "financeEnrollment": 738314,
+      "currentSpending": 11119054000
+    },
+    {
+      "code": "SD",
+      "name": "South Dakota",
+      "type": "State",
+      "students": 141467,
+      "totalSpending": 2465279000,
+      "perStudent": 12828.47,
+      "financeEnrollment": 140930,
+      "currentSpending": 1807916000
+    },
+    {
+      "code": "TN",
+      "name": "Tennessee",
+      "type": "State",
+      "students": 1004625,
+      "totalSpending": 14753107000,
+      "perStudent": 12881.71,
+      "financeEnrollment": 997720,
+      "currentSpending": 12852340000
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "type": "State",
+      "students": 5532518,
+      "totalSpending": 91496667000,
+      "perStudent": 12894.85,
+      "financeEnrollment": 5111073,
+      "currentSpending": 65906518000
+    },
+    {
+      "code": "UT",
+      "name": "Utah",
+      "type": "State",
+      "students": 689883,
+      "totalSpending": 8595579000,
+      "perStudent": 11347.1,
+      "financeEnrollment": 609785,
+      "currentSpending": 6919294000
+    },
+    {
+      "code": "VT",
+      "name": "Vermont",
+      "type": "State",
+      "students": 82455,
+      "totalSpending": 2653314000,
+      "perStudent": 28818.34,
+      "financeEnrollment": 81266,
+      "currentSpending": 2341951000
+    },
+    {
+      "code": "VA",
+      "name": "Virginia",
+      "type": "State",
+      "students": 1258852,
+      "totalSpending": 24216823000,
+      "perStudent": 17104.34,
+      "financeEnrollment": 1258795,
+      "currentSpending": 21530852000
+    },
+    {
+      "code": "WA",
+      "name": "Washington",
+      "type": "State",
+      "students": 1093745,
+      "totalSpending": 23548964000,
+      "perStudent": 18564.37,
+      "financeEnrollment": 1086202,
+      "currentSpending": 20164654000
+    },
+    {
+      "code": "WV",
+      "name": "West Virginia",
+      "type": "State",
+      "students": 246883,
+      "totalSpending": 4434877000,
+      "perStudent": 15639.85,
+      "financeEnrollment": 244054,
+      "currentSpending": 3816969000
+    },
+    {
+      "code": "WI",
+      "name": "Wisconsin",
+      "type": "State",
+      "students": 814202,
+      "totalSpending": 15940322000,
+      "perStudent": 15952.2,
+      "financeEnrollment": 802501,
+      "currentSpending": 12801660000
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "type": "State",
+      "students": 91036,
+      "totalSpending": 2094687000,
+      "perStudent": 20520.93,
+      "financeEnrollment": 90761,
+      "currentSpending": 1862500000
+    }
+  ]
+}
