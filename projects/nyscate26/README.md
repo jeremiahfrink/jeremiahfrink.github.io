@@ -1,34 +1,43 @@
-# NYSCATE 2026 Conference Planner
+# NYSCATE 2026 Board Conference Planner (v3)
 
-A static GitHub Pages-ready website. Files: `index.html`, `styles.css`, `gate.js`, `app.js`, `events.json`.
+A static site for GitHub Pages. Phone first. Built for Board members, not for general attendees.
 
-## Deploy
-1. Create a GitHub repository, or put the five files in an existing site's project directory.
-2. Upload the five files to the same directory (not the ZIP file itself).
-3. In repository **Settings → Pages**, set **Deploy from a branch**, choose `main` and `/ (root)` (or `/docs` if placing files there).
-4. Visit your published Pages URL. Allow GitHub to finish deployment before testing.
+## Files (upload all nine to the same folder)
+`index.html`, `styles.css`, `gate.js`, `app.js`, `events.json`, `sw.js`, `manifest.webmanifest`, `icon-192.png`, `icon-512.png`
 
-For a quick local preview, run `python -m http.server 8000` in this folder and open http://localhost:8000 (opening `index.html` directly from disk may block `fetch`).
+## Updating the live site
+1. Upload all nine files to the same folder that holds the current site, replacing the old five.
+2. Wait for GitHub Pages to finish deploying.
+3. On a phone, open the site and tap **Refresh** under the title. The line next to it shows when the schedule was last updated.
 
-## How the data is classified
-- Each presentation program-grid cell becomes one presentation event, retaining source text, session number, time, room, topic column, and presider name when available. Presider emails are NOT published.
-- The full internal schedule provides keynotes, socials, meals, board/VIP events, corporate focus groups, operations, and generic session-block headers.
-- Board/committee/private events are classified **provisionally**. The spreadsheet doesn't always identify allowed attendees. Verify access eligibility before announcing this as an official public attendee guide.
-- By default, the website shows attendee-friendly events. The audience selector lets a visitor voluntarily see private or staff event listings. **This is NOT access control.** Any information inside `events.json` is public on GitHub Pages. Do not include confidential information, private locations, or contact details in the dataset.
-- Generic block labels are hidden by default to avoid showing redundant “Session 1” alongside its presentations.
-- Some session titles, presenters, sponsorship details, and venue names are combined in the original spreadsheet. The original program text is preserved in details, but splitting the presenter from the title is automated and should be reviewed.
-- Some general-schedule events have a blank start or end time; the website displays TBD rather than inventing it. Calendar exports omit saved events without a start time, and omit an end time when unavailable.
-- The presentation grid has limited abstract/description data; the site does not invent descriptions.
+Saved sessions are kept. Every event from the first release has the same ID, and the browser storage key (`nyscate-2026-saved-v1`) and the password screen are unchanged. Board members do not need to sign in again or save anything again, as long as the site stays at the same web address.
 
-## Personal schedules
-Selections are saved via browser localStorage. They persist only on that device/browser, not across different browsers or private-browsing sessions. Calendar export is an `.ics` file. No account system or back-end is included.
+## What changed in v2
+- Descriptions, speaker titles and organizations added from the official Cvent agenda (280 of 327 events now have a description).
+- 46 sessions added that were only on Cvent: live podcasts, Portrait of a Graduate table talks, drone events, the regional meetings with rooms, and others. Their IDs start with `cv-`.
+- Where the internal schedule and Cvent disagree on day, time, room or title, the Cvent value is shown and the card and details carry a note with the internal value. The original grid text is also kept under "Original internal grid entry" in details.
+- Rooms now show their building (Conference Center, Grand Expo, Schoolhouse, Tower Meeting Rooms, Event Center).
+- Bottom tabs: **Now**, **Agenda**, **Mine**, **Search**.
+- **Now** opens first and shows what is happening and what is next, in Eastern time.
+- **Agenda** has pinned day buttons, sticky time headings, a "Now" jump button, an "All events / Board & VIP" switch, and a Filters sheet. Operations and staffing rows are hidden until switched on in Filters.
+- **Mine** shows saved sessions plus "my duties": type your name to see every row that lists you as presider, lead, helper or speaker.
+- Details open full screen, the phone's back button closes them, and "Share link" sends a link straight to that session.
+- Works offline after the first visit and can be added to the home screen. The site always tries the network first, so updates appear as soon as the phone is online.
+- NYSCATE colors: navy with the logo's orange, amber and teal.
 
-## Updating data
-Update the `events.json` file and commit it to GitHub. IDs should remain stable when possible so that saved events remain associated with the same entries.
+## Things to verify
+- Audience labels (Board, invitation, staff) are still provisional, as in the first release.
+- The internal grid entry "Google 5" (Monday 7:30 AM, Mohawk) is not on the Cvent agenda and is flagged on its card.
+- The single "Regional Meetings" row from the internal schedule is kept as a heading. The eight individual meetings from Cvent carry the rooms.
+- Presider names come only from the internal grid. If a session moved on Cvent, confirm the presider still applies.
 
-## Basic shared password
-This release opens with a password prompt. The shared password is `B0@rd26` (the first character is a capital B, the second is zero). By default, “Remember this personal device” is checked, and successful entry is remembered in this browser using localStorage across visits and browser restarts. Uncheck it to remember access only for the current tab/session. Private browsing, clearing site data, or using a different browser/device may require entering the password again. To change it, update the SHA-256 digest in `gate.js` or ask for a replacement file.
+## Editing data
+Edit `events.json` and commit. Keep each `id` unchanged so saved sessions stay attached. Change `meta.updatedLabel` so phones show the new update time.
 
-**Security warning:** GitHub Pages publishes `events.json` and all other static files publicly even when the password prompt is enabled. The password hash is visible in source code and the prompt can be bypassed. This is only a casual UI gate, *not* secure storage or authenticated access. Do not publish truly sensitive board or invitee information in this repository. For actual protected content, use server-side authentication and authorization with a protected data store.
+## Access screen
+The site opens with the same shared password as before. It is not written in this file because a GitHub Pages repository is public. To change it, replace the SHA-256 value in `gate.js`.
 
-The published data includes session titles, speakers, tracks, rooms, source descriptions, and presider **names** where available. No email addresses are included in `events.json`.
+**This is not real security.** Everything in `events.json` is publicly readable to anyone who knows the address, with or without the password. Email addresses are not included. Do not publish truly sensitive Board information here.
+
+## Local preview
+Run `python -m http.server 8000` in this folder and open http://localhost:8000. Offline support only switches on over HTTPS, so it will not run in a local preview.

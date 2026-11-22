@@ -1,4 +1,18 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#14233e"><title>NYSCATE 2026 | My Conference Planner</title><link rel="stylesheet" href="styles.css"></head><body class="locked">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#13324e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NYSCATE 26">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<title>NYSCATE 2026 | Board Conference Planner</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
 <section class="password-gate" id="passwordGate" aria-labelledby="gateHeading">
   <form id="passwordForm" class="password-card">
     <div class="eyebrow">NYSCATE 2026</div>
@@ -13,13 +27,61 @@
     <p class="password-note">This shared password is a basic access screen, not confidential-data protection.</p>
   </form>
 </section>
+
 <div id="plannerApp" hidden>
-<header class="mast"><div class="shell top"><div><div class="eyebrow">NOVEMBER 21–24 · 2026</div><h1>NYSCATE <span>Conference Planner</span></h1><p>Discover sessions, explore activities, and make the conference yours.</p></div><div class="save-status" id="saveStatus">Saved on this device</div></div></header>
-<main class="shell"><nav class="views" aria-label="Planner views"><button class="tab active" data-view="explore">Explore events</button><button class="tab" data-view="schedule">Daily agenda</button><button class="tab" data-view="mine">My conference <span id="savedCount">0</span></button></nav>
-<section class="toolbar" aria-label="Search and filters"><div class="search-wrap"><label for="search">Search titles, presenters, rooms, tracks</label><input id="search" type="search" placeholder="Try: AI, STEM, Dell, or a presenter…"></div><div class="filter-grid"><div><label for="day">Day</label><select id="day"><option value="all">All days</option><option value="2026-11-21">Sat, Nov 21</option><option value="2026-11-22">Sun, Nov 22</option><option value="2026-11-23">Mon, Nov 23</option><option value="2026-11-24">Tue, Nov 24</option></select></div><div><label for="track">Presentation track</label><select id="track"><option value="all">All tracks</option></select></div><div><label for="room">Room</label><select id="room"><option value="all">All rooms</option></select></div><div><label for="audience">Audience</label><select id="audience"><option value="attendee">Attendee-friendly</option><option value="all">All events, including restricted</option><option value="board">Board, committee & invited</option><option value="staff">Operations & staffing</option></select></div></div><div class="type-head"><strong>Event types</strong><button class="link-btn" id="allTypes">Select all</button><button class="link-btn" id="defaultTypes">Reset</button></div><div class="chips" id="typeChips"></div><div class="toggles"><label><input type="checkbox" id="showBlocks"> Show generic session-block headings</label><label><input type="checkbox" id="onlyOpen"> Hide restricted/invitation events</label></div></section>
-<div class="result-bar"><div><strong id="resultCount">Loading...</strong> <span id="viewDescription"></span></div><div class="result-actions"><button class="secondary" id="exportCalendar">Export my calendar (.ics)</button><button class="secondary" id="printMy">Print my schedule</button></div></div>
-<section id="events" class="events" aria-live="polite"></section>
-<footer><p>Unofficial planning tool based on the NYSCATE internal schedule and program grid. Times, rooms, event details, and eligibility should be confirmed with conference organizers.</p><p>Selections stay in this browser. This static site has no sign-in or cross-device synchronization.</p></footer></main>
-<dialog id="details"><div class="dialog-inner"><button class="close" id="closeDetails" aria-label="Close">×</button><div id="detailBody"></div></div></dialog>
+  <header class="mast">
+    <div class="mast-row">
+      <div>
+        <div class="eyebrow">NOVEMBER 21 TO 24, 2026 · TURNING STONE</div>
+        <h1>NYSCATE <span>Board Planner</span></h1>
+      </div>
+      <a class="official" href="https://www.nyscate.org/conference-schedule.html" target="_blank" rel="noopener noreferrer">Official schedule ↗</a>
+    </div>
+    <div class="stamp"><span id="stamp">Loading schedule…</span> <button type="button" id="refresh" class="stamp-btn">Refresh</button></div>
+  </header>
+
+  <div id="strip" class="strip"></div>
+  <main id="view" class="view" aria-live="polite"></main>
+
+  <footer class="foot">
+    <p>Unofficial planning tool for the NYSCATE Board. Built from the internal schedule, the presider grid and the official Cvent agenda. Where they differ, the official time and room are shown with a note. Confirm changes with conference organizers.</p>
+    <p>Saved sessions and your name stay in this browser on this device only.</p>
+  </footer>
+
+  <nav class="tabs" aria-label="Planner views">
+    <button type="button" class="tab" data-view="now"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Now</span></button>
+    <button type="button" class="tab" data-view="agenda"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><span>Agenda</span></button>
+    <button type="button" class="tab" data-view="mine"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.8z"/></svg><span>Mine <b id="savedCount">0</b></span></button>
+    <button type="button" class="tab" data-view="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span>Search</span></button>
+  </nav>
+
+  <dialog id="filters" class="sheet" aria-labelledby="filtersTitle">
+    <form method="dialog" class="sheet-inner">
+      <div class="sheet-head"><h2 id="filtersTitle">Filters</h2><button type="button" class="link-btn" id="resetFilters">Reset</button></div>
+      <label for="fTrack">Track</label>
+      <select id="fTrack"><option value="">All tracks</option></select>
+      <label for="fBuilding">Building</label>
+      <select id="fBuilding"><option value="">All buildings</option></select>
+      <label for="fRoom">Room</label>
+      <select id="fRoom"><option value="">All rooms</option></select>
+      <div class="sheet-label">Event types</div>
+      <div class="chips" id="typeChips"></div>
+      <label class="check"><input type="checkbox" id="fOps"> Show operations and staffing rows</label>
+      <label class="check"><input type="checkbox" id="fBlocks"> Show generic session block headings</label>
+      <label class="check"><input type="checkbox" id="fOpen"> Hide restricted and invitation events</label>
+      <button type="submit" class="primary" id="applyFilters">Show events</button>
+    </form>
+  </dialog>
+
+  <dialog id="details" class="detail" aria-label="Event details">
+    <div class="detail-bar">
+      <button type="button" id="closeDetails" class="bar-btn">‹ Back</button>
+      <button type="button" id="shareDetails" class="bar-btn">Share link</button>
+    </div>
+    <div id="detailBody" class="detail-body"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </div>
-<script src="gate.js" defer></script></body></html>
+<script src="gate.js" defer></script>
+</body>
+</html>
