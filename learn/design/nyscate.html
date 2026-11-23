@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NYSCATE Booth Notes</title>
+<style>
+  :root{--navy:#12305a;--teal:#0f8b8d;--amber:#f2a33a;--bg:#f5f7fa;--card:#fff;--line:#d6dde6;--ink:#1c2733;--soft:#5b6876;--red:#b3261e;--green:#1e7b3c}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.45}
+  header{background:var(--navy);color:#fff;padding:14px 16px 10px;position:sticky;top:0;z-index:5}
+  header h1{margin:0;font-size:20px}
+  header .saved{font-size:13px;opacity:.85;margin-top:2px}
+  nav{display:flex;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:58px;z-index:4}
+  nav button{flex:1;border:0;background:none;padding:13px 4px;font-size:15px;font-weight:600;color:var(--soft);border-bottom:4px solid transparent}
+  nav button.on{color:var(--navy);border-bottom-color:var(--amber)}
+  main{padding:14px 14px 90px;max-width:900px;margin:0 auto}
+  .now{background:#fff6e6;border-left:6px solid var(--amber);padding:11px 13px;border-radius:8px;margin:0 0 14px}
+  .now b{color:var(--navy)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
+  h2{font-size:18px;margin:18px 0 8px;color:var(--navy)}
+  h3{font-size:16px;margin:0 0 4px;color:var(--navy)}
+  p{margin:0 0 10px}
+  .muted{color:var(--soft);font-size:15px}
+  .big{display:block;width:100%;border:0;border-radius:12px;background:var(--teal);color:#fff;font-size:18px;font-weight:700;padding:15px;margin:8px 0}
+  .big.alt{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+  .big.warn{background:#fff;color:var(--red);border:2px solid var(--red)}
+  .row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;margin:0 0 8px;font-size:17px;color:var(--ink)}
+  .row .name{flex:1;font-weight:600}
+  .row .tag{font-size:13px;font-weight:700;padding:4px 9px;border-radius:20px;background:#e8eef5;color:var(--navy);white-space:nowrap}
+  .tag.yes{background:#dff3e5;color:var(--green)}
+  .tag.maybe{background:#fff0d1;color:#8a5a00}
+  .tag.no{background:#fbe1df;color:var(--red)}
+  label.q{display:block;font-weight:700;color:var(--navy);margin:16px 0 4px}
+  .hint{font-size:14px;color:var(--soft);margin:-2px 0 6px}
+  input[type=text],input[type=email],textarea{width:100%;font:inherit;padding:12px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  textarea{min-height:92px;resize:vertical}
+  input:focus,textarea:focus{outline:none;border-color:var(--teal)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:2px solid var(--line);background:#fff;border-radius:22px;padding:9px 14px;font-size:16px;color:var(--ink)}
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+  .qnum{display:inline-block;background:var(--amber);color:#3b2500;font-weight:800;border-radius:50%;width:26px;height:26px;text-align:center;line-height:26px;font-size:14px;margin-right:6px}
+  .qnum.done{background:var(--green);color:#fff}
+  .bar{height:10px;background:#e3e9f0;border-radius:6px;overflow:hidden;margin:6px 0 2px}
+  .bar i{display:block;height:100%;background:var(--teal)}
+  .sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 14px;display:flex;gap:10px;z-index:6}
+  .sticky button{flex:1;margin:0}
+  .seg{display:flex;border:2px solid var(--navy);border-radius:10px;overflow:hidden;margin:0 0 12px}
+  .seg button{flex:1;border:0;background:#fff;color:var(--navy);font-size:16px;font-weight:700;padding:11px}
+  .seg button.on{background:var(--navy);color:#fff}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+  th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:#eef2f7;color:var(--navy);font-size:13px;text-transform:uppercase;letter-spacing:.03em;position:sticky;top:0}
+  tr.tap{cursor:pointer}
+  .qa b{display:block;color:var(--navy);margin-top:12px;font-size:15px}
+  .qa .a{white-space:pre-wrap}
+  .qa .blank{color:var(--red);font-style:italic}
+  .pager{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+  .pager button{border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;font-size:16px;font-weight:700;padding:10px 14px}
+  .pager button:disabled{opacity:.35}
+  .pager span{flex:1;text-align:center;font-weight:700}
+  .msg{background:#dff3e5;color:var(--green);padding:10px 12px;border-radius:8px;font-weight:600;margin:8px 0}
+  @media print{header,nav,.sticky,.seg,.pager,.noprint{display:none!important}main{padding:0}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <h1>NYSCATE Booth Notes</h1>
+  <div class="saved" id="saved">Everything you type is saved on this phone as you go.</div>
+</header>
+<nav>
+  <button data-go="home" id="nav-home">Booths</button>
+  <button data-go="report" id="nav-report">Report</button>
+  <button data-go="send" id="nav-send">Send</button>
+</nav>
+<main id="app"></main>
+
+<script>
+(function(){
+"use strict";
+var KEY="nyscate2026.booths.v1";
+var PICKS=["LocoRobo Innovations Inc.","LEGO Education","CodeCombat","CodeMonkey Studios, Inc.","Ozobot","Incident IQ","Imagine Learning","Gaggle","Hackersjack","SchoolAI"];
+var COURSES=["Geometry","Biology","English","Global History","ASL","Coding","Game design","Animation","Health","Life Skills","PE"];
+var DEVICES=["Any web browser","Chromebook","Windows","Mac","iPad or tablet","Phone","A kit you buy"];
+var YN=["Yes","No","Not sure"];
+var VERDICTS=["Yes","Maybe","No"];
+
+var QUESTIONS=[
+ {n:1,title:"The name of the program and the company that makes it",keys:["program","company"]},
+ {n:2,title:"What it does, in your own words",keys:["does"]},
+ {n:3,title:"Which of your courses it would help, and what it would replace or add to",keys:["courses","replaces"]},
+ {n:4,title:"What it costs, whether there is a free trial, and whether one homeschool student can buy it",keys:["cost","trial","homeschool"]},
+ {n:5,title:"What you need to run it (which device, an account, an age limit)",keys:["devices","account","age"]},
+ {n:6,title:"How much time a week it is meant to take",keys:["time"]},
+ {n:7,title:"How Dad would see your work and your progress",keys:["dadSees"]},
+ {n:8,title:"The name and email of the person you talked to",keys:["person","email"]},
+ {n:9,title:"What happened when you tried it yourself at the booth",keys:["tried"]},
+ {n:10,title:"Your verdict: would you actually use this, and why?",keys:["verdict","why"]}
+];
+
+var S={items:[],view:"home",editId:null,mode:"grid",vi:0,msg:"",confirmDel:false};
+
+function load(){try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);if(Array.isArray(d))S.items=d;}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S.items));stamp("Saved on this phone at "+new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})+".");}catch(e){stamp("Could not save on this phone. Use Send to copy your notes somewhere safe.");}}
+function stamp(t){var el=document.getElementById("saved");if(el)el.textContent=t;}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function uid(){return "b"+Date.now().toString(36)+Math.floor(Math.random()*1e6).toString(36);}
+function blank(company){return{id:uid(),company:company||"",program:"",does:"",courses:[],replaces:"",cost:"",trial:"",homeschool:"",devices:[],account:"",age:"",time:"",dadSees:"",person:"",email:"",tried:"",verdict:"",why:"",updated:Date.now()};}
+function has(v){return Array.isArray(v)?v.length>0:String(v||"").trim()!=="";}
+function qDone(it,q){for(var i=0;i<q.keys.length;i++){if(!has(it[q.keys[i]]))return false;}return true;}
+function doneCount(it){var c=0;QUESTIONS.forEach(function(q){if(qDone(it,q))c++;});return c;}
+function find(id){for(var i=0;i<S.items.length;i++){if(S.items[i].id===id)return S.items[i];}return null;}
+function label(it){var c=it.company||"A booth with no name yet";return it.program&&it.program!==it.company?c+": "+it.program:c;}
+function verdictTag(it){if(!it.verdict)return "";return '<span class="tag '+it.verdict.toLowerCase()+'">Verdict: '+esc(it.verdict)+'</span>';}
+
+/* ---------- views ---------- */
+function render(){
+  ["home","report","send"].forEach(function(v){document.getElementById("nav-"+v).className=(S.view===v||(v==="home"&&S.view==="form"))?"on":"";});
+  var app=document.getElementById("app");
+  if(S.view==="form")app.innerHTML=viewForm();
+  else if(S.view==="report")app.innerHTML=viewReport();
+  else if(S.view==="send")app.innerHTML=viewSend();
+  else app.innerHTML=viewHome();
+  window.scrollTo(0,0);
+}
+
+function viewHome(){
+  var visited={};S.items.forEach(function(it){visited[it.company]=true;});
+  var left=PICKS.filter(function(p){return !visited[p];});
+  var h="";
+  var now;
+  if(!S.items.length)now="<b>What to do now:</b> Walk up to the first booth on your list. Tap its name below and fill in the ten questions while you talk to them.";
+  else if(left.length)now="<b>What to do now:</b> You have notes on "+S.items.length+" booth"+(S.items.length===1?"":"s")+". Pick your next booth below, or finish one that still has blanks.";
+  else now="<b>What to do now:</b> You have visited every booth on your list. Finish any booth that still has blanks, then open Send and get your notes to Dad.";
+  h+='<div class="now">'+now+'</div>';
+  if(!S.items.length){
+    h+='<div class="card"><h3>What this is</h3><p>This is your fact sheet for the NYSCATE vendor hall. For each booth you visit, you answer the same ten questions you wrote in your NYSCATE Plan.</p><p>Your notes save on this phone as you type, so you can close the page and come back. When you are done, the Report tab shows everything side by side, and the Send tab gets it to Dad.</p></div>';
+  }
+  if(S.items.length){
+    h+="<h2>Booths you have notes on</h2>";
+    S.items.forEach(function(it){
+      var n=doneCount(it);
+      h+='<button class="row" data-act="edit" data-id="'+it.id+'"><span class="name">'+esc(label(it))+'</span>'+verdictTag(it)+'<span class="tag'+(n===10?" yes":"")+'">'+n+' of 10</span></button>';
+    });
+  }
+  if(left.length){
+    h+="<h2>Booths on your list</h2><p class=\"muted\">These are the companies you picked in your plan. Tap one when you are at its booth.</p>";
+    left.forEach(function(p){h+='<button class="row" data-act="start" data-co="'+esc(p)+'"><span class="name">'+esc(p)+'</span><span class="tag">Start</span></button>';});
+  }
+  h+='<h2>Found a booth that is not on your list?</h2><div class="card"><p class="muted">Type the company name from the booth, then tap the button. The name goes straight into the form for you.</p><input type="text" id="newco" placeholder="Company name" autocomplete="off"><button class="big alt" data-act="startnew">Start this new booth</button></div>';
+  return h;
+}
+
+function chipSet(key,opts,it,multi){
+  var h='<div class="chips" data-key="'+key+'" data-multi="'+(multi?1:0)+'">';
+  opts.forEach(function(o){var on=multi?(it[key]||[]).indexOf(o)>-1:it[key]===o;h+='<button type="button" class="chip'+(on?" on":"")+'" data-chip="'+esc(o)+'">'+esc(o)+'</button>';});
+  return h+"</div>";
+}
+function txt(key,it,ph,type){return '<input type="'+(type||"text")+'" data-key="'+key+'" value="'+esc(it[key])+'" placeholder="'+esc(ph||"")+'" autocomplete="off">';}
+function area(key,it,ph){return '<textarea data-key="'+key+'" placeholder="'+esc(ph||"")+'">'+esc(it[key])+'</textarea>';}
+function qHead(it,n,title){var q=QUESTIONS[n-1];return '<label class="q"><span class="qnum'+(qDone(it,q)?" done":"")+'" id="qn'+n+'">'+n+'</span>'+esc(title)+'</label>';}
+
+function viewForm(){
+  var it=find(S.editId);if(!it){S.view="home";return viewHome();}
+  var n=doneCount(it);
+  var h='<div class="now"><b>What to do now:</b> Answer each question for this booth. Ask the person at the booth when you do not know. A number turns green when that question is finished.</div>';
+  h+='<div class="card"><h3 id="ftitle">'+esc(label(it))+'</h3><div class="muted" id="fcount">'+n+' of 10 questions finished</div><div class="bar"><i id="fbar" style="width:'+(n*10)+'%"></i></div></div>';
+
+  h+=qHead(it,1,"What is the program called, and which company makes it?");
+  h+='<div class="hint">The company is the name on the booth. The program is the product they are showing you.</div>';
+  h+=txt("company",it,"Company name")+'<div style="height:8px"></div>'+txt("program",it,"Program or product name");
+
+  h+=qHead(it,2,"What does it do, in your own words?");
+  h+=area("does",it,"Explain it the way you would to a friend.");
+
+  h+=qHead(it,3,"Which of your courses would it help?");
+  h+='<div class="hint">Tap every course that fits.</div>'+chipSet("courses",COURSES,it,true);
+  h+='<div style="height:8px"></div>'+txt("replaces",it,"What would it replace or add to?");
+
+  h+=qHead(it,4,"What does it cost?");
+  h+=txt("cost",it,"For example: $12 a month, or $300 for the kit");
+  h+='<div class="hint" style="margin-top:10px">Is there a free trial?</div>'+chipSet("trial",YN,it,false);
+  h+='<div class="hint" style="margin-top:10px">Can one homeschool student buy it?</div>'+chipSet("homeschool",YN,it,false);
+
+  h+=qHead(it,5,"What do you need to run it?");
+  h+='<div class="hint">Tap every device it works on.</div>'+chipSet("devices",DEVICES,it,true);
+  h+='<div class="hint" style="margin-top:10px">Do you need an account?</div>'+chipSet("account",YN,it,false);
+  h+='<div style="height:8px"></div>'+txt("age",it,"Age limit (write \"none\" if there is not one)");
+
+  h+=qHead(it,6,"How much time a week is it meant to take?");
+  h+=txt("time",it,"For example: 30 minutes, three times a week");
+
+  h+=qHead(it,7,"How would Dad see your work and your progress?");
+  h+=area("dadSees",it,"A parent login, a report, something you share?");
+
+  h+=qHead(it,8,"Who did you talk to?");
+  h+=txt("person",it,"Their name")+'<div style="height:8px"></div>'+txt("email",it,"Their email","email");
+
+  h+=qHead(it,9,"What happened when you tried it yourself at the booth?");
+  h+=area("tried",it,"What did you do, and how did it go?");
+
+  h+=qHead(it,10,"Your verdict: would you actually use this?");
+  h+=chipSet("verdict",VERDICTS,it,false);
+  h+='<div style="height:8px"></div>'+area("why",it,"Why? This is the start of your case to Dad.");
+
+  h+='<div style="height:22px"></div><button class="big warn" data-act="del">'+(S.confirmDel?"Tap again to delete this booth for good":"Delete this booth")+'</button>';
+  h+='<div class="sticky"><button class="big" data-act="done">Done with this booth</button></div>';
+  return h;
+}
+
+function cell(v){return has(v)?esc(Array.isArray(v)?v.join(", "):v):'<span class="muted">blank</span>';}
+function viewReport(){
+  var h="";
+  if(!S.items.length)return '<div class="now"><b>What to do now:</b> There is nothing to report yet. Go to Booths and fill in your first booth, or go to Send and load a backup file.</div>';
+  h+='<div class="seg noprint"><button data-mode="grid" class="'+(S.mode==="grid"?"on":"")+'">Short grid</button><button data-mode="one" class="'+(S.mode==="one"?"on":"")+'">Booth by booth</button></div>';
+  if(S.mode==="grid"){
+    h+='<p class="muted noprint">This shows every booth side by side. Slide the table sideways to see more. Tap a row to read the whole booth.</p>';
+    h+='<div class="scroll"><table><tr><th>Booth</th><th>Verdict</th><th>Courses</th><th>Cost</th><th>Free trial</th><th>One homeschooler</th><th>Time a week</th><th>Done</th></tr>';
+    S.items.forEach(function(it,i){
+      h+='<tr class="tap" data-act="open" data-i="'+i+'"><td><b>'+esc(label(it))+'</b></td><td>'+(it.verdict?verdictTag(it):cell(""))+'</td><td>'+cell(it.courses)+'</td><td>'+cell(it.cost)+'</td><td>'+cell(it.trial)+'</td><td>'+cell(it.homeschool)+'</td><td>'+cell(it.time)+'</td><td>'+doneCount(it)+' of 10</td></tr>';
+    });
+    h+="</table></div>";
+  }else{
+    if(S.vi>=S.items.length)S.vi=S.items.length-1;if(S.vi<0)S.vi=0;
+    h+='<div class="pager"><button data-act="prev"'+(S.vi===0?" disabled":"")+'>Back</button><span>Booth '+(S.vi+1)+' of '+S.items.length+'</span><button data-act="next"'+(S.vi===S.items.length-1?" disabled":"")+'>Next</button></div>';
+    h+=boothCard(S.items[S.vi]);
+    h+='<button class="big alt noprint" data-act="edit" data-id="'+S.items[S.vi].id+'">Change the answers for this booth</button>';
+    h+='<button class="big alt noprint" data-act="print">Print every booth</button>';
+    h+='<div id="printall" style="display:none"></div>';
+  }
+  return h;
+}
+function answers(it){
+  return [
+    [QUESTIONS[0].title,[it.program&&("Program: "+it.program),it.company&&("Company: "+it.company)]],
+    [QUESTIONS[1].title,[it.does]],
+    [QUESTIONS[2].title,[has(it.courses)&&("Courses: "+it.courses.join(", ")),it.replaces&&("Replaces or adds to: "+it.replaces)]],
+    [QUESTIONS[3].title,[it.cost&&("Cost: "+it.cost),it.trial&&("Free trial: "+it.trial),it.homeschool&&("One homeschool student can buy it: "+it.homeschool)]],
+    [QUESTIONS[4].title,[has(it.devices)&&("Devices: "+it.devices.join(", ")),it.account&&("Account needed: "+it.account),it.age&&("Age limit: "+it.age)]],
+    [QUESTIONS[5].title,[it.time]],
+    [QUESTIONS[6].title,[it.dadSees]],
+    [QUESTIONS[7].title,[it.person,it.email]],
+    [QUESTIONS[8].title,[it.tried]],
+    [QUESTIONS[9].title,[it.verdict&&("Verdict: "+it.verdict),it.why]]
+  ].map(function(p){return [p[0],p[1].filter(Boolean).join("\n")];});
+}
+function boothCard(it){
+  var h='<div class="card qa"><h3>'+esc(label(it))+'</h3><div>'+verdictTag(it)+' <span class="tag">'+doneCount(it)+' of 10</span></div>';
+  answers(it).forEach(function(p,i){h+="<b>"+(i+1)+". "+esc(p[0])+"</b>"+(p[1]?'<div class="a">'+esc(p[1])+"</div>":'<div class="blank">Not answered yet</div>');});
+  return h+"</div>";
+}
+
+function viewSend(){
+  var h='<div class="now"><b>What to do now:</b> When you are finished in the vendor hall, send your notes to Dad. The backup file is the best one to send, because Dad can load it on his computer and see this same report.</div>';
+  if(S.msg){h+='<div class="msg">'+esc(S.msg)+'</div>';S.msg="";}
+  h+='<div class="card"><h3>Send your notes</h3><p class="muted">You have notes on '+S.items.length+' booth'+(S.items.length===1?"":"s")+'.</p>';
+  h+='<button class="big" data-act="sharefile">Send the backup file to Dad</button>';
+  h+='<button class="big alt" data-act="copymd">Copy as Markdown</button><p class="muted">Paste this into a new tab in your NYSCATE Plan doc. Each question is in bold with your answer below it.</p>';
+  h+='<button class="big alt" data-act="csv">Download a spreadsheet file</button></div>';
+  h+='<div class="card"><h3>Load a backup file</h3><p class="muted">This is for Dad, or for moving your notes to another device. Loading a file adds its booths to the ones already here. It does not erase anything.</p><input type="file" id="imp" accept=".json,application/json" style="font-size:16px"></div>';
+  return h;
+}
+
+/* ---------- export ---------- */
+function markdown(){
+  var out="# NYSCATE Vendor Hall Notes\n\n";
+  S.items.forEach(function(it){
+    out+="## "+label(it)+"\n\n";
+    answers(it).forEach(function(p,i){out+="**"+(i+1)+". "+p[0]+"**\n\n"+(p[1]||"Not answered yet")+"\n\n";});
+  });
+  return out;
+}
+function csv(){
+  var cols=["company","program","does","courses","replaces","cost","trial","homeschool","devices","account","age","time","dadSees","person","email","tried","verdict","why"];
+  var head=["Company","Program","What it does","Courses","Replaces or adds to","Cost","Free trial","One homeschool student","Devices","Account needed","Age limit","Time a week","How Dad sees progress","Person","Email","What happened when I tried it","Verdict","Why"];
+  function q(v){v=Array.isArray(v)?v.join("; "):String(v==null?"":v);return '"'+v.replace(/"/g,'""')+'"';}
+  var rows=[head.map(q).join(",")];
+  S.items.forEach(function(it){rows.push(cols.map(function(c){return q(it[c]);}).join(","));});
+  return rows.join("\r\n");
+}
+function download(name,text,type){
+  var b=new Blob([text],{type:type});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+}
+function copyText(t,okMsg){
+  function fallback(){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy");}catch(e){}ta.remove();S.msg=ok?okMsg:"Copying did not work on this phone. Use the backup file instead.";render();}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){S.msg=okMsg;render();},fallback);}else fallback();
+}
+function shareFile(){
+  var text=JSON.stringify({app:"nyscate-booth-notes",version:1,exported:new Date().toISOString(),booths:S.items},null,1);
+  var name="nyscate-booth-notes.json";
+  try{
+    var f=new File([text],name,{type:"application/json"});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:"NYSCATE Booth Notes"}).then(function(){S.msg="The backup file was sent.";render();},function(){});return;}
+  }catch(e){}
+  download(name,text,"application/json");S.msg="The backup file was saved to this device as "+name+". Send that file to Dad.";render();
+}
+function importFile(file){
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var d=JSON.parse(r.result);var list=Array.isArray(d)?d:d.booths;if(!Array.isArray(list))throw 0;
+      var added=0,updated=0;
+      list.forEach(function(n){
+        if(!n||typeof n!=="object")return;
+        var b=blank("");Object.keys(b).forEach(function(k){if(n[k]!==undefined)b[k]=n[k];});
+        if(!Array.isArray(b.courses))b.courses=[];if(!Array.isArray(b.devices))b.devices=[];
+        var old=find(b.id);
+        if(!old){S.items.push(b);added++;}
+        else if((b.updated||0)>(old.updated||0)){S.items[S.items.indexOf(old)]=b;updated++;}
+      });
+      save();S.msg="Loaded the file. "+added+" booth"+(added===1?"":"s")+" added and "+updated+" updated. Open Report to see them.";
+    }catch(e){S.msg="That file could not be read. Choose the file named nyscate-booth-notes.json.";}
+    render();
+  };
+  r.readAsText(file);
+}
+
+/* ---------- events ---------- */
+function refreshProgress(it){
+  var n=doneCount(it);
+  var c=document.getElementById("fcount"),b=document.getElementById("fbar"),t=document.getElementById("ftitle");
+  if(c)c.textContent=n+" of 10 questions finished";if(b)b.style.width=(n*10)+"%";if(t)t.textContent=label(it);
+  QUESTIONS.forEach(function(q){var el=document.getElementById("qn"+q.n);if(el)el.className="qnum"+(qDone(it,q)?" done":"");});
+}
+document.addEventListener("input",function(e){
+  var k=e.target.getAttribute&&e.target.getAttribute("data-key");if(!k||S.view!=="form")return;
+  var it=find(S.editId);if(!it)return;it[k]=e.target.value;it.updated=Date.now();save();refreshProgress(it);
+});
+document.addEventListener("change",function(e){if(e.target.id==="imp"&&e.target.files&&e.target.files[0])importFile(e.target.files[0]);});
+document.addEventListener("click",function(e){
+  var t=e.target;
+  var go=t.closest("[data-go]");if(go){S.view=go.getAttribute("data-go");S.confirmDel=false;render();return;}
+  var chip=t.closest("[data-chip]");
+  if(chip){
+    var box=chip.parentNode,key=box.getAttribute("data-key"),multi=box.getAttribute("data-multi")==="1",val=chip.getAttribute("data-chip"),it=find(S.editId);if(!it)return;
+    if(multi){var a=it[key]||[];var i=a.indexOf(val);if(i>-1)a.splice(i,1);else a.push(val);it[key]=a;chip.classList.toggle("on");}
+    else{it[key]=it[key]===val?"":val;Array.prototype.forEach.call(box.children,function(c){c.classList.toggle("on",c.getAttribute("data-chip")===it[key]);});}
+    it.updated=Date.now();save();refreshProgress(it);return;
+  }
+  var m=t.closest("[data-mode]");if(m){S.mode=m.getAttribute("data-mode");render();return;}
+  var a=t.closest("[data-act]");if(!a)return;
+  var act=a.getAttribute("data-act");
+  if(act==="start"){var b=blank(a.getAttribute("data-co"));S.items.push(b);save();S.editId=b.id;S.view="form";S.confirmDel=false;render();}
+  else if(act==="startnew"){
+    var box=document.getElementById("newco"),nm=box?String(box.value||"").trim():"";
+    if(!nm){if(box){box.placeholder="Type the company name here first";box.focus();}return;}
+    var same=S.items.filter(function(x){return x.company.toLowerCase()===nm.toLowerCase();})[0];
+    if(same){S.editId=same.id;}else{var nb=blank(nm);S.items.push(nb);save();S.editId=nb.id;}
+    S.view="form";S.confirmDel=false;render();
+  }
+  else if(act==="edit"){S.editId=a.getAttribute("data-id");S.view="form";S.confirmDel=false;render();}
+  else if(act==="done"){S.view="home";S.confirmDel=false;render();}
+  else if(act==="del"){
+    if(!S.confirmDel){S.confirmDel=true;a.textContent="Tap again to delete this booth for good";setTimeout(function(){S.confirmDel=false;if(S.view==="form"&&a.isConnected)a.textContent="Delete this booth";},4000);}
+    else{S.items=S.items.filter(function(x){return x.id!==S.editId;});save();S.confirmDel=false;S.view="home";render();}
+  }
+  else if(act==="open"){S.vi=+a.getAttribute("data-i");S.mode="one";render();}
+  else if(act==="prev"){S.vi--;render();}
+  else if(act==="next"){S.vi++;render();}
+  else if(act==="print"){var p=document.getElementById("printall");p.innerHTML=S.items.map(function(x,i){return i===S.vi?"":boothCard(x);}).join("");p.style.display="block";window.print();setTimeout(function(){p.style.display="none";p.innerHTML="";},800);}
+  else if(act==="copymd"){copyText(markdown(),"Copied. Now paste it into your NYSCATE Plan doc.");}
+  else if(act==="csv"){download("nyscate-booth-notes.csv",csv(),"text/csv");S.msg="The spreadsheet file was saved to this device.";render();}
+  else if(act==="sharefile"){shareFile();}
+});
+
+load();render();
+})();
+</script>
+</body>
+</html>
