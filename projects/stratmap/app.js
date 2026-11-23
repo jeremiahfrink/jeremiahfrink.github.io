@@ -1,15 +1,15 @@
 /* Territory Coverage Planner v2 — static site for GitHub Pages */
 'use strict';
-// Revised starting map, based on the user's November 20 reference image.
+// Revised starting map, with Kentucky and Tennessee assigned to J.
 // T = blue; J = orange; TnJ = purple; split = striped Pennsylvania.
-const T_START = new Set('WA OR CA NV ID MT WY UT AZ CO HI MI KY TN GA SC NC VA MD DE NJ NY DC'.split(' '));
-const J_START = new Set('AK NM TX ND SD NE KS OK MN IA MO WI IL IN OH AR LA FL MS AL'.split(' '));
+const T_START = new Set('WA OR CA NV ID MT WY UT AZ CO HI MI GA SC NC VA MD DE NJ NY DC'.split(' '));
+const J_START = new Set('AK NM TX ND SD NE KS OK MN IA MO WI IL IN OH AR LA FL MS AL KY TN'.split(' '));
 const SHARED_START = new Set('ME VT NH MA CT RI WV'.split(' '));
 const START_SPLIT = new Set(['PA']);
 // New key intentionally starts with the new reference map rather than loading
 // an older browser's saved starting assignments. Older saved plans remain in
 // localStorage under their original key and can be exported/imported.
-const STORAGE_KEY='territory-planner-tjnj-map-2026-11-v3';
+const STORAGE_KEY='territory-planner-tjnj-map-2026-11-v4';
 const $=id=>document.getElementById(id);
 const number=n=>Math.round(n||0).toLocaleString('en-US');
 const currency=n=>'$'+number(n);
